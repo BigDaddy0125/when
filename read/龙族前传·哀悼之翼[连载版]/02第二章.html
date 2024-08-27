@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>02第二章</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <div id="top"></div>
+            <p><a href="01%E7%AC%AC%E4%B8%80%E7%AB%A0.html">上一章</a>|<a href="contents.html">返回目录</a>|<a
+                        href="03%E7%AC%AC%E4%B8%89%E7%AB%A0.html">下一章</a></p>
+            <hr>
+            <h1 id="center第二章-交易center">
+                  <center>第二章 交易</center>
+            </h1>
+            <center>&lt;交易编号19010666，这是今年他们从远东购买的第666件货物，这个该死的数字让不信神的路山彦都觉得不吉利，666，那是恶魔撒旦的专属数字。那绝对是件让人从骨髓深处惊悚战栗的东西。&gt;
+            </center>
+            <br>
+            <br>
+            <p>公元1900年秋，深夜，细雨，德国汉堡港。</p>
+            <p>灯塔的气灯如一柄辉世的利剑，旋转着切割黑暗，切到码头上，切出一个消瘦笔挺的剪影。年轻的梅涅克·卡塞尔伯爵独自站在码头上，没有打伞，双手插在口袋里，束起风衣的衣领抵挡寒风。</p>
+            <p>他藏在口袋里的手轻轻地抚摸着左手食指上的那枚古银戒指，金色的眼睛眯成一条细缝，透过茶色眼镜的镜片眺望海面。以往沉静的海面此刻如一窝即将煮沸的水那样不安地起伏着，这是暴风雨即将到来的征兆，绝大多数的船已经入港，远方的海面上空荡荡的的，只有惨白的灯光烙下的圆形光斑。
+            </p>
+            <p>“来了！”他的眼角微微一跳。</p>
+            <p>当灯塔的汽灯灯再次扫过那片空荡荡的海面时，一艘货轮的黑影被切割出来，它出现得无声无息，仿佛破开大海浮现的幽灵船。乌黑色的船舷上用白漆醒目地刷着“玛丽皇后号”，那是一艘名声不太好的英国船，往来于远东和汉堡港之间，用鸦片和瓷器贸易作为掩护，倒卖来自敦煌和中国南方的古物。
+            </p>
+            <p>梅涅克举手示意，他的人在码头上用气灯打出了三长两短的信号。漆黑的“玛丽皇后号”以两短两长的灯光回应。它非常谨慎，在港口外下了锚，始终在那里随着海浪起伏，却不移动。水手们降下救生艇，披着雨披奋力划船，向码头靠近。
+            </p>
+            <p>路山彦无声地走到梅涅克背后。他是一个地道的中国人，25岁，双瞳漆黑，面颊的线条柔和和明晰，身材和梅涅克相当。路山彦一身漆黑的雨披遮挡了他身上的大清礼服，把粗大的辫子盘起来藏在礼帽里，这样他低头在梅涅克的背后，一般人不会轻易察觉出他是个东方人。路山彦可以算得上是洋务派的一位要员，光绪十六年被选送京师同文馆，对于欧洲的语言和科技都有很深的造诣，四年后就这位德国使臣的助手，也是在那里他认识了这位年轻的卡塞尔伯爵，成为他最好的朋友。
+            </p>
+            <p>路山彦掏出象牙镶嵌的金质怀表看了一眼，“时间正好，他们很准时。”</p>
+            <p>梅涅克扭头看了看这位朋友，目光最后落在了路山彦身上的金属闪光上，在漆黑的夜幕里，这两道光狞亮如刀剑、那是两支银色的大口径左轮枪，路山彦不是那种手无缚鸡之力的中国人，梅涅克知道他双枪齐发的时候可以同时射落两只飞鸟，而且都是贯穿双眼。
+            </p>
+            <p>“山彦你不觉得我们这对组合很奇怪？”梅涅克抱紧藏在风衣里的长刀，嵌银的刀柄探出来顶着他的下颚。</p>
+            <p>“有什么奇怪？”路山彦淡淡地反问。</p>
+            <p>“武器用反了。”梅涅克慢慢地拔刀一寸，而后收了回去。那一瞬间刀身的发光冷得刺骨，像是严冬夜空中的明月。刀身上铸造时天然生成的花纹清晰可见，那时一柄奥斯曼土耳其帝国风格的特长刀，用罕见的冷缎花纹钢打造。十八世纪以后，这种神话般的钢铁炼制技术已经绝迹，通常这种刀剑只是欧洲豪门的欣赏品，当时梅涅克仔细地磨砺了这柄刀的刀刃，他带着这柄刀不是为了炫耀或防身，他随时准备使用它。
+            </p>
+            <p>“总有一天我大清的所有军人也都会装备上你们生产的洋刀洋炮，那时候我们的国家就强大了，再也没人买你们生产的鸦片。”路山彦说。</p>
+            <p>“嗨，说的我好象是个鸦片贩子似的。”梅涅克抗议。</p>
+            <p>路山彦笑笑，他知道梅涅克绝对不沾染鸦片，他只是想和梅涅克斗斗嘴。如果他们此时都不说话，那么局面就太冷煞了。大海、细雨、孤灯，还没算上一艘漆黑的救生船波涛起伏而来，他们背后的同伴守着藏在雨披下的马克沁重机枪。
+            </p>
+            <p>不过也许确实就该那么了冷煞，虽然他们彼此之间也不讨论，但是每个人都猜到了这次交易的货物是什么。</p>
+            <p>那绝对是件让人从骨髓深处惊悚战栗的东西。</p>
+            <p>交易编号19010666，这是今年他们从远东购买的第666件货物，这个该死的数字让不信神的路山彦都觉得不吉利，666，那是恶魔撒旦的专属数字。</p>
+            <p>救生艇终于泊岸了，为首的水手身强力壮，跳上码头，也不用绳子把船固定，只是用手紧紧地拉着船头的铁环，以防他被海潮推走。这说明他们不想多留哪怕一秒，交易完成，他们会立刻离开。虽然他们已经在海上漂泊了半年之久，但是他们似乎并不渴望踏上地面，也不渴望城里热情好客的酒吧女。
+            </p>
+            <p>“都是老朋友了，快验货，无误我们就付钱，按照说好的价码。”路山彦中文说。他听到玛丽皇后号的真正主人是一个中国人。可谁也不知道他的身份。欧洲船员们只负责开船，负责交易的都是中国老板的手下，清一色来自西北的彪悍男子。那个为首的水手和路山彦一样拖了一条漆黑的辫子，绑在肌肉突的脖子上。
+            </p>
+            <p>为首的水手抬起头，摇了摇头，路山彦吃了一惊，和以往交易的人不同。这个水手脸方正，眼窝却深陷，双瞳如残灯般般光芒闪灭，完全是个陌生人。但最不可思议的是他的双唇被染黑的麻线紧紧地封在一起，这种残忍的手法让他不可能说出话。
+            </p>
+            <p>四名中国水手把一只漆黑的箱子从船上抬到岸上，箱子被斑驳的封条封着，封条上是交易的编号19010666和卡塞尔的家徽图案，这是卡塞尔的代表在中国验货上船是做好的封条，都是这样贵重的货物不能不再次检验。</p>
+            <p>梅涅克一挥手，一个带着夹鼻单片眼镜的金发年轻人无声地走到箱子旁，他看起来只不过是二十岁，那张俊美的脸看起来有几分孩子气。但是路山彦知道，这个叫昂热的年轻人握有剑桥博士学位，在神学和古文方面都是博士。</p>
+            <p>昂热从口袋里掏出一把折刀，推开刀刃，沿着箱盖的隙缝缓慢地切割，手法简明利落。他深深地吸一口气，把手里的煤油灯举高，把箱盖解揭开一条缝隙。谁都看得出昂热的神情变化，说不清楚是狂喜、恐惧或是震骇，他竭力克制，但是单片眼镜还是离开了他的鼻梁，要不是挂着链子，早在地下摔着粉碎了。他重新合上箱盖，对梅涅克点了点头。
+            </p>
+            <p>“按照之前说好的，五万马克全部用银币支付。”梅涅克拍拍手，几名强壮的伙伴提着装满五万马克的箱子走了过来。</p>
+            <p>为首的水手却摆了摆手，对于这笔巨款他显得毫无兴趣。他从衣袋里掏出一封早已写就的信，递给路山彦，然后恭恭敬敬地行了一个大礼，带着一群水手登上救生艇，向着玛丽皇后号极速返回。所有人都看着路山彦，在这些人里只有路山彦懂中文（不知道是不是这样，在之后的卡塞尔学院才普及中文）。路山彦极快地读完那封信，沉默了一会儿。
+            </p>
+            <p>“信上说这货物不收钱，这个是被诅咒的东西，沾上的人都会死。”路山彦面无表情地说，“信的最后说，再见，从此再不会和我们交易了。”</p>
+            <p>“听起来好像我们占了便宜。”梅涅克咧嘴笑笑，“可我怎么觉得全身有点发冷呢？”</p>
+            <p>“那边。”路山彦看着远边的玛丽皇后号。</p>
+            <p>救生艇已经登船了，玛丽皇后号的汽笛长鸣，在这个暴风雨即将到来的夜晚，这艘船竟然放弃进港的机会，它收起锚，重新起航，以最高的航速驶向黑沉沉的大海。梅涅克抬起头正好灯塔的光柱指向天空，天空里浓云翻滚，像是下面这片大海波涛起伏的起伏的倒影。
+            </p>
+            <p>“那么想赶快扔掉这个不吉利的东西？”昂热耸耸肩，“如果真是那么不祥的东西，沾过的人都会死，霉运跑得比风还快，是逃不过的。”</p>
+            <p>“你有什么可幸灾乐祸的？就算霉运跑得再快，也是先让靠近他的人倒霉，你看我们多靠近这个东西，我都能亲手摸到它。”梅涅克拍了拍那只印度黑檀木做成的大箱子，“这些中国人为什么要把这箱子订得像棺材。”</p>
+            <p>昂热的神色有点奇怪，“梅涅克，你没听人描述过这里面的东西对么？”</p>
+            <p>他环顾四周，伙伴们的目光都集中到那只箱子上，昂热缓缓把箱盖推开。所有人都吸了一口凉气，这只印度黑檀木临时订成的箱子，是一口黑地嵌银漆莲花的中式棺材，经过了许多年，油漆斑驳，木材的一部分被虫蛀去了，可依然可以想见当初这棺材是何等做工精细。
+            </p>
+            <p>梅涅克往地下啐了一口，用蹩脚的中文说：“棺材棺材，升官发财！”</p>
+            <p>“听着像是文物贩子，”路明非趁着校长给茶壶续水的间隙打岔，“校长你年轻的时候走的不是正道…”</p>
+            <p>“这是屠龙秘党的传统，直到今天卡塞尔学院还是世界上资金最雄厚的几个文物买家之一”，校长淡定地说。“否则你以为你们的高额奖学金从何而来？我们研究的课题都没法见光，自然不会有资金支持我们。除了校董们慷慨捐赠，就靠文物买卖了。”
+            </p>
+            <p>“违法的？”</p>
+            <p>“有些，不过很少。我们想要交易的东西，会冒任何风险，法律风险也是其中之一”校长给路明非续上茶，“因为关于言灵和炼金技术，很多都已经失传了。我们只能透过分析研究一些文物，获得龙族知识的一星半点，而有些无法复制的产品，如今也只能从古墓中获得了，用一件就少一件，如果在炼金技术的复原上我们不能取得进展，那么下个世纪，我们可能再也找不到能够克纯血龙族的炼金产品了。”
+            </p>
+            <p>“古墓里为什么会有炼金产品？”</p>
+            <p>“几乎所有巫术和神秘力量都和龙族的技术有关，而龙族的两大技术基础，就是言灵和炼金术。人类窃取了龙族的技术，但是我们无法深入技术的核心，绝大多数的人类又没有龙族血统的支持，无法理解那些复杂的内容，所以古代宗教的继承，是龙族技术的一鳞半爪。但即使是一鳞半爪，也随着时间慢慢被遗忘，如今还能找到的，只是古墓里的那些陪葬品罢了。”
+            </p>
+            <p>校长顿了顿，“但是那些陪葬品往往隐藏着极大的风险，应该交给最专业的处理…梅涅克·卡塞尔，他一生犯的最大错误，就是他没有找到专业的人去处理。”</p>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>07第七章</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <div id="top"></div>
+            <p><a href="06%E7%AC%AC%E5%85%AD%E7%AB%A0.html">上一章</a>|<a href="contents.html">返回目录</a>|<a
+                        href="08%E7%AC%AC%E5%85%AB%E7%AB%A0.html">下一章</a></p>
+            <hr>
+            <h1 id="center第七章-勇气center">
+                  <center>第七章 勇气</center>
+            </h1>
+            <center>
+                  &lt;梅涅克诧异地从那些死侍的眼睛里看到了敬畏，也看到了这个老人的极盛年代，被古龙苏醒召唤而来的死侍们确实记得夏洛子爵，记得他淋漓至极的领域，他以秘党第一杀戳手的身份横行欧洲的时代，死侍没有不知道他的。&gt;
+            </center>
+            <br>
+            <br>
+            <p>言灵·镰鼬，进阶！</p>
+            <p>序列号71，言灵·吸血镰！</p>
+            <p>梅涅克·卡塞尔站在无边的大雨中，亚特坎长刀的刀尖下垂，沿着刀身流淌的鲜血迅速被雨水冲淡，洒在地面上时已经略带粉色。</p>
+            <p>梅涅克还在微笑，因为他没有吃亏。</p>
+            <p>在对方刺中他的瞬间，他一刀砍下了五名武官的头颅，并且把五枚银质弹头的子弹拍入了不出血的颅腔。这些失去了头颅的武官在银毒的作用下，肤色迅速转为渗入的铅灰色，尸体在站立了大约十秒钟后，无力地倒下，这些血液才从断口流出，染红了整片地面。
+            </p>
+            <p>一刀杀五，这令梅涅克骄傲，他一直都是骄傲的年轻人。</p>
+            <p>还剩七名武官，以及伤到梅涅克的那个人，梅涅克至今没能看清那个人的脸，那个人混在人群里四次进攻，每次都是一刀，每次都给梅涅克造成几乎致命的麻烦。但是梅涅克居然未能看清他的脸。</p>
+            <p>梅涅克有点后悔，如果放弃斩杀五名武官，也许就能伤到那个对手了。</p>
+            <p>伤他一刀，比斩杀五名武官还要有价值吧？</p>
+            <p>因为他一个人……或许顶五十名武官！</p>
+            <p>人流正从四面八方会聚而来，清一色的德国人，穿着不同的服饰，身材性别年龄都更不同，只有一样东西是完全一致的，也正是这样东西说明他们是一类人，或者，一类的超越常理的存在。</p>
+            <p>每个人的眼里，都闪着淡金色的微光，绚丽而诡异，黑暗中仿佛飞舞着一对一对的金色萤火虫。</p>
+            <p>他们紧紧地围绕着马车，阻塞了道路，却没有发动进攻。</p>
+            <p>可能是等待机会，或者不敢，因为一个枯瘦的身影站在了车夫的身边，一手按在车夫的肩头上，一手举着燧发枪，一身华贵的人字呢大衣湿透了，仿佛一件铠甲穿在身上，银色头发在狂风暴雨中凌乱。但他的人不凌乱，他凶猛如一只狮子，苍老的脸上满是雨水，微微龇开的牙缝里，叼着一枚纯银弹丸。
+            </p>
+            <p>夏洛子爵，伟大的德意志银行家，或者，屠龙的“银翼”。</p>
+            <p>“你们中还有人记得我吧？我这种老家伙，能记得我的人类都差不多死光了，但是死侍能活很多年……这很好！被人记住的感觉很好！”夏洛子爵钻出马车的开场白，“记得我如何一枪一个把你们的同族送进地狱！”</p>
+            <p>梅涅克诧异地从那些死侍的眼睛里看到了敬畏，也看到了这个老人的极盛年代，被古龙苏醒召唤而来的死侍们确实记得夏洛子爵，记得他淋漓至极的领域，他以秘党第一杀戳手的身份横行欧洲的时代，死侍没有不知道他的。</p>
+            <p>言灵·刹那。</p>
+            <p>在可以连续发射的左轮枪被发明之后，夏洛子爵仍旧能够以一杆需要单独灌注火药和弹丸的燧发枪成名，是因为他天赋的言灵能力。</p>
+            <p>时间在他而言能够放大数十倍，他只需要几十分之一的时间就可以完成装填。</p>
+            <p>“这个言灵听起来跟校长你的‘时间零’不是一样的么？”路明非说，他还记得校长凝固时间的精彩表演，一切都慢下来了，包括子弹的飞行，他扣动扳机之后，两倍音速的狙击步枪子弹在空中飞行得好像一个飞盘。校长的领域里，物理法则都失效了似的，唯一还能正常行动的，只有校长自己和路明非。
+            </p>
+            <p>“是的，‘刹那’进化之后，就会获得‘时间零’。”校长说，“你会被化学元素周期表么？”</p>
+            <p>路明非抓抓头思考一下，“氢………居然张口就来，我不禁有些佩服自己在高中的童子功了。不过在贵圈化学元素周期表还管事儿么？你们不是按照地水风火四大元素来分析世界的么？”</p>
+            <p>“元素周期表当然还用得上，不过更重要的一份表格是言灵周期表，你很快就需要背那份表了，考试还会考默写。”校长解释：“118个言灵，会组成一张矩阵表格，是以地水风火为法则来排布的，言灵之间存在着进阶的关系。这就像元素周期表里，铍元素属于主族‘IIA’，下一个主族IIA的元素是镁元素，它们在一列之中，具有类似的化学特性，言灵也一样，‘镰鼬’的序列号59，属于典型的风系言灵，下一个典型风系言灵是序列号71的‘吸血镰’，掌握镰鼬的人，是可以通过锻炼掌握吸血镰的，‘时间零’则是‘刹那’的下一级言灵。”
+            </p>
+            <p>“校长你的意思是你比老前辈还要拽咯?”</p>
+            <p>“倒不是这样，夏洛子爵大概也是可以进阶到‘时间零’的，但是未必高阶言灵一定比低阶的言灵有用，譬如你双手握着两把博莱塔手枪，填满了银弹，在黑暗中和敌人对抗，那么第一时间带回情报的‘镰鼬’就会比‘吸血镰’更加有用，准确地判定敌人位置之后，精确射击就能解决问题。当你进阶到‘吸血镰’的时候，镰鼬们会疯狂地向敌人发起进攻，它们一旦飞离，就再不回来。”
+            </p>
+            <p>路明非有点懂了，点点头，“那‘死侍’呢？死侍怎么回事儿？看起来很废柴，一群人围着马车都不敢上。”</p>
+            <p>“废柴？”校长一愣，“我在某些中文论坛见过这个词，似乎是贬义词，但还不完全了解它的意思。</p>
+            <p>“废柴就是不能打的意思，‘能打’是我们最高的评价，‘不能打’就是废柴，就没法要了，比如中国发神舟飞船，成了，就是很能打，韩国发‘罗老号’火箭，掉下来了，就有点废柴。”路明非得意洋洋地解释，对于校长这种活了一百多年的老家伙老说，中文能说得那么利索已经很不容易了，不过好歹这件事上路明非还能教教他。
+            </p>
+            <p>“我明白了，”校长严肃地点头，带着十二分鼓励的口吻，“那么明非，你一定要努力学习，争取不当废柴啊！”</p>
+            <p>路明非沉默了很久，抹了一把脸，“不知道怎么的，怎么有教小孩子吐口水，却被小孩一口吐在脸上的感觉……”</p>
+            <p>“你说什么？”</p>
+            <p>“哦哦，接着说死侍吧。”</p>
+            <p>“所谓死侍，就是镜中的我们。”校长低声说。</p>
+            <p>路明非一愣。</p>
+            <p>“这个学院里，每个人的龙族血统都在50%以下，而理论上，龙族血统比例越高，越是可能出现天才，对于言灵的感应能力也越强。”校长说，“你有没有疑惑我们为什么从不招收那些50%以上的学生？”</p>
+            <p>“我听过一点，他们会会转而支持龙族？”路明非隐隐的记得，入学的时候福山雅史和古德里安说到过。</p>
+            <p>“不是支持谁的问题，不是政治立场，而是血统归属。一旦超过50%，血统很容易变得不可逆。”</p>
+            <p>“不可逆？”</p>
+            <p>“因为龙族基因是远强于人类基因的，他们虽然是爬行类，却是爬行类进化的终极状态，他们的基因凶猛，具备很强的进攻性，甚至能够吞噬或修改其他种族的基因序列。生物学告诉我们，碱基对的序列，决定了基因的不同，比如你和一条狗的基因都是由差不多的成分构成的，但是但是碱基对的次序不同，决定了你是汪汪叫还是直立行走”
+            </p>
+            <p>“我觉得自己好像被骂了但不太能还口的样子继续。”路明非听了这个比喻后，一头黑线的插嘴。</p>
+            <p>“混血种就以为这存在不同种族的碱基对序列，从而遗传了不同种族的特质，通常情况下，这些碱基对的序列是一生不会改变的，也是因为碱基对序列的稳定，你不会早晨起来突然发现自己变成了一条狗。”</p>
+            <p>“骂人骂一次就可以了，笑点被戳爆了我也会尴尬的”路明非低声嘟囔。</p>
+            <p>校长没有理睬他“但是龙族的基因非常特别，一旦比例超过50%，龙族基因有能力改变基因中人类的那部分。对于这种侵略性极强的基因而言，人类的基因是低等的，爬虫一样的，要从屋子里被扫出去的。龙类基因一次次的修正之后，最终混血种会变得非常接近纯血种，人类的部分被吞噬掉，龙类的部分越发觉醒。”
+            </p>
+            <p>“结果会变成纯血龙族？”</p>
+            <p>“无限接近，但是永远难以抵达。”校长叹了口气，“这也是悲哀的族类，他们很想纯血种，但是和真正的龙类又有差异。真正纯血的龙类只有古龙族裔，古龙族裔把这些人看作仆从，驱使他们，却又不承认他们，他们外表很想人类，混在人群中难以被觉察，有些又因为血统缘故寿命极长，纯种龙族会从中选拔一些人，改造他们的身体，令他们介乎生死之间。他们在一代代的人类中隐藏身份，等待着龙王们复苏，为迎接而做准备，事实上他们才是我们最棘手的敌人，只要准备充分，把一头即将复苏的龙王杀死并不算难，可过程中一旦被死侍干扰，就很危险了。”
+            </p>
+            <p>“那些死侍的血统纯度那么高，我们怎么打得过？”路明非不由得担心。</p>
+            <p>要记住山彦的话啊，其实不只有龙类才有力量，”校长微笑，“人类，从来不是弱小的种族！”</p>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

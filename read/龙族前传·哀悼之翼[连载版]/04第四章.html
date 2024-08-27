@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>04第四章</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <div id="top"></div>
+            <p><a href="03%E7%AC%AC%E4%B8%89%E7%AB%A0.html">上一章</a>|<a href="contents.html">返回目录</a>|<a
+                        href="05%E7%AC%AC%E4%BA%94%E7%AB%A0.html">下一章</a></p>
+            <hr>
+            <h1 id="center第四章-战斗center">
+                  <center>第四章 战斗</center>
+            </h1>
+            <center>&lt;他已经死了三个同伴，却没有时间悲伤，他抹了抹脸，把脸上的雨水和泪水一起抹掉。</center>
+            <center>
+                  路山彦站在他面前，从他的眼睛里明白了一切。这个中国官员对着梅涅克坚定地点头，示意梅涅克从门边闪开，他提着大口径左轮站在细雨中，甩头抛掉了头上的绅士帽。那根漆黑的长辫顶端束着红绳，在夜风里放肆地飞扬。&gt;
+            </center>
+            <br>
+            <br>
+            <p>昂热狂奔着穿越庭院，戒备的梅涅克大声的喊他，昂热却没有停步回头。</p>
+            <p>梅涅克明白情况有多么紧急了，他扭头大喊“酋长和老虎跟我一起上山！山彦，你带剩下的人守住酒窖入口！准备好来福枪！烟灰，还有你的克伯虏炮！”</p>
+            <p>一个身材魁梧的黑人和一个身材矫健的印度人立刻向梅涅克靠近，酋长和老虎都是“狮心会”的成员，梅涅克发展成员从不限于欧洲人。老虎把一支霰弹铳扔给酋长，自己握着一支，他们都是极敏捷的射手，“酋长”是一个非洲部落酋长的儿子，被他的父亲送到英国读书，曾在非洲草原猎杀狮子，而老虎则是一个大邦的年轻贵族，和酋长一样喜欢枪支这种新型武器，喜欢在印度丛林猎杀老虎。
+            </p>
+            <p>路山彦深深吸了一口气，左右拔出了他的大口径左轮枪。</p>
+            <p>昂热踢开酒窖的门直冲进去，折刀滑入他的掌心。他在年久失修的木楼梯上跳跃着前进，觉得整个楼梯都摇摇欲坠。他决定首先切断标本的全部血管，把心脏彻底切成碎片，然后再动用黑索炸弹，这是两年前的新发明，人类迄今最强的炸弹，无论什么生物组织都会被完全销毁。梅涅克他们的脚步声就在后面不远处追着他而来，这让昂热感觉到“狮心会”成员之间的合作一向可靠，梅涅克还带着那柄足以扭转战局的亚特坎长刀。
+            </p>
+            <p>现在他只希望那些中国人的法器经过上千年还能用，在秘党的知识体系中，法器属于炼金武器，有些炼金武器会随着时间效力降低。</p>
+            <p>“莫德勒！”他踏入酒窖那间临时解剖室。</p>
+            <p>他忽然站住了，归于绝对的沉寂，那柄只有20厘米长的折刀在他的身侧缓缓的垂下，姿势就像那些日本使用超过100厘米的折刀。他停止了自己的呼吸，狂跳的心脏急速的减速，垂头看着地下横流的鲜血，全部注意力集中到听力上去。
+            </p>
+            <p>他不想眼前的一切影响他的判断，必须保持绝对的冷静。他是这里唯一的活人了，滚热的血浆在围着解剖台的白布帘上流淌，地窖顶上也有粘稠的血滴慢慢地坠落，散落满地的素描记录和医袍都变成了血红色，那些肢体碎片让人不敢把它们和人类联想到一起去。煤气灯依旧亮着，照出血红色布帘中那张精钢的解剖台，但是昂热知道那里已经是空荡荡的了。
+            </p>
+            <p>昂热知道敌人还在这里，隐藏着某个无法觉察的角落。昂热的背后就是唯一的出口，他必须守住出口等到梅涅克他们来支援。</p>
+            <p>如果他还能活到那时。</p>
+            <p>“梅涅克，站在楼梯口，不要动！”昂热的声音从漆黑的走道中传来，平静得令人不寒而栗。</p>
+            <p>狂奔中的梅涅克意识到这个警告有那么严肃，昂热是个什么样的人他再清楚不过，那个自命精英很少微笑永远不会开玩笑的家伙。他猛地停下脚步，挥手抖去了亚特坎长刀的刀鞘，刀身在黑暗中跳动着淡蓝色的微光。</p>
+            <p>他没有遵从昂热的警告，缓慢的逼近酒窖最深处，酋长和老虎的两支霰弹铳在左右为他建立了完整的保护。</p>
+            <p>他不希望牺牲昂热这个伙伴，他也明白那东西不是他们中任何一个人可以独自应付的。</p>
+            <p>昂热的额头沁出了冷汗，他听进梅涅克的脚步声越来越近，却不觉得喜悦。他知道自己已经站在陷阱中了，一个野兽捕获人类的陷阱，敌人正在等待梅涅克他们的到来，这样他可以一次把他们全部猎杀。昂热能够感觉到一种可怕的气息正在渐渐贴近他，可是他无法分辨方位，那种诡异的气息像是看不见的鬼影围绕着他踱步，昂热不敢转动目光，这时候他能够相信的不是眼睛，而是听力和天生的感觉。梅涅克距离门口只剩下不到十米了，昂热却无法再出声提醒他。他和那个看不见的对手之间的弦已经绷紧到极限了，他几乎要被压垮了。
+            </p>
+            <p>他大脑的某根神筋微微一跳，伸手从风衣口袋里掏出了那块银质的铭牌，抛向天空，用极不标准的中文大喊“五雷猛将，火车将军，腾天倒地，驱雷奔云，队仗千万，统领神兵，开旗急召，不得稽停。急急如律令！”他十四岁进入剑桥，因为可怕的记忆力而令教授们惊叹，他没有学过什么中文，但只听路山彦念过一次开旗咒，已经可以完整的复述出来。银质铭牌在空中一震，仿佛汽灯那样强烈的光一闪，一瞬间无数幻影散逸出来，那是一支纵马飞驰的古中国队，凌空间向着昂热压下。
+            </p>
+            <p>短短的瞬间，昂热敏锐的听力分辨出那个异样的呼吸声，就在他正背后。</p>
+            <p>昂热没有猜错，按照他们的说法，那块银牌是一间炼金法器，制作他的无疑是一个精神强大的中国人，他把自己的精神封入那块金属，用语言来启动，和日本人使用的言灵咒缚类似，昂热开启他，银牌里的精神喷薄而出，瞬间压制了那个敌人，让他露出马脚。
+            </p>
+            <p>昂热旋身，挥舞折刀斜切，那是“逆袈裟”昂热确实是从一位日本外交官那里学习的刀术，日本刀的“逆袈裟”是凌厉凶狠的左斜切，难以防御，昂热冒着扭伤胳膊的风险全力挥斩。</p>
+            <p>折刀的刃口上溅出火星，昂热看清了他的敌人，那个面无表情的中国男孩，他的双手上覆盖着铁青色的鳞片，冷锻钢一样坚硬，昂热失手了。中国男孩默默地看着昂热，眼睛里发出黄金般刺眼的光芒，他的面孔白皙。温柔得像是白玉，却沾着猩红色的血。他手背上的鳞片张开，紧接着收拢，把昂热的折刀卡在里面。
+            </p>
+            <p>“梅涅克”昂热大喊。</p>
+            <p>梅涅克的身影在门口闪现。但他愣了一下，他看到的敌人出乎他的预料，他原本想会有一头狰狞的野兽在那里，但是和昂热面对面的男孩比昂热显得更加年轻和稚嫩，男孩赤身裸体，除手背上青色的鳞片狰狞恐怖，全身上下都和正常人一样，甚至带着一股神圣的气息，仿佛圣子沐浴而出。
+            </p>
+            <p>“开枪！”昂热伸手对空接住了那块银牌，用力拍在那个男孩的额心。</p>
+            <p>他知道如果酋长和老虎开枪他很难逃脱，霰弹的威力足够把他和男孩一起打成碎片，但是他比任何都清楚这个对手的强大。他们并不在乎牺牲，如果有这个必要。</p>
+            <p>酋长和老虎和他用眼神达成了一致，老虎蹲下，酋长直立，同时开枪。这样两支霰弹铳发出的锥形银砂弹幕从上到下覆盖了昂热和男孩，没有任何死角，任何生物都不可能逃过这样的弹幕。</p>
+            <p>火光之后昂热惊讶的发现自己没有死。男孩背后张开了的漆黑了森森然的骨翼，把他自己和昂热包裹起来，像是一个白骨的牢笼。男孩的背后鲜血淋漓，那对双翼是划破皮肤而出的，就是隐藏在背后的扇形骨架结构，银砂嵌在那些裸露的骨骼上，发出刺眼的微光。男孩发出了痛苦的嚎叫，这叫声完全不是人类能够发出的，也不是凄厉或者悲痛，仿佛尖刺戳着耳膜。他猛地张开了骨翼，巨大的力量把所有的银砂震飞出去，那些骨骼尽情的展开，仰天咆哮的男孩看起来就像是古书里堕落天使的苏醒。
+            </p>
+            <p>“这就是初代种的力量？”昂热说。</p>
+            <p>这就是他最后一句话，男孩的手臂带着足以撕裂钢铁的力量击中了他的胸口，把一侧的肋骨全部击断。昂热倒了下去，他想到莫德勒说那关节的结构像是蒸汽机的连杆那样，能发出无与伦比的力量，现在这一切都被证实了。</p>
+            <p>“梅涅克，上去！上去！在门口狙击他！”酋长大喊。他和老虎已经给霰弹铳填入了新的炸药，但是他们也知道手中的武器无法给敌人以致命的伤害，他们需要更有力的武器，烟灰掌握的银质弹头克伯虏加农炮。</p>
+            <p>梅涅克转身狂奔，他知道酋长和老虎这次掩护的代价，但他不能犹豫。昂热已经死了，他们还会付出更惨重的代价，只要能在这里杀死这个初代种，他们犯了这个错误，现在必须消弭错误，否着明天这个埋藏了数千年的秘密就会被全世界知道，那将是一场浩劫。
+            </p>
+            <p>他冲出酒窖的瞬间听进霰弹铳发出了最后的轰鸣，他在背后锁死了那扇五厘米厚的铁门，那是他父亲特意打造的，因为酒窖里埋藏着火药武器，这扇门坚固得炸药也炸不开。但他没有把握这就能阻挡那个男孩，那是龙类，做出什么样的事都不会让他觉得奇怪。
+            </p>
+            <p>“来福枪准备！克伯虏炮准备！”他放声大喊。</p>
+            <p>他已经死了三个同伴，却没有时间悲伤，他抹了抹脸，把脸上的雨水和泪水一起抹掉。</p>
+            <p>路山彦站在他面前，从他的眼睛里明白了一切。这个中国官员对着梅涅克坚定地点头，示意梅涅克从门边闪开，他提着大口径左轮站在细雨中，甩头抛掉了头上的绅士帽。那根漆黑的长辫顶端束着红绳，在夜风里放肆地飞扬。</p>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
