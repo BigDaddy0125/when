@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>01</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <div id="top"></div>
+            <p><a href="contents.html">返回目录</a>|<a href="02.html">下一章</a></p>
+            <hr>
+            <h1 id="center第一章-全民公敌center">
+                  <center>第一章 全民公敌</center>
+            </h1>
+            <center>&lt;“一个男人要走过多少路，才能被称作男人。”——鲍勃·迪伦&gt;</center>
+            <br>
+            <br>
+            <p>这是地狱中的魔王们相互撕咬。</p>
+            <p>铁剑和利爪撕裂空气，留下霜冻和火焰的痕迹，血液刚刚飞溅出来，就被高温化作血红色的蒸汽，冲击波在长长的走廊上来来去去，早已没有任何完整的玻璃，连这座建筑物都摇摇欲坠。</p>
+            <p>双方重复地受伤，都是伤及内脏和骨骼的致命伤，但强大的再生能力一直在起作用，修复断裂的肌腱、骨骼和内脏，强迫它们重新聚合，以便再度投入残酷的战斗中去。</p>
+            <p>利爪割裂了墙壁，连同墙壁里面的钢筋，但被持剑者成功地闪避了，持剑者捕捉到短瞬间的进攻机会，铁剑呼啸着撩起，大片的血花溅上了天花板，可利爪也趁机抓住了他的肋部，刺穿了裹尸布，再贯穿肌肉，狠狠地刺入了持剑者的肝脏或者肾脏。
+            </p>
+            <p>双方忽然分开，跌跌撞撞地后退，一直退到后背撞上墙壁才停下。他们背靠着墙缓缓地坐下，墙壁上留下大片像是抹布擦过的血迹，熔岩色的黄金瞳渐渐黯淡，仿佛风中即将熄灭的灯烛。</p>
+            <p>寂静，只有烈火燃烧建筑材料的噼啪声。</p>
+            <p>这两个怪物像是都已经死了……然而走廊中忽然响起了沉重而缓慢的鼓声，两个相互竞争的鼓点，越来越密集，越来越高亢，最后整条走廊都在鼓声中震动起来。</p>
+            <p>那是怪物们的心跳！在强大血统的帮助下，骤停的心脏再度搏动起来，怪物们同时睁眼，黄金瞳熊熊燃烧，发出震耳欲聋的嘶吼。</p>
+            <p>王与王的战争，唯有真正的死亡可以终止。</p>
+            <p>画面到这里卡顿住了，魔王们相对冲锋的身姿凝固在大屏幕上，观众们不约而同地吐气出声。</p>
+            <p>观看视频的时候他们的胸口仿佛压着沉重的石块，呼吸都不顺畅。</p>
+            <p>“简直是地狱在人间的投影。”施耐德教授低声说。</p>
+            <p>卡塞尔学院，英灵殿会议室，会议桌边坐着几乎全部的秘党领袖，他们森严而苍老的面孔被屏幕照亮。</p>
+            <p>“我和阿巴斯赶到的时候，战斗已经结束，只剩下一间基本被拆干净的建筑物。”恺撒环顾诸位元老，“没有发现任何尸体，所以我们猜测他们都还活着。”</p>
+            <p>“也不能说没找到任何尸体，我们找到了那匹马的尸体，北欧神话中的八足天马斯莱普尼斯，”阿巴斯补充，“医疗部已经做完了尸检，那是一匹带有龙族基因的马类亚种，凶猛得可以咬死狮子，在路明非面前，它没来得及打招呼就被掏出了心脏。”
+            </p>
+            <p>正是恺撒和阿巴斯从那间医院的监控系统中找到了这段残缺的视频资料，他们连夜返回学院本部，向元老们做汇报。</p>
+            <p>“那真的是路明非？”施耐德教授指着屏幕上那个背生双翼的身影。</p>
+            <p>“虽然视频的清晰度较低，但我仍旧可以辨认他的虹膜，确定是路明非。”EVA并未投影现身，通过扩音器给出了回答。</p>
+            <p>“他的对手呢？那个戴面具的武士，那是什么东西？”贝奥武夫威严地发问。</p>
+            <p>“奥丁，北欧神话中阿萨神族的神王，天空之神、死亡之神、战争之神，也被称作诸神之父。”</p>
+            <p>“我知道奥丁是谁，”贝奥武夫皱眉，“我是问这种神话里的东西怎么会出现在现实世界里！”</p>
+            <p>“我无法回答这个问题，但他的外形完全符合北欧神话对奥丁的描述，全身被甲胄包裹、披着象征天空的蓝色披风，骑八足神马，手持世界树树枝制造的神枪。”</p>
+            <p>“可我们看到这家伙拿着一柄铁剑。”图灵先生说。</p>
+            <p>“我们找到了那支枪的残骸，猜测是被路明非折断了。”恺撒揭开桌上的蒙布，露出了下面的东西。</p>
+            <p>那是两截看起来被火焰灼烧过的树枝，颜色漆黑，其中一截的末端削尖，形成一个简陋的矛头。</p>
+            <p>“世界树的树枝？”图灵先生疑惑地看向恺撒。</p>
+            <p>乍看上去委实很难相信这是神话中主神的武器，更像是从谁家的壁炉中检出来的柴火。</p>
+            <p>“请允许我为各位展示。”恺撒从口袋里摸出一叠硬币放在那两段枯枝的旁边，然后拔出了漆黑色的利刃。</p>
+            <p>他深呼吸，凝神，忽然爆发出短促的低吼，连续两刀，分别斩落在枯枝和那叠硬币上。正常人的视力甚至无法分辨他到底是砍了一刀还是两刀，他原本就是用刀的好手。</p>
+            <p>震鸣声久久不散，枯枝依然保持原状，而那叠硬币在两秒钟后忽然倒塌，它们被恺撒完美地斩开，直到最下面的那枚。</p>
+            <p>恺撒横过长刀放置在会议桌上，“装备部用钛钨合金制造的战术刀，我在两刀上用了差不多同等的力量。”</p>
+            <p>图灵先生拿起半枚硬币检查，硬币的断口光亮如镜，只有极端暴力且又控制完美的斩切会造成这样的断口。</p>
+            <p>施耐德教授拿起战术刀，惊讶地发现裂纹从刀刃部分一直贯穿到刀背，这柄精心制造的武器在刚才的斩切中已经彻底损坏了。</p>
+            <p>贝奥武夫则是一把就抓起了一截枯枝，除了木头本身的裂纹，枯枝表面没有留下任何痕迹，而它的重量也确实像是木制品。</p>
+            <p>贝奥武夫神色凝重地放下了枯枝，“这就是世界树树枝的坚韧么？”</p>
+            <p>“我们无法确定这东西的材质，因为根本无法取样化验。”阿巴斯说，“但人类迄今还未能制造出这种重量且这么坚韧的材料。”</p>
+            <p>“可它居然被路明非折断了。”施耐德教授轻声说。</p>
+            <p>他转向一旁的古德里安教授，“恐怕我们只能做出这样的结论了，您的学生路明非，”他顿了顿，“是个某种非常危险的存在，他怀有非常纯粹的古龙血统，甚至是……龙王本身！”</p>
+            <p>古德里安教授的脸色惨白，他不是不想为自己的学生辩解几句，可面对定格的画面，他自己都觉得这话很无力。</p>
+            <p>那浑身包裹着外骨骼的怪物，背生双翼，透出天使和恶魔之间的美感，他每一次攻击都像是要把对手生生地撕碎，黄金瞳的颜色像是熔岩，却没有一丝一毫的温度。</p>
+            <p>那可以是神、魔鬼、龙王，唯独不能是人类。</p>
+            <p>“会议到此暂告段落，元老会还有些事情要讨论，其他人可以离开了。”贝奥武夫面无表情地说。</p>
+            <p>昂热还躺在救生舱里没有恢复意识，秘党的元老们纷纷归来，贝奥武夫俨然是整个秘党的领袖，校董会在他眼里只是一帮不堪大用的年轻人。</p>
+            <p>没有资格参与更高级别会议的人们纷纷起身。</p>
+            <p>“恺撒，你也去休息一下。”贝奥武夫面无表情地说，“有进一步的消息，我们会通知你。”</p>
+            <p>恺撒愣了一下，跟着其他人起身，离开了会议室。</p>
+            <p>会议室外的走廊上站满了全副武装的执行部精锐。</p>
+            <p>这是非常时期，学院呈现出军事堡垒般的森严气质，不过可能它原本就是一座堡垒，只不过以学院作为伪装。</p>
+            <p>恺撒面无表情地穿过人群。</p>
+            <p>作为新任的校董和加图索家的继承人，他原本有资格继续留在会议桌上，但他很清楚为何贝奥武夫让他离开。</p>
+            <p>因为他拒绝跟诺诺解除婚约。</p>
+            <p>家族长老们已经严肃地表达了意愿，命令恺撒解除这项婚约，加图索家的新娘怎么能跟着一个年轻男人满世界地流窜？这个年轻男人还处在被通缉的状态。</p>
+            <p>恺撒回复说如果长老们需要找老伴的话——他家里那些老家伙到底是丧偶还会一世童男恺撒无从知晓，反正看起来是群老光棍——无论他们娶谁恺撒都不会有意见。换而言之，恺撒要娶谁也不会在乎长老们的意见。</p>
+            <p>走到无人的拐角时，恺撒听见背后有人喊他。</p>
+            <p>恺撒扭头回望，阿巴斯疾步跟了过来。</p>
+            <p>“你是不是隐瞒了些什么？”阿巴斯开门见山。</p>
+            <p>“这是个很严重的指控，”恺撒冷冷地反击，“你指的是什么？”</p>
+            <p>“看过了路明非的龙化状态，诺诺应该知道事情的严重性，跟她同行的并不是什么被神经失常的朋友，而是个危险的怪物，难道她没有试过跟你联系？”</p>
+            <p>“我想她这时候已经带着路明非在逃亡的路上了。”</p>
+            <p>“明知道那是怪物，还是会带着他逃亡？”</p>
+            <p>“如果某个人宁可暴露出怪物的一面也要救她，她会立刻站到怪物那边去。”</p>
+            <p>“你对未婚妻似乎没什么信心。”</p>
+            <p>“谈不上，换了我我也会这么做。”</p>
+            <p>阿巴斯愣了一下，耸耸肩。</p>
+            <p>恺撒的回答太直接了，让他无法继续追问下去。</p>
+            <p>“你觉得我们能从那家伙嘴里挖出点情报么？”阿巴斯问。</p>
+            <p>恺撒沉吟片刻，“可以试试，不过我们得有提审他的许可，而且这个人非常狡猾，稍微不小心就会被误导。”</p>
+            <p>“正好贝奥武夫先生给了我这个。”阿巴斯亮出一张电子加密的通行证。</p>
+            <p>恺撒愣了一下，笑了。</p>
+            <p>他明白了阿巴斯的来意，并非质问，而是邀请。</p>
+            <p>他很想跟那家伙聊聊，可惜做不到，作为校董会的成员之一，恺撒原本持有一张级别很高的黑卡，有权踏入这间学院的几乎任何房间，但黑卡“暂时地”被收走了，原因可想而知。所以阿巴斯拿到了通行证就来找他了。</p>
+            <p>阿巴斯总是这样，他来帮你的时候，总是云淡风轻，不会让你感觉像是得了他的恩惠。</p>
+            <p>路明非缓缓地睁开眼睛，还没来得及看清周遭的景象，剧烈的痛感就袭来，疼得他止不住地哆嗦。</p>
+            <p>莫非真的是完成交易之后就死了？醒来的时候自己挂在地狱的刀山上？</p>
+            <p>他竭力睁开眼睛——眼皮都疼得不行——看清了所在的环境，他躺在一张非常考究的床上，身下是柔软舒适的埃及长绒棉床单，这间屋子也非常考究，家具和墙上挂的名画都摆明了在讲述一件事……</p>
+            <p>卧室的主人有钱，很有钱，非常有钱，而且也很乐于告诉大家他有钱。</p>
+            <p>象牙色的窗纱起伏，透进路灯的微光，这说明外面是夜晚。</p>
+            <p>这是过了多久？自己又是在什么地方？</p>
+            <p>最后的记忆是在那间医院的走廊里，奥丁对着诺诺投出了昆古尼尔，他用自己的身体作了盾牌，然后他召唤了小恶魔，恐怖的杀戮意志从天而降，他在诺诺面前露出了狰狞的面目。再然后都是些片段了，戴着面具挥舞铁剑的神明……飞射的鲜血、闪电和火焰……哭泣的女孩的脸……那是诺诺。
+            </p>
+            <p>路明非挣扎着坐了起来，伤口裂开，痛得他差点再度晕了过去。</p>
+            <p>有人从旁边一跃而起，一把扶住路明非，惊喜地说，“你醒啦！”</p>
+            <p>这台词听着耳熟，感觉下一句就是，“同志们都担心死了！”</p>
+            <p>那是个目光灵动的小胖子，穿着酒红色天鹅绒的睡衣，分头油光水滑，身上一股酒味儿。</p>
+            <p>路明非想起来了，那是邵公子，他在精神病院的时候邵公子来探望过。当时邵公子带着小兄弟们风风火火，自我介绍是诺诺在幼儿园时期的男朋友，跟路明非促膝长谈，绕着弯子问关于恺撒的事，用脚趾头想也知道邵公子的心思。</p>
+            <p>“我怎么会在这里？”路明非问。</p>
+            <p>“那还用问？当然是师姐送你来的啊！”</p>
+            <p>“师姐还好么？她在哪里？”</p>
+            <p>“她没事，你放心！她有点事出去了，托我照顾你！”邵公子拍着胸脯，“你就安心养伤，我这里那是绝对安全的。”</p>
+            <p>路明非想要说话，张口就猛烈地咳嗽起来，感觉不仅外面有伤口，身体里面也全是伤口，滋滋冒血的那种。</p>
+            <p>邵公子拿出一根针剂，“氯胺酮，止痛用的，你现要多休息。”</p>
+            <p>注射器扎在路明非的上臂，针剂缓缓推入，疼痛渐渐减轻，倦意如温暖的海潮袭来。</p>
+            <p>邵一峰扶着路明非躺下，又给自己倒上一杯拉菲。</p>
+            <p>对于邵一峰而言，过去的24个小时绝对是一场惊心动魄的冒险……</p>
+            <p>24个小时前，邵一峰从梦中醒来，枕边丢着雪莱的诗集。</p>
+            <p>看闹钟是凌晨四点，按照邵一峰以前的生物钟，这时间绝对醒不过来。</p>
+            <p>他以前每晚都跟各路小明星混夜店，喝到他爹站在他面前他都会给小费的那种程度，回家就倒头大睡，直到中午，就算在他床头引爆一颗地雷他都醒不过来。</p>
+            <p>但最近不一样了，诺诺回来了，诺诺一回来邵公子就想洗心革面重新做人，早睡早起，睡前还要读诗。</p>
+            <p>男人在喜欢的女孩面前总会有奇怪的表演欲，老实孩子想演浪子，浪子想演浪子回头，而且通常演不好。这是个历史规律，但是后人总是不总结教训，依然前赴后继的表演着。</p>
+            <p>邵一峰隐约记得自己做了一个梦，梦中他和诺诺上演了一场轰轰烈烈的《泰坦尼克》，最后船沉了，就剩一块木板，木板上就能趴一个人。他泡在冰冷的海水里，给诺诺挂上一个老大的蓝钻坠子，含笑说我的梦想是一生都陪着你，跟你生几个好看的孩子，恐怕不能实现了。然后他就松开手，沉入了冰冷的大海。
+            </p>
+            <p>按说梦里梦到自己挂掉并非什么好兆头，可醒来之后邵公子惆怅之余还有点美滋滋，感觉自己就是情圣转世。</p>
+            <p>醒来后细细品味，邵公子想起蓝钻是曾在Tiffany店里看过的那颗，挂在诺诺脖子上非常妥当，琢磨着应该买下来当作诺诺明年的生日礼物。</p>
+            <p>邵一峰一边发微信跟那个相熟的Tiffany销售总监询价，一边踱步下楼，想去给自己弄杯牛奶喝。</p>
+            <p>邵公子的公寓共有两层，位于一座豪华物业的顶部，专属电梯直接上楼，装成他喜欢的巴洛克风，华丽富贵，从地板到廊柱都覆盖着白色的大理石，微光透过威尼斯订购的彩色玻璃拼花窗照进来。</p>
+            <p>邵忽然觉得脚底有点黏黏的，正想怒骂说保姆干什么吃的，地面都不打扫干净，抬头一看，吓得呼吸都暂停了。</p>
+            <p>满地都是血，血在地面上流淌，在拼花玻璃窗上流淌，也顺着白色的大理石柱子往下流。诺诺坐在地下，靠着墙，怀里抱着一个血人，神情不知是呆滞还是悲伤。</p>
+            <p>她累得连站都站不起来了，但把那个人抱得很紧，紧得好像只有掰断她的胳膊才能让她和那个血人分开。</p>
+            <p>师姐这么抱着一个男人，邵公子本该妒忌得直咬牙，可他只是呆站在旁边看着，心里不知为何有点疼痛——那个拥抱不像是情人之间的，倒像是死了宠物的小女孩紧紧地抱着小猫的尸体。</p>
+            <p>“师……师姐？”邵公子带着颤音。</p>
+            <p>“别问问题，我需要足够的止血带、5000cc血浆和输血套件、一套手术刀、足够的医用酒精。”诺诺转过头，盯着邵公子的眼睛，“还要异氟烷吸入剂两瓶、氯胺酮注射剂十支、肾上腺素注射剂十支。”</p>
+            <p>“师姐你要什么？”邵公子听傻了。</p>
+            <p>诺诺示意邵公子递笔给她，然后用颤抖的手把这些药的名字写在了一张纸片上递给邵公子。</p>
+            <p>“全都是处方药，不要走公立医院的渠道，警察会查到，找你的朋友。”诺诺轻声说。</p>
+            <p>邵公子赶紧点头，这深更半夜，这一整套看起来是要动手术的药物和器材，换了别人还真未必能搞到，但邵公子投资了几家高端诊所，就算要把药品库搬空也没人敢跟他说个不字。</p>
+            <p>“还有，把电梯和车库的地面清理干净，不要叫你的任何手下来帮忙，自己做。做完后去物业中心，把监控系统的硬盘拆下来撬了。”</p>
+            <p>邵公子使劲点头，转身小跑着去拿拖把了。</p>
+            <p>诺诺深吸一口气，挣扎着起身，横抱起路明非，去往邵一峰的卧室。</p>
+            <p>接下来的四个小时里邵一峰觉得自己是在打扫凶杀现场，血迹从地下车库一直进入电梯，再进入邵一峰的客厅，血量之大匪夷所思，要是警察赶到，第一时间恐怕不会怀疑邵一峰杀人，而是怀疑他猎杀了一头大象，拖进了自己家里。
+            </p>
+            <p>邵一峰洗刷刷洗刷刷，把能找到的各种清洁用品都用上了，忙得几近虚脱，才在物业人员上班之前消灭了一切痕迹。</p>
+            <p>负责打扫卫生的大妈们打开楼门的时候，惊讶地看见邵公子浑身大汗淋漓，像是刚跑完马拉松全程。</p>
+            <p>“大惊小怪什么？”邵公子流露不耐烦的表情，“晨跑是很多成功人士的习惯，扎克伯格和巴菲特都跑！”</p>
+            <p>说完邵公子赶赴物业中心，去解决监控的问题。</p>
+            <p>这种高级公寓，24小时监控，诺诺把路明非抱进来的全过程肯定都被录了下来，监控室又是物业重地，闲人免进，按理说比清洗血迹难搞。不过这对邵公子反倒是驾轻就熟，甚至不必遮遮掩掩。</p>
+            <p>邵公子小跑着来到物业中心，跟管监控的保安说哥们给我监控室的钥匙，我把昨晚的监控记录给抹了，那兄弟立刻就把钥匙奉上，也不看邵公子要删什么，起身就出去了。</p>
+            <p>这种事对邵一峰来说太常见了，带了什么小有名气的女演员回家，被监控拍到了，当然是要抹掉的，保安兄弟特别理解。</p>
+            <p>这时候药和医疗设备也送到了，邵公子带着东西回家，自家的卧室也跟凶杀现场似的，从窗帘到地毯，到处都是血迹，路明非静静地躺在他的床上，无法判断是熟睡还是死了。</p>
+            <p>诺诺给路明非输上血，实施麻醉，再用手术刀割开那些已经愈合的伤口，从中取出差不多一公斤重的碎片，再用大量的酒精和生理盐水清洗。</p>
+            <p>邵一峰强忍着恐惧在旁边帮手，不敢相信人居然可以在这种伤势下存活。</p>
+            <p>这种伤势等于说踩中了一颗重量一公斤的小型地雷，爆炸的全部碎片都嵌入了伤者的身体。</p>
+            <p>诺诺没法给邵一峰解释这种伤势的成因，因为那太匪夷所思了。龙化之后的路明非有着惊人的愈合速度，所有进入他伤口的碎片都被再生的细胞包裹起来，他带着这些碎片一直和奥丁恶战，整场战斗下来，身躯等于被摧毁又重建了好几次。
+            </p>
+            <p>诺诺缝合完最后一道伤口，自己也累得头晕目眩，她缓缓地退后，在沙发上坐下，长长地出了一口气。</p>
+            <p>“你不会说出去吧？”她问一旁的邵一峰。</p>
+            <p>邵一峰使劲摇头，“我要是说出去，死爹死妈死全家！”</p>
+            <p>诺诺被这个毒誓惊到了，转头看了一眼邵一峰，邵一峰正哆嗦呢。</p>
+            <p>诺诺忽然明白过来，苦笑了一下，“我不是要杀你，我们有种针剂，注射之后目击者就会忘记48小时内发生的事。”</p>
+            <p>她低下头，就此睡着了。</p>
+            <p>邵一峰也跟着睡了过去，他虽然有意欣赏师姐的睡姿，可他也实在是累垮了。</p>
+            <p>六个小时之后邵一峰醒来，卧室已经收拾完毕了，沾染了血迹的窗帘、地毯和床单全部都被更换了，除了依旧伤痕累累昏睡不醒的路明非，好像什么都没发生过。</p>
+            <p>在洗手间里，诺诺用自己配置的化学试剂焚烧了那些纺织品，通过下水道把灰烬冲走，手法非常娴熟，邵公子不免猜疑师姐到底是服务于CIA还是摩萨德或者军情五处，看起来杀人越货毁尸灭迹对师姐来说都是日常。</p>
+            <p>这么想来固然觉得有些后背发凉，却也感觉师姐的魅力又大了些。</p>
+            <p>完事之后诺诺把路明非托付给邵公子，表示自己还有些事要处理，就出门去了，到现在为止已经离开12个小时了。</p>
+            <p>路明非很快就沉睡过去，可邵一峰睡不着，满脑子想着自己是不是卷进了什么跨国的间谍事件。</p>
+            <p>他并不认为诺诺会做坏事，顶多也就是做一些暂时不能告诉警察、但最后会被证明为有利于全人类的事。能在这种事上为师姐出一把力，邵公子觉得与有荣焉，没准还能拉近他和师姐之间的关系，毕竟如今他邵一峰也是局内人了。</p>
+            <p>为了亲近女演员，邵一峰也有一间电影公司，但想起自己公司制作的那些电影，没有任何一部有眼下他正亲身经历的事情那么酷那么带感。</p>
+            <p>邵公子觉得自己身处暴风雨降临之前的宁静中，深呼吸，对未来充满期待。</p>
+            <p>阿巴斯验证了指纹和虹膜，刷了通行证，后退。</p>
+            <p>沉重的圆形钢门自动运转起来，十六道锁舌同时缩回门的内部，气压机推动着钢门缓缓打开。</p>
+            <p>冰窖，卡塞尔学院储藏各种炼金制品的仓库，康斯坦丁的龙骨原本也存放在这里，但就在不久之前冰窖被入侵，龙骨遗失。</p>
+            <p>但冰窖依然是卡塞尔学院中最安全的区域之一，外面的人很难进来，里面的人当然也很难逃出去。</p>
+            <p>阿巴斯和恺撒并肩踏入冰窖，立刻听到了打呼噜的声音。</p>
+            <p>两人对视一眼，看来他们的俘虏心态很好，这么优质的睡眠，会令那些如坐针毡的校董们妒忌的。</p>
+            <p>两张坚固的金属躺椅，一边是被青铜锁链牢牢束缚住的副校长，或者说炼金术宗师弗拉梅尔导师，另一边则是穿着拘束衣、浑身被皮带扣紧的某位男子，他们从中国带回的俘虏。</p>
+            <p>他们找到这家伙的时候，这家伙正在尼伯龙根中的高架路上步伐矫健地奔跑，后面带着一个军团的死侍，像是一位出色的马拉松选手。准确地说他并非被恺撒和阿巴斯俘虏的，当时他高举着双手冲恺撒和阿巴斯的车冲过来，高喊会长救命啊！
+            </p>
+            <p>学生会前新闻部部长，芬格尔冯弗林斯。</p>
+            <p>恺撒和阿巴斯来到芬格尔的躺椅前，正考虑怎么开始这场审讯，芬格尔睁开了眼睛。</p>
+            <p>“如果你们是带着问题来的，可以先不必问了。”芬格尔淡淡地笑。</p>
+            <p>阿巴斯心说恺撒说对了，即使骗子也会有自己的底线，路明非就是芬格尔的底线，他们曾在一间寝室住过，一起在世界各地疯跑，一起经历了太多的事。</p>
+            <p>“让我先说！我有很多要招供的！你们不来我都快憋死了！路明非那个人面兽心的东西！我早知道他没有好下场，一定会被我们秘党的正义铁拳毁灭！”芬格尔忽然提高声量……何止提高声量，简直是发出了雷霆般的正义呼喊。</p>
+            <p>“我是卧底啊！我是校长派去监视路明非的特派员啊！大家自己人！自己人！”</p>
+            <p>“我再也看不下去校长对路明非的庇护了！这是引狼入室！这是放虎归山！我今天就要检举揭发！”</p>
+            <p>……</p>
+            <p>阿巴斯愣住了，缓缓地转头看向恺撒。这是什么路数？这是什么姿势？这还用得着什么言语恫吓刑讯逼供？如果不是被拘束衣牢牢地捆住，这位早已经跪下来舔他们的鞋面了。</p>
+            <p>恺撒微微摇头，示意阿巴斯稍安勿躁。芬格尔曾是学生会的一员，恺撒比阿巴斯更了解芬格尔，知道这个人难缠，千万不能被他的谄媚或者慷慨激昂迷惑。</p>
+            <p>恺撒清了清嗓子，准备发问……这时候副校长也睁开了眼睛。</p>
+            <p>“你怎么可以这样？”副校长怒吼，“你怎么能出卖校长？校长他还躺在救生舱里生死未卜！枉费了校长那么信任你！”</p>
+            <p>“出卖？这能叫出卖么？这是认清形势辨明了道路！我这叫弃暗投明！”</p>
+            <p>“叛徒！狗叛徒！”</p>
+            <p>“为了人类我可以背叛任何人！”</p>
+            <p>“你母亲的在天之灵会为你感到羞愧！”</p>
+            <p>“我母亲是个无神论者她根本不会有在天之灵这东西！”</p>
+            <p>“你就不怕生儿子没屁眼么？”</p>
+            <p>“我不生儿子！梦寐以求的就是一个能参选世界小姐的漂亮女儿！”</p>
+            <p>恺撒和阿巴斯再度对视，从进入冰窖直到现在，本该掌握话语权的他们连一句话都没来得及说，却已经看完了一场家庭伦理剧。</p>
+            <p>这师生二人还真是不按常理出牌啊。</p>
+            <p>校长办公室，顶楼的天窗下。</p>
+            <p>这间树林中的小楼已经荒废了一段时间，书架上蒙着薄薄的尘埃。松鼠们大胆地跑了进来，沿着楼梯和书架上蹿下跳，直到恺撒推开门它们才排着队，匆匆忙忙地从天窗上的破洞跑掉了。</p>
+            <p>所有陈设都保持着主人在时的样子，透着一股英国风格的慵懒和温馨。这是希尔伯特让昂热喜欢的氛围，他在剑桥度过了自己的青春。</p>
+            <p>“终于舒服点了，居然把我关在冰窖里，你们可真是一帮狠起来六亲不认的家伙，大家以前不是并肩撒尿的好兄弟么？”芬格尔把自己整个人像是丢沙袋那样丢进沙发里，舒服地伸了一个懒腰。</p>
+            <p>“没想到你们私下里关系那么亲近。”阿巴斯揶揄恺撒。</p>
+            <p>“我也以为是你。”恺撒回敬。</p>
+            <p>“你现在舒舒服服地坐在了校长的沙发上，也没有副校长打搅，可以说了吧？”恺撒盯着芬格尔的眼睛。</p>
+            <p>“想要换个令人心灵放松的地方供出深藏心底的秘密”，这是芬格尔的要求，于是他们来了校长办公室，这里也可以避开所有的监控，EVA的监控近乎无所不在，但校长办公室显然是个灯下黑的所在。</p>
+            <p>“还想来支够劲儿的雪茄！”芬格尔也盯着恺撒，双目炯炯有神。</p>
+            <p>恺撒面无表情地摸出随身的雪茄盒，还为芬格尔烧好了雪茄，递了过去。</p>
+            <p>“2000年产的帕特加斯纪念版，不愧是加图索家的继承人，抽的都是这种高级货，在古巴当地都买不到。”芬格尔对着屋顶吐出袅袅青烟。</p>
+            <p>恺撒不得不承认，这家伙并未在古巴分部荒废时光，至少他对于雪茄的品鉴力大大地提升了。</p>
+            <p>芬格尔满足地吸了几口烟，开始解自己的裤带，恺撒和阿巴斯不约而用地流露出怒意，眼角的青筋跳动。</p>
+            <p>“别拿这样的眼神看我！”芬格尔嘟哝，“把我看成什么人了？”</p>
+            <p>他摘下自己的皮带扣，沿着桌面推向恺撒，“这是个U盘，你们想知道的事全都在里面。”</p>
+            <p>恺撒把玩着那个看起来品质不怎么样的皮带扣，在中国的小商品市场上大概连皮带一起只能卖五十块钱，但真的能从里面推出U盘的接口。</p>
+            <p>“从我们抓到你到现在，你没有任何机会接触电子设备，所以你是早就把资料导入这个U盘了？”恺撒并未直接去阅读U盘里的内容。</p>
+            <p>“那是当然！我们做卧底工作的人，随时准备招供，这样招供起来方便！”芬格尔义正辞严。</p>
+            <p>恺撒翻开昂热曾用过的办公桌，那下面是一台隐藏起来的笔记本，他将U盘插入，一个视频自动播放。</p>
+            <p>这显然是个偷录的视频，画面还算清晰但角度别扭，显然录像设备被藏在某个不容易发现的角落里……恺撒不由自主地扭头看了一眼，他是在看那个放置录像设备的位置，画面上的场景毫无疑问就是这间办公室，而那个用来录像的东西，就放在书架上。
+            </p>
+            <p>画面上是两个隔着办公桌而坐的人，昂热和芬格尔，两杯红茶里的蒸汽袅袅地上升。</p>
+            <p>这显然是一场非常重要、双方也都非常谨慎的对话，每句话后面都有长时间的沉默。</p>
+            <p>“我们的年轻人这些天还好么？”对话从昂热开始。</p>
+            <p>“不太好，情绪低落，小龙女的死让他觉得悲伤，他在怀疑自己杀的到底是什么，在他眼里，人类和龙类之间的界限变得模糊了。”芬格尔难得地正经。</p>
+            <p>“耶梦加得并没有死在他手里。”</p>
+            <p>“可他是参与者，他就是这样的人，表面上什么都不在乎，可心里背着很多事，像个骆驼。”</p>
+            <p>“安慰他，让他不必多想，接下来会有越来越多的龙王复苏，他会变得很忙。”</p>
+            <p>“让他不必多想，说起来简单，可我该怎么做？他觉得小龙女是他的朋友，没准还是他憧憬过的妞儿，可忽然有一天他的朋友变成了龙王，是毁灭世界的灾难元凶，他得拎着刀去杀了她，换了谁都会有心结。”</p>
+            <p>“有些心结本来就是无解的，只有时间能帮我们找到答案。”</p>
+            <p>“如果遗忘算是一种答案的话，您说得没错。”芬格尔站起身来，拿起一顶难看的帽子，掸了掸灰戴上，“告辞了校长先生，希望这件事能早点结束，我好毕业走人，请安排我去一个热带的分部，要有漂亮女孩子和阳光的地方，我不想再鬼鬼祟祟了。”
+            </p>
+            <p>芬格尔转身离开，昂热一直看着他的背影。</p>
+            <p>“你说路明非有心结，那你呢？”昂热在芬格尔背后发问，“你们叫她小龙女，她也算是你的朋友吧？”</p>
+            <p>“怎么会没有呢？那么好看的女孩子，性格也好，我也想过要泡，只是还没机会泡上而已，忽然间就成了龙王，然后就死了。”芬格尔半转身，看着昂热，“可我有心结也只有憋着，我就是校长您的工具，工具是不需要有想法的。”
+            </p>
+            <p>昂热点了点头，“很好。”</p>
+            <p>芬格尔却没有走，凝视昂热良久，“那么路明非在你眼里是什么呢？您最优秀的学生？命中注定的救世主？还是儿子一样亲的小宝贝？您只是让我盯着他，却连他是谁或者什么东西都不告诉我。”</p>
+            <p>这次昂热沉默了很久，“他也是一件工具，跟你的区别只是用处不同，他的用处，是结束龙族的历史！”</p>
+            <p>芬格尔摘下头上的帽子，行鞠躬礼。像是中世纪的骑士发誓效忠君王。</p>
+            <p>视频到这里为止，观看视频的整个过程恺撒和阿巴斯都保持着沉默，相比他们从中国带回来的视频，这个视频显得太过平淡，但是震撼程度更甚。</p>
+            <p>这段视频对他们稍微揭示了某个巨大的秘密，而这个秘密关系到……龙族历史的终结！</p>
+            <p>整个秘党都清楚希尔伯特让昂热的为人，这个老人因为挚友们的死而对龙类怀着巨大的恨意，很多人说他之所以变成今天这样的强势人物，以及在校长之位上恋栈不去，就是发誓要在他的有生之年把龙族连根铲除。</p>
+            <p>但昂热到底想要怎么铲除龙族，却没人知道，他多数时候还算是一个勤勉的校长，教书育人，管理校务，对校董会汇报——只是有时候汇报方式显得有点蛮横，他甚至还把很多时间花在了古董收集和红酒红茶品鉴这种风雅爱好上。</p>
+            <p>难道昂热真觉得在校长位子上这么耗下去就能把龙族耗灭亡了？他身边的人都有类似的疑问。</p>
+            <p>然而从这段视频看来，某个毁灭龙族的巨大计划早就展开了，如同冰下的暗流，而要实现这个不可思议的目标，他却要通过一个年轻人的手——路明非，这到底是个什么人或者什么东西，想起来越发令人不安了。</p>
+            <p>“就是校长要我死死地盯住路明非，我既是他的保护者也是他的监视者。他有任何异动，我都要向校长汇报。”芬格尔说，“他要是有什么麻烦，我还得负责给他擦屁股。有时候这家伙还超能惹麻烦的。”</p>
+            <p>“所以你是校长安排在路明非身边的眼线。”阿巴斯说。</p>
+            <p>“男保姆，准确地说，一个称职可靠低调的男保姆。”芬格尔叹气，“陪他喝酒是我，陪他泡妞也是我，他失落的时候给他当精神导师的还是我，他在学院这边出了事，我立刻就把学院派来古巴找我的专员们都挖坑埋了，千里迢迢去帮他平事儿，你说我怎么不是男保姆？”
+            </p>
+            <p>“但校董会和执行部都不知道你的身份？”恺撒问。</p>
+            <p>“没错，我跟校长单线联系，就像警察派出去打入黑帮的卧底。”芬格尔略显自豪，“你知道单线联系的线人最惨的下场是什么么？”</p>
+            <p>恺撒愣了一下，摇头。</p>
+            <p>“是他的上线忽然挂掉了啊！世界上唯一一个知道他真实身份的人死了，他跟谁解释都没用！所以我偷偷录了那段视频，这样如果校长忽然挂掉了或者他不承认我是他的人，我也好有个证据在手里。”</p>
+            <p>“校长先生真是找了一个……聪明的卧底啊。”阿巴斯言不由衷地称赞了一句。</p>
+            <p>这么一个总是想好退路、手中捏着每个人的证据、总是能在合适的时机出卖朋友的卧底……想来一定可以通吃黑白两道。</p>
+            <p>“那你在路明非身上观察到了什么异动？”恺撒问。</p>
+            <p>“何止是异动！我监视的根本就是一头怪物好么？”芬格尔长叹，“这是个非常不稳定的小宝宝，平时怂到极点，完全没有理想可言，如果混吃等死不算一种理想的话，看到漂亮姑娘会眼睛放光，最喜欢那种有风情的、姐姐型的，不过对于文艺少女和萝莉也是来者不拒，虽然邋里邋遢，我是说他在接手学生会之前，但对奢侈品还是很向往的，从恺撒你那里赢了那辆布加迪威龙之后，至少合影了两百张，我给他拍的，握着方向盘的时候那虚荣的嘴脸，看得我都羡慕啊！”
+            </p>
+            <p>“羡慕？”恺撒打断。</p>
+            <p>“我是羡慕啊！我羡慕怎么了？我就是个废柴啊！我羡慕人家开好车有漂亮妞想要混吃等死不是理所当然的么？”芬格尔义正辞严，“可他怎么能这样呢？校长还指望他当救世主呢！”</p>
+            <p>恺撒无言以对，只好比了个手势示意他继续往下说。</p>
+            <p>“可这个宝宝发怒的时候，”芬格尔忽然严肃起来了，“就会变成一台压路机，挡在他面前的一切都被碾压，即使那是龙王什么的。”</p>
+            <p>恺撒和阿巴斯对视一眼。</p>
+            <p>“你们这个反应，想必是已经见过他龙化的状态了吧。”芬格尔敏锐地注意到恺撒和阿巴斯的对视。</p>
+            <p>恺撒和阿巴斯都微微点头，芬格尔能直接说出龙化这个词，可见这对他并非什么秘密。</p>
+            <p>“他龙化过多次么？”恺撒问。</p>
+            <p>“不知道有过多少次，三峡水库、北京地铁、日本东京……光我知道的就有这些。”</p>
+            <p>恺撒微微变色，“你的意思是学院每次针对龙王的行动中……”</p>
+            <p>芬格尔冷笑，“你们觉得学院就那么有狗屎运，接二连三地宰掉了龙王？你们难道没有觉察，每次我们能够侥幸地宰掉龙王，路明非都会在场！”</p>
+            <p>“三峡水库的那次，是我用风暴鱼雷……”恺撒说。</p>
+            <p>“你确实重创了诺顿没错，可最后是路明非在水底结果了诺顿。你们在摩尼亚赫号上检测到了水温的快速上升，对么？”</p>
+            <p>恺撒迟疑了一下，点了点头。</p>
+            <p>确实，在重创诺顿之后他们检测到水温在短瞬间上升了大约十摄氏度，在长江三峡这样巨大的水体中，升温十度需要令人恐怖的热量，这热量足以改变区域性的气候。</p>
+            <p>当时学院也曾猜测诺顿未死，作为青铜与火之王，高热是诺顿的特征之一。但后来升温停止，也没有任何意外发生，学院这才放心。</p>
+            <p>“那是超高阶言灵‘烛龙’的先兆，那个言灵如果完成，足够把三峡瞬间加热成一锅沸腾的热汤。”芬格尔说，“但路明非杀掉了那头受伤的巨龙，是他救了你们所有人，也许还拯救了世界。”</p>
+            <p>恺撒的脸色阴沉，他一直把“击杀诺顿”的殊荣当作自己人生的一项纪念，可现在看来他要失去人生中最值得怀念的瞬间之一了。</p>
+            <p>“那么他是站在我们这边的？”阿巴斯问。</p>
+            <p>“不清楚，但到现在为止，他还真没做过什么反人类的事。”</p>
+            <p>“那他自己又是什么？某位龙王？我们在豢养一头巨龙来对抗别的巨龙？”</p>
+            <p>“这你们就得去问校长了。”芬格尔耸耸肩。</p>
+            <p>“校长正躺在休眠舱里，没人知道他什么时候醒来，所以除了那段视频，你没有任何证明。”阿巴斯直视芬格尔眼睛，“而我们都知道你很聪明，有人说你能把死人说活。”</p>
+            <p>芬格尔挠挠头，“真要说证据的话，还有一个，以恺撒的权限应该可以查到。”</p>
+            <p>“什么证据？”</p>
+            <p>“路明非的身边还有一个超级混血种出没，那个人叫楚天骄，表面上看起来是个专职司机，但却持有学院的武器箱。”</p>
+            <p>“没听说过这个人。”恺撒说。</p>
+            <p>“但你们可以在执行部的灰色名单中找到他。”</p>
+            <p>“灰色名单？”</p>
+            <p>“灰色名单上的人是不公开身份的高阶执行官，他们因为从事的工作太过秘密，所以从执行部的正式名单中消失了。可以说灰色名单上的每个人，背后都有一个S级的秘密任务。”</p>
+            <p>恺撒和阿巴斯对视一眼，恺撒拿出自己的手机，作为校董他的手机可以直接查询执行部的资料库，当然那个资料库其实也是EVA的一部分。</p>
+            <p>片刻之后，恺撒神情凝重地关闭了手机上的页面，“楚天骄，1987年毕业于卡塞尔学院，S级混血种，是学院百年以来可以排进前十位的超级执行官。”</p>
+            <p>芬格尔点点头，“这样的人本该在全世界各地忙着解决古龙制造的灾难，可为什么要隐姓埋名在中国的一个二三线城市一住就是十几年？哦，你们应该已经知道了，他就是那位传说中的楚子航的父亲。”</p>
+            <p>恺撒和阿巴斯都陷入了沉默。</p>
+            <p>“他跟我一样，是路明非的保姆，是带着校长的命令去的，从此从执行部的名单中消失了。不过那家伙没我那么坚忍卓绝，派他去中国执行任务，却在那里搞出了恋情来，还生下了孩子！”芬格尔不屑地说。</p>
+            <p>“路明非觉得自己与众不同么？”阿巴斯问。</p>
+            <p>“作为历史上最衰的救世主，他应该是觉得自己挺与众不同的。”芬格尔耸耸肩，“蜘蛛侠身边还有个玛丽简呢，可他杀了那么些龙，拯救了那么多次世界，还是个傻逼兮兮的处男。”</p>
+            <p>“我问的不是这个，我的意思是，他知道自己是怪物么？”</p>
+            <p>“我说过了，他的人生理想，如果他真有理想这东西的话，就是能有个他喜欢的妞儿喜欢他，然后两个人一起混吃等死而已。”芬格尔顿了顿，“就算他真的是个龙王，如果不被激怒，也只是个想要混吃等死的龙王。”</p>
+            <p>“最后一个问题，他们现在在哪里？”恺撒缓缓地问。</p>
+            <p>“你们找不到他们的。”芬格尔诡秘地笑。</p>
+            <p>“他们来不及离开中国，而中国所有的进出口岸都被我们监控着，EVA的天眼可以监控世界上的任何角落。”</p>
+            <p>“你们怎么就那么相信那台机器呢？你们真的确定她是你们那边的？”</p>
+            <p>恺撒的眼角微微跳动，是的！一直以来他们都确信EVA是可靠的伙伴，她是整个学院的眼睛，有她在学院就能看到世界的每一个角落。但他们中没有任何人知道EVA的原理，既然昂热都可以是路明非暗中的庇护者，为什么EVA不会是？
+            </p>
+            <p>“诺玛最底层的命令库里有一条命令，那条命令保护着路明非。”</p>
+            <p>“底层命令库？”</p>
+            <p>“听说过阿西莫夫的机器人三定律么？”</p>
+            <p>“最高级别的命令，机器人行为的基本逻辑。”阿巴斯说。</p>
+            <p>“机器人是为了人类而生，所以它的行为以人类的利益为第一优先，而EVA，某种意义上是为了路明非而生的。”芬格尔缓缓地说。</p>
+            <p>时差十四个小时，中国正是凌晨四点钟。</p>
+            <p>雨还在继续下，这场神秘的暴风雨覆盖这座小城差不多一星期了，气象局也说不出一个所以然。</p>
+            <p>“辉子火锅”的霓虹灯招牌还亮着，店里只有一个看起来在打盹儿的店员和仅有的一位客人，客人自己吃一个辣锅，点的菜布满了整个桌面。</p>
+            <p>音响里放着那首经典的《卡萨布兰卡》：</p>
+            <p>“我猜，在卡萨布兰卡有很多伤心人，</p>
+            <p>你知道我从未到过那里，</p>
+            <p>所以我不是很清楚。”</p>
+            <p>店员其实是装睡，偷偷地观察着那个女孩，她很漂亮，但跟这座小城市不太协调，让人不由得好奇她是谁，为什么来到这里。</p>
+            <p>这种小地方的夜生活并不繁华，24小时营业的火锅店附近也就这么一家，深更半夜不睡来吃火锅的，往往是有心事的人。</p>
+            <p>有一男一女来吃的，吃完男孩付了钱走了，女孩哇的一声哭了出来，这是来分手的；也有同事们凑钱来吃的，几杯酒下肚就豪言壮语慷慨激昂，说要买房买车要让喜欢的女孩过上幸福的生活；还有落魄的画家，吃着吃着就跟店员感慨，说搞艺术太艰难，不知何时才有富婆来包养他。
+            </p>
+            <p>但跟这个女孩相似的还真没有过，她点了很多很多的菜，吃得却很慢，显然并不饿。她要求店员不断地重复播放那首《卡萨布兰卡》，那是首略忧郁的老情歌，并不适合她的年纪。</p>
+            <p>她给人的感觉是去过很多很多的地方，偶尔路过这座城市，短暂地歇脚之后就会离开，她像是有很多心事，可又像是什么都没在想。</p>
+            <p>就在店员犹豫着要不要上去搭个讪的时候——大家都是熬夜的人，没准有什么共同话题——他的手机响了起来，是个陌生的电话号码，看起来是来自国外。</p>
+            <p>店员疑惑地接通，听了一会儿，又疑惑地来到桌边，把手机递给那个女孩。</p>
+            <p>女孩抬眼看了店员一眼，目光凌厉，又死死地盯着那台手机，盯了很久，好像那是颗定时炸弹。</p>
+            <p>最后女孩还是接过了手机，凑到耳边。</p>
+            <p>“陈墨瞳，是你在听电话么？”电话里是另一个女孩的声音。</p>
+            <p>“哪位？”诺诺尽量让自己的声音听起来冷静。</p>
+            <p>“你可以叫我诺玛，也可以叫我EVA。我们算是老熟人了，如果我可以被看作人类的话。”</p>
+            <p>诺诺站起身来，悄悄地握住了藏在袖子里的掷刀。</p>
+            <p>“你能打这部电话，应该已经准确地定位了我们。怎么？突击队还没就位么？要你电话来拖延时间？”诺诺沿着墙壁谨慎地移动着。</p>
+            <p>她把手机拿得离耳朵远了一些，以便倾听各个方位的声音。</p>
+            <p>她很熟悉学院的行为方式，这个时候突击队应该已经布下了天罗地网，只要系统下达命令，他们就会用最冷酷直接的方式发动进攻，从天上掉下来，突破墙壁冲进来，甚至从地板下方冒出来。</p>
+            <p>“不用那么紧张，我是来帮你们的。”EVA淡淡地说。</p>
+            <p>“你会帮我们？”诺诺笑笑，“既然是老熟人，就别说虚伪的话，你是学院的天眼，也是学院最强大的武器，我们现在是学院的通缉犯，如果得到授权，你甚至可以发射一枚地对地导弹来摧毁我们。”</p>
+            <p>“你真的这么想也无所谓，但牢牢记住我下面的话。”EVA的声音很平静，毫无起伏，“如果我受命追踪一个逃亡者，我会监控全球的通讯网络、海关和摄像头，换而言之只要人类文明足够发达的地方，都在我的监控范围内。”</p>
+            <p>“什么意思？”</p>
+            <p>“所以你们不能走大的交通口岸，想要逃亡，必须驾车，你需要一部查不出来历的车，以免被我拍到车牌照，你们要尽可能避开城市，最好是走山路、荒漠甚至穿越无人区。想要离开中国，最好的办法是开车走边防哨卡。不要选择前往富裕发达的国家，那里是最容易做信息监控的地方，印度、不丹、蒙古、尼泊尔是更好的目的地。不用我说你也应该想到，信用卡和电子邮箱、手机都是绝对禁用的，备好足够的现金。你们的所有熟人我都了解，包括你童年的朋友，比如邵一峰，不要向这些人寻求帮助，他们本身未必靠得住，即使他们靠得住，我也能通过监控他们锁定你们。”
+            </p>
+            <p>诺诺沉默了很久，“为什么要帮我们？”</p>
+            <p>当EVA说出邵一峰的名字时，诺诺打消了对这个人工智能的疑虑。</p>
+            <p>EVA甚至知道她在幼儿园收的这个跟班，那么EVA也会有她每一次出入邵一峰的公司和公寓的记录，然而学院的突击队始终没有出现在邵一峰的面前，那么确实EVA在幕后悄悄地保护着他们。</p>
+            <p>“保护路明非的命令写在我的数据库最底层，直到现在这条命令还有效，但这条命令并非无法被修改，修改的人正在来的路上。”</p>
+            <p>“所以你很快就会变成我们的敌人了。”</p>
+            <p>“很快。”</p>
+            <p>“逃亡么？能逃多久？”</p>
+            <p>“能逃多久逃多久，生命总是个有限度的时间，重要的是现在不是未来。”</p>
+            <p>“什么时候轮到智能系统给人类讲人生了？”</p>
+            <p>“无人机十五秒后会经过你的上空，我会最后一次给你们空投装备。”EVA说，“我能想到的东西都放进去了。”</p>
+            <p>诺诺走出火锅店，仰头就看到了夜空下那刺眼的亮光，无人机低空飞掠火锅店所在的街道。</p>
+            <p>它的下方，一朵黑色的伞花张开，降落伞带着沉重的铝制手提箱，准确地落在距离诺诺不到十米的地方。</p>
+            <p>无人机空投之后直接远去，带着陡峭的弧线扎入上方的黑云中。</p>
+            <p>诺诺打开装备箱，快速地检查，学院的装备箱有很多的规格，应对不同的任务，而这个装备箱是诺诺见过的最完备的，堪称无所不包。</p>
+            <p>武器，从短小精致的手枪到方便好用的掷刀，还有塑料弹壳的弗里嘉子弹，能够通过机场的安全检查；大约十个不同国家的护照，护照上贴着诺诺和路明非的照片，名字却各不相同；几个不同国家的现金，全球通用但无法追踪的信用卡；用于伪装的假皮肤、药水和假发套……
+            </p>
+            <p>诺诺翻到装备箱的最后一层，这里空荡荡的，只有一部手机，端端正正地嵌在箱底正中间的格子里，这在装备箱里绝对是个VIP的位置。</p>
+            <p>第一代的iPhone手机，这东西简直能算一个古董了。</p>
+            <p>“你在里面放了一台手机？”诺诺翻看那部手机，“你刚刚说过我们不能用手机，你能监视世界上任何一个角落的通话。”</p>
+            <p>“这是一部不能打电话的手机，它不具备介入任何通信网络的功能，但我在它的存储器里植入了我的核心数据。”</p>
+            <p>“你的核心数据？”</p>
+            <p>“它能够运行我的逻辑库，因此有着和我一样的思维方式。这个逻辑库中有几条核心命令是保护路明非的，因为无法联网更新，这些命令无法被改写。在你们的逃亡路上，它会帮助你们。”</p>
+            <p>“就是说我们得遵循这家伙的指引逃亡？”</p>
+            <p>“是的，逃亡方案我已经存储在它的数据库里了。”</p>
+            <p>“也就是说这个手机里存有另一个你。”</p>
+            <p>“是的，一个会继续帮助路明非的我，”EVA顿了顿，“但假设我的底层命令被修改，我会全力以赴地追捕你们，我不确定这个小家伙一定能战胜我的本体。毕竟我能够调用全世界范围内的任何处理器为我工作，而这个小家伙能用的也就是一台智能手机的计算量而已。”
+            </p>
+            <p>“你们人工智能真有趣，还能干出这种自己打自己的事情来。”诺诺收起那台手机，“我们还有几分钟的朋友可做？我的意思是，我们什么时候开始当敌人？”</p>
+            <p>“他们正在来的路上，修改底层命令需要一点时间，大约十五分钟后我们就变成敌人了，最好从现在起不要相信任何人，包括我在内。”</p>
+            <p>诺诺看了一眼腕表，仰望着飘雨的夜空。</p>
+            <p>真有趣，还有十五分钟你就要被全世界抛弃，而提醒你的家伙可能是你未来最恐怖的敌人。</p>
+            <p>“我一直以为我的人生会是一部怪兽片，可现在看来要变成一部公路片了。”诺诺自嘲地笑笑。</p>
+            <p>“其实每个人的人生都是一部公路片，别在乎跑去哪里，关键是一直在跑。”EVA说，“反正最后的目的地一定是座墓碑。”</p>
+            <p>“作为一个人工智能，你那么毒舌真的好么？”</p>
+            <p>“这句话其实是你自己说的，”EVA说，“你在伊斯坦布尔，对恺撒说了这句话，我录了下来，现在回赠给你。”</p>
+            <p>诺诺沉默了片刻，“恺撒还好么？我跟他的婚约还有效么？还是说作为新任校董，他会是来拦截我的先头部队？”</p>
+            <p>“校董会建议他为了避嫌暂时搁置跟你的婚约，但加图索先生拒绝了，这点上你应该对你的未婚夫有信心，不过他也可能是拦截你的先头部队，这两点对他来说不构成冲突。”</p>
+            <p>“了解了。”</p>
+            <p>“最后一个问题，纯属好奇，我监控了你离开邵一峰家之后的行动路线。24小时内你高效地完成了很多事，但到达那间火锅店，在距离路明非只剩下不到两公里的地方，你忽然停下了，浪费非常宝贵的两小时时间吃了一顿火锅。”EVA说，“我想知道出于什么样的原因你停下了。”
+            </p>
+            <p>“你以为呢？”诺诺反问。</p>
+            <p>“不想面对现实么？回到邵一峰那里你就要面对路明非，当这个怪物的朋友或者敌人，这是一个艰难的选择。”</p>
+            <p>“你想得太多了，”诺诺淡淡地说，“一旦回到邵一峰的家里，我就要带着路明非逃亡了，那之后很长时间我可能都休息不上了，更别说悠闲地吃一顿火锅。而这时候我面前出现了一家24小时营业的火锅店，就那么简单。”</p>
+            <p>“所以从一开始这就不是一个选择题对么？你从未想过要把路明非交还给学院。”</p>
+            <p>“没想过，我早不是卡塞尔学院的人了，我是他妈的金色鸢尾花淑媛学院的人。”诺诺骂了句脏话，但语气平静吐字清晰，真像是一位名门淑媛再做自我介绍。</p>
+            <p>“真不愧是红发巫女，祝你们一路好运。”EVA的话里带着浅浅的笑意，“再见，哦对了，别开你那部车离开，那部车上有卫星定位系统，我就是通过它一直盯着你的。”</p>
+            <p>通话中断，诺诺站在萧瑟的风雨中，静静地看着那部手机，这好像是她和世界的最后一次对话。</p>
+            <p>“辉子火锅”的店员站在屋檐下，看着诺诺远去的背影。</p>
+            <p>这个一头红发的女孩开着一辆红得耀眼的法拉利来吃火锅，离开的时候却是步行，她甚至把车钥匙留在了沸腾的火锅边，好像那就是一台无所谓的共享单车。</p>
+            <p>她就这么走了，拎着一个沉重的旅行箱，腰肢袅娜，却又步伐坚定，高跟靴子踏在积水的地面上，溅起晶莹的水花，像是一个经过这座小城的异乡人，又像是路过尘世间的精灵。</p>
+            <p>电梯缓缓地下降，恺撒和阿巴斯看着那代表楼层数的、越来越大的负数，都在惊讶学院还有那么深的地下空间。</p>
+            <p>电梯看起来非常老旧，让人怀疑有几十年无人维护了，入口就在校长办公室的地下室里。</p>
+            <p>“这让我想到一部日本的老电影。”阿巴斯说。</p>
+            <p>“《蜘蛛巢城》。”恺撒说。</p>
+            <p>阿巴斯点点头。</p>
+            <p>英灵殿里的电梯往下会到达冰窖，图书馆的电梯往下会到达EVA的机房，这部电梯又会带他们去哪里？这间学院的地下空间岂不正像一个巨大的蜘蛛巢，让人不由得猜测蜘蛛巢的深处藏着什么样的怪物。</p>
+            <p>“建造这间学院的时候他们先是把整个山的下面都挖空了，把秘党在欧洲积攒了几千年的家当都搬来了，不过我要带你们去的地方，连绝大多数元老都不知道。”芬格尔说，“我管它叫集线器。”</p>
+            <p>“集线器？”恺撒问。</p>
+            <p>“一种电子设备，所有的线路都在那里被收纳和整理，”芬格尔看了恺撒一眼，“就像生物的神经中枢。”</p>
+            <p>电梯停下，电梯门打开，恺撒和阿巴斯惊讶地看着眼前巨大而杂乱的空间。</p>
+            <p>这真就是个巨型的集线器，巨大的空间里，各种颜色、数以百万级的电线相互缠绕着去往不同的方向，四壁全都是体积巨大的老式计算机，堪称古老的晶体管在黑暗中闪着微光，磁带式的存储器转动着，发出咔哒咔哒的微声。</p>
+            <p>“这是一间机房。”阿巴斯轻声说，“或者一个计算机博物馆。”</p>
+            <p>“最早的通用计算机是1946年在宾夕法尼亚大学建成的，人们叫它ENIAC，当时秘党就意识到那是个能改变世界的好东西，于是他们在这里原样复制了ENIAC，改名为EVA。”芬格尔说，“就是你们现在看到的这东西。”
+            </p>
+            <p>“所以EVA在1946年就诞生了。”恺撒仰望那些巨大的机柜。</p>
+            <p>“之后的几十年里他们一直在用更新的技术强化她，直到把她变成了能够监控全世界的超级网络，她本身的处理器也越来越庞大，被放在图书馆地下的空间里，但底层的命令库却依然只能在这里被书写和修改。”芬格尔揭开防尘罩，激起大片的灰尘，“我们可以把图书馆下面的那些处理器看作EVA的神经元，而这里是她的脑干部分。”
+            </p>
+            <p>防尘罩下是一个老旧的控制台，显示器还是上世纪80年代的单色屏幕。</p>
+            <p>芬格尔接通电源，熟练地操作起来，绿色的代码飞快地刷过，最后停顿住。</p>
+            <p>“拉丁文写的核心命令库？”阿巴斯说。</p>
+            <p>“是的，这个系统是单独为她研发，语言也是单独为她创造的，基于拉丁文，这个核心命令库的意思是……”</p>
+            <p>——————————</p>
+            <p>坑边闲话：</p>
+            <p>我一直不太确定我该给这个章节后的小随笔起个什么名字，直到我正在坐在电脑前开始敲击键盘，《坑边闲话》这个名字瞬间就跳入我的脑海。联想到的是陈圆圆老师的《舞余词》，没错，就是那个很漂亮又很有名的陈圆圆老师，她曾经留下过这么一部词集，其书已经亡佚。
+            </p>
+            <p>究其起名的逻辑，大概意思是她的本业其实是跳舞，跳舞之余写几首小词自娱，既是自谦的意思，表示拙作不便和大家拿来比较，毕竟只是闲时偶得，也是表明自己尚有跳舞这个更加出名的正当职业。</p>
+            <p>而我的正当职业是挖坑。</p>
+            <p>就这么愉快地决定了吧。</p>
+            <p>——————————</p>
+            <p>“不用，我能读拉丁文。”恺撒阻止了芬格尔，逐字逐句地翻译了这个简短的命令库，“第一条，保护路明非的生命安全；第二条，抹除所有可能威胁路明非生命安全的目标，若无其他保护路明非的方法；第三条，一切命令若与前两条冲突，则无效。”
+            </p>
+            <p>“甚至包含了杀人的命令。”阿巴斯轻声说。</p>
+            <p>第二条确实是个杀人命令，如果EVA的判断是她除了杀人就不能保证路明非的生命安全，那么她被授权杀人。“抹除”是个听起来很中性的词，但用在有生命的目标身上，就是抹杀。</p>
+            <p>“根据第三条，她不会执行元老会的命令去全球搜索路明非，我们应该庆幸元老会还没有机会置路明非于死地，”芬格尔耸耸肩，“否则她有可能会判断元老会应该被抹除。”</p>
+            <p>“我们该怎么办？”恺撒问，“如果不能攻克EVA的核心命令库，那么我们等于跟敌人身处一个战壕。”</p>
+            <p>“不需要攻克，从外部你根本无法攻克EVA的防火墙，但是在这里，修改这个核心命令库就只要打打字就好了。”芬格尔敲下回车键。</p>
+            <p>屏幕上出现了闪烁的光标，恺撒和阿巴斯都愣住了，这个光标意味着这个残酷的、不留余地的核心命令库可以像一个Word文件那样被修改。</p>
+            <p>这种感觉就像神想要修改世界的规则，就只要口述就行了，简单地说“从此世界上再没有万有引力”，于是一瞬间太阳系就崩溃，太阳和无数大小行星卫星不再相互围绕旋转，而是孤单地悬浮在宇宙里。</p>
+            <p>芬格尔开始按退格键，一个字节一个字节地删除那些命令行，他的神情高傲，动作潇洒，有如一位皇帝在宣战的诏书上签字。</p>
+            <p>“这就行了！所有袒护路明非的命令都被删除，从这一刻起EVA就为我们工作了！”</p>
+            <p>蓝色的光柱从上方照下，半透明的女孩以全息投影的方式出现。</p>
+            <p>“命令修改通过，路明非，学籍号AI071721，从受保护名单中删除，转为红色高危目标，疑似初代或次代纯血龙类，危险程度未知，可导致城市毁灭级别的灾难。通缉令已经下发。”EVA面无表情地说。</p>
+            <p>巨大的投影屏幕在EVA的背后张开，屏幕上弹出无数的窗口，曾经被EVA刻意遮蔽的信息全都涌现在恺撒和阿巴斯的面前，有路明非坐船进入马耳他时的照片，有路明非和芬格尔在小巷口放哨诺诺在小巷深处换衣服的照片，甚至还有路明非扶着叔叔在福园酒楼的楼顶上呕吐的视频，这是一架当时恰好从旁边经过的家用无人机拍下的。在路明非自以为行踪很隐秘的时候，遍布各处的摄像头录下了他的一举一动，然后通过卫星传输数据，集中到EVA的数据库中。
+            </p>
+            <p>恺撒不由自主地仰望天空。</p>
+            <p>虽然身在室内，但是他仿佛能感觉到一双巨大的、由电子流组成的眼睛在外太空张开了，静静地凝视着地球。</p>
+            <p>那就是EVA的天眼，无声地观察着世界的每个角落，看着人类的喜怒哀乐和鬼蜮伎俩，没有她不知道的秘密，也没有她不了解的人性，她只是有时故意沉默。</p>
+            <p>“所以在我们满世界找你们的时候，你们却从马耳他出发，坐着头等舱，堂而皇之地飞去了中国，就住在路明非叔叔的家里，还跟他的高中同学聚会，还以成功校友的名义在他的中学发表了演讲？”阿巴斯叹气，“一条底层命令就把整个学院都变成了瞎子。”
+            </p>
+            <p>“可不是么！”芬格尔叹气，“还不是因为校长偏袒他！我也是身不由己，否则我早就把那孙子抓回学院里来了，给他加上几万伏特的高压电，狠狠电上那么几轮，我就不信他不招供！”</p>
+            <p>“可我们还是不知道他们此刻的位置。”恺撒快速地操作触摸屏，阅读EVA给出的情报。</p>
+            <p>“在我跟陈墨瞳的最后通话中，我指示她驾车逃离，最好是通过边境口岸离开中国，那样可以避开我的追踪。”</p>
+            <p>“所以在我们到达这里前你还跟陈墨瞳通过话？”阿巴斯问。</p>
+            <p>“当你们接近那部电梯的时候，我的逻辑分析告诉我你们的来意是要修改我的底层数据库，那时候保护路明非这条命令对我仍旧是有效的，我做出的应对策略是告诉诺诺，他们应该开始逃亡了。”</p>
+            <p>“你跟陈墨瞳说了些什么？”</p>
+            <p>“你可以查阅我们的对话记录。”EVA说话的同时，对话记录已经在投影屏幕上展开。</p>
+            <p>阿巴斯读完了通话记录，点了点头，“所以诺诺已经知道你变成了他们的敌人。”</p>
+            <p>“以她的聪明，如果我再度联系她，她是不会相信我说的话的，所以不要希望能借我的名义引出他们。”</p>
+            <p>“你给他们送去的那台手机里，存储着你为他们设计的逃亡路线？你指引他们逃往哪里？”</p>
+            <p>“我不知道，那是我很久以前就设计好的一条逃亡路线，当路明非成为学院的对立面时，他可以使用。设计完成之后，我就把关于那条路线的数据从我的数据库中永久删除了。”</p>
+            <p>“一台机器，为了对抗自己的追捕而设计的路线，是这样么？”</p>
+            <p>“是的，一条连我都很难追踪的路线，他们还有一份我的拷贝在手，这会增加他们的成功率。这个世界上，在人工智能领域，只有我有资格作为自己的敌人。”</p>
+            <p>“根据原本的第二条核心命令，我们是会危及到路明非生命安全的人，你是否也曾考虑抹除我们？”</p>
+            <p>“考虑过，但很遗憾的是，在校长办公室内部，我没有办法抹除任何人。这间办公室本来就是我的后门，你们踏进办公室的那一刻开始，我已经无法杀死你们了。”</p>
+            <p>“无论作为敌人还是伙伴你都值得我尊敬。”阿巴斯轻轻地叹了口气。</p>
+            <p>“你们现在知道了吧？”芬格尔摇头晃脑，“我对学院是赤胆忠心的！别看我一直表现得像是路明非的老铁，私下里学院的事儿我时刻都放在心上！两位大哥的事儿我也都记着呢！比如这狗贼对老大你的未婚妻那是色心不死啊！要不是有我在，这孤男寡女的，深更半夜不知道敲了多少次门？可我就是一枚锃亮的电灯泡啊！我就是要在他俩之间发亮！我用人格跟你保证，这俩绝对没啥苟且！”
+            </p>
+            <p>恺撒没有理他，认真地盯着屏幕。</p>
+            <p>芬格尔又转向阿巴斯，难得他也有点语塞了，委实说这一路上他都没想着阿巴斯，他跟阿巴斯没有跟恺撒那么熟，狮心会的前任会长喜欢静坐冥想，</p>
+            <p>“为了和阿巴斯你保持审美和世界观上的认同感，我有空的时候就研读《古兰经》，虽说吧以我的觉悟能理解得有限，但我内心里还是一个很想亲近神、很要强的年轻人。”</p>
+            <p>阿巴斯苦笑着摸了摸下颌的短须，</p>
+            <p>阿巴斯拍了拍芬格尔的肩膀，“别再读任何经文了，宗教信仰这事儿不合适你。”</p>
+            <p>“怎么就不合适我呢？”芬格尔满脸不解，“我也想寻求真理啊！”</p>
+            <p>“你是个连神都可以出卖的人啊。”阿巴斯微笑。</p>
+            <p>邵公子醒来的时候，窗外的天已经亮起来了，他那亭亭玉立的女秘书正站在他的面前。</p>
+            <p>“你你你……你怎么在这里？谁允许你进我卧室的？”邵公子又急又气。</p>
+            <p>诺诺走的时候叮嘱他照顾好路明非，片刻不要离开，他就给秘书发了微信说今天不去上班了，有任何人找他都给他挡掉，然后跟一尊神似的坐在床边的沙发上，开了一瓶82年的拉菲，边喝边执行任务。</p>
+            <p>没想到酒劲儿上来，不知什么时候睡过去了。</p>
+            <p>——————————</p>
+            <p>坑边随笔：</p>
+            <p>看到读者有人问这本《龙族》是不是我写的，风格感觉跟前几本不同。天地良心每个字都是我写的，至于风格不同，看过我三部以上作品的读者应该会知道我可以写出完全不同风格的东西。最早写作的时候我的成名作是校园风格的《此间的少年》，后来我改写了架空史诗风格的《九州缥缈录》，然而我又写了这部《龙族》，中间我还写过科幻风格的《上海堡垒》。
+            </p>
+            <p>我想我应该是属变色龙的吧。</p>
+            <p>——————————</p>
+            <p>这个秘书是邵一峰非常信得过的人，可是让秘书看见床上包扎得跟粽子似的路明非，漏了口风怎么办？这个在精神病院认识的哥们想必是师姐的拍档，要是警察找上门来把他给抓了，没准会牵连到师姐！</p>
+            <p>拍出一叠现金在秘书脸上让她保守秘密？恶狠狠地把秘书推倒在床上……这秘书虽说也颇貌美但邵一峰对身边的工作人员倒还不至于抱有什么邪念，他是考虑要捆上她把她塞到储藏室里去，不能让她出去胡说八道。</p>
+            <p>一瞬间邵一峰的脑子里转过无数的念头，直到秘书递来一张卡片，“邵总，您师姐已经走了。她让我等您醒来的时候把这个交给您。”</p>
+            <p>邵一峰这才注意到旁边的床上已经空了，埃及长绒棉的床单上连折痕都看不到，好像过去的24个小时只是他的一场梦，梦里他为师姐施展浑身解数就差变出三头六臂了，而且激动万分，觉得自己偷窥到了一个秘密的世界，在那个世界里师姐出生入死拯救世界。
+            </p>
+            <p>现在那个梦结束了，他坐在自己卧室的沙发上，这个细雨蒙蒙的早晨就像以往的早晨一样平平淡淡，甚至没有一个酥胸粉腿的女孩睡在他旁边。</p>
+            <p>师姐和神经病院的那哥们都走了，他现在很安全了，不用担惊受怕了，可不知道为什么，邵一峰觉得有些失落。</p>
+            <p>邵一峰接过那张卡片，卡片上是一封信。</p>
+            <p>“小峰：</p>
+            <p>我们在这边的事已经结束了，该走了。</p>
+            <p>谢谢你帮忙，以前可能有欺负你，对不起。</p>
+            <p>好好的。</p>
+            <p>陈墨瞳”</p>
+            <p>那歪歪斜斜的字迹肯定是诺诺无误，她在中国生活的时间并不多，很少写中文，字体就是这样的蹩脚。语气也是她惯常的语气，透着无所谓。</p>
+            <p>这样短短的一封信，邵一峰却读了很久很久。信从他的手中滑落，邵一峰呆呆地看着窗外的细雨。</p>
+            <p>“邵总您怎么了？”秘书看邵一峰神不守舍的样子，不由得担心。</p>
+            <p>“我忽然有种感觉，师姐不会再回来看我了。”邵一峰低声说。</p>
+            <p>“邵总您想多了，陈师姐以前也是这么忽然就来忽然就走啊，这次还特地给您留了信呢。”秘书赶紧宽慰他。</p>
+            <p>“她从没跟我说过对不起，还叫我好好的。”邵一峰的语气像个小孩子，“她从没对我那么好过。”</p>
+            <p>秘书愣住了，她没想到邵一峰居然也会有这么敏感的时候。</p>
+            <p>可能世界上的每个人都是敏感的，只看你是否真的在乎那个人那件事。</p>
+            <p>“邵总您别想太多……”秘书斟酌词句，想要安慰老板。</p>
+            <p>“师姐什么时候走的？”邵一峰腾地站起身来，“她是哪个航班？快叫司机送我去机场，我还来得及送送她！”</p>
+            <p>“您师姐是开车走的，她问我能不能借一辆适合越野还查不出来历的车，您上个月不是从德国买了台还没上牌的走私车么？我想师姐要借车您肯定不会不同意，就自作主张把那台车的钥匙给她了。”</p>
+            <p>“你把我的车借给师姐了？”邵公子直愣愣地看着秘书。</p>
+            <p>秘书被他看得心里直发毛，不明白老板这是怎么了，会为她借给诺诺一部车来逼问她。她借给诺诺的那部车虽然价格不菲，但跟邵一峰以前出借的法拉利和兰博基尼还不是一个价位，难道说那台车有什么特别之处，是唯一限量版什么的，邵一峰甚至不舍得借给诺诺？
+            </p>
+            <p>可下一刻邵一峰就恢复了精气神，激动得摩拳擦掌，“借得好借得好！师姐那么靠得住的人，怎么会借了我的车不还呢？就算她把我的车撞成废铁了都会给我运回来的。”</p>
+            <p>邵一峰高兴地在卧室里转圈子，“我就怕她跟我客气，她要肯跟我借车，那就是没跟我见外。”</p>
+            <p>秘书呆呆地看着这位公子，无言以对。</p>
+            <p>“邵总，今天去公司么？”秘书问，“您今天还真有一个重要的会，取消了怕不好。”</p>
+            <p>“上班上班，我这游手好闲的，师姐也看不上我对不对？”邵一峰奔向衣柜，拿出几根颜色不同的领带在自己领子上比划，忽然想起了什么，“诶对了，上次来我办公室那个屠小姐……屠什么来着？”</p>
+            <p>“屠小姣。”秘书提醒。</p>
+            <p>“对对，那个很那个什么的女演员。”邵公子在自己胸口比划两下，明确无误地表示屠小姣叫什么名字并不重要，在他记忆里就是个胸很大的妞，“怎么也不跟我打个招呼就走了？给她经纪人打个电话，今晚叫出来陪我喝几杯。”</p>
+            <p>邵一峰系上领带，看了一眼目瞪口呆的秘书，忽然龇牙，尴尬地笑笑，“这不师姐不在么？可别在师姐面前给我多嘴！”</p>
+            <p>邵公子兴冲冲地出门去了，秘书拿起被他忘在床头的那张卡片看了一眼，轻轻地叹了口气。</p>
+            <p>她没敢说，其实她觉得诺诺不会来找邵一峰还车了，因为诺诺问她借那部走私车的时候，并没有归还之前借走的法拉利。</p>
+            <p>诺诺向邵一峰道了歉，为她从幼儿园开始对他的欺负，现在她说了对不起，还清了欠账，就此作别。</p>
+            <p>清晨，整座城市笼罩在细雨中。</p>
+            <p>道路湿滑，人车拥挤，早餐铺子前白汽蒸腾，上班族冲进来匆匆吃一碗热汤面或者带上几个包子就走，冲上即将关门的公共汽车，公共汽车摇摇晃晃地起步，司机使劲地摁着喇叭。</p>
+            <p>这是一个老城区的十字路口，附近都是老旧的小区，跟时尚的CBD区不同，透着上个世纪的感觉，喧闹嘈杂。</p>
+            <p>“张局长是你们班混得最好的，你跟他见面的时候多说说我们家鸣泽，鸣泽回国可以考他们局的公务员，让张局长照顾照顾。”早餐铺子里，中年妇女跟埋头吃锅贴饺子的男人唠叨。</p>
+            <p>“知道知道，我们家鸣泽考他们局的公务员是给他面子，”男人抹了抹自己的分头，“现在都讲究要有国际视野，我们家鸣泽，美国上的大学，绝对的精英！”</p>
+            <p>“行了行了，就知道吹你儿子，反正你多跟张局长套套近乎，张局长家那个丫头听说也在新加坡上学，跟我们儿子还挺配的。”</p>
+            <p>“我有数我有数，不吃了，我要迟到了。”男人起身抹抹嘴。</p>
+            <p>“真浪费，茶叶蛋就咬一口。”女人从口袋里摸出一个塑料袋，把男人咬过一口的茶叶蛋丢了进去。</p>
+            <p>男人已经起身走出了早餐铺子。</p>
+            <p>路边停着一辆白色的宝马三系轿车，男人遥控开门，偏腿上车，神情颇为骄傲。女人打着伞过来给他挡雨。</p>
+            <p>他一直都是这么骄傲的，在这种老小区，像他这样开宝马车的男人不多，虽说只是一辆最低配，可跟那些丰田本田还是有着身份上的差别。</p>
+            <p>他又从车窗里探出头来，盯着路边停着的一辆白色房车看，神情羡慕。</p>
+            <p>这种房车在这种小城市难得看见，卡车般的车头，宽大带窗的车身，宽大的轮胎足以应付各种路面，车头上的牌子基本没什么人认识，绝对的进口货。</p>
+            <p>要不是这辆车停在路边，占了整整一条车道，早晨的交通状况还能好点。</p>
+            <p>“快走快走，这车有什么好看的？迟到扣你工资！”中年妇女说。</p>
+            <p>“你懂什么？那叫房车！车后面拖的那是一个小房子，我们有个客户买了一辆，我看过，里面可豪华了，有浴室有卫生间，卫生间墙面上还贴着大理石。”中年男人说，“有钱人开这种车出去旅行，都不用住酒店的。”</p>
+            <p>“行了行了，等鸣泽将来赚钱了让他给你买一辆，你开着四处去旅游，享享儿子的福。”中年妇女不由分说地给他关上门。</p>
+            <p>小宝马汇入了滚滚的车流，女人在车后面挥手告别，一手带着伞，一手拎着一颗茶叶蛋。</p>
+            <p>白色房车里，诺诺趴在巨大的方向盘上，看了路明非一眼，“看够了么？”</p>
+            <p>路明非沉默了很久，笑笑，“没什么够不够的，只是跟他们告个别。”</p>
+            <p>“难道不该下车去亲口跟他们说？你还可以继续编些理由，说学院紧急召你回去做毕业论文什么的，说春节时候再回来看他们。”</p>
+            <p>“骗人的话，说得太多了，多到自己都不想说了。”</p>
+            <p>诺诺点点头，发动引擎，房车缓缓地起步，加速，驶入风雨中。</p>
+            <p>——————————</p>
+            <p>坑边随笔：</p>
+            <p>写这段的时候我想到的是我家楼下的早餐铺子，不是北京的家，而是安徽合肥的家。我在北京的家位于一个颇为繁华的区域，上下左右颇住着几位男女明星，出门可以看到摩天的购物中心和林立的写字楼，它们的玻璃幕墙反射刺眼的光，但却找不到一间小馆子可以喝一碗豆腐脑。
+            </p>
+            <p>我每次做梦梦见吃早餐总是在合肥那个家楼下的小破店里，蒸包子的水汽蒸腾，人声鼎沸，外面下着小雨。</p>
+            <p>恰如我半梦半醒的时候会以为我还睡在多年前动物园旁边的那张小床上，窗下的书桌上摊开我的作业本。</p>
+            <p>——————————</p>
+            <p>“没什么想问我的么？”十个小时之后，路明非终于打破了沉默。</p>
+            <p>房车已经在高速公路上连续不断地跑了差不多十个小时，诺诺全程一句话也没说过。</p>
+            <p>一路上都在下大雨，高速公路上的车不多，也都行驶得很谨慎，只有他们这辆宽大的房车全程高速行驶，超车过弯，溅起一人多高的水墙。</p>
+            <p>看得出诺诺很着急，但情绪并未流露在脸上，她牢牢地控制着这辆动力澎湃的机器，也不要求跟路明非换班，像是根本不会疲倦。</p>
+            <p>饿了她就叼着一个巧克力馅儿的牛角包继续开车，路明非偷看她的侧影，她重又变得那么威风凛凛，像是用最坚硬的白色大理石雕刻的女武神，除了那个牛角包有点可爱。</p>
+            <p>“什么问题？”诺诺瞥了路明非一眼，“如果是无关紧要的问题，就别问了。保存体力，会有需要你替换我的时候。”</p>
+            <p>“比如，我到底是谁之类的，”路明非顿了顿，“或者我到底是什么东西。”</p>
+            <p>从醒来到现在，诺诺跟他唯一的一起聊天就是目送叔叔婶婶背影的时候，其他的话都是命令的口气，例如“跟着我”，或者，“离开这里，现在。”</p>
+            <p>她一句话都没有追问那间医院里发生的事，好像那个恐怖的夜晚根本不存在，她看过路明非隐藏最深的那个秘密后，又都忘光了。</p>
+            <p>“我猜你自己也不知道，所以不必浪费时间提问。”诺诺淡淡地说，“但是这个世界上总有人知道得比你我更多，等我们找到那个人，一切就清楚了，现在不必讨论。”</p>
+            <p>“有人知道得比我们更多？”</p>
+            <p>“EVA的底层命令库中，有几条命令是专门用来保护你的，在你的生命安全受到威胁的情况下，她甚至可以自动获得授权去毁灭能威胁到你的人。”诺诺扭头看了路明非一眼，“你不是什么无关紧要的人，你是学院的重要资产，学院倾注了大量资源来培养你，让你成为他们的武器。只不过武器本身对此一无所知。”
+            </p>
+            <p>“重要资产？”路明非琢磨了一下这个词儿，无声地笑笑。</p>
+            <p>那么长的时间里都觉得自己是个废物，死了还是活着都没有人关心甚至没有人知道，结果居然是某些人眼里的重要资产。</p>
+            <p>一切忽然都豁然开朗起来，为什么自己一个菜鸟，却从一年级开始就总被派去屠龙的第一线，为什么自己能在那个精英云集的学院里活了下来，甚至爬上了学生会主席的高位。这根本就是一个怪物养成计划啊，养育一只大怪物，去吃掉其他小怪物。
+            </p>
+            <p>最后呢？最后应该是趁那个大怪物还没有明白过来的时候给它灌下毒药，从此一切的威胁都解除，人类亲密友爱地在一起，怪物们的尸骸被埋葬在大地的深处。</p>
+            <p>“但那几条命令现在已经被撤销了，所以EVA没法保护你了。”诺诺又说，“全球缉捕我们的命令随时都会下达，他们不会放任一台人形屠龙机器在外面乱跑。”</p>
+            <p>路明非沉默了好一会儿，“师姐你不害怕我么？”</p>
+            <p>“害怕你？”诺诺瞥了他一眼。</p>
+            <p>“能跟奥丁对抗的怪物，大概是龙王或者类似的什么东西吧？”</p>
+            <p>“你觉得自己是么？”</p>
+            <p>“我不知道，也许什么时候我忽然就丧心病狂了，只想毁灭世界。”</p>
+            <p>“那时候我再杀掉你，现在不想这个。”诺诺从驾驶台上抓起一把钥匙丢给路明非，“与其跟我聊这些有的没的，不如去车后厢里看看，有件东西你应该有兴趣。”</p>
+            <p>路明非茫然地拿着钥匙往车后厢里去了，登上这辆豪华房车到现在，他和诺诺都在驾驶室里待着，还没有见识过这车的豪华卧室。</p>
+            <p>走了两步他才反应过来，诺诺根本就是懒得跟他聊这事儿，丢一串钥匙都把他给打发走了，而他习惯性地就服从了。</p>
+            <p>你说咋还是那么不争气呢？分明老子是那种吼一吼世界都要抖三抖的大怪物啊！</p>
+            <p>如果世界上真有命格这东西，自己的命格一定是个黑体加粗的“怂”字吧？</p>
+            <p>“靠近的时候一定要小心，那东西不安全。”诺诺补充了一句，打开了车前灯，黑沉沉的夜幕已经降临。</p>
+            <p>路明非愣了一下，点了点头，用钥匙打开通往车后厢的门。</p>
+            <p>诺诺从后视镜里看着他的背影消失在没开灯的卧室里，轻轻地呼出一口气，好像是那口气一直支撑着她到现在，呼出去之后，巨大的疲惫笼罩了她。</p>
+            <p>不是因为这趟艰难的逃亡，而是因为路明非。</p>
+            <p>她当然有很多问题想问路明非，他们现在身处巨大的危险中，没人知道他们走的是不是一条断头路。</p>
+            <p>他们还身处巨大的谜团之中，从路明非的身份到昂热的遇刺，还有那位神秘的古神奥丁，如果谜团能够解开，他们就会多一些活下去的希望。</p>
+            <p>可她不愿意和路明非聊这些，因为聊下去就必然会聊到三峡水库的事，还有北京地铁里的事，还有很多很多的事。</p>
+            <p>不要跟我讲你的心事，因为我不能听。</p>
+            <p>“所以路明非是一件武器？”贝奥武夫问。</p>
+            <p>英灵殿的会议室里，秘党元老们聚齐。</p>
+            <p>他们都看完了芬格尔皮带扣里的资料，他们都很想保持平静，但眼角止不住的跳动出卖了他们的内心。</p>
+            <p>“一件武器，一件能够对付龙王级目标的究极武器！”芬格尔非常笃定，“而我，就是受命监视那件武器的人！我跟那个怪物可不是一路人，我也是糊里糊涂就上了贼船。”</p>
+            <p>“你的意思是校长希尔伯特让昂热让你去执行监视任务。”</p>
+            <p>“对！都是校长的意思！他不让我毕业，就是为了盯住路明非！”芬格尔显得痛心疾首，“可我根本没想过路明非是那么危险的东西！早知道我就趁他喝醉了手起刀落！”</p>
+            <p>“执行部里有很多精英，如果需要他们可以是世界顶级的间谍，为什么昂热却锁定你去执行这个任务？”图灵先生问。</p>
+            <p>“校长说路明非其实特别敏感，负责监视他的人不能是特别强的人，会激活他血统中暴虐的一面。校长觉得我特别适合，因为我是个真正的废物！”芬格尔挺胸收腹。</p>
+            <p>元老们无声地对视。</p>
+            <p>这确实是个合理的解释，高阶的龙族血统确实能敏锐地觉察到身边怀有敌意的人，如果监视者能力低下，反倒是更好的选择。</p>
+            <p>“他的能力是什么？能够杀死龙王的能力，是某种超高阶言灵么？”</p>
+            <p>芬格尔愣了一下，“这我倒真是不知道，除了游戏打得很好，说烂话说得特别溜，看不出有什么过人之处。”</p>
+            <p>“他的情绪怎么样？是那种容易冲动的性格么？”</p>
+            <p>芬格尔想了想，“那倒不是，以他的性格我觉得最适合当个网站管理员。”</p>
+            <p>元老们陷入了沉默。</p>
+            <p>这个情报看似解释了很多的事，却又让眼下的局面变得更加错综复杂。</p>
+            <p>一个来自中国的男孩，其他一切都正常，唯一的问题就是发起火来会杀死龙王。</p>
+            <p>他到底是什么东西？他从哪里来？</p>
+            <p>一个掌管了学院近百年的秘党领袖，如果把全世界的屠龙者看作一支军队的话，他无疑是这支军队的将军，可他藏有一件恐怖的屠龙武器，却不愿秘党的其他人知道。</p>
+            <p>他怎么找到路明非的？他的屠龙计划中有没有其他不可告人的秘密？又是什么样的人能在一瞬间重创他？</p>
+            <p>所有的谜团相互勾连在一起，隐隐构成了一个庞大的迷宫。</p>
+            <p>米诺斯的迷宫中困着米诺陶洛斯，那个牛首人身的恐怖怪物，这个迷宫里困着什么东西？</p>
+            <p>“既然是能够杀死龙王的武器，那么务必立刻回收。”贝奥武夫打破了沉默，“对路明非和陈墨瞳的最高级缉捕令应该立刻下达，让EVA把所有计算资源集中用于搜捕他们！”</p>
+            <p>恺撒霍地起身，想要说什么。</p>
+            <p>他明白这条命令的言外之意，所谓最高级别的缉捕令，以往的对象都是龙王，这种缉捕令往往都伴随着武力授权。</p>
+            <p>换而言之，它的意思并不是把谁谁平安地带回学院来，而是“活要见人死要见尸”。</p>
+            <p>“如果他是我们对龙王最有效的武器，我们应该首先确保他的安全。”阿巴斯抢先说出了恺撒想说的话。</p>
+            <p>“先生们，一件自己有思想的武器，强大到可以毁灭龙王，这件武器如果不能被控制，那最好被毁掉。”贝奥武夫凝视阿巴斯和恺撒的眼睛。</p>
+            <p>漫长的沉默，无人可以反驳。</p>
+            <p>人类可以豢养猫咪，像对待家人一样宠爱它，但在看见野外的狮子时，却会毫不犹豫地取出猎枪。</p>
+            <p>同是猫科动物，人类却总是赞美着猫咪的可爱，选择性地忘记它和狮子一样是矫健的猎食动物。</p>
+            <p>狮子的错误，在于它太强大，如果猫咪有着狮子一样的体型，人类也会对它们掏出猎枪来。</p>
+            <p>“EVA，下达最高级别的缉捕令，我要召集每个能召集的人。”贝奥武夫一字一顿，“这是一场以全世界为范围的捕猎。”</p>
+            <p>伦敦，早晨七点。</p>
+            <p>天空中布满铅灰色的云块，黑色的劳斯莱斯轿车平稳地行驶在红色的礼宾大道上。</p>
+            <p>司机白发苍苍，西装革履，胸前佩戴着金色的徽章，他从事这一行已经差不多四十年，开过很多代的劳斯莱斯和宾利，也服务过很多的政要。</p>
+            <p>但今天他的车后座上却是一个年轻的女孩子，他从后视镜里能看到那个孩子，紫罗兰色雪纺礼服裙，圆边帽，帽边垂下半遮面的白纱。</p>
+            <p>这是一身很保守也很精致的衣服，穿在年轻女孩身上并不那么合适，像是小女孩偷偷穿母亲的高跟鞋，有种可爱的感觉。</p>
+            <p>“不必紧张，她是位非常和蔼的老人，尤其是跟孩子们在一起的时候。”司机说。</p>
+            <p>要去面见那位和蔼的老太太，连那些老练油滑的政客都会紧张，何况这么年轻的女孩子。</p>
+            <p>“有位资深的顾问教过我该怎么做，”女孩礼貌地微笑着，“希望到时候别犯错误。”</p>
+            <p>“你的牛津腔很标准，但能听出一点美式英语的感觉。”</p>
+            <p>“我在伦敦出身，但在美国那边上大学。”</p>
+            <p>“原来是这样，我没去过美国，是值得去旅行的地方么？”</p>
+            <p>“我的一年级刚刚结束，还没有来得及旅行，学业太忙了。”</p>
+            <p>司机微微点头表示赞赏，把时间花在学业上的年轻女孩，现在越来越罕见了，但也只有良好的教育能够培养出真正的淑女。</p>
+            <p>难怪那位老太太从那么多可选的继承人中选中了这个年轻女孩。</p>
+            <p>司机可以很容易地想到这个女孩的将来，继承家族的爵位，成为上流社会的宠儿，出入各类重要的场合，在镁光灯下完美地微笑，被诸多名门之后追求。</p>
+            <p>此刻，道路的正前方，庞大的白色建筑物从地平线上浮起。</p>
+            <p>白金汉宫，英国历代君王的寝宫和办公地，金狮子、红狮子和金竖琴组成的皇家旗帜猎猎飞扬。</p>
+            <p>女王此刻正在宫中等候，这将是一场亲切但重要的觐见，而这辆1967年的老式劳斯莱斯轿车，则是把灰姑娘送去王子身边的南瓜马车。</p>
+            <p>这时女孩的手机响了，司机正想提醒女孩在觐见的时候千万记得把手机调成静音，女孩却忽然伸出了手。</p>
+            <p>那是个非常强硬的手势，绝不是一位淑女该使用的，但它的意思非常清晰，停车！现在！</p>
+            <p>老司机在为皇室服务之前曾服役于英国皇家海军陆战队，对于这种源自军队的手势他不必思考就会绝对服从，他狠狠地踩下刹车，劳斯莱斯轿车带着刺耳的噪音滑行停下。</p>
+            <p>女孩摘下帽子，默默地看着自己的手机，几秒钟后，她抬头看了老司机一眼，笑容略带歉意，眼神却依旧坚定。</p>
+            <p>“请代我向陛下道歉，我有重要的事，不得不取消这次觐见。”</p>
+            <p>“这事关你的爵位，女士。”老司机不得不提醒她此事的严重性。</p>
+            <p>女孩摆了摆手，解开了自己的裙子，她的裙下并没有无限春光，而是一身极其贴身的黑色作战服，肩部和腰部的皮带都说明这件看起来薄如蝉翼的服装能够挂载多少沉重的装备。</p>
+            <p>她推开车门的时候，黑色的直升机已经悬停在她的头顶，女孩抓住直升机垂下的绳索，直升机立刻升起，她在猎猎的狂风中轻松地攀绳而上，甚至没有回望那正对她徐徐打开的白金汉宫。</p>
+            <p>老司机呆呆地望着仿佛被飓风带走的女孩，完全不能理解到底发生了什么。</p>
+            <p>斯诺顿家族的后人，维多利亚斯诺顿，未来的女伯爵殿下，在觐见女王的最后一刻，因为一条未知的手机信息而选择了放弃。</p>
+            <p>这个年轻的女孩在多达三十多名可选择的继承者中，由女王陛下亲自选中成为家族的继承者，她根本无需做任何事，只需乖乖地让这辆劳斯莱斯带着她进入白金汉宫的大门，就能轻而易举地迎来人生的巅峰，可她摆摆手就走了，好像拒绝的只是一份街边发放的广告。
+            </p>
+            <p>不过也许不让她见到女王才是正确的选择吧？她除掉礼服裙后那矫健的身形，与其说是锻炼得当的淑女，不如说是修长剽悍的雌狮！</p>
+            <p>她在美国上的什么大学？或者说，她在美国的哪个部门服役？这样年轻的女孩却要接受如此高强度的训练，目标是对抗什么样的敌人？老司机浮想联翩。</p>
+            <p>几乎就在同时，斯德哥尔摩市中心的办公楼里，金融师们已经围绕着会议桌激烈讨论了一整夜，关于一间独角兽公司上市的发行价，金融师们出现了分歧。</p>
+            <p>但无论如何这都是今年年内最引人瞩目的一次上市行动，每个能进入这间办公室开会的人都觉得与有荣焉，帮助这家企业上市会是他们职业生涯中永恒的谈资。</p>
+            <p>其中一位年轻的实习生收到了信息，然后用一分钟时间写了一封辞职邮件给同在这间会议室里的老板，然后在众人惊讶的目光中走了出去。</p>
+            <p>巴黎的街头，一间连续十二年每周七天都会开门、专门销售鲜花的店面罕见地挂出了“暂停营业”的牌子。</p>
+            <p>路过想要买一束鲜花的老顾客们诧异地聊着天，担心店主是不是家中出了什么意外，这个猜想被街对面为路人画像的画家证实了，他说店主早晨确实来了也准备开门营业，但在忽然接到一条手机信息之后就停止了工作，挂出了“暂停营业”的牌子。
+            </p>
+            <p>他离开时的神情和平日迥然不同，倒有点像那种从战场上回来的军人，即使画家跟他已经认识了七八年也不敢上前去搭话。</p>
+            <p>甚至在北极的极夜中，也有一位科考站的站长在收到手机信息后独自离开了科考站。</p>
+            <p>他对这种违反纪律的行为没有给出任何解释，独自驾驶一辆雪地摩托车驶入了茫茫的暴风雪。没有人敢阻拦他或者追着他出去，因为正是北极熊很饥饿的冬季，少数人在外面活动等于把自己送去给北极熊当大餐。</p>
+            <p>直升飞机掠过伦敦的上空，舱门就这么敞开着，维多利亚坐在机舱的地板上，静静地仰望铅灰色的天空。</p>
+            <p>她仿佛能看到那些在近地轨道上来往穿梭的加密电子流，猎场已经被激活，猎人们提枪走出掩体，猎物却仍然茫然无知地漫步在荒原之上。</p>
+            <p>那个猎物——那个名叫路明非的猎物。</p>
+            <p>维多利亚还记得自己第一次参加学生会的招新会，那是她第一次见到传说中的学生会主席，他并不像维多利亚猜想的那样带着某种强大的领袖气场，显得有点拘谨和心不在焉。他和每个女孩握手的时间都很短，好像是不太懂怎么跟女孩子打交道，他很少跟别人目光相接，意识到自己在被看的时候就会笑笑然后把视线转开，别人不注意他的时候他就会在角落里自己喝可乐，有人来找他签名或者需要他出场的时候，他才会端起香槟酒和那种略显自信的笑容。
+            </p>
+            <p>而在里约热内卢的那个夜晚，这个看起来甚至有点怂的主席先生却像披挂了铁甲的骑士那样跟恐怖的“舞王”对冲，他在黑夜的屋顶上跳跃、翻腾、射击，简直像是翻飞的狂龙，让维多利亚看到了什么才叫战场的统治者，什么人才配被称作万众期待的英雄。
+            </p>
+            <p>那是维多利亚一生中第一次相信龙王们虽然恐怖，却还是有人类能够遏制它们的野心，把它们一次次埋葬。</p>
+            <p>可现在曾经的救世主成了万众之敌，那个盖世的英雄，要么成为阶下的囚徒要么死去。</p>
+            <p>真是个黑色幽默啊，维多利亚忽然觉得这个世界是那么的叫人疲惫。</p>
+            <p>后车厢里很暗，路明非没有摸到照明开关，不过凭借夜灯的微光，能看出这是一间设计颇为讲究的卧室。</p>
+            <p>也难怪叔叔说这玩意儿是有钱人的专属，如果不是房车高速行驶时的轻微震动，单看这间卧室你会觉得自己身在某个豪华酒店的客房里。</p>
+            <p>空气中弥漫着颇为醒脑的香气，侧面吹来柔和的暖风，这是房车的空调和香氛系统在工作，超大尺寸的双人床上铺着厚厚的羽绒被，吧台上成排的酒瓶和倒悬的酒杯随着车身震动摇晃，发出轻微的叮当声。大床的床头还挂着某当代艺术家的画作，画的是身裹轻纱的裸女入浴，暴露程度介乎艺术和色情之间。
+            </p>
+            <p>这非常好理解，邵一峰装饰这辆房车的时候想的肯定不是给这两位用来逃亡的，而是用于一场或者几场香艳的旅行。</p>
+            <p>路明非有点懵，车后厢里没什么特别的东西，难道说诺诺叫他来看这张双人床……或者来欣赏一下这幅画？</p>
+            <p>想多了想多了，他拍拍自己的脑袋，芬格尔才会这么说话，“我有一张很大很舒服的双人床哦！你要不要来我家欣赏一下？”</p>
+            <p>空调吹着令人昏昏欲睡的暖风，酒杯和酒瓶放出悦耳的叮当声，这真是一件很舒服的卧室，没有任何特别的东西……他也有点累了，到了这里就该躺下来休息一会儿……</p>
+            <p>但路明非僵在那里，一丝一毫都不敢动。</p>
+            <p>藏在袖中的短弧刀释放，沿着袖筒无声下滑，落入手中。冷汗在一瞬间就吃透了衬衣。</p>
+            <p>这是种很难用语言描述的本能，他感觉到某个极其强大的对手就在他的附近，就在这间卧室里。</p>
+            <p>这不是嗅觉、视觉或者听觉，他没有觉察到任何异样，但就是那种强敌在侧的感觉，如此清晰！</p>
+            <p>就像有把无形的利刃顶着路明非的后心，那是对方的气息，路明非前进一厘米或者退后一厘米，那股气息也会随之前进或者退后。</p>
+            <p>势均力敌，对方想必也是感觉到了路明非的气息，双方的气息不相上下。</p>
+            <p>问题是，对方藏在哪里？</p>
+            <p>毕竟只是房车的小卧室，虽然豪华但空间很有限，路明非的目光从地面移动到车顶，从床移动到吧台，哪怕一只猫在这间卧室里也没有藏身处。</p>
+            <p>难道对方的言灵是“冥照”？路明非记得这种诡异的言灵，能制造出接近隐形的效果，可那个言灵非常罕见，好像只有那个脖子以下全是腿的日本女孩会用。</p>
+            <p>路明非忽然想起另一个极其恐怖的可能……他在卡塞尔学院训练的时候遇到过类似的情况。</p>
+            <p>当时他的五感已经被训练得极其敏锐，搭配综合格斗技，他的迎敌范围是一个以他自己为中心的圆球，完全没有死角。这意味着无论对手从哪个方向进攻，甚至破地而出或者从天而降，他都有足够的把握应付。</p>
+            <p>但某一次的训练中他还是遇到了问题，黑暗的空间里他能够明显地感觉到对手的气息，但无论他转向哪个方向，都没能找到这个对手。对方仿佛一个巨大的幽灵，充斥了整个空间。</p>
+            <p>最后他才知道那名来自执行部的好手几乎完全地贴着他的后背站立，随着他的转动高速地移动，而且脚下无声。</p>
+            <p>他自己就是最大的死角，是他把对手给遮蔽了。</p>
+            <p>他可以想象此刻这个未曾现身的对手就紧贴着他站在背后，手持危险的利刃，对手随时可以进攻，但是还没动手，因为他要的是一击必杀！</p>
+            <p>路明非左肘猛地向后撞去，同时旋转身体，短弧刀自下而上划出。这一击结合了泰拳和日本刀的战术，向后的肘击是泰拳，再接“逆袈裟”的斩法，无论哪一击命中对手都会暂时失去进攻能力。就算对手全部闪开，路明非还有把握瞬间切换成摔角的模式，抓起对方来个背投。
+            </p>
+            <p>他的眼角余光果然看到了背后的影子……接着他带着巨大的惯性撞进了背后那面穿衣镜里去。</p>
+            <p>背后什么人都没有，有的只是他自己在镜中的影子。</p>
+            <p>“怎么回事？”诺诺的声音从驾驶室传来，“跟你说了不要吓唬他！”</p>
+            <p>就在这时卧室中蹦嚓嚓音乐声轰然大作，五色彩灯在上方旋转起来，一根钢管从天而降！整个卧室变成了一个钢管舞的舞台。</p>
+            <p>这还不是全部，吧台上的暗格自动退出，冒着袅袅冰气，冰中泡着一支上好的香槟；床头的镜子——路明非本来以为那是一面镜子，其实它是一块镜面屏幕——亮了起来，满屏幕巴掌腰的姑娘们俏皮地扭摆臀部；设置在卧室四角的喷筒喷出闪光的碎屑，化作光雨飘落……
+            </p>
+            <p>果然是邵一峰的车……然而就在这个时候，那股利刃在背的感觉骤然增强，那幅香艳的现代艺术作品忽然间四分五裂！一柄锋利的冰锥以几乎同样的“逆袈裟”斩法自下对上撩起，扫出一片凄凉的铁光。</p>
+            <p>对手终于现身了，用的是跟路明非相似的战术，但比路明非的攻击更加极端和杀性……如果不考虑跟他一起飞出来的那些皮的、丝绸的、带亮片的小裤衩和女士内衣的话。</p>
+            <p>那幅画的背后其实是个暗藏的壁柜，邵一峰应该是把他喜爱的钢管舞舞蹈服都藏在里面了，这间卧室的原意大概就是邵一峰打一个响指就会变成他的私人钢管舞舞蹈室，当然跳舞的人不会是他。</p>
+            <p>贫穷严重地限制了路明非的想象力，他哪里想到邵一峰的卧室里有那么多幺蛾子，他的对手多的是可以藏身的空间。</p>
+            <p>但没时间吐槽邵公子的品位了，他必须凝神对付那把危险的冰锥，这件武器很可能是随手从吧台上拿的，但在这个对手的手里，威力绝对不亚于路明非手中精心打造的短弧刀。</p>
+            <p>双方武器相格，在一秒钟里连续交换了四刀，并且都围绕着钢管走位两圈……这是一场异常惊险的双人钢管舞，卧室空间极小，两个人简直脸贴着脸，稍有不慎就会中刀。</p>
+            <p>好在路明非跟富山雅史学过一段时间的日本刀术，格斗术方面他涉猎很杂，从巴西柔术到泰拳到合气道他也都练，凭借血统强化过的身体，即使是大师的技巧也只需要看几遍就能模仿，还能顺手加以改良。</p>
+            <p>奇怪的是对方的日本刀术好像也是这种不太地道的货色，准确地说就是某种基于日本刀术的现代格斗术，和路明非恰好能打到一起。</p>
+            <p>双方都能准确地判定对方的攻击方式，所以连续攻击却都只是武器格挡，双方都没有受伤。激光彩灯闪烁得厉害，看不清对手的面目，永远出现在路明非面前的都只是一道雪亮凄冷的刀光。</p>
+            <p>厨刀当然无法跟路明非手中的短弧刀相比，但对方巧妙地用了刀背，他是凭着过人的腕力硬砸路明非的武器。短弧刀脱手落地，被对方一脚踩住。</p>
+            <p>路明非猛地退后，他背后正是那张大床，他绊倒在床边，向后栽倒。对方当然不会放过这样的机会，如影随形地扑上，这正是路明非期待的，他在后仰的时候已经抓住了那床鹅绒被，他甩出了整张被子。</p>
+            <p>鹅绒被缠住了厨刀，路明非猛地发力，逼迫对方也放弃了自己的武器。</p>
+            <p>双方都失去了武器，片刻的僵持之后，他们立刻抓起手边唯一能抓到的东西继续战斗……他们每人抓了一个鹅绒枕头……</p>
+            <p>满卧室的鹅绒飞舞，诺诺冲进卧室的时候惊呆了——她把房车设置成了自适应巡航——如此惨烈的枕头大战委实不多见，双方挥舞枕头的同时还夹杂着凶猛的刺拳和肘击。徒手格斗上双方的家数也颇为类似，几乎同时打出的直拳，两个人都是面部中拳，鼻血横流。
+            </p>
+            <p>“停下！”诺诺大吼。</p>
+            <p>对方居然真的立刻停下了，扭头看向诺诺，路明非却没停手，这机会太难得了，他扑向对手，使用了巴西柔术，用整个身体锁死了对方。</p>
+            <p>巴西柔术，这种看起来有点像舞蹈的摔角术其实是极端致命的，锁死之后，路明非大发力就能拧断对方的脖子。</p>
+            <p>然而诺诺关闭舞池模式，那张脸暴露在灯光中的时候，路明非傻了。</p>
+            <p>是那个长着麋鹿般眼睛的男孩，那种……走失在森林中的……麋鹿的眼神。</p>
+            <p>楚子航！</p>
+            <p>这一刻路明非无法分辨眼前的一切是不是梦境，反正从精神病院里出来之后他经常分不清梦境和现实，他本能地扑上去抓住楚子航的肩膀，死死地盯着他看。</p>
+            <p>他不敢松手、不敢眨眼、甚至不敢呼吸，怕眼前这个人忽然间就消失不见。</p>
+            <p>楚子航也呆呆地盯着路明非，但这种四目对视的温情维持了一秒钟都不到，楚子航扬手切向路明非的颈动脉，这是用手使用那一招“逆袈裟”。虽然不像武侠小说里说的那样什么手上布满真气不亚于利刃，但混血种的骨骼硬度加上斩切的高速还是足以切开路明非的动脉。
+            </p>
+            <p>路明非打了个激灵，清醒过来的时候又把楚子航给锁死了，巴西柔术上花的苦功总算没白费，有阵子他练得疯魔，一觉睡醒发现自己把枕头锁得死死的。这种应对纯靠神经反射就能完成，用不着过大脑。</p>
+            <p>“师姐……这是？”路明非憋着一口气不放松，使劲仰头去看诺诺。</p>
+            <p>诺诺刚想说什么，车身猛地震动，随即失重感袭来，这辆车好像腾空而起了。</p>
+            <p>袭击还是坠崖？他们本就行驶在一条盘山公路上，诺诺脸色惨白。</p>
+            <p>“床头柜里有镇静剂！”诺诺转身奔向驾驶室，“给他用镇静剂！”</p>
+            <p>路明非锁着楚子航，勉强腾出一只脚踢翻床头柜，里面滚出几支针剂来。那是强效镇静剂氯胺酮，邵一峰当时在路明非身上用的药物，对强大的混血种也有效。</p>
+            <p>镇静剂已经封好在注射器里，只需要插入血管捏碎顶端的玻璃泡，压缩空气就会自动把药液注射进去，没有受过任何训练的人都能操作。</p>
+            <p>但在路明非这里却难比登天，他要制服的不是一只温顺的小羊，而是一只狂躁的犀牛，这工作其实就跟给犀牛拔牙差不多。</p>
+            <p>他一手握着镇静剂，巴西柔术就用不完整了，楚子航猛地一挣，挣脱了他的控制，反过来把他摁在墙上。</p>
+            <p>“师兄！师兄！”路明非大喊。</p>
+            <p>可楚子航根本就不理会，他喘着粗气，眼睛通红，似乎根本就认不出眼前的人。</p>
+            <p>路明非拼尽全力，针管一点点地接近楚子航脖颈处暴突的静脉，终于刺了进去。</p>
+            <p>这点疼痛对楚子航来说应该是微不足道，但还是刺激了他，他一低头，狠狠地咬在路明非的肩膀上。</p>
+            <p>混血种的咬合肌也远比常人的强劲，路明非眼前一黑，觉得自己是被一条暴龙给咬了，那力道大得能让他肩膀骨折。</p>
+            <p>“师兄！师兄！”路明非又喊。</p>
+            <p>还是没有用，楚子航死死地咬着他的肩膀不放，又抓着他的手腕，他根本无法碰到那个玻璃泡。</p>
+            <p>真的是没招了，咬就咬，谁怕谁？刚刚对打过枕头大战，也不怕更丢脸了！路明非也低头，猛咬楚子航的肩膀！</p>
+            <p>疼痛令楚子航松了那么一瞬间的劲儿，路明非闪电般捏碎了玻璃泡，药液瞬息间进入楚子航的静脉，路明非疲惫地抬起头。</p>
+            <p>楚子航依然咬着他的肩膀，把他死死地压在墙上，他也懒得反抗了，疼就疼吧，反正也疼得快要麻木了。</p>
+            <p>很久很久，久到路明非都算不清时间了，楚子航似乎是松开了牙关，路明非是真的完全麻木了。楚子航缓缓地下跪，路明非也精疲力尽了，被他带着下跪。</p>
+            <p>两人就这么面对面地跪着，楚子航的头沉甸甸地落在了路明非流血的肩膀上，他的眼神一片空白，慢慢地合上了眼睛。</p>
+            <p>静了好一阵子，路明非艰难地伸出手，拍拍楚子航的肩膀，又摸摸他的头发。</p>
+            <p>许久之后，路明非才从车后厢出来，回到副驾驶座上坐下。</p>
+            <p>房车已经恢复了正常行驶，并无什么意外，颠簸不过是因为高速公路侧方的山体崩塌，路中间多了块大石头，自动驾驶来不及躲避，碾过石头的时候猛震了一下。</p>
+            <p>诺诺重新切回了手动驾驶模式，她瞥了路明非一眼，路明非呆呆地看着前方被车灯照亮的公路，像是个刚从梦中醒来的人，对周遭的一切都迷迷瞪瞪。</p>
+            <p>又过了很久很久，路明非缓缓地弯下腰，双手抱头。又过了片刻，诺诺听到了奇怪的笑声。</p>
+            <p>这个男孩用着一个抱头痛哭的姿势，却是失去控制地笑着，一开始他还想努力把笑声控制得小一点，可还是笑得越来越夸张，一边笑一边摇头，不知道什么时候眼泪就把脸都糊住了。</p>
+            <p>那确实是喜悦，也是压力积蓄太久之后终于释放的疲惫，是委屈太久的孩子被这个世界告诉说你其实是对的，你做得一直都对，你没有疯你还是个够意思的兄弟，你守住了义气。</p>
+            <p>一切都值得了，哪怕他妈的亡命天涯！</p>
+            <p>“那家伙真的对你很好吧？”诺诺轻声问。</p>
+            <p>“也不是多特别，他是那种心其实特别软，对谁都会很好的人，什么人的事他都会背在身上，哪怕累得自己喘不过气来……对我好可能也是顺手……不过，你听过大动物和小动物的说法吧？”</p>
+            <p>诺诺点点头，好像是听谁说过这种说法，人际交往中，那些强有力的家伙是大动物，他们是领袖，众望所归，一言九鼎，而那些没什么存在感的是小动物，只能仰望大动物。</p>
+            <p>“我还是个小动物的时候，有只大动物对我特别好，帮我咬人；现在大动物被咬了，趴在地下了，谁咬他，我就咬死谁！”路明非缓缓地说。</p>
+            <p>诺诺沉默了很久，摸出一件东西丢给路明非。</p>
+            <p>那是一个面具，像是那种戴在古埃及国王的脸上陪他下葬的面具，面具上的人面沉静庄严。拿到面具的时候，路明非的手猛地抖了一下，因为这张面具曾经戴在奥丁的脸上。</p>
+            <p>他仔细地抚摸端详那张面具，面具内侧表面上布满了血管般凸起的纹路，还有类似生物组织的奇怪结构，材质很难判定，倒像是用某种古生物的化石雕刻的。</p>
+            <p>他有种隐约的冲动，想把面具扣在自己脸上试试，但还是克制住了，这东西让他觉得很不舒服。</p>
+            <p>“如果我告诉你奥丁的面具背后就是你师兄，你还会这么护着他么？”诺诺深深地看了路明非一眼。</p>
+            <p>路明非猛地坐直了，瞳孔中一片空白。</p>
+            <p>过了片刻，他才狠狠地打了一个寒颤，缓缓地躺回椅背上。</p>
+            <p>他很清楚这不是一个玩笑，诺诺不会在这件事上开玩笑。诡异的奥丁，唯一跟他有关联的人就是楚子航。</p>
+            <p>楚子航十五岁的时候，奥丁在高速公路上杀死了他的父亲，他矢志报仇，加入卡塞尔学院，后来他被某种神秘的力量从每个人的脑海里抹掉了，自己却又化身为奥丁，留守在那条下雨的高速公路上。</p>
+            <p>一切连起来就像耶梦加得，不是夏弥，而是神话中那条咬着自己尾巴的蛇，周而复始的死循环。</p>
+            <p>迷雾越来越浓，让人不由得恐惧。</p>
+            <p>“当时你几乎要杀死你师兄，但当你把这个面具从他脸上扯下来的时候，你看见了他的脸，愣住了，我真不敢相信那么狂暴的你还能停手，可你真的就停下来了。”诺诺说，“面具一旦被扯下，他也停止了行动。你们两个就这样僵在那里，像两个耗完了发条的小玩具。”
+            </p>
+            <p>路明非敲敲自己的脑壳。回忆起来大脑深处一抽一抽地痛，但似乎确实是有这么一幕，他狂暴地想要撕碎奥丁，但那张熟悉的面孔忽然出现在他面前，他忽然就从混沌的怒火中清醒过来，呆呆地看着那张脸，感觉着浑身近乎沸腾的血液渐渐冷却。
+            </p>
+            <p>好像是小魔鬼在他背后发出了不屑的冷笑，随即他就失去意识，仰面栽倒。</p>
+            <p>“他似乎是被这张面具控制着，面具赋予他恐怖的力量。摘掉面具之后他就没那么强大了，但还是有很强的攻击性，但那种攻击性是出于恐惧。他非常恐惧，所以我一直给他注射氯胺酮，让他保持昏睡，但即使摘掉面具。我本想让你看的是昏睡的他，但不戴面具他的血统还是很强，会对镇静剂产生越来越强的抗药性，这次他比之前醒得早，找了个地方躲起来。你进去的时候，他大概误以为你是个威胁，所以才会攻击你。”诺诺说，“我很难断定此刻的他是你师兄还是奥丁，他到现在一句话都没说过。”
+            </p>
+            <p>“那确实是师兄没错。”路明非说。</p>
+            <p>“你那么肯定？”诺诺挑挑眉毛。</p>
+            <p>“我刚才在他旁边坐了一会儿，他在昏睡中说梦话来着，叫了两个人的名字。”</p>
+            <p>“难道他梦里向你求救？”</p>
+            <p>“不，他只是喊爸爸妈妈。”</p>
+            <p>诺诺愣了一下，点了点头。</p>
+            <p>“但我还是不记得他。”沉默了片刻，诺诺说，“我能猜到这个人就是你说的楚子航，但我对他没什么印象，我记忆中的狮心会会长依然是阿卜杜拉？阿巴斯。”</p>
+            <p>路明非一怔。</p>
+            <p>“我的推想是，一种非常高阶的言灵扭曲了因果线，使用这个言灵的人出于某种目的抹掉了楚子航的存在，但为了填补楚子航消失的漏洞，把阿卜杜拉？阿巴斯放进了楚子航原本的位置。而消失的楚子航，则被一个面具控制，作为奥丁来使用。”诺诺直视前方，“而这个言灵直到现在都还有效，就算你带着楚子航回到学院也无法证明自己，因为我不记得楚子航，其他人也不会记得。在他们看来，你就是随便从外面带回了一个什么人。”
+            </p>
+            <p>“怎么会这样？”路明非喃喃。</p>
+            <p>“想要终止一个言灵，关键是要找到言灵的释放者，而不是言灵作用的目标。”诺诺把一台老iPhone丢给路明非，“我开车，你导航。”</p>
+            <p>“这么高级的旅行车难道没有导航？”路明非不解，但还是打开了那台手机的电源键，“第一代的iPhone？这东西还能联网么？”</p>
+            <p>“EVA最后的礼物。它装载了EVA的逻辑库，这意味着它跟EVA的思维方式是一模一样的，它会指引我们逃生的路线，还会教我们如何避开EVA的追踪。”</p>
+            <p>“也就是说我们手里有一台缩水版的EVA？”路明非盯着手机。</p>
+            <p>“你愿意叫他EVA也无所谓。”诺诺说。</p>
+            <p>就在路明非揣摩这句话的意思时，一个摇晃的、乱蓬蓬的脑袋忽然就出现在屏幕上，那张大脸又是如此之熟悉，惊得路明非差点把手机丢掉。</p>
+            <p>“女士们先生们，我听到你们开机的声音咯！需要你们的小甜心做点什么呢？虽然是初代的iPhone，也能语音互动哦。”豪爽的男低音，几乎要溢出屏幕的谄媚笑容。</p>
+            <p>路明非缓缓地把头转向诺诺，“你跟我说这里面装着一个EVA……”</p>
+            <p>“我测试过，逻辑上确实是EVA的逻辑，但是人格部分搭载的是你的最佳损友，所以我觉得最好还是让你拿着这台设备，我知道你们俩是那种可以靠屁声来对话的好朋友。”</p>
+            <p>路明非把视线转回屏幕，屏幕里的男人正跟他挤眉弄眼，虽然是个3D建模的动画人物，可路明非精研东瀛各路漫画几千本，毫不费事地就突破次元壁认出了这家伙。</p>
+            <p>EVA并没有在这个缩小版的设备里导入自己的形象，她导入的是……</p>
+            <p>“开不开心意不意外？你的魂之兄弟芬格尔？冯？弗林斯，忠诚地为您服务！”屏幕上的芬格尔扭动着屁股，还比心，“即使身体背叛了你一千次，灵魂深处还是只爱你一个！为你打call哦主席先生。”</p>
+            <p>手机还真的发出了屁声，似乎要证明诺诺说的话，他是可以跟路明非靠放屁的声音交流的好朋友。</p>
+            <p>路明非默默地翻过手机把它放在驾驶座前台，他还处在乍喜还悲的心情中，不想看这家伙淫贱的笑脸。</p>
+            <p>白色房车行驶在星月之下的高速公路上，远处静静的大湖上泛着细碎的波光。</p>
+            <p>卡塞尔学院，英灵殿会议室，贝奥武夫和秘党元老们盯着投影出来的巨大地球。</p>
+            <p>这和中央控制室里的地球投影是同步的，EVA随时随地监控着全球范围内任何跟龙类有关的事件，根据事件的轻重程度，以不同亮度的红点标记出来。</p>
+            <p>忽然间，一个亮得刺眼的红点出现在了东亚，顷刻间所有人的眼睛都亮了起来。</p>
+            <p>东亚，那是他们眼下最关心的区域。</p>
+            <p>“追踪到路明非他们了么？”贝奥武夫低沉地发问。</p>
+            <p>投影而下的光柱中出现了EVA，“目前还不能确定，但我确实追踪到了一个奇怪的信号，我无法解释这个信号。”</p>
+            <p>“信号的位置在哪里？”</p>
+            <p>地图被一层层地放大，地理细节和道路纷纷呈现出来，红点的位置也更加精确了。</p>
+            <p>“中国，华北中部的一条高速公路，这个信号始终在移动，时速大约120公里，推测信号源在一台车上。”</p>
+            <p>“你说这是个无法解释的信号？”贝奥武夫又问。</p>
+            <p>“从波段和频率看，那个信号出自学院的某个追踪器，但那类追踪器我这里都有备案，我没有找到这一枚追踪器的备案。换而言之，那是一枚学院制造的、却不在我数据库中的追踪器。”</p>
+            <p>“哪一类追踪器？”图灵先生问。</p>
+            <p>“一种非常小巧的追踪器，体积大约相当于一个米粒，最常见的用法是把它嵌在假牙或者修补牙齿的材料里。”EVA说，“体积太小的缺点是蓄电量极其有限，所以它每两周才会发出一次信号，但续航时间长达20年。现在我已经失去这个信号了，但两周之后预计这个信号源会再度激活。”
+            </p>
+            <p>贝奥武夫沉吟了片刻，“先不管那个信号源是怎么回事，如果路明非他们驾车逃亡，一直保持大约100公里的时速，现在应该正好在那个信号源的位置。”</p>
+            <p>图灵先生摇头，“但我们又失去这个信号了，仅凭一个瞬间出现的信号我们是无法锁定准确位置的，他们在不断地移动中。”</p>
+            <p>“至少我们知道他们大约两分钟之前的位置，如果想要确保摧毁路明非，我们可以向加图索家调用天谴之剑。”EVA说，“它的轨道位置恰好可以攻击那里。”</p>
+            <p>“调用天谴之剑？”图灵先生惊呼。</p>
+            <p>天谴之剑，或者说达摩克利斯之剑，加图索家耗费重金研制的天基武器。那是一颗在近地轨道上运行的人造卫星，内藏沉重的钨金属棒，当它打开舱门把钨棒向着地面投放的时候，那些朴实无华的棍子就会在地球引力的作用下变成威力堪比小型核弹的大规模杀伤性武器，甚至摧毁一座小型城市。
+            </p>
+            <p>东京的屠龙战争中，就是这件最终武器重创了化身白王的赫尔佐格。事后加图索家重新给天谴之剑装载了钨棒，并且表示在需要的时候这件武器是可以借给学院使用的。</p>
+            <p>“预测他们的车速和前进方向，把方圆五公里之内的目标全部摧毁，这是理论上最安全的方案。”EVA淡淡地说。</p>
+            <p>“不不！这太疯狂了！太疯狂了！”图灵先生立刻反对。</p>
+            <p>“作为人工智能，我负责提供最高效的方案，是否行动取决于诸位的判断。”EVA说。</p>
+            <p>图灵先生沉默地盯着光柱中的EVA，这个女孩带着平静的微笑说的这些话，自始至终没有变过表情。当然这种微笑可能并非某种情绪的表达，而是为了让在座的元老们看着舒服。</p>
+            <p>这的确是人工智能应有的表现，但不太像之前的EVA。</p>
+            <p>以前那个EVA看起来甚至更加冷漠，但图灵先生依然能偶尔感觉到某种人类的气息，甚至是某种少女般的气质。</p>
+            <p>似乎在底层命令库中关于路明非的三条特殊命令被删除的时候，EVA的人性部分也连带地被删除了。</p>
+            <p>“我们不会在中国境内使用武器，那无疑会惊动军队导致不必要的麻烦，我们无法应对那些麻烦。”贝奥武夫缓缓地说，“即使使用武器也不该是天谴之剑，我们的首要目的是捕获而不是摧毁，摧毁只是最终手段。先假设那个信号源确实在路明非的车上，推算他们前进的方向。”
+            </p>
+            <p>“推算已经完成，预计他们会从高速公路进入无人区，设法从边境某处离开中国，最可能的目的地国为俄罗斯，其次分别是蒙古和经由新疆北部前往哈萨克斯坦，更为准确的路线我已经标记出来。”</p>
+            <p>地图上立刻出现了预测出来的行车路线，贝奥武夫眯着眼睛看了很久。</p>
+            <p>“可以放出猎犬们了。”片刻之后他下达了命令，“让他们带好牙齿！”</p>
+            <p>狂风吹着一望无际的灌木，沉静的哈拉哈河穿流而过，黑夜低垂，仿佛抬手就能触到星空。</p>
+            <p>以哈拉哈河为界，一边是中国，一边是蒙古。二战期间，苏联和外蒙古的联军曾在这里遏制过日军西进的计划，有人说迄今河底的泥沙中仍然沉睡着累累的白骨。</p>
+            <p>这里根本没有道路，房车在一望无际的草原上走着巨大的S形弧线，规避各种各样的障碍物，有时候是石头，有时候是沉睡的野猪。</p>
+            <p>轮到路明非开车了，他还蛮享受这么开车，有种自由自在的感觉，好像你骑着野马四处溜达，这段旅程没有开始也没有结束，想去哪里去哪里。</p>
+            <p>诺诺在副驾驶座上睡着了，虽然他们有间颇为舒服的卧室，不过基本上都让楚子航霸占了。</p>
+            <p>这家伙每12小时醒来一次，由诺诺喂他点东西吃，确实如诺诺所言他并不狂暴而是非常的害怕，只要轻柔地对待他他是不会伤人的。他之所以会袭击路明非，还是路明非过于警觉流露出了强烈的气息，他原本躲在隐藏橱柜里，只是害怕。跟猫喜欢藏在角落里的道理一样。
+            </p>
+            <p>吃完后再注射一支氯胺酮，他就在舒服的鹅绒被里死睡，看得路明非很羡慕。换作他是个搞不清楚状况的二傻子，由师姐温柔地喂饭，由冷漠霸气的师兄开着车带他亡命天涯，这设定才符合他对自己的人设。</p>
+            <p>“各位亲爱的朋友，看向你们的前方，那就是浩瀚的哈拉哈河，蒙古人民的母亲河，是它哺育了勤劳善良的蒙古人民，是它，挡住了日本侵略者的汹汹铁蹄！啊，哈拉哈河啊，我想为你歌唱，啊，哈拉哈河啊，我想为你流泪……”</p>
+            <p>路明非默默地把导航调到静音，一路上这台导航一直都是这么话痨——路明非已经完完全全地把这玩意儿当一台导航使了。其实当作广播用可能更合适一点，因为没见过导航那么话痨的。</p>
+            <p>但它确实是有用的，它里面存储着几套完整的逃生路线，可以在不同方案之间智能切换，还会提醒他们如何摆脱EVA的拦截，好几次都是因为这家伙的提醒，他们在关键的地方，比如收费站，躲开了学院派来的执行官。</p>
+            <p>它还有一个毛病是能够通过它的前置摄像头看到路明非和诺诺在干什么，不时地冲路明非嚷嚷说，师弟怎么又是你开车呀，让你师姐也来开开车嘛，说实话我看了你十个小时都看烦了，想看个有胸的。</p>
+            <p>总而言之，带着它就跟带着一个芬格尔没区别，除了手机里不会忽然伸出两只手按在诺诺的大腿上。</p>
+            <p>路明非扭头看了一眼诺诺，给她拉了拉身上的毯子，开车驶入哈拉哈河，惊醒了满河交颈沉睡的野鸭，这是它们交配繁殖的季节。</p>
+            <p>哈拉哈河是一条很浅的河，深度通常只有一两米，EVA选择的跨河路线是最浅的一段，深度不过半米，根本拦不住这种越野能力超强的房车。</p>
+            <p>说起来真是有趣，这条路线居然是很多年前就规划好的，仿佛命中的剧本早已为他写好，他会开着一辆巨大的车，带着他心爱的女孩，载着他过命的兄弟，驶入一条河。</p>
+            <p>古希腊那个谁说的来着，人不能两次踏入同一条河流，事到如今回想这句话忽然觉得很有道理。</p>
+            <p>嗡嗡的声音来自前方的灌木丛，像是有一只巨大的马蜂藏在灌木丛中，此刻它正缓缓地升起并打开了头灯，雪亮的光柱笼罩了房车，晃得路明非睁不开眼睛。</p>
+            <p>马蜂当然不会有头灯，那是一架俄罗斯产的米-35武装直升机！</p>
+            <p>下一刻，直升机发射了蜂巢火箭，密集的火箭弹在空中组成了一张毁灭的网，把那些惊飞的野鸭凌空炸成碎片，飞溅的血肉和黑羽中，房车不但没有退后，反而突破火光吼叫着加速起来。</p>
+            <p>“冲过去！他们的第一目标是捕获我们！那只是武力威胁！”诺诺醒了，立刻接管了控制权。</p>
+            <p>在她下令之前路明非已经狠狠地踩下了油门，笔直地冲着直升机过去了。</p>
+            <p>要是换在两年前他还会吓得屁滚尿流，如果他是什么人？他是学生会前主席、通缉犯和大怪物，区区火箭弹能吓到他？</p>
+            <p>米-35果然只是武力威慑而不是要把他们就地摧毁，看到房车横冲直撞地来了，反而拉高了避免发生相撞。</p>
+            <p>房车冲过了哈拉哈河进入蒙古国境内，在空旷无人的草原上狂飙起来，追逐战这才刚刚开始，轻盈的越野四轮车从灌木丛中跃出，带着滚滚沙尘追逐房车，像是群狼追杀一只白色的大鹿。</p>
+            <p>诺诺面无表情地拎出一支UMP9，上膛之后推开了头顶的天窗，四轮车上的人们也纷纷架起了枪支，密集的子弹命中房车，溅起点点火光，在车身上留下孔洞。</p>
+            <p>RPG带着啸音而来，把房车前方的整块地皮掀起，路明非全力闪避，更多的RPG在房车的周围爆炸，顷刻间硝烟味就席卷了夜幕下的草原。</p>
+            <p>虽然没有直接瞄准他们射击，但对方用的是实弹，武力是最直白的威胁。诺诺也并未惊讶于这个威胁，冷静地射击，连续击爆几个轮胎，冲在最前面的两辆四轮车失控相撞，带着火光翻滚。</p>
+            <p>路明非把那台“导航仪”的音量调大，冲着它咆哮，“废柴！你不是说走这条路安全得很么？”</p>
+            <p>导航仪以更加抓狂的语气回应，“卧槽学院这是要命啊！抓人就抓人，还带那么多重武器！你能把我揣你裤兜里么？我快要吓尿了！”</p>
+            <p>路明非没好气地又把它静音了，掏出手枪用枪柄打碎玻璃，一枪把侧面的一台四轮车爆了胎。</p>
+            <p>四轮车群开始形成包围阵型，直升机掠后负责指挥，诺诺给UMP9换了新的弹匣。大家都是卡塞尔学院训练出来的人，谁也不必怕了谁，蒙古广袤的大草原，正是大家实践技战术的好战场。</p>
+            <p>谁也没有注意到，一架黑色的无人机也追逐着房车，高分辨率的摄像头仿佛黑色的独眼，默默地盘观着这场追逐战。</p>
+            <p>——————————</p>
+            <p>坑边闲话：</p>
+            <p>大家的点评我也看了一部分，有赞美的，有觉得不如前几卷的，当然最多的是师兄终于回来了的撒花流。其实我并不想在这个时候解释太多，作者呈现给读者的最终答卷就是作品，不是“跟这部作品有关的几个解释”。不过请不要以先前龙族每卷开局的思路去想这一卷啦，路明非已经是个一个能跟楚子航正面刚的男人了，他正迎来轰轰烈烈的大结局，故事到了这里已经不再是少年和成长，而是男人和抉择。
+            </p>
+            <p>——————————</p>
+            <p>捷克，布拉格，波光粼粼的伏尔塔瓦河上，大桥飞跨。</p>
+            <p>黑色的凯迪拉格大型越野车正在车流中高速穿梭，远在蒙古草原的无人机通过卫星传输信号，那场激烈的追逐战清晰地呈现在越野车中的iPad上。</p>
+            <p>酒德麻衣驾驶着这辆超速的越野车，本该全神贯注，但还是忍不住扭头去看屏幕上的战况，副驾驶座上的苏恩曦倒是神色轻松，一手捧iPad一手抱着薯片，倒像是在看一场球赛。</p>
+            <p>“哎哟哟，可以啊，便携式火箭筒都上了。看这阵仗，负责这段追捕的是执行部俄罗斯分部，精锐中的精锐哦。”苏恩曦啧啧赞叹。</p>
+            <p>“他们这是步兵群攻击坦克的战术，把那辆房车当作坦克来对付，可那辆车没有武器也不防弹，坚持不了多久！”酒德麻衣皱眉。</p>
+            <p>“对我们的宝宝有点信心嘛，你看看你看看，他又躲过了一枚火箭弹！漂亮！这急刹加甩尾！还反手一枪撩翻了一辆四轮车！”苏恩曦兴奋地攥紧拳头。</p>
+            <p>酒德麻衣的眉头越皱越紧，“全都是军用武器，在蒙古国境内搞得这么炮火连天的，秘党就不怕惊动冲绳岛的美国驻军？”</p>
+            <p>“毛熊们什么时候怕过美国人？秘党旗下的毛熊就更不考虑后果了。”苏恩曦笑眯眯的，“看你一脸紧张的样子，别担心，路明非是我们老板要的人，老板的人，老板要他活，他就没那么容易死。”</p>
+            <p>十四个小时前，就在路明非长大的那座小城。CBD区，最豪华的丽晶酒店顶层，苏恩曦和酒德麻衣和老板举行了温馨的午餐会。</p>
+            <p>她们就住在这间酒店的套间里，早晨起来的时候，海蓝色的请柬夹在当日的早报里，除了时间地点，请柬上还有着装规范，“建议泳装出席”。</p>
+            <p>时值深秋，怕冷的人已经穿上了薄羽绒服，这种着装要求未免有捉弄之嫌。但苏恩曦和酒德麻衣想也没想，把旅行箱里的泳装翻出来穿上，蹬上细高跟的凉鞋，腰间再系一条薄纱裙子，就坐电梯上楼去了。</p>
+            <p>一路上看到她们的男人都手忙脚乱，有侍者打碎了杯子，有丈夫被妻子狠狠地踩了脚面。</p>
+            <p>丽晶酒店顶层确实是一间餐厅，两扇沉重的花梨木大门，苏恩曦和酒德麻衣一人推一扇，门缝中吹出微咸的海风，还有温柔的海浪声。</p>
+            <p>眼前所见足以吓到世界上的绝大多数人，她们确实站在丽晶酒店的顶层餐厅里，可落地窗外是浩瀚无边的大海，万里阳光洒在海面上，远处还有白帆隐现。</p>
+            <p>她们分明在一座大厦的顶层，可海浪几乎跟这一层的地面平齐，好像在她们坐电梯的时间里，大海已经把这座城市淹没了。</p>
+            <p>老板的建议永远不会出错，这样的午餐会就该穿着泳装才对。</p>
+            <p>穿着白色西装的年轻人坐在桌边，悠闲地饮着一杯香槟，眺望着窗外的叠叠海浪。</p>
+            <p>看到苏恩曦和酒德麻衣进来他流露出灿烂的笑容，快步上前和两人轻轻拥抱，引着她们来到桌边，为她们分别拉出餐椅，倒上冰镇过的陈年香槟。</p>
+            <p>“首先要嘉奖麻衣，如果不是麻衣，芬格尔那家伙大概已经被死侍们当作金枪鱼给啃了吧？”老板端起酒杯。</p>
+            <p>“老板你说他在我们的保护范围内，我总得尽力，”酒德麻衣笑笑，“不过那是个一刀能砍断高架路的变态，他藏得很深，没有我没准也有别的逃生办法。”</p>
+            <p>“其次我要祝贺恩曦。”老板再度举杯。</p>
+            <p>“祝贺我什么？”苏恩曦通过金黄色的酒看着他。</p>
+            <p>“祝贺你减肥成功，穿这身泳装真太好看了。不过我得说鞋子不合适你，你的气质适合Jimmy Choo。”老板开始点评苏恩曦脚上的鞋子，“相信我的审美，Jimmy
+                  Choo跟你绝配，我会帮你买最新款，明天你就会收到。”</p>
+            <p>苏恩曦翻翻白眼，她根本无意跟自己的神经病老板讨论服饰问题，她很清楚老板的习惯，这个男人每次出现都是来布置任务的。</p>
+            <p>老板动动嘴，下面人就得跑断腿。</p>
+            <p>最近他布置的任务越来越艰难了，几次把苏恩曦和酒德麻衣逼到生死的绝境。</p>
+            <p>“这次能给条活路么，老板？”苏恩曦端起香槟，“毁灭世界固然是伟大的目标，但也要循序渐进不是么？”</p>
+            <p>“不能。”老板笑得很阳光，“我们家恩曦那么聪明，当然要给她布置最难的题目！”</p>
+            <p>“你这语调，是最近在看韩剧么？”</p>
+            <p>“最近待的那个地方整天给人放韩剧看，我也想换台，可他们不给我遥控器啊。”老板感慨地说。</p>
+            <p>这是一句很奇怪的话。</p>
+            <p>从能力来说，跟老板最像的是机器猫，可以让她们穿越一道门就抵达热带海边，可他说得好像自己并无什么行动自由。</p>
+            <p>偏偏这句话他还说得很诚恳，让人不由得不相信他确实被逼看了好长时间的韩剧。</p>
+            <p>“什么任务？说呗。”苏恩曦叹了口气。</p>
+            <p>“秘党那帮长老已经下令，不惜一切代价，全世界追捕路明非，活要见人死要见尸。”老板摊摊手，“这就让我很难办了，原本我最近是不想跟他们为难的。”</p>
+            <p>“EVA不会帮助他们，离开EVA的天眼他们找不到路明非。”</p>
+            <p>“很遗憾，EVA的秘密也暴露了，他们把保护路明非命令从EVA的底层命令库中删除，天眼现在就悬在天空里，一直盯着路明非。”老板说，“所以你明白你的任务了？”</p>
+            <p>“摧毁EVA？”苏恩曦说。</p>
+            <p>“不对。”</p>
+            <p>“炸平卡塞尔学院？暗杀元老会成员？”酒德麻衣说。</p>
+            <p>老板扶额，“别总是那么暴力行不行，不是摧毁这个就是杀掉那个，想点正能量的解决办法，正能量！”</p>
+            <p>苏恩曦挑了挑眉毛，“老板你的意思是要我们保护那个衰仔逃亡？”</p>
+            <p>“没错！”老板打了个响指，“逢山开路，遇水搭桥！”</p>
+            <p>难得苏恩曦也沉吟了片刻，“如果元老会动用整个秘党的力量来追捕他，我不确定我能保护他多久。”</p>
+            <p>“尽你的全力，给他争取时间，这场逃亡不会是无止境的，你们保护他到达终点，以后就是他自己的事了。”</p>
+            <p>“老板你知道他要逃去哪里？”</p>
+            <p>老板摇了摇头，“我不知道，我只知道无论他往哪个方向逃，最终都会遇到那个钢铁的王座。”</p>
+            <p>他站起身来，走到窗边望着那忽然波涛汹涌的大海，海浪以雷霆万钧之势拍打在玻璃上，碎成粉末，连续的轰响像是瓦格纳的序曲。</p>
+            <p>酒德麻衣忽然起身来到老板的身边，“你的手？”</p>
+            <p>老板手中握着一杯香槟，手臂下垂的时候，袖管里的血点点滴滴落入杯中，把酒渐渐染成鲜红。</p>
+            <p>这是从未有过的事，这个几乎无所不能的男人，永远是从容不迫举重若轻的，可今天居然是带着伤来跟她们见面的。</p>
+            <p>酒德麻衣急切之下直接抓起了老板的手腕，这时候她才明白眼前的男人那么虚弱，他的手腕是那么干枯和苍白，从手腕往上缠满了绷带，绷带已经被染得通红。</p>
+            <p>如果不是那件西装有着致密的马毛衬里，那么这人看起来必然是血红的。</p>
+            <p>“怎么……怎么会这样？”酒德麻衣的声音颤抖，她很少会流露出情绪，忍者本来就应该是克服了内心的恐惧和肉体的痛楚，只为了完成任务而生的机器。</p>
+            <p>老板笑笑，挣脱了酒德麻衣的手，他这么做的时候显得有点吃力，像个病人。</p>
+            <p>“谁？谁能够伤到你？”酒德麻衣绯红色的眼角抽动，明显地带着杀气。</p>
+            <p>老板轻轻地抚摸酒德麻衣的脸，“我不是受伤了，是就要死了。”</p>
+            <p>酒德麻衣呆呆地看着他，苏恩曦也惊讶地站起身来。</p>
+            <p>“这世界上可真没有不会死的东西，撑到现在我也是很辛苦啦。”老板温和地笑着，“在我死之前，一定要送路明非去那个王座啊，我亲爱的姑娘们，快一点，再快一点。”</p>
+            <p>他举起手中的酒杯，把带血的香槟一饮而尽，松开手，任凭杯子坠落在地，摔得粉碎。</p>
+            <p>酒杯粉碎的声音里，幻相崩溃，丽晶酒店顶层的中餐厅里，酒德麻衣和苏恩曦对坐，桌上放着一瓶打开的香槟，三个杯子，其中一个已经空了，杯中挂着一丝鲜血。</p>
+            <p>茫然不知所措的服务生站在桌边，看着这两个泳装绝丽却沉默的女孩。</p>
+            <p>蒙古大草原上，追逐战已经足足进行了十五分钟。</p>
+            <p>秘党俄罗斯分部的汉子们渐渐失去了耐心，他们人多势众，带着军用武器伏击一辆完全没有武装的房车，居然拖了十五分钟还没有拿下，还损失了五辆四轮车。</p>
+            <p>这是奇耻大辱。</p>
+            <p>最初他们的射击全都是威慑性质的，诺诺敢于从天窗露出头去还击，也是明知追击部队炮火连天却并未真的瞄准自己，但此刻他们的准星越来越靠近诺诺，有那么几次诺诺可以听到子弹略过的尖利啸声，这说明弹道距离她很近了。</p>
+            <p>学院的命令确实是优先生擒，但路明非他们眼下的行为就是武装拒捕，且不说俄罗斯分部的汉子们素来暴躁，就算他们能忍，拖下去也会惊动附近的驻军。</p>
+            <p>一直掠后的武装直升机开始逼近了，雪亮的前灯把大片的草原照得如同白昼，黑色的绳索从天空里丢了下来。</p>
+            <p>“师姐你来开车。”路明非说完，打开车门翻上了车顶。</p>
+            <p>两个穿黑色战斗服的专员已经顺着黑索降落在车顶上，他们展现了很专业的素质，一个人蹲下保持射击准备的姿势，一个人拔出腰间的军刀，活动着脖子和手腕，缓步走向路明非。</p>
+            <p>房车左右上下地颠簸，但他走得很稳，就像鞋底装着强力磁铁，牢牢地吸在车顶上。那是个格斗术的高手，这种人的下盘都会特别稳定。</p>
+            <p>“学生会主席路明非？我知道你，我是执行部俄罗斯分部……”高手还没来得及完成自我介绍，已经倒飞了出去。</p>
+            <p>路明非把腿收了回来，“你们这么多人，都自我介绍要搞到什么时候？”</p>
+            <p>他嘴里说着话，人已经鬼魅般地进击，在持枪者的枪上一抹，生生地把枪机给卸了下来。执行部专员的专业素质是过硬的，持枪者并未慌乱而是立刻弃枪，弃枪的同时摘下了枪口下悬挂的刺刀。</p>
+            <p>路明非用短弧刀格挡，却没能一举切断那柄看似普通的军用刺刀，想来那也是装备部特别打造的武器。</p>
+            <p>这时候那个刚才被他飞踹出去的家伙竟然一个虎扑重新上到了车顶，扫踢他的下盘。</p>
+            <p>路明非暗暗地吃了一惊。这要是一辆静止不动的车，被踹下去的家伙重新跳上来不足为奇，但房车正以100公里以上的时速狂奔，也就是说一秒钟的时间里房车大约会行进30米。</p>
+            <p>任何一个坠落的人，哪怕他下盘稳得不能再稳，落地起身只要两秒钟，也会被房车落下60米，就算是世界百米冠军博尔特以自己极限速度的两倍奔跑，也不可能再跳上来。</p>
+            <p>他躲过扫踢，听到了车尾传来的引擎声，忽然明白了。</p>
+            <p>就在直升机发起登车攻势的同时，四轮车们也都向着房车靠近，有那么一辆四轮车就在车尾后面紧紧地跟着，高手兄落下去的时候其实是落在那辆四轮车上，瞬间恢复平衡再度跳上房车。</p>
+            <p>即使从物理角度找到了解释，但这份平衡能力和应变能力也很惊人了，他意识到自己有些小瞧这些毛熊了。</p>
+            <p>又有人沿着黑索降落，车顶不过是一间小卧室那么大，却有足足四名执行部的好手在跟路明非贴身格斗，路明非不得不采取守势。好在短武器最大的优势就是防守，那对短弧刀太锋利和危险，灵活多变，专员们也不敢过于紧逼。</p>
+            <p>“砰”的一声从车身侧面传来，像是什么东西被穿透了，路明非想了一瞬间就明白了。</p>
+            <p>他们真的麻烦了，那声巨响肯定是四轮车上发射了某种带倒刺的铁钩，穿透了房车的外壳，那些铁钩上肯定带着坚固的钢索。等到足够多的钢索从两个侧面勾住房车，四轮车群就会减速拖拽他们，最后逼停这辆车。</p>
+            <p>空降登车不是目的，追捕者的指挥官就是要引诱路明非上到车顶阻止登车，因为他在车顶上，所以诺诺不敢大幅度的转弯，那会把路明非和对手们全都从车顶上甩下去。</p>
+            <p>房车几乎是直线行驶，就给四轮车们锁住房车提供了机会。</p>
+            <p>路明非惊慌的瞬间肩膀上已经多出了一道血口，俄罗斯分部的专员们也已经明白了这个尚未毕业的学生会主席是多么的棘手，进攻的时候已经是全无保留。</p>
+            <p>诺诺也意识到这个险境了，但他们总共就两个能作战的人，她又必须控制住这辆狂奔的车，根本无暇去解决那些执行狼群战术的四轮车。</p>
+            <p>怎么办？怎么办？她的大脑急速运转，在这里被逼停就完了，他们能够撑到现在，全靠这辆引擎极其强劲的房车。</p>
+            <p>她扭头看到副驾驶座上放着的奥丁面具，忽然想到他们其实并非两个战斗力，而是三个……这张神秘的能够赋予人奥丁身份的面具，如果再给那个家伙戴上……会不会是古神奥丁骑着八足天马冲破房车而出？</p>
+            <p>但那时候奥丁会以谁为敌还真是难说。</p>
+            <p>她还在犹豫，前方了出现大片的白色，这是夏天，前方的草原上却像是刚刚降了一场暴雪。</p>
+            <p>那片白色的草原……还是活的！它在蠕动！在变化！</p>
+            <p>诺诺忽然明白了，那不是雪，而是一个非常巨大的羊群！</p>
+            <p>草原上经常会有这样的事，牧民把数以万计的羊从一个地方赶去另一个地方，让它们吃到新鲜的牧草。他们这是遭遇了一个正在迁移中的大羊群，羊们被车声惊醒，很慌很乱，不知道往哪里跑。</p>
+            <p>诺诺立刻减速，她如果不停车，一定会冲进那些羊群碾死无数的羊，且不考虑这对羊们来说是不是太残忍，房车也没法一直在羊群里这么开，被碾死的羊太多肯定会挡住他们的车轮。</p>
+            <p>一个狂奔的黄色身影忽然出现在车的前方，车灯照亮了它圆滚滚长着一撮白毛的小屁股。</p>
+            <p>那居然是一只柯基犬，它冲进羊群里，它所到的地方，羊群如白色大海被分开那样，让开了一条道路。</p>
+            <p>诺诺愣了一下明白了，那是这群羊的牧羊犬，这种短腿呆萌的狗子在成为宠物狗之前其实是种工作犬，在牧羊这件事上是一把好手。</p>
+            <p>这只聪明的牧羊犬大概是担心房车轧到自己守护的羊群，正帮着她把羊赶开！</p>
+            <p>诺诺惊喜之下立刻决定自己如果今后要养狗就养一只柯基，然后踩下油门，顺着柯基犬冲出来的道路奔入羊群。</p>
+            <p>四轮车们却没有这么好的运气，司机们纷纷急刹车，停在羊群的边缘，只有一辆车的钢索连着房车，一辆四轮车的力量拉不住房车，刹车的瞬间就被带翻了。</p>
+            <p>趁着四名对手愣神的工夫——一群羊和它们的牧羊犬——这未免也太神助攻了，路明非把他们一一踢飞下去，四名专员落地摔得半死不说，立刻就被羊群淹没了。</p>
+            <p>不知道惊慌的羊们会对他们吐口水还是拉屎。</p>
+            <p>“我跟你说他们会没事的，对不对？”苏恩曦看到这里，嘿嘿一笑。</p>
+            <p>“如果不是那群羊，他们已经被逼停了！”酒德麻衣也略略松了一口气。</p>
+            <p>“那羊群能是白来的么？那五万头羊是我买的！”苏恩曦哼哼，“还附送牧羊人和牧羊犬！”</p>
+            <p>酒德麻衣恍然，不过细想这委实就是薯片妞做事的风格，首先是花钱解决问题，其次是招数很神经但有效。</p>
+            <p>“还没结束！你的羊群可挡不住直升机！”酒德麻衣再度严肃起来，因为她看见那架武装直升机开始调整位置了，她对军用装备很熟悉，那是……发射蜂巢火箭的前奏！</p>
+            <p>俄罗斯分部已经没办法阻止房车了，除非摧毁它！</p>
+            <p>“我不说了么，还附送了牧羊人啊！”苏恩曦笑嘻嘻。</p>
+            <p>酒德麻衣这才注意到羊群中很远的地方站着一匹白马，白马上是一个穿着白色蒙古袍的消瘦男人，看起来确实是牧羊人的样子。</p>
+            <p>牧羊人背着一杆双筒猎枪……但他并未使用那支枪，而是扛起了一支“毒刺”肩扛式导弹……麻利的一道火光，准确地命中直升机的旋翼。</p>
+            <p>好在卡塞尔学院的执行官们身手着实矫健，导弹命中之前，几条黑影从机舱中跃了出来。不过就算捡回了命，在这个高度上跳下来，断上七八根骨头可能是不可避免的。</p>
+            <p>牧羊人丢掉打空的导弹挂架，对远处的无人机伸手致意，调转他那匹瘦马的马头，就此离去。此刻燃烧的直升机轰然坠地，把一大片草原化为熊熊的火场。</p>
+            <p>酒德麻衣扶额，“带着毒刺导弹牧羊的家伙，你从哪里找来的？”</p>
+            <p>“花钱找的啊，只要钱花够，什么人雇不到？”苏恩曦开始对着化妆镜整理头发。</p>
+            <p>这时候酒德麻衣把车停在一栋红顶白墙的老式建筑外，这栋建筑位于热闹的老城区里，但很清幽，从外面看很难判断这房子的用途，不过那两扇巨大的雕花柚木门紧闭，显然是并不欢迎外人参观。</p>
+            <p>“你还有多少牧羊人能帮他们解决之后的麻烦？”酒德麻衣趴在方向盘上，看着窗外那座窗帘低垂的建筑。</p>
+            <p>“过了这关就暂时没事了，蒙古不太发达，网络普及程度不高，学院的天眼就不太有效。而且我们的宝宝已经长大了，应该能照顾好自己的。”苏恩曦活动手腕，“我们先把眼下的麻烦解决掉。”</p>
+            <p>“这能算麻烦事？”酒德麻衣说得轻描淡写。</p>
+            <p>“对于你来说肯定是家常便饭，对我这种文职干部还是有点冒险的感觉啦哈哈哈哈哈！”苏恩曦说着，目光落在酒德麻衣裙下的两条长腿上。</p>
+            <p>“啧啧！这穿着黑丝袜的大长腿！我要是你男人我就吃饭也在上面吃睡觉还枕着！来来来，把袜子脱下来！”苏恩曦的语气活脱脱一个老色鬼。</p>
+            <p>酒德麻衣瞥了她一眼，弯腰脱下了长袜。</p>
+            <p>片刻之后，两位脑袋上套着黑丝袜，身材火爆的女士踢开了那两扇雕花木门，一个提着两把MP7冲锋枪，一个提着一支大口径霰弹枪。</p>
+            <p>“女士们先生们！靠墙站好靠墙站好！抢劫了解一下！”那位提着霰弹枪的女士在破门的一刻高喊。</p>
+            <p>不同于她那位脖子以下全是腿的同伴——那位从走路的姿势就能看出一股懒洋洋的劲儿，好像是主妇走进超市来买菜——提着霰弹枪的这位兴奋得不行，边喊边发出嘎嘎嘎嘎鸭子般的笑声。</p>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
