@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>03</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <div id="top"></div>
+            <p><a href="02.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="04.html">下一章</a></p>
+            <hr>
+            <h1 id="center第三章-鲸歌center">
+                  <center>第三章 鲸歌</center>
+            </h1>
+            <br>
+            <br>
+            <p>阳光充沛的下午，正是野餐的好天气。草地上摆起了白色的餐桌，还铺着亚麻桌布，恺撒、阿巴斯和芬格尔三人围坐，喝着下午茶。</p>
+            <p>恺撒喝的是加了威士忌的爱尔兰咖啡，阿巴斯喝着锡兰红茶，芬格尔面前则摆着奶酪蛋糕、栗子蛋糕、核桃布朗尼蛋糕、烤松饼、烤牛角面包、烤吐司配鹅肝酱、还有粉色和绿色的马卡龙……</p>
+            <p>芬格尔埋头狼吞虎咽，恺撒和阿巴斯都望着辽阔的湖面。</p>
+            <p>这是校园里最适合喝下午茶的位置，望出去视线毫无阻碍，山下那片波光粼粼的大湖看起来就像海，红松林在风中缓慢地起伏，万壑松风。</p>
+            <p>以往想把下午茶的餐桌架在这里，得跟餐厅管理员预约，不过眼下整个校园空荡荡的，连个鬼影都看不到，就算他们要在校长办公室开香槟派对都没人管。</p>
+            <p>一个月前，随着全球缉捕路明非和诺诺的命令下发，整座学院瞬间就空了。</p>
+            <p>执行部精英们和高年级的学生们都集中在各地的分部，24小时待命，能战斗的教授们也加入了追捕，基本的教学都无法维持，低年级的学生们被暂时遣散回家。</p>
+            <p>恺撒、阿巴斯和芬格尔却是例外，他们既不必参与追捕，也不能离开校园，他们得到的指令是“原地待命”。</p>
+            <p>通俗点说叫“坐冷板凳”，如果一个NBA球员连续一个赛季坐在冷板凳上，下个赛季大概就难免被贱卖掉的结局了。</p>
+            <p>“我坐冷板凳的原因很明显，但没想到还有阿卜杜拉阿巴斯陪着我坐。”恺撒说。</p>
+            <p>“我想元老会也在怀疑我到底是什么东西吧？”阿巴斯耸耸肩，“在你未婚妻所认知的世界里，我根本就不存在，我的位置属于一个名叫楚子航的男人，他才是你们的朋友。”</p>
+            <p>“是路明非认知的世界。”恺撒纠正，“诺诺是被他影响了。怎么？连你也开始怀疑自己的身份？”</p>
+            <p>“说真的，怀疑过，我居然连续想过几天晚上，想我的童年，想我到底是从哪里来的，想要找到自己存在的证据。”阿巴斯苦笑。</p>
+            <p>“打电话问问你父母，还有你小时候的朋友。”</p>
+            <p>“我是个孤儿，在孤儿院长大，那间孤儿院已经倒闭了，院长死掉了，院长自己就是个孤寡老人，我跟小时候的朋友都断了联系。”</p>
+            <p>“你看起来还真可疑。”恺撒淡淡地说。</p>
+            <p>“听起来是可疑，可我是个记性很好的人，往事记得很清楚。我记得那些跟我一起长大的孩子，记得那位对我很好的老院长，连老院长抽的那种阿拉伯水烟的味道我都记的很清楚，柑橘和柠檬的味道，加一点点酸樱桃。”阿巴斯说，“我还回忆了很多很多事，包括我们俩在伊斯坦布尔比赛喝茴香酒、喝到两个人都爬不起来的那个晚上，难道都是虚构的？”
+            </p>
+            <p>“我还记得那种茴香酒的味道，烈得像是被割喉。”恺撒笑笑。</p>
+            <p>——————————</p>
+            <p>那是他们两人第一次合作执行任务，发生在二年级那年。学院大概是考虑到要缓和两大学生团体之前的关系，派两位会长一起执行任务。</p>
+            <p>初出茅庐的时候谁都容易犯冒失，于是执行任务的过程中出了点小问题。到底是什么问题并不重要，总之结果就是他们俩都被大口径手枪指着太阳穴，面对面跪着。</p>
+            <p>如果是今天的他们，就算被枪指着头也有很多办法脱身，但那时候无论恺撒还是阿巴斯的作战技能和言灵掌握都没有今天那么成熟，确实是面临着头颅爆炸脑浆横飞的下场。</p>
+            <p>对方的首领做着一门偏门生意，贩卖龙类血清给某些组织制造嗜血的战士，因此才会招惹上秘党，也是因为做这门生意，他对混血种有所了解，对于捕获加图索家的继承人非常欣喜。</p>
+            <p>他想挑战一下这位加图索家继承人的底线，就给了这两个年轻人一个机会，一柄能装六发子弹的左轮枪，只装一发子弹，双方轮流向对方开枪，谁打死了对方，就能活下去。</p>
+            <p>说白了就是惊险的俄罗斯轮盘赌，首领想看看恺撒在死亡面前还能不能保持住他贵公子的风度。</p>
+            <p>恺撒先发，他提枪看着阿巴斯，说如果你死掉我会帮你报仇的，杀光这些家伙你觉得怎么样？两人对视片刻，阿巴斯点点头说可以。恺撒用枪顶着阿巴斯的左胸开枪，但不是一枪，而是一枪接一枪。</p>
+            <p>首领先是诧异，继而狂喜，他觉得自己看清了这些混血贵族的底线，吹什么牛，讲什么正义，那些道貌岸然都是假的！生与死二选一的时候，恺撒想的居然是杀掉战友换自己活。</p>
+            <p>所以首领也不阻止，大笑着旁观，看恺撒一次次扣动扳机。</p>
+            <p>居然前四个弹槽都是空的，第五次抠扳机的时候，恺撒调转枪口对准了首领，一枪打碎了他的膝盖。</p>
+            <p>他也给了首领50%的机会，可惜首领运气很差，一枪就跪下了。</p>
+            <p>这时候阿巴斯以猛虎般的态势扑向恺撒背后的敌人，一拳敲碎了那人的肩胛骨。变化那么突然，在场的人都懵了那么几秒钟，几秒钟对恺撒和阿巴斯就够了，他们气喘吁吁地走出那间屋子的时候，屋子里已经没有能站着的人了。</p>
+            <p>阿巴斯说如果第一个弹槽里就有子弹，怎么办？恺撒说那你也只是重伤而已，我看过你的入学体检报告，你的心脏偏右，顶多把你的肺部打个洞，肺部有个洞能活的。</p>
+            <p>阿巴斯说你看我体检报告干什么？恺撒支撑着疼得像是断了的腰，说想要胜过你的对手，首先必须了解他，这是我们加图索家的家训。</p>
+            <p>阿巴斯说你家有多少条家训，上次说的好像不是这一条；恺撒说我能背的有八十多条，我老爹估计能背几百条，不过我一直猜他是随口编的，反正也无法查证。</p>
+            <p>两人在伊斯坦布尔的雨夜里走了很久，想找间私人诊所止止血，却只找到一间酒吧，恺撒望着酒吧的招牌，笑笑，说时间还早，不如要一杯喝的。</p>
+            <p>微雨的寒夜，不入流的酒吧，热情的土耳其人在饮酒之后拉着手围着圈子跳舞，恺撒和阿巴斯一杯接一杯地加茴香酒，那种无色的烈酒加上蒸馏水之后就会呈现出奇妙的乳白色，他们一次又一次地一饮而尽，直到脑海中完全被那种土耳其舞曲填满。
+            </p>
+            <p>恺撒不喜欢喝茴香酒，那东西跟他家酒窖里的珍藏没法比，他不过是用这种方式表明，从那晚开始阿巴斯是可以跟他一对一喝酒的人了……顺带较量一下酒量。</p>
+            <p>那以后他们还一同执行过几次任务，一起去过世界上的好些地方。两大学生社团之间还是竞争的态势，但两位领袖却始终保持着任务结束之后一起喝一杯的习惯。</p>
+            <p>如今回想起来，那些枪林弹雨的事好像都模糊了，倒是每次任务结束后喝的酒还记忆犹新。</p>
+            <p>“要我说坐冷板凳也没什么不好，”芬格尔吞下一个粉红色的马卡龙，“恺撒难道你真想去追捕你的未婚妻？追上了你该怎么跟她说？难道跟她说只要你跟我回罗马过去的事就当没发生过？太像家庭伦理剧了，你还是男二号！”</p>
+            <p>“我也不好意思跟我兄弟见面，”他又拿起那个绿色的马卡龙，叹口气，“毕竟是我出卖他的，我还是要点脸的。”</p>
+            <p>“恺撒你约我不会真的是来喝下午茶的吧？”阿巴斯忽然说。</p>
+            <p>“你觉得呢？”恺撒挑眉。</p>
+            <p>“我们是最好的猎手，如果我们出动，应该比其他人更早地猎到狐狸，即使没有EVA的情报支持，”阿巴斯缓缓地说，“不过也未必没有EVA的支持，你不是还叫了芬格尔么？”</p>
+            <p>“老家伙们现在很紧张，我们擅自离开，他们会疑心我们是去协助路明非吧？”</p>
+            <p>“那就让他们疑心好了，他们是老人，老人总是这样。不过我们需要一些装备，还有好用的交通工具。”</p>
+            <p>恺撒放下手下的咖啡，凝视阿巴斯的双眼，许久，嘴角流露出一丝笑意，“说起来我昨天早晨恰好调了一架私人飞机来，就停在芝加哥国际机场。”</p>
+            <p>恺撒当然不是闲极无聊约芬格尔和阿巴斯一起消磨时光，他的时间很宝贵，他还处在严重的焦虑中。</p>
+            <p>天眼盯着路明非和诺诺，捕猎的网已经张开，执行官们被授权在极端情况下使用暴力。</p>
+            <p>恺撒觉得自己得想点办法，以免忽然有一天诺诺被装在尸体袋里送到他面前，由某位元老委婉地跟他解释，说追捕团队遭遇了激烈的反抗，考虑到路明非的危险性，不得不下达了击毙的指令。</p>
+            <p>恺撒从来就不是个坐冷板凳的人，他的长处是主动出击。</p>
+            <p>但想做成这件事他必须有帮手，阿卜杜拉·阿巴斯是最合适的人选，芬格尔也得带上，这家伙知道的事情太多，应该还藏着秘密没说出来，此外他对EVA似乎有特殊的权限。</p>
+            <p>“两位大佬！两位英雄！”芬格尔神色惊恐，左看看阿巴斯右看看恺撒，“你们无论英雄救美还是拯救世界都很好，我绝对赞成！你们生来就是干大事的人，可干大事千万不能背着包袱！我就是你们的包袱啊！你们是好猎手，可我连条好猎狗都算不上，我顶多就是个宠物！你们聊大事非要放一条宠物狗在旁边，还表示要带它一起去，你们有没有考虑过狗狗的想法？”
+            </p>
+            <p>可阿巴斯不理会芬格尔，始终看着恺撒，“你的飞机应该可以直飞东京吧？”</p>
+            <p>“东京？”</p>
+            <p>“如果我是路明非，东京会是我的第一选择。蛇岐八家里他还有几个好朋友，学院的势力也还没渗透进日本。”</p>
+            <p>“一架加满油的湾流G650，当然可以直飞东京。”</p>
+            <p>“你的行李收拾好了么？”</p>
+            <p>“我的房间里永远有个收拾好的行李箱，拎上就能出发。”</p>
+            <p>“很巧，我也是这样的习惯。”</p>
+            <p>“既然这样，不如喝完这杯咖啡就出发？”</p>
+            <p>“没问题。”阿巴斯端起还剩半杯的红茶。</p>
+            <p>“各位大佬！各位大佬！”芬格尔就差跪下来抱大腿了，“你们这是要谋反你们知道么？你们要谋反也没问题，能不能别带上我？就算你们非要拉我入伙一起谋反，我们能不能有个理性点的方案？而不是拎上包来一场说走就走的谋反那么简单！”
+            </p>
+            <p>恺撒和阿巴斯都不回答，两人望着波光粼粼的湖面，一个喝茶，一个喝咖啡。</p>
+            <p>一旦杯中的饮料见底，他们就会平静地站起身来，各回各屋，各拿各的行李，如果没人阻拦更好，如果有人阻拦，他们就暴力突围。</p>
+            <p>对于狮心会的前任会长和学生会的前任主席来说，校规从来都是个摆设，他们只会象征性地服从，以贝奥武夫为首的元老会对这两个新人还是缺乏了解。</p>
+            <p>恺撒笑着瞥了芬格尔一眼，这家伙满脸的惶恐，真有点像一条被拴在桌脚的狗。</p>
+            <p>恺撒和阿巴斯几乎是同时放下杯子站起身来，整理袖口……</p>
+            <p>就在这时，英灵殿上的大钟轰然敲响，钟声震动了整个校园。</p>
+            <p>恺撒和阿巴斯不约而同地看向英灵殿的方向，脸上变色。</p>
+            <p>那是……龙王入侵的警报！</p>
+            <p>——————————</p>
+            <p>执行部，中央控制室，恺撒和阿巴斯推门而入。</p>
+            <p>施耐德教授举起手，示意他们安静，于是三个人肩并肩，仰望着那巨大的地球投影。</p>
+            <p>那就是天眼所见的地球，日复一年年复一年，执行部就是通过这个投影来监控全球各地的龙类活动。每当某个点亮起红光的时候，EVA就会把自己投影出来，说明情况，给出解决方案，然后执行部专员们出动。</p>
+            <p>但这一次EVA没有给出任何应对策略，投影出来的少女也跟恺撒他们一起，沉默地看着那巨大的地球投影——整个北冰洋闪烁着令人恐惧的红光。</p>
+            <p>“这是？”恺撒尽量用平静的语调发问。</p>
+            <p>预警的区域是整个北冰洋，难道那片面积上千万平方公里的冰海都被龙王占领了？</p>
+            <p>“没那么糟糕，但我们还无法确定它的准确位置，所以整个北冰洋都被标红了。”施耐德嘶哑地说。</p>
+            <p>“什么样的目标？”阿巴斯问。龙族5，</p>
+            <p>“应该是老朋友，”施耐德来到旁边的柜子，拿出一瓶陈年威士忌给自己倒上一杯，端着那杯酒回到地球投影前，“等了那么多年，你终于回来了么？”</p>
+            <p>恺撒立刻就明白了那个“你”指的是什么。</p>
+            <p>十二年前，格陵兰事件，疑似古龙的神秘生物冰封了整个海域，幸存者只有施耐德一人。虽然侥幸生还，但面部和呼吸系统还是被极寒摧毁，搞得他人不人鬼不鬼，必须终生戴着呼吸器。</p>
+            <p>但更令他痛苦的却是那些牺牲的学生，当时跟随他执行任务的多半都是他名下的学生，当年的施耐德很热衷于教育，总被优秀的学生们包围。</p>
+            <p>那之后他性格大变，完全放下教育工作，转入执行部，在和龙类的作战中，手段极端强硬。这不是赎罪而是报复，施耐德正是因此得到了校长昂热的大力支持。</p>
+            <p>这些年施耐德的身体越来越差，校董会几度建议更换执行部的最高负责人，只是暂时还没有找到合适的替代者。</p>
+            <p>可就在任期的最后，施耐德等到了他的宿敌。</p>
+            <p>他把那杯酒灌了下去，剧烈地咳嗽起来，以他的呼吸道，本来是严禁喝酒的，但他今天太高兴了。</p>
+            <p>高兴分很多种，终于能切断仇人的喉咙也算一种。</p>
+            <p>“怎么能确认就是格陵兰事件中的目标？”阿巴斯问。</p>
+            <p>这显示出狮心会前任会长谨慎的一面，格陵兰岛确实是在北冰洋里，但这并不意味着北冰洋里出现了龙王级的目标就一定是格陵兰事件里的目标。</p>
+            <p>“寒冷，”EVA回答，“在温室效应的影响下，北冰洋的冰盖正在迅速地融化，多数气候专家认为2050年之前北冰洋就会失去全部的冰盖。可在这个夏季，北冰洋诡异地被冰封了，冰盖边缘一直延伸到了白令海峡。”</p>
+            <p>“夏季，白令海峡却被冰封？”阿巴斯沉吟。</p>
+            <p>“全球的气候学者都对这种诡异的现象感觉到恐慌，这意味着他们预言气候变化的模型完全失效了。”EVA接着说，“他们正在斯德哥尔摩召开一场会议，有些专家表示这个现象可能意味着地球从此进入新的大冰期，甚至有人预言整个海洋都会被封冻。”
+            </p>
+            <p>阿巴斯微微点头，极寒，这确实是格陵兰事件中那个未知目标的特征。</p>
+            <p>龙王确实也有能力导致气候的剧烈变化，青铜与火之王诺顿的最高言灵“烛龙”如果释放成功，就能令三峡水库沸腾。</p>
+            <p>“此外，北极圈一直是鲸类的乐园，但根据监测，从春季以来北极圈中就很难监测到鲸群的活动了，一些被安装了全球定位装置的鲸群正在撤离北极，历史上极其罕见的，北极圈的夏天没有鲸鱼活动。”EVA补充。</p>
+            <p>“鲸类是很敏感的生物。”恺撒说，“龙王的出现会令它们恐惧，就像在一片森林里忽然出现了新的大型猎食动物，猎物们都会警觉地避让。”</p>
+            <p>“龙威。”阿巴斯补充。</p>
+            <p>那是其他生物根植在血统深处的、对龙的恐惧，毕竟龙曾是地球上一切生物的狩猎者。</p>
+            <p>“有目击者么？”恺撒问。</p>
+            <p>只凭极寒就发出龙王入侵的警报，这并非卡塞尔学院的作法，而且冷夏已经持续了一段时间，警报却刚刚发出，这似乎意味着更加确凿的证据出现了。</p>
+            <p>“没有目击者，但就在刚才，进入北极圈的一支气象考察队传回了一段视频。”</p>
+            <p>地球投影消失，取而代之的是冰天雪地的画面，镜头轻微摇晃，看来用手持式摄影机拍摄的，有人在用俄语和芬兰语说话。</p>
+            <p>远处，银色的热气球刚刚升空，身穿科考队制服的人们正在架设三脚架，也有人忙于在冰面上钻孔和搭设帐篷。</p>
+            <p>“因为这个夏季北极圈内异乎寻常的低温，这个芬兰和俄罗斯联合的考察队决定撤出俄罗斯设在北极圈内的考察站，他们的计划是驾驶雪地车，携带辎重在冰面上跋涉大约300海里，跟俄罗斯派出的破冰船汇合。”EVA给出了解释，“他们都是训练有素的科考队员，一路上还是记录气温和风向，并且提取海水和冰的样本。你们现在看到的这段视频拍摄于15分钟前，他们抵达了法兰士约瑟夫地群岛附近，在那里扎营。通常在夏天那里是一片可航行的大海，但这个夏季那里完全被冰封了。”
+            </p>
+            <p>所有的工作都在有条不紊地进行着，夏季北极正是极昼，天空始终晴朗而清澈，白得炫目的太阳低低地悬挂在地平线的上方，却永远不会落日。</p>
+            <p>如果不去考虑当地恐怖的低温，这样的画面非常舒缓和悠扬，令人心中平和。</p>
+            <p>可是有序工作的人们忽然骚动起来，所有人都看向同一个方向，持摄像机的人也立刻转向那个方向，太阳的方向。然而除了太阳什么都没有，甚至没有一丝风，只有轻薄的雪尘在地平线附近弥漫。</p>
+            <p>雪尘被什么搅动了，冰面也轻微的震动起来，却不像预期的那样有什么东西冲破雪尘忽然出现。但科考队的人们忽然就慌了，有人放下手中的工作调头就跑，有人咆哮，有人喃喃地说着什么，在胸前划着十字。</p>
+            <p>没跑的人就再也跑不了了，他们静静地站在冰面上，变成蜡白色的雕塑，他们的皮肤表面长出了细微的白毛，那是凝结的冰晶。</p>
+            <p>跑的人也只是多活了片刻，他们跑着跑着就凝固了，有的人化作了奔跑姿势的雕塑，有的人却摔倒了，他们的四肢像是石膏浇筑的，砸在冰面上就断开，却没有血流出来。</p>
+            <p>摄影机还在工作，这种特别为极地摄影准备的设备能在极低的温度中工作，可握着它的人已经失去了生命。</p>
+            <p>它最后拍下的画面是那个用于测量高空气温的银色热气球笔直地坠落在冰面上，摔得粉碎。</p>
+            <p>所有的生命消失在30秒之内，白得晃眼的太阳依旧挂在天空中，雪尘在地平线处弥漫，搅动消失了，冰面也不再震动，不知道发生了什么，好像有个看不见的死神经过，空气中却还残留着他缥缈的歌声。</p>
+            <p>听起来确实是歌声，恺撒惊讶地看向周围的人，生怕是自己听错了。歌声响起和人群的骚乱几乎是同时的，歌声中他战栗不安，紧紧攥着拳才能不颤抖。</p>
+            <p>他听不懂那歌里唱的是什么，却能感觉出歌中的浩瀚，像是凡人在远离神殿的地方听到的神的吟唱。</p>
+            <p>冰天雪地的北极，谁在那里唱歌？</p>
+            <p>所有人都认真地看着画面，除了恺撒，没有人觉察那奇怪的歌声。</p>
+            <p>“鲸歌。”有人在背后说。</p>
+            <p>恺撒猛地回头，EVA正看着他。</p>
+            <p>“鲸歌？”</p>
+            <p>“鲸鱼之间交流的音频，低于人类听觉的下限，他们听不到，但你可以，因为你言灵是‘镰鼬’。”</p>
+            <p>“但我们并没有观察到鲸。”</p>
+            <p>“没有看到，并不意味着它不存在，可能就在那队考察者测量温度的时候，巨鲸从他们脚下的冰海中游过。”EVA缓缓地说，“那声音符合鲸歌的所有特征，却能唤来极寒。”</p>
+            <p>“用鲸歌唱出的……言灵！”阿巴斯低声说。</p>
+            <p>中央控制室里一片沉默，这听起来匪夷所思，但确实没有任何理论说其他的语言不能用于言灵。归根结底，言灵就是一连串神秘音节构成的、类似咒语的东西。</p>
+            <p>“所以我们的对手是一头鲸？”恺撒打破了沉默，“一头巨鲸的出现，使得其他鲸类甚至不敢进入北极圈？”</p>
+            <p>“还不能断言，但确实有个类似巨鲸的生物，秘党关注了它几千年。在希伯来人的神话中，它被称作，”施耐德说到这里顿了顿，才说出那个惊悚的名字，“利维坦！”</p>
+            <p>“在那天，两个兽将要被分开，母的兽叫利维坦，她住在海的深处，水的里面；公的名叫贝希摩斯，他住在伊甸园东面的一个旷野里，旷野的名字叫登达烟，是人不能看见的。”恺撒低声念诵。</p>
+            <p>这段话出自伪经《以诺书》，这本用希伯来文写成、看起来很像《圣经》的书却没有得到基督教会的承认，因为它路子太野，甚至会讲类似天使背叛了神，和人类媾和，生下恐怖怪物的故事。</p>
+            <p>但秘党最喜欢研究这类神神怪怪的文档，因为他们认为神话是扭曲的历史，而这些神话中的历史都指向龙族。</p>
+            <p>根据《以诺书》的记载，利维坦是上帝在创造世界的第六天制造的两只怪物中的一只，它是混沌的巨龙，盘踞在大海的深处，至于它的形态，有说像巨蛇有说像鳄鱼，也有说它是巨鲸的模样。</p>
+            <p>“所以我们是该出发去捕鲸了么？”阿巴斯看向施耐德。</p>
+            <p>“是，”施耐德点点头，“不过我们首先需要一条好船。”</p>
+            <p>“学院那条摩尼亚赫号不行么？”阿巴斯问。</p>
+            <p>“摩尼亚赫号的技术足够先进，但从排水量看只是条轻型船，而且它不具备破冰能力，无法进入眼下冰封的北极。我们需要一条吨位更高更适合冰海航行的船。”EVA代替施耐德回答。</p>
+            <p>“设法购买，不要在乎价格，我们需要最先进的设备。”施耐德下令。</p>
+            <p>“是。”EVA的投影消失。</p>
+            <p>中央控制室里安静下来，人们相互交换着眼神。</p>
+            <p>“捕鲸这事听起来很专业的样子，”芬格尔小心地说，“光有船还不行，我们还得有受过训练的人。”</p>
+            <p>这家伙是进来看热闹的，听说要出门捕鲸立刻警觉起来。</p>
+            <p>他刚才差点被恺撒和阿巴斯裹挟着要离校，现在自然不想被卷进更大的麻烦里去。好在捕鲸的船还得现买，不会有什么说走就走的捕鲸旅行，不过他还是要特别宣称自己是没受过任何捕鲸训练的，这工作他实在不合适。</p>
+            <p>“当然，我们需要最优秀的人！”施耐德说着，看向阿巴斯。</p>
+            <p>阿巴斯看了一眼恺撒，举手示意，施耐德点了点头。</p>
+            <p>以阿巴斯的性格，当然不会错过这么重要的行动，他之所以还看一眼恺撒，并非征询恺撒的意见，而是表达歉意，因为不能帮他了。</p>
+            <p>施耐德转向恺撒，“有兴趣和我们去一趟北极圈么？”</p>
+            <p>恺撒沉默了一会儿，“这次算了，眼下这种情况，作为代理校董，我留在学院里应该更有用。”</p>
+            <p>施耐德凝视他的眼睛，嘶哑地笑笑，“留在学院里么？其实我一直都在等元老会的紧急通知，跟我说代理校董恺撒加图索擅自离校展开行动，需要把他也列入监控名单。以你的性格和执行力，能忍到现在，连我都惊讶。”</p>
+            <p>恺撒摸了摸鼻子。他很少撒谎，因为没有什么事值得他撒谎，所以一旦撒谎就会有点窘，就会摸鼻子来掩饰。何况这个谎言立刻就被看穿了。</p>
+            <p>“如果你加入，我可以确保陈墨瞳的安全。执行追捕任务的都是执行部的人，我的威信在执行部内还是有效的。”施耐德缓缓地说，“如果真能杀死利维坦，获得它的龙骨，也会增加你的威信。你现在是校董了，但你的资格是从你父亲那里继承的，你需要成就来巩固你的地位。秘党虽然是靠血统凝聚在一起的，但卡塞尔学院从来都是相信成就胜过相信血统，你想要保护你的未婚妻，首先要让你自己成为强有力的人，而不是任性的家族继承人。”
+            </p>
+            <p>“根据我们现在掌握的情报，龙王诺顿、龙王芬里厄、甚至那个恐怖的赫尔佐格都死在路明非的手里。那么再给你一次机会怎么样？龙王利维坦，杀死它，”施耐德冷冷地说，“向所有人证明我们并不需要养什么怪物当秘密武器，我们跟龙族作战了几千年，靠的是我们的意志和决心！”
+            </p>
+            <p>又是长时间的沉默，恺撒抬起眼睛，直视施耐德，“所以在我前往北极圈的这段时间里，诺诺不会有任何意外，我这么理解对么？”</p>
+            <p>“这是我个人的承诺，既不代表学院，更不代表那帮元老。”</p>
+            <p>恺撒伸出手来，“您的承诺足够了。”</p>
+            <p>施耐德跟他握了握手，忽然转身。</p>
+            <p>这时芬格尔已经快要退到门边了，就差一步他就可以逃出这个充满着敢死队誓师气氛的鬼地方，然后撒丫子狂奔。可他被施耐德的目光定住了，战战兢兢地不敢动。</p>
+            <p>“很遗憾，”施耐德摊了摊手，“虽然知道你不想去，我也觉得带上你应该没什么用，可看管你是元老会交给我的责任，我走到哪里都要带着你。”</p>
+            <p>芬格尔用欲哭无泪的眼神看着施耐德，不过他很快就反应过来了，这位执行部负责人和那位躺在救生舱里的校长一样，是个把脑袋拴在裤腰带上屠龙的杀胚，凄婉的眼神对他根本没用。</p>
+            <p>“那我先恢复一下训练！”芬格尔只好摆出坚毅的表情，“古巴那是消磨人意志的好地方啊，很久没练肌肉都松散了，我练练我练练，要是练伤了能不去么？”</p>
+            <p>“船已经交易成功，出发地是苏格兰的阿伯丁港，”EVA再度把自己投影出来，“虽然是夏天，但北冰洋遭遇了历史上的最冷天气，请各位带好御寒装备，一路顺利。”</p>
+            <p>“EVA你打住！是不是太仓促了？捕鲸船这玩意儿是说买就能买到的么？船可靠么？我们可是要去北极圈里冒着生命危险屠龙的啊！”芬格尔惊呼，“我们要不要给船做个检查，再让装备部改装改装，总要两三个月吧？”</p>
+            <p>“短时间内想要买到合适的船有难度，所以我购买了一家航运公司，他们的船正在阿伯丁港检修，状况良好，能够胜任这项工作。”EVA机械地回答。</p>
+            <p>“既然准备工作已经就绪，现在就出发吧。让装备部整备好摩尼亚赫号，驶往阿伯丁港作为后备队。”施耐德深吸一口气，“EVA，请为我们订票，最早飞往阿伯丁的航班！”</p>
+            <p>“不用那么麻烦，我恰好有一架私人飞机，停在芝加哥机场。”恺撒说。</p>
+            <p>“很好，给你们一些时间收拾行装。”施耐德点点头，“我会通知CC1100次快车在月台边等候，我们随时可以出发。”</p>
+            <p>“不用，我的房间里一直有个收拾好的行李箱，随时等候学院调遣。”恺撒耸耸肩。</p>
+            <p>“我也是。”阿巴斯也说。</p>
+            <p>施耐德一愣，笑笑，“原本是准备去亚洲的行李吧？还要多加几件冬装。”</p>
+            <p>说完他就转身离开。</p>
+            <p>芬格尔快速地转动着眼睛，忽然动了起来，闪身出去想要拦住施耐德，“教授你看出来了还不说是什么意思？学院的规则还要不要遵守了？我检举我揭发！这俩收拾好了其实是想……”</p>
+            <p>可他被阿巴斯搂住了不能动弹，恺撒则双手紧紧地按着他的脸，凝视他的眼睛。他只能张嘴发出哈哈哈哈的声音，却说不出任何有意义的话。</p>
+            <p>施耐德离开了中央控制室，恺撒才微笑着拍了拍芬格尔的脸，“看你笑得那么爽朗，我很高兴。这么危险的工作，还要是最好的朋友一起去啊。”</p>
+            <p>乌鸦拉开沉重的铁门，“橘政宗，或者说赫尔佐格留下的东西都在这里了。”</p>
+            <p>门背后是一间巨大的仓库。</p>
+            <p>仓库隐藏在东京市内某个不起眼的地方，想要摸到门却很麻烦，如果没有乌鸦带路，就算知道这里有间仓库，他们只怕也会迷路。</p>
+            <p>路明非第一眼看见的却是一件染血的黑色风衣，穿在一个无头的模特身上，腰间还挂着佩刀。</p>
+            <p>不知何处的风来，衣角飞扬，路明非有点恍惚，觉得那个人就站在那里，固执地要当正义的朋友。</p>
+            <p>“那是源稚生的衣服。”路明非说，“怎么会在这里？”</p>
+            <p>“只有家族内部的少数人知道赫尔佐格是个恶魔，对家族低层的孩子们，我们说橘家家长橘政宗为救大家长壮烈地牺牲在地下车库里了。”乌鸦面无表情地说，“所以你们住的那间神社后面还有橘政宗的假墓碑，他和大家长的遗物被收藏在一起，还给这里起了个名字叫‘师生藏’。偶尔还有人来这里凭吊他们。”
+            </p>
+            <p>路明非立刻就明白了这么做的用意。蛇岐八家是个成员众多的组织，维护这样一个组织，最重要的是威信。如果低层的社团成员们知道造成那场灾难的人其实就是橘家的家长，那么家族高层的威信会受影响，家族的管理也会有麻烦。
+            </p>
+            <p>这大概就是大人的世界吧？真搞笑，分明那是家族高层恨不得从地狱里拖出来再杀一千遍的人，却得逢年过节去拜祭他，收藏他的遗物，就差给他树碑立传了。</p>
+            <p>“让大家长在这里守着也好，要是世间真有鬼魂这东西，有他守在这里，赫尔佐格的鬼魂别想从这里跑出去。”乌鸦说着往里走，“只有外面这些是大家长的东西，他的东西本来就不多，里面几间全都是赫尔佐格的收藏，这家伙居然是个收藏家，从奈良时期的佛像到古典主义的春宫画他都收藏，还有大约5000部的善本书，6000张绝版的黑胶唱片，沙皇御用珠宝匠法贝热制造的复活节彩蛋这里有8枚，古董机械表大概有600块……”
+            </p>
+            <p>不用乌鸦介绍，路明非和诺诺也能体会到赫尔佐格的收藏之庞大，他们穿行在长长的走廊里，两边都是高到屋顶的架子，架子上的陈列品琳琅满目。</p>
+            <p>西方神话里说龙是热爱收藏珍宝的生物，它的巢穴应该就是这样的。</p>
+            <p>“贪婪。”诺诺低声说。</p>
+            <p>“那还用说？贪婪、卑鄙、又恶心的虫子！”乌鸦冷冷地说。</p>
+            <p>“这是什么？”路明非指着一张桌子上的箱子。</p>
+            <p>“我劝你别打开看，里面装满了头发。”</p>
+            <p>“头发？”路明非一愣。</p>
+            <p>“老东西对于女人有很旺盛的兴趣，完事了他会保留一缕那个女人的头发。别误会，不是什么定情信物，为了灭口他经常会把女人干掉，他留这些头发是作为战利品，就像食人部落保存敌人的头。”乌鸦说。</p>
+            <p>诺诺打了个寒战，胃里一阵抽搐，有点想吐的感觉。</p>
+            <p>从进入这间仓库开始，她就动用了侧写的能力，在自己的脑海中重建赫尔佐格这个人物，他的智慧、他的残暴、他的贪婪、他的疯狂、他的卑鄙……信息量多得像是要爆炸。</p>
+            <p>就像拼图，拼出了一张令人恐怖的脸，吓到了拼图的人。</p>
+            <p>“你去周围转转，但别乱动架子上的东西。”诺诺觉得这些谈话让小孩子在旁边不太合适，扭头对跟在后面小心翼翼的楚子航说。</p>
+            <p>楚子航点了点头，转身离开。</p>
+            <p>“这些东西都会有帮助，但最好能有文字资料，”路明非说，“日记，研究报告，手稿之类的东西。”</p>
+            <p>“有，我就怕你看不完。”乌鸦揭开巨大书柜上的蒙布，满满的一柜子宗卷，蒙着薄薄的灰尘。</p>
+            <p>“他还真是个很严谨的研究者，凡事必做笔记，他很少用电子存档，喜欢手写。他的资料在我们这里存了部分，在猛鬼众那里存了部分，后来我们双方派人组成了一个调查组，都给找出来了。”乌鸦说，“可惜用的都是速写符号，我们还没法解读。”
+            </p>
+            <p>诺诺随手抽出一个宗卷，吹去灰尘打开，凝神读了一会儿，摇了摇头。</p>
+            <p>“你们无法解读，不是因为这家伙用了速写符号，而是这些文件都很深奥，大概只有跟他同级别的专家才能解读这些资料，”诺诺耸耸肩，“就像那个‘世界上只有三个人能读懂广义相对论’的传说。”</p>
+            <p>“在他的研究领域，世界上很可能根本不存在跟他同级别的专家。”乌鸦说。</p>
+            <p>“但这就是线索。”诺诺说。</p>
+            <p>乌鸦一愣。</p>
+            <p>“任何领域的研究者，都是在前人的成果上实现突破。可这个赫尔佐格很奇怪，他似乎并不需要借助前人的任何成果，单凭自己的力量就挖出了龙族的秘密，他对龙族的理解比秘党还深刻，对白王的理解比你们这些白王后裔还深刻，还把自己变成了新的白王。”诺诺看了乌鸦一眼，“这人到底是什么东西？”
+            </p>
+            <p>“我想起来了，路明非也说起过。”乌鸦拍了拍脑袋，“这家伙懂得太多，这哪里是个科学家，简直他妈的是个先知！”</p>
+            <p>诺诺惊讶地看了路明非一眼，路明非正认真地看着另一个宗卷，并未注意他们的对话。</p>
+            <p>这件事诺诺和路明非没有讨论过，但早在看到这些资料之前，路明非已经做出了类似的推断。对于擅长侧写的诺诺而言，觉察这一点并不难，但路明非要想明白这一点，只能是通过反复的思考和分析。</p>
+            <p>时间过去了那么久，有些人确实变得跟以前不一样了。</p>
+            <p>“最大的可能是，赫尔佐格并非独立完成了这些研究，而是继承了某个组织的资料库。”诺诺缓缓地说，“而这个未知的组织，和秘党一样，悄悄地关注着龙族，已经很长时间了。”</p>
+            <p>路明非抬起头来，和诺诺对视一眼，眼中流露出惊骇的神情。</p>
+            <p>这确实是最合理的解释，甚至是唯一的解释，但有点匪夷所思，难道世界上还有一个和秘党类似的、研究龙族的组织？</p>
+            <p>难道那个神秘的组织在历史中藏了几千年都没有露面？</p>
+            <p>“三天内你们能自由使用这个仓库。”乌鸦把钥匙丢给路明非，“晚上不回神社住的话在这里打个地铺也可以，我不陪你们了，我还要上班。”</p>
+            <p>“上班？”路明非一愣。</p>
+            <p>“我当然得上班，我明天上班的主要工作就是跟学院的代理人讲述我如何被你抓住当人质，又如何平安地逃回来的故事。”乌鸦挠挠头，“我还没有想好这个故事呢，有个情节我过不去。”</p>
+            <p>“什么情节？”路明非问。</p>
+            <p>“你和你师姐之间的关系到底是邦妮和克莱德那样的雌雄大盗还是有分歧的共同犯罪，如果是后者的话，我可以解释说你原本想要把我给抛尸荒野，但你师姐跟你大吵了一架，逼你放我走。”乌鸦接着挠头，“如果这样讲的话感觉故事逻辑会比较通顺，否则我怎么活着回来的呢？如果你们是邦妮和克莱德那样的关系……”
+            </p>
+            <p>乌鸦忽然闭嘴了，因为路明非和诺诺都以“闭嘴吧你这个戏精”的眼神看着他。</p>
+            <p>“好吧好吧，早点休息，我带来的塑料袋里有泡面和饮料。”乌鸦点上一支烟，挥挥手往外走。他的皮鞋上钉着铁掌，脚步声清脆响亮。</p>
+            <p>诺诺和路明非刚低头翻阅手中的宗卷，又都抬起头来，乌鸦那响亮的脚步声忽然停止了。</p>
+            <p>两人对视一眼，警觉地握住藏在后腰的武器，缓缓地走向仓库的外间。</p>
+            <p>乌鸦确实是停下了，叼着烟，望着灯下持刀的身影。</p>
+            <p>那是楚子航，他正站在那个无头的模特对面。他犹豫了很久，小心翼翼地抽出了一柄古刀，又犹豫了片刻，拔刀。</p>
+            <p>仿佛一片清水溅出刀鞘，刀身弧线精美而肃杀，刀铭依稀可辨，“蜘蛛山中凶祓夜伏”。</p>
+            <p>炼金古刀蜘蛛切，源稚生当年的佩刀，再次见到这柄刀，路明非心中也是微微一震。</p>
+            <p>在他记忆中，这柄刀后来由乌鸦代表源稚生赠给了楚子航，代替了楚子航那柄折断的村雨。不过如今因果线已经被修改了，东京之战出场的是阿卜杜拉阿巴斯，阿巴斯会长的惯用武器并非日本刀，乌鸦也就不会赠他这柄武器，它作为源稚生的遗物保存在这里也很正常。
+            </p>
+            <p>路明非想要阻止楚子航把玩那件凶器，却被乌鸦阻止了。</p>
+            <p>灯下，楚子航以手指试刀锋，若有所思。拿到这柄刀，他就心无旁骛了，没注意到路明非他们远远地看着。他看刀看了很久，握刀比了个架势，进而挥刀上步，居然练习起来，进退有序，像是舞蹈。</p>
+            <p>乌鸦看得很专注，看了很久，乌鸦点点头，“很正宗。”</p>
+            <p>“他可没有什么出名的剑术老师，跟我是一个路数，学的综合格斗，要说比我强的，就是之前在少年宫的剑道课上学过几年。”路明非说。</p>
+            <p>“不，很正宗，如果没有跟随宗师级别的人学过，也是看过宗师级别的人用刀，”乌鸦轻声说，“大家长就是那种级别的剑道宗师。”</p>
+            <p>路明非愣住了，他忽然明白了乌鸦的言外之意。</p>
+            <p>或许那个改变因果的言灵不是绝对的，楚子航还残留着过去的记忆，在某个近乎被抹掉的时空里，他看过源稚生挥刀要当正义的朋友，记住了那种刀术，也残留着对这柄刀的怀念。</p>
+            <p>路明非当然也问过乌鸦是不是记得楚子航，乌鸦不记得，乌鸦只记得那个猛虎般的阿卜杜拉阿巴斯。</p>
+            <p>路明非自己都渐渐地接受了眼下的现实，乌鸦这么说他也就点点头，并不以为意，却没想到楚子航随手舞几下刀，却像是唤醒了乌鸦的某些记忆。</p>
+            <p>“在我记得的那个过去里，是你把这柄刀、还有一柄叫童子切的刀送给了他，他把它们放在一个刀袋里，一直都背着。”路明非轻声说。</p>
+            <p>“我还是什么都想不起来，我只是很高兴看到还有人会摆这样的架势，”乌鸦轻声说，“真怀念啊。”</p>
+            <p>三个人站在远远的暗处，看着楚子航认真地挥刀收刀，行云流水。</p>
+            <p>明亮的刀光里，仿佛能映出那已经湮灭的过去。</p>
+            <p>伦敦飞东京的空客A380客机降落在成田机场，飞机刚刚停稳，黑色的旅行车已经开到了舷梯下方。</p>
+            <p>其他乘客还被关在飞机里，一身黑风衣的女孩已经率先提着沉重的行李走下飞机，登上旅行车离开。</p>
+            <p>“外国人在日本就有这样的优待么？别是外交官什么的吧？”</p>
+            <p>“哪有这么年轻的外交官？皇室成员吧？可能是皇室成员。”</p>
+            <p>归国旅行团的大爷大妈们望着女孩修长的背影议论纷纷。</p>
+            <p>旅行车里已经有了一位乘客，也是个年轻女孩，淡褐色的长发，米色的风衣，显得干练而低调。</p>
+            <p>“维多利亚斯诺顿，叫我维多利亚就好了，二年级生，现在的身份是执行部临时专员。”刚上车的黑风衣女孩自我介绍。</p>
+            <p>“我听说过你，女爵殿下，你在新生中的表现很优异。”米色风衣的女孩伸出手来。</p>
+            <p>两人握了握手。</p>
+            <p>“现在的情况是怎样的？”维多利亚问。</p>
+            <p>“跟EVA的判断一样，路明非确实到了东京，此刻他就藏身在这个城市的某处。”</p>
+            <p>“蛇岐八家的态度呢？这是他们的地盘。”</p>
+            <p>“蛇岐八家的代理局长佐伯龙治表示支持学院的决定，一有路明非的情报就会报告给学院。转天他就带队包围了路明非一行，可没能捕获路明非，自己反而被路明非绑架，当成了人质。路明非带着这个人质，平安地离开了之前的藏身地。佐伯龙治于次日一早被人从一辆出租车上推了下来，位置是蛇岐八家的总部所在地，源氏重工。”
+            </p>
+            <p>“太可疑了。”</p>
+            <p>“确实可疑。尤其我们调查了佐伯龙治的背景，他的外号是乌鸦，曾是蛇岐八家前任大家长源稚生的随从。他跟路明非很熟，非常熟。”</p>
+            <p>“有人盯着佐伯龙治么？”</p>
+            <p>“学院的代理人藤原信之介负责这件事，此刻他正前往源氏重工做拜会。”米色风衣的女孩说，“设备带来了么？”</p>
+            <p>维多利亚打开随身的旅行箱，里面是一支沉重的黑色枪械。没有任何枪械目录上会记载这支武器，因为本就不是量产版本。</p>
+            <p>装备部出品，最大命中距离达到三公里，搭载智能瞄准系统，子弹可制导，可抗强风，可以走弧线弹道。</p>
+            <p>这东西大概不能叫做枪了，说是超距离精准杀人武器更妥当。</p>
+            <p>米色风衣的女孩点点头，“收好它，这件武器如果被海关查没，麻烦就大了，所以特意走了外交通道来接你。”</p>
+            <p>“你是这次行动的负责人？”维多利亚问，“我还不知道你的名字。”</p>
+            <p>维多利亚做了自我介绍，米色风衣的女孩却没说自己的名字，分明这次行动里大家是拍档，这令维多利亚有些讶异。对方看起来并不像那种没有礼貌的人。</p>
+            <p>此外对方看起来还有点面熟，可维多利亚不记得在什么地方见过她了。</p>
+            <p>“我们认识的，学生会的活动上，”米色风衣的女孩轻声说，“我叫伊莎贝尔，之前是路明非主席的助理。”</p>
+            <p>维多利亚一愣，忽然想了起来。是那个会跳弗拉明戈舞的伊莎贝尔，学生会舞蹈团的团长，总是低调地出现在路明非身边，却很难不被注意到。</p>
+            <p>那个裙边带着蕾丝、身材天鹅般优雅的舞蹈家，此刻却是以手术刀般的锋利姿态出现，维多利亚一时竟没认出来。</p>
+            <p>“原来是你。”维多利亚说。</p>
+            <p>她忽然明白了伊莎贝尔为何一直没做自我介绍。</p>
+            <p>因为尴尬，她曾是路明非身边最亲近的几个人之一，如今却是捕猎路明非的猎犬。</p>
+            <p>“你被选中加入这个组，是因为你跟他有过接触，对他多少有些了解。”伊莎贝尔轻声说，“这个组里的每个人都是，好猎犬要知道猎物的气味。”</p>
+            <p>这时乘客舱和驾驶舱之间的墨晶玻璃降下，驾驶员回头跟维多利亚打了个招呼，那是曾经在巴西一起出任务的冈萨雷斯。</p>
+            <p>“元老会会直接对我们下达指令，不必管执行部，”伊莎贝尔补充，“元老会觉得执行部在追捕的过程中一直都有所保留，施耐德教授反复强调目标的生命安全，错失了时间和机会。我们不允许犯这样的错误。”</p>
+            <p>维多利亚低下头，看着枪械箱中成排的子弹，最末的两颗是用深红色晶体磨制而成的弹头。</p>
+            <p>贤者之石制作的子弹，能够一枪重创龙王的炼金装备，元老会放进这两颗子弹，意思很明显，必要的情况下，他们可以击毙目标。</p>
+            <p>伊莎贝尔拍了拍她的肩膀，“不用太纠结，你不是射手，你只是负责把这把枪送到日本来。真正负责动手的人还在路上，他们也是这次行动的负责人。”</p>
+            <p>“他们？”维多利亚问。</p>
+            <p>“守望者，和雷霆。”伊莎贝尔缓缓吐出这两个代号。</p>
+            <p>——————————</p>
+            <p>乌鸦冷冷地看着藤原信之介。</p>
+            <p>他考虑过很多表演方式，最终决定采用这种冷脸狂傲男子的路线。因为他脑补了一下，要是自己真的傻逼了，被想抓的人抓了，还捆得结结实实的丢在自己办公室门口，想必也是这种硬撑的嘴脸。</p>
+            <p>“听说局长在追捕路明非的过程中受伤了，特地前来看望。”藤原信之介深深地鞠躬。</p>
+            <p>乌鸦脸上多处擦伤，左臂还吊在脖子上，就算藤原信之介想看医嘱也没问题，肩部肌肉真的是扭伤了。</p>
+            <p>跟路明非喝完啤酒的当夜,乌鸦就把这些伤都给准备好了，明知道学院会怀疑，可做戏还是得做足，他是个被黑道耽误的演员，这点路明非看得没错。</p>
+            <p>“来看我出丑么？还是怀疑是我故意放走的他？”乌鸦冷冷地说。</p>
+            <p>“不敢不敢，学院相信蛇岐八家的承诺，深表感激。”藤原信之介紧张得不敢坐下，乌鸦也没叫他坐下。</p>
+            <p>他恭恭敬敬地上前几步，把精美的礼盒呈在乌鸦面前的小桌上，又退了回去，“学院让我带来略表心意的礼物，还望您能收下。”</p>
+            <p>乌鸦狐疑地打开礼盒，里面是一份购自银座“千疋屋”的顶级水果。这家百年老店经营日本最昂贵的水果，通常购买者都是当作礼物。</p>
+            <p>不得不说这是一份非常贴心的礼物，如今他佐伯龙治是蛇岐八家中的大人物，送他什么值钱的东西他都不稀罕，但这么一份慰问病情的优雅礼物就显得非常到位了，完全不像是学院的霸道作风。</p>
+            <p>“太感激了，请坐下说话。”乌鸦也只好对藤原信之介表达一点善意。</p>
+            <p>藤原信之介诚惶诚恐地跪坐，跟个小媳妇似的，“今后的工作还请佐伯局长多多支持。”</p>
+            <p>“这是自然，”乌鸦只得继续敷衍，“只要他们还在日本境内，蛇岐八家就不会放弃追捕他们，学院大可以放心。”</p>
+            <p>“学院的意思是也想派遣几位专员前来协助，不知道佐伯局长您意下如何？”</p>
+            <p>“需要蛇岐八家安排他们的住行么？”乌鸦嘴里这么说，心里却是冷冷的嘲讽。</p>
+            <p>这是日本，蛇岐八家从神话时代开始经营的地方，在这里只有蛇岐八家说了算。</p>
+            <p>EVA固然强大，但蛇岐八家的“辉夜姬”系统也不是吃素的，凭借在日本境内的网络优势，卡塞尔学院的专员们落地东京就会被监控，他们却连路明非的影子都摸不着。</p>
+            <p>“不敢不敢，他们能照顾好自己的。”藤原信之介点头哈腰，“还有一件小事，也希望得到局长大人您的支持。”</p>
+            <p>“请说？”乌鸦挑眉。</p>
+            <p>“我们知道蛇岐八家也控制着东京绝大多数的广告屏幕，这里有段视频，希望能够在整个东京都范围内的广告屏幕上投放。”</p>
+            <p>“视频？”乌鸦愣了一下。</p>
+            <p>藤原信之介赶紧摸出自己的手机，调出其中的视频演示给乌鸦看。乌鸦狐疑地看完了，又狐疑地看着藤原信之介。</p>
+            <p>“这是家人的一点规劝，这么做对她而言太冒险了，家人很担心她。”藤原信之介伏拜下去，“拜托佐伯局长。”</p>
+            <p>“既然是家人的意思，我们会尽量协助的，把视频资料传给我吧。”乌鸦点点头，“不过负责经营户外视频广告的是独立公司，我也要跟他们协调放送的时间，有消息我的助理会通知到您。”</p>
+            <p>仓库的门咣当一声响，乌鸦推门进来，拎着一个塑料袋，他看也没看那支指向自己的UMP9，转身把门又锁上了。</p>
+            <p>诺诺松了口气，扣上冲锋枪的保险，丢在旁边的地铺上，楚子航正蜷着身子熟睡。</p>
+            <p>“没被跟梢吧？”路明非从纸堆里抬起头来，耳朵上夹着一支铅笔，头发乱得像是鸡窝。</p>
+            <p>“拜托，这里是东京，在东京有几个人能跟我的梢？”乌鸦把塑料袋丢在路明非面前，旁边找个角落坐下，“我可是这里的地头蛇。”</p>
+            <p>话说得轻松，其实他还是很警觉的，坐了七八站三田线地铁，再换丸之内线，还穿越了几个大人气的商场，就算学院派出真的猎犬跟梢，也被他弄晕了。</p>
+            <p>路明非翻翻那个塑料袋，眼睛一亮，“千疋屋的蜜瓜，顶级货啊。”</p>
+            <p>塑料袋里是个看起来很不起眼的小瓜，表皮是粗糙的网纹，路明非倒听说过这个东西，鼎鼎大名的静冈蜜瓜，这么一颗就要卖到十万日元以上，往往在顶级寿司店才能于饭后吃到一牙。</p>
+            <p>他以前待的高天原也算是顶级消费场所，在那里上班长了不少见识。</p>
+            <p>不过乌鸦其实是个糙汉，对食物的鉴赏水准停留在荞麦面和大阪烧这种程度，忽然带着顶级蜜瓜来探望他们，总觉得有什么不对。</p>
+            <p>“学院的赠礼，说是慰问我的伤势。”乌鸦点燃一支烟。</p>
+            <p>路明非和诺诺骤然警觉起来，死死地盯着那只蜜瓜，好像它是个炸弹。</p>
+            <p>在学院里待过的人，很懂装备部那帮家伙的尿性，他们能把炸弹伪装成任何东西，也能把跟踪器装到任何东西里去。装备部甚至给一只蚊子背上过精巧的跟踪器，遗憾的是被跟踪对象一巴掌拍死了。</p>
+            <p>“没事的，我们的技术部门已经查过了，就是个蜜瓜。”乌鸦懒懒地说，“礼盒里还有梨和葡萄，我都给吃了，也没中毒。”</p>
+            <p>路明非点了点头，掏出短弧刀三两下把蜜瓜给剖了，递了一块给诺诺。</p>
+            <p>他们埋头研究赫尔佐格留下的资料差不多有30个小时了，饿了就吃泡面，困了就靠着眯瞪一会儿，也实在是有点惨，吃块蜜瓜能提升幸福感。</p>
+            <p>“留一半给他醒来吃。”诺诺冲楚子航努了努嘴，说话的声音很低。</p>
+            <p>路明非心说这怎么就跟带孩子似的呢？不过还是老老实实地把最大的一块留了下来，跟诺诺各捧一块啃了起来。</p>
+            <p>乌鸦摆摆手，谢绝了路明非递上来的一块，“不过你们中国人说，没事献殷勤非奸即盗，吃了人家的瓜就得帮人家办事。”</p>
+            <p>路明非又警觉起来，看着乌鸦，心说难道一盒水果就把这家伙收买了？</p>
+            <p>乌鸦摸出自己的手机递到诺诺面前，“他们希望得到我们的帮助，在东京各处的大屏幕上投放这段视频。”</p>
+            <p>屏幕上是个魁梧的中年男人，方正的脸，坚毅的表情，像是那些站在秦始皇墓里的武士俑。</p>
+            <p>“墨瞳，如果你能看到这段视频，请务必坚持看完，这是来自家人的规劝。你身处极大的危险中，跟你同行的人有着潜在的暴力倾向，并犯下过严重的罪行。家人都非常惦念你的安危，希望你能迷途知返。他的事跟你毫无关系，你是无辜的，你只是被蛊惑了。无论你现在身在何处，只要你打下面这个电话跟家人联系，我们有绝对的能力保证你的安全……”
+            </p>
+            <p>诺诺看到这里就把手机丢还给了乌鸦，“他当我是什么？失足少女？”语气冷淡得很。</p>
+            <p>乌鸦和路明非对了对眼神。</p>
+            <p>“所以……这家伙是你父亲？”乌鸦小心翼翼地问。</p>
+            <p>“嗯。”诺诺继续埋头于那些资料。</p>
+            <p>乌鸦和路明非又对看。</p>
+            <p>“你跟你父亲的关系不好？”乌鸦继续问。</p>
+            <p>“你从我现在的脸色也能看出来吧？”诺诺头也不抬。</p>
+            <p>乌鸦挠挠头。他把这段视频反复看了几十遍，真的就是一个中年男子苦口婆心地劝女儿回家。</p>
+            <p>他也搜索了这名男子的资料，网上的资料不多，显然有人刻意屏蔽了对这名男子的搜索，但借助辉夜姬的帮助，他还是大概知道了些东西，男子是很多家大型企业的幕后控制者，资产雄厚，在世界范围内都是举足轻重的人物。</p>
+            <p>诺诺也承认了这名男子是她的父亲，那么她确实出生于一个优越的家庭，虽然比不上富可敌国的加图索家。</p>
+            <p>路明非冲乌鸦摇摇头，阻止了乌鸦继续提问。他也隐约知道诺诺的家境优越，可诺诺从不提起自己的家人，连寒暑假也不回家，都是在学校或者外出旅行度过。</p>
+            <p>恺撒还有个种马老爹经常冒出来表达爱意呢，诺诺却宁愿自己看起来像个全无牵挂的孤儿。</p>
+            <p>“没意见的话我就让他们放送了，回应一下学院对我的慰问。”乌鸦说着，换了话题，“资料看得怎么样了？”</p>
+            <p>路明非摇了摇头，“他的研究资料我们看不太懂，只能勉强判断出这是一份非常血腥的笔记，他进行了大量的生物实验和人体实验来观察龙血的活性。过去的二十年里，日本很大一部分的失踪人口都是他的牺牲品，跟他相比，纳斯维辛集中营的那帮杀人魔都可以称作天使。”
+            </p>
+            <p>“人类在他眼里就是玩具吧？那个变态！”乌鸦低声说。</p>
+            <p>诺诺摇头，“这个判断未必准确，他确实不在乎别人的死活，但也不是那种靠杀人来享乐的变态。他没疯，他神智非常清醒，他很狡诈地扮作两个不同的人，煽动猛鬼众和蛇岐八家相互仇杀。他有收藏的癖好，背地里还很着迷于女人，这都跟那些嗜杀的变态不同。他一直在做研究，似乎还有某个难题困扰着他。”
+            </p>
+            <p>“那个难题难道不是如何获得圣骸么？当时圣骸还藏在多摩川的地下河里。”乌鸦说。</p>
+            <p>“不，如何获得圣骸跟他的人体实验没有什么关系。”诺诺说，“他制造那些蛇形变异的死侍，原意并非是用作打手，而是在研究某个跟龙族血统有关的事。”</p>
+            <p>“他都知道怎么进化成白王了，还有什么事能困扰他？”乌鸦不解。</p>
+            <p>“是，进化成白王原本就是极其艰难的事，基本等同于肉身成圣的操作。可能够肉身成圣的赫尔佐格，却还有未解的困惑。”诺诺说。</p>
+            <p>“有个很可疑的人，不断地出现在他的笔记里。”路明非说，“邦达列夫罗曼诺夫。根据赫尔佐格自己的笔记，他原本对混血种的研究是比较粗浅的。他意外地找到了那具半死的古龙尸体，搜罗到一批混血种的孩子，但他的野心还只停留在利用龙族血统制造超级士兵这一步。这种狂人在历史上并不罕见。他了解到白王圣骸的秘密，还是通过那个到访黑天鹅港的邦达列夫。显然邦达列夫对龙族的了解远比他深刻，但邦达列夫又是从哪里学到这个知识的呢？”
+            </p>
+            <p>“他不是自称罗曼诺夫王朝的后代么？沙皇一脉其实是混血种，这也有可能。”乌鸦说。</p>
+            <p>“如果这个邦达列夫是从自己老爹那里继承这些知识的，那么日本早就被灭掉了。”诺诺说。</p>
+            <p>“想像一下，沙皇家族一直都知道白王的遗骸在日本，获得遗骸就有可能继承白王的身份，那他们根本就不会想要建立黑海舰队向西进军，他们会不惜一切代价占领日本！”诺诺说，“在罗曼诺夫王朝的极盛时期，日本可不是对手。”
+            </p>
+            <p>乌鸦想了想，“所以结论是那个邦达列夫有问题？”</p>
+            <p>“是，那个神秘的邦达列夫，好像是他一步步地指引着赫尔佐格，帮助他登上白王之位！”诺诺缓缓地说。</p>
+            <p>乌鸦悄悄地打了个寒战，这个谜越解越大，感觉像是抓住了一条小蛇的尾巴要把它从洞里拽出来，可拉出来的却是泰坦巨蟒。</p>
+            <p>“根据赫尔佐格的笔记，他偷袭杀死了邦达列夫，但似乎太轻易了。这么一个神秘的男人，被赫尔佐格用冲锋枪隔着船舱扫射了一通就死掉了。”路明非说，“赫尔佐格自己也在日记中说，不知道那是否真的是邦达列夫本人。”</p>
+            <p>“死者是个日本男人的面孔，赫尔佐格是根据体型特征猜测那是邦达列夫。他认为邦达列夫有可能是想整容成日本人混进蛇岐八家，进而借助蛇岐八家的力量找到多摩川地下河中的圣骸。”诺诺说。</p>
+            <p>“邦达列夫留下的笔记也是这么说的，赫尔佐格就原样照抄了邦达列夫的计划。”路明非说，“还是很可疑，那份来自邦达列夫的笔记，简直就是如何进化为白王的操作手册。”</p>
+            <p>“可如果这一切都是邦达列夫的设计，他并没有死，却在幕后指引赫尔佐格变成白王。”乌鸦说，“他图什么？他是赫尔佐格的亲爸爸么？费尽心思要让自己的儿子登上王位？”</p>
+            <p>三个人面面相觑，原本就有限的线索到这里又打上了死结，诺诺有些焦躁地把面前的宗卷合上，远远地丢了出去。</p>
+            <p>这对她而言还真是很少见的情况，拥有侧写能力、被人称作“女巫”的她被一堆乱七八糟的信息困住了，什么都推导不出来。</p>
+            <p>乌鸦冲路明非摊摊手，意思是女人就是这样的，她再怎么理性有逻辑，还是会发脾气的。</p>
+            <p>“要不要出去吃点东西？”路明非谨慎地建议，“吃了蜜瓜好像更饿了。”</p>
+            <p>乌鸦悄悄地冲路明非竖大拇指，意思是不愧是高手，这种时候最有效的手段就是带她去吃东西。</p>
+            <p>“可惜我熟悉的几间深夜食堂都很远。”乌鸦看了看表，“是在附近找一家还是开我的车？”</p>
+            <p>“你那辆古董跑车也太显眼了，附近吧。”路明非犹豫了片刻，“有家我吃过的拉面店还不错，24小时营业。”</p>
+            <p>“这大鸡排拉面味道不错啊！”乌鸦喝了一大口汤，赞不绝口。</p>
+            <p>“汤是豚骨和鸡肉一起熬的，老板是博多人，博多风味。大鸡排拉面是这里的特色，一天只供应20份。”路明非说，“我们算是赶巧了，早上三点钟大鸡排进货。”</p>
+            <p>“路君你这么懂行，我都搞不清你和我谁是本地人了。”乌鸦举杯。</p>
+            <p>诺诺大口地吞着面，举杯和乌鸦相碰，路明非有些心不在焉晚了一步，那两人已经把啤酒倒进肚里了。</p>
+            <p>诺诺的酒量本来就不错，她只是不愿跟一般人推杯换盏。</p>
+            <p>这间24小时的拉面馆位于小街的深处，并不容易找到，他们到的时候店里空无一人，只有上了年纪的老板守着汤锅。</p>
+            <p>路明非用听起来有些含糊但还算地道的日语点了单，显然是他以前常来的店。</p>
+            <p>但老板并未认出这位过去的熟客，他们都戴着口罩和棒球帽，捂得严严实实。</p>
+            <p>翻阅那些资料的时候还能强打精神，现在一口热汤下去反而觉得疲惫不堪，诺诺大口大口地喝着啤酒，很快，熬夜的苍白脸色就被酒精和面汤的热气染红了。</p>
+            <p>“可惜邦达列夫的那间实验室已经被赫尔佐格毁掉了，否则还能多点线索。”乌鸦压低了声音，“这样下去也不是办法，那间仓库是家族的重地，时间长了有人会觉察。”</p>
+            <p>老板为他们准备好食物就去后厨收拾了，低声说话应该没什么问题。</p>
+            <p>“你刚才说学院会派人来东京？”诺诺摇晃着啤酒杯。</p>
+            <p>“这个倒没什么可担心的，”乌鸦说，“就算把整个执行部派到东京来，也跟沙子洒进海里没什么区别，这里可是东京。”</p>
+            <p>从他们桌边的窗户望出去，这座巨大的城市就像一大把洒落在海边的珍珠，每一颗闪亮的珠子都是一座大楼。</p>
+            <p>“不过也不能拖太久，”诺诺说，“执行部本部也不是没有真正的精英，只不过那些精英都被放在很重要的岗位上，就看他们什么时候决心把他们投入战场。”</p>
+            <p>楚子航老老实实地坐在旁边，一口口地吃面喝汤，几乎不发出任何声音，偶尔抬眼看看这三个大人，尽管他自己也是成人的身量，但是心里却是个十五岁的孩子。</p>
+            <p>路明非心说楚子航要真是他儿子也不赖，这可真是个很好带的孩子。</p>
+            <p>从中国一路逃到这里，差不多一个月过去了，这家伙已经不像开始那样惊恐不安了，叫他吃饭就吃饭，叫他睡觉就睡觉，也没有反复地追问路明非和诺诺这到底是怎么回事、自己怎么会忽然穿越了差不多七年的时间成了一个大人之类的问题。唯有每次入睡前他都会默默地盯着天花板好一会儿，然后才闭上眼睛。
+            </p>
+            <p>龙族5，</p>
+            <p>路明非开始不明白，后来忽然想起来了，在因果线没有被修改之前，楚子航也有这个习惯。他每次睡觉之前都会再回忆一遍自己跟父亲之前的往事，把每个他不想忘记的时刻都回溯一遍，因为他读过一本书，书里说人的大脑就像一块容易出错的硬盘，最终那些曾经看来很重要的事情都会渐渐地模糊，就像硬盘被时光消了磁。
+            </p>
+            <p>可楚子航就是不愿意忘记，这个男孩是要强行留住那些跟楚天骄有关的记忆。因果线虽然被修改了，可他还是在那天晚上失去了父亲。</p>
+            <p>有些人就是这么犟的，无论他是十五岁还是二十二岁，心底深处都留着那个坚硬的伤疤。</p>
+            <p>诺诺瞥了楚子航一眼，帮他把汤碗里的大鸡排捞了出来，用刀切碎，又丢回他的碗里去。</p>
+            <p>“真像是贤妻良母呢。”乌鸦漫不经心地说，“从外表上可看不出陈小姐是这样的人。”</p>
+            <p>诺诺白了他一眼，继续低头吃面，吃了几口忽然放下了筷子，“你们不是想知道我为什么不喜欢我老爹么？”</p>
+            <p>乌鸦和路明非惊讶地对视一眼，没想到诺诺会自己提起这件事。</p>
+            <p>“我有54个兄弟姐妹，”诺诺低声说，“除了少数双胞胎和三胞胎，其他人的母亲都是不同的人。”</p>
+            <p>“令尊真是……能力过人。”乌鸦言不由衷地称赞。</p>
+            <p>“别误会，他并没有那么多妻子，也不是恺撒老爹那种种马性格的人。”诺诺喝了一口酒，“他只是觉得他的龙族血统很珍贵，必须传给更多的人。他那么优秀，有那么多产业，需要很多的继承人来管理。所以他投资了很多不同的医疗机构，找到那些贫穷愿意代孕的女人，给她们钱，给她们做人工授精，让她们为他生孩子，生下孩子就抱走。资质一般的孩子就交给家里投资的保育院抚养，血统优秀的就由老爹亲自教育。”
+            </p>
+            <p>“我还以为城户光政这种人只会出现在漫画里……”路明非说了一半忽然住嘴，意识到这时候谈起某部漫画有搅局之嫌。</p>
+            <p>诺诺倒没介意，而是继续说了下去，“所以我从小就没见过我母亲，但我有个很大的家庭，光是那些我知道的兄弟姐妹就有54人。我们一起生活在一栋很大的庄园里。在上小学之前，我们中的绝大多数人已经学完了小学的课程，其中最优秀的甚至可以说几种语言，体能也远远胜过同龄人。老爹的生意很忙，但他坚持每个周末都会来庄园看望我们，他就像管理他的企业那样，给我们制定了严格的奖励制度，最优秀的几个孩子会得到奖励还有他的特别关注。再后来我们被分散到世界各地的学校去接受最好的教育，老爹希望他的继承人们渗透到每个国家每个文化圈子里去。到了假期，我们又会重新回到那座庄园，交上自己的成绩单，还是跟小时候一样，最优秀的得到奖励，只有她能得到那个男人的关心和爱护。”
+            </p>
+            <p>“那陈小姐……你是你兄弟姐妹中表现好的还是不好的？”乌鸦小心翼翼地问。</p>
+            <p>“一直都是第一名，”诺诺冷冷地说，“我没有特殊的言灵能力，可我学什么都比他们更快，我打败他们所有人，一直独占着老爹的宠爱。我也对此洋洋自得。”</p>
+            <p>“可有一天，这一切都变了。那年的暑假，我从英国的学校回到庄园，我还记得那个夏天很热很热，我和差不多年纪的几个兄弟姐妹去游泳池打水球，比我们年纪小些的孩子在旁边玩曲棍球……”诺诺的眼神迷离而荒芜，“我们玩得正开心的时候，曲棍球场那边忽然骚乱起来，还有庄园守卫吹哨子的声音和狗吠的声音，感觉是出什么事了。年长的哥哥们从房子里出来，还提着猎枪。我们也赶紧跑过去看，居然只是一个中年女人，不知道怎么误闯进来了。那是我见过的最脏最臭的女人了，大概我家的女仆跟她比起来都像是公主。她似乎是走了很长的路，鞋子早就弄丢了，赤着脚，脚上都是血泡。她的眼神很呆滞，看起来神智还有点问题。年长的几个哥哥提示我们别靠近她，等守卫赶来把她赶出去就好了。我们也不想靠近，她真的太脏太臭了。那个女人看起来也挺害怕我们，但她居然盯着我们，一个人一个人使劲地看，看得我们毛骨悚然。”
+            </p>
+            <p>“有几个玩曲棍球的弟弟拿着球棍赶她，女人尖叫，说着某种我听不懂的话。但我有个哥哥听得懂，他说那是一种印度方言，女人说她是来找孩子的。我想这里怎么会有你的孩子？那片庄园周围几百公顷的森林都是我们家的，就算你丢了孩子，他也没机会跑到我家的庄园里来。可我心里有点不忍心，我就喝令那些弟弟不要动她，我是最受老爹宠爱的孩子，我说话他们不敢不听。那个女人忽然间看到我，眼睛一下子亮了，她慢慢地靠近我，跪在我面前，甚至伸手要摸我的脸。我的哥哥赶紧叫我离那女人远点，可我居然没有躲开，因为我从没见过那种眼神，那么温柔，那么欢喜……她又哭又笑的，跟我叽里咕噜地说话。我听不懂，就看那个懂印度方言的哥哥，那哥哥愣了好久才跟我说，她说，你就是她的女儿。”
+            </p>
+            <p>“我一下子懵掉了，在那之前，我没怎么想过妈妈这回事。我隐约知道我是怎么生下来的，但我怎么来的其实不重要，反正我是父亲的女儿，我在兄弟姐妹中最出色他就会最宠爱我，我只要父亲就可以了。至于我妈妈，大概是什么为了钱可以卖出自己的子宫怀个孕，拿了钱就走的女人吧？是谁我不在乎。可忽然间这么糟糕的一个女人跪在我面前，说她是我妈妈。”
+            </p>
+            <p>“她抱住我，很大声地哭了起来，我没闪开，但也没有回抱她。我就是懵了，我看着我的兄弟姐妹，跟我关系好的几个很焦急，不喜欢我的都在冷笑。这时候守卫带着狗赶来了，庄园里养了几十条比特犬，非常凶猛的斗犬，成年的甚至能跟狮子打。守卫一松开狗链它们就趴在那个女人的身上，同时守卫赶紧把我给拖开。可能是守卫拖开我的动作有点粗暴，那个女人误会了，她已经被比特犬咬得浑身是血了，忽然挣扎着冲过来对那些守卫大吼，应该是在咒骂他们，她又看向我，眼神很焦急。”
+            </p>
+            <p>“真好笑呢，分明是她在被狗咬，可她脸上的表情却是在说，你们不要伤害我的女儿。”</p>
+            <p>路明非默默地听着，不敢打断，那么平静的语调，讲的却是那么辛酸的故事。</p>
+            <p>“那一瞬间我忽然就信了，信她是我妈妈，因为我从来没看过那种……那么爱你的眼神。”诺诺缓缓地说，“我忽然挣脱了守卫，上去就掐断了一条比特犬的喉咙。”</p>
+            <p>路明非点点头，意思是师姐你做得好，这就是我认识的你，你要爱谁你要救谁，别说那是条比特犬，就是前面是一条龙你都往上冲。</p>
+            <p>“大概是我平时太嚣张太招人恨了，看我行为那么反常，一个妹妹抢过守卫手里的电棍，上来捅在我腰间。我晕了过去，醒来的时候已经在一百多英里之外的一家医院里了，是我们家旗下的医院。”</p>
+            <p>“医生拿了我和那个女人的DNA对比结果给我，没错，那个又脏又臭的女人就是我妈妈。她生在印度的一个小村庄，家里很穷，我父亲在附近设立过一家提升地区公共卫生水平的研究所，其实就是帮他找代孕的女人，这在当地是非法的。她16岁在那边接受了人工授精的手术，生下了我，交易完成的当天我就被抱走了，她只见过我一面。她后来后悔了，去了研究所很多次说想把女儿要回去，可那怎么可能呢？从我父亲的角度看，她只是个生孩子的工具，我身上最重要的东西是他的基因。再过几年，研究所也撤销了，她什么人都找不到了。谁也没想到她会来找我，从法律上来说我跟她没有关系，我只是我父亲的女儿，医生努力跟我解释这件事。”
+            </p>
+            <p>“还有一个坏消息是我妈妈的状态很不好，比特犬的咬伤倒还好，但她是脑囊虫的感染者，那是一种寄生虫，在某些落后地方那种寄生虫很常见，它寄生在人体后能生存很多年，虫卵能经过血液进入脑部，从而损伤大脑。以她大脑的损坏程度，基本就是个疯子了。更坏的消息是她应该在怀我的时候就已经感染寄生虫了，按照道理说这种情况下她是无法通过体检成为代孕母亲的，但检查总有疏漏。这种寄生虫几乎确定会感染胎儿，所以我很可能也是携带者。胎儿期的感染者目前从医学上还很难驱虫，所以我必须接受为期一周之久的体检和隔离。我可以想到这个消息传到庄园的时候，那些曾经败给我的兄弟姐妹该是多么地高兴，我是个寄生虫感染者，而且很难治好，怎么够格成为父亲最宠爱的女儿呢？但那时我已经不在乎了。我同意配合，只要他们全力救治我妈妈。”
+            </p>
+            <p>“一周的隔离结束后，医生来找我，说真是侥幸呢，你完全没有被脑囊虫寄生，这在医学上可是千分之一的几率。妈妈是个重度的寄生虫感染者，却生下了健康的女儿。大概是一个女人拼命想生下健康的孩子吧？所以老天都可怜她。”诺诺又去冰箱那边拿了一瓶啤酒，这间店里的饮料是客人自己拿的，事后结账即可。
+            </p>
+            <p>诺诺打开啤酒给自己倒上，自斟自饮，也不管乌鸦和路明非。</p>
+            <p>“那你妈妈怎么样了？”路明非问。</p>
+            <p>“脑囊虫已经侵入她的脑部很长时间了，她再也没醒过来，脑死亡，只剩下一具会呼吸的尸体。”诺诺轻声说，“真不知道她怎么找到我的，那么穷的一个女人，脑囊虫还把她的脑子搞得一团糟。她要跨过国境，要走很远的路，不知道路上有没有人欺负她……”
+            </p>
+            <p>诺诺倒是没什么表情，可路明非低下头去，装作擦鼻子抽了张纸巾，擦了擦眼角。</p>
+            <p>“既然不是寄生虫携带者，一个星期后我就出院了。出院那天老爹亲自来接我，这在我们家是很高的待遇。他说他很高兴我没事，他很担心我，他为我骄傲，我是他最优秀的孩子，我将来会继承他的事业。可我笑了，我说我不是，我是你企业的一名员工。”诺诺接着说。
+            </p>
+            <p>路明非点点头，这是诺诺说话的风格，戳心的话说来就来，连反驳的机会都不给你，真不敢想这种女孩还有过使劲讨好什么人的时期，哪怕那个人是她父亲。</p>
+            <p>“老爹愣了，他说不是，你怎么会是员工呢？你是我的孩子，我给了你生命，我还会给你更多。我没回应他，我对他笑了笑。”诺诺仰头把一整杯啤酒灌了下去。</p>
+            <p>乌鸦和路明非沉默地看着她，听着那杯酒入喉的声音。</p>
+            <p>“生命，不是你生个孩子你就能给她的那种东西，生命，是你给了谁你就会失去的东西！”诺诺放下杯子，缓缓地说，“那天生我的人死了，我却活了过来。从那天起，我再也不是陈家的55个继承人之一，我就是我，我不讨任何人喜欢，也不依靠任何人。”
+            </p>
+            <p>她的语气那么轻那么淡，路明非却听出了咬牙切齿。</p>
+            <p>“所以他也配来叫我回家？”诺诺冷笑，“我哪里有家？”</p>
+            <p>“原来大家都是小孩子。”路明非忽然说出这句没头没脑的话来。</p>
+            <p>可他觉得这话其实挺有道理的，所以大家才变成朋友的啊，都是孤独的死小孩，都是倔强讨人嫌的模样，可心里还是想找个人靠在一起取个暖。</p>
+            <p>所以楚子航才会没原则地帮他，所以诺诺才会那么照顾楚子航，虽然她连这个人是谁都不记得，所以恺撒才会万花丛中过片叶不沾身却追着诺诺不放，所以诺诺才会接受恺撒的求婚……原来是这样的啊，都解释通了。</p>
+            <p>——————————</p>
+            <p>没想到一顿宵夜中知道了那么多的事。藏了那么久的秘密，不是该经历过什么天大的事才暴露的么？却那么简单地在几瓶啤酒后就说了出来。</p>
+            <p>可能就像他跟乌鸦轻易地承认了对诺诺的感情一样吧，早想说了，却没有能听的人出现。</p>
+            <p>“大家聊得那么投入，我也很想附和一下，”乌鸦挠挠头，“不过我家其实还蛮和睦的，我爹是流氓我也是流氓，他很自豪地说我跟他年轻的时候一模一样呢……不过他现在年纪大了，没年轻的时候那么猛了，经常打电话提醒我说出去干坏事的时候要穿防弹衣……”
+            </p>
+            <p>有些凝重的气氛一下子被冲淡了。路明非有点尴尬，诺诺也意识到自己今晚说得太多了，既是酒精的缘故，也是那段视频把她给刺激到了，虽然当时她装出满不在乎的样子。</p>
+            <p>“敬伯父一杯！”诺诺举杯，她一下子又恢复成了那个凡事不顾忌的女孩。</p>
+            <p>乌鸦和路明非也举杯，酒杯碰在一起，飞溅的酒和破碎的气泡像是礼花。</p>
+            <p>楚子航也举起可乐跟他们碰杯，大家都是一饮而尽。</p>
+            <p>刚说完那么沉重的话题忽然没话可说了，诺诺继续喝酒，楚子航啃鸡排，乌鸦磕毛豆，路明非把目光转向窗外。</p>
+            <p>窗外隔着两条街的地方，有一座五层的小楼，是栋有些年头的建筑了，外面却漆成有些刺眼的樱红色，凉夜之中，彩灯挑逗地闪烁着。</p>
+            <p>那是一间情人旅馆，他曾经在那里住过一星期，带着一个发色暗红的女孩子……今晚又是什么人入住那间房呢？应该会发生一些不可描述的事吧，不会像他那样睡浴缸。</p>
+            <p>说起来这间拉面店还是恺撒发掘的，在他们帮绘梨衣收拾完玩具的那天夜里，恺撒建议去宵夜，于是他们就来了这里。之后他们又来过好几次，毕竟牛郎店总是在深更半夜才结束营业，这里的大鸡排拉面又真的很好吃。</p>
+            <p>顺着他的目光，诺诺也看到了那座建筑，虽然对日本也没那么熟悉，可是她立刻猜到了那是什么地方。其实吃面的过程中路明非有意无意地看了好几次，诺诺也都注意到了。</p>
+            <p>诺诺只是看不太懂他的眼神，那么地迷惘。</p>
+            <p>那种两情相悦才会去的地方，难道留下的不是美好的回忆么？是跟那个名叫绘梨衣的女孩么？就算人已经不在了，可回忆起来应该还是美好的啊，为什么那么迷惘？</p>
+            <p>但她什么都没问，她也不想知道。如果路明非真的在这座城市里爱上过某个人，跟她有过什么牵绊，那也好，那她就轻松了。</p>
+            <p>黑色的直升机掠过东京的夜空，身穿黑色作战服的女孩站在敞开的舱门边，俯瞰灯火通明的城市。</p>
+            <p>她的脚边，放着沉重的铝合金箱子。</p>
+            <p>这是维多利亚·斯诺顿值班的时间，不久之前，她换下了疲惫的冈萨雷斯，让他回到地面上睡觉补充精力。</p>
+            <p>这样的轮值已经是第三天了，也不知道元老会怎么想的，让他们不间断地在东京上空巡弋。感觉不像是出来搜捕，倒像是NHK记者，飞行在城市的上空，随时报道车祸或者火灾之类的城市新闻。</p>
+            <p>身穿同样作战服的伊莎贝尔从副驾驶的座位上起身，来到维多利亚身边，递上一片含高浓度咖啡因的口香糖，维多利亚接过丢进嘴里，这种高强度的值班，他们这些人都得靠咖啡因撑着。</p>
+            <p>“真像是大海捞针。“伊莎贝尔说。</p>
+            <p>“这么找是徒劳的，”维多利亚摇头，“这座城市太大了，能藏身的地方太多。蛇岐八家显然没想真的帮我们，有辉夜姬在，EVA也没法渗透进日本当地的网络。”</p>
+            <p>“找不到就算咯，反正上面的意思就是这样，我们就呆在这架直升机上，起飞，降落，加油，再起飞，锁定他们我们就出动，找不到就继续这么飞。”伊莎贝尔跟她肩并肩，“你还真的想他出现？”</p>
+            <p>“如果他真的就出现了呢？伊莎贝尔，你会怎么办？”维多利亚扭头看着伊莎贝尔。</p>
+            <p>“猎物真的出现了，猎犬也只有扑上去。”伊莎贝尔回应她的目光，“你呢？”</p>
+            <p>维多利亚沉默片刻，“我也会扑上去。”</p>
+            <p>“哪怕那个人在巴西救过你的命？”</p>
+            <p>“我很感谢他，但这不是我的事，我们不可能放任一个疑似龙王的家伙全世界乱跑。”维多利亚说，“斯诺顿家族里，没有人放走过龙类。”</p>
+            <p>她并非那种野生的混血种，而是出自历史悠久的斯诺顿家族，她的家族出过很多的屠龙者，连家徽上都是圣乔治屠龙的图案。</p>
+            <p>人类和龙类是不可能共存的，这是她从小受的教育，也是从血腥历史中总结出来的教训。</p>
+            <p>“家门的荣誉么？”伊莎贝尔微笑。</p>
+            <p>“是信条。”维多利亚说。</p>
+            <p>“我跟你的情况也差不多，个人的情感是个人的事，永远不能凌驾在使命之上。”伊莎贝尔说完，转身返回了机舱。</p>
+            <p>维多利亚看着她伶仃的背影，忽然明白了为什么是他们这些人被元老会特别指定为东京狩猎的成员，他们都出自类似的混血种家族，懂得恪守信条，学院的学生档案包含了他们每个人的过往，他们是可以信任的，就像良种的猎犬。</p>
+            <p>还真是一个严密的组织啊，在面临挑战的时候，秘党暴露出它的真实面目了，不是什么教育机构，而是一个暴力机关。</p>
+            <p>维多利亚接着俯瞰这座城市，直升机从巨大的广告牌上飞过，广告牌上的女孩子手持一管牙膏微笑，露出雪白的牙齿。</p>
+            <p>忽然让她想起《银翼杀手》中的那座城市，那么巨大，那么繁茂，就像广告牌和霓虹灯组成的森林。</p>
+            <p>真希望那只猎物就这么迷失在这片森林里，永远都不要出现，那么使命也就跟她们这些人无关了。</p>
+            <p>——————————</p>
+            <p>“来来来，喝罐热咖啡，回去继续工作。”乌鸦带着从自动贩卖机上买的热咖啡回来，一人发了一罐。</p>
+            <p>诺诺和路明非靠在电线杆子上醒酒，诺诺的脸色又有点惨白了，这次不是因为劳累，是喝多吐了，想来那段父亲的视频确实让她很不开心，喝着喝着就多了，最后他们把冰箱里的所有啤酒都喝完了。</p>
+            <p>楚子航拿着瓶矿泉水站在旁边，倒水在诺诺的掌心里让她洗脸。</p>
+            <p>这俩倒是母慈子孝，路明非心想。</p>
+            <p>他喝得也不少，虽然不至于跟诺诺那样失去了节制。他们身在巨大的危机中，本不该喝那么多酒，可喝了酒人就放松了下来，很多烦心的事暂时抛在了脑后。</p>
+            <p>他确实很想查明真相，但也很想跟诺诺一起这么漫无边际地逃亡，推门走进任何一间店买酒喝，放肆嚣张，就像《末路狂花》里的那两个女人。</p>
+            <p>“咖啡因会加速酒精吸收，喝了咖啡她会醉得更厉害。”楚子航盯着咖啡罐子看，路明非知道他是在看咖啡因含量。</p>
+            <p>不愧是连老娘喝牛奶都会固定温度的好孩子，路明非心想。可楚子航还没找到，诺诺已经一口气喝下大半罐了。</p>
+            <p>“走！回去继续干活！”诺诺深吸一口气，站直了，“总能找出一些线索。”</p>
+            <p>“没错！真相永远只有一个！”路明非拍着楚子航的肩膀，“扶着点你姐姐，我看她走直线都难了。”</p>
+            <p>楚子航立刻扶住诺诺的胳膊，忽然又有小太监扶太后临朝的意思了。</p>
+            <p>“路君你不是血统很厉害么？你这么厉害的家伙也会喝醉？”乌鸦叼着烟，扭动着往前走。</p>
+            <p>“我没醉，我就是有点头晕。”</p>
+            <p>“你说我当时想那么复杂的计划干什么呢？早知道你会喝醉，就跟你喝一顿大酒，然后叫人干掉你呗。”</p>
+            <p>“所以说你把我想得太厉害了，我要是真这么厉害，我逃什么逃啊，我就跟执行部的人来硬的。”</p>
+            <p>大家说着毫无营养的对话，沿着长街往前走，风悠悠地吹，野猫在垃圾箱里翻着吃的。</p>
+            <p>这条街忽然亮了起来，路明非恍惚间以为是天亮了，抬头才发现是正前方的大楼上的大屏幕亮了起来。他们所在的并非核心商业区，这里的广告屏在半夜里是熄灭的，反正也没什么人看。</p>
+            <p>那个武士俑般的中年男人出现在屏幕上，看了一眼手中的讲稿，开始像政府发言人那样讲话：</p>
+            <p>“墨瞳，如果你能看到这段视频，请务必坚持看完，这是来自家人的规劝。你身处极大的危险中，跟你同行的人有着潜在的暴力倾向……”</p>
+            <p>“他妈的，怎么这么扫兴？”诺诺骂了一句脏话。</p>
+            <p>“应学院代理人的要求，全市的广告大屏每天八次放送这段视频。你说没问题，我就让他们放送了。”乌鸦说，“不过我让他们把放送时间都放在冷门的时间段，不会有很多人看到。”</p>
+            <p>“干得好！”诺诺把咖啡罐子一手捏扁，就要去砸大屏幕上的男人，被乌鸦制止了。</p>
+            <p>“别别，怎么说也是家族的财产呢，何况你砸一个也没用，东京市内的大屏幕还不得上万块。”乌鸦说，“屏幕给砸了没准还会暴露你们的行踪，仓库可就在附近。”</p>
+            <p>“哥哥！哥哥你怎么了哥哥？”旁边响起楚子航急切的声音。</p>
+            <p>诺诺和乌鸦一惊，扭头看去，路明非正痛苦地抱着头，缓缓地跪了下去。</p>
+            <p>“路明非！路明非！路明非你怎么了？”诺诺扶住他，大喊。</p>
+            <p>“梆子……梆子声！梆子声！”路明非虚弱地嘶吼，浑身颤抖，像是伤寒病人发病似的。</p>
+            <p>那个男人开始讲话的时候，路明非忽然听到了一个熟悉的声音，一种奇怪的梆子声，混杂在男人铿锵有力的讲话声里。就像是牧师宣讲时的背景音乐，起初低微，但越来越响亮，最后完全压过了说话的声音，整个世界都被那诡异的梆子声填满，简直像是黄钟大吕。
+            </p>
+            <p>他听过这种梆子声，一共两次，一次是跟绘梨衣在那间餐厅的时候，一次是跟源稚女在高天原店里，那种奇异的节奏就像是死神演奏的音乐，能把人的灵魂生生地轰碎。</p>
+            <p>那是……赫尔佐格的梆子声！</p>
+            <p>难道说那个恶魔还没有死？难道他悄悄地尾随着他们？他无法抵抗这种梆子声，当他无法行动的时候……诺诺就有危险！</p>
+            <p>路明非狠狠地咬破舌尖，想要借疼痛来恢复神智。</p>
+            <p>但根本没用，他几乎感觉不到疼痛，准确地说他感觉不到肉体的疼痛，但精神上的疼痛却能压垮他。似乎有一柄沉重的钝刀从他的头顶中间往下劈，一刀接一刀，要把他的灵魂劈成两半。</p>
+            <p>幻觉层层叠叠地出现，青铜的古钟摇荡着发出轰鸣……苍白的魔鬼被圣枪钉死在十字架上……穿着白裙的女孩们在花园中嬉戏，可整个花园都在熊熊燃烧……</p>
+            <p>“我去你他妈的！出来！出来！”路明非嘶吼起来，眼底流淌着金色的火焰。</p>
+            <p>那不是他的声音，而是路鸣泽的，这个魔鬼很罕见地失去了控制，挣扎着要从他的身体里出来。</p>
+            <p>诺诺想要把他拉起来，可刚刚看到他的脸就呆住了。</p>
+            <p>路明非正在剧烈的龙化之中，青灰色的鳞片突出皮肤表面，骨骼以肉眼可见的速度生长和变形，黑色的骨刺突破身体表面，肌肉剧烈地隆起，每一根肌肉纤维都那么清晰，像是绞紧的钢缆。</p>
+            <p>最可怕的却还是他的脸，那张脸还是路明非模样，却不知为何透着残暴和狰狞。</p>
+            <p>诺诺被吓到了。</p>
+            <p>这不是她第一次目睹路明非的龙化，也不是最严重的一次，与奥丁为敌的时候，路明非完全就是个龙类的形态，狰狞恐怖。</p>
+            <p>但那时的路明非看她的眼神还带着温柔，还会说出让她放心的话。此刻的路明非不同，他低低地嘶吼，瞪着赤金色的眼睛环顾周围，像是要找出那个藏起来敲打梆子的人，将他生吞活剥。</p>
+            <p>乌鸦手足无措，照眼前的架势，路明非随时会变成一头愤怒的古龙，他就该抓紧时间一枪崩了这家伙的头。</p>
+            <p>这时候路明非的口袋里传出了急促的电话铃声，诺诺愣了一下忽然明白了，从路明非口袋里掏出那部EVA送来的手机。</p>
+            <p>“音源！快找音源！这声音是从某个扩音器里发出来的！”屏幕里的芬格尔正心急火燎地喊。</p>
+            <p>乌鸦忽然想了起来，类似的事情也曾发生在源稚女的身上，应该是赫尔佐格能通过某种奇怪的音频控制特定的对象，虽然原理还不清楚。</p>
+            <p>难道说赫尔佐格没死？乌鸦浑身都是冷汗。</p>
+            <p>乌鸦拔出枪来，对着周围瞄准，但这条街上除了他们几个连鬼影都没有，更别说某个敲着梆子的怪人。</p>
+            <p>他也没听到什么梆子声，整条街道上都回荡着某个男人的说教，乌鸦抬头看向半空中的大屏幕，放送的还是刚才的那段视频，藤原信之介要求的就是反复放送。</p>
+            <p>乌鸦还没完全想明白，手中的枪已经被诺诺夺走了。诺诺铛铛两枪点射，干掉了大屏幕两侧的扩音器，死死地盯着大屏幕上那个无声说话的男人，再一枪，正中男人的额心。大屏幕闪烁了几下，爆出几团电火花，黑了下去。</p>
+            <p>路明非觉得自己就像一个即将溺死的人被提出了水面，龙化现象立刻减弱，全身痛得像是有人刚把他的骨头一根根地敲断了，他趴在地上大口地喘息，剧烈地咳嗽。</p>
+            <p>“那个音频是藏在那段视频里的，我们中只有路明非对它敏感，所以我们听不到。”诺诺说。</p>
+            <p>“这他妈是个陷阱！”乌鸦神色狰狞。</p>
+            <p>“你们这俩蠢货！还不快撤？你当学院派来的那帮贱狗只会放几声梆子给你听？你当他们是来给你演木偶戏的？”屏幕里的芬格尔语气急躁。</p>
+            <p>乌鸦一把拉起路明非，转向诺诺，“带着你干儿子，跟我走！”</p>
+            <p>诺诺愣了一下，反应过来了，一把拉住楚子航，这男孩脸吓得煞白，藏在电线杆后面。</p>
+            <p>地面湿滑，四个人跌跌撞撞地跑向小街尽头。</p>
+            <p>可刚跑出这条街，乌鸦就站住了，小街之外是大路，此刻夜深人静，路面上没有人也没有车，可两侧的高楼上，数不清的大屏幕亮起，每张屏幕上都是那个单调说教的男人。</p>
+            <p>无数个说教的声音汇集起来，在高楼大厦之间回荡。几分钟之前听到这男人的声音，乌鸦只觉得烦得不行，可现在听到，觉得那根本就是某种摄魂咒。</p>
+            <p>乌鸦忽然丢开了路明非，路明非跪在地上，大口地喘息着。</p>
+            <p>诺诺想要上去把他拉起来，却被乌鸦阻止了。</p>
+            <p>乌鸦给诺诺看自己的掌心，乌鸦的掌心被烫伤了，好像刚刚握过烙铁之类的东西。</p>
+            <p>不是他想要丢开路明非，而是他根本握不住路明非的手腕了，路明非的身体烫得可怕。</p>
+            <p>路明非缓缓地起身，乌鸦和诺诺缓缓地退后，因为路明非身上透出来的那股气息，恐怖的气息，介乎暴怒的君主和嗜血的野兽之间。</p>
+            <p>他们无法肯定这次站起来的是人类还是恶魔。</p>
+            <p>路明非缓缓地仰望天空，悠长地吐出一口气，夜幕下那口气泛出淡淡的青蓝色。他低下头，遥遥地望着诺诺和乌鸦，瞳孔中仿佛流淌着熔岩。</p>
+            <p>乌鸦和诺诺差点忍不住要跪下，此刻随着目光，那种恐怖的气息完全笼罩了他们，那股巨大的威严简直能压弯他们的脊柱。</p>
+            <p>但路明非立刻就收回了目光，他低低的吼叫着，步履蹒跚地去向了另一个方向，他从乌鸦和诺诺身边经过的时候，那股扑面而来的热浪，感觉是有一条熔岩的大河在他们身边流过。</p>
+            <p>乌鸦和诺诺呆呆地看着他的背影，他每前进一步身体就会发生一些变化，他的衣服片刻就被燃烧殆尽，裸露出来的是鳞爪峥嵘的身躯，粗壮变形的骨骼，扭曲却强大的肌肉，浑身鳞片打开合拢，每次打开都会从鳞片底部释放出大量的热气。
+            </p>
+            <p>他脚下的地面微微震动，街道旁边的消防栓忽然间开裂，地下水的水珠化作漫天暴雨，这“雨水”淋到路明非的身上，顷刻间就化作蒸汽，像是刚刚从炉火中拿出来的剑坯正在经历淬火的过程。</p>
+            <p>“我们怎么办？”诺诺看向乌鸦，她很少会像现在这样束手无策。</p>
+            <p>“我想办法！我想办法！”乌鸦摸出手机拨打某个号码。</p>
+            <p>那是室外广告投放公司的号码，机房里应该还会有值班的人，执行局局长的命令对他们是管用的。</p>
+            <p>眼下东京的每个角落里都回荡着那摄魂的梆子声，他们无处可逃，也不可能摧毁每一块大屏幕，唯一的办法是掐掉播放源头。</p>
+            <p>“快一点！快一点！快他妈的给我接电话！”乌鸦急得恨不得甩掉手机。</p>
+            <p>每拖延一秒钟，路明非就会失去一分控制，但此刻的路明非还有多少算个人类？乌鸦也没有把握，也许他们已经失去了那个叫路明非的朋友，暂时地，或者永远地。</p>
+            <p>地面龟裂，路明非沿着路中间的白线蹒跚前行，看向左右，又仰望天空，他的姿态中甚至带着几分好奇，像一只新生的恶魔正在打量这个世界。</p>
+            <p>他在一面橱窗玻璃之前站住了，玻璃被擦得镜子般亮，他缓缓地抬起头来，看到了镜中的自己。他愣住了，左左右右地歪着头，像是小猫看到镜中自己的表现。</p>
+            <p>“路明非！醒醒！”诺诺大吼着想要上前，想要在他一瞬间恍惚的时候把他的神智给唤回来。</p>
+            <p>但她还没靠近路明非身边，路明非忽然对着天空咆哮起来，吼声里带着痛苦的意味。单是这声咆哮就激发出围绕他自己的龙卷风，诺诺就像纸片那样被吹飞，狠狠地撞在街边的一辆车上。</p>
+            <p>电线杆成片地倒塌，断开的电线在狂风中飞舞，数不清的电光连接在路明非的身上，狂风、暴雨、雷电……简直就是某位恶魔登上王位的庆典。</p>
+            <p>乌鸦的电话终于接通了。</p>
+            <p>“谁负责室外广告放送？给我把信号流掐掉！掐掉！”乌鸦大吼。</p>
+            <p>“看看您的背后，佐伯龙治局长，猎物走出了森林，猎犬们就该欢快地赶来了。这个时候，掐掉信号流恐怕已经来不及了。”电话那头的人说，语气里带着微微的笑意。</p>
+            <p>这时乌鸦听到了来自背后的风声，巨大的风声。</p>
+            <p>他缓缓地转过身，黑色的直升机自道路尽头缓缓升起，雪亮的光柱笼罩了路明非的身影。</p>
+            <p>直升机的舱门敞开着，穿着作战服的女孩们并肩而立，两张脸都很漂亮，令人印象深刻。那种作战服的造型看着很眼熟，学院的猎犬们终于赶到了。</p>
+            <p>乌鸦忽然看懂了这个陷阱，隐藏了梆子声的视频……日夜巡逻在东京上空的直升机……当诺诺打碎那面大屏幕的时候，狩猎队就锁定了他们的位置。</p>
+            <p>“你是谁？”乌鸦低声问。</p>
+            <p>家族内没人敢跟他这么说话，室外广告放送公司那边想必已经失守，他已经无法掐断信号源了。他只想知道到底是谁给他设的这个陷阱，将来好掐断他的脖子。</p>
+            <p>“狩猎比赛的敲钟人而已。”对方微笑着说完，挂断了电话。</p>
+            <p>维多利亚拍醒了副驾驶座上的冈萨雷斯，这家伙回到地面上买了几罐咖啡就重新登上了飞机，大概是不想留下两个女孩熬夜。</p>
+            <p>冈萨雷斯刚刚睁开眼睛，就被下方的景象震撼了，那蹒跚独行的恶魔喷吐着暗蓝色的高温气息，电光、暴雨和龙卷风围绕着他，整个街区的元素平衡因他而破坏。</p>
+            <p>然而更可怕的还是他流露出来的巨大威压，狂潮般席卷而来，只是看那个背影就会觉得恐惧，就像心脏被魔鬼冰冷的爪子捏住了。</p>
+            <p>伊莎贝尔在胸前画了个十字，她是个虔诚的教徒。</p>
+            <p>她制止了维多利亚，维多利亚刚刚打开那个武器箱，正要取出其中的狙击步枪。</p>
+            <p>“别用那个，那是特别为‘雷霆’准备的。”伊莎贝尔轻声说，“你控制不了那支枪。”</p>
+            <p>“雷霆和守望者还没到么？”维多利亚和她并肩而立，望向窗外那个恐怖的背影，“要不要试着呼叫他们？”</p>
+            <p>“没必要，我们已经发出了警报，如果赶得上，他们会出现的。”伊莎贝尔摇了摇头，“我们做我们能做的一切，为他们争取时间。”</p>
+            <p>这支小型狩猎队的核心人物——雷霆和守望者——一直没有报到，学院也没有给出他们的联系方式，因此伊莎贝尔暂代着队长的职务。</p>
+            <p>“那真是的……路明非主席么？”冈萨雷斯喃喃。</p>
+            <p>他不敢确定，那个人形龙王般的背影，是否真的就是曾在里约热内卢见过的那个人。</p>
+            <p>那时他是那么地闪光，背负着全部人的希望，此刻他却背对着整个世界，低低地吼叫着，不知道是愤怒还是狂笑。</p>
+            <p>“是他，没有错。”伊莎贝尔轻声说，“学院对他的判断是对的。”</p>
+            <p>冈萨雷斯和维多利亚都不再说话了，他们中最有发言权的当然是伊莎贝尔，这位学生会舞蹈团的团长也曾是路明非在学生会内部的助理，学院里甚至有过伊莎贝尔团长和路明非主席之间的绯闻。</p>
+            <p>“放弃捕捉计划，直接启用摧毁计划。所有的重武器，饱和攻击，一旦攻击开始，就不能给他留下任何喘息的时间。”伊莎贝尔下令。</p>
+            <p>直升机座舱里立刻被装填弹药和检查枪械的声音填满了，不光是他们三人，还有从世界各地汇集东京的其他专员，多数都曾是学生会各部的部长。</p>
+            <p>他们曾在这个男孩的面前为了各种事情争执不休，从各部的年度预算到庆典上的出场顺序，只等会议桌尽头那个耷拉着眉毛的男孩点点头说那不如就这样吧，于是一锤定音。</p>
+            <p>然而此刻他们所有人都在同一个阵线，阵线的那一边就只有一个人——那个曾经衣冠楚楚带领他们的男人。</p>
+            <p>——————————</p>
+            <p>“别开枪！别开枪！”乌鸦冲上过街天桥，挥舞着双臂，对那架直升机上的人狂吼。</p>
+            <p>直升机已经悬停在那里差不多半分钟了，像是一个沉默的观察者，但他知道这帮人会做什么。</p>
+            <p>他在红井深处想要偷袭路明非的时候，制订的方案和伊莎贝尔类似，饱和火力瞬间毁灭，不留任何余地，任何受过秘党培训的人，只要看到那个背影就会这么决定。</p>
+            <p>“我是日本执行局局长！这里的态势归我掌控！”他顾不得身份暴露了。</p>
+            <p>直升机微微一震，机腹下一道笔直的火光冲着乌鸦飞去。</p>
+            <p>这架直升机是改装过的，甚至装载了小型航炮，发射的不是普通炮弹，而是脱壳穿甲弹，能够一炮打穿轻型坦克的装甲。</p>
+            <p>炮弹几乎是贴着乌鸦的肩膀飞过，那道灼热的风几乎能烤焦乌鸦的脸，狩猎队以这样的方式表达了他们的决心。他们不会管乌鸦是谁，也不管这是谁的地盘，他们可以为摧毁前方的背影支付任何代价。</p>
+            <p>乌鸦猛地转过身，眼睁睁地看着炮弹在路明非的背上爆炸，道路两侧的车辆都被爆炸的气浪掀飞。</p>
+            <p>刺鼻的硫磺味瞬间弥漫了整条街道，那枚炮弹里无疑填充了精炼硫磺，炼金术制造的化学品，对于龙类有着剧烈的毒性。</p>
+            <p>“停下停下停下！”乌鸦挂在高架桥的栏杆上大吼。</p>
+            <p>一辆被炸飞的汽车砸中了乌鸦所在的过街天桥，把天桥砸歪了，乌鸦及时地抓住栏杆才没有掉下去。</p>
+            <p>但没有人在乎他吼什么，他只能眼睁睁地看着各种重武器连续命中那个恐怖的身影，连续地爆炸，那个身影被炸得趔趄和倒地，艰难地爬起来，再又倒地，他狂乱地挥舞着利爪，却只是扑空，或许他如此只是一个强大但是低智的怪物，甚至不能区分敌人是谁。
+            </p>
+            <p>像是被原始人弓箭围攻的剑齿虎，它咆哮着挣扎着，露出引以为傲的利齿，想要咬死敌人，却茫然地不知到底是什么伤害了自己，狂奔直到失血死亡。</p>
+            <p>这个时候，室外广告投放公司的监控室里，黑衣的男人正擦拭着手中的小刀，从监视器里欣赏这一幕。</p>
+            <p>他的身边尽是尸体，鲜血涂满了墙壁，像是什么当代艺术的画作。</p>
+            <p>那发脱壳穿甲弹只是第一枪而已，接下来的半分钟里，数不清的火力倾泻在那个狰狞的背影上，航炮、蜂巢火箭、对地导弹……这么一架不甚起眼的直升机，看上去就是在东京天空里拉着广告旗飞来飞去的东西，却对着那个背影倾泻了足以摧毁一支小型军队的弹药。
+            </p>
+            <p>在监视器里看来，简直就是一只蜻蜓喷吐着巨龙才该有的火柱。</p>
+            <p>爆炸连绵不断，纷飞的弹片瞬间就把路面摧毁了，气浪和冲击波摧毁了沿街的多数窗户，沿街的广告大屏一个接一个地暗了下去，空袭警报声席卷东京全城。</p>
+            <p>“真不愧是学院的手笔，这是把东京当作了靶场啊。”男人轻声地赞叹。</p>
+            <p>他还想继续看下去，却听到了急促的脚步声，来的是受过严格训练的人，想必是蛇岐八家的精锐。</p>
+            <p>“真是扫兴啊，那么精彩的表演。”男人叹了口气，退出了监控室，临走还没忘记锁死了门。</p>
+            <p>要打破这扇坚固的门还需要不少时间，这段时间里整个东京的街头巷尾一直到处都是那个男人在说教。</p>
+            <p>“四号，弹药耗尽！”冈萨雷斯丢掉了手中的肩扛式单兵导弹。</p>
+            <p>“六号，弹药耗尽！”</p>
+            <p>“七号，弹药耗尽！”</p>
+            <p>通过耳机，报告声不断地传入伊莎贝尔的耳朵，在如此密集的炮火声里，不靠对讲机根本无法对话。</p>
+            <p>连这架经过改装的直升机都难以承受炮火的后座力，它剧烈地震动着，像是随时都会散架。</p>
+            <p>炮火声终于停下了，所有人包括直升机外载的重型弹药全部耗尽，整条街道都弥漫着黄绿色的雾气，其中既有大量的精炼硫磺粉末，也有水银蒸汽——这些都是对龙类有剧毒的化学品——但也有烟雾弹的效果，从一开始他们发射的弹药中就包括了烟雾弹，这虽然会影响视线，但也让附近的居民看不到战场的真相。
+            </p>
+            <p>不到万不得已的地步，学院还不希望“武装暴徒东京街头重火力狙杀怪物”这样的新闻成为明早的新闻头条。</p>
+            <p>“他还活着么？”伊莎贝尔低声问。</p>
+            <p>“我们需要确认他死了，突击队准备，维多利亚、冈萨雷斯和我！”伊莎贝尔给自己扣上一个防毒面具，“释放绳索！狙击手做好准备，如果他还活着，就开枪，不要管我们！”</p>
+            <p>三名突击队员沿着绳索降下的同时，激光瞄准的暗红色光线射入了黄绿色的浓雾之中，专员们通过红外线目镜监控着整条街道。</p>
+            <p>现在整条街还被高温的爆炸尘笼罩着，红外线目镜中也是一片模糊，但此刻东京市区是四级风的天气，很快爆炸尘就会消散，那时候一切高温的物体就会显形。</p>
+            <p>那怪物还活着么？谁也没把握。</p>
+            <p>他似乎并没有想像的那么强，第一发炮弹打到他身上的瞬间，有人看见他踉跄了两步，半跪在地，他愤怒地嘶吼，但无济于事。后来还能隐约看到他艰难地爬行，再后来就被爆炸尘笼罩起来了，只能听到他的吼声。</p>
+            <p>在吼声消失后他们还继续射击了差不多有两分钟，就算龙类的躯体坚不可摧，至少也是把他揍得奄奄一息没有反击之力了。</p>
+            <p>也不知道到底该不该希望他还活着，可能是死了更好，杀死了疑似龙王的怪物当然是可以吹嘘一生的成就，但这支狩猎队里大概没有人会提起，因为他们都曾是那个怪物的朋友。</p>
+            <p>不如就让他这么死了吧，不是死于他们中任何人之手，而是在一场枪林弹雨中消亡，这样就不必有人背负这个屠龙者的名誉和质疑。</p>
+            <p>“街道西侧，安全！”冈萨雷斯报告。</p>
+            <p>“街道东侧，安全！”维多利亚报告。</p>
+            <p>“我正沿着街道中央前进，安全！保持无线电始终畅通！”伊莎贝尔端着突击步枪，蹲姿前进，穿越浓烟和大雨。</p>
+            <p>装备部改装的直升机确实够凶猛，街道被它的火力洗礼之后，整个路面都被翻了过来，等于是弹片和爆炸力把水泥路面犁了一遍。这就给伊莎贝尔他们制造了很多可以藏身的障碍。</p>
+            <p>不知哪里还响着叮叮咚咚的音乐，像是好多小人儿各演奏各的，仔细想了一下伊莎贝尔就明白了，是街边某个八音盒的店被爆炸的气浪波及了，于是店里的八音盒都被炸了出来。</p>
+            <p>“我接近了！”伊莎贝尔低声说，“向我靠近！”</p>
+            <p>她看到了深深的爪印，看尺码倒不惊人，但看那些爪印深陷的程度，可以想像这家伙得用多大的力气行走。爪印和爪印之间连着血迹，看来这家伙还活着，但是想必伤得很重。</p>
+            <p>伊莎贝尔打开了突击步枪前部的刺刀，在能见度那么差的地方，如果发生遭遇战，通常都是近身武器更好用。</p>
+            <p>她沿着爪印一路缓步向前，忽然愣住了，那行爪印的末端，本来应该躺着一个狰狞恐怖的怪物，结果却趴着一个光屁股的男人。</p>
+            <p>准确地说他是全身赤裸的，身体表面大多数地方都蒙着血污，看上去基本就是个血人，但因为他倒地的时候是面朝下的，屁股朝天，大概是被消防栓喷出来的水冲洗的缘故，只有屁股是白的，所以“光着屁股”这个感觉尤其地强烈。
+            </p>
+            <p>伊莎贝尔默立了片刻。她不必把那家伙翻过来检查就能却能确定他是路明非，一年来学生会主席的西装定做都是由伊莎贝尔来负责，她随口就能报出这个人的身高体重三围。</p>
+            <p>忽然有种很荒诞的感觉，是她下令对这家伙开火的，原本看到他的尸体虽然是不是尸体还待确认的时候应该是悲伤或者歉疚的，或者冷着脸没有表情也行，可他却是以这个屁股朝天的姿态等着自己，让人不知道该用什么表情来面对。
+            </p>
+            <p>真像是学生会主席能干出来的事，即使在他最闪光的那些瞬间，伊莎贝尔也能看出他笨笨的一面。</p>
+            <p>伊莎贝尔正想继续靠近，但忽然停下了。</p>
+            <p>“师姐。”伊莎贝尔轻声说。</p>
+            <p>她忽然觉得有人在背后看着她，而且耳机里忽然听不到冈萨雷斯和维多利亚的呼吸声了。</p>
+            <p>从发现路明非到现在不过是十几秒的间隔，十几秒里伊莎贝尔心里发了些感慨，对手就干掉了冈萨雷斯和维多利亚，这未免也太利落了。</p>
+            <p>因为对方跟他们受过完全一样的训练，完全预判了他们的行为，根本就是在路明非旁边等着他们。这当然也需要一些天赋，“侧写”的天赋。</p>
+            <p>伊莎贝尔的手悄悄地伸到枪口末端，解放了固定在那里的刺刀，这种刺刀本身就是一种战术匕首，很适合近身作战。</p>
+            <p>“嗯。”诺诺回答。</p>
+            <p>“师姐，不要逼我。”伊莎贝尔直起了身，全身肌肉缓缓地收紧，像一张弓被拉开。</p>
+            <p>她只比诺诺晚了一届，两个人在学生会的时间有很大的交集。无论是作为前辈还是作为恺撒的未婚妻，伊莎贝尔都对诺诺保留着一些尊重，诺诺在学生会里飞扬跋扈的时候，她还是个有些怯的小女孩。</p>
+            <p>她当然也听闻过诺诺的暴力，甚至特意看过诺诺格斗训练的视频，毫无疑问诺诺是很有天赋的，无论肌肉的反应速度还是身体的柔韧性，都是第一流甚至超一流的，可以说她天生适合近身战，虽然没有言灵辅助，但搭配侧写去预判对手的进攻，绝对是值得尊敬的对手。
+            </p>
+            <p>然而就像恺撒研究阿巴斯的档案是为了知道对手的缺点，伊莎贝尔心里也把诺诺看作自己的对手，只要超越了诺诺，她就会是学生会上下公认最厉害的女孩。</p>
+            <p>诺诺是有弱点的，这个弱点就是她太不努力了，她从来不会把某个进攻的套路磨砺到无懈可击，而是会仗着天赋的优势乱来，反正她会侧写，对手的进攻她通常都能看破。</p>
+            <p>但这在伊莎贝尔这里不起作用，伊莎贝尔是个舞蹈家，舞蹈家对于肌肉的训练不在武术家之下，柔韧性则在武术家之上，而她们的平衡能力和节奏感是没练过舞蹈的人根本无法想像的。伊莎贝尔的攻防和舞蹈同理，肃杀的同时还很具观赏性。
+            </p>
+            <p>伊莎贝尔一直练习着一种美妙而且诡异的旋踢，动作很像一种已经失传的西班牙地方性舞蹈，没见过的人很难想象人的肌肉可以那样发力，当然也就不会想到怎么防御那种旋踢。</p>
+            <p>伊莎贝尔准备把这个旋踢用在诺诺身上，诺诺瞬间就会因为轻微的脑震荡而放弃防御，等到她清醒过来，伊莎贝尔的匕首已经停在她的脖间了。</p>
+            <p>整个过程只需要不到半秒钟，这是伊莎贝尔对学生会十年来最强女孩的一次挑战。</p>
+            <p>“不要逼我这种话……”诺诺冷冷地说。</p>
+            <p>完美的机会，一开口说话，你的气息就不连贯了！伊莎贝尔看似轻盈地旋转，实则刚猛有力，这一刻若有一条红裙系在她腰间，必然是令人惊艳的画面。</p>
+            <p>无法想象的角度，无法想象的发力方式，从已经失传的舞蹈中整理出来的旋踢，准确地踢中了诺诺的侧脸。踢中的那一刻伊莎贝尔心里有点后悔，她高估诺诺了，应该脚下留情的，毕竟诺诺已经离开秘党很久了，她攻击的只是一个准备当新娘的女孩而已。
+            </p>
+            <p>然而就在下一刻，她忽然觉得自己的脚踝被人抓住了！</p>
+            <p>诺诺被踢中之后并未如预想的那样，因为头部遭受攻击而失去防御，她一把抓住伊莎贝尔的脚踝，还了一脚。这一脚就没有伊莎贝尔的旋踢那么优美了，基本上就是跆拳道里的侧踹，毫无技术含量，但是粗暴直接。</p>
+            <p>巨大的力量瞬间穿透伊莎贝尔的身体，这次是真的造成了脑震荡，伊莎贝尔落地的时候，已经晕了过去。</p>
+            <p>“……得是有实力的人才能说的。”诺诺捂着被踢肿的脸，跌跌撞撞地退了几步。</p>
+            <p>她确实是疏于练习了，如果不是另一个天赋的优势在，她已经被伊莎贝尔一招制服了。</p>
+            <p>这个天赋优势是耐打……伊莎贝尔研究的是诺诺的视频资料，却没见过诺诺真正对敌的时候，她被叫作暴力巫女，并非说她高效精准地输出暴力，而是她拿着角钢都能上场，打架够狠够野，这样的人，当然得比较耐打。</p>
+            <p>诺诺上前一步把路明非翻了过来，刚翻过来她就愣住了，尽管是这种应该悲怆或者担忧的时候，她还是恼火地呸了一声。</p>
+            <p>看起来并不用太过担心这家伙的死活，被轻重武器火力洗礼了那么长时间，他还四肢健在零件齐全本就说明这家伙是个真正的怪物，翻他过来的时候他甚至还哼哼了一声。</p>
+            <p>诺诺脱下自己的外衣丢在这家伙身上，好歹帮他遮挡一下，然后想去试他的脉搏，手却停在了空中。</p>
+            <p>路明非的双肘各插着一柄武器，看穿透的程度，把他两臂最关键的几根肌腱连带着肘骨都给摧毁了。如果把龙族血统的修复能力排除在外，这家伙的胳膊已经彻底废了。</p>
+            <p>诺诺惊呆了，谁干的？谁能用他自己的武器伤到他？伊莎贝尔为首的突击队甚至没能接触到他。</p>
+            <p>然而她立刻就明白了，明白了他在橱窗中看到自己形象时的奇怪表现，还有那声痛苦的嘶吼。</p>
+            <p>那一瞬间他确实是恢复了一点神智，或者说被镜中自己的样子吓到了，于是他借着那一瞬间的清醒，把短弧刀插进自己的双肘，截断了关键关节处的肌腱，即使是纯血龙类，这样的伤害也无法瞬间痊愈。</p>
+            <p>大概是想给诺诺和乌鸦争取一点逃跑的时间，他对自己变成了怪物会做什么事并无把握。</p>
+            <p>这家伙居然会对自己那么狠……可他是个怂货才对啊，怂货才是诺诺认识的那个路明非。</p>
+            <p>诺诺的眼睛有点湿润，但她并不想流露太多的情绪，也就只是继续跪坐在路明非旁边，拍了拍他的脸，“喂！”</p>
+            <p>“别动！”背后传来低低的声音。</p>
+            <p>那是维多利亚，她端着突击步枪，指向诺诺的后心。</p>
+            <p>诺诺有点后悔，冈萨雷斯和维多利亚都被她打倒过，但她很清楚这组人里最棘手的还是伊莎贝尔，所以她没有来得及给这俩家伙补上一击就来找伊莎贝尔了。想来是被打晕的维多利亚又醒了过来，这位年轻的女伯爵还真是顽强。</p>
+            <p>维多利亚站得离诺诺很远，她被诺诺放倒过一次，很清楚这位师姐的近身格斗能力，但这一次她手里有枪，而且已经瞄准锁定。</p>
+            <p>“别烦我！”诺诺低声说，此时此刻她确实心情不好。</p>
+            <p>维多利亚舔了舔嘴唇，想要找到某个合适的说法来劝诺诺放弃抵抗。她的枪里填的不是弗里嘉子弹而是实弹，但如果诺诺真的反抗，她也不得不开枪。</p>
+            <p>可她真的找不出什么合适的理由，这场追逐的开始，大家就站稳了各自的立场，根本不会耍什么嘴皮子，遇到了开打就是了。</p>
+            <p>但她并没很多时间思考，几秒钟后她就被一口平底锅敲在了后脑上，软绵绵地倒下。</p>
+            <p>“他妈的！在我的地盘上这么嚣张！”乌鸦恶狠狠地说着，丢下了手中的平底锅。</p>
+            <p>那是他从街边一家厨具店里顺手捡的。</p>
+            <p>他在路明非身边蹲下，测了测他的脉搏，放下心来，“怎么会这样？”</p>
+            <p>他有点不明白，要是知道路明非龙化起来这么恐怖，他根本不会制定用狙击枪干掉他的计划。可那个恶魔降临般的路明非居然毫无还手之力就被学院的重火力干躺了，沦落到春光外泄地被女人抱着，难道是个虚有其表的家伙？</p>
+            <p>诺诺看向街边一面黑着的大屏幕，“这帮蠢货自己搞砸了。”</p>
+            <p>乌鸦明白了，毁灭性的重火力摧毁了整条街上的玻璃窗，当然也不会漏过那些广告大屏，梆子声一旦消失，路明非的龙化就会暂停。所以到后来被攻击的其实是个变身变了一半的倒霉怪物。</p>
+            <p>不过这也是伊莎贝尔他们的运气，要不是这个失误，此时此刻她们应该已经连渣都不剩了。</p>
+            <p>“快走！趁着烟雾还没散！”乌鸦说，“外面还有架直升机，警察也快到了。”</p>
+            <p>他还没说完，狙击枪子弹已经带着尖锐的啸声从他们身边掠过，爆炸尘快要散掉了，直升机上的人正借助红外线目镜盯着他们。</p>
+            <p>诺诺俯下身想要把路明非扛起来，不过这样一动作她盖在路明非关键部位的衣服就落了下来。</p>
+            <p>“这种重体力活儿还是交给男人！”乌鸦赶紧说。</p>
+            <p>他抱起路明非往肩上一送，诺诺冲街边招招手，藏在一家玩具店里的楚子航冒出头来，三个人狂奔着进入街边的小巷。</p>
+            <p>远处已经响起了尖锐的警笛声。</p>
+            <p>三个人气喘吁吁地奔进仓库，诺诺狠狠地推上门。外面看不过是一间普通的仓库，但其实墙壁中夹着钢板，门也是优质合金钢配密码锁，坚固得像是一座小型堡垒。</p>
+            <p>逃回这里的一路上，他们都是逆着警车、消防车和救火车而行，天空中不时有军用直升机飞过，想来附近这个街区很快就会成为军事管制区。</p>
+            <p>这次的事情恐怕不好收场了，一直保持神秘的秘党能做出这么夸张的事，显然他们对路明非的存在已经非常担心了。</p>
+            <p>乌鸦把路明非放在地下，从旁边的架子上抓起一个盒子，“我先帮他止血，然后再想办法送他去医院。”</p>
+            <p>路明非的生命体征还很强，心脏跳得沉稳有力，看来在龙血的支持下，想死是没那么容易。但双臂几乎被他自己废掉，应该立刻送去医院，但那样毫无疑问会惊动军警。</p>
+            <p>那个盒子是个医疗箱，乌鸦从医疗箱中拿出纱布和清洁伤口的药膏，想先帮路明非做简单的包扎，至少先止住出血。</p>
+            <p>但他愣住了，因为路明非身上的绝大多数伤口都已经止血，而且正以肉眼几乎可见的速度愈合着。乌鸦亲眼看着一块弹片被挤出身体，啪地一声落在地下。</p>
+            <p>那是一块足有一根手指长的锋利弹片，这么大的弹片嵌入体内，对普通人来说就要在身体里保存一辈子，因为几乎没有医生敢于开刀拿出这么大的弹片，而路明非单凭伤口的自然愈合就把它挤了出来。</p>
+            <p>“兄弟你这血统，到底是蟑螂呢？还是金刚狼呢？”乌鸦赞叹着，心里放松了些。</p>
+            <p>这时他的口袋里传出叮咚叮咚的响铃声。他掏出手机看了一眼，眉头紧锁，转向诺诺，“家族在找我，出了那么大的事，我得想办法善后一下，至少别让媒体胡说八道。你照顾一下他，我尽快回来，如果情况紧急，就给我电话。”</p>
+            <p>诺诺点了点头。龙的秘密不能暴露给世人，这是混血种共同遵守的规则，即使混血种组织之间斗得你死我活，在这件事上的立场永远都是一致的。</p>
+            <p>因为他们都是异类，是不容于人类世界的怪物，就算某些人类可能出于特殊的原因接纳他们，最终他们还是会被作为异类驱逐或者吊上绞刑架。</p>
+            <p>人类本能地害怕比他们强大的生物，即使对方一样有着人类的外形。</p>
+            <p>乌鸦急匆匆地跑了出去，边跑边接着电话，诺诺看了一眼乌鸦留下的医疗箱，却从架子上拿下了一个更加沉重的箱子，那是一个维修用的工具箱。她蹲在路明非身边，打开工具箱，从箱子里拿出了一把钢钳。</p>
+            <p>“帮我抱住这家伙，用全力。”诺诺看了楚子航一眼。</p>
+            <p>楚子航点了点头，抱住了路明非的上身。他的心理年龄只是个十五岁的男孩，体魄却完全是个成年人，近身搏斗能跟路明非打成平手，由他锁死路明非，路明非除非龙化，否则是不能挣扎的。</p>
+            <p>从那把粗壮的钢钳，他猜出了诺诺要做什么。诺诺这是要把那对短弧刀给拔出来，快速愈合的肌体能把弹片挤出来，但对贯穿双肘的短弧刀恐怕无能为力，继续等下去，短弧刀会和新生的组织完全融合，就像小树带着扎进树身的钉子长成参天大树。
+            </p>
+            <p>不过在没有强效麻药的情况下做这种手术，单那巨大的痛楚就能摧毁一个人吧？楚子航紧张地看着诺诺，诺诺的神色平静，在路明非的大臂上扎上止血带，以防短弧刀拔出之后的伤口大出血。</p>
+            <p>她抬眼看了看楚子航，无声地笑笑，垂下眼帘继续操作。</p>
+            <p>“应该会疼吧，可我不是他，不知道到底有多疼。”诺诺头也不抬地说，“不过这也不是第一次了，上次我差不多从他身体里清理出了一公斤的碎片，他流的血浸透了两张床单。”</p>
+            <p>“哥哥真勇敢。”沉默了好一会儿，楚子航说。</p>
+            <p>“我认识他的时候，他还不是这样的。”</p>
+            <p>“那时候的哥哥是什么样的人？”</p>
+            <p>“如果只用一个字来形容的话，怂。如果再加一个字的话，贱。没什么追求，喜欢漂亮女孩子但是没胆子追，羡慕人家过得光鲜亮丽但懒得努力，有难过的事就想办法忘掉，自己说人生理想就是混吃等死。”</p>
+            <p>“那他怎么会变成这样的？”</p>
+            <p>诺诺停顿了一下，眼神也有微微的变化，然后继续俯下身，给路明非的另一边胳膊扎上止血带。</p>
+            <p>“因为太孤单了吧？又怕受伤害。本来他的生活圈子就很小，那些他在乎的人还一个一个地离开了他。”诺诺轻描淡写地说着，“每个人都是过一生，可人和人的一生是不一样的，有的人的人生跟辛巴达纵横七海似的，会遇到很多有趣的人，认识很多朋友，老了跟人吹牛都有很多故事可讲。对这样的人来说，每件往事都很珍贵，但也都没那么珍贵，就像有很多钱的人，失去其中的几块钱固然很可惜，不过还是有钱人。可这家伙是个穷鬼，穷到没有几个他真正在乎的人，也没有几件他真正在乎的事，如果这些人这些事都还OK，他就可以继续怂继续贱，可当这些人这些事不对了，他就慌了，慌着慌着就急了，急着急着就发起疯来，疯着疯着就变成这样了。”
+            </p>
+            <p>诺诺看了看楚子航，“你也是他在乎的人。”</p>
+            <p>楚子航不说话，瞪大眼睛看着诺诺，还冲她使劲地眨眼。</p>
+            <p>“别慌，也别乱动，抱紧他别撒手。”诺诺完全没有理会他的警告，语气还是轻描淡写的，“我不知道你看到了什么，想必是很可怕，不过我们首先得把这家伙胳膊里的刀拔出来。至于站在我背后的那家伙，不是趁人之危的人，刚才我那些话既是说给你听的，也是说给她听的。”
+            </p>
+            <p>楚子航和诺诺面对面，他看到的东西诺诺看不到。但他不敢说，只敢用眼神提醒诺诺，因为眼前的这一幕真的是太诡异了。</p>
+            <p>诺诺背后站着一个人，站在灯光的范围之外。楚子航看不清她的模样，但从身形来看，是个女孩。</p>
+            <p>她很安静，身材纤细修长，甚至可以说是窈窕。她应该在那里站了好一会儿了，没有任何动作，也不发出任何声音。但从楚子航偶然注意到她开始，就被她身上那股山一样的气势压住了。</p>
+            <p>所谓山一样的气势，就是它那么静静地待着，但你无法忽略它，也不觉得自己能撼动它。</p>
+            <p>就在诺诺絮絮叨叨地说话时，那个山一样的影子动了，只是轻轻挥手。但随着她扬起手，诺诺身边那个打开的医疗箱里，一支银色的手术刀轻盈地腾空而起，像是有知觉的灵兽那样旋转之后调头，缓缓地逼近诺诺的后颈。</p>
+            <p>那是条银色的响尾蛇，已经锁定了诺诺后颈的大动脉。</p>
+            <p>“这家伙呢，就像那种硬硬的也不好吃的小核桃，你把它随便丢哪里都行，不过你非要咬碎他，它就会硬得能崩掉你的牙。”诺诺继续她的操作，还在自言自语。</p>
+            <p>楚子航愣了一下，忽然意识到诺诺并非自言自语，也不是说给他听的，从某一刻开始，诺诺的话就都是说给背后那个人听的了。</p>
+            <p>“抱紧了。”诺诺把镇痛剂中的药水推进路明非的身体，给他咬上厚厚的纱布，抬眼看看楚子航，“要来真格的了。”</p>
+            <p>楚子航用力点头，全身骨骼发出噼里啪啦的爆响，这家伙一脸孩子气，却是这样一付能跟狮子搏斗的体格，也是一个金刚正太。</p>
+            <p>真正动手就是干净利落的一拔，短弧刀带着血离开路明非的身体，溅出来的血浆染红了诺诺的左肩。剧痛把昏迷中的路明非唤醒，他瞪大惊恐的眼睛看着诺诺，面部扭曲。</p>
+            <p>“抱紧他！”诺诺低吼。</p>
+            <p>路明非本能地挣扎，楚子航用尽全力抱住路明非，把那股狂龙般的力量控制在自己的双臂之间。诺诺使劲按住伤口，但血还是从指缝中涌了出来，像是红色的泉水，根本止不住。</p>
+            <p>诺诺拔出了童子切，这柄利刃原本挂在一个衣架上，那个衣架上还挂着源稚生留下的那件带血的风衣。准备动手术之前，诺诺把它摘了下来，放在自己身边。</p>
+            <p>“集中注意力！”诺诺把刀横在路明非眼前，一把拉出咬在他齿间的纱布，“你知道自己该做什么！”</p>
+            <p>明镜般的刀身中映出路明非自己的眼睛。</p>
+            <p>“不……不要死！”路明非强忍着那份能把他从内摧毁的剧痛，嘶哑地低吼。</p>
+            <p>那句话出口的瞬间，伤口就开始止血，诺诺立刻为他包扎。包扎结束的时候，伤口也不再出血了，楚子航看得呆住了。</p>
+            <p>接下来是另一侧，还是如法炮制。手术完成的同时，路明非再次晕厥过去。诺诺和楚子航都是一屁股坐倒在地，前后不过几分钟的时间，他们俩就已经差不多脱力了。</p>
+            <p>那条银色的响尾蛇果然没有借机伤害诺诺，它一直停在诺诺的后颈处。动这种手术当然免不了肢体大幅度地运动，不过诺诺后仰，它就往后退，诺诺前倾，它又前进，始终和诺诺颈部的大血管保持着“安全距离”。</p>
+            <p>诺诺坐在地上喘息了好一会儿，呼吸渐渐平复，理了理黏在额头上的头发，站起身来。</p>
+            <p>“把你哥哥拖到一边去歇着，别出声，如果害怕，就闭上眼睛。”诺诺对楚子航轻声说。</p>
+            <p>诺诺提着童子切，缓缓地转身，那柄手术刀现在停在她的额心，但她好像根本不在乎那柄危险的武器，只看那个黑影。</p>
+            <p>“其实你早就赶到了，对吧？你没有露面，只是觉得当时的机会不合适。是我们把你带到这里来的。”诺诺说，“你们这种人，学院是叫‘斩首者’，对吧？”</p>
+            <p>“伊莎贝尔他们太莽撞了，能悄悄解决的事，为什么要弄出那么大动静？”黑影轻声说，她的声音出人意料地好听，轻柔中带着些许磁性。</p>
+            <p>“我应该更小心的，学院的老爷们就算再怎么自负，也不会觉得凭那几个低年级的家伙就能够抓到我们，他们后面一定会有坐镇的人。”</p>
+            <p>“怎么发现我的？”黑影问。</p>
+            <p>“你用的洗发水。你一直都用同一个牌子的洗发水，而我是你的室友，我们共用浴室，我记得那股香味。今天你来之前，用的还是那种洗发水。”</p>
+            <p>“原来是这样。”黑影微微点头。</p>
+            <p>“但这并不是你的失误，你是故意的。斩首者的工作是悄无声息地把目标制服，或者真的斩首，想要潜行的话，就要把一切痕迹都抹掉，包括气味方面。你是个谨慎的人，不会犯这样的错误，所以我只能认为你是故意的。”</p>
+            <p>苏茜缓缓地上前，只需两步她就走进了灯光的范围里，彻底暴露在诺诺和楚子航的眼中。</p>
+            <p>修长的眉眼、修长的身材、简洁的白色夏裙、半高跟的系带凉鞋，这一身打扮透着夏天的感觉，最适合背着双手漫步在阳光灿烂的午后，很多咖啡馆的街道上，阳光透过高树星星点点地洒在她的裙子上。</p>
+            <p>“因为要见你，所以特意洗了个头。在巴黎，女孩跟最好的朋友见面，也要像跟男朋友见面那样洗头化妆，穿上最好看的裙子。”苏茜轻轻地招手，停在诺诺眉间的手术刀飞旋着倒退，但并未落入她的手中，而是悬停在距离她的手半米左右的地方，高速地旋转着，发出凄厉的啸声。
+            </p>
+            <p>诺诺歪着头看她，看了很久，无声地微笑，“妞儿，你今天穿得真好看。”</p>
+            <p>“一位在巴黎世家工作的设计师帮我做的，是我在法国认识的朋友，本想什么时候介绍你们认识。”苏茜说。</p>
+            <p>“我可没什么值得介绍给你的新朋友，金色鸢尾花岛上只有一帮有钱的姑娘，她们所有人的钱加起来可能能买下欧洲，但她们加起来都没你有意思。”诺诺说。</p>
+            <p>“我猜到你在那里过得不开心，我应该去看你的。”</p>
+            <p>这时候楚子航已经把路明非拖到角落里去了。他紧张地看着这两个女孩，又有点纳闷，女孩们都握着凶险的武器，气势上一丝一毫都不退让，却开始拉家常了。</p>
+            <p>诺诺盯着苏茜面前那柄旋转的利刃看了一会儿，“原来这就是你的言灵，我还以为你跟我一样是没有言灵的。”</p>
+            <p>“剑御，一种不太常见的言灵，很适合用于刺杀。学院不想太多人知道这件事，所以在我身上查出了这种言灵，却没有写入学生档案。”苏茜说。</p>
+            <p>剑御，诺诺也曾听说过这个言灵，它在言灵周期表中有一席之地，但是看名字更像是某种中国古代所谓的“神通”。</p>
+            <p>它也确实是根据中国神话中剑仙御剑的神话起名的，持有这种言灵的人能凭意念遥控金属物体，无论那是剑、刀或者车辆。究其本质，是一种强大的控制电磁场的能力，苏茜的领域之内，一切的金属物品都被她磁化，成为她的武器。
+            </p>
+            <p>这种言灵的威力取决于释放者的领域大小和能操纵金属物体的数量和质量，有些人竭尽所能也不过在几寸的距离内操纵一柄薄薄的裁纸刀，而那些传说中的剑仙似乎能控制无数的利刃，制造出剑山剑海般的攻势。</p>
+            <p>难怪苏茜后来成了斩首者，猎物只要踏入她的领域，胜负就差不多定了。眼下他们正站在苏茜的领域里，不只是那柄飞旋的手术刀，这间仓库里的任何金属物品都可能忽然腾空而起，变成一件武器。</p>
+            <p>“连我也不告诉么？”诺诺撇嘴表达了不满。</p>
+            <p>身边的所有人都觉得诺诺和苏茜是最好的朋友，连诺诺自己都这么认为，她跟恺撒之间会有秘密，跟苏茜之间却不会。</p>
+            <p>可她问过苏茜关于言灵的事，苏茜只是笑了笑说真的没有。</p>
+            <p>“那是因为你没有言灵，所以我说我也没有。”苏茜低声说。</p>
+            <p>诺诺恍然大悟，点了点头。</p>
+            <p>A级学员中没有言灵的例子并不多，诺诺就曾因为没有言灵被非议为“伪A级”，苏茜那么说是不愿让她难过。</p>
+            <p>苏茜就是这样，话不多，但永远都会照顾别人的感受。你有高兴的事也愿意去找她说，有委屈的事也想去找她说，她都会听你说，像是每个人的姐姐，又像是每个人的树洞，或者垃圾桶。</p>
+            <p>诺诺知道苏茜的心思其实也很纤细，让一个纤细的人听那么多跟她无关的喜怒哀乐，她独自一人的时候又怎么消化呢？可她还是忍不住跟苏茜说这说那，她性格中是有任性的一面，苏茜也就温温柔柔地听着，有时候还捎带手帮她梳头。
+            </p>
+            <p>世界上就是有苏茜这样的人，她像个温柔的容器包容你，直到她自己也包容不下而碎掉。</p>
+            <p>“妞儿，回头吧，还来得及。”苏茜轻声说。</p>
+            <p>“回头？你也觉得我是一时兴起离家出走啊？”诺诺笑得还挺灿烂。</p>
+            <p>“你跟他不一样，你有选择的机会。把他交给我，跟我回学院，你不会有事的。”苏茜说，“你甚至没机会跟我回学院，只要听说我抓到了你，恺撒会在几个小时内赶来接走你，你甚至不必面对元老会的询问。”</p>
+            <p>“那他会怎么样？”诺诺忽然又不笑了。</p>
+            <p>“监禁是免不了的，等待事情查清楚再看怎么处置。如果只是危险的混血种，被校长养起来作为屠龙的工具，大概会被流放到太平洋中间某个小岛上去，那里有很多古老的监狱，几个世纪以来我们一直在那里关押危险的混血种。”</p>
+            <p>“如果他是龙王呢？”诺诺歪着头，眼神认真。</p>
+            <p>苏茜沉默了片刻，“没有人敢豢养龙王，他们是不死不灭的，而且他们只要觉醒就必定是人类的灾难……但我想学院会给他最人道的对待。”</p>
+            <p>“如果你跟一个养狗的人说，要抱走她的狗去研究，她的狗可能会被监禁也可能会被杀掉，不过肯定会得到最人道的对待。你觉得狗主人会让你抱走她的狗么？”诺诺把所有表情都收走了。</p>
+            <p>“可他不是你的狗，就算他真是你的狗，你的狗如果得了狂犬病，那你也不得不把他交给防疫部门的人。”</p>
+            <p>诺诺愣了一下，忽然又笑了，“你知道的，我总是喜欢说些狠话，可那就是斗斗嘴而已。我没觉得他是我的狗，我也不觉得他真是我的小弟，我一直罩着他，只是因为我想罩着他。”</p>
+            <p>“为什么？”</p>
+            <p>“我最难过的时候，一直想要有个人，无论是骑白马的还是骑黑驴的，忽然就来了，他是来帮我的，我讨厌谁他都帮我打那个人，我哭了他会哄我。可并没有人来。”</p>
+            <p>“你说的不是恺撒么？”</p>
+            <p>“恺撒出现的时候，我其实已经不需要什么人了，我自己的事我自己都能搞定。”诺诺扭头看了一眼身后的路明非，“我不是说我自己啦，我是说路明非，我不想看他那张难过的脸，我知道他想有人来帮他，可他就是不说，他装得好像对什么都无所谓的样子。可我就是要帮他，我非要他承我的情，谁欺负他我就跟谁作对，”
+            </p>
+            <p>“帮他，就好像帮以前的自己，是么？”苏茜叹了口气，“妞儿，我跟你说过，你这样会表错情，让人会错意的。所以他喜欢上你了，你成了他最在乎的人，叫他最难过的人也是你。”</p>
+            <p>“我知道我做错了，可总不能做错了就跑掉吧？我要是不管他，还有谁会管他？自己犯的错，自己善后，自己种的苦瓜，哭着也要吃完啊。”诺诺的语气还是轻松的。</p>
+            <p>“你真要一条道走到黑？你这么做，对你对他都没有好处。”</p>
+            <p>“妞儿，这话可真不像你说出来的。我陈墨瞳什么时候跟你说过我要走白道的？管他白道黑道，我只要走我自己的路就好了。”诺诺笑笑。</p>
+            <p>苏茜愣了片刻，也笑笑，不过笑的时候也在摇头叹气，“是，我说错话了，对不起。”</p>
+            <p>“不用道歉，说错几句话有什么大不了的，我们可是最好的朋友。”诺诺说。</p>
+            <p>“你还觉得我们是最好的朋友？”苏茜挑了挑那对修长好看的法式长眉。</p>
+            <p>诺诺点点头。</p>
+            <p>“谢谢。”</p>
+            <p>这两个字出口，苏茜和诺诺同时动手了。</p>
+            <p>她们在一起住了三年，在战术训练场上是伙伴，在“自由一日”中是对手，短兵相接已经很多次，却没有任何一次像今天这样极致。</p>
+            <p>所谓极致，是用生死作为筹码。</p>
+            <p>诺诺如同闪现到苏茜的面前，童子切自下而上，撩出明镜般的刀光。古代炼金术大师的作品，驱魔镇邪的宝刀，刀锋之利，就算是匹马都能被一刀两断。</p>
+            <p>苏茜凌空一抓，那柄飞旋的手术刀像是被巨大的磁力吸回了她的掌中。手术刀割破童子切的刀光，无声无息地划向诺诺的手腕，灵蛇般的攻击，虽然没有童子切的威力，但速度更快，也更精准。</p>
+            <p>两人擦肩而过，再度归于静止。</p>
+            <p>一片白色的织物轻盈地飘落，那是苏茜的裙摆，她的闪避速度够快，却不代表那件夏裙可以跟她保持同等速度，毕竟那只是件好看的裙子，不是奇异博士的斗篷。</p>
+            <p>诺诺却没有流露出任何得意或者兴奋的神色，依旧是持刀戒备的架势，她在日本刀上花的工夫不多，但这防御的刀架也算滴水不漏。</p>
+            <p>仅仅一刀，她就从进攻者转为了防御者。因为她能清楚地感觉到腕脉处的那一道寒意，那是手术刀的刀锋擦过她手腕时留下的，只差几厘米，那条银色的响尾蛇就咬中了她的要害。</p>
+            <p>金色鸢尾花学院真他妈是个耽误人的地方，神经和肌肉的反应速度明显下降，过去的一年里她尽插花和学做甜点了，而苏茜不同，她穿梭在巴黎或者伦敦的夜色里，每一次行动都像磨刀石那样把她磨得更加锋利。</p>
+            <p>不愧是学院新生代斩首者中的佼佼者。</p>
+            <p>不过诺诺也并非那种遇到强敌会心慌的主儿，她深呼吸，让自己安静下来，回忆之前所受的训练，迅速地做调整。</p>
+            <p>苏茜的优势是很明显的，一直以来的严格训练，丰富的对敌经验，还有那仍未使用的“剑御”言灵。但诺诺也有优势，就是她手中的童子切。</p>
+            <p>这柄古刀堪称炼金术的杰作，锋利坚固不必说，而且对龙类和混血种有着特殊的杀伤力，而苏茜手中的那柄手术刀只是普通的精钢打造，两柄武器如果对上，童子切必然斩断手术刀，跟斩开一截铁丝没什么区别。</p>
+            <p>换而言之她的首要目标不是苏茜，而是那柄手术刀，她如果先行发动攻击，就会有破绽，苏茜的手术刀就如嗜血的银蛇那样窥伺在旁，但如果让苏茜先发，她斩断那条银蛇，就可以转而压制苏茜。</p>
+            <p>她缓缓地转动童子切，斜斜地架起，左手沿着刀背滑出，轻轻搭住刀尖，身体向后倾斜。</p>
+            <p>明朝程宗猷所著《单刀法选》中的“埋头刀势”，一种讲究眼力、速度和精确的刀势，先要看破对手的攻击，然而后发先至。</p>
+            <p>而看破，恰恰是诺诺的特长。苏茜的实力远不是伊莎贝尔能比的，但对诺诺来说，解析苏茜远比解析伊莎贝尔来得容易，因为她们太熟悉彼此了。</p>
+            <p>苏茜静止不动，她就这么站着，不摆任何架势，白裙飘飘，长发也飘飘，手中一把银光闪闪的手术刀。</p>
+            <p>如果不是那张依旧温柔的脸，她这个造型更适合出现在某部恐怖片里。</p>
+            <p>“埋头刀势，后发先至。你是想针对我的武器，但我真正的武器到底是什么，你想过么？我总不会空着手来，随便捡一把手术刀跟你格斗。”苏茜缓缓地说。</p>
+            <p>“我知道，你有剑御，你的领域里随便什么金属制品都可以成为你的武器。”诺诺说，“但我只要够快就行了对不对？你就算有无限量的子弹，你换弹匣也需要时间，我只有那么一瞬间，把你打翻，然后就拍屁股走人。”</p>
+            <p>“你总是这样，把什么事都想得太简单。”</p>
+            <p>“那不是简单，是直接，说得好像我是个傻妞似的。”</p>
+            <p>“记得那次你闹着要去芝加哥的事么，就因为我跟你说芝加哥有个湖畔的酒吧，酒保会调很好喝的酒，而且他调酒的时候肩膀上站着一只白鹦鹉，白鹦鹉会陪你聊天。”</p>
+            <p>“记得啊，怎么了？”诺诺挑挑眉。</p>
+            <p>两个人过手只换了一刀，居然又开始聊天。楚子航看看这个又看看那个，有点懵。这要是部动作片，导演以前肯定是搞文艺片的。</p>
+            <p>“你跳起来就往外面跑，外面瓢泼大雨，我说等雨停了我陪你去，可你说现在出发赶到芝加哥，那间酒吧还没下班，你当晚就能坐在湖边喝着好喝的调酒，和那只白鹦鹉聊天。”</p>
+            <p>“记得，后来是恺撒陪我去的，我们在雨夜里开着一辆敞篷车，还用A级的特权调动了一列火车。”</p>
+            <p>“可你并没有看到那只会聊天的白鹦鹉，那天晚上芝加哥也是暴风雨，湖边的酒吧停业了。”</p>
+            <p>“到现在你还在劝我啊？”诺诺笑，“我还以为你已经放弃了呢。当了斩首者，你也还是那么苦口婆心的。”</p>
+            <p>“放手吧，妞儿，放手，对你和他都好。你还当他是你从中国捡回来的那个小废柴么？他是龙王都能杀的怪物，他自己也是龙王级的目标！别玩老鹰捉小鸡的游戏了，你这只小母鸡有多大的翅膀，能护着你背后那条龙？”苏茜的语意严厉，语气依旧温柔，“退一步海阔天空。”
+            </p>
+            <p>“退一步海阔天空，这话可真老气。”诺诺噘噘嘴，“退了这一步，将来不能原谅自己怎么办？”</p>
+            <p>“将来的事，将来再说……”</p>
+            <p>楚子航忽然间打了个寒战，他清楚地感觉到什么事情正在发生，苏茜说到这里的时候语速有了轻微的变化，平静的语气中起了波动，那是……图穷匕见的杀机！</p>
+            <p>诺诺身后的地板忽然裂开，三道黑色的利刃对空射出，目标是诺诺的后背！</p>
+            <p>几乎就在同时，苏茜掷出了手中的手术刀，手术刀旋转着，呼啸着，简直是个亮银色的飞盘。而这个飞盘是根本不能接的，周围一圈都是利刃。</p>
+            <p>楚子航想不明白，因为十五岁的他还没有上过“言灵学入门”这门课，对于“剑御”他一无所知。</p>
+            <p>这间仓库的地面铺着木地板，木地板铺在龙骨架上，木地板和真正的地面之间有一段距离，在苏茜和诺诺拉家常的时候，苏茜“真正的武器”在地板下方悄悄地巡游，就像是冰面下游动的食人鱼。它们来到诺诺背后，才破冰而出！</p>
+            <p>“剑御”并不只是用来引动金属的洪流，它也可以精妙地操纵杀人武器！</p>
+            <p>正面是割喉的手术刀，背后是黑色的利刃，诺诺一瞬间就陷入了绝境。</p>
+            <p>这时诺诺忽然蹲了下去。</p>
+            <p>这个动作不属于任何格斗流派，她就是那么直直地往下一蹲，还双手抱膝，就像一个走路走累了的女孩忽然要休息。</p>
+            <p>但这却是最正确的动作，完美地避开了前后的夹击，只是动作有点孩子气。</p>
+            <p>旋转的手术刀和那三枚黑色利刃相互接近，眼看就要擦过的时候，忽然“啪”的一声，紧紧地黏在了一起！动能相互冲抵，四件武器黏着往下掉。</p>
+            <p>苏茜脸上变色，诺诺还蹲在那里，却抬头看了她一眼，带着一丝狡黠的笑，眼睛闪亮。</p>
+            <p>诺诺看透了苏茜，苏茜本不难看透，其他猎物看这个斩首者也许是神秘恐怖的，诺诺看苏茜还是当初那个跟她住一屋的女孩。苏茜温柔耐心那是肯定的，但并不婆婆妈妈，她前面劝过诺诺要回头，话已经说尽，没必要再说一遍，要说也是打服了再说。
+            </p>
+            <p>所以第二次拉家常，双方都是在寻找机会。苏茜在等自己的黑刀游动到诺诺背后，诺诺在等苏茜先发动攻势。</p>
+            <p>诺诺的目标还是苏茜的武器，但不是简简单单砍断手术刀。她猜出了“剑御”的弱点，从一开始她就是要利用这个弱点。</p>
+            <p>剑御这个言灵，从名字到效果都非常霸气，很容易让人误以为是用意念远程控制。但究其本质，是先通过言灵制造强磁场，再让金属武器沿着磁力线移动。电磁化之后的金属武器就跟磁铁一样，距离太近它们就会吸在一起。</p>
+            <p>说起来其实简单得很，中学物理课本上的知识就够用，但很少有人能在那么短的时间里想明白这件事。</p>
+            <p>“我知道你是为我好，可我就是要去芝加哥，狂风暴雨也要去芝加哥！”诺诺说完这句话，就掷出了手中的童子切。</p>
+            <p>童子切带起的风声像是鬼啸，它名叫童子切，可不是“小孩子用的刀”的意思，而是因为传说中曾经杀死吃处女的大妖怪酒吞童子，这是一柄杀意旺盛的斩鬼刀。</p>
+            <p>苏茜可以控制几乎任何金属物品，但偏偏无法控制童子切，因为它是个炼金术做出来的刀，构成它的金属是炼金术中所谓“死去的金属”，这种金属无法被电磁化。这一点也在诺诺的计算之中。</p>
+            <p>诺诺伸手接住黏在一起坠落的四件武器，从上面拔下一件黑色利刃，把其余三件远远地丢了出去。她可不想在自己发动进攻的时候，这三把刀又在背后添乱。</p>
+            <p>黑色利刃是柳叶般的形状，轻巧而锋利，符合空气动力学，可以持握作战，但更主要的是用于投掷。不用想就知道是装备部为苏茜特制的，对电磁场的感应远远超过一般的金属。</p>
+            <p>诺诺反握黑刀，几乎是贴着地面弹射出去。只要制住苏茜就行了，剑御再强，主人被制都没用。诺诺心中不禁有些小得意。</p>
+            <p>她或许是个小疯子，但她并不鲁莽，她只是固执地要做那件自己想做的事。</p>
+            <p>此时此刻，这件事是保护路明非。她铁了心放了话，说谁欺负路明非她就跟谁作对，即使那个人是苏茜，实力碾压她的苏茜！她总能找到办法的，她陈墨瞳一个人混世界混了那么多年，什么难关没闯过来？</p>
+            <p>“诺诺！闪开！在我的领域里，你没有机会！”苏茜大吼。</p>
+            <p>诺诺还是跟出膛炮弹似的往前冲，根本不听。你说没机会就没机会？她陈墨瞳又不是吓大的。</p>
+            <p>苏茜身边的地板忽然都裂开了，数不清的黑色利刃腾空而起。诺诺心中巨震，她没想到苏茜能同时控制如此之多的黑刀。十柄？甚至二十柄？仓促之间她数不过来。</p>
+            <p>言灵在不同的释放者手里有强有弱，而剑御这个言灵的强弱，在于释放者的领域范围、能控制的金属物品数量、和能控制的金属质量。</p>
+            <p>对于电脑，每一个计算都是一个线程，对于剑御的“御主”，每一件武器都是一个线程。</p>
+            <p>苏茜动用三柄黑刀偷袭诺诺已经让诺诺有些惊讶了，加上手术刀就是四个线程，然而事实上苏茜能控制的线程超过十个，她对诺诺是留了手的，她把大多数的黑刀留在了自己的身边，仅仅作为防御。</p>
+            <p>现在这个防御的网在诺诺面前打开了！数不清的黑刀从四面八方对准诺诺攒刺！</p>
+            <p>苏茜的眼底流淌着炽热的金色，白裙上流淌着丝丝缕缕的蓝色电光，一头长发因为电离而飞扬起来，简直像是雷电的女皇。这才是她真实的形态，她到现在才展现这碾压的实力，不是要伤害诺诺，而是吓吓她，让她适可而止。</p>
+            <p>斩首者的恐怖怎么是诺诺能想像的？又怎么是一点点小聪明能对付的？他们是暗夜中行走的死神，见过血腥听过哀嚎，如果不是迫不得已，苏茜根本不想让诺诺看到自己这一面。</p>
+            <p>她宁可诺诺只是个瞎猛瞎猛的小女孩……你这个笨蛋，你已经去了金色鸢尾花学院，为什么还要回来？你已经去了阳光里，为什么还要回这黑暗的世界？</p>
+            <p>但诺诺不退，诺诺迎着那些黑刀继续冲。这是她唯一的机会，她不愿放弃。</p>
+            <p>她明白了，自己和苏茜已经无法竞争了，或许从很久以前她跟苏茜就没法竞争了，只是苏茜不忍心告诉她而已。</p>
+            <p>但那又怎么样呢？自己选的路，咬着牙也要走完。只要冲破面前的刀网，她还会有一线机会制服苏茜，刀网并不是一堵铁墙，总有缝隙总能闪过去。只要她足够快！</p>
+            <p>此外她心里还抱着一点小小的侥幸，对手可是苏茜，怎么会看着她送死呢？</p>
+            <p>苏茜大惊！</p>
+            <p>她没料到这疯丫头真的拼上命了，她当然不会看着诺诺送死，但剑御这个言灵却不是说停就停的。</p>
+            <p>即使她立刻中止言灵，那些已经加速完成的黑刀也会沿着原本的轨道命中诺诺，她可以改变磁力线，但无法抹掉“惯性”。</p>
+            <p>她唯一能做的是立刻逆转磁力线，这相当于给那些黑刀踩刹车，但留给她的时间已经不够了，仓促间强行逆转磁力线的结果是周围的电磁场乱成了一片，那些黑刀剧烈地震动或者疯狂地旋转起来，还是一张刀网，不过是扭曲的网。</p>
+            <p>“闪开！闪开！”苏茜大吼。</p>
+            <p>来不及了，诺诺也控制不住自己的惯性，她向着刀网撞了过去。</p>
+            <p>就在这个时候，巨大的黑影从天而降，挡在了诺诺和刀网之间。那竟然是个两米高的木架，架子上原本堆满了书，数不清的纸页飞散。旋转的刀网竟然把这样一个厚实的书架搅碎了，如果诺诺正面撞上它们，后果可想而知。</p>
+            <p>有两柄黑刀钻破书架之后还有余力，又在诺诺的身上留下了血痕，诺诺一头撞上书架的残骸，被飘落的纸张掩埋了。</p>
+            <p>苏茜心里刚刚松了口气，还没来得及思考那个巨大的书架到底是怎么飞起来的，忽然感觉到巨大的危险扑面而来。</p>
+            <p>仓库中响彻高亢的龙吟，不，不是龙吟，苏茜反应过来了，那是一柄刀割裂空气的声音，一柄……快到极致的刀！</p>
+            <p>古刀蜘蛛切！</p>
+            <p>居然是那个跟在诺诺身边的男孩，行动手册上没有提到诺诺和路明非千里逃亡还带着个男孩。看外表他不能说是男孩了，不过看诺诺对他的态度，跟哄孩子似的。</p>
+            <p>以斩首者的素质，苏茜当然不会因为诺诺把他当小孩对待就真的忽略他，暗地里观察了很长时间。不过他的一举一动真的就是个孩子，还有那眼神，真的就是个孩子的眼神，可能是个机灵的、有心事的孩子，不过还是个孩子。</p>
+            <p>他的眼睛干净得像是西藏高原上的湖泊，只不过湖泊的天空里弥漫着些云雾。</p>
+            <p>最后苏茜只得暂停了对他的观察，但依然把一些心神留在他身上，以防他成为棋盘上的变数，后来诺诺敏锐地发现了剑御的缺点，绝地反击，苏茜才把留在那男孩身上的心神收了回来，全力以赴迎接诺诺的攻势。</p>
+            <p>此刻这个男孩真的就成了变数，他以惊人的大力投出书架救下了诺诺，拔出了源稚生留下的刀，如破空狂龙而来，斩出了江河湖海般的刀光！</p>
+            <p>压迫感！极致的压迫感！他和他的刀还在路上，刀上的锋锐之气好像已经能割开苏茜的脸了。</p>
+            <p>从卡塞尔学院那种疯子云集的地方毕业，苏茜不是没有见过近战高手，但这种程度的压迫感，唯一能与之相比的是恺撒的那柄猎刀。</p>
+            <p>不！犹然在恺撒的猎刀之上！恺撒的猎刀可以说是桀骜狂暴，像是席卷沙漠的风暴，而这个男孩的刀光中带着一股寒冷的寂意，仿佛死神挥镰。</p>
+            <p>苏茜能做的唯一一件事是张嘴，她张开嘴，说出的却是玄奥难解的龙文。</p>
+            <p>言灵剑御！最大开启！</p>
+            <p>地板崩裂，下面用于加固的钢筋跳了出来，一瞬间就在苏茜的面前交叉成网。苏茜觉得大脑剧痛，所有的力量像是泄洪那样弥散在周围的空间里，她自从觉醒了“剑御”，还从未这样超负荷地使用它。</p>
+            <p>蜘蛛切毫不费力地割开钢筋，然而苏茜已经开始后退了，她每退一步，就有一丛钢筋从地板下方“生长”出来，那个男孩行云流水地挥着刀，劈砍着钢铁的荆棘步步上前。</p>
+            <p>那是宗师般的刀术，宗师般的步法，和宗师般的淡然，他锁定了苏茜，就会这么一直砍下去，直到砍下苏茜的头！</p>
+            <p>然而苏茜的黑刀们回来了，连退了差不多十米，剑御的领域已经恢复了，黑刀们全部回到了苏茜背后，悬浮着，微颤着，随时可以射出。</p>
+            <p>苏茜冷冷地看着男孩，男孩挥刀，类似日本刀中“血振”的姿势，横刀拦在了苏茜和诺诺之间。</p>
+            <p>“你闪开！她不是你能对付的！”诺诺从纸堆里钻出来，急赤白脸地冲楚子航吼。</p>
+            <p>眼下的楚子航在近战上跟路明非差不多是一个水准，肌肉反应、神经反应都很优秀，压过苏茜应该没问题，但问题就是那个剑御的言灵，那基本上是为暗杀量身打造的言灵，对言灵一无所知的楚子航对上那些黑刀，基本是死路一条。
+            </p>
+            <p>楚子航不回答，一手持刀，一手点燃了打火机。</p>
+            <p>诺诺和苏茜一愣，这才闻到仓库中浓重的柴油味。以她们的嗅觉，原本不会那么晚才闻到，但刚才注意力高度集中，嗅觉像是被封闭了。</p>
+            <p>墙边，几大桶柴油被打翻了，油料正沿着地面缓缓地流淌，没过书架，没过满地的纸张，也没过楚子航自己的鞋底。这种绝对禁止烟火的仓库里居然有柴油，想来大概是用于临时柴油发电机的，被无意中留在了仓库里。</p>
+            <p>装柴油的塑料罐都是密封的，不是说意外倒地就会满地流油，是谁把它们打开的不用想也知道。</p>
+            <p>“把打火机给我放下！”诺诺的脸色也有点难看。</p>
+            <p>橘政宗留下的东西都在这里，路明非千里迢迢来日本就是为了这些资料，这一把火下去，全都玩完。</p>
+            <p>但她说晚了，楚子航并不是点燃打火机给苏茜看看，再说两句威胁的话，他点燃打火机就丢了，直冲屋顶的火苗腾地起来了，在苏茜和楚子航之间形成了一道火墙。</p>
+            <p>诺诺气得直跺脚，不过这几天相处下来，这死孩子确实就是这个性格，你说他乖吧，他也蛮乖的，跑腿跑得很快还会照顾人，你说他不乖吧，那也是非常不乖，他想干什么事，绝对不会跟你打招呼。</p>
+            <p>“姐姐，你带哥哥走，我马上就跟上来。”楚子航嘴里跟诺诺说话，但并不回头，死死地盯着苏茜。</p>
+            <p>事到如今也没什么好说的了，诺诺跑到墙角，扛起半死不活的路明非就要往外去。可盖在他要害部位的衣服又掉了下来，这倒霉的家伙又在苏茜面前露了个精光。</p>
+            <p>虽然是剑拔弩张的势态，但苏茜还是微微脸红，咳嗽了一声，把头转开。</p>
+            <p>“快点跟过来！”拖着路明非出门的时候诺诺扭头喊了一声。</p>
+            <p>“知道啦，我就来。”楚子航回应。</p>
+            <p>苏茜心说你们这算什么对话？你们这是一家人要出去郊游么？妈妈下去发动汽车，儿子还在卧室里收拾双肩背。</p>
+            <p>她当然很想冲过去阻拦诺诺，但她很清楚自己做不到，隔着熊熊烈焰，这男孩嘴里说着孩子气的话，手中的刀却是凶险的刀姿。苏茜不知道那种刀姿的名字，但能感觉出其中的肃杀气息。</p>
+            <p>挡在她和诺诺之间的，绝对是只凶险的狮虎。虽说眼神是挺萌的，可苏茜有任何多余的举动，他就会亮出爪牙。</p>
+            <p>“你叫她姐姐？你是什么人？”苏茜冷冷地问。</p>
+            <p>男孩愣了一下，像是被问住了。</p>
+            <p>苏茜也有点纳闷，很少有人在被问到自己名字的时候愣住的。自己的名字就在嘴边，愿意说就说，不愿意说就不说，还用想么？</p>
+            <p>“楚子航，”男孩认真地想了想，说，“他们都叫我楚子航，姐姐你也可以叫我楚子航。”</p>
+            <p>清晨，源氏重工，日本执行局代局长佐伯龙治的办公室，屋顶装饰着赤金色的龙胆花家徽，家徽下端坐着沉默的男人。</p>
+            <p>他紧紧地抿着嘴，一直没发出任何声音，可看那一脸的暴怒凶狠，张嘴吐出来的只怕就是獠牙，简直就是密宗中的忿怒尊。</p>
+            <p>当然是佐伯龙治本人，除了他，蛇岐八家上下没有几个人敢坐在那张椅子上。</p>
+            <p>藤原信之介手捧精致的礼盒，深鞠躬，站得远远的，离门比他离乌鸦还要近。他是来慰问的，但感觉乌鸦说出第一个字他就会夺门而逃。</p>
+            <p>乌鸦其实不是要给藤原信之介脸色看，他是有点惊讶，不知道学院挖了这么大的一个坑给他跳，这家伙怎么还敢上门来找死。</p>
+            <p>按照乌鸦以前的性格，这时候藤原信之介应该已经被和混凝土浇筑在一起，丢进东京湾里去了。不过他现在是大人物了，行事风格不得不有所收敛，此外他还想从藤原信之介这里套出点情报来。</p>
+            <p>乌鸦摸出自己的手机，按下播放键，举在半空中。</p>
+            <p>是那个低沉又枯燥的梆子声，扑扑扑扑的，在乌鸦听来只是叫人烦躁而已，在路明非耳朵里却是惊魂摄魄的魔音。</p>
+            <p>这是从那段视频附带的音频中提取出来的，它的频率接近次声波，音量又不高，编辑音频的某个人把梆子声和诺诺父亲的说话声叠加起来，正常人就只能听见诺诺父亲的说话声，而在路明非耳朵里，却只有那个梆子声。</p>
+            <p>搞鬼的是原先藤原信之介传到乌鸦手机上的版本并没有采用这种特殊的音频编辑，所以乌鸦拿去给诺诺和路明非试看的时候一点问题都没有。然而室外大屏幕播放要采用清晰度更高的版本，在那个版本里，视频没变，音频却被替换过了。
+            </p>
+            <p>乌鸦狠狠地丢出手机，一直滑到藤原信之介的脚下，屏幕都摔碎了，还在卖力地播放着那段梆子。</p>
+            <p>“这才是你们送给我的礼物吧？学院是怀疑我私下里庇护着路君，想通过我的手把这毒药给路君喂下去么？”乌鸦缓缓地坐回那张酒红色的旋转椅中，转过身去。</p>
+            <p>他的办公桌背靠着一面巨大的落地窗，窗外就是涩谷区的景观，他的视线从那些密集的高楼上越过，眺望地平线，不再理睬藤原信之介。</p>
+            <p>就这件事跟学院当面对峙，必然不会有什么结论，学院只是借用了一下蛇岐八家控制的户外广告放送网络，他佐伯龙治拍了胸脯说会协助学院，这点事就勃然大怒未免有点小题大做。</p>
+            <p>但乌鸦忍不下这口气，反正学院做出这件事来，已经明确地表达了对蛇岐八家的不信任，大家表面上说着亲如一家的话，心里都知道对方没把自己当朋友。</p>
+            <p>“学……学院也想知道为何当晚佐伯局长会出现在那附近的过街天桥上，说是巧合未免也……”藤原信之介磕磕巴巴地说。</p>
+            <p>“这是东京，这是我们的地盘！在这座城市里，哪怕某个便利店被打劫我都能立刻知道，你们架着直升机带着重武器狙杀路明非，我怎么可能不知道？我出现在现场，有什么奇怪的么？”</p>
+            <p>“您当时还努力阻止学院的执行官攻击路明非。”</p>
+            <p>“你们引以为豪的重武器，对上龙王级的怪物根本就是礼花！可那家伙正在龙化的过程中，礼花会激怒他！”乌鸦咆哮，“我重复一遍！这里是东京！是我们的地盘！激怒一个正在龙化的怪物，肆意使用重武器毁掉一条街道，你让我们怎么善后？”
+            </p>
+            <p>这番说辞乌鸦早就想好了，我不让你们对路明非开火不是为了保护路明非，是为了保护东京，这里是蛇岐八家的地盘，学院要做什么事都一样知会蛇岐八家。</p>
+            <p>当然学院肯定不愿意知会蛇岐八家，那么大家就一定谈不拢。谈不拢也还是要谈，这就是成年人的政治。他佐伯龙治如今也是个玩政治的人了，想起来可真叫人丧气。</p>
+            <p>藤原信之介迟疑了好一会儿，小心翼翼地上前，把一个大信封放在乌鸦的办公桌上，又赶紧退了回去。</p>
+            <p>乌鸦狐疑地看了藤原信之介一眼，打开信封，里面是一份购买物业的合同的复印件，乌鸦看了一眼地址，脸色微变。</p>
+            <p>“昨天夜里，在事发地点附近，有一座仓库失火。而那座仓库，名义上是一家物流公司持有的，但那家公司是蛇岐八家控制的。我们的专员追踪路明非等人去了那座仓库，看起来他们就藏身在那里。”藤原信之介边说边偷看乌鸦的脸色。
+            </p>
+            <p>乌鸦的脸上阴晴不定。</p>
+            <p>他已经通过电话知道了仓库失火的消息“师生藏”那么重要的地方失火，下属当然会在第一时间报给佐伯龙治局长但还不知道具体发生了什么事，也没能联系上诺诺，现在看来，是最糟糕的情况。</p>
+            <p>但乌鸦首先要面对学院的正面责问，藤原信之介有备而来，仅仅装腔作势恐怕是没法蒙混过关的。乌鸦冷着脸，但是大脑动得飞快。</p>
+            <p>“佐伯君，有句话，不知当说不当说……”藤原信之介说。到了这个时候，他说话还是吞吞吐吐的。</p>
+            <p>“洗耳恭听。”乌鸦冷冷地直视他。</p>
+            <p>藤原信之介深吸一口气，抬起头来，“其实我第一次拜见佐伯君的时候，就做好了准备被您拒绝。”</p>
+            <p>乌鸦一愣。</p>
+            <p>“大义我是从来不信的，可友谊我还是相信的。”藤原信之介说，“其实谁能把天下大事都扛在肩上呢？你真正在意的就是那么几个人而已，因为在意那几个朋友，所以才在意有他们的世界。”</p>
+            <p>乌鸦疑惑地看着这个忽然认真起来的圆脸男人。</p>
+            <p>“根据我的情报，佐伯君的朋友并不多，即使在前任大家长源稚生君还活着的时候，您的朋友也不过是源稚生君、夜叉和樱小姐那么区区几个人而已……”</p>
+            <p>“要说什么就直说！不要说那么多废话！”乌鸦粗暴地打断了藤原信之介，那些已经不在的人他埋在心里就好了，不想拿出来跟陌生人讨论。</p>
+            <p>藤原信之介深深地鞠了个躬，“朋友少的人就会格外看重朋友吧，当时我是这么想的，所以做好了佐伯君拒绝我的准备。但我也准备了一番话来劝说佐伯君，路君能够龙化的事想必佐伯君也知道了，甚至亲眼见过，龙化的路君，还是佐伯君的朋友么？”
+            </p>
+            <p>乌鸦的心微微一颤。</p>
+            <p>昨夜的情形又浮现在眼前了，那喷吐着暗蓝色气息、眼里流淌着熔岩的家伙，像是地狱之门失守时逃出来的恶魔。他嘶吼着，肆意地散发着威严、力量和血腥的气息。</p>
+            <p>那家伙真的是路明非么？那家伙还能认出他佐伯龙治么？如果学院的直升机不来，不是龙化到半途就能强行中止了，那家伙会不会干出毁灭东京的事情来？</p>
+            <p>没人知道，无法推测，甚至无法做个实验来测试一下，直到他下一次失去控制的时候。而下一次他失去控制，会不会真的把某座城市摧毁了？</p>
+            <p>“路君的情况不是他心中有没有存着恶念，而是他可能正在失去自己。那个正在消失的路君，才是佐伯君您真正的朋友啊。”藤原信之介说，“您真的要释放一条看起来很像路君的狂龙，却纵容您真正的朋友消失么？”</p>
+            <p>藤原信之介又是一个深鞠躬，“我能想到的说词也就是这些了，如果佐伯君愿意想一想我说的话，是我莫大的荣幸。告辞。”</p>
+            <p>他小步上前把那个礼盒放在乌鸦的办公桌上，退回门边。</p>
+            <p>“那段视频……是加图索家发到学院的，说是陈墨瞳父亲希望放送的，其实我们也不知道里面是什么。”藤原信之介在门边转身，“造成的意外学院深感抱歉，不过我想……加图索家的使者应该也已经抵达日本了，还请佐伯先生小心。”
+            </p>
+            <p>藤原信之介关门出去了，巨大的办公室里，只剩下乌鸦独自沉默着。</p>
+            <p>路明非缓缓地睁开眼睛，眼前是樱红色的屋顶。全身上下又疼又痒，像是无数蚂蚁正沿着他的骨头爬动，咬着他的关节缝儿，稍微动动就疼得眼前发黑。</p>
+            <p>爬起来暂时是别想了，扭头也很难，不过按这个感觉，他应该是躺在一张柔软的大床上，可能在某个宾馆里，只不过装修的颜色有点艳。</p>
+            <p>“……目前自卫队已经接管了该区域的治安，现场清理工作仍在进行中，下面将由我们的前线记者结野小姐采访自卫队发言人，为我们带回第一手的信息。”电视机的声音。</p>
+            <p>“根据目前入手的情报，应该是一起大规模的军火走私案，押送军火的武装人员和抢劫者发生了激战，过程中他们发射了大量的重武器，包括肩扛式火箭炮和重机枪，最后导致装运军火的货车爆炸。”沉稳磁性的男声。</p>
+            <p>“但根据附近居民的说法，在枪声响起之前他们听到了奇怪的吼叫声，像是由某种超大型的生物发出的，孩子们则认为那是哥斯拉。请问自卫队对此有什么解释。”清丽好听的女声。</p>
+            <p>“对此我只能遗憾地说，我们在现场并未发现哥斯拉的尸体……”</p>
+            <p>路明非歪着嘴呵呵干笑两声，这帮日本人说起瞎话来也是蛮溜的。自卫队显然知道昨夜发生的事没那么简单，但为了不在公众中引起恐慌情绪，整出了这套说辞来。但他们接下来肯定会对进出东京的口岸进行秘密的军事管制，他们的行动变得更难了。
+            </p>
+            <p>一张女孩的脸出现在他的视野里，那是诺诺，一头长发垂下，在他眼前像是藤蔓那样晃晃悠悠。</p>
+            <p>“醒了？”诺诺的招呼很简单，不过路明非也没期待她露出那种“你可终于醒了我真要担心死了”的表情来。</p>
+            <p>诺诺跟着一针扎进他的上臂，把药水推进他的身体里，“止痛药，打这一针，12个小时之内动起来没问题。不过12个小时之后你的伤口没准也就痊愈了。”</p>
+            <p>诺诺说得还真是，昨晚拔出那两把刀的时候，感觉双肘的关节全部都碎掉了，可现在胳膊动起来没问题，只是疼。</p>
+            <p>这匪夷所思的自愈能力，真不知道是开心好还是惊恐好。自己还真是个怪物啊，以前只是愈合速度比别人快，现在连几乎完全毁坏的肘关节都能再造，接下来没准切掉他的下半身也能再长全了，跟蚯蚓似的。</p>
+            <p>“这……是哪里？”开场白太套路了，但还是下意识地说了出来。</p>
+            <p>“再想想，你来过的。”诺诺说。</p>
+            <p>止痛针已经开始发挥作用了，路明非双肘支撑着身体，勉强坐了起来，环顾四周。</p>
+            <p>这间房间整个都是樱红色的，大红色天鹅绒的沙发、大红色的帷幕和印着大红唇痕的壁纸，还有用于装饰墙壁的一对马鞭，又说是他昏昏沉沉的时候带着来的，没跑了，就是那间酒店，那间酒店正好距离仓库不远。</p>
+            <p>不过并非他和绘梨衣住过的那个套间，而是另外一间。当时他看过这间酒店的介绍，每个套间的装修都不一样，各有名堂，什么凡尔赛圣婚、巴士底狱激情、大奥征服者之类的，这间好像叫什么“战斗吧我亲爱的成吉思汗”，设计师的脑洞想来也是够大。
+            </p>
+            <p>“实在没地方可去，只好带着你来这里，试试看刷你的脸有没有用。”诺诺淡淡地说，“还真的有用，老板娘立刻安排我们入住，钱都不收，而且再三跟我保证会保密。”</p>
+            <p>“这里的老板娘还是靠得住的……”路明非磕磕巴巴地说。</p>
+            <p>老板娘必然靠得住，但苏恩曦雇的人从来都靠得住，路明非觉得自己只是曾在这里暂时落脚，而在老板娘看来，这位神秘客户的助理在这间店砸的钱多到能把店买下来。</p>
+            <p>不知道是止痛针的作用还是吓得，路明非浑身冷汗。</p>
+            <p>首先他没法解释为何自己在一间情侣酒店有那么好的信用，其次他只是在吃拉面的时候遥望了这间店几眼，诺诺就把他带过来了，这姑娘的观察能力和侧写能力也太可怕了……还有，她侧写出来的到底是什么？</p>
+            <p>路主席在东京的壮丽生活么？路主席挥舞着小鞭子，鞭笞着各种日本小妹子，纵情奔驰在情人酒店里？</p>
+            <p>但诺诺并未追问，自顾自地去桌上倒了杯橙汁喝。</p>
+            <p>“那是……苏茜吧？”路明非犹豫着问。</p>
+            <p>尽管当时处在重伤加精神崩溃的状态，但他还是认出了那个追捕者。</p>
+            <p>他已经很长时间没见过苏茜了，从四年级开始，苏茜就前往法国分部实习了，从那以后就只能在守夜人讨论区里看到她的ID出现。</p>
+            <p>听说苏茜在法国分部表现得非常出色，偶尔也能看到她在守夜人讨论区里晒出自己在埃菲尔铁塔或者巴黎圣母院前的照片。这个眉目修长身材也修长的女孩站在诺诺身边的时候并不显眼，但在巴黎那个时尚之都学会了穿衣和化妆，那种半东方半西方的美非常特别，给她带来了很多低年级的仰慕者。再后来她出现得也少了，不过这一般都是好消息，说明她被重用了，准确地说，因为太优秀，被学院派到了某个不太适合经常对外联系的岗位上去。
+            </p>
+            <p>现在想来，大概是被法国分部培训为斩首人了吧？所谓斩首人，是单兵战斗技能最强的那类专员，往往都是他们出面去处决那些已经被龙血控制无法挽救的嗜杀者。</p>
+            <p>“嗯，可能是我最好的朋友了。”诺诺轻声回答。</p>
+            <p>看诺诺那一脸的寂寥，路明非想安慰安慰她，却没找出什么话来。</p>
+            <p>“没什么，这支狩猎队里，全都是我们的熟人。那个叫伊莎贝尔的妞，不还曾是你的助理么？被漂亮的小女助理拿枪指着屁股，老板什么感觉？”诺诺倒是显得无所谓。</p>
+            <p>“拿枪指着屁股？”路明非有点懵。</p>
+            <p>诺诺这才想起在那尴尬的一幕里，路明非自己是完全昏过去的。不过她也懒得解释，耸耸肩，略过了这个话题。</p>
+            <p>“她还算是留了点余地，当时她藏在暗处，如果第一时间动手偷袭，我根本连反应的时间都没有。”诺诺说，“不过真是没想到她当上了斩首人，看她写给我的信，还以为她在巴黎分部分管档案部门或者就是给大家泡泡茶呢。”</p>
+            <p>即使在金色鸢尾花学院，诺诺还是能收到苏茜寄来的信，但因为网络不通，所以必须是纸质，寄到马耳他港，再由专人带过来。</p>
+            <p>联系方式传统得就像十八世纪的闺蜜们，你住在巴黎城东，我住在巴黎城西，今天我在剧院看到一个年轻漂亮的小伙子，我心动了，很想告诉你，我还得写封信找个靠得住的信使送过去。信使在巴黎城东敲响你的门时，没准小伙子在巴黎城西已经敲响了我的门。
+            </p>
+            <p>而在那些信里，苏茜压根没提任何斩首人相关的事，连暗示都没有，只说塞纳河边的年轻画家有多么多情，卢浮宫艺术馆有多大，感觉她就是巴黎某个大公司的文员，上上班购购物，过着岁月静好的生活。</p>
+            <p>结果她在巴黎的黑夜里收人头，收了一个又一个。</p>
+            <p>可能当你长大了你就真的没朋友了，或者说得委婉点，大家都有自己的生活，不能再跟你分享一切的秘密。</p>
+            <p>“我也想不到，”路明非说，“自从她去了法国分部，我好久都没见到她了。说真的我本来觉得她会去奥斯陆分部的，没想到最后却是去了法国。”</p>
+            <p>“她为什么要去奥斯陆分部？”诺诺一愣。</p>
+            <p>“因为师兄是在奥斯陆分部啊，她那么喜欢师兄，我真以为她会跟去奥斯陆分部，反正小龙女也没了，师兄这辈子总得喜欢什么人吧？”路明非躺着仰望屋顶，说，“她有机会的，除了小龙女，就是她跟师兄走得最近了。”</p>
+            <p>诺诺沉默了好一会儿，“哦，她是喜欢楚子航的。”</p>
+            <p>路明非心里一动，扭头去看诺诺，诺诺正看着沙发上熟睡的楚子航。</p>
+            <p>原来现今的世界上是没有楚子航的，路明非忽然明白了，所以苏茜也不会记得他。</p>
+            <p>问题是这关系到师兄的终身幸福，路明非和芬格尔喝着小酒私下探讨过，觉得要说合适还是苏茜跟楚子航般配。</p>
+            <p>夏弥和楚子航两个人再怎么看对眼，都是硬碰硬刚对刚，邪教妖女对正道少侠，一个死不回头要一统江湖，一个坚定不移要斩妖除魔。这俩太一路货色了，谁也压不服谁，就算硬凑到一起，总有一天也会分道扬镳。</p>
+            <p>苏茜就不一样，按照芬格尔的话说，“我这狗眼都能看出苏茜是贤内助那种类型的”。她看起来那么温温柔柔的，其实特别有担当，真心爱楚子航那也是没跑了，静静地等了他那么多年，从不打搅他，可只要楚子航需要，苏茜永远都在。
+            </p>
+            <p>最后苏茜没选奥斯陆分部而是去了法国分部，想来也是等得有点伤心了。</p>
+            <p>还是得赶快找到那个能够修改因果线的幕后黑手，把世界恢复到正常，否则师兄的人生没着落，爱情也没着落。</p>
+            <p>路明非漫无边际地想着，又想如果真有改变因果线的能力存在，那岂不是死掉的人都可以活过来？</p>
+            <p>回到北京地铁的那一夜，当夏弥同学说要请假回家看看父母的时候，路明非主席挥挥手，冲出七八条大汉把她摁倒，一针扎进脖子里，打进某种对龙王也有效的麻醉剂。等夏弥醒来的时候，发现自己给捆得牢牢的，路明非主席语重心长地跟她讲人生的道理，讲人和龙也是可以共存的。一周不能感化她就讲一个月，一个月不能感化她就讲一年，反正路主席从不觉得自己的吐沫值钱，他就是个嘴碎的人。
+            </p>
+            <p>与此同理象龟也不必死，路明非主席落地东京二话不说，带着恺撒和楚子航杀进源氏重工，一枪崩掉橘政宗，杀完再解释。那么这个时候象龟应该正跟樱在法国海滩忙活他们的防晒油小店。</p>
+            <p>还有那谁那谁和那谁谁，都还生活在这个世界的某个角落，他们中有些人可能都未必会认识路明非，不过他们活着，跟喜欢的人在一起就好，岁月静好，对，就是这么一回事。</p>
+            <p>这么想虽然美好，可又多了很多解决不掉的麻烦，比如只有一个师兄夏弥和苏茜怎么分的问题？倦意涌了上来，他又睡着了。</p>
+            <p>诺诺仍旧看着沙发上的楚子航，男孩沉沉地睡着，黑而长的睫毛历历可数。</p>
+            <p>东京南面的大田区，古雅的小型和式庭院藏在商业区的楼宇之间，古老的原色木门始终都是关着的，外人只能看见露出围墙上方的屋顶和高树，附近的人都觉得这应该是一座私家寺庙。</p>
+            <p>但这个早晨，早起散步的老人们惊讶地看到穿着白色夏裙的女孩打开了庭院的门。发现自己被注视的时候，女孩略显尴尬地欠身致意，瀑布般的长发垂了下来，遮住了那张精致柔和的脸。</p>
+            <p>莫非不是寺庙而是某个有钱人家闲置的别墅？那女孩子应该是个大小姐吧？不过看那温和的眼神，一点都不盛气凌人，想来是家人教育得好吧？</p>
+            <p>可又不太像日本女孩，那身漂亮的夏裙没完全遮住她经过严格训练的身体，修长、凝练，肌肉轮廓清晰，没有一丝赘肉，像是那种经常泡在健身房里欧美女孩。老人们对这个新搬来的女孩颇多猜测，但表面上止于点头打招呼的程度。
+            </p>
+            <p>苏茜关上门，把那些老人的视线隔绝，疲倦地靠在门背后。直到此时她才能允许那股疲惫感肆无忌惮地释放出来，因为这里是安全的。</p>
+            <p>这是学院在东京设置的一处安全屋，学院买下这个物业已经很久了，为它配置了严密的安全设施，即使眼前这个看上去优雅静谧的庭院也不例外，如果戴上特殊的目镜，就能看到密集的红外激光网遍布整个庭院，未获授权的人踏入一步，就会激活安保装置。
+            </p>
+            <p>网球包沉沉地落地，老人们觉得这个女孩有点疲倦，脚步有点拖沓，莫非是在酒吧之类的地方玩得太嗨了，其实苏茜连提包的力气都不够了。包还很沉，里面塞满了她从火场中抢救出来的东西。</p>
+            <p>“卡塞尔学院执行部，巴黎分部，苏茜，身份验证通过。斩首者苏茜，欢迎，安全屋已经为你激活，所有设施对你开放。”苏茜穿越庭院踏上木地板的时候，系统模拟的女声在她背后说。</p>
+            <p>苏茜没有回答，她乘电梯上到高层，走进自己的套间，反身锁门，走向浴室。</p>
+            <p>一件件的衣裙从她身上脱落，散落一路。</p>
+            <p>苏茜没有使用后庭的温泉池，对于斩首者来说，温泉浴太过安逸和奢侈了。她用的是最快捷的淋浴，温水流过她的全身，这是一具线条清晰肌肉分明的身体，身上伤痕累累。</p>
+            <p>全都是过去一年里积攒的伤，斩首者这个头衔固然是一种荣誉，但冒的危险也远远高于普通专员，她面对过各种各样的目标，狂暴的、狡诈的、变态的……</p>
+            <p>虽然通常都会有人作为后援，但总有些情况下斩首者必须独自面对，那时没人会把你作为女孩看待，目标也许会，但他们只会因为你是女孩而更加肆无忌惮，甚至曾有目标试图侵犯她。这种时候苏茜能依赖的只有“剑御”和千锤百炼的身体。
+            </p>
+            <p>所以今时今日她比诺诺强，靠的不是天赋，而是反复用危险去自我锤炼，一再地忍耐，又一再地突破极限。</p>
+            <p>这次虽然危险，倒是没有什么见血的伤口，新增的是擦伤和灼伤，虽然水温是系统精确设置过的，但水流过灼伤处，苏茜还是痛得眼角微微抽搐。</p>
+            <p>那个仓库简直就是个完美的焚烧场，半地下，没有任何窗户，里面堆的多数都是易燃品，为了藏品的安全还一直保持着干燥，火一起来就根本控制不住。</p>
+            <p>墙壁中夹着钢板，门也是合金钢构造，通风管道狭窄到苏茜这么瘦削的身体也无法通过。</p>
+            <p>“剑御”这种言灵用于暗杀是极其优秀的，却不以力量见长，她无法破坏门和墙壁，眼看只有死路一条。</p>
+            <p>最后救了她的居然是那个男孩。</p>
+            <p>男孩离去之前忽然停下脚步，隔着火焰看了一眼苏茜，然后他举起手来，让苏茜看清他手中拿的东西，那是一柄钥匙。</p>
+            <p>他把钥匙丢进旁边燃烧的杂物里，这才转身跑出仓库，在身后关上了门。</p>
+            <p>虽然费了不少力气，但苏茜还是找到了那柄钥匙。年轻人也没骗她，真的是那间仓库的钥匙，在窒息之前，她终于打开仓库的门。</p>
+            <p>诺诺和那个男孩都没有置她于死地的想法，但短短的战斗中她和诺诺都几次跟死神擦肩而过。各自的立场决定了一切，她是秘党的一员，秘党自命是世界的守护者，而诺诺是个游侠，她只为自己在乎的人活。</p>
+            <p>“可这家伙是个穷鬼，穷到没有几个他真正在乎的人，也没有几件他真正在乎的事。”耳边忽然又响起诺诺说的话。</p>
+            <p>其实这个世界上有几个人生真正富足的人呢？绝大多数人都是穷鬼，只在乎很少的几个人几件事，很容易变得一无所有。</p>
+            <p>她苏茜在乎过几个人？哪几个人的离开会让她的世界崩塌掉？她一根一根地弯曲手指，在心里默默地数着。</p>
+            <p>她忽然握拳，中止了计数，关闭水流，双手撑着浴室的墙壁微微喘息。</p>
+            <p>她意识到自己的心乱了，乱得像个小猫抓过的线团。但她必须平静下来，不能多想，斩首者的心绪不能乱，他们和死亡共舞，心一乱，就会死。</p>
+            <p>她披上一件浴巾，用大毛巾揉着头发，走出淋浴间。赤足在微凉的木地板上走了几步，她忽然停下了，地板上干干净净，她丢了一路的衣裙都不见了。</p>
+            <p>准确地说，不是不见，而是被人收拾好了。那件夏裙被挂在屋檐下的衣架上，裙摆在晨风中微动，裙下那双系带凉鞋摆得整整齐齐，鞋旁是她的网球包。内衣则叠得整整齐齐，放在床头枕边。</p>
+            <p>苏茜闭上眼睛，片刻之后再度睁眼，瞳孔深处已经亮起了金色。柳叶般的黑色飞刀刺破网球包，浮空而起，像是被遥控的无人机群那样来到苏茜的身边。苏茜随手拿下一柄握在手中，其他的飞刀紧紧地跟在她身后。</p>
+            <p>她缓步走到厨房。厨房里传来叮叮当当的声音，看起来这个入侵者并不介意暴露自己的踪迹，他为苏茜收拾好衣裙之后，似乎就坦然地走进厨房做起早饭来。</p>
+            <p>这人居然真的是在做早餐，而且还是一份颇为丰盛的早餐，早餐桌就摆在厨房里，桌上已经放了两人份的烤土司、烤蘑菇、冷切牛肉和煮过的蔬菜，这人正在一门心思地煎着鸡蛋。</p>
+            <p>“双手举过头顶！慢慢地转过身来！”苏茜沉声说。</p>
+            <p>她身边的飞刀高速地旋转起来，发出尖利的啸声，声势骇人。这种情况下它们就像上膛的子弹，随时都能射出。</p>
+            <p>煎鸡蛋的家伙看起来真是被吓到了，举起双手慢慢地转过身来，一脸的茫然。</p>
+            <p>“怎么是你？”苏茜愣住了。</p>
+            <p>“当然是我，还能是谁呢？”煎鸡蛋的家伙苦笑，“谁会给你收拾好了衣服又来给你做早餐？你难道还有别的未婚夫？”</p>
+            <p>“你什么时候换的发型？”</p>
+            <p>“我的理发师说夏季也许可以尝试一些运动风格的短发……”那家伙挠了挠自己金色的短发。</p>
+            <p>其实也不那么短，不过跟他以前披散到肩的长发相比是短了很多，柔顺带卷，在早晨的阳光中色如白金，像是他中学时留的发型。</p>
+            <p>“按照计划你是四天之后抵达！提前抵达能不能发个信息说明一下？”苏茜狠狠地皱眉。</p>
+            <p>她也是个女孩，原本不排斥这种生活中的小浪漫，不过用在斩首者身上，这种惊喜有时候会造成不必要的麻烦。</p>
+            <p>比如这个忽然间剪了短发、又忽然间跑到她厨房里给她煎鸡蛋的家伙，如果他反应出错，苏茜的飞刀没准就会在他身上先留下一个血洞再说了。经过昨夜的激战，她非常疲惫，神经却处在高度紧张的状态。</p>
+            <p>煎鸡蛋的家伙愣了一会儿，苦笑，“巴黎那边的事提前结束了，我就改了机票时间。在法国，忽然端着早餐出现在你床前的男人都是浪漫的，我本以为你会高兴……可谁叫我有个当斩首者的未婚妻呢？”</p>
+            <p>苏茜皱着眉头看他，看起来气还没消。</p>
+            <p>男人有点手足无措，他从来都是个举重若轻的人，很得周围人的信赖，但在未婚妻面前就会有点做什么什么错的感觉。而苏茜从来都是个脾气很好的女孩，偏偏在他面前就会没来由地发火，看哪儿哪儿不对。</p>
+            <p>男人忽然抽了抽鼻子，鼻端一股淡淡的焦糊味，他这才想起炉子上还煎着鸡蛋。</p>
+            <p>但他还不敢立刻去照顾锅里的鸡蛋，而是对苏茜摊了摊手，“对不起，亲爱的，我错了，我应该预先通知你，我向你道歉……”</p>
+            <p>这么说的时候他是那么地无可奈何语言干瘪，完全不像他平时对外展现的模样。因为他其实并没什么错，他只是觉得这样会给苏茜一个惊喜而已。</p>
+            <p>苏茜轻轻地叹了口气，小跑着上前几步，拥抱他，“对不起兰斯洛特，我今天的情绪太糟糕了。”</p>
+            <p>兰斯洛特受宠若惊地抱住未婚妻，用面颊贴紧她的面颊。</p>
+            <p>他们静静地拥抱，任电磁炉上的煎蛋渐渐地卷曲、发黑，那些黑色的利刃失去了依托同时坠落，密密麻麻扎在桌面上。</p>
+            <p>卡塞尔学院，英灵殿会议室。</p>
+            <p>贝奥武夫一拳砸在会议桌上，桌面震动，“出动了雷霆和守望者也不行么？”</p>
+            <p>“年轻一代的斩首者中，雷霆已经是最优秀的几人之一了，她又那么了解目标。”图灵先生说，“但她的对手是路明非，我们无法评估路明非的能力上限，他完全是未知的，跟龙王一样。”</p>
+            <p>“可根据雷霆的报告路明非连行动能力都没有！阻止她的人是陈墨瞳和一个查不出身份的年轻人！什么时候有那么多人都能挡住我们最优秀的斩首者了？”贝奥武夫怒不可遏。</p>
+            <p>“雷霆是年轻一代斩首者中最优秀的，但并不是斩首者中最优秀的。”范德比尔特先生说，“如果年轻人做不好，那就让老人登场吧。”</p>
+            <p>“守望者已经带着老人们赶到东京了。”图灵先生说。</p>
+            <p>“提醒守望者控制好他们，别让局面没法收拾。”贝奥武夫说，“居然让我们不得不动用老人，即使是我，也宁愿那些家伙一直在冰库里睡着。”</p>
+            <p>“放心吧，守望者做事非常可靠。老人们只是负责助攻，完成任务还靠守望者和雷霆的配合，有守望者在，雷霆才是完整的雷霆，他们应该不会令我们失望。”范德比尔特先生说，“既然确认了他们在东京，狩猎圈缩小到一座城市那么大，成功率会大大地提升。”
+            </p>
+            <p>“那伙打劫我们各地分部的人到底是什么来路，查清楚了么？”贝奥武夫问。</p>
+            <p>图灵先生摇摇头，“只知道打劫者是两个年轻的女性，毫无疑问都是混血种，其中一个的战斗力很强。看她们的路线，是一路开车从亚洲到欧洲，沿路打劫我们的各地分部。各地的分部都不得不留人戒备。”</p>
+            <p>那是一桩令元老会非常尴尬的事，原本追捕路明非是头等大事，各地分部都枕戈待旦。但两个女贼在短短半个月的时间里已经打劫了十个以上的分部，方式简单粗暴，踹门进来，把所有人控制住，拷贝电脑里的资料，霰弹枪一通乱射，给被俘的专员们集体拍照上传到猎人网站，拍拍屁股驾车走人，接着去打劫下一家。
+            </p>
+            <p>秘党的颜面尽失，又要防备那些重要的资料被劫，不得不留人在各地分部防守，大大影响了他们追捕路明非的人力。原本遍及世界各地的分部是他们的爪牙，现在却成了他们的软肋。</p>
+            <p>“几乎可以肯定对方的目的是分散我们的注意力，令我们无法全力以赴地追捕路明非。”范德比尔特先生说。</p>
+            <p>“路明非还有同伙么？”贝奥武夫沉吟，“如果我们面对的不是一个逃走的怪物，而是一个组织，那事情会更难办。”</p>
+            <p>“一个能和龙王抗衡的怪物，现在他逃走了，即使他并不属于任何组织，也会有组织想要找到他，控制他。”图灵先生说，“他的出现已经影响到了平衡，混血种组织之间的平衡，人类和混血种之间的平衡，甚至……龙王之间的平衡。但现在还不是为平衡担忧的时候，同时有两个怪物在地球上活动着，一个在东京，一个在北极圈，它们必须被控制住，我们才有喘息的时间，来考虑下一步的事。”
+            </p>
+            <p>“北极圈那边的事情怎么样了？”贝奥武夫问。</p>
+            <p>“由执行部部长施耐德教授亲自领队，原本留在学院本部的精锐都参加了行动，包括恺撒、阿巴斯和芬格尔。执行部采购了一艘很大的船，装备部负责改造，摩尼亚赫号作为预备队，这次我们做了充分的准备。”范德比尔特先生说。
+            </p>
+            <p>“真的会是利维坦么？”贝奥武夫沉思，“那个只在伪经中提到的家伙，我们只是推测它存在而已。”</p>
+            <p>“没人知道那家伙是什么，也没人知道它是不是真叫利维坦，名字不重要，但可以肯定的是北冰洋里正游着一个大家伙。”</p>
+            <p>“捕鲸队什么时候出发？”</p>
+            <p>“还需要几天做准备，恺撒他们应该是今天抵达阿伯丁。”</p>
+            <p>苏格兰，阿伯丁港。</p>
+            <p>穿城而过的河上，货船劈波斩浪，天空阴霾，高树摇曳，两岸都是古老的建筑，随处可见锋利的尖塔。</p>
+            <p>这是一座历史悠久的城市，也是苏格兰最大的几座城市之一，可也只有区区几十万人。不过作为天然良港，它的地位非常重要，很多巨型航运公司的母港都在这里，它的泊位能够停靠巨型油轮。</p>
+            <p>船厢里，已经派遣直升机把重型装备运到了船上，还有装备部的工程师们，几天之内这些装备就能调试完成，其中包括了曾经在三峡水库用过的暴风鱼雷。</p>
+            <p>考虑到这种超高速鱼雷对龙王诺顿也只是造成了重创而不是一击必杀，装备部又额外加料做了改进。恺撒可以猜到那种改进是什么，应该就是诺顿龙骨中提炼出来的火元素晶体，龙骨虽然失窃了，但那种晶体还有少量的库存。</p>
+            <p>他们自己要随身携带的装备也不少，从折叠帐篷、防寒服到冰镐，当然还有恺撒的沙漠之鹰、狄克推多和阿巴斯那对弯月般的波斯刀。</p>
+            <p>恺撒在给沙漠之鹰上油，阿巴斯则细心地磨着刀。</p>
+            <p>“我说我们是去捕鲸好不好？你们整这些有用么？一头可能是龙王的鲸鱼，你们准备跟它比枪比刀？”芬格尔一脸鄙夷。</p>
+            <p>“没准会遭遇北极熊呢？你准备用暴风鱼雷对付它还是咬它？”恺撒头也不抬。</p>
+            <p>“我准备从你们两个混蛋身边离开，所以遇到北极熊我就跑，我有双很适合跑步的鞋子。”芬格尔给他们看自己的海豹皮靴，“你们两个能打的去跟北极熊打不就行了？”</p>
+            <p>一路上这家伙都不开心，倒也很好理解，他是被恺撒和阿巴斯一左一右架上飞机的。</p>
+            <p>货船驶出河道，进入港口，水面立刻就从青灰色变成深得令人发冷的碧蓝。这是一座巨大的深水港，港口里浓雾弥漫，当那些数万乃至十万吨级的大型油轮从雾气中出现的时候，船舷简直高得像是接天的墙壁。</p>
+            <p>货船越过这些油轮继续向外海驶去。</p>
+            <p>“我说，EVA给我们买的那条船靠得住么？为什么这种巨无霸油轮都能停在港口里它非要停得远远的？”芬格尔嘟哝。</p>
+            <p>“船上在做改装，免得被人看到。还有，据说那艘船也不太方便让人看到。”阿巴斯说。</p>
+            <p>海岸线越来越远，最后他们完全驶入了浓雾之中，如果不是靠着导航仪，根本无法航行。</p>
+            <p>“停下，我们到了。”施耐德说。</p>
+            <p>货船在海面上划过一个巨大的弧线停船，施耐德站起身来望向某个方向，芬格尔也伸长了脖子往那边看去。</p>
+            <p>黄色的灯光忽然就穿透了雾气，汽笛声震耳欲聋，摩天大楼般的身影从浓雾中缓缓地浮现，还有血红色的巨口和森严的白牙！连恺撒都不由自主地绷紧了浑身肌肉。</p>
+            <p>如果不是那艘船鸣笛示意了，真可能被误认为就是他们此行要捕猎的那头巨鲸。</p>
+            <p>尽管无法跟十万吨级的油轮相比，可这艘船依然可称“巨舰”二字，黑红两色的船体，船身宽阔，血口白牙是船头上喷绘的鲨鱼嘴。</p>
+            <p>如果说那些大型油轮是温顺的蓝鲸，那么这艘船给人的就是食人鲨的凶恶感。</p>
+            <p>“破冰船？EVA买了艘破冰船？”芬格尔盯着船头厚厚的破冰装甲看了半天，转向施耐德。</p>
+            <p>“这艘船还不错，看起来是军用级的。”施耐德也是仰望这艘巨舰，赞许地点点头。</p>
+            <p>“我们买了一艘军用级的破冰船，就为了去捕鲸？”芬格尔瞠目结舌，“这是不差钱呢？还是不差钱？”</p>
+            <p>“秘党的历史上，缺钱花的时候还真不多。”施耐德说。</p>
+            <p>别人说这话可能有炫耀财富之嫌，可施耐德只是讲述事实。混血种在敛财方面的能力素来出色，秘党也不例外，否则也难有经费支持屠龙这项伟大的事业。时至今日学院名下仍有众多的企业，源源不断地输送着财富。</p>
+            <p>“如果他们买了一艘航空母舰，我还会意外，但这只是一艘破冰船，”恺撒也很轻描淡写，“我们要去的地方可是北极，当然需要一艘能撞开冰山的大家伙。”</p>
+            <p>他这么说也同样并非炫耀财富，加图索家的男人也没有为钱烦恼过，而且作为长江三峡那件事的亲历者，恺撒很清楚装备是越强越好，而不是恰好够用，因为你根本无法预测你的敌人是什么东西。</p>
+            <p>“妒忌使我质壁分离！”芬格尔愤慨地说着，扭头去看阿巴斯，“会长大人你呢？你不说句话也来刺激刺激我这个穷人？”</p>
+            <p>阿巴斯笑笑，“我可没钱，跟你一样。”</p>
+            <p>说完他就提起自己的波斯刀，仰望破冰船做好了登船准备。</p>
+            <p>阿巴斯确实没什么钱，他甚至是靠校长奖学金完成的学业。但他也根本不需要钱，他没有任何爱好，除了冥想，可冥想这个爱好委实不花钱。他住在一间非常奢华、阿拉伯王宫般的房子里，但那只是某个崇拜他的阿拉伯裔学生——那人家里据说有那么几十口油井——租下来，装饰好了，非要供他冥想之用的。阿巴斯也没有拒绝，不过也没有很感激，对他而言在王宫里冥想和在野地里冥想只是有没有蚊子咬他的区别。
+            </p>
+            <p>这样一个人当然对金钱没什么概念，但在芬格尔看来这家伙跟恺撒差不多，就是看到很多钱堆在那里，也跟看到很多羊粪堆在一起一样，会点点头说哦还挺多的，就过去了。</p>
+            <p>破冰船上甚至安装了塔吊，吊车把整条货船吊到了后甲板上。</p>
+            <p>恺撒刚刚站在甲板上，背后就传来熟悉的声音，“少爷，欢迎登船。”</p>
+            <p>恺撒转过身来，看清了来人，微微皱眉，“你怎么在这里？”</p>
+            <p>黑色的小礼服，烫得笔挺的裤缝，即使在破冰船上也打着精美的丝绸领巾，来人的衣着像个尽忠职守的英国管家。可看那头丝绸般润泽的金发，长到能够盖住眼睛，却又像是被英国管家伺候的贵公子。</p>
+            <p>恺撒的秘书，帕西·加图索，曾经服务于恺撒的叔父弗罗斯特，对于加图索家的事，他知道的比恺撒这个继承人还多。恺撒并不喜欢这位秘书跟着自己，但帕西是家族指定给恺撒的，有时候恺撒也没办法。</p>
+            <p>“家族担心少爷的安全，命我赶来看看能不能帮上什么忙，”帕西恭恭敬敬地说，“此外少爷日常需要的一些东西我也带来了，应该足够这趟旅行用。”</p>
+            <p>“我日常需要的东西？”恺撒没理解这句话。</p>
+            <p>“50瓶陈年的波特酒，500支雪茄，红葡萄酒100瓶，香槟酒100瓶，白葡萄酒200瓶，”帕西顿了顿，“考虑到海上进餐吃海鲜的时候会更多一些，所以这次白葡萄酒准备得较多。我还准备了500磅的各种红肉，和300磅的各种白肉，包括日本产的干鲍和法国产的蓝龙虾，都是少爷您喜欢的。此外我从罗马调了两位主厨随行，其中一位曾在佛罗伦萨四季酒店担任行政主厨15年……”
+            </p>
+            <p>施耐德叹了口气，转身走开了，阿巴斯倒是没走，微笑着继续听，不过看起来纯属礼貌。</p>
+            <p>恺撒脸色阴沉，他几乎快要忘记自己当贵公子的那些年里的生活方式了，被帕西这么提醒一下子想了起来。当年他确实就是这样的一个人，航行到世界各地都要自己带酒带肉，连酒杯也要带自家的，补给不够的时候还会派飞机先飞到目的地，再把货物运送到港口。与之配套的当然是船上的红酒派对，香槟派对，和烤肉派对。
+            </p>
+            <p>可他如今已经不走这个路线了啊！他现在很务实了，连速溶咖啡都能喝了！还提这些干什么？他不愿在竞争对手——也就是那个微笑着的阿巴斯——面前，看起来像个不能吃苦的二世祖。</p>
+            <p>就在他考虑要不要拿帕西的领巾把他的嘴堵上的时候，有人拍了拍他的肩膀，亲热地靠了上来。</p>
+            <p>是芬格尔。</p>
+            <p>芬格尔深情地看着帕西，不是看女人的那种温情，而是看到出炉牛腿的温情，“主席，你这个秘书真的非常好！是个人才！你要培养他，将来能成大事，是你的左膀右臂！”</p>
+            <p>施耐德漫步在这条巨舰上，感受着透过呼吸器进入肺部的寒意。</p>
+            <p>甲板上也是雾蒙蒙的，但还是可见那七层楼高的庞大船舱和高耸的舰桥，巨大的鱼雷管被塔吊吊着从天而降，装备部的工程师们正遥控着四组行走的机器人——准确地说它们更像是机器狗——扛起这根鱼雷管，把它抬到船首去安装。施耐德看着那些机器狗的背影，在面具下无声地笑笑。
+            </p>
+            <p>脚步声从侧方接近，施耐德转身看了过去，身穿白色制服的男人走出雾气，大步来到施耐德面前。</p>
+            <p>施耐德打量那个男人，他有着蓝色瞳孔和栗色的短发，典型的斯拉夫人外貌，高大彪悍，肌肉健硕，海风和日晒令他的皮肤苍老，但整个人还是显得活力和热情。</p>
+            <p>“请问您就是新的船主么？”男人向着施耐德伸出手来，“我是这艘YAMAL号的船长，萨沙·雷巴尔科，竭诚为您服务！”</p>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
