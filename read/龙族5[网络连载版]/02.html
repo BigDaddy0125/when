@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>02</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <div id="top"></div>
+            <p><a href="01.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="03.html">下一章</a></p>
+            <hr>
+            <h1 id="center第二章-故人center">
+                  <center>第二章 故人</center>
+            </h1>
+            <br>
+            <br>
+            <p>罗马郊外，广阔的苜蓿田里，一座古旧的修道院，门前古树茵茵。</p>
+            <p>一辆银色的阿斯顿马丁敞篷车沿着蜿蜿蜒蜒的小路开来，车屁股后面拴着一串可乐罐子，可乐罐子在地面上碰撞发出叮呤咣啷的欢快声音。</p>
+            <p>乘客是一对男女，容貌相互辉映，男人一身白色的亚麻西装，挺拔、清瘦，络腮短须，皮肤晒成健康的小麦色，典型的意大利美男子。</p>
+            <p>他的女伴是位拉丁美人，也是小麦色的皮肤，野性、风情，一身紧身包臀的白色蕾丝裙，凸凹有致。</p>
+            <p>他们不时地对视，开着车也十指相扣，一眼就能看出是热恋情侣或者新婚夫妇。</p>
+            <p>车在修道院门口停下，男人立刻扑上去跟拉丁美人深吻，吻到两个人都喘不上气来才暂告段落。</p>
+            <p>“宝贝儿，等我一下，不要跑开，我会担心的。”男人抚摸拉丁美人的脸蛋，“这边的苜蓿地里可都是吃人的怪物。”</p>
+            <p>拉丁美人挽着男人，神情痴缠，“什么时候回来？”</p>
+            <p>“跟家族里的长辈聊聊天，很快，我怎么可能舍得离开你？多一秒钟都不行！”又是一个让人窒息的深吻，男人这才整理领口走向修道院那道黑色的铁门。</p>
+            <p>他没有敲门，铁门就在他面前打开，庭院中空无一人，大理石喷泉寂寞地喷着水。</p>
+            <p>——————————</p>
+            <p>拉丁美人望着男人的背影，不由得甜蜜回想起四个小时之前，她和这个男人的相逢……</p>
+            <p>这个名为庞贝的男人。</p>
+            <p>那是在斯德哥尔摩机场的酒吧里，失恋的拉丁美人一个人喝着闷酒。</p>
+            <p>其实她是来斯德哥尔摩转机的，可前一程的航班上和交往三年的富豪男友吵了起来，一气之下说出了分手的话。</p>
+            <p>这时候庞贝出现了，一身白色的西装，一顶白色的麻编帽子，好像是从印度那种炎热的地方来，带着一身的阳光。</p>
+            <p>他走进来的时候，整个酒吧的女人都在看他，这世界上能一眼令人惊艳的男人还真的不多。</p>
+            <p>“我要两杯1972年的麦卡伦威士忌，一杯给我，一杯给这位有心事的女士。”庞贝径直地坐在了拉丁美人的对面。</p>
+            <p>拉丁美人受宠若惊。</p>
+            <p>他们四目相对，共饮一个年份的老酒，却没有说任何话。</p>
+            <p>酒快要喝完的时候，拉丁美人的前男友推开了酒吧的门，带着一束玫瑰花，显然就是来道歉和挽回关系的。</p>
+            <p>这时候庞贝站起身来说，“亲爱的女士，人生是不是应该有些想走就走的旅行呢？我有一架小小的飞机，也许能带您去不会忧虑的地方。”</p>
+            <p>拉丁美人看了前男友一眼，一把就握住了庞贝的手。两人走出酒吧就开始热吻，背后是一地破碎的心、一束散落的玫瑰和前男友愤怒得要发狂的眼神。</p>
+            <p>可那位素来很自负很嚣张的前男友却没有追上来，可能也觉得自己在庞贝面前没有什么竞争力。</p>
+            <p>庞贝所说的那架小小的飞机……是一架价值6500万美元的庞巴迪环球8000，正在前方的跑道上轰鸣着。</p>
+            <p>——————————</p>
+            <p>这就是爱情！你遇到对的人，甚至不必跟他多说一句话，在私人飞机上和庞贝狂吻乱摸的时候，拉丁美人很确信。</p>
+            <p>可惜摸到一半的时候，庞贝接到家里打来的紧急电话，尽管满脸的不情愿，庞贝却还是命令飞机在罗马机场降落，带着拉丁美人来到这座郊外的修道院。</p>
+            <p>铁门在庞贝身后缓缓地合拢，拉丁美人忽然觉得这地方虽然古意优雅，却有点阴森。</p>
+            <p>但不适的感觉一闪而过，她转而有些欣喜，新男友的长辈们竟然居住在这样一座古老而典雅的修道院里，可见他不仅是富有，更是意大利名门世家的后代。</p>
+            <p>——————————</p>
+            <p>洒满阳光的大厅里，十二位身穿白色长袍、修士般的老人静静地坐在十二把椅子上，大理石地面光可鉴人，照出他们的影子，他们仿佛古代的贤者，坐在寂静的水面上。</p>
+            <p>庞贝推门而入，根本没看那些老人，而是拿起古瓷花瓶中的一支绿色玫瑰，深深地闻了一下，像是陶醉在香气中。</p>
+            <p>老人们似乎并不介意他的嚣张和放浪，目视前方，保持沉默。</p>
+            <p>庞贝把玩着那支玫瑰，来到椅子上坐下，那把椅子放在老人们前方，是这间大厅里唯一一把空椅子，早已为他准备好。</p>
+            <p>“找到你可真不容易，庞贝。”为首的老人缓缓地说。</p>
+            <p>“祖宗们召唤我是为什么？”庞贝翘着二郎腿，还是吊儿郎当的模样，“我可是正要去西藏继续我的密宗修行呢。”</p>
+            <p>“和某位在斯德哥尔摩机场遇到的女士一起修行？”</p>
+            <p>“对我的事情了解得可真清楚，感情也是一场修行，在这条修行的道路上我死掉也是心甘情愿的。”</p>
+            <p>“君王讲感情，就像狮子在进食的时候祈祷。”</p>
+            <p>“少说点这种有文化没营养的话行不行？你现在说话的风格就像从中世纪的古墓里挖出来的吸血鬼，”庞贝顿了顿，“看起来也像，快点，找我有什么事？”</p>
+            <p>“陈墨瞳的事，加图索家的新娘，做下那种事是不会被宽恕的。”</p>
+            <p>“祖宗们是说她带着路明非逃亡的事？”庞贝耸耸肩，“确实是有亏妇道，不过在各位祖宗的眼里真有妇道这回事么？各位祖宗还能愉快地动弹的时候，也都很喜欢女人吧？你们的情史在家族的档案中还有记录，我每次读的时候都像读色情小说那样兴奋呢！”
+            </p>
+            <p>分明是揶揄的语气，可庞贝说的时候还搓了搓手，满脸猥琐，好像真的很有点兴奋。</p>
+            <p>老人们的神色介乎尴尬和愤怒之间，但他们还是克制住了，跟庞贝打了那么多年的交道，他们学会了容忍这家伙。</p>
+            <p>“我们在意的是她有没有被污染，被污染过的女人没有资格成为加图索家的新娘，你很清楚家族的底线。”老人说。</p>
+            <p>“懂了！你们在乎的是我们的新娘和路明非睡过没有！”庞贝点头，“这点我就没有把握了，换了我是路明非，现在怀孕应该三四个月了。长辈们那么在乎这件事的话，我该怎么办呢？抓住陈墨瞳送去妇科检查一下？”</p>
+            <p>“别用那种愚蠢的语气！这是严肃的事！”老人加重了语气，“别的事情我们还能纵容，但繁衍后代是家族首要的大事，也是家族继承者的责任。我们的新娘，绝对不能被污染！她必须新鲜、纯净、忠诚！”</p>
+            <p>“如果现在坐在这里的不是我而是我儿子，他已经把唾沫吐到各位祖宗的脸上了。”庞贝为难地抓抓头，“你们想劝他换个未婚妻，还不如劝他跟我断绝父子关系。”眼前这个人忽然间就消失不见。</p>
+            <p>“我们不会这么跟恺撒说，恺撒什么都不必知道，只要陈墨瞳从这个世界上消失了，他自然会慢慢地结束对她的迷恋。时间能治愈一切。为恺撒准备新的未婚妻固然需要一点时间，但比冒险让一个被污染的女人成为他的新娘要好。”
+            </p>
+            <p>“长辈们的意思是……”庞贝的表情慢慢地消失了。</p>
+            <p>“她令家族蒙羞，令我们选定的继承人迷恋，而她的身体可能被污染，我们有足够的理由换掉她。换掉她之后，她也不必继续存在了。”</p>
+            <p>“瞒着我儿子杀死他的未婚妻？”庞贝沉吟，“我不得不提醒各位，如果走漏风声，他会冲进这里给各位脑门上一人一枪的。”</p>
+            <p>“他不会知道，就像他也不会知道自己的母亲是怎么死的。”老人轻声说，“这是我们讨论之后的决议，贝塔、伽玛、德尔塔、宇普西龙……我们每个人都觉得不能让恺撒继续任性了。”</p>
+            <p>这些老人们的名字居然只是简单的罗马字母：，阿尔法；，贝塔；，伽玛；，德尔塔；，艾普西龙……</p>
+            <p>这些与其说是名字不如说是代号或者序列号，这些老人好像根本不在乎自己在这个世界上的存在感。</p>
+            <p>老人们无声地点头，他们有时候更像是能够通过神经互联的计算机，十二位长辈，一样的服饰、一样枯槁的脸、一样的眼神，所有的意见都一致，只需为首的阿尔法说话，就代表他们所有人。</p>
+            <p>“所以阿尔法，你叫我来不是跟我讨论，而是叫我执行的？”庞贝盯着阿尔法的眼睛，“老丈人满世界追杀儿媳妇，这种戏码听着太狗血了，不符合我上等人的身份。”</p>
+            <p>“不需要你执行，只是通知你，免得你制造麻烦。”</p>
+            <p>“我是那种喜欢制造麻烦的人么？你们总是带着有色眼镜看我。我只是有点宠爱儿子，虽然儿子不太爱我。”</p>
+            <p>“我们也爱恺撒，前提是他做对家族有利的事。我们为家族而生，也为家族而死，每个姓加图索的人都该有这样的觉悟。”</p>
+            <p>阿尔法缓缓地说：“他是家族的继承人，为家族生育纯净的后代是他的责任。”</p>
+            <p>“就像一窝蚂蚁，每个蚂蚁都是为了蚂蚁窝存在，兵蚁的工作是战死，工蚁的一生就是采集，公蚁的工作是交配，蚁后的工作是产卵。”庞贝抬眼看着阿尔法，“我和恺撒就是公蚁对吧？说起来也不错的样子，只需要传宗接代，我喜欢传宗接代，但我跟你们不一样，我只喜欢过程不喜欢结果。”
+            </p>
+            <p>“不，”阿尔法厉声说，“我们怎么会是那种低等的存在？我们是火焰的传承者！我们是世界的继承者！加图索家伟大的灵魂，注定不朽不灭！”</p>
+            <p>“我们那么厉害呢？”庞贝揶揄。</p>
+            <p>阿尔法脸上的怒意一闪而没，他克制了自己的情绪，声音重又变得温柔，“庞贝，我们是古老的家族，我们传承伟大的意志，这是我们共同的责任，你早该明白这一切，在你成为家主之前。将来你的位置会在我的旁边，再将来恺撒的位置又会在你的旁边。我们可以成神，我们可以不朽，我们会分享荣耀。”
+            </p>
+            <p>“你就没有问过我想不想坐在你旁边么？像个干尸或者吸血鬼似的，跟年轻人大谈荣耀和不朽。”</p>
+            <p>阿尔法一愣，正想发火。</p>
+            <p>“我有点厌烦你们了，”庞贝接着说了下去，“有时候我想，为什么不在你们躺在休眠舱里的时候，给保存你们的冷库里灌满水泥呢？那样我就自由了，想做什么做什么。”</p>
+            <p>老人们集体陷入了沉默，这句话听起来真不像玩笑，更像是赤裸裸的威胁。但庞贝却又是会开这种玩笑的人，在历任家主中，他就是这样癫狂不可控的异类。</p>
+            <p>但无奈的是他们确实需要这样的一个疯子，弗罗斯特已经不在了，他们需要借这个疯子的手来控制加图索家庞大的产业……远比世人想的更加庞大。</p>
+            <p>“庞贝我亲爱的孩子，在你的位置上还有什么事是你想做而不能做的呢？你已经有了自由，世界上最大的权力和自由。”阿尔法沉默良久，还是决定怀柔，他用了轻柔但不失威严的语气，“加图索家族的主人，本就是这个世界的主人，除了那黑色的主宰，再没有你的对手。”
+            </p>
+            <p>“最大的自由，跟权力一点关系都没有。”庞贝笑笑，“最大的自由是决定自己的生活，哪怕那生活再荒诞可笑。也许是在跟世界上最美的女人睡过觉后醒来，用烈酒把自己灌到只剩下最后一点神智，然后独自登上一架飞机。”</p>
+            <p>“独自登上一架飞机？”阿尔法不解。</p>
+            <p>“飞翔，飞到耗尽所有的燃油，”庞贝丢下那朵玫瑰，起身向外走去，“然后撞死在一座山上，随便什么山都行。”</p>
+            <p>——————————</p>
+            <p>庞贝走出修道院的时候，拉丁美人正给自己抹防晒油。看到庞贝出来，她眉间眼角都是媚意，靠在车门上，pose自然而然摆好了，身段玲珑妖娆。</p>
+            <p>庞贝却没有看她，而是眺望着远方，看起来略有些忧郁。这种忧郁让他显得更具魅力，拉丁美人搂住他的脖子，“怎么了宝贝？”</p>
+            <p>“亲爱的，看起来我们不得不分手了。”庞贝凝视着她。</p>
+            <p>“我亲爱的庞贝，你是在跟我开玩笑么？”拉丁美人不敢相信自己的耳朵。</p>
+            <p>她心里也是不信的，这个世界上怎么会有男人一边跟你说着分手的事一边还色色地摸着你的大腿呢？</p>
+            <p>“确实有很不得已的原因。”庞贝抚摸着那丝绸般光滑的长腿，语气却有点伤感。</p>
+            <p>“你的家族不认可我们的关系么？”拉丁美人猜测。</p>
+            <p>庞贝十五分钟前还激情似火，进去拜会家族的长辈，出来之后就提分手，用脚趾头想也知道是家族不同意。</p>
+            <p>不过那也不是没有转圜的余地吧？只要庞贝真心爱她，什么困难克服不了？当年温莎公爵为了娶辛普森夫人，可是连皇位都放弃了。</p>
+            <p>拉丁美人紧紧地搂着庞贝，凝视他的眼睛，想着怎么发动柔情的攻势。</p>
+            <p>“不不，我跟老家伙们介绍我的女朋友干什么？因为我忽然觉得人生苦短，谁知道我什么时候就死了呢？”庞贝叹气，“可是这世界上还有很多美好的女孩我还不认识呢！我得抓紧时间啊！”</p>
+            <p>他在拉丁美女唇上轻轻一吻，转身走进了苜蓿地。</p>
+            <p>拉丁美人疑惑着庞贝进苜蓿田是要做什么，却发现庞贝越走越远，再也没有回头。</p>
+            <p>这个男人竟然真的就这么走了，那轻轻的一吻就是告别了。蓝色的天空和绿色的苜蓿田之间，他那白色的背影莫名其妙地透着点孤单，像是沙鸥独自翱翔在天海之间。</p>
+            <p>明明是被甩了，可不知道怎么就是没法恨他，何况还给她留下了这辆价值不菲的跑车。</p>
+            <p>遇到庞贝之前拉丁美人也不是什么省油的灯，周旋在社交场上对每个年轻有钱的男人放电，享受他们的追求，筛选未来的丈夫。如今只不过是要再度回到过去的生活里去而已，拉丁美人快速地整理情绪。</p>
+            <p>有钱有美貌，人生还是美好的，下一个贵人总会出现在她的生活里……她这么想着，坐进跑车的驾驶座。</p>
+            <p>几秒钟后，拉丁美人从车里猛地窜了出来，冲着苜蓿田庞贝远去的方向怒骂，还狠狠地丢出脚上的银色高跟鞋。当然，谁也砸不到，庞贝早走远了。</p>
+            <p>庞贝摸她大腿的时候，顺手把车钥匙拔走了。</p>
+            <p>——————————</p>
+            <p>东京，涩谷区。</p>
+            <p>黑色的雷克萨斯轿车在钛黑色大厦前停下，身穿黑色西装的男人从车上下来，早有身穿和服的中年女性在门口迎候。</p>
+            <p>VIP专属电梯带着他们直上第63层，穿越长长的走道，在一扇钢制的自动门前停下。女人验证了虹膜之后，钢制大门沿着滑轨缓缓地移开。</p>
+            <p>门后是一间地道的和风茶室，如此现代化的一座大厦，里面却藏着这样一间茶室，仿佛一脚踏入就跨越了百年的时间。</p>
+            <p>榻榻米的地面，细格子的木质屏风，小桌上摆着小原流的插花，墙壁上挂着菱川师宣的版画，龟文堂的手造铁壶中，水正微微沸腾。</p>
+            <p>茶室中央端坐着身穿藏青色和服的年轻男子，手中稳稳地端着一杯清茶，透过落地窗看向窗外，在这个得天独厚的位置，大半个涩谷区尽收眼底。</p>
+            <p>“佐伯龙治先生么？”男人在和服男子的背后坐下，“久闻您的大名，一直没有机会前来拜会，失礼了。”</p>
+            <p>“是藤原信之介先生吧？我也听说过您，据说是学院新派驻日本的代理人。”佐伯龙治缓缓地转过身来，看了西装男一眼。</p>
+            <p>那一眼间，这个儒雅稳重的男子流露出一缕杀气，是那种身经百战后被小心收藏起来的杀气，仅有细微的痕迹留存于眉间眼角。</p>
+            <p>“卡塞尔学院，2011年毕业，之前一直在巴黎分部工作，四个月前调任日本，我这次来是代表学院拜会佐伯先生。”藤原信之介跪坐着深鞠躬。</p>
+            <p>赫尔佐格事件结束之后，蛇岐八家和卡塞尔学院达成了新的联盟，最高决策权回到了校长昂热的手中，但是蛇岐八家依然享有非常大的自主权，在秘党的体系里，日本算是自治的区域。</p>
+            <p>这些出身黑道的桀骜人物并不那么好打交道，尤其是校长昂热此刻还躺在救生舱里，秘党此刻并没有什么强势人物能够镇服蛇岐八家中的当权派。</p>
+            <p>而这位控制着日本执行局的佐伯龙治，虽然年轻，却是蛇岐八家中屈指可数的实权派人物，藤原信之介在他面前说话不得不小心。</p>
+            <p>“今后还请多多关照。”佐伯龙治亲自端茶给藤原信之介，强健有力的小臂上满是刺青。</p>
+            <p>“这次冒昧地登门，是受校董会的委托，有事想拜托佐伯先生……”</p>
+            <p>“那件事我已经很清楚了，不劳学院的代理人亲自登门关照。”佐伯龙治直接打断。</p>
+            <p>“学院还不知道蛇岐八家在这件事上的立场。”</p>
+            <p>“路明非先生是家族的朋友，更是前任大家长源稚生先生的挚友，蛇岐八家曾与他并肩作战。”佐伯龙治低头，小口地饮着清茶。</p>
+            <p>藤原信之介心中惴惴，前任学生会主席路明非成为通缉目标的信函，早已由EVA下发给世界各地的所有分部，只有蛇岐八家始终保持着缄默，所以学院本部特意派藤原信之介来探探口风。</p>
+            <p>而当权派佐伯龙治此刻大谈蛇岐八家和路明非的友谊，卡塞尔学院当然知道这份友谊，学院想知道的只是蛇岐八家的选择。</p>
+            <p>这个世界上或许有不能背弃的友谊，但基本上都存在于小说里，学院希望这帮日本人不要义字当头，包庇上门投靠的路明非一伙，把局面搞得不可收拾。</p>
+            <p>“然而我等与大义为友，如果路明非先生与大义为敌，那么恕我们不得不成为他的敌人！”佐伯龙治斩钉截铁地说。</p>
+            <p>藤原信之介心说大义这东西果然好用，正过来用反过来用都可以用，忠君爱国是大义，领兵起义也是大义。</p>
+            <p>好在他本就是个日本人，熟读日本战国史，对于这种日本式的两面三刀非常熟悉。</p>
+            <p>“那如果有路明非的消息，还请佐伯先生……”藤原信之介鞠躬。</p>
+            <p>佐伯龙治就不再说话，只是低头饮茶，寂静的茶室里只有滚水沸腾的微声。</p>
+            <p>藤原信之介本想再多客套几句，但在这尴尬的沉默中强忍了几十秒钟后，还是没有找到什么合适的话题，只得恭恭敬敬地起身告辞。</p>
+            <p>迎接他的中年妇女还在门口等着，佐伯龙治在藤原信之介的背后微微举杯，表示了送别之意。</p>
+            <p>钢门缓缓地合拢，火炉上的热水仍在沸腾。</p>
+            <p>——————————</p>
+            <p>中年妇女送走藤原信之介后返回茶室，此时的她已经擦去了故意扮老的妆，素面朝天，反而流露出一丝妖艳。</p>
+            <p>“为什么不以你自己的身份见他？非要装作跑腿的小妹，说错了，跑腿的中年妇女。”佐伯龙治懒懒地说着，把一杯刚刚斟好的热茶放在了桌上。</p>
+            <p>女人坦然地踩上榻榻米，在佐伯龙治的对面坐下，端起热茶细细地啜饮，优雅妩媚，令人怦然心动，完全忽略她的年纪。</p>
+            <p>蛇岐八家现任大家长，樱井七海。</p>
+            <p>东京事件之后，八姓家长几乎全部陨落，唯有樱井家硕果仅存，樱井七海自然而然地升位为大家长，是百年来第一位女性的大家长。</p>
+            <p>尽管她坚持称自己为“代家长”，表示自己并无能力统率这个庞大的组织，不过是暂代职务等待新一代的长成，但她那刚柔并济的管理作风委实比前任大家长源稚生还要有效，迅速成为日本混血种社会的灵魂人物。</p>
+            <p>但她成为大家长之后就深居简出了，所以藤原信之介作为学院驻日本代表也没有机会拜见过她。</p>
+            <p>“我想听学院的代言人说说他们的真实想法。”樱井七海轻声说，“亲耳听。”</p>
+            <p>“之前传递的信息已经很明确了吧？路明非必须回卡塞尔学院，无论死活。”佐伯龙治耸耸肩，“学院并没有说空话。”</p>
+            <p>“真的是他杀了那些龙王？”</p>
+            <p>“如果学院那帮自负的老爷都那么认为，那应该是真的了。否则学院会觉得是他们自己很厉害。”</p>
+            <p>“赫尔佐格也是他杀的？”</p>
+            <p>“嗯，小姐如果在天有灵的话，会高兴的吧。”佐伯龙治低声说，“毕竟那是她的骑士，该为她报仇。”</p>
+            <p>樱井七海深深地吸了一口气，“你已经知道了吧？”</p>
+            <p>“知道，小姐的骑士已经到东京了。”佐伯龙治直视樱井七海的眼睛，“我想知道大家长，还有整个家族对此的决定，庇护他，或者把他交给学院？”</p>
+            <p>“家族对此没有任何决议，家族并不知道路明非先生到了东京，我也不知道。知道这件事的只有你一个人，你做决定，你对此负责。”樱井七海把早已准备好的纸片沿着桌面滑向佐伯龙治，“家族不能跟学院再度敌对，经过那件事之后，家族已经太疲惫了。”
+            </p>
+            <p>佐伯龙治点点头，接过了纸片，“明白，替罪羊我来做。”</p>
+            <p>话说到这里已经很明白了，蛇岐八家已经元气大伤，学院在这件事上却绝不会退让，家族有意保护路明非却无法承担后果，所以得有个家伙出来扛责任，黑锅就给他背了。</p>
+            <p>所以樱井七海才不以自己的身份见藤原信之介，因为她根本“不曾介入”这件事。</p>
+            <p>“真没想到有一天轮到我亲手送那小家伙上路。”佐伯龙治拿起桌上的小茶刀把玩，刀锋寒冽，“小姐要是知道了，会怪我的吧？”</p>
+            <p>“别说大话啊乌鸦，如果他真是那种怪物，凭你可杀不了他。”樱井七海莞尔一笑，不经意间风情万种。</p>
+            <p>如今能让大家长阁下这么笑的人已经很少了，绝大多数时候她都是张未亡人的丧脸，很难让人相信她也曾是那种颠倒众生的女人。</p>
+            <p>“正面杀当然杀不成，可我是流氓啊，流氓总有流氓的办法。”佐伯龙治耸耸肩，“还有别再叫我乌鸦了，我如今是有身份的人物了，要是你在手下面前叫出来，我很没面子的。”</p>
+            <p>佐伯龙治，绰号“乌鸦”，当年他只是源稚生手下的一介打手，如今蛇岐八家人才凋零，出身街头的乌鸦被捧上了日本执行局代理局长的位置，就把自己的原名拿出来用了。</p>
+            <p>倒也威风凛凛。</p>
+            <p>“知道了，佐伯先生，”樱井七海恭恭敬敬地弯腰行礼，“路君的事，辛苦您了。”</p>
+            <p>她站起身来，缓步离开，留下乌鸦沉默地把玩着茶刀。</p>
+            <p>——————————</p>
+            <p>路明非拎着两大袋子食物，穿过长长的走廊，走廊侧面是一扇扇的拉门。他在接近走廊尽头的那扇门前停下，前后各看一眼，确定没人跟着他，把门打开，一屁股坐在地上。</p>
+            <p>其实并无必要那么谨慎，他们入住这间网吧以来，连一个客人都没碰到过。偶尔有服务生过来收垃圾，如果不要他打扫室内的话，把门打开一点把垃圾给他就行了。</p>
+            <p>这间网吧位于东京的墨田区，说起来也是东京的一个区，却不能跟千代田区和港区那种超繁华的地方相比，既没什么游客光顾，也没有很多的摩天大楼。</p>
+            <p>选择住在这里，而且是住在网吧里，是为了掩人耳目。空投箱中的现金还留有很大一部分没花掉，他们有钱去住豪华酒店，但那里必然有蛇岐八家的眼线，很可能给你端咖啡的某个圆脸少女暗地里就是蛇岐八家的人。</p>
+            <p>路明非并不信任蛇岐八家，那个黑道组织里鱼龙混杂，有人可能会愿意帮助他，但同时就有人会想要把他打包卖给学院。</p>
+            <p>当然也可能每个人都想打包把他卖给学院，毕竟他如今顶着这么大罪名又那么值钱。</p>
+            <p>包间里气氛很凝重，诺诺正跟楚子航对坐，一条条地提问，旁边还架着一台廉价的相机，负责录像。</p>
+            <p>“再说一遍你的名字。”诺诺说。</p>
+            <p>“楚子航。”</p>
+            <p>“停！”诺诺的情绪显然有些急躁，挥手打断了楚子航，“上回录的时候你说你叫鹿芒！”</p>
+            <p>“我小时候是叫楚子航，后来改名叫鹿芒了，一般人问我我都说我叫鹿芒，可是姐姐你反复地问我是不是楚子航，”楚子航低下头去，“我以为我说我叫楚子航你会比较开心。”</p>
+            <p>诺诺无奈地扶额，深呼吸，平复情绪。</p>
+            <p>路明非在角落里坐下，他倒是没什么奇怪的，楚子航原本就是这么个性格，龟毛、婆妈、为别人着想，只不过原本他外面套着一个杀胚的外壳，外人很难看到他的这一面。</p>
+            <p>如今他失去了那层外壳，也失去了很多东西。</p>
+            <p>在房车里第一眼看到楚子航路明非就意识到有什么不对，后来他想明白了，是眼睛。确实有些时候楚子航会流露出那种麋鹿般温和而迷惘的眼神，但这家伙最开始出名就是靠那双不能自主熄灭的黄金瞳啊！</p>
+            <p>他们找到的是一个没有黄金瞳的楚子航。</p>
+            <p>“重来，”诺诺调整了照相机，“不用多想，我需要最简单直接的回答，OK？”</p>
+            <p>楚子航点点头，一脸乖相，看得路明非略微有点恶心，一个乖乖萌萌的楚子航，就像一个女装的芬格尔那样叫人受不了。</p>
+            <p>他撕开一袋炒面吃着，看他们继续录。</p>
+            <p>“你的名字。”诺诺问。</p>
+            <p>“鹿芒，小时候叫楚子航。”</p>
+            <p>“什么时候改的名字？为什么要改名字？”</p>
+            <p>“很小时候的事了，我爸爸叫楚天骄，所以生下来的时候我姓楚，后来妈妈带着我改嫁，继父姓鹿，我就改名叫鹿芒。”说到楚天骄这个名字的时候，路明非注意到他停顿了一下。</p>
+            <p>“后来没有再改回去过？”</p>
+            <p>“户口本上一直就是鹿芒了，妈妈有时候还叫我楚子航。”</p>
+            <p>“你的年龄？”</p>
+            <p>“我记得我是十五岁。”楚子航瞥了一眼镜子，显然镜中的家伙绝不是个十五岁的少年，他的身高、体型和路明非记忆中的楚子航没什么分别。</p>
+            <p>诺诺不在场的时候路明非还叫楚子航把上衣脱下来给他看过，楚子航犹豫了一下也就照做了，那身彪悍的肌肉，斑驳的旧伤，原版正装的楚子航，这得是经过多么刻苦的训练，经历多少枪林弹雨才有的身板儿，很难伪造。</p>
+            <p>“你最后的记忆是什么？”</p>
+            <p>“下大雨，父亲来学校接我，我们堵车的时候发现有条岔路没车，就从岔路走了。我们在那条岔路上遇到了……”楚子航说到这里明显流露出惊恐的神色。</p>
+            <p>“奥丁么？”诺诺拿起了脚边的面具给他看。</p>
+            <p>楚子航显然对那个面具非常恐惧，下意识地往后缩了缩，但还是点了点头，“是，他骑着一匹有八条腿的马，拿着一支长矛，周围都是火焰。”</p>
+            <p>“戴着这个面具？”</p>
+            <p>楚子航又看了面具一眼，鼓起勇气点点头，“是，他戴着这个面具，看不到他的脸。”</p>
+            <p>诺诺把手中的面具递到镜头前，给了一个近景的特写。</p>
+            <p>“你们遇到奥丁之后发生了什么？”</p>
+            <p>“爸爸跟奥丁好像认识，但不是朋友是敌人，他们打起来了。爸爸叫我开车走，我就开车走了，但我没开多远就转头回去了。”</p>
+            <p>“你转头回去了？”</p>
+            <p>“我害怕……怕爸爸出事……”楚子航低下头去，“后来的事情我就记不清了。”</p>
+            <p>“从你记不清的那个时间点到你见到我的时间点，你感觉中间有多长时间。”</p>
+            <p>“好像就是那么一下子，我开着车回去找爸爸，我再睁开眼看到的就是姐姐了。”</p>
+            <p>这货还非常坚定地叫诺诺姐姐，叫路明非哥哥，尴尬了一段时间之后，诺诺和路明非也就接受了，但路明非还是叫他师兄，习惯了不好改口。</p>
+            <p>诺诺接下来又问了很多的问题，甚至包括了遇到奥丁的当天楚子航上课的情况，楚子航说那天他们英语考试，甚至明确地讲出了其中的几道题。</p>
+            <p>即使混血种的记忆力远超常人，但也不至于说很多年前的考题现在都记得，可能对于楚子航而言那场考试确实就是发生在不久之前。</p>
+            <p>路明非也确认了那真的是仕兰中学考英语的路数，楚子航说题目中有一道是用英语介绍你最喜欢的作家，路明非立刻就闻出了David Zhang的味儿。</p>
+            <p>仕兰中学的王牌英语老师David Zhang，一个地道的二鬼子，人家叫他中文名字他都会不高兴那种，最喜欢出这种不着边际的题目，他看心情给分。</p>
+            <p>一般学生知道David Zhang的癖好，第一推崇大英国，第二才是大美国，其他国家在他眼里都不入流，所以能写雪莱就别写肯明斯，能写海明威就别写陀思妥耶夫斯基。</p>
+            <p>只有路明非例外，路明非说我最喜欢的作家是Araki Hirohiko，日本鼎鼎大名的漫画家，牛逼、厉害、强就一个字！答题中还夹杂着大量日语音译的英文词汇，什么Kamehameha、Chakela<sup
+                        class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>之流，气得David Zhang暴跳如雷，给他判了个零分。</p>
+            <p>整个问答过程足足用了一个小时，楚子航问无不答，虽然看得出这对他来说并不轻松。</p>
+            <p>任何一个人一闭眼一睁眼发现世界全变样儿了，自己一个十五岁的灵魂装在成年人的身体里，醒来就被带着满世界逃亡，都不会轻松。</p>
+            <p>“累了吧，累了就睡一会儿。”诺诺结束了录制，摸摸楚子航的头。</p>
+            <p>楚子航温顺地点点头，诺诺从旁边的柜子里拿出枕头和毯子给他，他直接就睡在了柔软的地垫上。</p>
+            <p>他对诺诺非常信任，大概是因为摘掉面具之后看到的第一个活人就是诺诺，就像小鸭子孵化出来先看到谁就认谁当妈妈——当时路明非虽然也在场，可是个狂魔的样子。</p>
+            <p>诺诺帮他把毯子的边角掖好，调暗包间内的灯光，温柔耐心得让路明非有点意外。不过想来这女孩也是个路边会捡流浪猫狗的，当年看到路明非这条败狗就捡了。</p>
+            <p>说是包间其实面积很有限，七八平米的一间小屋子，地下是沙发垫那样柔软的地垫，一个张矮桌，一台电脑，一个柜子，既可以上网，也可以睡觉。</p>
+            <p>这在日本是常见的网吧，当年路明非他们曾光顾过的那家才是另类的。</p>
+            <p>住网吧在日本也不是个稀罕事，二次元死宅或者赶不上末班车回家的上班族都会住网吧，楼上的自动贩卖机能解决客人的一切需求，既可以买泡面买水果，也可以买衬衣买丝袜，还有投币式的洗澡间和洗衣房，原理上你一辈子住在网吧里都不会有问题，关键是还物美价廉。
+            </p>
+            <p>日本人非常忌讳打搅别人，都是轻手轻脚地入住，轻手轻脚地离开，互相很难碰面，隐蔽性很好，适合他们眼下的需要，就是睡觉的时候有点挤。</p>
+            <p>诺诺回看了一遍刚才录的东西，又看了看楚子航，确信他已经睡着了，这才走到路明非旁边坐下。包间太小，他们不得不挨着，不过这样也好低语。</p>
+            <p>“他只有十五岁以前的记忆，那个晚上，他开车想跑，但还是因为担心父亲返回，他死在了那条高架路上，所以他的时间线到那里就停止了。”诺诺低声说，“我们找到的是一个游荡在生死边缘的鬼魂。”</p>
+            <p>“他能吃能睡，比我更像一头猪，我实在看不出他身上有一点鬼气。”路明非说。</p>
+            <p>“是因果线被强行修改的结果，那个修改因果线的言灵还继续有效。”诺诺说，“如果我们把世界上的因果关系理解成一张网，当因果线被强行修改的时候，网上就会出现漏洞，就得想办法补上这些漏洞。楚子航是卡塞尔学院里很重要的人，他被抹掉了，就拿阿巴斯来修补。原本属于楚子航的因果关系转到他身上了，一直跟恺撒竞争的是阿巴斯，跟小龙女有感情的也是阿巴斯。”
+            </p>
+            <p>“这就太过分了，抢了人家的人生也就罢了，还抢人家的妞……”路明非说到这里忽然住嘴，因为想起眼前这个妞也跟某人订过婚。</p>
+            <p>“我现在很好奇阿巴斯到底是个什么东西。”诺诺说。</p>
+            <p>“难道阿巴斯就是那个捣鬼的人？比如说阿巴斯其实是个龙王，或者干脆就是奥丁，他抹掉了师兄，自己代替师兄的位置，再给师兄戴上面具，放在尼伯龙根里代替他自己的位置。”路明非开动脑筋。</p>
+            <p>“合理是合理，但是太合理也太简单了，如果对方是操纵因果的人，我觉得不会把局做得那么简单。”诺诺从照相机中拔出记忆卡。</p>
+            <p>“这些录下来有什么用？”路明非问。</p>
+            <p>“找个储物柜把它存在东京，恺撒应该能找到它。”</p>
+            <p>路明非心里咯噔了一下，原来是留给恺撒的信，一路行来那么长时间，他本能地避免去想恺撒。但其实恺撒一直都在。</p>
+            <p>“希望这东西别派上用场，”诺诺看着手中的记忆卡，轻声说，“要是只能靠这段录像传递信息，那我俩估计都死了。”</p>
+            <p>路明非愣了一下，忽然明白了诺诺的意思。如果他们没能找到最终的答案，那么至少留一个线索给靠得住的人。这方面恺撒确实是靠得住的人，如果是他看到这段录像，一定会想方设法找到答案。</p>
+            <p>只不过现在还不能联络恺撒，任何对外联络都可能暴露他们的位置，恺撒也未必不会借机捕获他们。</p>
+            <p>EVA对恺撒的判断是很准确的，作为未婚夫，他绝对会信任和保护未婚妻，作为校董，他也会履行自己的职责，贯彻自己的正义，这两点在他那里并不冲突。</p>
+            <p>“你吃点东西，我去楼下洗个澡，我都觉得自己有股子馊味，快长毛了。”路明非站起身来，“还有四个小时天亮，我得再去找找蛇岐八家的门路。”</p>
+            <p>“蛇岐八家里还有你的朋友么？”诺诺在背后问。</p>
+            <p>“我不知道。”路明非淡淡地说。</p>
+            <p>尽管并不信任蛇岐八家，但他既然来了东京，确实是想得到蛇岐八家的帮助。</p>
+            <p>按照诺诺的想法，他们应该穿越辽阔的蒙古草原继续往北，进入西伯利亚地区，那里跟蒙古一样地广人稀，即使是EVA的天眼，想要搜寻他们也并不容易。</p>
+            <p>但路明非坚持要来日本，他要在这里寻找某些问题的答案。</p>
+            <p>——————————</p>
+            <p>路明非在自动贩卖机上买了新的内裤，穿越长长的走廊去浴室。走廊里静悄悄的，他步伐轻盈，心情放松。</p>
+            <p>他是想到诺诺刚才说恺撒看到那段录像的时候，他俩估计都死了，莫名其妙地有种同生共死的感觉。</p>
+            <p>就像当年他和诺诺开车去看山顶，路上他希望那条盘山公路永无尽头，这辆车一直就在夜风里跑。如果人生也是条盘山公路的话，他只希望这一路上都有诺诺，诺诺不用是他的，他能看着她的背影或者侧影就好。</p>
+            <p>如今自己都脱胎换骨了，可还是这种衰仔的心态啊！他一边这么想，一边也对自己有点怒其不争，可想到刚才跟诺诺并排坐着，近得好像能够感觉到她身上的温度时，还是没来由地觉得平安喜乐。</p>
+            <p>走廊尽头是一扇窗，他推开窗想要呼吸几口新鲜空气。</p>
+            <p>没想到窗户一打开就是一片光明，前方相隔几个街区，一根明亮的柱子像是通天彻地。窗外居然就是东京天空树，这座东京最高的建筑是位于墨田区的。</p>
+            <p>路明非愣住了，在这间网吧住了好几天了，从没打开过这扇窗，也从没想到东京天空树距离他那么近。</p>
+            <p>心里刚刚涌起的那点“小确幸”退潮般没了，路明非呆呆地望着东京天空树，他曾去过那里，带着另一个发色有些暗红的女孩……</p>
+            <p>楼下传来汽车喇叭的声音，日本人很怕打搅别人，街面上很少有人这么嚣张地鸣笛。路明非往下看去，一个黑风衣、戴墨镜的男人靠在大红色的跑车上，正吐掉嘴里的烟蒂，扬手跟他打招呼。</p>
+            <p>路明非的瞳孔微微收缩，每一条肌肉和神经都无声地绷紧，整个人像是拉开的硬弓。</p>
+            <p>楼下的人是乌鸦，源稚生当年的跟班，听说如今已经是蛇岐八家里说得上话的大人物。路明非来东京最想找的人就是乌鸦，但他不敢打电话，如果说蛇岐八家里他只剩下一个朋友的话，那应该是乌鸦。</p>
+            <p>他还没有找到乌鸦，乌鸦先找到了他。</p>
+            <p>“好久不见，聊聊？”乌鸦缓缓地拉开自己的衣襟，“我没带武器，连把指甲刀都没带。”</p>
+            <p>路明非沉默了很久，点了点头，乌鸦不是一个人来的，虽然整条街上看起来空无一人。</p>
+            <p>——————————</p>
+            <p>十五分钟之前，诺诺和楚子航还在录像的时候，大红色的跑车停在了这间网吧的门口。</p>
+            <p>乌鸦并不下车，而是点燃了一支烟。</p>
+            <p>网吧老板走了出来，冲乌鸦深鞠一躬，没有说任何话，扭头走向小街的尽头，跟在他后面的，是店里所有的服务生。</p>
+            <p>那家营业到凌晨四点的章鱼烧店，老板刚才还在热火朝天地做着章鱼烧，忽然就收敛了笑容，遥遥地跟乌鸦鞠个躬，关闭了电炉。服务生和刚才还在吃着章鱼烧的几位客人都跟着他，走向了小街尽头。</p>
+            <p>居酒屋、便利店、柏青哥店……这些做夜间生意的店面都毫不犹豫地中断了营业，几分钟内，整条街就被清空，只剩下那些店牌还在闪烁，不知哪家店里传来隐约的、悠扬的老歌。</p>
+            <p>踏着歌声，身穿黑色风衣的男人们进了场，衣摆被风吹起的时候，露出浮世绘般灿烂的衬里。他们高效而沉默地占据了网吧附近的有利位置，藏在阴影中，手中长刀闪烁着凄冷的光。</p>
+            <p>乌鸦那支烟抽完了，布置也完成了，他点点头，表示满意。这就是新的执行局，他亲手带出来的队伍，效率不逊于源稚生曾经领导的那个执行局。</p>
+            <p>——————————</p>
+            <p>片刻之后，乌鸦出现在路明非的面前。长长的走廊，两个人遥遥相望。</p>
+            <p>诺诺站在路明非的背后，靠着墙，手中提着冲锋枪，楚子航已经被唤醒了，此刻正躲在路明非左手边的包间里，正把拉门拉开了一道缝往外偷看。</p>
+            <p>乌鸦上楼的这段时间里他们已经看过周围的所有包间，都是空荡荡的。难怪他们很少见到别的客人，想来整间网吧就是一张捕兽网，猎人一直耐心地等着收网。</p>
+            <p>“这就是你说的那个朋友吧？”诺诺的语气里带着揶揄。</p>
+            <p>乌鸦认真地看了诺诺几眼，微微鞠躬，“佐伯龙治，现任日本执行局代局长，曾经跟路君并肩战斗过。”</p>
+            <p>他转而看向路明非的时候态度就没那么好了，“你居然带着刀来跟我见面。”</p>
+            <p>路明非手中提着短弧刀，虽然没有摆出咄咄逼人的姿态，但态度很明显了。</p>
+            <p>“你们在这栋建筑附近至少布置了五十个人，都是日本执行局的精英，你们是白王血裔，我可不敢掉以轻心。”路明非说到这里停顿片刻，凝神细听，抬头仰望，好像目光能穿透屋顶，“哦还有直升机，我想你在直升机上布置了狙击手，对吧？附近的高楼不多，狙击手没有好的位置，出动直升机就不一样了，几乎没有射击死角。”
+            </p>
+            <p>他的听力比不上释放“镰鼬”的恺撒，但如果沉心静气地听的话，方圆500米内的动静都能掌握。太安静了，除了风声，而那风声来自这座建筑的正上方，显然是一架直升机的旋翼发出的。</p>
+            <p>“以前你可没那么厉害。”乌鸦点点头，“说得不错，今次出动的是执行局新组建的鹤组，收编了很多原来猛鬼众里的狠角色，如今你是真正的S级了，想要抓你我们必须打起十二分的精神。”</p>
+            <p>“所以我们不再是朋友了？”路明非低声问。</p>
+            <p>虽然是明摆着的事情，但他还是想要个回答。</p>
+            <p>“你是问你和我，还是问你和蛇岐八家？”乌鸦反问。</p>
+            <p>路明非皱眉，对这个问题有些不解。</p>
+            <p>“你跟蛇岐八家，当然不是，蛇岐八家是秘党的分支，你是秘党的敌人，自然就是蛇岐八家的敌人；但你跟我当然是朋友，所以带队来抓你们的人是我而不是其他人。”乌鸦说。</p>
+            <p>“这就是日本人的仗义么？你以前是我兄弟，现在我背叛了你，还要亲手杀了你，因为我不忍心让别人来杀你。”诺诺说。</p>
+            <p>她这是拖延时间，谈判到此已经崩了，但还不能拔刀就上，她急速地思考脱身之策。</p>
+            <p>“不是，我进来见你们，你们才能绑架我，你们不绑架我，就不能不动武不见血地离开这里。”乌鸦叹了口气，“陈小姐，我跟路君可真不是那种塑料兄弟情。”</p>
+            <p>诺诺懵了，路明非也懵了，两人狐疑地对视。</p>
+            <p>“等等等等，佐伯……佐伯什么来着？你的计划太复杂了，”诺诺说，“你如果想要放过我们，悄悄地来通知我们有危险，我们提前撤离就好了，不必派人包围了我们又自己跑进来当人质。”</p>
+            <p>乌鸦又叹了口气，“你们不懂政治。”</p>
+            <p>“这跟政治有什么关系？我政治成绩是不太好。”路明非更摸不着头脑。</p>
+            <p>“家族和学院之间的关系，就像国与国之间的关系，家族如果庇护你，跟学院之间就会产生严重的对立，而如今的蛇岐八家已经无力对抗秘党。所以当我们知道你抵达东京的时候，我们只有两个选择，一个是派人来抓你，一个是把你的消息通知学院。”乌鸦一边说着一边靠近。
+            </p>
+            <p>路明非仍然是高度警戒，直到此时他还是很难信任乌鸦，不过他对乌鸦的实力很了解，乌鸦就算变出三头六臂来也不是他加诺诺的对手。</p>
+            <p>乌鸦在他们面前停下，点燃一支烟，“家族甚至不能来暗中通知你，因为家族里也可能有学院的眼线，消息走漏的话，还是会损害到家族和学院的关系。大家长管理着整个日本黑道，是黑暗里的政治家，政治家的身份绝不允许她为了友情牺牲蛇岐八家的利益。所以她就把这个棘手的事情交给了我，我作为执行局局长那就要来抓你啊，我不能玩忽职守，所以我就在这间网吧周围布下天罗地网。但是我们的优先目标不是杀了你而是把你带回卡塞尔学院，所以我就仗着老熟人的身份进来跟你谈判。”
+            </p>
+            <p>“但是骤变忽然发生！”乌鸦说，“借你的手用一下。”</p>
+            <p>乌鸦抓起路明非的手把自己锁喉，然后转个圈靠在路明非怀里，“你是个凶悍的逃亡者，不仅没被我说服，还忽然发难抓住了我……我一个街头流氓怎么是你的对手呢？这是很自然的事。”</p>
+            <p>路明非看向诺诺，神情有点尴尬。</p>
+            <p>“稍等稍等，”演到这里乌鸦又叫停，“这样不行，我看起来不像是被暴打过的样子。”</p>
+            <p>“那我……真的暴打你一顿？”路明非也有同感。</p>
+            <p>乌鸦犹豫了一下，转而看向诺诺，“戏确实要做足，但我听说你现在很厉害，还是女士来吧。”</p>
+            <p>诺诺点点头，微微下蹲，全身蓄力，骤然突前，一套凶猛的组合拳，全部轰在乌鸦身上。等乌鸦再度站起来的时候，看起来真的是力战之后被擒了。</p>
+            <p>“谢谢你放过我的牙齿，刚刚整过，很贵的。”乌鸦抹了抹嘴角的血，“好，就这样，各部门都准备好了么？我们得一条过，不能演一半重来。”</p>
+            <p>路明非和诺诺对视一眼，都点了点头，楚子航已经从旁边包间里出来了，看诺诺点头也赶紧点头。</p>
+            <p>乌鸦再次抓起路明非的手把自己锁喉，然后转个圈靠在路明非怀里，这套动作他熟极而流，简直像是排演过无数遍的双人舞。</p>
+            <p>“不要！不要！路君你不要这样！你还有机会的！这样是断了你自己的退路……啊！”乌鸦高声哀嚎，在路明非怀里扭动。</p>
+            <p>路明非从来没想到乌鸦居然是个被黑道耽误了的好演员。</p>
+            <p>——————————</p>
+            <p>片刻之后，乌鸦开着自己的跑车带着绑架他的三位劫匪跑在东京郊外的高速公路上，除了楚子航，都在大口地喝着啤酒。</p>
+            <p>楚子航的话诺诺说他十五岁不适合喝酒，给了他一个酸奶。</p>
+            <p>“乌鸦你看起来还真的是很值钱啊，我控制住你他们就真的不敢进攻了。”路明非回想他们从网吧里出来的时候，鹤组专员们紧张的眼神。</p>
+            <p>乌鸦还额外给自己加戏，高喊别管我！开枪啊！狙击手！狙击手在哪里？开枪啊！我会杀了你们的混蛋！你们忘了我跟你们说过的话了么？开枪啊混蛋！</p>
+            <p>当然鹤组最后还是放弃了，他们放下武器，遵照路明非的命令走进一间没有窗户的屋子，被诺诺锁在了里面。</p>
+            <p>“还用说么？我现在是什么身份？看我这身三宅一生设计的衣服，”乌鸦抖抖西装，又拍拍方向盘，“再看看我这古董跑车！你在跟蛇岐八家的当权派说话好么？别再叫我乌鸦了，叫我的大名佐伯龙治！”</p>
+            <p>——————————</p>
+            <p>东京近郊的山中，古老的建筑物笼罩在蒙蒙的细雨中。</p>
+            <p>穿着神官服饰的年轻人在前面引路，带着路明非一行三人经过木质的连廊，乌鸦叼着烟走在最后。</p>
+            <p>这座建筑看起来很有年头了，角落里供奉的石地藏上都长满了青苔，但每个角落都那么精致，连佛前的灯都用琉璃灯盏。路明非对于古董的品位很有限，却也能从花纹中看出那些琉璃灯盏是古物。</p>
+            <p>神官在角落里停步，点燃了壁上的煤油灯，拉开一扇很隐蔽的房门。门后是一间简约而精致的和式小屋，只有少数几件家具，但不出意料，也都是可以算得上古董的东西。</p>
+            <p>“你们就住这里。”乌鸦从神官手里接过钥匙丢给路明非，“有什么需要就跟神官说，少出门。”</p>
+            <p>“这是一间神社？”路明非问。</p>
+            <p>“白羽天狗神社，”乌鸦说，“其实是蛇岐八家历代家长的墓地，外面盖了一间神社，养了一些神官。”</p>
+            <p>“我们为什么要住神社？”诺诺问。</p>
+            <p>“不住神社你们还想住我家？”乌鸦打开壁橱拿出垫被丢在榻榻米上。</p>
+            <p>“我们住在蛇岐八家的神社里，周围都是蛇岐八家的神官，蛇岐八家会不知道这件事？”路明非问。</p>
+            <p>“家族的生意和神社是完全不同的两个系统，神官们侍奉鬼神，连大家长也无法指挥他们。前任大家长跟神官中的头儿关系很好，所以他们反而会帮我。”</p>
+            <p>“这里安全么？”诺诺检查窗户和房间的每个角落。</p>
+            <p>“没有绝对安全的地方，但比别的地方安全。”乌鸦说，“这里连手机信号都没有，跟外界联络的工具只有一部固定电话。前任大家长在世的时候，心情不好会过来住上几天，他藏在这里的时候，连家族都找不到他。”</p>
+            <p>路明非点点头，原来是那只象龟藏身的泥坑，那肯定是很隐蔽的。在他不想理睬这个世界的时候，这个世界绝对不会打搅到他。</p>
+            <p>“你不会要告诉我为了我们的安全考虑你只给我们准备了一间房吧？”诺诺看向乌鸦。</p>
+            <p>“我这么有眼色的人，怎么会做这种蠢事？”乌鸦贼笑，“他俩的房间在隔壁，中间有一扇门可以互通，当然，只能从你这边打开。”</p>
+            <p>诺诺完成了自己的检查，在屋子正中间站住，看着路明非，“那你们还等什么？”</p>
+            <p>“好的好的我们走，我们这就走，师姐你早点休息。”路明非拉上楚子航就走。</p>
+            <p>“楚子航跟我住，你自己住隔壁。”诺诺以不容争辩的口气说。</p>
+            <p>“他……跟我一样是个男人。”路明非指指楚子航，又指指自己。</p>
+            <p>“首先，他不是男人是男孩，他的心理年龄只有十五岁，”诺诺冲楚子航勾勾手指，“其次，他现在的精神状态还是很不稳定，我看着他会比较好。”</p>
+            <p>路明非还没来得及说话，楚子航已经瞬移到诺诺身边去了。他从诺诺背后探头看了看路明非，显然对路明非还是有点害怕的。</p>
+            <p>他刚刚醒来的时候，路明非是个狂魔般的形态，想必这一幕还深深地刻画在楚子航的脑海里。</p>
+            <p>乌鸦上去拍拍路明非的肩膀，带着这个无奈的男人离开了这间屋子。</p>
+            <p>——————————</p>
+            <p>夜深人静，雨还在下。</p>
+            <p>神社的房子很有些年头了，隔音不太好，大声说话隔壁就能听到。</p>
+            <p>“洗发水和沐浴露都在旁边那个木桶里。”</p>
+            <p>“要换的衣服我给你放在门口了。”</p>
+            <p>“你是属水獭的么，在浴室里待那么久？”</p>
+            <p>“吹干头发再睡，你妈没教过你洗完澡不吹干头发会着凉么？”</p>
+            <p>半个小时之前还能听见诺诺跟楚子航嚷嚷，现在彻底安静了，想来楚子航和诺诺已经睡下了。</p>
+            <p>楚子航和诺诺已经睡下了……这话说起来怎么那么奇怪呢？路明非心里嘀咕。</p>
+            <p>就着淅沥沥的雨声，路明非在窗前的小桌边坐下，撕开一袋薯片，就着薯片喝啤酒。</p>
+            <p>窗外是小小的花园，凋谢的菊花只剩下黑色的枯枝，像是一丛丛举起在雨中的鬼爪。</p>
+            <p>忽然间，仿佛一阵风来，烛火摇晃了一下，重又亮了起来。路明非身边多了个人，跟他一起吃着薯片。</p>
+            <p>“你这么出现感觉真像闹鬼。”路明非说。</p>
+            <p>“闹鬼也是对哥哥你忠心耿耿的机灵鬼。”路鸣泽贼贼地笑。</p>
+            <p>“我怎么没死？不会是你手下留情放我一马吧？”路明非问。</p>
+            <p>“最后那次交易没完成，我确实救了你师姐，但没能杀死奥丁。”路鸣泽叹了口气，“我们生意人最重要的就是讲信用，事情没办成，怎么能问客户收报酬呢？”</p>
+            <p>“他现在就在隔壁，你去杀了他不就完了？”</p>
+            <p>“可他不是奥丁，只是奥丁的替身。”小魔鬼耸耸肩，“你不是也猜到了么？”</p>
+            <p>“真正的奥丁是谁？”</p>
+            <p>“最尊贵的龙王之一，奥丁是他在人类神话中的名字。龙王可以有很多名字很多种形态，我想你也猜到了。”</p>
+            <p>“那你是什么？另一个龙王么？如果龙是世界上一切神秘力量的来源，那么能够杀死龙王的，只能是另一个龙王吧？”</p>
+            <p>“你其实是想问你自己是不是龙王吧？”</p>
+            <p>路明非沉默了片刻，微微点头。</p>
+            <p>“信我啦哥，你不是。”小魔鬼拍拍路明非的肩膀。</p>
+            <p>“你说真的？”路明非本想装淡定，可那股惊喜实在压抑不住。</p>
+            <p>“骗你是小狗子！”小魔鬼笑，鼻头皱了起来，像个可爱的孩子。</p>
+            <p>“但你也不是人类，你是个怪物，很怪很怪的怪物。”小魔鬼又说。</p>
+            <p>路明非愣了一下，笑笑。这根本就是一句废话，他是怪物这件事根本就是明摆着的嘛。</p>
+            <p>小魔鬼忽然往门那边看了看，“本来看你那么寂寞，想陪你长聊来着。喜欢的女孩子就住在隔壁，却跟一个男人一起睡，没你什么事儿，真叫人同情啊！”</p>
+            <p>“滚！”路明非被人说中了心事，有点下不来台。</p>
+            <p>“是得滚了，有人来了。”小魔鬼说，“滚之前提醒你一件事，别相信那个乌鸦。”</p>
+            <p>烛火又是一晃，桌上还残留着薯片的残渣，小魔鬼却不见了。</p>
+            <p>敲门声想起，路明非捏了捏藏在和服袖中的短弧刀，过去开门。乌鸦站在门外，这家伙看起来是去洗了个澡换了身衣服，脸上的伤口也都用胶布贴好了，拿小竹签掏着耳朵，浑身上下透着一股子慵懒。</p>
+            <p>“你没走？”路明非问。</p>
+            <p>乌鸦送他到屋里就离开了，路明非一直以为他是离开了神社回东京了。</p>
+            <p>“没，山后面有个温泉，过去泡了会儿，我也难得来这放松放松。”乌鸦说，“来看看你有没有睡着。”</p>
+            <p>“还没，大概是之前太紧张了，放松下来反而睡不着了。”路明非说。</p>
+            <p>“睡不着的话不如出去玩玩，”乌鸦说，“东京你也算是旧地重游，还有几个老朋友，不去看看么？”</p>
+            <p>——————————</p>
+            <p>夜幕下的歌舞伎町五光十色，雨幕让霓虹灯看起来格外的流光溢彩。果然是故地重游，走在这条街上感觉哪儿哪儿都熟悉，尤其是街中央的青铜雕塑。</p>
+            <p>路明非和乌鸦都穿着浴衣，戴着墨镜——歌舞伎町里出没的黑道太多，乌鸦这种道上名人是绝对不能露脸的，当然路明非也不能——都咬着章鱼小丸子，仰望这尊雕塑。</p>
+            <p>“之前回我以前的高中，他们也弄了个我的雕塑放在学校门口。”路明非感慨，“但没有这个那么……暴露。”</p>
+            <p>那是一尊撒尿小孩的雕塑，仿布鲁塞尔的那一尊，只不过那张脸怎么看怎么像是路明非的儿子。</p>
+            <p>“你还真一眼认出了自己啊。没错，这就是在歌舞伎町缔造过传说的男人，高天原的头牌红少爷，小樱花。雕塑家把你作为儿童来表现。如今这是歌舞伎町的一景，据说抚摸他的某处会招来桃花运。”</p>
+            <p>“不用说得更详细了！”路明非赶紧打断。</p>
+            <p>“不要想得那么下流，”乌鸦说，“是说屁股，传说小樱花有着完美的翘臀。”</p>
+            <p>“是店长捐资修建的吧？”路明非叹气，“用脚趾头想也知道。”</p>
+            <p>“没错，如今高天原是歌舞伎町上最热门的夜店，座头鲸先生今年连任了女性关怀促进会的理事长，坊间传闻他还想竞选议员。”</p>
+            <p>“真不错，店长一直想当头面人物来着。”</p>
+            <p>雕塑后面就是那幢白色的建筑，罗马式的立柱，黄铜包裹的大门，屋顶雕刻着吹响号角的金色天使，数十面猩红色的旗帜从屋顶一直垂到地面。</p>
+            <p>“座头鲸先生重新装修了高天原，跟你们那时候比气派多了。”乌鸦说。</p>
+            <p>路明非点点头，这豪气干云的设计风格，这才是配得上座头鲸老板的店。那个男人有了钱肯定要乱花的，反正这家店他说了是要经营一辈子的，给那些情感上没依靠的女人一个放心喝醉的地方。</p>
+            <p>“都有点认不出来了。”路明非说。</p>
+            <p>“周边这一片地也都被座头鲸先生买下来了，他拓建了一个广场。天气晴朗的时候，他会让乐团在广场上表演。”</p>
+            <p>恰在这时，一辆黑色的奔驰车在高天原门前停下，身穿套裙的优雅女士推门下车。</p>
+            <p>陪伴她的是衣着得体的中年男人，看起来就是那种受过很好教育、在大公司里工作、财务自由的成功人士，眉目也很英挺。他体贴地托住女士的小臂，以免穿着高跟鞋的女士在湿滑的路面上行走不便。</p>
+            <p>服务生冲到女士身边张开雨伞，门童立刻拉开雕花的黄铜大门，门开的时候，爆出奔放的男低音，“女士们！欢迎来到凡间的天堂……高天原！今夜我们的花，为你们盛放！”</p>
+            <p>路明非愣了片刻，忽然笑了。</p>
+            <p>虽然失去了一条手臂，可还是那么豪气，不愧是立志要当天下第一花郎的男人。</p>
+            <p>那位优雅的女士路明非也认识，姓什么忘记了，隐约记得她的名字是早苗，职业是建筑设计师，那时候总来喝酒，喝多了一个人哼着歌流眼泪。</p>
+            <p>看来早苗找到了会照顾她的男人，那就不必再来高天原这种地方寻求安慰了，不过还是会光顾，想必是个恋旧的女人。</p>
+            <p>音乐声响起，乐团开始演奏，是一首缠绵的情歌，黄铜包裹的大门在早苗的背后关闭。</p>
+            <p>“走吧。”路明非说。</p>
+            <p>“真的不进去打声招呼么？”乌鸦挑眉。</p>
+            <p>“不用了，”路明非笑笑，“不想给他添麻烦。”</p>
+            <p>其实有那么一瞬间，他是想走进去的，岂止走进去，还要拥抱那个独臂男，告诉他自己回来看他了，告诉他他还像当年那么棒。</p>
+            <p>是音乐响起的时候，那首熟悉的歌，玉置浩二的《Friends》，如今大概是高天原的保留曲目。</p>
+            <p>可理智告诉路明非，不能去，高天原再也不是他能藏身的地方了，如今它是歌舞伎町一番街上所有夜店中的王座，却庇护不了他这个危险的大怪物。</p>
+            <p>真想念那个时候，雨夜中的东京，他们无路可走，却意外地找到了这么一个栖身之所，还有温暖的大浴池。如今他袖中藏着致命的利刃，从中国到蒙古，硬生生杀出了来这里的路，却不能进去跟他打个招呼。</p>
+            <p>“不去见店长的话，就去看看别的朋友吧。”乌鸦轻声说，“反正那个人，你想给她添麻烦也没机会了。”</p>
+            <p>——————————</p>
+            <p>工程电梯轰隆隆地下降，下面一片漆黑，黑暗中涌起乳白色的雾气。</p>
+            <p>“戴上口罩。”乌鸦把准备好的口罩递给路明非，“井里保存着大量的水银，以你的血统，这点水银蒸汽对你应该没什么伤害，不过吸多了总是不好。”</p>
+            <p>路明非点点头，接过口罩，却没有戴。</p>
+            <p>“那件事之后，家族就从东京都政府那里买下了这口井，永久地封闭了，周围的所有山地我们也都买了下来。”乌鸦说，“这样就不会有人打搅她了。”</p>
+            <p>路明非抬起头来，漫天大雨，好像全世界的水都在汇入这口巨大的储水井。</p>
+            <p>红井，他终于又回到了这里。</p>
+            <p>他曾以为自己不会有勇气回来，虽然无数次在梦中他就站在这口井里，亲眼看着那一幕重演。</p>
+            <p>乌鸦说起的时候他就知道自己会来这里，可什么都没说就上了乌鸦的车，两人在山间公路上开了足足一个小时，一路上也都没说话。</p>
+            <p>工程电梯到达井底，一片漆黑，乌鸦摸索着找到了电源开关。</p>
+            <p>一盏亮得刺眼的射灯从上方照下，地面上刻有很深的槽，深槽组成了巨大复杂的图案，深槽里流动着水银。</p>
+            <p>某种炼金矩阵，卡塞尔学院的冰窖里也有类似的布置，通过水银的流动激发某种言灵效果，镇压那些自带活性的炼金制品。</p>
+            <p>“这些家伙越来越懒惰了，也不好好地收拾，这么多垃圾。”乌鸦气哼哼地说。</p>
+            <p>井底确实有不少垃圾，多半是树枝，可能是被雨水冲刷进来的。乌鸦踢开几段枯枝，在前面引路。</p>
+            <p>井底很大，射灯无法全部照亮，乌鸦带着路明非走进黑暗里，黑暗里有什么东西闪着微光。</p>
+            <p>乌鸦又摸索了一番，找到了一个控制台，他看了路明非一眼，打开了控制台上的电源。</p>
+            <p>黑暗里那发射微光的东西亮了起来，那是一个巨大的、石英玻璃整体铸造的圆柱，像是一间圆柱形的房子。</p>
+            <p>石英玻璃的房子里面，跪坐着瓷白色的女孩。她干枯得很彻底，却没有任何腐烂的迹象，还穿着当年路明非亲手给她穿上的那套裙装，但身上多了一圈圈的纸绳，纸绳上挂着朱砂写就的神符。</p>
+            <p>纸绳的末端固定在石英圆柱的内壁上，那是某种神道教的仪式，用于镇压妖魔或者厉鬼。</p>
+            <p>“本该把她也葬在神社的墓地里，可是谁知道她是什么东西呢？要是再度复苏岂不是会很麻烦？还不如葬在这口满是水银蒸汽的井里，五公里之外的山上有个瞭望哨，一天24小时用望远镜看着这里，不过没关系，我把那家伙支走了。”乌鸦念叨着，点燃带来的线香，冲那瓷白色的少女拜了拜。
+            </p>
+            <p>“可她根本没有复苏的迹象，不知道为什么又有些失望。”乌鸦轻声说，把线香递给路明非，“去给她上柱香？想要拥抱遗体是不可能了，不过放声大哭没关系，这里只有你和我，没人会知道学生会主席的丢脸事。”</p>
+            <p>路明非摆了摆手，表示自己不需要。</p>
+            <p>他缓步上前，脚步很轻，好像那女孩只是睡着了，他不想惊醒她。</p>
+            <p>他往前走，乌鸦往后退，似乎是不想打搅他。</p>
+            <p>那盏刺眼的射灯熄灭了，乌鸦的眼睛在黑暗中闪闪发亮，他每退一步，眼睛就更亮。</p>
+            <p>那是猎人的眼神！</p>
+            <p>十几道暗红色的光线亮起，那是狙击步枪的激光瞄准镜，密集的光点汇集在路明非的后心，持枪的人手很稳，光点只是轻微地晃动。这口井的井壁上都是脚手架，那些漆黑的射手就藏身在脚手架上，居高临下地瞄准，绝对不会有射击死角。
+            </p>
+            <p>乌鸦站住了，缓缓地举起右手，竖起一根手指。</p>
+            <p>终于到了收网的时候，猎杀一只猛兽就是需要这样的耐心，不能急，也不能走错，哪怕一步。</p>
+            <p>他是流氓出身，流氓杀人有自己的办法，不必像他那个外号夜叉的朋友那样，挥舞武器，咆哮着冲锋。流氓杀人只需要一寸的刀锋，他们带着笑容和敌人拥抱，用藏在袖子里的匕首给对方后心来上那么一下子。</p>
+            <p>十六名经过最严格训练的狙击手，十六支反器材狙击步枪，枪里装填着威力巨大的20mm子弹，强到能够洞穿步兵装甲车。48个小时之前这些武器被分发下去，乌鸦和这些狙击手共饮了烈酒，摔碎了酒杯。</p>
+            <p>此刻乌鸦只要轻微地勾动手指，路明非就会化为一团血雾。</p>
+            <p>可路明非慢慢地转过身来，看着乌鸦。他只要低头就能看到自己胸前那团密集的红点，可他只是静静地看着乌鸦。</p>
+            <p>乌鸦觉得浑身的血都凉了，那本可轻易勾动的手指上仿佛牵着万斤的重物。他不明白自己是何时和怎么露出马脚的，猎物既然看穿了自己，又为何要老老实实地跟着他走进陷阱。他也不确定在对方已经有准备的情况下，那些20mm子弹还有没有效果，毕竟这个世界上没有人能断言这个怪物的极限。
+            </p>
+            <p>可路明非只是看了他一眼，又转了回去，继续走向那间石英玻璃的小屋，还是那么慢那么轻的步伐。</p>
+            <p>他趴在玻璃上，看向里面。</p>
+            <p>没有悼念的话，也没有泪水，男孩只是趴在厚厚的石英玻璃墙上，静静地看着那干枯的、瓷白色的女孩。</p>
+            <p>悲伤氤氲地弥漫开来，填满了深井的每个角落，它是那么地轻柔，却又沉重，像是水，慢慢地把人淹没。</p>
+            <p>乌鸦忽然觉得这个夏天真的是很冷，他疲惫地摆了摆手，所有激光瞄准点在同一瞬间熄灭。</p>
+            <p>他走到井壁边缘，蹲在那里，点燃了一支烟，仰望天空，亿万的雨滴从那里而降。</p>
+            <p>大红色的古董跑车在山路上慢悠悠地开着，音响里是某个老男人似乎忧伤又似乎快活地唱着歌。</p>
+            <p>“原本的计划是在红井里杀了我？”回城的路上，两个人一句话都没说，最后还是路明非主动地打破了沉默。</p>
+            <p>“原本的计划是，如果狙击手不奏效的话，就把那口井整个地炸掉，给你来个水银葬礼。我和狙击手都是你的陪葬品。”乌鸦说，“大家长叫我决定如何处置你，我想来想去最好还是把你抹掉算了，但最好不要伤到陈小姐，我们可不想激怒加图索少爷，所以把她留在神社里了。”
+            </p>
+            <p>“之前的那些都是你做戏给我看？”</p>
+            <p>“是，从我在网吧见到你的那一刻开始我就在做戏，我要让你对我放松警惕，还要引动你的情绪，才有得手的机会。”乌鸦说，“我是街头流氓，你是能屠龙的超级英雄，我想干掉你，只能得靠智慧。”</p>
+            <p>路明非沉默了很久，“酷，可怎么又放弃了？”</p>
+            <p>“黑道有黑道的规矩，我们忌讳在葬礼上动武。”乌鸦说，“一个人虔心诚意地为死者悲伤时，连漫天神佛都会保佑他，动武是会被神佛怪罪的。我觉得你那时候真的很悲伤，特别像条狗。”</p>
+            <p>“《大话西游》的台词么？你一个日本人怎么会看过那部电影？”</p>
+            <p>“什么《大话西游》？没看过，我就是忽然觉得你像条狗而已。现在真的可以去喝酒了，我知道一个好地方。”乌鸦把油门踩到底，轿车立刻加速，在漆黑的山路上甩尾狂飙起来。</p>
+            <p>路明非点点头，靠在椅背上，眺望漆黑的群山。</p>
+            <p>——————————</p>
+            <p>“其实我对你多少有点不爽，可以前不愿意说。”乌鸦喝着啤酒。</p>
+            <p>这是一间做炉端烧的小店，烧烤台中间点着火，旁边的竹签上插着牛肉、鲜鱼和蔬菜，暖风和食物的香气扑面而来。</p>
+            <p>乌鸦说的好地方居然是这种不起眼的小店，不过料理真的不赖。</p>
+            <p>“为什么？”路明非打了个酒嗝。</p>
+            <p>“你哪里配得上小姐？我们每个人都看她是公主，可她看上了癞蛤蟆。”乌鸦说，“她把所有的信任都给了你，可你什么都没帮到她。你是她的骑士，可需要你出马的时候，你怂得像条狗似的。”</p>
+            <p>“嗯。”路明非点点头。</p>
+            <p>“事后我们从Line的服务器上拿到了你和她的通信记录，她遇难之前一直在联系你。你是最有机会救她的人，可你在高天原的酒窖里浪费了很多时间。”</p>
+            <p>“嗯。”路明非点头承认。</p>
+            <p>酒意上头，乌鸦重重地把啤酒杯砸在桌子上，忽然间面目狰狞声色俱厉，“只会说嗯么？能像个男人那样说话么？她那么相信你，相信一个关键时刻什么用都没有的男人！一个只会低着头说嗯的男人！”</p>
+            <p>这一次路明非只是沉默。</p>
+            <p>乌鸦吼了几声，发泄完怒气，又安静下来，再度变成那个深藏威严的佐伯龙治，声音温柔又低沉，“我是个街头混混，我父亲也是，他什么人都打。但小时候父亲跟我说要懂得保护女孩，因为女孩子将来会是妈妈，她们能生孩子，能带来希望。所以男人可以轰轰烈烈地战死，但要懂得保护女孩。女孩子死了，男人还活着的话，会不能原谅自己。”
+            </p>
+            <p>顿了顿他又说，“其实就算没那么喜欢她，也可以带她离开啊，她也挺漂亮的不是么？带她去韩国，在那颗不存在的海棠花树下跟她相互喂冰淇淋，吃完想带她去哪里就带她去哪里，反正她喜欢你，你要怎样她都愿意。”</p>
+            <p>“别说了。”路明非小口地喝着啤酒，“不过如果这么说能让你开心点，那你就继续说，我听着。”</p>
+            <p>乌鸦对于路明非的反应有些惊讶，愣愣地看了他几秒，“你真的跟以前不一样了。”</p>
+            <p>“人总是要长大。已经发生的事，已经没了的人，总是回头看也没用，只能把现在的事情做得漂亮点。”</p>
+            <p>两人沉默下来，望着炉中的火焰，火焰升腾，鱼肉的油滴滴入火中，噼啪作响。</p>
+            <p>“我没有下达攻击命令，两个原因。”乌鸦低声说，“第一，你现在是个大人物了，可看到小姐的那个瞬间，眼神忽然变回了当年的那个小男孩。所以我觉得你还是个人，有人性，不是他们说的那种怪物，”</p>
+            <p>“你这么说我还有点高兴，不过怪物也未必没人性，”路明非说，“还有呢？”</p>
+            <p>“我忽然想就算你真的是怪物，那么她是什么呢？如果目标是她，我能下达攻击命令么？”乌鸦轻轻地叹了口气，“我这么一想，心就软了。”</p>
+            <p>乌鸦顿了顿，喝了口酒，“那个女孩，就是传说中的陈墨瞳吧？”</p>
+            <p>“恺撒老大的未婚妻，长得很像你家小姐，对么？”</p>
+            <p>“说不清，两个人的气质完全不一样，一眼就能分出来。但完全没有血缘关系的人，居然会那么相似，连那种奇怪的发色都一样。”乌鸦顿了顿，“那是你真正喜欢的人对吧？”</p>
+            <p>“是。”路明非脱口而出之后，自己都惊讶。</p>
+            <p>这个秘密藏在心里很久，却随口就跟乌鸦承认了。也许是因为乌鸦是跟这份感情没关系的局外人，他一直想找个局外人承认一下子。</p>
+            <p>“恺撒怎么想？”</p>
+            <p>“他应该知道，不过我这样的人，对他也构不成什么竞争。”</p>
+            <p>“接下来想怎么样？我可以放过你，但是更多的人很快就会赶来东京，不是每个人都像我这样事到临头心软的，即使是你当年的朋友。”</p>
+            <p>“我来东京确实是想找你帮忙，但不是帮我逃过学院的追踪，我想你帮我找个人。”路明非抬眼看了乌鸦一眼，给他满满地倒上一杯啤酒。</p>
+            <p>“什么人？”</p>
+            <p>“赫尔佐格。”</p>
+            <p>时过境迁，乌鸦听到这个名字的时候，瞳孔还是猛地收缩了一下，流露出内心深处残留的恐惧。</p>
+            <p>“赫尔佐格已经死了，死得不能再死了。我们派潜水员去东京湾里看了，捞到了他的一些遗骸。”乌鸦说，“被打碎到那种程度，你觉得他还能复活？”</p>
+            <p>“我相信他是死了。但我想借助蛇岐八家的力量，仔细地调查一下这个人的过去，你们不觉得奇怪么？一个前纳粹科学家，没有血统的正常人类或者血统极其平庸的混血种，却对龙族有着那么深入的了解，他甚至知道白王圣骸这样的究极秘密，比你们这些白王血裔更了解白王。他虽然死了，但他身上的谜团还没完全解开。”路明非说到这里顿了顿，“还有，他可能知道我的来历。”
+            </p>
+            <p>“你的来历？”乌鸦一愣。</p>
+            <p>“学院通缉我的原因，应该是我被怀疑偷袭校长和盗走龙骨，可能是一直隐藏身份的龙族奸细，对吧？”</p>
+            <p>“是，他们还认为你是非常危险的怪物，非常容易失控。他们发给我们的资料中，包括了一段你龙化的视频，说真的，第一次看的时候我可是被吓到了。”乌鸦顿了顿，“他们还说可能是你杀了龙王诺顿，龙王芬里厄和赫尔佐格。”
+            </p>
+            <p>“嗯。”路明非点点头。</p>
+            <p>“嗯这种回答也太草率了吧？”乌鸦瞪大了眼睛，“真是你干的？来来来，看着我的眼睛说话！”</p>
+            <p>路明非抬起头直视乌鸦的眼睛，“是我杀的啊，怎么了？”</p>
+            <p>“可赫尔佐格是死在天谴之剑的轰击中国！我们还从他的遗骸里找到了大量的钨元素！”</p>
+            <p>“是我把他拖住的。我在那里跟他对打，可还是有点打不过他，不过他不知道，那是天谴之剑攻击范围的圆心。他的速度很快，我要是不拖住他，他应该能避开天谴之剑。”</p>
+            <p>“那诺顿和芬里厄……”</p>
+            <p>“那两次是直接杀掉的。”</p>
+            <p>“说得太轻松了吧！你是拍死了蚊子还是路上踩到了蚯蚓啊？”</p>
+            <p>“详细说起来要蛮长的时间的，”路明非尽量用平淡的语气跟乌鸦解释这件事，“总之我的特殊能力是变成怪物，能力很强的怪物，能杀掉龙王。可这种能力有很严重的后遗症，所以我无法当着你的面表演，但是我说的都是真的。”
+            </p>
+            <p>路明非递了一张纸巾给乌鸦，“你要不要先擦擦嘴？”</p>
+            <p>乌鸦正呆呆地看着他，酒液顺着下巴哗哗地流。</p>
+            <p>乌鸦接过纸巾，胡乱地抹了抹嘴，依旧呆呆地看着路明非。</p>
+            <p>“其实你这么想，秘党和龙王们对抗的几千年里，能有几次杀死龙王并且猎获龙骨？可我入学以来，秘党在对龙王们的战场上屡屡得手，而每一次，都有我在场。”路明非点点头，“忽然这么说是有点像吹牛，不过真的，那些都是我干的。”
+            </p>
+            <p>乌鸦呆了很久很久，眼神终于重新活了过来，似乎脑袋又能转了。</p>
+            <p>他仰头把路明非给自己斟满的那杯酒倒进肚里，“这样也不错，你是小姐的骑士，你为她报了仇。”他当着樱井七海也说过这句话，但那时他心里还是半信半疑的。</p>
+            <p>乌鸦顿了顿，“照你这么说，你是秘党中最了不起的英雄，可秘党却要你死？”</p>
+            <p>“说是武器可能更妥当一点，被豢养的怪物，用来杀死其他怪物。”路明非说，“委实说我也不知道我的真实身份是什么，没准是个龙王呢？你知道，之前也有龙王根本不知道自己是龙王的。”</p>
+            <p>“所以你不是在满世界逃亡，你来日本，是想查清真相？”乌鸦盯着路明非的眼睛。</p>
+            <p>“要是死了都不知道自己是个什么东西，那墓碑该怎么写？”路明非轻声说。</p>
+            <p>“调查赫尔佐格对你会有用？”</p>
+            <p>“我有种奇怪的感觉，赫尔佐格应该是认识我的，我和他并不是在东京第一次见面。但我记不得我在什么时候跟他有过交集。”</p>
+            <p>路明非把玩着漂亮的玻璃酒杯，认真地回忆自己跟赫尔佐格的最后一次见面，不是以路明非的身份，而是以怪物的身份。</p>
+            <p>他们的身后都扬起巨大的骨翼，恐怖狰狞却又美得不可方物，像是天使和恶魔的混合体，当时赫尔佐格忽然惊恐地说，是你是你！</p>
+            <p>尽管路鸣泽掌控身体之后的记忆通常都很模糊甚至完全空白，但这一段却依稀记得，那种奇怪的……故人重逢的惊恐！</p>
+            <p>乌鸦想了很久很久，最后把瓶中剩下的酒分给自己和路明非，“行！我帮你！”</p>
+            <p>两人碰杯，一饮而尽。</p>
+            <p>走出炉端烧小店的时候，两人都愣了一下。</p>
+            <p>进店的时候，天空里还飘着蒙蒙细雨，一顿酒喝下来外面好像已经入冬了，屋顶和路面都是白茫茫的一片。</p>
+            <p>眼下分明是初夏，怎么可能有雪？</p>
+            <p>路明非踢了踢那层薄薄的积雪，就明白了，那不是积雪而是冰雹，夏季气温高湿度大，暖湿气流迅速上升冷却，就会变成冰雹。只不过这些冰雹太过细小，让人有降雪的错觉。</p>
+            <p>刚从店里喝酒出来的人看到这一幕都流露出惊喜的表情，衣着时尚的女孩们欢喜地尖叫着，跳上洒满冰雹的小路，起起落落的短裙下露出光洁修长的双腿。男孩们跟上去，拉着她们的手以免她们摔倒，他们在虚假的雪中拥抱。</p>
+            <p>乌鸦响亮地吹起口哨，惹来男孩不悦的瞪视，在感觉乌鸦可能是黑道成员之后，男孩急忙拉着女孩离开了。</p>
+            <p>“活着真挺好的对不对？”乌鸦望着他们的背影幽幽地说，“还有长腿细腰的女孩子呢，别轻易放弃啊路君。”</p>
+            <p>“嗯。”</p>
+            <p>“就算要死也不能轻易放弃，不能在逃亡的路上被人一枪打死，要杀回去，要死得堂堂正正，墓碑上要有自己的名字。”</p>
+            <p>“嗯。”</p>
+            <p>“每个男人都该在死前重走一遍自己年轻时的路，“乌鸦，或者说佐伯龙治，眺望着茫茫雪霰中的城市，那对因酒精而浑浊的瞳孔忽然清晰了起来，“那会是一场最有意义的葬礼。”</p>
+            <p>——————————</p>
+            <p>黑暗中，诺诺忽然睁开了眼睛。</p>
+            <p>她坐在黑暗里，双手抱着膝盖，深呼吸，试着平复心境。</p>
+            <p>连续逃亡了一个月之后，她的睡眠变得很浅，轻微的异响就会吵醒她。这次醒来却不是因为什么异响，而是做了一个奇怪的梦。</p>
+            <p>逃亡的路上她也做梦，有时候是自己在弥漫着浓雾的小巷子里狂奔，后面的脚步声逼近，有时候是梦见自己还在卡塞尔学院或者金色鸢尾花学院上课，岁月静好，什么事情都没发生。</p>
+            <p>那些梦都能解释，但今夜这个梦很奇怪，她梦见自己穿着日本巫女的服饰，手捧一支蜡烛，沿着曲曲折折的小路，在雪中走进这间神社，道路两旁站着大群的人，那些人穿着黑色的衣服，寂静无声。</p>
+            <p>像是一场隆重的法事，又像是一场葬礼……难道是因为住在神社里，所以会做这种怪梦？</p>
+            <p>旁边传来轻微的鼾声，楚子航睡得正熟。</p>
+            <p>诺诺悄无声息地爬出被窝，披上一件挡风的外衣，推开门，想要出去透透气，忽然惊呆了。</p>
+            <p>湿润的冷风扑面而来，漫天飘雪，整个世界都是白色的。</p>
+            <p>没来由的喜悦涌上心头，诺诺披上神社给准备的羽织，踩上木屐，踢踢踏踏地走进庭院，石板路上都是新雪，木屐留下一串印子。</p>
+            <p>神官们大概都睡了，庭院中一个人影都看不到，道边的石灯笼里点着油灯，每走几步就有一团暖暖的光。</p>
+            <p>诺诺信步而行，望着茫茫的飞雪，终于彻底放松下来。经历过那么长时间的逃亡，心里总是绷着一根弦，哪怕是到了这座神社，她也在枕边放着装满子弹的UMP9。</p>
+            <p>但是今晚下雪了，大雪像是有种特殊的魔力，能把这座寂静的山中神社和外界完全地隔绝开来，此刻她完全不去想忽然有追捕者从天而降，她就想在这座神社里走走停停，像个来日本观光的女孩。</p>
+            <p>虽然到处看不到人，可神社里到处有光，佛前的香油盏里有光，厨房的老实炉灶里有火，诺诺甚至找到了几个冷冻鸡翅，拿锡纸包好了丢进炉灶里，烤完喷香流油。</p>
+            <p>她咬着鸡骨头走在屋檐下，这是她最喜欢的旅行方式，一个人走走停停，看到想留步的地方就留步，点上一杯酒或者饮料，静静地坐一个下午。</p>
+            <p>没有时间表也没有明确的目的地，像是鱼在海里，飞鸟在天上。</p>
+            <p>走廊的尽头，一间房间虚掩着门。诺诺有点诧异，因为走到这里她闻到了女孩子身上的味道。不是香水味，就是那种女孩身上天然的味道，感觉有个女孩不久前刚从这条走廊走过。</p>
+            <p>诺诺信手推开门，果然是女孩子的房间，打扫得很干净，家具很古意，台案上摆着罩水红色纱罩的烛台，床边一个立式的衣架，上面挂着一套红白相间的巫女服饰，白色的长衣，绯色的袴。</p>
+            <p>这间神社里居然是住有巫女的，可来的时候迎接的却只有一群年轻的男性神官。</p>
+            <p>整间屋子里都弥漫着那种好闻的、女孩子的味道，住在这里的女孩子似乎刚刚出门去了。诺诺没来由地就想跟住在这里的女孩认识一下，也没想这样推门进入别人的卧室是不是失礼。</p>
+            <p>她在屋子里走动，好奇地观察这间和式的卧室，这里确实很温馨，却又有点太过清心寡欲，不知道住在这里的女孩会不会觉得寂寞。</p>
+            <p>最后她停在了那身巫女服前，那真是一身很好看的衣服，剪裁精细用料考究，却连一点多余的装饰都没有，映着灯火，白衣上流动着少女肌肤般的光彩。</p>
+            <p>诺诺忽然想这身衣服要是穿在自己身上不知道是什么效果。这个念头一起，屋里好像忽然起了微风，巫女服的广袖微微摆动。</p>
+            <p>那身巫女服像是活过来了，轻柔地挥舞着袖子，扑向了诺诺。</p>
+            <p>诺诺想要逃，想要呼救，却都无能为力，她呆呆地站着，仍凭巫女服紧紧地抱住自己……她闻见了越发浓郁的少女体香，铺天盖地地把她裹住。</p>
+            <p>——————————</p>
+            <p>诺诺猛地坐起，冷汗湿透了睡衣。</p>
+            <p>她还在自己的卧室里，卧室里黑着灯，空气微寒，没有巫女服，也没有任何气味。</p>
+            <p>居然是个梦中梦，她前一次醒来，居然是在梦中醒来，是从一层梦境进入了另一层梦境。</p>
+            <p>见鬼！怎么会做这种奇怪的梦？诺诺双手捂脸，深呼吸，平复情绪……片刻之后她才意识到，这跟她梦中醒来的那次一样，难道自己还在梦里？</p>
+            <p>她忽然有点恐惧，从一个梦中醒来进入另一个梦，就像两面镜子相对映照，镜中的画面看起来就像是通往未知世界的走廊。</p>
+            <p>她狠咬自己的拇指，确实是疼的，这让她稍稍相信自己确实身在真实的世界。然而她一扭头，再度警觉，她身边空荡荡的，并没有那个老实酣睡的男孩！</p>
+            <p>她悄无声息地起身，提起了枕边的UMP9，缓缓地靠近门，猛地把门推开，闪身出去四下瞄准。</p>
+            <p>开门的那一刻她惊呆了，世界是银白色的，石灯笼的光照亮小路，屋檐上的铁马叮叮作响……一切都跟梦中所见的一模一样。</p>
+            <p>就在她又想咬自己的手指确认自己是不是在做梦的时候，不远处的一盆炭火旁，两个蹲着的人站起身来，其中一个人整了整自己的高帽子，“陈小姐，是有什么不对的情况么？”</p>
+            <p>就是来时给他们引路的那位年轻神官，这家伙一身神官服饰，但很搞笑地背着一把乌兹冲锋枪。</p>
+            <p>无故消失的楚子航也出现了，他刚才跟那位神官并排蹲着，拿着穿好鸡翅膀的铁叉子……</p>
+            <p>“你们在干什么？”诺诺吃惊地看着这两位。</p>
+            <p>此刻她已经不怀疑自己在做梦了，梦境里应该不会出现这种搞笑的画面。</p>
+            <p>“我刚才看见楚先生出门来，说他饿了想找点吃的东西，我就带他烤点鸡翅膀。”神官扬起铁叉子，“陈小姐要不要也试试？”</p>
+            <p>“所以你一直守在这里？”</p>
+            <p>这跟梦境中的情形不一样，梦境中这间神社静悄悄的，除了摇曳的灯火，好像连猫都睡着了。</p>
+            <p>外面的雪跟梦境里的雪也不是一回事，那是细小的雹子，下得并不优雅，打在屋檐上噼啪作响，跟撒盐似的。</p>
+            <p>眼下正是初夏，本就不该下那种绵绵的雪。</p>
+            <p>“佐伯先生命令我们24小时保护贵客，”神官说，“不止是我，所有的神官都全副武装保持警戒。”</p>
+            <p>神官打了个响指，至少有二十个神官装束的家伙从庭院的各个角落里露头跟诺诺摆手打招呼，屋顶上的那个居然还扛着重型狙击步枪。</p>
+            <p>神官们亮相结束又都缩了回去，这间神社根本就是个防卫森严的堡垒。</p>
+            <p>“真的建议您尝尝我们这里的鸡翅，就着啤酒相当不错，我们经常这样宵夜。”神官殷勤地邀请诺诺加入他和楚子航的烤鸡翅膀组。</p>
+            <p>诺诺忽然愣住，梦境中她也是在厨房中找到了鸡翅，丢在炉灶中烤熟，饱餐了一顿。还有一罐冰得很到位的啤酒。</p>
+            <p>“你们这里经常准备着鸡翅啤酒？”诺诺问。</p>
+            <p>“一般人都觉得我们神官应该是喝清水吃米饭团子的，不过总吃那么清淡还是受不了，所以我们的厨房里一般都备足了鸡翅和啤酒。”神官挠挠头。</p>
+            <p>诺诺静了片刻，“那么你们这里是不是还有一件空房子，里面有个衣架，衣架上挂着一套巫女的衣服。”</p>
+            <p>神官的神情忽然了，他郑重地凝视了诺诺片刻，“有，贵客要去看看么？”</p>
+            <p>“带我去。”诺诺走了两步回身看着楚子航，“吃完鸡翅回去睡觉。”</p>
+            <p>神官领着诺诺穿过白色的庭院，进入神社的后园，这里有几排看起来年久失修的旧房子，掩映在树木的浓荫中。</p>
+            <p>神官在一扇门前停下，先不是开门，而是轻声念了一段经文。诺诺听不懂他在念什么，但能听出肃穆的感觉。从她问起那套巫女的衣服开始，这个喜欢啤酒烤鸡翅的年轻神官忽然变得严肃起来了，像个真真正正能与鬼神沟通的人。</p>
+            <p>神官打开了门上的锁，缓缓地推开门。这就是梦中的那间空房子，只是在梦中它是没有上锁的，像是在等待谁的光临。</p>
+            <p>屋内陈设和梦中一模一样，区别只是显得有些荒芜，而梦中这间屋子是带着人气的，好像主人刚刚离开不久，随时都会回来。</p>
+            <p>立式衣架上挂着那件红白两色的巫女服，诺诺站在衣架面前端详了很久，伸手轻轻地触摸那件衣服。它没有任何反应。只是一件衣服而已，当然不会出现梦中的异象。</p>
+            <p>柜子里摆着各种各样的毛绒玩具，有些似乎是被拿走了，留下空位。看那件巫女服的尺寸，主人应该跟诺诺差不多，也是高挑修长的大女孩，可看这些毛绒玩具，又好像是小女孩的住处。</p>
+            <p>诺诺在屋子里漫步，缓慢地呼吸，感受着这间屋子的一点一滴，思维深入、深入、再深入……侧写开始发挥作用，她慢慢地沉浸到某种情绪里去，时间像是倒流了。</p>
+            <p>她能感觉到那个女孩了，她穿着巫女服，抱着毛绒玩具从屋子的这头走到那头，抱一会儿换一个，要把自己的温暖平分给那些小家伙，好像它们是有生命的。</p>
+            <p>她是那么地温暖，那么地善良，可她恐惧，巨大的恐惧被压抑在她心底的深处，她恐惧着某种不可言说的东西。</p>
+            <p>当诺诺感觉到那种恐惧的时候，她狠狠地打了个寒战，猛地转身，仿佛有什么恶鬼站在她的身后。</p>
+            <p>没有恶鬼，只是那位年轻的神官安安静静地站在门边。</p>
+            <p>“这是绘梨衣小姐最后的住处，这套衣服也是她以前穿过的，我们保持它原来的模样，作为纪念。”神官轻声说。</p>
+            <p>“绘梨衣小姐？”</p>
+            <p>“佐伯先生没有跟您提过么？绘梨衣小姐是前任大家长的妹妹，长得跟您有点像。她也是路明非先生的朋友。”</p>
+            <p>诺诺点了点头，难怪乌鸦看她的眼神里透着几分怪异，是因为在她身上看到了那位绘梨衣小姐的影子吧？</p>
+            <p>“她怎么死的？”诺诺问。</p>
+            <p>“她是赫尔佐格用来培养白王的容器，身体里植入了白王留下的圣骸。容器总是要被毁掉的，就像寄生虫在寄主的身体里长大，寄生虫孵化，寄主就死了。”神官说。</p>
+            <p>诺诺沉默了片刻，“真可怜。”</p>
+            <p>“您怎么会知道神社里有这间房间？”神官问，“佐伯先生告诉您的么？”</p>
+            <p>“不是，是从别的渠道知道的。”诺诺耸耸肩，“别跟他们说我来过这里，可以么？”</p>
+            <p>“你叫我什么？”诺诺扭头，直视神官的眼睛。</p>
+            <p>“我说错了，对不起，陈小姐。”神官避开了诺诺的目光。</p>
+            <p>“我跟她长得应该不是有点像，是非常像才对吧？”诺诺冷冷地说，“所以在我要求来这里看看的时候，你立刻就答应了。”</p>
+            <p>“也没那么像，很容易区分，可是某些时候，就是那么一眼，会让人吓一跳，以为小姐又回来了。”神官说。</p>
+            <p>诺诺点点头，不再说话，袖着手出门了。</p>
+            <p>说不清为什么，她不想让路明非和乌鸦知道她来过这里，就像路明非和乌鸦分明知道她和那个名叫绘梨衣的女孩很像，却不约而同地避开不提。</p>
+            <p>神官在后面锁门，诺诺独自在洒满雪霰的庭院里走了很远，才拿出了藏在袖子里的那个Hello Kitty小玩偶。这是她趁神官不注意从柜子里摸的。</p>
+            <p>小玩偶的底部贴着不干胶的字条，“Sakura&amp;绘梨衣のHello Kitty”。</p>
+            <hr class="footnotes-sep">
+            <p>注释：</p>
+            <section class="footnotes">
+                  <ol class="footnotes-list">
+                        <li id="fn1" class="footnote-item">
+                              <p>Araki Hirohiko：荒木飞吕彦，日本著名漫画家，代表作《乔乔的奇妙冒险》；Kamehameha：龟派气功，出自《七龙珠》；Chakela：查克拉，出自《火影忍者》。
+                                    <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+                        </li>
+                  </ol>
+            </section>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+    
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
