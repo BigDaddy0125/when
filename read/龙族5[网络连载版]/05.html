@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>05</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <div id="top"></div>
+            <p><a href="04.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="06.html">下一章</a></p>
+            <hr>
+            <h1 id="center第五章-利维坦之歌center">
+                  <center>第五章 利维坦之歌</center>
+            </h1>
+            <br>
+            <br>
+            <p>第86章利维坦之歌(1)</p>
+            <p>北冰洋，巴伦支海，法兰士约瑟夫地群岛。</p>
+            <p>这个庞大的岛群由150个小岛组成，加起来的面积超过一万平方公里，属于俄罗斯的领土。岛上并没有常住民，但有苏联时代留下的科学考察站。</p>
+            <p>往年的盛夏，总有满载游客的北极游轮在这里的港口停泊。乘客们会被允许在这个群岛登陆，跟着导游跋涉上一段路，呼吸冰爽的海风，欣赏北极地区特有的植被，幸运的时候还能看到成片的北极罂粟，盛开的时候，它们的花瓣像是镜子那样反光。
+            </p>
+            <p>但此时此刻，恺撒站在船头眺望出去，却只有白茫茫的坚冰，明晃晃的太阳低悬在地平线上。眼前的世界就像一面凹凸不平的镜子，光影在这里都是扭曲的，感觉随时都会生出幻觉。</p>
+            <p>远处的冰面上，船员们正清理着那些苍白的人形，用刷子扫去积雪，把它们搬上皮划艇，再用雪地摩托拉着它们返回YAMAL号。感觉像是一场雕塑展刚刚结束，工作人员正在清理展台。</p>
+            <p>YAMAL号在法兰士约瑟夫地群岛停泊，正是为了这支遇难的科考队。半个月过去了，此地的严寒仿佛连时间也冻住了，一切还是他们刚死时的模样。</p>
+            <p>背后传来香槟开瓶的声音，恺撒转身返回餐桌边。这张餐桌被设在YAMAL号的甲板上，洁白的桌布，纯银的餐具，还有专门吃鱼子酱用的珠母贝小勺子，简直就是一张巴黎顶级餐馆里的餐桌。</p>
+            <p>只不过客人们都穿着厚厚的防寒服戴着墨镜，在这种高纬度地区要是不戴墨镜，紫外线很快就会照瞎他们的眼睛。</p>
+            <p>“秘鲁产的海鲈鱼，搭配1990年的沙龙香槟，请趁热享用。”帕西揭开餐盘上的银盖子。</p>
+            <p>海鲈鱼散发着令人陶醉的香气，配菜是烤白芦笋、蒜片煎小牛肉以及鞑靼鲔鱼。</p>
+            <p>“你们一定是世界上最富有的研究所！”雷巴尔科船长赞叹。</p>
+            <p>“预祝我们此行会有震惊世界的研究成果。”施耐德举杯。</p>
+            <p>施耐德团队宣称自己是一个来自美国的私人研究所，他们为了研究这个奇怪的寒夏，所以不惜重金买下YAMAL号，进行这场极地探险。</p>
+            <p>酒杯碰在一起，其他人都一饮而尽，只有施耐德浅浅地抿了一口。他的呼吸系统原本就已经到了崩溃的边缘，进入北极圈之后，情况更糟糕了。眼下支撑他的大概已经不是空气和食物了，而是某种强烈的意志，强烈得像是随时能燃烧起来。
+            </p>
+            <p>“不过我们在遇难者的旁边吃吃喝喝会不会有点不尊敬？”雷巴尔科望向恺撒刚才眺望的方向。</p>
+            <p>“没什么，自古以来去往世界尽头的探险就伴随着牺牲。如果我牺牲在这条航道上，希望找到我的人在我旁边举杯，而不是为我哭泣。”施耐德缓缓地说。</p>
+            <p>“施耐德教授您一定是学哲学的！”雷巴尔科大笑。</p>
+            <p>宾主们再度碰杯，聊着天享用海鲈鱼。雷巴尔科颇为健谈，从食物聊到女孩，然后是他航行世界各地的经历。他们已经相处了一段时间，以雷巴尔科为首的东欧船员们是群豪放的家伙，经验老道，不惧危险，热爱伏特加。</p>
+            <p>帕西不断地为大家斟酒，雷巴尔科酒到杯干，很快就进入了微醺的状态。</p>
+            <p>“一起航行了那么久，还不知道各位出海的原因呢。”雷巴尔科又干了一杯香槟，舔着嘴唇</p>
+            <p>“登船的时候不是就说了么？”恺撒微笑，“我们是一间私人研究所，今年北极圈的反常气候很值得研究。”</p>
+            <p>“这么说可有点不够朋友了啊，加图索先生，”雷巴尔科摇晃着酒杯，“要想骗过老水手可没那么容易。”</p>
+            <p>芬格尔的神情有点紧张，施耐德和恺撒对视一眼，阿巴斯仍旧低着头，细心地拆解着那块已经冷了的烤海鲈鱼。</p>
+            <p>“船长您是觉得我们说谎了？”恺撒淡定地举杯。</p>
+            <p>雷巴尔科也不拘束，又是碰杯之后一口喝干，“你们不是做研究的，你们身上透着一股军人的味道。当然，你们很有钱，军人不应该像你们这么有钱，但你们是一个军事化的团队没错！”</p>
+            <p>“何以见得呢？”恺撒笑笑。</p>
+            <p>雷巴尔科耸耸肩，“加图索先生，您是一个极其敏锐的人，虽然您尽量不表现出来，但你在任何地方一站，周围所有的情况都在您的监视中，甚至包括发生在您视线之外的事，虽然我不知道您怎么做到的。”</p>
+            <p>他转向阿巴斯，“阿卜杜拉先生，我算是这条船上最强壮的男人了，可是如果不到迫不得已，我绝对不想跟您玩徒手格斗。”</p>
+            <p>他再转向施耐德，“至于教授您，您看起来确实像是搞学术的，说话也挺哲学，可您凭眼神就能指挥加图索先生和阿卜杜拉先生，您可千万别说那是因为您出色的学识。”</p>
+            <p>他最后转向芬格尔，端详了片刻，跳过他再度看向恺撒。</p>
+            <p>“你这是什么态度？我是这俩家伙的师兄！你可不要小看我！”芬格尔就差拍案而起了。</p>
+            <p>“可你看起来确实像一个搭船观光的，”雷巴尔科摊摊手，“不过我对你的酒量印象深刻。”</p>
+            <p>恺撒及时地举杯向芬格尔敬酒，借此消弭了一场无意义的斗嘴。</p>
+            <p>“您的洞察力令人惊讶，不，这么说并不准确，亚历山大雷巴尔科少校，以您的履历，当然应该具备这样的洞察力。”施耐德抬起手，帕西立刻把一台iPad放到施耐德的手中，施耐德把iPad沿着桌面推到雷巴尔科的面前。</p>
+            <p>听到“亚历山大雷巴尔科”这个名字的时候，雷巴尔科的脸色就变了，醉醺醺的神情瞬间消失，眼神警觉，像只觉察自己踏入包围圈的豹子。</p>
+            <p>但他不敢动，因为阿巴斯的手背上跳出了青筋，虽然他还是低着头操作，看起来很醉心于把那块海鲈鱼沿着鱼肉的纹理拆解开来。那把纯银打造的叉子在雷巴尔科的眼中是那么地危险，不亚于一柄锋利的刺剑。</p>
+            <p>雷巴尔科拿起iPad，翻阅那份已经打开的电子文件，神色越来越惊恐。</p>
+            <p>那里面记录着关于他的一切。</p>
+            <p>萨沙雷巴尔科，真名亚历山大雷巴尔科，曾隶属于俄罗斯国家安全局阿尔法特种部队，少校军衔。即使退役，他也依然是“高度危险”的人物，他受过非常完整的反恐训练，所以如果他愿意也可以变身为顶级的恐怖分子。</p>
+            <p>他应该在政府的严密监管下过完自己的一生，但他并不满意于这样的人生，尤其是退休金的数量委实不足以支撑他的生活开销。</p>
+            <p>他给自己凭空制造了一个新的身份，拥有丰富航海经验的老海员萨沙雷巴尔科，当上了YAMAL号的船长。这艘船曾经是北冰洋航线上叱咤风云的大赌船，接待过来自世界各地的豪赌客，这样履历的人担当船长自然是很合适的。</p>
+            <p>而他手下这批海员也都是前阿尔法特种部队的成员，退役之后觉得钱少或者生活枯燥，想要找点能赚钱也有趣的活儿干。</p>
+            <p>雷巴尔科慢慢地放下iPad，深吸一口气，凝视施耐德的眼睛，“你们有备而来。”</p>
+            <p>“我们买下这条船，不仅因为它是条好船，也是因为它有个素质过硬的水手团队。”施耐德说，“你们的价值是这条船的一部分，我们当然要了解清楚。”</p>
+            <p>这句话并不很准确，考虑到雷巴尔科船长的隐藏背景，EVA考虑过只买船，但不雇佣这批船员，但YAMAL号建于苏联时代，采用全套的苏联技术，临时雇船员的话实在玩不动，所以才勉为其难留下了这些船员。</p>
+            <p>第87章利维坦之歌(2)</p>
+            <p>“您是个非常有爱心的人，您出来工作主要是为了您的前妻娜塔莎，她现在是个植物人了，需要大笔的医疗费，还有您的妹妹，她上学的开支也很大。”施耐德缓缓地说，“这样的人是值得信任的，所以我们也不会一直瞒着您。”</p>
+            <p>卡塞尔学院的人们齐齐地抬头，相互注目。雷巴尔科船长忽然发难确实出乎他们的意料，但他们请雷巴尔科来这里吃饭，确实也是准备把一部分情况对他说明。</p>
+            <p>反正也瞒不下去了，船员们运回了一具又一具的骸骨，就算伏特加喝多了，心里想必也是惊恐不安的。这趟艰险的冰海行动中，他们很需要这位船长的助力。</p>
+            <p>“你们难道是为了利维坦而来？”雷巴尔科嘶哑地说。</p>
+            <p>这次轮到其他人脸上变色了。自他们登上这条船以来，“利维坦”这个名字就被列为禁语，即使自己人私下里说话，也只含糊地说那条大鱼。如果让船员们知道他们此行的目的是去狩猎传说中的怪兽，只怕会引起哗变的。</p>
+            <p>“利维坦是《圣经》中记载的怪物，上帝创造的恶龙，真有人相信那东西存在？”施耐德尽量不动声色。</p>
+            <p>“不不，关于它的传说有很多，有人说那是条恶龙，有人说是深海中的魔鬼，不过我是听人说那是条超大的鲸鱼。”雷巴尔科倒是很淡定，还把杯子伸向帕西，又要了一杯香槟，“这条船之前的船主是个对神秘主义很着迷的家伙，有一次喝醉了酒跟我讲了很多关于利维坦的事。你们好几次说起‘那条大鱼’，看到我又停下不说，我就想到利维坦，但不确定。不过看你们现在的表情，你们真是去捕鲸的。”
+            </p>
+            <p>恺撒和阿巴斯对视一眼，这位船长的语气委实有点奇怪，按道理说一个普通人听说自己被卷进了猎杀上古神兽的行动，至少也应该神情巨变，但雷巴尔科给人的感觉是，“哦，原来你们真是倒卖古董的”。</p>
+            <p>“那位船主怎么说利维坦的？”恺撒也装作淡定。</p>
+            <p>“那是一头白色的抹香鲸，体型极其巨大，攻击性极强，愤怒的时候会攻击同类，小型点的船只遇到它都有危险。”雷巴尔科侃侃而谈，“它在很多神话中都出现过，印度神话里它被称作Timingila，希腊神话中它是波塞冬的宠物之一，鲸鱼星座就是根据它命名的，但最了解它的还是因纽特人，因纽特人生活在北极圈里，有更多的机会看到那家伙。爱斯基摩人说那家伙是鲸鱼里的皇帝，它绝大多数时间都在冬眠，每六十年才会从自己的北极冰窟里游出来一次，环绕北极游上一圈，巡视自己的领地，沿路捕食各种大鱼，所以预感到它要来的时候，其他大鱼都会离开北极圈避难。”
+            </p>
+            <p>卡塞尔学院的人面面相觑，雷巴尔科讲的故事也非常诡奇了，但跟“北极猎龙”完全不是一回事。难怪雷巴尔科那么镇定，猎杀一头白色抹香鲸对一位前情报局少校来说，跟猎人进山打野猪是差不多的工作。</p>
+            <p>“您还真的相信一头鲸鱼能从神话时代一直活到今天？”施耐德流露出不信的表情。</p>
+            <p>“我的前老板可不这么想，他说利维坦是条很特别的鲸鱼，它是鲸鱼中的吸血鬼，可以吸其他鲸鱼的血来保持青春。”雷巴尔科耸耸肩，“不过我不相信这话，我觉得那家伙是鲸鱼群中的阿尔法，不断替换的，总是由最大最凶猛的鲸鱼担当，一条鲸王死了就换一条新的。”
+            </p>
+            <p>“鲸鱼是那么高度社会化的动物么？你认为整个北极圈中的鲸群其实都隶属于同一个超级鲸群，而某个大家伙像是管理王国一样管理着自己的臣民们？”施耐德继续提问。</p>
+            <p>他直到现在都没有回答雷巴尔科的任何问题而是不断地提问，这是一种谈话技巧，好从对方那里诱导出更多的信息。</p>
+            <p>“我只是帮人开船的打工仔而已，又不是鲸类专家。”雷巴尔科耸耸肩，“这些都是我听来的。这艘船恰好载过一位著名的鲸类专家，他跟我说鲸类可是动物中社会化程度最高的，人类对于鲸类社会的了解到现在也很有限。”</p>
+            <p>施耐德微微点头。</p>
+            <p>雷巴尔科说得没错，鲸鱼和海豚可能是海洋中社会化程度最高的物种，它们有分工有合作，有自己的语言，甚至不同的鲸群还会有自己的方言。它们还会凑在一起说悄悄话，像是那些爱传绯闻的女孩。</p>
+            <p>而对于这些走进海洋馆就能看到的大型海洋生物，人类迄今都不怎么了解，浩瀚的大洋阻止了人类对它们的深入观察。</p>
+            <p>如果鲸类真的有自己的一个帝国，这个帝国由不同的鲸群组成，它们就像是封建时代的领主一样，而所有领主又都效忠一头帝王般的巨鲸，也未必就那么匪夷所思。</p>
+            <p>“所以，你们确实是来捕鲸的，”雷巴尔科微微眯眼，这个表情令他流露出一种生意人般的狡黠，“你们没有捕鲸执照，却想要捕猎世界上最大的鲸鱼，这可是违法的，没准还很危险。我的人可不能陪你们去冒这样的险！”</p>
+            <p>恺撒笑了笑，拿起桌面上的iPad，简单地操作了几下，又推给雷巴尔科。雷巴尔科狐疑地拿起iPad看了一眼，神色骤变，他抬头看向恺撒，眼中流露出求证的意思。恺撒却懒得看他，眺望着远方点了点头。</p>
+            <p>“所有的支付都已经完成，但同时你们的账户也都被冻结了，当我们的船返回，在欧洲任何港口靠岸，你们的账户就会被重新激活。”帕西及时地补充说明。</p>
+            <p>“大海永远神秘莫测，从古至今，航海的人都得有牺牲的觉悟，只不过我们得把命卖给识货的主人。”雷巴尔科说到这里顿了顿，“现在我们的命是您的了，为您效劳，恺撒·加图索阁下！”</p>
+            <p>转眼之间，连称谓都变了。</p>
+            <p>雷巴尔科站起身来，向恺撒行了个标准的海员礼，向其他人微微鞠躬，“船长不能离岗太久，我还要去船上各处转转，祝各位用餐愉快！”</p>
+            <p>他刚刚走出几步，施耐德在他背后说话，“雷巴尔科船长，请留步，我还有一个问题要问。”</p>
+            <p>雷巴尔科转过身来，“请问有什么吩咐？”</p>
+            <p>“尽管调查了您和您团队的背景，但还是有件事我们没能查清楚。”施耐德说，“去年的圣诞节，当时这艘船还是作为豪华赌船来运营的，在那次航行中，你们遇到了百年来最强烈的一场极光，YAMAL号在那场极光中跟外界失去联系长达24小时之久。也是在那场事故中，前任船主死了，这艘船才成了拍卖物。不知道您能否跟我们讲一下那件事。”
+            </p>
+            <p>雷巴尔科迟疑了一下，苦笑，“记不清楚了。”</p>
+            <p>“记不清楚了？”施耐德皱眉，“那起事件疑点重重，被很多媒体作为超自然事件报道，船员和乘客后来出具的证词相互矛盾，可您准备用‘记不清楚了’来打发我们么？”</p>
+            <p>“真的记不清楚了，对于船上的人来说，感觉不过是几个小时的事而已。我们确实看到了极光，那种百年难遇的极光被称作‘女神的裙摆’，遇到了我们当然要带乘客好好欣赏，所以我们就驶进了极光。进入极光这个说法可能有点奇怪，但那天的极光就是那么强烈，真的就像一个有很多层的巨大裙摆挂在夜空里。可能是因为大气电离太厉害了，无线电联络中断了。我们呼叫了救援，感觉过了好几个小时才收到回复。救援船赶到的时候，说我们已经失联了24小时，我们还大吃了一惊。”雷巴尔科说，“除了船主不知道怎么溺亡了以外，船上也没有任何损失，所以这件事就那么过去了。有些乘客在途中可能是出现了幻觉，所以证词乱七八糟，你也知道，这种航行在公海上的赌船是无法无天的地方，乘客们很多酗酒，还有吸毒的，那晚的极光又那么盛大，那种情况下，就算清醒的人都可能出现幻觉。”
+            </p>
+            <p>施耐德沉默了很久，微微点头，“明白了！那么从现在开始我们就真的是一个团队的人了，让我们期待利维坦，或者您说的那条白色抹香鲸出现。”</p>
+            <p>雷巴尔科迈着慷慨的大步离去，剩下卡塞尔学院的人相互对视。“我们能相信这个人么？”阿巴斯问。</p>
+            <p>“我们不需要相信他，我们只需要他的团队把船开好，狩猎利维坦的事只能靠我们自己，在欧洲登岸前他们都会被洗脑。”恺撒说。</p>
+            <p>“多少钱能买这群东欧人为你卖命？”</p>
+            <p>“54名船员，每人45万美元，雷巴尔科个人的酬劳是750万美元。“帕西代恺撒回答，“考虑到这笔钱是船员佣金之外的支出，从学院的账户走会有一些麻烦，加图索家会全额负责。”</p>
+            <p>“我们给了这帮东欧佬几千万美元？”芬格尔吃惊得就快跳起来了。</p>
+            <p>“在这种情况下，用钱解决是最便捷的方式，我们需要他们的技术。”阿巴斯倒是很认可，反正钱也不是他出，他素来对钱也没什么概念。</p>
+            <p>“恺撒，你做事的风格开始有点像庞贝了。”施耐德说，话里似乎有些深意。</p>
+            <p>“我跟他还有点不一样，”恺撒耸耸肩，“他虽然也喜欢用钱开路，但是如果对方是漂亮女人的话，他也不介意省点钱用自己的身体支付报酬，这招我还没学会。”</p>
+            <p>沉默之后，所有人都流露出会心的微笑，只有芬格尔例外，他气鼓鼓地看着恺撒，活像一条被抢走了狗粮的狗。</p>
+            <p>“你怎么了？”恺撒有点不解。</p>
+            <p>“大家同是玩命，我的45万美元呐？”芬格尔大声地说，“恺撒·加图索老爷，你一碗水要端平啊！”</p>
+            <p>第88章利维坦之歌(3)</p>
+            <p>雷巴尔科踏入医疗舱，这间医疗舱位于甲板以下，位置隐蔽。</p>
+            <p>一名胡子拉碴的船员正在手术台上操作着，虽然没穿白大褂，但他确实是这条船上的医生。在登上YAMAL号之前，他是一位特种部队的战地医生，一手拿冲锋枪一手拿手术刀的那种人，边扫射边帮伤员取子弹对他来说是常事，残缺不全的人体也经常见。不过今天他的神情很凝重，操作中还会偶尔拿起手术台旁的伏特加喝上一口，大概是想压压惊。
+            </p>
+            <p>他正用暗红色的激光束切割那些残骸中的一具，从头到脚，一片片地切割，每片的厚度不过一厘米。</p>
+            <p>雷巴尔科远远地看了一眼，也觉得有点反胃，一片片码起来的人体切片就像分割好的牛肉，血管、神经和脏器的构造都清清楚楚。医疗舱里的温度很低，这些切片不会解冻，切完扫描之后，计算机会生成这个人的3D建模，死因就水落石出了。
+            </p>
+            <p>“这种事我自己恶心就可以了吧？船长你还是去跟那些贵客喝好酒。”医生摘下护目镜，活动着脖子。这份工作绝不轻松，对体力和精神都是挑战。</p>
+            <p>“还不清楚他们怎么死的？”雷巴尔科问。</p>
+            <p>“3D建模还得花上几个小时，不过要说结论，现在就有，他们是冻死的。”医生说。</p>
+            <p>这个结论听起来太合理了。你在冰海上发现了一群冻硬的人，第一时间就会想到他们是被冻死的。但雷巴尔科还是让医生做最详尽的尸检，查出真正的死因。</p>
+            <p>通常人被冻死之前都会采取蜷缩的姿势保住最后的一点热量，经过长则几个小时短则十几分钟的失温，体温降低到大概25度之后就会死亡。而这些人中不少是站着死的，站得笔直，好像是死神走到他们面前对他们吹了一口冰冷的气息，一瞬间就把他们冻死了。
+            </p>
+            <p>施耐德并未要求雷巴尔科的人做尸检，只是让他们把这些残骸保存在一间低温的船舱里，但雷巴尔科偷偷地留下了这一具。</p>
+            <p>“来看看这个切片。”医生说。</p>
+            <p>雷巴尔科走近手术台，医生给他看的切片应该是死者胸口附近的，隐约可见心脏的轮廓，心肌中还包裹着冻成冰的血。</p>
+            <p>“他的心脏还保持着收缩的状态，说明他在死前的那一刻，心脏还在强有力地搏动。血液和细胞液中的冰晶不是逐步生成的，逐渐降温的话冰晶会破坏细胞壁，但他的所有细胞都完好，这种急冻要在实验室里做的话，得把他活生生地丢到大罐的液氮里去。”医生说。
+            </p>
+            <p>“在心脏跳动一次的时间里他就被急冻了，”雷巴尔科说，“地球上应该没有这种寒冷的环境吧？”</p>
+            <p>“地球上没有，冥王星上应该有。”医生说，“地狱般的严寒。”</p>
+            <p>“他们是来找利维坦的。”沉默了片刻之后，雷巴尔科说。</p>
+            <p>医生点点头，抄起伏特加瓶子猛喝一口，把瓶子递给雷巴尔科。</p>
+            <p>雷巴尔科也喝了一大口，“开价是给你们每人45万美元，给我750万美元。他们知道我们每个人的底细。”</p>
+            <p>“真慷慨啊，45万美元，够我在莫斯科买个不错的公寓了，我女儿一直想要一间有落地窗的公寓。”医生说，“但我们能活着拿到那笔钱么？”</p>
+            <p>“不知道，但如果能活着回去，我的750万跟你们所有人平分。”雷巴尔科说。</p>
+            <p>医生犹豫了好一会儿，“收手吧船长，钱是赚不完的，命只有一条。没人见过利维坦甚至没人知道那是什么东西，它真是头白色的抹香鲸么？它可能是魔鬼！”医生的语气激动起来，“看看你面前的这具尸体，他在临死前的一秒钟都不知道什么会降临在他身上！那东西不是人类能对付的！”
+            </p>
+            <p>“收手？开什么玩笑！”雷巴尔科忽然失去了平日的冷静，也激动起来，“我们到过神殿，那里的宝物能把全世界都买下来！可我们两手空空地回来了！谁能甘心？命算什么？枪林弹雨对我们这种人不是吃饭睡觉那么日常的事么？我们离家那么远上这条船，为的不是钱？钱是赚不完的？回了莫斯科你去哪里赚钱？保安部的人会立刻盯上你，没准我们会被投进监狱！你女儿的抚养费赚够了么？没有抚养费付给你前妻你连女儿都见不到！”
+            </p>
+            <p>他意识到自己有些失控了，从衣袋里摸出一盒烟来，叼上一根狠狠地抽着。</p>
+            <p>情绪稍微安定下来，他眼中那种摄人的光芒也褪了，目光变得有点迷茫，“楚的尸体还在那座岛上，我要把他带回来，交给他家里人。”</p>
+            <p>“我们都知道楚是你的好朋友，如果不是楚留下来挡住那些大蛇，我们全都死了。”医生叹了口气，“可是船长你真的相信那座岛存在？那可能是我们所有人的幻觉。航海图上那里根本没有陆地。”</p>
+            <p>“我相信，而且我觉得只要找到利维坦我们就能再次找到那座岛。”雷巴尔科斩钉截铁地说。</p>
+            <p>医生一愣，“那座岛和利维坦有关？”</p>
+            <p>雷巴尔科指了指自己的耳朵，“看到那场极光的时候，我听到了鲸鱼的歌声。”</p>
+            <p>医生惊讶地瞪大了眼睛，“我可什么都没听见，其他的兄弟也都没有说起过。”</p>
+            <p>“次声波，”雷巴尔科低声说，“利维坦的歌声是一种次声波，一般人是听不到的，但我天生就有听力的残疾，所以我做手术装了人工耳蜗。这个设备让我能听到一般人听不到声音。就像是鲸鱼发出的声音，但低沉很多。”</p>
+            <p>“你从来没跟兄弟们说过。”</p>
+            <p>“我不太确定，那声音时有时无，很像幻觉。但是那帮有钱的客人忽然买下这艘船要去捕鲸，两者对上了。他们肯定知道得更多，但没跟我说。”雷巴尔科说，“这是命运！命运让我们去找利维坦，利维坦会带我们回那个岛！”</p>
+            <p>这时外面忽然传来急促的脚步声，雷巴尔科和医生同时反应，雷巴尔科手中多了一柄锋利的战术匕首，医生则不知从哪里摸出了一支AK47。</p>
+            <p>一个人跌跌撞撞地冲进医疗舱，是雷巴尔科手下的一名船员，是信得过的人。</p>
+            <p>“船长！”船员气喘吁吁地说，“可能有幸存者！”</p>
+            <p>——————————————</p>
+            <p>雪地摩托飚着高速驶来，后面带着漫天的雪尘，摩托还没停稳雷巴尔科就跳了下来。</p>
+            <p>这是法兰士约瑟夫地群岛中的一座大岛，位于群岛的东北方向，名为亚力山大地岛。YAMAL号停泊在科考队遇难的冰壳旁边，距离这里还有十几公里之遥。</p>
+            <p>在距离这么远的地方发现幸存者真是件不可思议的事，也很难想像幸存者还能在冰天雪地里存活半个月之久。</p>
+            <p>法兰士约瑟夫地群岛上并没有常住居民，但有拥有气象资料收集的考察站，往年会有习惯高寒地区生活的因纽特人被俄罗斯科学院雇佣，在这里轮值。但今年夏天北极圈异乎寻常地寒冷，为了确保轮值人员的安全，考察站已经撤空了一个月之久。他们走前把用于供暖的柴油机关闭了，因此这片荒无人烟的群岛上连一个热源都没有，就算幸存者自带了食物，也没可能熬过那么长的时间。何况附近还有饥饿的北极熊和北极狐出没，这些动物隔着几公里就能闻见猎物的味道，被它们闻到一丝气味那就是死。
+            </p>
+            <p>施耐德已经带着恺撒和阿巴斯赶到了，但应该也是刚刚赶到，他们正神情凝重地站在一个地井边。地图上并未标注这处人工设施。</p>
+            <p>这里距离考察站很远，可能连驻扎在考察站的人都不会光临这个荒凉的岛屿，也就不会知道这个年代久远的地井。</p>
+            <p>它看起来真的很旧很旧了，冰棱在金属的井口上留下了深深的痕迹，船员们正清理井里的积雪，捎带着运出了几件锈迹斑斑的金属制品，有些是工具，有些是某种老式炸弹的外壳。</p>
+            <p>一具白色的人形趴在井口旁，跟之前发现的那些遇难者一样，早就死透了。他身上的服装也是那支科考队的制服，不远处是一台翻倒的雪地摩托，死者的一条腿齐膝而断。这样的情况在之前那些死者的身上也有，似乎是他们的脚被冻在了冰壳上，再使劲挣扎一下就断掉了。
+            </p>
+            <p>这真是一件不可思议的事，看起来科考队中有个人当时成功地驾驶雪地摩托逃了出来，他可能是想进入这个地井躲避严寒，但还差一步之遥。</p>
+            <p>施耐德看了恺撒一眼。这种可能性并非完全不存在，他们知道那些人死于一场言灵引发的超低温，言灵总有自己的有效范围，是为“领域”。龙王的领域也不可能覆盖整个法拉士约瑟夫地群岛。如果这个人当时距离其他人还有一段距离，事发的时候他远远地看见同伴们遇难，跳上摩托车就走，也许有机会避开那个言灵的攻击。但他受了重伤，言灵的领域虽然有限，但领域中的超冷空气和周围的大气对流，还是令周围区域的温度急降了十几度，再加上空气对流造成的区域性冰风暴，他是逃不出去的。
+            </p>
+            <p>施耐德把手中的一件工具递给雷巴尔科，这东西也是从井里捞起来的。雷巴尔科看了一眼，眼睛猛地睁大了。</p>
+            <p>那件工具的手柄上，刻着纳粹德国的“卐”字徽！</p>
+            <p>难怪地图上没有标注这个地井，因为它是1945年之前纳粹德国建造的。</p>
+            <p>一直以来都有传说，说在纳粹德国灭亡之前，元首在南极北极都建立了秘密的地下基地，那些基地由最忠诚的党卫军保卫，还有当时最先进的实验室，研制着比V2飞弹更先进的超级武器，试图在将来恢复第三帝国。</p>
+            <p>某些飞碟的爱好者甚至说飞碟就是纳粹余孽们研发的飞行器，它们悄无声息地飞过今天的天空，搜集情报。而当年的基地已经发展成了庞大的地下国家和军工厂，操纵着激光炮的党卫军们随时都会卷土重来。</p>
+            <p>难道他们真的意外地找了纳粹余孽的基地入口？这个神转折简直就像奇幻大电影中兽人和人类正打着攻城战，天空里忽然出现了航空母舰。</p>
+            <p>“这个设施很多年没用过了。”雷巴尔科定了定神，把脑中那些漫无边际的想法排除掉。</p>
+            <p>实际情况应该是这个幸存者恰好知道这个地井，跑来这里只是想要躲避冰风暴，而地井里很可能只是堆满了垃圾。在北极圈里建立一个小基地，这以当初纳粹德国的技术而言并不难。</p>
+            <p>那么这个发现也没什么价值，他们能做的就是和这个意外的发现合影留念而已。</p>
+            <p>施耐德摆了摆手，带着雷巴尔科来到井边，往下看去的时候雷巴尔科才发现死者手中紧紧地抓着一根绳子，绳子的另一头深入积雪下方。</p>
+            <p>他并不是挣扎到井边没能爬进去，而是先把某个东西用绳子吊进了井里，那东西显然比他的命还重要。他做完这些才死的，一个断腿的人能做到这一点，不能不让人佩服他的意志。</p>
+            <p>雷巴尔科向死者行了一个水手礼，这是航海的传统，对遇难者的尊重。</p>
+            <p>这时井里的船员用冰镐打碎了积雪下面的冰壳，深不见底的黑暗中腾起了白蒙蒙的蒸汽。</p>
+            <p>第89章利维坦之歌(4)</p>
+            <p>恺撒举着手电筒在前面探路，雷巴尔科和阿巴斯跟着他移动，形成一个稳定的三角形。在后面是全副武装的船员们围绕着施耐德。作为执行部的大头儿施耐德应该并不像看起来那样弱不经风，但确实没人见识过他的战斗力，可能真是个智将类型。
+            </p>
+            <p>他们每个人都脱掉了防寒服，因为地井里实在是太暖和了。这是件很难理解的事，这个地井位于冻土层，地井里当然可以躲避风寒，但也不至于说温暖如春。随处可见的垃圾说明这个地井已经被放弃了很久，总不成当年德国人留下的供暖系统还在运转，或者说这附近有火山之类的地热源？
+            </p>
+            <p>“核辐射超标。”阿巴斯看了一眼手中的盖革计数器，“这可能是个核设施，或者存储了放射性物质，不过超标得不多，不至于有危险。”</p>
+            <p>“纳粹德国的核设施么？”恺撒望着头顶上方纵横交错的管道，轻声赞叹，“如果不是跟利维坦比，也算是震惊世界的发现了。”</p>
+            <p>“可能是个奥克洛核反应堆。”施耐德说，“几十年间它一直在自行运转，所以才在北极圈里始终保持着这么一个温暖的空间。”</p>
+            <p>恺撒和阿巴斯对视一眼，立刻明白了施耐德的意思。</p>
+            <p>“奥克洛核反应堆”这个名字，源自加蓬共和国一个名叫“奥克洛”的铀矿。上世纪70年代，一位法国工程师惊讶地发现这个铀矿出产的矿石已经燃烧过了，而且是20亿年前就开始燃烧了。史前文明的爱好者根据这个发现宣称早在20亿年前地球上就有超级文明建设了核反应设施。但这只是一种误解，因为理论上很早就断言了天然生成的核反应堆，只不过它的效率远远低于人造的核裂变设施。奥克洛铀矿恰恰就是这个得天独厚的天然核反应堆，长达数十万年的时间里，它曾默默地运转着，平稳地释放热能，改变了整个地区的环境。
+            </p>
+            <p>第二次世界大战期间，美国和德国都在研究核武器，美国人有“曼哈顿计划”，德国人也有“铀计划”。纳粹德国并未造出能改变战局的原子弹，却造出了这种温和的核反应堆，这大概是他们在北极圈中建立基地的原因。</p>
+            <p>“也就是说，可能真有幸存者。”恺撒说。</p>
+            <p>手电筒照出的光斑中，小小的影子一闪而过，那应该是一只北极兔。事实上从进入这口地井开始，他们就感受到浓烈的生命气息，这里生长着寒带很难见到的植物，无论是墙壁上那瀑布般的藤蔓还是脚下湿滑的苔藓，他们不止一次踩到过带着毛皮的骨头，井底还弥漫着特殊的腥臊气，那是狐狸或者熊的尿味。
+            </p>
+            <p>这口地井应该是这个地下核设施的入口之一，此外还有其他入口，人类不知道这个空间，动物们却知道。在北极的冬天里，附近的动物来这里躲避低温，它们在这里繁衍，也在这里相互狩猎。</p>
+            <p>利维坦释放它那恐怖的言灵后，整个法兰士约瑟夫地群岛都成为生命的禁区，别说人类无法生存，就算是那些习惯严寒的北极圈动物也无法在持续数日的冰风暴中活下来。但德国人留下的核设施却保住了这个地井中的生命，在龙王级言灵的伟力中，也只有核设施能够强行撑住这个结界般的生存空间。那个倒毙在井口的人很可能是优先把某个同伴送进了这个空间，但他自己却被随后袭来的冰风暴吞没了。
+            </p>
+            <p>黑暗中充斥着“呼呼”的低声，不知道是那古旧的系统还在运转或者年久失修的风声。</p>
+            <p>恺撒无声地把“镰鼬”的领域扩张，好聆听那庞杂的声音。他听到了小动物们的心跳声、井壁上凝结水滑动的声音，甚至还有顶壁上蝙蝠打哈欠的声音。如此地生机盎然，在这个绝境之中。</p>
+            <p>他忽然间竖起了手，示意跟在后面的船员们停止前进。因为他听到了某个令人毛骨悚人的声音，像是什么食肉动物在咬噬骨头，一路上他们不止一次遇到过被啃过的、还带着血斑的骨头，这个地井里是藏着大家伙的。</p>
+            <p>他们还是要优先保证施耐德教授的安全，即使是大型食肉动物，对于这个老人来说也是威胁。船员们和施耐德停下，恺撒带着阿巴斯和雷巴尔科缓缓地前进，他们应该是正接近这个地下空间的核心区域，无数的水滴凝结在顶部的水管上，噼里啪啦地往下落，仿佛雨声。
+            </p>
+            <p>那个咬噬骨头的声音越来越明显了，他们正接近那个进食的动物。脚下好几次出现了拖行的血迹，看起来是某个大家伙在地井里猎杀了一只北极狐或者类似体型的东西。这样的陆生动物在北极并不多见，可能是一只年轻的北极熊。</p>
+            <p>连阿巴斯都能听到那种咬骨头的声音了，前方的大型管道里，一个毛绒绒的背影正对着带血的骨肉大快朵颐。雷巴尔科本能地把手中的AK47上膛，但就是这个清脆的声音惊到了那个管道里进食的东西。</p>
+            <p>阿巴斯的弯刀无声无息地入手，随时都可以突进和斩杀，但他忽然愣住了，那进食的东西警觉地抬头回望，有着一双亮得吓人的眼睛。</p>
+            <p>那居然是个披着北极熊皮毛的孩子，无法确定年纪，满脸都是油污，这并不奇怪，这个地井里到处都是黑油。</p>
+            <p>难道说那个死者最后送进来的是个孩子？或者说这孩子从小就生活在这个核设施里？</p>
+            <p>孩子意识到有人侵入了自己的领地之后，立刻露出了狰狞的面目，虽然看不清他的脸，但那毕露的白牙足够说明他的敌意。他发出动物般的嘶嘶声，放弃了正在啃食的血肉，手足并用地往后退去。</p>
+            <p>恺撒本能地握紧了猎刀的刀柄，阿巴斯却示意他不用。阿巴斯收起了弯刀，小步地上前，向那个孩子示意他手中没有武器，没有敌意。</p>
+            <p>“别怕，别怕，我们不会伤害你的。”阿巴斯用英语说，因为不知道孩子能懂什么语言。</p>
+            <p>孩子还是步步后退，眼神警觉，像是一只吃垃圾的小猫被人类看到了。他的嘴边还带着血迹，手中还抓着什么动物的肩胛骨。这简直是个奇迹，一个地下空间里，一个野兽般的孩子。在这个冰天雪地的世界里，那么孤单地活了下来。
+            </p>
+            <p>他忽然转过身飞速地跑掉了，大概是阿巴斯已经侵入到了他觉得危险的距离。</p>
+            <p>“见鬼！”恺撒说。</p>
+            <p>孩子逃走的方向，很快就会遭遇到施耐德和保护他的船员们。</p>
+            <p>阿巴斯和雷巴尔科立刻追上前去，他们同时意识到这种遭遇的结果，黑暗的空间里，迅速逼近的声音，换了他们是船员，他们也会毫不犹豫地开枪。</p>
+            <p>就在他们到达施耐德刚才停步的地方前，他们听到俄语大声呵斥的声音，然后是一声清脆的枪响。阿巴斯亲眼看到那个狂奔的小小黑影打了个趔趄，扑倒在地。</p>
+            <p>阿巴斯的心里一下子就凉了，但也无法怪任何人，开枪的船员大概以为是一只幼年期的北极熊。</p>
+            <p>那名船员端着AK47逼近孩子，他也意识到那不是一只小熊了，脸色惨白。然而就在他靠近那个孩子只剩下不到五米的时候，他忽然闻到了某种燃烧的味道……那个孩子抬起头来，眼神狰狞，手中紧紧地抓着一个长柄的手榴弹！</p>
+            <p>“闪开！”随后赶到的恺撒大吼。</p>
+            <p>那种燃烧的气味是手榴弹的引信，这个孩子是把这个手榴弹用在与敌偕亡的最后武器，他并没有中枪，却在倒地的那一刻引爆了手榴弹。</p>
+            <p>所有人都同时俯身，不光是本能的反应，也是时间不够了。他们只能看着这个奇迹般活下来的孩子死掉，却来不及做任何事。</p>
+            <p>千钧一发的瞬间，阿巴斯冲了上去，一脚踢开孩子怀里的手榴弹，抱着孩子滚了出去。</p>
+            <p>“你很幸运，”恺撒把拆掉引信的手榴弹抛给阿巴斯，“因为长期放在低温环境，发火装置失效了，否则你现在就是一具尸体了。”</p>
+            <p>YAMAL号昔年用作赌厅的大船舱里，一张牌桌旁，两个人对坐，中间放着一支开了盖的威士忌。周围的牌桌都是空荡荡的，牌桌上的台灯倒是亮着的，星星点点，一眼望不到边际。</p>
+            <p>仅从这个巨大的赌厅就可以想见YAMAL号作为赌船时的光辉四射，可如今它更像是曲终人散后的舞台。</p>
+            <p>阿巴斯把手榴弹端端正正地摆在赌桌一角，笑笑，并不说话，只是向着恺撒举杯。</p>
+            <p>“以我对武器的了解，我一眼就看出这是二战时期德国生产的M24高爆手榴弹。拉弦之后，三秒钟就会爆炸，我们意识到他拉了弦的时候，大概两秒钟过去了，冲上去救助根本来不及。但你还是冲上去了，你总不能提前知道这是一颗哑弹。”恺撒说。
+            </p>
+            <p>“我想救他，所以就冲上去了。”阿巴斯顿了顿，“井口那个男人，是他父亲。”</p>
+            <p>恺撒微微一惊，忽然意识到自己忽略了一些事。阿巴斯带着那个孩子离开地井的时候，他先上到地面，再用绳索把那个孩子吊出去，等到恺撒上到地面的时候，原本趴在井口的那具尸体已经不见了。</p>
+            <p>阿巴斯挪走了那个男人的尸体，因为不想孩子看到。</p>
+            <p>“你怎么知道？”恺撒问。</p>
+            <p>“人种，那孩子是个因纽特人，井口的那个男人也是个因纽特人。”阿巴斯说，“能强忍着冻断一条腿的伤，拼了命也要救的人，应该是他的儿子吧？”</p>
+            <p>第90章利维坦之歌(5)</p>
+            <p>奔赴北极的野外考察队都喜欢雇佣因纽特人，因为他们熟悉北极，耐寒能力出色，一个浑身高科技装备的科考队员如果脱离队伍独自行动，应该很难活过三天时间，可一个因纽特人却能带着几条雪橇犬和一把锋利的长匕首在极地生活一个月之久。
+            </p>
+            <p>“遇到危险的时候，因纽特人甚至能当你的雪橇犬。”早年间奔赴北极探险的欧洲探险队都听过这句话。那时候如果你能找到一个有经验的因纽特向导，生还的几率就会大大上升，没准还能找到新的岛屿，用你自己的名字命名。</p>
+            <p>但对因纽特人来说，北极探险只是一桩危险的工作，他们是为了养家糊口这么做的。探险家返回欧洲大陆骄傲地宣布自己的发现时，</p>
+            <p>对于多数因纽特族的向导来说，努力工作的目标之一就是自己的子女不要再从事这份工作。</p>
+            <p>“我跟你说过我是个孤儿吧？”阿巴斯忽然说起完全不相关的话题来。</p>
+            <p>“说过，你在孤儿院长大。”</p>
+            <p>“一直想知道我父亲是什么人，想知道他为什么生下我而又放弃了我，或者说他有什么不得已的苦衷，也许他已经死了世界上某个不为人知的角落了，所以一直没来找我。”阿巴斯说，“就像井里那个孩子的父亲。”</p>
+            <p>语气很淡，完全就是两个男人酒后闲话的那种调调，却透着隐隐的悲辛。</p>
+            <p>恺撒愣了一下，也是漫不经心的语调，“如果他跟我老爹是一个路数，会不会觉得还是没这个人更好？”</p>
+            <p>他很清楚阿巴斯不是什么“豪迈的勇者”，心里坦荡荡没有一丝阴霾，只不过他不想对话显得太沉重。</p>
+            <p>“有过和没有是不一样的，”阿巴斯轻声说，“每个人都需要自己存在的证明，这个证明是你的父母、你的朋友、你的爱人，他们需要你，所以你就存在了。如果没有人需要你，你就不存在。”</p>
+            <p>恺撒沉默了，这是一个难解的哲学命题，关于存在，它无法被证明，只看每个人内心的感觉。路明非认为阿巴斯不该存在，本应存在于这个世界上的是另外一个叫楚子航的男人，阿巴斯并没有把它当作疯子的臆想一笑置之，他心里某个地方大概是裂开了一个小小的缺口，怀疑着自己的存在。
+            </p>
+            <p>那么恺撒又是为什么坚信着自己的存在呢？因为加图索家多到能买下国家的钱？事实上恺撒自己都不太清楚他家里有多少钱，钱这种东西多到一定程度就显得虚无缥缈起来。</p>
+            <p>因为诺诺？当然这是一个很好的证据，不过考虑到他的未婚妻此刻正带着路明非满世界逃亡，这个证据可能还不够稳。</p>
+            <p>因为母亲？那个名叫古尔薇格的女人死去太久了，在恺撒的记忆中，她的面容已经开始模糊，只留下写意般的温柔笑容。</p>
+            <p>说起来倒是庞贝那家伙一直以来都非常可靠，虽然是台行走的人类播种机，不负责任的渣男典型，但每当恺撒有危机的时候，庞贝总是及时出现，当仁不让。</p>
+            <p>就像孩子在学校闹出什么事来，那永远都说自己很忙自己有生意要谈不能来开家长会的老爹就出现了，大手一挥说我儿子不会错的，我不知道错的是谁，总之我儿子是不会错的。</p>
+            <p>原来最能证明自己存在的居然是种马老爹？这个结论让恺撒不由地想要捂脸。</p>
+            <p>急促的脚步声由远而近，雷巴尔科来到牌桌旁，“那孩子醒了！”</p>
+            <p>三个人赶到的时候，那个看起来更像屠夫的跟船医生正擦着手从医疗舱里出来。</p>
+            <p>“孩子醒了？”阿巴斯问。</p>
+            <p>“晕过去只是因为低血糖，补充点葡萄糖就醒过来了。体检也做完了，物理指标都很正常，受了点辐射，不过不严重，纳粹时期的德国人还没能提炼出高纯度的放射物。”医生说。</p>
+            <p>“物理指标都很正常的意思是？”恺撒敏锐地觉察到医生用了一个拗口的说法。</p>
+            <p>医生把医疗舱的门推开一道细缝，恺撒和阿巴斯从那道缝隙里看进去，医疗舱中间是个钢化玻璃搭建的无菌室，大概是紧急情况下做手术用的。无菌室里亮着血红色的灯，灯光照不到的角落里，蜷缩着小小的人形。她披着一头漆黑的长发，目光呆滞地看向无菌室的一个角落，但分明那个角落里什么都没有。她的眼睛大得有些夸张，睁着眼一动不动，像一个受了惊吓的木偶娃娃。她的手里，紧紧地握着一枚手榴弹。
+            </p>
+            <p>“是个女孩子？”恺撒惊讶不已。</p>
+            <p>阿巴斯也同样惊讶，虽然他曾紧紧地抱住那个孩子，却都没觉察到那其实是个女孩。她穿着皮毛衣服，脸上蒙着厚厚的油污，更像是一只泥浆里蹦出来的小猴子。</p>
+            <p>“没洗澡之前我也以为是个小男孩，”医生说，“洗干净了才知道是个女孩，没我想的那么小，大概十二三岁。”</p>
+            <p>“谁给她洗的澡？”恺撒和阿巴斯警觉地看向医生。</p>
+            <p>“她自己洗的！她自己洗的！我只是给她准备了热水把她关到浴室里去了，我也是有女儿的人！”医生赶紧解释，“何况有人能碰她么？那简直是一头小北极狼！”</p>
+            <p>“你说她物理指标都很正常，意思是精神指标不正常？”恺撒问。</p>
+            <p>“应激性精神障碍。”医生低声说，“十几岁的小女孩，有过那种经历，很难不留下心理创伤。”</p>
+            <p>“难怪她一见我们就跑。”恺撒点点头，“连人类都无法相信了吧？”</p>
+            <p>“高度兴奋和警觉，伴随或轻或重的幻觉，在她的认知里我们可能和那些野兽没有区别，甚至是面目狰狞的恶鬼。”医生说，“所以我给了她那玩意儿，当作安抚物。爆炸部已经拆掉了，不会炸，但信不信，你凑过去她就会拉弦。”
+            </p>
+            <p>恺撒沉默了很久，“真可怜，能相信的只剩下手榴弹了。”</p>
+            <p>“这种情况下问也问不出什么东西了吧？”施耐德的声音从背后传来，他也是得知消息赶了过来。</p>
+            <p>他们聚集到这里当然不只是为了关心这个女孩，而是想知道利维坦出现时的细节，录像中能得到的信息毕竟有限。</p>
+            <p>医生摇了摇头，“她从醒来到现在一个字都没说过。”</p>
+            <p>“多长时间能恢复？”施耐德又问。</p>
+            <p>“应激性精神障碍发病起来很突然，但康复起来通常都还比较顺利。时间嘛，或长或短，半个月到一个月。”医生说。</p>
+            <p>施耐德无声地叹了口气。半个月一个月对于病人康复倒确实算快的，不过他们这场极地探险的时间有限，眼下已经接近夏末了，极地的温度一天比一天低，拖得越久就越困难。北冰洋那么大，假设利维坦真的四处巡游，半个月一个月它都能游到加拿大去了。
+            </p>
+            <p>可总不能强行追问这个处在崩溃边缘的孩子，那无疑是精神上的酷刑，何况一个向导的女儿，能提供的情报也有限。</p>
+            <p>“好好照顾她。”施耐德说完，转身离去。</p>
+            <p>其他人也跟着离开，只有阿巴斯最后往门缝里看了一眼，然而就是那一眼，他呆住了。恺撒已经走出了两步，扭头发现阿巴斯的神情不对，也从门缝里看进去，也呆住了。</p>
+            <p>那个木偶娃娃似的女孩抬起了头，那双似乎空白又似乎惊恐的大眼睛正死死地盯着他们，准确地说，她正死死地盯着阿巴斯。恺撒和阿巴斯基本身处同一位置，按理说在这样的距离上根本不可能分清那女孩的视觉焦点在他们谁的身上，可不知为何，恺撒就是知道她在看阿巴斯。
+            </p>
+            <p>在那个女孩的眼里，加图索家高贵的继承人根本就不存在。她望着阿巴斯，只望着阿巴斯，既凶狠又依恋。</p>
+            <p>没有人能拒绝那种凝视，阿巴斯和恺撒对视一眼，推门而入。恺撒在他背后扣上了门，这样在那个女孩看来，这场对话仅限于她和阿巴斯之间。</p>
+            <p>阿巴斯来到无菌室的钢化玻璃门外蹲下，手按着玻璃。两人这么遥遥地对视了许久，女孩小心翼翼地爬了过来。这种感觉有点像伸着手给一条瘦骨嶙峋的流浪猫喂食。</p>
+            <p>她趴在钢化玻璃门上，还是直愣愣地看着阿巴斯，像是在审视。那双大大的眼睛像是空白的镜子，令人望而生畏。</p>
+            <p>“我叫阿巴斯，我们是一支北极考察队，我们没有恶意，我们不会伤害你。”阿巴斯说。</p>
+            <p>他不知道女孩子会说什么语言，所以用了最通用的英语。女孩子没有反应，也许是她听不懂英语，也许是她的精神状态异常，对外界的信息太麻木了。</p>
+            <p>阿巴斯有点不知所措，除了英语他还会说阿拉伯语和汉语，但对一个北极地区遭遇的孩子大讲汉语或阿拉伯语无疑是愚蠢的。但是静了片刻之后，女孩说话了。</p>
+            <p>“Talini…”她的声音很轻，轻得就像是呼吸。这是她被营救以来说的第一个词。</p>
+            <p>“你说什么？”阿巴斯没听懂。</p>
+            <p>门外正用“镰鼬”监听的恺撒也没听懂。借助先天优势，恺撒在语言上的造诣极深，别人是通晓两三门语言，恺撒则可以通晓两三个语系。但别说Talini这个单词他没听过，发音和拼写方式也不符合他熟悉的任何语系。</p>
+            <p>“Talini…”女孩子重复了这个单词。</p>
+            <p>恺撒立刻敲打自己的耳机，“EVA，给我搜索Talini这个发音的所有拼写组合组合，在全世界的语言库，包括死语言库中，搜索它符合的目标！”</p>
+            <p>他本能地意识到这是什么关键的信息，一个神秘的单词，甚至可能出自龙文，那个女孩可能亲耳听过利维坦的歌声。</p>
+            <p>在日本的时候他们也调用了EVA的这个功能，当时EVA在十几分钟内搜索了有史以来的所有语言库，解读出了“高天原”三个字。</p>
+            <p>这一次EVA只用不到半秒钟就给出了回复，“Talini，爱斯基摩语中‘雪’的意思。”</p>
+            <p>“爱斯基摩语？”恺撒愣了一下。</p>
+            <p>见鬼他怎么没想到呢？这女孩是个因纽特人，她说的当然是爱斯基摩语。可“雪”又是什么意思？这里是白茫茫的北极，这里到处都是雪。</p>
+            <p>“爱斯基摩语属于很小的‘爱斯基摩-阿留申’语系，因为聚居地分散还夹杂了许多方言，虽然始终还在使用的语言，但很少人研究。爱斯基摩语中表示‘雪’的单词有大约70个，这是其中之一。具体到这个词，通常用作给人起名，尤其是女性。“EVA接着说，“要补充说明的是，因纽特人通常不止一个名字，他们正式的名字通常是沿用先人的名字。而Talini这样的名字通常是用作小名，在家人之间称呼，如果有人这么告诉你她的名字，她应该是把你看作很亲近的人了。”
+            </p>
+            <p>恺撒愣了一下，原来那个女孩要告诉阿巴斯的，只是她自己的名字。</p>
+            <p>是因为信任么？因为曾经奋不顾身地扑向她，所以阿巴斯是她在这条船上唯一信任的人。也许就像《沙耶之歌》那样，这条船上的所有人在女孩看来都是恶鬼，除了阿巴斯。</p>
+            <p>“Talini，爱斯基摩语中‘雪’的意思，那是她的名字。”恺撒低声说。阿巴斯也戴着跟他一样的耳机，以便随时保持联络。</p>
+            <p>“Talini，我会保护你的。”阿巴斯轻声说。</p>
+            <p>阿巴斯是用英文说的，那个说爱斯基摩语的女孩本该听不懂，可这句话说出来的时候，那女孩忽然流下泪来，再也不是一只磨着牙齿的小狼。</p>
+            <p>她没有发生任何声音，可每个人都为那无声的悲伤动容，那种悲伤就像是……倔强的孩子终于等到父亲来接她了。</p>
+            <p>她忽然极度地贴近钢化玻璃，用爱斯基摩语说话，如果没有玻璃阻隔，那肯定是只跟阿巴斯一个人说的耳语。</p>
+            <p>恺撒的瞳孔忽然间放大，因为EVA立刻就把那句话译了出来，她说的是，“快走！它就要来了！”</p>
+            <p>她的神情是那么地恐惧，像是死神就要来取走他们所有人的命。</p>
+            <p>第91章利维坦之歌(6)</p>
+            <p>“今年春天，一些俄罗斯人来村子里，要雇一个向导。他们给的钱比平时高了几倍，找向导的规矩就是危险越高向导的工资也就越高，所以不是薪水越高就越能雇到向导的。我家是村子最穷的，妈妈在我很小的时候就跟一个路过的海员跑了，爸爸想把我送去摩尔曼斯克上学，我们村里的孩子都想去摩尔曼斯克上学，那里终年海水都不结冰。但去摩尔曼斯克上学要花很多钱，所以爸爸就接下了那个工作，但他不放心把我一个人留在家里，就带上了我。”Talini，或者说雪，对着摄像头平静地叙述着，眼神空寂得就像外面一望无际的冰海。
+            </p>
+            <p>YAMAL号剧场版奢华的放映室里，施耐德、恺撒和雷巴尔科一起观看这段视频。阿巴斯也在场，不过他用不着观看，他就是那个拿着摄像机的人，雪只跟他说话。</p>
+            <p>她能说很少量的英文，但要讲述如此庞大曲折的故事，她还是要用爱斯基摩语，EVA同声翻译成英文。</p>
+            <p>“他们有一艘破冰船，但比你们这艘小，他们雇我爸爸是想去一个很特别的地方，我们因纽特人叫它‘落日地’。”雪说。</p>
+            <p>“落日地？”视频中的阿巴斯问。</p>
+            <p>“极昼的季节里，北极圈里是不落日的，太阳也会渐渐沉到地平线以下，可是十几分钟后，它又会从原来的地方跳出来，整个季节都不会有真正的落日。极夜的季节就反过来，太阳一直在地平线下面，偶尔升起来一下，立刻又沉下去。但因纽特人之间有个传说，说北极圈里有个岛屿，就像南方大陆那么温暖，在那里有日升有日落，它周围的海面，终年都不结冰，我们就叫它‘落日地’。”雪说，“连我们小孩子都知道落日地只是个传说，可那些俄罗斯人却相信落日地真的存在。”
+            </p>
+            <p>她说到“岛屿”的时候阿巴斯的神色骤变，但他什么都没有说，只是低下头狠狠地吸了一口雪茄。</p>
+            <p>施耐德和恺撒对视一眼，这印证了他们的某个猜测。</p>
+            <p>从EVA的调查结果看，那支芬兰和俄罗斯联合的北极考察队颇不寻常，它并非官方派遣，而是由私人资助，却又雇佣了俄罗斯籍的破冰船。这需要强大的财力支持，普通的私人探险队根本不具备这样的实力。</p>
+            <p>他们的行为方式也很诡异，普通的私人探险队不过是抵达北极点，插个标志合个影就回家了，这支装备先进的考察队却在北极圈里从春天转悠到夏天，沿途的考察站都为他们提供给养，更可见这支队伍的实力雄厚。</p>
+            <p>他们在寻找什么东西，某个无法准确定位的东西，所以才会开着船在北冰洋里转圈子。而他们的毁灭应该也不是偶然，在荒无人烟的北极圈里，一只探险队遭遇利维坦的机会不过超过千万分之一，更合理的推测是利维坦追逐着他们。
+            </p>
+            <p>强如利维坦那样的东西有什么必要追逐一支考察队？考察队对于它来说，就像蚂蚁对于人类的意义，人类一脚就能踩死很多蚂蚁，却没有必要追着一小群蚂蚁到处跑。</p>
+            <p>唯一的解释，是这支考察队做了什么会令利维坦愤怒的事，但那能是什么事？他们杀了利维坦的配偶？</p>
+            <p>“我们的船经过熊岛，再经过东北地岛，一路向北，爸爸一直选择最安全的路线，他以前是个海员，北冰洋的航路他都熟悉。他并不真想找落日地，他只想混完了那几个月，拿到钱就送我去上学。”雪接着说了下去，“但我越来越害怕，因为我能听懂一些英语，那些人以为我听不懂，会当着我的面用英语低声说话。他们总是提到一条大鱼，他们还带着很多武器。对于我们因纽特人来说，如果我们隐晦地说一条大鱼，就是指那条白鲸，对我们因纽特人来说，它就是神，那些人想杀死神。我去跟爸爸说我们不能帮那些人去找落日地了，那趟航行是被诅咒的。但爸爸说我们家真的很需要钱，而且我们绝对找不到落日地的，落日地只对被它选中的人开放。”
+            </p>
+            <p>施耐德举手示意，EVA暂停了视频播放。</p>
+            <p>“搜寻关于‘落日地’的传说，或者‘北极圈中温暖岛屿’的传说。”施耐德说。</p>
+            <p>“虽然名字不同，但她说的应该是阿瓦隆，凯尔特神话中的圣地。这座岛屿被认为是‘妖精守护之地’，岛上的时光永不流动，即使濒死之人到达那里也可以永生。到达那里必须乘坐小船，闯入者会被守护岛屿的绿骑士斩杀，如果你被许可进入，岛屿的主人、九位妖精将会隆重地款待你。事实上这类‘理想乡’的传说普遍存在于世界各地的神话中，往往是一个文明的神话故事传入另一个文明，就改头换面地出现，所以从某种角度说阿瓦隆神话对我们的研究毫无价值。但阿瓦隆因为圆桌骑士中的亚瑟王关系密切而更为人所知，传说亚瑟王的最终结局是乘着小船前往了阿瓦隆。有人认为阿瓦隆位于北极圈内。”EVA以AI固有的客观立场给出了答案。
+            </p>
+            <p>有雷巴尔科在场，她并未以投影的方式现身。</p>
+            <p>但即使刻意地降低自己的存在感，雷巴尔科对于这个随时随地会回答你问题的女孩还是有点警觉，每当EVA出声的时候他就会左顾右盼。</p>
+            <p>“战死于英格兰的亚瑟王，要去北极圈里的阿瓦隆，航程有点太长了。”恺撒说。</p>
+            <p>“确实，多数神话学家认为阿瓦隆位于英格兰的格拉斯顿堡，但近年来，考古学家在非常古老的腓尼基地图上找到了北极圈中的陆地，包括格陵兰岛和我们旁边的这座法兰士约瑟夫地群岛。以腓尼基人的造船术和航海术，能自由航行的范围仅限于地中海，他们知道格陵兰岛和法兰士约瑟夫地群岛只能是听说，也就是说在公元前就有人航海抵达过北冰洋中的陆地。然而除了我们已知的陆地，还有一处群岛是人类从未发现过的。”EVA说，“虽然拼写不同，但那座岛在腓尼基语中的发音和阿瓦隆相仿。因此一些着迷于亚瑟王神话的研究者开始宣称阿瓦隆位于北极圈内。”
+            </p>
+            <p>“就在此刻，至少有几百颗卫星在近地轨道上运转，它们从太空里看向地球，什么都看得清清楚楚，可还有人相信‘未知的陆地’？”恺撒缓缓地说。</p>
+            <p>“人类总是倾向于相信未知之物，甚至愿意相信它们存在于其他的维度。”EVA的寓意深长。</p>
+            <p>卡塞尔学院的人相互对视。事实上恺撒并不是在质疑，而是给出了某种结论，一处被古地图记录的岛屿，位于苦寒的北极圈里，却温暖得像是天堂一角，内部的时间几乎不会流动，而且只对选中的人开放……那不是尼伯龙根又是什么？
+            </p>
+            <p>唯有龙王或者接近龙王的东西能够构造这样规模的尼伯龙根，并且支撑它上千年，他们和利维坦之间的距离缩短了。</p>
+            <p>雷巴尔科被排除在这场对话之外，作为一个外人，他本该听得一头雾水。</p>
+            <p>他也确实没试图加入对话中去，他大口地抽着雪茄，喷出的烟雾模糊了他的表情。</p>
+            <p>视频恢复了播放，还是雪那冷寂的叙述，“一路上他们还经常派人下潜，有时候他们会捞起一些金属的东西，上面有花纹，但他们不许我和父亲靠近了看。”</p>
+            <p>“有花纹的金属，你能描述一下么？”视频里的阿巴斯问。</p>
+            <p>“像是柱子的一部分，黑色的柱子。”雪说，“像是石头的，又像是铁的，但是泡在海水里却不生锈。”</p>
+            <p>施耐德微微点头。</p>
+            <p>虽说他本就对这个因纽特女孩很感兴趣，却没想到她给出了这么多有价值的情报，龙族确实有建造巨型立柱的习惯，他们在这些柱子上记载历史和预言，通天的柱子可以说是龙族城市的标记物。</p>
+            <p>这么说来那些神秘的芬兰人和俄罗斯人居然在海底找到了龙族建造的城市。除了日本海底的那座高天原，还有更多的龙族城市流传到今天，它们的废墟矗立在海底，想想都令人热血沸腾。</p>
+            <p>“但我们一直没有找到落日地，直到……那个天上有极光的晚上。”雪说。</p>
+            <p>雷巴尔科几乎用尽了所有的力量，才把自己死死地按在椅子上。那个极光笼罩的夜晚再度出现在他面前，绚烂诡异的夜空，狂舞着的龙蛇，一切都像是幻觉，像是古代的玛雅人，服用了毒蘑菇又接受了巫师的暗示，仿佛穿越时空被神的意志洗礼，那么缥缈，又那么凌乱。
+            </p>
+            <p>可在所有的缥缈凌乱中，唯独那个姓楚却不知道名字的男人挥舞AK47扫射的背影是那么地坚硬，像是战斧在岩石上砍出来的人形。</p>
+            <p>“那天晚上的海面特别平静，一点冰都看不到，像往常一样，除了值班的人，其他人都睡了。”雪轻声说，“我是被吵醒的，等我跑到甲板上的时候，所有人都上到甲板上去了，船头指向的夜空里飘着‘女神的裙摆’。”</p>
+            <p>“女神的裙摆？”视频里的阿巴斯问。</p>
+            <p>“我们因纽特人把最盛大的青色极光称为‘女神的裙摆’，说是那种极光百年才能见到一次，见到的人都会被祝福。”雪说，“在极光的正下方，我真的看见了一座岛，可那座岛屿像是倒着浮在天空里的。船上的人都疯了似的，他们开着小船去向那座岛的方向，但没让我和父亲上船。我们就老老实实地在甲板上等他们，他们的船后面带着很长的绳子，如果遇到危险他们就会使劲的拉绳子，这时候父亲就要用绞盘把他们拉回来。”
+            </p>
+            <p>“所以，你们找到了日落地？”视频里的阿巴斯问。</p>
+            <p>第92章利维坦之歌(7)</p>
+            <p>“我没见到落日地，”雪摇头，“我在甲板上看极光，看了很久，直到绳子上的铜铃猛地响了起来。”</p>
+            <p>“进入极光的那些人发出的信号？”视频里的阿巴斯问。</p>
+            <p>雪沉沉地点头，“爸爸赶紧开动绞盘把他们拉了回来，但有几根绳子已经断掉了。活着回来的人神色很惊恐，他们跳上船就喊着要开船走，好像后面有什么可怕的东西在追他们。”</p>
+            <p>“你看到追他们的东西了么？”</p>
+            <p>雪摇了摇头，“血红色的海水从极光的方向涌了过来，很快整个大海都变成了血红色，原本海面上风平浪静，但是忽然间就狂风大浪，我们的船在浪里晃得很厉害，好像随时都会翻掉。他们回来的时候，带着一口不停地往外冒血水的铁箱子，这时候就有人大喊说把那个箱子丢回海里去。最后他们把箱子丢进了海里，海面上的浪好像忽然间平息了，但我感觉有什么巨大的东西从我们的船底游过。那东西比我们的船还大。趁着风浪平息的时候他们驾船逃了出来，但我们的船受损很厉害，还没到下一个营地就没动力了。那些人就说要从冰面上走，但我们到这里的时候，神就追过来了。”
+            </p>
+            <p>“你是说，杀死他们的是那个神？”阿巴斯追问。</p>
+            <p>雪缓缓地点头，“我听见它在唱歌，在落日地，我也听到一样的歌声。”</p>
+            <p>雷巴尔科悚然，原来并非他一个人能听到那诡异的次声波，这个因纽特女孩跟他的经历几乎一模一样，只不过她没有登上那座岛屿。</p>
+            <p>“吃点东西吧。”视频中的阿巴斯把一个汉堡包递给雪，“养好身体等你父亲来接你。”</p>
+            <p>雪接过那个汉堡包，认真地看着那块煎得极好的牛肉饼，这是从帕西带来的食材中特选的，好让这个孩子补充最优质的蛋白质。过去两周里她只能捕猎和生食，好在因纽特人确实是崇尚生食的民族，否则她也无法幸存。</p>
+            <p>“我爸爸已经死了，对么？”她忽然直愣愣地盯着摄像头。不知道为什么，放映室里的人都在一瞬间心里发毛。</p>
+            <p>“不，你父亲没事，”视频里的阿巴斯说，“但他冻伤得很厉害，被直升机送去北地群岛的医院了。”</p>
+            <p>根据船医的说法，雪的应激性精神创伤还远远没好，如果告诉她父亲已经冻死了，她的精神状态可能进一步恶化。所以大家统一了口径，雪的父亲还活着，被路过的考察船救了，他告诉考察船雪就在那口地井里，而这艘考察船就是YAMAL号。
+            </p>
+            <p>“不，阿巴斯骗我的。”雪摇摇头，她能熟练地说出阿巴斯这个名字了，“神不会放过他的，见过神的人，神都不会放过。”</p>
+            <p>雪低下头，大口大口地吃着那个汉堡，“神也会来找我的。”</p>
+            <p>视频到此结束，施耐德首先是温和地对雷巴尔科说，“很抱歉船长，能否给我们一点时间私下里聊聊？”</p>
+            <p>雷巴尔科也不说什么，起身退出了放映室。</p>
+            <p>“我们的船长对于这段视频的反应如何？”施耐德低声问。</p>
+            <p>“我监听到雷巴尔科船长的心跳忽然加速，雪的叙述显然引起了他的某些联想，但也仅此而已。”恺撒说，“他是受过严格训练的特种兵，懂得怎么控制情绪。”</p>
+            <p>这并不是他们三个第一次看这段视频了，之所以邀请雷巴尔科一起来看，是一种试探。尽管在北极圈内极光并不罕见，但雪和雷巴尔科的经历似乎有着微妙的相似处。</p>
+            <p>“似乎‘女神的裙摆’扫过的地方总会出现一些神秘事件，可亲历者都对事情的经过说不清楚。雷巴尔科说他记不清楚了，而雪说她没有进去。”施耐德缓缓地说，“你也监听了我的心跳吧？恺撒。”</p>
+            <p>恺撒微微点头，“跟雷巴尔科船长的情况相似。”</p>
+            <p>镰鼬被释放后，领域内的一切动静都被监听，雷巴尔科在他的领域里，施耐德也在他的领域里。</p>
+            <p>“虽然没有见过那样盛大的极光，不过我也算是跟利维坦有关的人……在格陵兰岛，我也曾目睹整片海域瞬间冰封。”施耐德轻声说，“偶尔或者必然的，这艘船上的所有人都跟利维坦有关。”</p>
+            <p>“我竟然搭上了这么一条被诅咒的船么？”恺撒耸耸肩，“不过，还真是不详的预兆呢。”</p>
+            <p>“不详的预兆？”阿巴斯问。</p>
+            <p>“私人资助的考察队，雇佣俄罗斯籍的破冰船，去北极圈中搜寻神秘的东西……我们简直就是那支探险队的翻版。”恺撒缓缓地说，“我们走的这条路，之前有人走过，而那些人，没能回来。”</p>
+            <p>短暂的沉默之后，施耐德起身，“明早收锚起航，沿着那个女孩说的航线走。”</p>
+            <p>“是，老板。”恺撒和阿巴斯不约而同地模仿了雷巴尔科的海员礼。</p>
+            <p>——————————————</p>
+            <p>路明非在一张金色的大床上醒来，上方罩着金绿色的巨大床罩，仅这张床就像是蒙古王公贵族的帐篷。他深呼吸两下，“嗨”地一声发力，鲤鱼打挺就起了床。神完气足，他很久没有睡得那么好了。</p>
+            <p>这是一间屋顶有壁画的大卧室，壁炉里烧着炭火，温暖如春。旁边的衣架上挂着为他准备的丝绸睡袍，他抓过来披上，沿着窗边溜达了几步，蹬腿伸胳膊，活动筋骨。</p>
+            <p>窗外的天空湛蓝，微云，云背后透着朦胧的金色阳光。远处展开的城市是阴霾的灰色，但不乏气势雄浑的教堂和鎏金的圆顶点缀。不远处的广场上有制服笔挺的军人来回巡逻，一侧是红色的宫墙，另一侧是斑斓的瓦西里升天大教堂。
+            </p>
+            <p>纵然他路明非并非见多识广的人，也知道那就是大名鼎鼎的红场，旁边埋葬着列宁同志。莫斯科已经入秋，萧瑟微凉，路上的行人纷纷竖起了衣领。</p>
+            <p>此刻距离他们逃出日本已经过去了三天，零把他们的飞机坠毁在日本到台湾的航线中间了，飞机的残骸沉入路明非曾经探索过的大海沟，一辈子也捞不上来。这样对于加图索家而言，路明非的生死暂时是个未解之谜。</p>
+            <p>接替那架飞机的交通工具竟然是一艘潜艇！</p>
+            <p>看着那艘带着俄罗斯太平洋舰队标记的潜艇破水升起的时候，路明非和楚子航并肩站在救生艇上看傻了，零还是面无表情，直到潜艇上放下充气浮桥，那位身穿海军制服的英俊军官来到浮桥末端接他们，零才伸出手象征性地让军官扶了自己一把，权当是给他面子。
+            </p>
+            <p>接着他们就被送到莫斯科来了，两辆20世纪60年代产的劳斯莱斯银影轿车在军港接上了他们，一路送到这里来。他们和零分坐两辆车，每当路明非想问点问题，司机却总是微笑着用一口流利的英文告诉他，自己听不懂英文……</p>
+            <p>路明非溜达着来到走廊里，楚子航正在做伏地挺身，赤裸上身，肌肉隆起又回收，男人看着都觉得颇为悦目，路明非干脆就靠在旁边的门框上刷牙。</p>
+            <p>看了片刻也就无聊了，楚子航练完伏地挺身又练俄式俯卧撑，接着又是双手倒立，这家伙虽说依然没恢复记忆，不过自从苏茜死了，他更沉默了，也越来越像以前那个杀胚师兄了。</p>
+            <p>路明非晃悠着下楼，这栋建筑还真大，四处都挂着画儿，四处都看不到人。他和楚子航分享一间有两个卧室的大套间，而这样的大套间在这栋建筑里至少有四五个。</p>
+            <p>这难道是那种古建筑改造的酒店？路明非听说过这种豪华酒店，印度那边特别多，都是原来本地王公的豪宅，房费比超五星酒店还贵。</p>
+            <p>一楼也是空荡荡的，却并不冷清，各处都烧着壁炉，果盘里摆着新鲜的水果，散落在各处的艺术品被收拾得一尘不染，桌面上还有看了一半插着金书签的俄文书。</p>
+            <p>这座建筑里绝对隐藏着一支劲旅，它由强有力的管家、高效的保洁员和极具审美的花匠构成，他们坚定不移地维持着这栋建筑的内部风格，永远箭在弦上地等着为贵客们服务，却根本不会出现在你的视野里。</p>
+            <p>路明非穿越了一道又一道的门，快要迷路在这个层层相套的屋子里时，前方出现了一道拱门，女孩趴在拱门下的书桌旁，书写着什么，桌上的孔雀石花瓶里，盛开着蓝色的绣球花。</p>
+            <p>从背影能看出那是零，不过衣饰和在学院的时候迥异，青灰色大衣、水貂皮帽子、棕色的高跟靴子，分明是个身材娇小的女孩，可这身衣服让她显得身材修长，隐然就是女主人的架势。</p>
+            <p>路明非在桌边的圆凳上坐下，零知道他来了，但头也不抬，奋笔疾书。</p>
+            <p>“住这么豪华的地方不会被人盯上么？”路明非也看不懂她写的俄语，左顾右盼，“这是什么地方？”</p>
+            <p>“我家。”</p>
+            <p>“你家？”路明非吃惊不小，“你家那么有钱？”</p>
+            <p>从那艘潜艇浮出海面的一刻他就意识到这个俄罗斯妞儿是个有门道的主儿，但很多秘党成员都是有门道的人，能调动飞机来接你的人，未必要家里有飞机。</p>
+            <p>有门道的兄弟们也能借来一幢接近红场的宫殿暂住，不过零说得清清楚楚，这是她家，那么与之配套的那些老式豪华车、英俊司机班、保洁突击队，也都是服务于她的。</p>
+            <p>难怪踏进这间屋子的时候路明非就意识到屋里弥漫着细微的女孩气息，并没有满目的公主色，但从刺绣的花纹还有艺术品的收藏能看出一些端倪。</p>
+            <p>第93章利维坦之歌(8)</p>
+            <p>“你没问过，”零说，“你不问我怎么告诉你？”</p>
+            <p>路明非一怔，这才意识到他跟零同学那么多年，对这妞的身份背景都没有好奇过。这个带着女王般威仪的小姑娘，出现在任何地方都是众人目光的焦点，偏偏路明非不太感冒。</p>
+            <p>他和零某种意义上是“生意伙伴”，零允许他抄自己的作业，他请零吃宵夜。对于那些心仪零的男生来说路明非真是太烦人了，他总是能邀请到零吃宵夜，而餐桌上他总在抱怨零吃得太多，他都要穷死了。</p>
+            <p>路明非也觉得零是窈窕淑女，没准颜值还在诺诺之上，不过他并不好逑。他跟零的那种熟悉好像是天生的，手心手背亲如一家，就是拍不响。</p>
+            <p>“我的姓氏是罗曼诺夫，罗曼诺夫王朝的罗曼诺夫。我的血统向上追溯能追溯到伊丽莎白彼得罗芙娜，也就是伊丽莎白一世，她是彼得大帝和叶卡捷琳娜一世的女儿。”零的语气就像报户口似的，但她说出的每个名字都曾掌握这个古国的权杖，震动欧洲大陆，“当然我原来的姓氏并不是这个，你应该知道十月革命后沙皇尼古拉斯二世一家全都被处死了，那以后即便是罗曼诺夫家族的旁系后人也不敢宣称自己拥有沙皇血脉。但苏联解体之后，我们这些人被允许恢复罗曼诺夫这个姓氏，国家还会把部分宫殿归还给罗曼诺夫家族的后人，只要你妥善地保养。我得到了这间伊丽莎白宫，因为我有足够的财力证明，证明我可以修缮这座旧宫并且在我不在的时候把它展示给参观者，不过你不必担心，当我住进来的时候，伊丽莎白宫就会进入谢绝参观的状态。”
+            </p>
+            <p>路明非目光呆滞嘴巴大张，有种下巴颌随时会掉下去砸脚面的感觉。</p>
+            <p>中国南方二三线城市长大的怂孩子也听过彼得大帝等人的名号，但那些人对他而言根本就是油画上的半身像，远在天边，跟他这种升斗小民是扯不上关系的。可他昨晚就睡在某位大帝或者公主睡过的床上，隔着上百年同床共枕，想想还有那么点香艳！
+            </p>
+            <p>但他仍然未能明白零跟罗曼诺夫家族之间的血缘关系。其实零已经明明白白告诉他了，但听懂还是需要一些历史知识的。</p>
+            <p>历史上伊丽莎白一世是没有结过婚的，因此也不该有后代，但是一直有传闻说她曾和自己的宠臣拉祖莫夫斯基秘密结婚。叶卡捷琳娜二世女皇登基之后，对于这段秘辛非常不安，因为如果伊丽莎白一世和拉祖莫夫斯基有孩子的话，那么这孩子才是罗曼诺夫王朝的合法继承人。因此她派了自己的总理大臣去见拉祖莫夫斯基，并带去了一份语气谦卑的手谕，在手谕中她敬称拉祖莫夫斯基为“陛下”。在权力场上曾经登峰造极的拉祖莫夫斯基很清楚女沙皇的用意，从保险箱中取出自己和伊丽莎白一世的婚书，当着总理大臣的面烧掉。
+            </p>
+            <p>这位曾在乡村教堂当歌手的乌克兰美男子以历经千帆的语气说，“我曾是陛下的歌手，蒙她的恩宠而已。现在，我已没有任何文件能证明我和陛下之间的关系了。”</p>
+            <p>叶卡捷琳娜二世对此表示欣慰，也就放过了这位“前沙皇的秘密丈夫”和他的孩子们，也就是零的先祖。</p>
+            <p>“伯父伯母不在家啊？”震惊结束，路明非立刻流露出“初次登门我也是懂事孩子”的嘴脸。</p>
+            <p>“我很小的时候他们就过世了，这里就我一个人住。还有些管家厨师什么的，还有两只猫。”零说，“你要去的那个地方是军事禁区，没有特别许可证的话，没人能进入那个区域。我还不知道那里到底为何成为禁区的，只有动用一些高层关系先去问问。”
+            </p>
+            <p>路明非已经把那个坐标给了零不知为何他觉得对零也没啥可隐瞒的但零还是坚持他们先来莫斯科，原来是因为那地方已经被划为禁区了。难道说那里埋藏的秘密已经被俄罗斯政府发现了？那得动用什么级别的高层关系才能问到？</p>
+            <p>零把信写完了，用天蓝色的信封封好，淋上早已热好的火漆，从旁边拿起带自己名字的铜章一盖，然后摇了摇手边的小铃。</p>
+            <p>门开了，衣冠楚楚的管家疾步来到零身边，昨晚就是他开车去接的路明非一行人。他冲路明非微微点头，然后接过零手中的信。</p>
+            <p>“这封信你亲手交给国防部长先生，就说零拉祖莫夫斯基罗曼诺夫想请他共进晚餐。”零淡淡地说。</p>
+            <p>“是，皇女殿下！”管家鞠躬之后，昂首挺胸地退出书房。</p>
+            <p>落叶翻飞，劳斯莱斯银影沿着伏尔加河畔的公路行驶，街边的行人多数行色匆匆，但也有穿着大衣的老人站在河边，远远地凝望河上的黑天鹅群。</p>
+            <p>那个名叫苏联的巨无霸国家已经结束了二十几年，然而这座城市还是随处可见它的印记，比如那些城堡般的大型建筑、高耸的纪念碑、开阔的广场，还有炮兵阵列一般的喷泉。但偶尔也会出现罗曼诺夫王朝的身影，比如五彩斑斓的教堂和圣乔治屠龙的大理石雕塑。
+            </p>
+            <p>这是一座怀旧的城市。</p>
+            <p>零亲自驾车，还是直筒的水貂皮帽子和青灰色的毛呢风衣，要不是她坐直了也没比方向盘上缘高多少，还真有点像个小贵妇。路明非换了一身粗毛呢的猎装，戴着一顶鸭舌帽，坐在副驾驶座上。楚子航被留在家里了，被两位管家和十二位女仆伺候着，吃他共有十三道菜的晚餐。
+            </p>
+            <p>“不会太招摇么？”路明非缩头缩脑的，还试着压低帽檐好把脸挡住。</p>
+            <p>他太懂EVA全球联网搜索的套路了，你只要在某个摄像头面前闪过，哪怕是一台连着IFI的相机而且它并不在拍摄，会根据瞳距、骨相这些整容都很难修改的特征来识别你。</p>
+            <p>人类迄今为止生产过几千亿个摄像头，尤其在大城市里，这些摄像头就像无数的眼睛，构成了一张无处不在的网络。莫斯科可不比莽莽苍苍的蒙古大草原，在这里开着一辆劳斯莱斯古董车，路人都多对您摁几下快门。</p>
+            <p>“这里可是俄罗斯，曾经被克格勃管理的国家。虽说没有辉夜姬保护你，但EVA的触手在这里也不太好用。”零淡淡地说，“但是学院在这里有分部，谨慎一点没错。俄罗斯分部非常精锐，他们的风格很传统，不太依靠网络。”</p>
+            <p>路明非心里咯噔一下，零所谓的“风格很传统”不知道是不是他理解的那样，穿着灰黑色风衣带着鸭舌帽的男人忽然把你拖进某间废弃的工厂，威胁要把烧红的烙铁塞进你的嘴里，如果你不说出密码的话……总觉得这种事发生在这样的城市里就超正常的。
+            </p>
+            <p>汽车远离了莫斯科市中心，沿途的树木越来越密集，时间还是初秋，大部分树木还是深绿色，但挺拔的白桦已经开始变黄，黄绿交杂的原野，看上去如梵高的画作，粗犷、奔放又苍凉。</p>
+            <p>“要见国防部长，我们难道不该去克里姆林宫？”路明非有些诧异。</p>
+            <p>“他邀请我们去他家里见面，他住在郊外。”零说，“见到他你就明白了。”</p>
+            <p>车开出莫斯科之后又行驶了差不多一个小时，进入了丘陵地带，道路越来越狭窄，路边再也见不到住宅，倒是偶尔有一名士兵守着路障。但根本不需要他们递上通行证什么的，远远地看到他们的车牌号，路障就打开了。</p>
+            <p>前方一片黄透了的白桦林，没剥皮的白桦木围成一个院落，院落中回荡着清脆的劈柴声。</p>
+            <p>零把劳斯劳斯停在院子外，推门而入，路明非亦步亦趋跟在后面。萧瑟的落叶中，一位穿着军绿色背心、肩膀宽阔如熊的老人正挥舞大斧，把大块的木头劈得粉碎。</p>
+            <p>路明非看得心惊胆战，单说力量，有龙血加持他当然不会认输，但他自觉没法把柴砍得那么有气势，老家伙每一斧落下，都喷薄着威严和暴力，就像重炮手平静地把一个又一个地堡炸得粉碎。</p>
+            <p>他忽然意识到这个劈柴的老家伙就是他们此行要拜访的人，虽然他看起来根本就是个退伍老兵，但这种威严只属于那种曾经身居高位的人，他们挥手间，成百上千人的命运被决定，他们一怒间，则是成百上千人的生命化为虚无。</p>
+            <p>零却对老家伙的威风根本无感，她站在老家伙背后，看他劈了几块柴，却还没觉察到访客的到来，就响亮地吹了声口哨。老家伙停下手中的斧头，转过身来，看见零的那一刻他的眼睛忽然亮了，张开怀抱，“嗨！”</p>
+            <p>“免了，我不想粘上你身上的汗。”零满脸嫌弃地拒绝。</p>
+            <p>老家伙还是大张着臂膀，“嗨！”</p>
+            <p>实在无法拒绝这充斥着老爷们阳刚气息的邀请，零只得上前一步跟他拥抱。娇小的女孩在这巨熊般的老人怀里，几乎都看不到了。</p>
+            <p>“嗨！”老人第三次发出这个豪爽的音节，把零高高地举了起来放在自己的肩膀上，扛着她走向林中的木屋。</p>
+            <p>路明非一瞬间有些莫名其妙地感动，就像是看到了童话故事里那些魁梧的野蛮人，或者熊怪树怪什么的，扛着精灵般的女孩在荒原上跋涉，那么地温暖，那么地可依靠。</p>
+            <p>然而就在这时，他觉察到背后传来的隐约寒意。他本能地按住衣袖，袖子里藏着他的短弧刀，似乎不经意地回身一瞥，山坡上某处，堆积得很深的落叶表面似乎多出了些痕迹。如果没猜错的话，那堆落叶中藏着一名狙击手。</p>
+            <p>应该不止一名狙击手那么简单吧，这个看起来像是俄罗斯乡间民居的木屋，其实是被严密地监视着的，一旦平静被打破，这个平静的峡谷就会变成硝烟弥漫的战场。</p>
+            <p>他不动声色地跟着老人走进木屋，临关门前，他对着山坡上的落叶露出一个淡淡的笑容。他猜那名狙击手一定还在用瞄准镜观察着他，他不介意让对手知道自己已经看到他了。</p>
+            <p>这个山谷里的每个人都是心知肚明的，老人知道，零当然也知道，知道又怎么样呢？就算是暴风眼中的平静，有人在这里设下了筵席，就会有人来赴宴。</p>
+            <p>“瓦图京陆军大将，曾经是苏维埃社会主义联邦的国防部副部长，现在是个被监视居住的老人。”零摘下皮手套丢在一旁，看了一眼炉火上炖的东西，“又是罐焖牛肉么？”</p>
+            <p>看那熟门熟路的架势，这座木屋比伊丽莎白宫更像她家。</p>
+            <p>“还有土豆泥炖蘑菇和红菜汤，餐后我给你们准备了果酱红茶！”瓦图京老爷子忽然抓起一件平底锅，使劲地拍打着锅底，“动起来！动起来！我们需要人手削土豆和磨胡椒！在敌人的冲锋号吹响之前，我要让我的士兵吃上早餐！”
+            </p>
+            <p>第94章利维坦之歌(9)</p>
+            <p>很老派的腔调，甚至有点装模作样，有点像中国那些退休的老干部，总以为自己还跟世界的风云变化有关。</p>
+            <p>但瓦图京就像一个亲自吹响了冲锋号的将军，路明非根本不敢拖延，立刻上手削土豆，以他在短弧刀上的修为，削土豆这种活儿对他再合适不过了。零则挽起袖子坐在桌边开始磨胡椒，路明非注意到她很容易地就找了磨胡椒的工具，她果然不是第一次来这里。
+            </p>
+            <p>瓦图京又在火炉里加上了几块炭，原本就很温暖的木屋里，温度高到让人微微冒汗，锅上的肉汤正在沸腾，老唱机放着柴可夫斯基的交响曲，温馨得像是回到家的感觉。</p>
+            <p>瓦图京和路明非并肩而立，浓眉大眼盯着炖肉的锅子，好像那是他的作战地图。</p>
+            <p>“中国人？日本人？”瓦图京忽然用不太熟练的英语低声问。</p>
+            <p>“中国人中国人！”路明非点头哈腰，但又觉得这看起来就算不是日本人也是个二鬼子，于是赶紧挺直了腰板。</p>
+            <p>“你是来买飞机的么？”</p>
+            <p>路明非一时间懵了，不知如何回答。</p>
+            <p>“我认识的中国人都是来买飞机的。”瓦图京耸耸肩，“你们很喜欢我们的飞机。”</p>
+            <p>路明非愣了一下，忽然意识到这位前国防部副部长已经被隔离了很久，中国问俄罗斯大批量采购战斗机都是很多年之前的事了。</p>
+            <p>“你看起来还不错。”瓦图京老爷子暗地里冲路明非竖起大拇指。</p>
+            <p>路明非继续发懵，怎么就不错了？难道老爷子是赞美他削土豆的手法娴熟？</p>
+            <p>“这是她第一次带男生来这里，我得帮她多留点心。”老爷子说话还是鬼鬼祟祟的，“年轻女孩子，很容易被长得好看的男孩子欺骗，你看起来不是那种人。”</p>
+            <p>我擦你一个战斗民族的男人，直接点会死啊，你这骂人不带脏字儿的，看不出修辞能力不错嘛，您普希金么？路明非心里久不工作的吐槽机重新开始运转，但脸上还是可亲的笑容。</p>
+            <p>“干杯！”瓦图京举起放在旁边的伏特加，吐出两个蹩脚的中国字，豪迈地一饮而尽。</p>
+            <p>“你跟皇女殿下怎么认识的？”瓦图京老爷子放下酒杯接着问。</p>
+            <p>“同学，我俩是同学。”</p>
+            <p>“你是个运气很好的小伙子，要好好巴结她，在俄罗斯没有她办不到的事。”瓦图京用胳膊肘戳了戳路明非，“男人成功的要诀之一就是使劲巴结有本事的女人！”</p>
+            <p>路明非正尴尬得不知怎么接，就被瓦图京那豪爽的大笑打断了。瓦图京搂着他的肩膀，好像巨熊搂着一只耷拉着眉毛的土狼。</p>
+            <p>晚餐很快就做好了，他们围坐在松木长桌边用餐，浓郁的红菜汤让人浑身温暖，罐焖牛肉的肉汁稠厚，还散发着新鲜茴香和香芹的味道。</p>
+            <p>这是一场地道的家宴，就像是留学海外的孙女来探望爷爷，还带着同学，爷爷神采飞扬地讲他年轻时多么厉害的故事，孙女嫌弃不想听，于是闷头喝汤，同学却不得不陪着笑脸听，不时还用新学的俄语赞几句“赫拉笑”。</p>
+            <p>但路明非还挺开心的，沉浸在这种家宴的气氛中，满心平安喜乐，甚至还抽空想念了叔叔和婶婶。</p>
+            <p>根据瓦图京的讲述，零其实是他的“生意伙伴”。苏联解体之后，他从之前军队的同僚那里募集了一笔不小的钱，利用当年军队的关系杀入了商场，很快就成为俄罗斯屈指可数的财阀。他把飞机卖到中国，把石油卖到欧洲，把钻石卖到世界各地，一度是叱咤风云的大佬。而罗曼诺夫家族原本的生意在欧洲，想要进入俄罗斯市场所以跟瓦图京合作，瓦图京欣然接受了这位盟友，却没料到罗曼诺夫家族派来的是个比行李箱高不了多少的小女孩。
+            </p>
+            <p>一度外人觉得零是他的养女或者私生女，他也并不否认，好让他们之间的合作更加秘密。在几年的时间里，罗曼诺夫家族的钱疯狂地涌入俄罗斯，凭借瓦图京的人脉收购公司和土地，也把瓦图京捧成俄罗斯最大的金融寡头。</p>
+            <p>但好景不长，政府的管制如暴风雪般到来，金融寡头们纷纷落马，有些人得以逃往海外，而瓦图京则被没收了所有资产，被监视居住到今天。而罗曼诺夫家族却因为一直藏在瓦图京的背后没有出面，而得以幸存，迄今仍然是俄罗斯隐形的金融业领袖。
+            </p>
+            <p>虽然经历了这样的大起大落，瓦图京似乎也不太在意，他讲的最多的还是苏联时代的事，似乎金融寡头的生涯对他而言不过是玩票，他始终都是苏联红军的一员。</p>
+            <p>伏特加酒加了一杯又一杯，罐焖牛肉冷了又加热，瓦图京第三次讲到古巴导弹危机的时候，零忽然出声，打断了瓦图京的神采飞扬，“这次来我是想问你关于‘δ计划’的事。”</p>
+            <p>屋子里的温馨美满仿佛被一刀砍断，瓦图京停止了滔滔不绝的讲述，高举的酒杯停在空中。</p>
+            <p>路明非一时间懵掉了，他本还以为零带着自己是来问瓦图京大将搞几张去军事禁区的通行证的，“δ计划”是什么东西？为什么这个词一出口，就仿佛有寒风灌进了木屋，温度直线下降。</p>
+            <p>但零以手势示意他闭嘴。</p>
+            <p>酒杯慢慢地落回桌面上，瓦图京陆军大将缓缓地转头，看着零，“你上一次问我这个问题，是十年以前。我没有回答，我以为你从此不会再问。可今天你带着这个男孩来，问了同样的问题，你是帮他问的么？”</p>
+            <p>此刻他应该被恭恭敬敬地称为“瓦图京陆军大将”了，那旧时代的威严忽然回到了这个老人的身上，那双因为喝多了伏特加而混沌的眼睛里，透出刺眼的光芒。</p>
+            <p>“反正我知道的事也会告诉他，所以你单独跟我说，和当着他的面跟我说，是一样的。”零淡淡地说。</p>
+            <p>“他是谁？”</p>
+            <p>“这个你不用知道。”</p>
+            <p>这两个人像爷孙那样吃了一顿丰盛的家宴，可一瞬间就回到了生意伙伴之间的对话模式，两个人强大的气场隔着路明非对撞，势均力敌。</p>
+            <p>“那是国家的秘密！”瓦图京说。</p>
+            <p>“你的国家早就死了。”零说，“那个秘密对我的朋友很重要，我会开出你满意的价码。”</p>
+            <p>“我满意的价码？”</p>
+            <p>“你告诉我你知道的关于‘δ计划’的一切，我会动用所有关系让你离开俄罗斯，你可以去西班牙或者法国，自由自在地过完余生。”零盯着瓦图京的眼睛，“你并不怕孤独或者死亡什么的，但对你这样的人，老死在这个牢笼里是不是太屈辱了？”
+            </p>
+            <p>瓦图京沉默良久，“我不该让你那么了解我的。”</p>
+            <p>他给自己倒满了一杯伏特加，望着炉火慢慢地喝完。长达数分钟的沉默后，他才开启了讲述。</p>
+            <p>“西塞罗说，‘国家是人民的事业’，但那不过是政治家的花言巧语罢了。国家，是有史以来人类能建立的最大的暴力机关，而超级大国，则是暴力机关中的暴力机关。”瓦图京的声音嘶哑而悠长，像是沧桑的吟游诗人，“暴力是令人着迷的东西，一旦你曾通过暴力实现某种目标，你就会越来越依赖于它，就像上了年纪的男人依赖春药，或者浮士德依赖魔鬼。”
+            </p>
+            <p>听到最后这句话路明非心里微微震动，可能瓦图京只是无意中说到，但路明非立刻想到了路鸣泽。</p>
+            <p>“在这个国家最繁荣的时代，曾经独自对抗强大的西方联盟，那是个充满理想的年代，当然也不可避免地掺杂着政治和暴力。我们的经济实力远远不如西方的敌人们，因此不得不靠军事力量来达成平衡。我们曾是中程导弹领域的绝对霸主，在日用品和燃油都紧张的情况下造出了领先美国人的重型战斗机和潜艇，我们还投资各种可能逆转战场的新技术，1K-17型激光坦克、基洛夫级武库舰、TV-1核动力坦克、图-119核动力轰炸机……这些科幻电影中的武器我们都制造过，如今它们的残骸都被封存在地下仓库里或者干脆丢在海边，锈迹斑斑，被人遗忘。”瓦图京说，“而这些超前的军事研究项目中，‘δ计划’是最特殊的，它的研究对象，是人类本身。”
+            </p>
+            <p>“它的目标，说起来愚蠢，就是制造超级战士。美国人在漫画中制造超级战士，就像美国队长和蜘蛛侠，而我们在实验室中制造超级战士。当然，我相信五角大楼也有类似的研究计划，但是我们更加激进。我们从苏联各个加盟共和国中筛选我们认为基因优势明显的孩子，他们中的有些人爆发力惊人，有些人对疼痛的耐受力强，有些人则有不可思议的计算能力。这些基因上的优势往往也伴随着一些缺陷，比如自闭症。从基因学角度来说，他们都是问题儿童，在战争中根本没用。但是假定他们的基因优势合在一起，就会成为战场的统治者。一个配置了重武器的排也许能消灭美国人整整一个师，在间谍领域超级战士会更加有用，比如单枪匹马炸掉五角大楼。”
+            </p>
+            <p>“一个基因工程项目，就这么简单？”零微微皱眉。</p>
+            <p>“也是血腥的项目，我们反复地制造胚胎，又反复地摧毁它们。生命在这个项目里就是消耗品，他们造出过各种类型的畸形儿，绝大多数连两岁都活不过。有些看似成功的产品，寿命却非常短暂。赫尔佐格博士总在给我们希望，他的每一代产品确实都有提升，让我们总在渴望下一代产品就是完美的定型了，但超级战士还没有被投放到战场上，国家却消亡了。”瓦图京说，“这就是我知道的一切了。”
+            </p>
+            <p>“这个人，”零把一张照片推到瓦图京面前，“还有印象么？”</p>
+            <p>路明非下意识地攥紧了拳头。照片上是一身苏联军装的赫尔佐格，当然跟他在日本见到的赫尔佐格形象迥异，但他事后查阅了学院的报告书，里面有赫尔佐格之前的照片。</p>
+            <p>“赫尔佐格博士，‘δ计划’的负责人，他来莫斯科开过几次会，我在会议上见过他。”瓦图京说，“你从哪里找到这张照片的？”</p>
+            <p>“克格勃的档案馆。关于赫尔佐格博士，还能回忆起什么么？”</p>
+            <p>“他是保密级别很高的人，甚至比我还高，我跟他的接触仅限于那几次会议。他是个德国人，基因工程学家，1945年柏林陷落的时候被俘虏，这么算来的话他比我还老，但很奇怪，他看不出年龄。据说全套技术都是他带来的，国家科学院的院士说他们无法与赫尔佐格博士对话，因为研究方法完全不同，但他们惊讶于赫尔佐格博士对基因工程学的理解。”
+            </p>
+            <p>“那么邦达列夫呢？听过这个名字么？”零又问，“据说是被派去关闭‘δ计划’的人，他自称是苏联红军中一个很有权势的家族的后代。”</p>
+            <p>瓦图京沉默了片刻，微微摇头，“在俄罗斯不是一个罕见的姓，我认识不止一个姓邦达列夫的人，但他们中没有任何人跟‘δ计划’有关。‘δ计划’被关闭的时候我已经失去了控制权，后来的事我都不知道了。”</p>
+            <p>“所以，就只是一个基因工程项目，血腥的基因过程项目。”零再度确认。</p>
+            <p>“对失败的实验体来说，当然是血腥的，但在国家战略的层面，那些都是必须支付的代价。一个超级战士投放到战场上，能换回几百条生命。”瓦图京冷冷地说。</p>
+            <p>很少见的，路明非在零的脸上看到了厌恶的神情，她凝视着瓦图京，眼神孤寒甚至恐怖。</p>
+            <p>“厌恶是么？”瓦图京立刻读出了零眼中的含义，冷笑，“这个世界，不是孩子能理解的。我是一名军人，军人的职责是捍卫国家。为了国家，我可以牺牲任何人，包括我自己！”</p>
+            <p>他给自己又倒了一杯伏特加，“听完了故事就可以走了，你并不是想来探望我这位假的养父，这么粗糙的食物对于皇女殿下你也太寒酸了。你的开价很诱人，但我并不想离开这个国家。”</p>
+            <p>零霍地起身，一把抓住路明非的手腕就要走，路明非被她扯得跌跌撞撞。</p>
+            <p>“带走你们的外套，这个秋天会很冷。”瓦图京远远地把零的大衣和路明非的猎装外衣丢了过去，路明非手脚麻利地接住，小跑了几步才把大衣给皇女殿下披上。</p>
+            <p>他们走到门口的时候，背后又传来了瓦图京的声音，却不是挽留。</p>
+            <p>“零·拉祖莫夫斯基·罗曼诺娃，我希望这是我们最后一次见面。”瓦图京大将缓缓地说，“你和你的家族深不可测，而我只是一个已经失去权势的老人，我帮不到你什么，也不会为你辜负我的祖国。”</p>
+            <p>零没有回答，拉着路明非的手离开。</p>
+            <p>第95章利维坦之歌(10)</p>
+            <p>音乐已经停了，壁炉里的木柴还在噼里啪啦地燃烧，瓦图京大将独自坐在桌前，默默地吃着那碗已经冷了的红菜汤。</p>
+            <p>汽车引擎的声音早已远去，风吹着白桦树，仿佛林间有人在窃窃私语。</p>
+            <p>军靴踩碎落叶的声音由远而近，有人敲响了木屋的门。没等瓦图京回答，那人已经推门进来了。那人穿着笔挺的俄军制服，肩扛少校军衔。他并未说话，而是从口袋里掏出一部手机，沿着桌面推给瓦图京，然后就转身出去了。</p>
+            <p>这间木屋里一应俱全，但是并没有一台电话，被监视的瓦图京没有不经允许给外界打电话的权力，因此零才不得不用信使跟他联系。</p>
+            <p>瓦图京冷冷地看着那部手机，直到它响了起来。瓦图京接通电话放到耳边，但并不说话。</p>
+            <p>“嗨，瓦图京我的好朋友，你还好么？”电话里传来颇为标准的俄语，但明显地带着异国口音。是个男人，听不出年纪，声音亲切又快活，就像是旅行到海边的老朋友偶尔想起你，打来问候的电话。</p>
+            <p>“有多少年没接到您的电话了？二十年？三十年？”瓦图京低声说，“我都记不清了，我太老了，老得开始忘事了。”</p>
+            <p>“二十多年吧，最后一通电话是你离开克里姆林宫的当天。给你打电话的时候，我正站在红场上，看着他们把镰刀和铁锤的国旗降下。”电话对面的男人叹口气，但声音还是快活的，“那可是一场伟大的终结。”</p>
+            <p>“你当时跟我说，那是我们最后一次通话，当你挂断电话的时候，我们的合作就彻底结束。”</p>
+            <p>“本来是不该再给你打电话啦，可有人非要翻旧账。好在你是个嘴巴严实的朋友，你要是跟那两个孩子瞎说点什么，我们可能就不得不把你周围方圆五公里炸平啦。”</p>
+            <p>“我没有帮你们保密的想法，但过去的事情，就像躺在棺材里的尸体，不用再叫醒了。”</p>
+            <p>“是为了那个女孩么？无儿无女的老鳏夫，想要保护养女一样的小女孩，这种戏码虽然看得很多了，但还是很感人的。”</p>
+            <p>“她已经长大了，不需要我保护，她能保护自己。”</p>
+            <p>“但那个女孩真的很可疑哦，忽然冒出来的皇女殿下，接近你，得到你的信任，再来问你‘δ计划’的内幕，感觉像是黑天鹅港中逃出来的幽灵呢。虽然年龄有点对不上。”电话对面的男人说，“如果她知道你其实就是‘δ计划’的负责人，是你亲手签署文件把那些孩子送往北西伯利亚的，还会不会把你看作养父呢？没准她是来复仇的哦。”
+            </p>
+            <p>“无所谓，看看自己指甲缝里的血，你我这样的人，理应被人寻仇。”</p>
+            <p>“为什么不为自己找点借口呢？”电话那头的人叹息，“比如说你也是为了伟大的联邦，你们需要龙族血统的超级战士，只有他们才能对抗资本主义。你们牺牲了一些孩子，却会挽救千百万人的生命。”</p>
+            <p>“战争，从来都不该跟孩子有关。”瓦图京一字一顿，“听着，过去的一切，到我这里为止！所有的罪孽，我来偿还就好了！”</p>
+            <p>“瓦图京，你还真是个……让人钦佩的侩子手呢。”电话里的男人长叹一声，“好，就按你说的，过去的一切，到你这里为止。”</p>
+            <p>瓦图京长长地出了一口气，“谢谢。”</p>
+            <p>“神的秘密，是不能让人类知道的，对你们不好。”电话里的男人说，“再见了，瓦图京。”</p>
+            <p>“地狱里再见吧。”瓦图京挂断了电话。</p>
+            <p>风中传来树叶被翻动的声音，像是冬眠苏醒的群蛇爬出了洞穴，那是隐藏在落叶中的杀手们站了起来，暗红色的激光瞄准束从四面八方打进木屋里来。</p>
+            <p>“永别了，雷娜塔。”瓦图京轻声说。</p>
+            <p>他的目光投向火炉的上方，那里孤零零地摆着一个镜框，照片上是皑皑白雪中，巨熊般的老人正把眼神幽深的女孩高高举起，要放在自己的肩上。</p>
+            <p>——————————————</p>
+            <p>银色的劳斯莱斯行驶在微微起伏的石拼路面上，夜间风大了起来，原本那些安安稳稳呆在树上的叶子也纷纷坠落，像是一场斑斓的暴雪，零不得不把雨刷器打开，好把落在风挡玻璃上的叶子刮开。</p>
+            <p>路明非透过车窗观察这座萧瑟的城市，主干道两侧的建筑还算光鲜亮丽，驶入小路之后就会有破败的感觉，路面上的车不多，那些庄严的铸铁路灯也有明有灭。</p>
+            <p>那个名为“苏联”的国家已经结束二十多年了，人们曾对变革满怀希望，但这个国家并没有变得更好。但透过它还是能看出帝国旧日的辉煌，沙皇时代的拜占庭建筑和苏式建筑比邻，仿佛叶卡特琳娜女皇和斯大林并肩而立。</p>
+            <p>“不用沮丧，瓦图京大将之外我也有别的人脉，只要那个地方在俄罗斯境内，我总能想办法送你去。”零直视前方，信手打着方向盘。她开车有股明显的男人味儿。</p>
+            <p>“没沮丧，”路明非回过神来，“出了会儿神，这城市真漂亮。”</p>
+            <p>“其实我不太喜欢这里，太冷了，我喜欢暖和的地方。”零说，“不过你要是喜欢，我们可以下车走走。”</p>
+            <p>“啊？”</p>
+            <p>路明非还没“啊”完，劳斯莱斯已经开始减速了，分明是禁止街边停车的地方，可零直接就把这辆豪华的老式车停在路边了。</p>
+            <p>不知道从哪里窜出来的老警察高呼着俄语跑来，大概是“此地禁止停车”的意思。零只用一个动作就让他闭嘴了，她把一张大面额的钞票压在了雨刷器下，扭头就走。</p>
+            <p>老警察走到车边拿下那张钞票时，零和路明非已经走得很远了，他脱下警帽遥遥地行礼，动作优雅而夸张，倒像是沙皇宫中的小丑。</p>
+            <p>他们停车的这条小街还算有人气的，街道两侧的窗户多半都亮着灯，但夜间气温已经很低了，放眼看不到行人。</p>
+            <p>零走在前面，路明非稍微落后半步。零显得有些心事，路明非也理解，瓦图京忽然变脸说出那些伤人的话，他也有点愤怒，不过那不是他该多嘴的场合。</p>
+            <p>两个人谁都不说话，就只有落叶在他们脚下开裂的微声。</p>
+            <p>“瓦图京大将帮过我很多忙，没有他就没有罗曼诺夫家族在俄罗斯的生意，甚至我的姓氏也是他帮我找回来的。虽然基因分析能证明我和伊丽莎白一世的血缘关系，但在政府里没有人脉是不可能得到‘罗曼诺夫家族后人’这个认证的，政府也不可能送给每个沙皇后代一间宫殿。我已经习惯了有事就去问他。”零顿了顿，“可能是我太孩子气了。”
+            </p>
+            <p>路明非点点头，“难怪你第一个去问的人是他，那个‘δ计划’是怎么一回事？”</p>
+            <p>零和瓦图京的对话，路明非其实并没完全听懂，只是意识到那个“δ计划”和他要去的地方有关系。</p>
+            <p>“我们抵达莫斯科的当晚，我就托人查了你给我的那个坐标，那原本应该是西伯利亚北部的一个无人区，但它被标注为军事禁区，想去那里要有级别很高的通行证。再查下去，那个禁区曾经用于一个叫‘δ计划’的军事项目，但那个计划在苏联解体的时候已经结束了。瓦图京当年在国防部负责的就是高技术项目，但他知道的也很有限，那么背后支持那个项目的人，级别应该比他更高。”
+            </p>
+            <p>“原来是这样。”</p>
+            <p>两个人接着漫步，零的高跟靴子敲打着路面滴滴答答作响。小街尽头极远处有一座金顶洋葱头的教堂，灯火通明，让人恍惚觉得自己是在漫步午夜的游乐场。</p>
+            <p>“关于我的家族，”零忽然问，“没有别的问题了么？”</p>
+            <p>“没有啊。”路明非一愣，“你不是罗曼诺夫家族的么？”</p>
+            <p>“我跟你只是普通同学，你现在被秘党通缉，我没有任何理由来帮你，但我来了。你现在也知道我是个有家族的人，属于某个势力的一员。你不想知道我帮你的目的么？”</p>
+            <p>“如果是以前我会问的。”路明非挠挠头，“但现在不想问了。”</p>
+            <p>“为什么？”零难得少有地流露出好奇心来，歪头看着路明非。</p>
+            <p>“以前我把什么事都想得很简单，现在我连自己是个什么东西都看不明白，也就不想多问了。你有你的目的也没关系，反正在我最倒霉的时候你来帮我了。”</p>
+            <p>“关于那个坐标，你还知道什么？”</p>
+            <p>“不知道，”路明非仰起头，深深地呼吸了一口冰冷的空气，“这坐标是一个人打电话告诉我的，他说他是我父亲。”</p>
+            <p>“听说你们很多年都没见过了，而且只是通过电话，没怀疑过么？”</p>
+            <p>“我希望自己是个有父亲的人，”路明非笑笑，“而且他对我小时候的事知道得很清楚，一些很隐秘的事，我从来没跟人说过。”</p>
+            <p>这些事他连诺诺都没告诉，但零问起来，他随口就说了，感觉并不太要紧。</p>
+            <p>“你觉得他们会在那里等你？”</p>
+            <p>“不知道，”路明非皱皱鼻子，认真地说，“但我觉得去了那里就能找到一些答案，比如，我是谁。”</p>
+            <p>“也许那里是个陷阱。”</p>
+            <p>“有可能，但我就是有种感觉，我应该去。我也说不清那种感觉，就像某个类似‘终点’的地方，你去了可能发生好的事情，也可能发生不好的事情，但你觉得应该去。”</p>
+            <p>“如果到了那里，发现自己真的是龙王，你该怎么办？长出犄角和鳞片，从此跟人类为敌么？”</p>
+            <p>“不知道，”路明非说，今晚他已经说了太多的“不知道”，“如果我们真的能到那里的话，最后的一段路让我自己走。那样你认识的路明非永远都是我，至于到达终点的那个怪物，杀掉它好了，不要犹豫，那不是我。”</p>
+            <p>“如果站在这里的人是陈墨瞳，你会跟她说同样的话么？”零忽然停下脚步，扭头看着路明非，她的眼睛明亮而锋利。</p>
+            <p>第96章利维坦之歌(11)</p>
+            <p>“不，她不会站在这里。”路明非看着自己的脚尖沉默片刻，抬起头来，微笑着回答。</p>
+            <p>“因为她肯定无法把你处决，对么？她其实是个心很软的人，她的所有犹豫不决，都是因为心太软了。”</p>
+            <p>路明非点点头，“如果我真的该死，我希望我死在她看不到的地方。”</p>
+            <p>“那我呢？你明知道我陪你来这里有我的目的，可还是放心让我陪你去最终的地方？”</p>
+            <p>路明非点点头，“放心。虽然我也不太知道原因，可是我相信你。”</p>
+            <p>零也点点头，“你可以相信我，把我看作伙伴。”</p>
+            <p>“伙伴？”路明非问，因为零特别用重音强调了这个词。</p>
+            <p>“就是可以把后背交给他的人，相互之间不会放弃，也不会出卖彼此。”零忽然停下脚步，隔着落叶的长街，眺望街对面的一块空地，“为了共同的利益，可以一直走到最后的那种人。”</p>
+            <p>“为了共同的利益，”路明非低声说，“利益不一样了，不就分道扬镳了么？”</p>
+            <p>他不知道零为何强调这个词，听起来并不给力，远不如“朋友”和“兄弟”。</p>
+            <p>“没关系，”零淡淡地说，“只要努力就好了，努力变成对伙伴有用的人，就不会被丢下。”</p>
+            <p>她说这句话的时候神情平静，却又气势昂扬，远眺的眼睛中熠熠生辉，感觉是青春片中的女主角在眺望朝阳，坚定地说出“年轻时向着朝阳奔跑总不会错”这种莫名热血却又唬烂的台词。</p>
+            <p>路明非真好奇零的世界观人生观到底是谁教她的，她行事风格那么地凌厉，有着跟外观完全不相称的成熟感，却陡然说出这么中二的话来，活像很多年前的路明非，觉得自己活在漫画里，对世界充满着“壮志”和“悲愿”。</p>
+            <p>现在他长大了，不再信这一套了，可忽然有人说出了他十四岁那年会说的话，莫名其妙地有点怀念。</p>
+            <p>路明非忽然抓起貂毛帽子，使劲地摩挲着零的头顶。他是带点恶作剧的心理，意思是你这小模样还说什么大话呢？</p>
+            <p>可出乎他的意料，女王殿下对于这个“僭越”的动作完全没反应，她还是静静地看着街对面，任凭路明非摸自己的脑袋。好像这件事很正常，她是你的猫，你养了很多年。</p>
+            <p>白金色长发的触感好得出奇，像是水洗过的丝绸，还带着微微的温暖，就是那种“撸猫不想停”的感觉。可路明非摸了两把实在尴尬了，只好重新把帽子给她戴戴好。</p>
+            <p>“这条街对面，原来是科学院图书馆，我在那里也住过。”零冲着街对面的空地努努嘴。</p>
+            <p>看起来摸头杀这个动作并未困扰她，根本没有“心中微微泛开涟漪”这回事，她只是自顾自地讲自己在意的事。</p>
+            <p>路明非疑惑地看向街对面，那片空地上落满了树叶，周围围着铁丝网，铁丝网上挂着俄语牌子，不知道是“此地出售”还是“私人土地禁止入内”。那块牌子也很旧了，想来很久都没有人管过这块地。</p>
+            <p>再远处倒还有几幢苏联时代的老建筑，都黑着灯，看不太清楚。</p>
+            <p>“我们过去看看？”路明非说。</p>
+            <p>“不用，很多年前就烧掉了。”零轻声说。</p>
+            <p>——————————————</p>
+            <p>他们回到伊丽莎白宫的时候已经是深夜了，长街漫步花了很多时间，等他们回到车边的时候，连远处的教堂都熄了灯。</p>
+            <p>“早点休息，通行证的事我们再想办法。”路明非故作轻松的语气，在楼梯口跟零告别。他们的卧室楼上楼下，零住在最顶层的主人房里。</p>
+            <p>“谢谢你陪我散步。”零转身上楼。</p>
+            <p>路明非挠挠头，起初分明是说要带他看看莫斯科的夜景的，现在变成感谢他陪女王殿下散步了。</p>
+            <p>他走进自己的套间时，楚子航还赤着上身跟角落里练倒立，看到路明非推门进来这家伙的眼神立刻活跃起来，透出一种立刻想要迎上来问你们搞到通行证了么你们怎么去了那么久的感觉。</p>
+            <p>这位师兄当年也是个内心很八卦的人。</p>
+            <p>“闭嘴，没你事儿，继续练你的倒立。”路明非从他身边走过，懒洋洋地说。</p>
+            <p>零推开自己卧室的门，立刻就听到了水声。</p>
+            <p>她的卧室是奢华的巴洛克风格——倒不是她喜欢，而是这间卧室原本是伊丽莎白一世和情人共度春宵的地方，而零根本懒得改动它的结构——卧室正中央摆着青铜铸造的大浴缸，这个香艳的设计是方便女主人在沐浴后一丝不挂走向大床的。此时此刻浴缸里飘满了泡沫，亚洲风情的美人正拿刷子猛刷自己的大腿，说起来这位也算是凸凹有致窈窕可人，但对待自己的架势就像是皮匠对待皮子，毫不怜香惜玉。
+            </p>
+            <p>这大概要归于两个原因：首先她是个搞技术的死宅，其次在卖弄风情这件事上她豁出全身的劲儿也比不过酒德麻衣，不如改走豪放路线。</p>
+            <p>零并没有多看这位豪迈美人一眼，走到窗边的书桌前坐下，若有所思。</p>
+            <p>苏恩曦把自己洗干净擦干净了，裹上件丝绸浴袍，袅袅婷婷地绕着卧室走了一圈，在镜中360度打量自己，深感满意之后，大大咧咧地在沙发上坐下，不知道从哪里摸出一袋薯片来。</p>
+            <p>“麻衣呢？”零淡淡地问。</p>
+            <p>“去北极了，利维坦那事儿也得有人盯。”苏恩曦说，“俄罗斯这边的股市跌得很凶，我过来改改投资结构，顺带给你帮帮忙。”</p>
+            <p>“罗曼诺夫家族”能从欧洲调集如此巨量的现金进入俄罗斯，这位“黑金天鹅”才是幕后功臣，也是她指挥着这笔钱在俄罗斯的各个市场杀进杀出。至于零，应该说是一个吉祥物。</p>
+            <p>“我的事我自己能做好，”零说，“你是首席助理，你出主意，我执行就好了。”</p>
+            <p>“首席助理？”苏恩曦从鼻孔里哼出两道气来，“我就是个老妈子，给你们两位大小姐搭桥铺路提供经费的！在老板心里，还是你这个特别助理更宝贝，最小最可爱的嘛！”</p>
+            <p>“对他来说谁都重要，谁也都不重要。”</p>
+            <p>“回来不过是一个半小时的车程，你们居然花了四个半小时，手拉手逛街去了么？”苏恩曦跳到零的椅子背后，张开胳膊把她和椅子一起抱紧，“我说你还记得你这趟的任务是什么吧？”</p>
+            <p>“送路明非去终点。”零缓缓地说。</p>
+            <p>“没错，是个快递的活儿，他是你的货物。你只负责把他送过去，至于送到之后会怎么样，不关你的事。”苏恩曦顿了顿，歪着脑袋看零，“你会心软么？”</p>
+            <p>“你给我安了窃听器！”零的眼神骤然犀利，像个炸毛的小动物。</p>
+            <p>“好好好，是我错，我道歉。”苏恩曦赶紧举手投降，“我不该偷听你们说话，可你俩只是看看风景聊聊闲天，又没在街头激吻，犯不着杀我灭口吧？”</p>
+            <p>她从零的领口解下那个海狸鼠毛做的小狐狸，向她晃了晃，远远地丢了出去，“真就这一个，骗你是小狗。”</p>
+            <p>通过这个小狐狸她听到了零和路明非在小街上的对话，零说诺诺是个会心软的人，苏恩曦的问题其实是顺着那句话问的。零敏锐地猜到了苏恩曦给自己装了窃听器。</p>
+            <p>“你会心软么？”静了好一会儿，苏恩曦又问，“就像陈墨瞳那样。”</p>
+            <p>“不会，我是老板的人，老板叫我做什么，我就一定要做到。”零缓缓地说。</p>
+            <p>“我是个杀手，我莫得感情！”苏恩曦又是一把搂住零，嘻嘻哈哈。</p>
+            <p>可零不笑，她直直地盯着苏恩曦的胳膊，苏恩曦的胳膊上有明显的擦痕。黑金天鹅虽然是个大大咧咧的人，但按照她自己的话说她是个“文职干部”，并不参与打打杀杀，而这种伤痕看起来是在树林里奔跑时无意中磕碰到造成的。</p>
+            <p>零抓住了苏恩曦的另一只胳膊，不容她挣扎。苏恩曦的另一侧胳膊上也有类似的擦痕，时值秋天，莫斯科已经很冷，出于什么原因苏恩曦会在一片密林中狂奔，还露着胳膊？</p>
+            <p>“来之前你去哪里了？”零冷冷地问。</p>
+            <p>苏恩曦不笑了，从零的手中抽回了胳膊，走到沙发旁坐下，为自己点燃了一支细长的烟。她其实很少抽烟，而她一旦抽起烟来就像是变了个人，有些黑暗有些妖娆，还有些厌世的冷。</p>
+            <p>零站在沙发前，距离她两步左右的地方，像是个孩子在等大人的训示，可又有种她随时会抽出一把刀扑上来的感觉。</p>
+            <p>“瓦图京陆军大将死了。”苏恩曦喷出一口烟雾，“可别想错了，不是我杀的他，我知道你在想什么。在你离开那间木屋的十五分钟后，他被俄国人处决了。”</p>
+            <p>零野兽般突前，一把抓住苏恩曦的手腕，力量之大，苏恩曦觉得腕骨就快骨折了。但她还是强忍着痛楚静静地看着零，以这种眼神告诉零，那不是什么玩笑话，是冷冰冰的事实。</p>
+            <p>看到苏恩曦身上的伤痕时，她委实怀疑过苏恩曦跟着她们去了瓦图京的住处，那里恰好是一片茂密的白桦林。虽然是文职干部，但是“黑金天鹅“办起事来也是个狠角色，零不愿用在瓦图京身上的手段，苏恩曦却没什么可犹豫的，她跟瓦图京也没私交。
+            </p>
+            <p>可真相居然是瓦图京被处决了，苏恩曦是不屑于就这种事撒谎的，如果真是她杀了瓦图京，零提着刀站在她面前她都会承认。</p>
+            <p>“我跟着你们去了瓦图京的住处，他被监视居住的那个区域算是军事禁区，我只能停车在禁区外。你们离开后不久我就听到了枪声，为了抄近路我翻过一个坡跑过去的，我赶到的时候，处刑已经结束了，那帮人正用火焰喷射器在焚烧现场。”苏恩曦说，“想用森林火灾的说法来掩盖吧。”
+            </p>
+            <p>零松开苏恩曦，缓缓地后退，在对面的沙发上坐下，眼中一片空白。</p>
+            <p>“所以不必再揣着什么心事了，他知道自己会被处决，所以才赶你走。有人猜到了你会去找他，你们之间的每句话都被监听。”苏恩曦说。</p>
+            <p>“你杀了他们么？”零问。</p>
+            <p>“什么？”苏恩曦没明白。</p>
+            <p>“那些行刑的人，你杀了他们么？”零还是没什么表情，可她身上透出可怕的气息，像是一位迫不及待想要绞死叛国者的女王。</p>
+            <p>第97章利维坦之歌（12）</p>
+            <p>“杀了那些人有用么？那些只是动手的人，是工具而已。有人杀了你的朋友，你折断他的武器，这只是泄愤而已。”</p>
+            <p>静了很久，零微微点头，那股可怕的气息略微平复。</p>
+            <p>“当然，我也没让他们好过。我把他们都抓了起来，分头审讯。有人不回答，我就打断他一根骨头，答案不一致，各每人打断一根骨头。从博弈学上说，这样一定能问出真相。”苏恩曦说，“所以你们夜游莫斯科的时候，我正在干骨科医生的活儿。”
+            </p>
+            <p>零摇摇头，“你问不出什么的，幕后的人藏得很深，瓦图京觉得我们根本无法跟那些人为敌，所以才不愿意告诉我真相。”</p>
+            <p>“没错，刑讯逼供的结果是，处决瓦图京是一个特殊部门下达的命令。这帮人就是一帮俄罗斯特战队员而已，他们奉命盯住瓦图京，必要的时候有权处决他。”苏恩曦说，“幕后的人借军人的手除掉了瓦图京，他们的势力渗透到俄国人的军队和政府内部去了。”
+            </p>
+            <p>两个女人默默地对坐，直到苏恩曦把那支烟抽完，零都没发出任何声音。</p>
+            <p>“关于那座研究所，你在里面住了那么多年，可就只有那么点儿印象？”苏恩曦问。</p>
+            <p>“我现在不想谈这件事。”零站起身来向外走去。</p>
+            <p>“不用去那儿看了，烧得什么都不剩了。遗体我帮你收拾好送去火葬场了，墓地也买好了，下葬之后我会给你个地址，要吊唁的话就去那里。”苏恩曦又点燃一根烟。她的执行效率素来都很高。</p>
+            <p>“我是要去楼顶吹吹风。”零把双手抄进口袋里，从她进卧室到现在，大衣都没脱。她忽然僵住了，静静地站了片刻，从口袋里抽出了一张字条。因为一直戴着手套，即使在深夜里散步，她都没有把手伸进口袋里。</p>
+            <p>她默默地读着那张字条，按说那张小字条上已经写不下多少字，可她读了很久很久。苏恩曦觉得有什么不对了，凑过来跟她一起看。</p>
+            <p>“其实我知道你是谁，我在那些档案里看过你的照片，你是她们中唯一不笑的女孩。去做你觉得对的事吧。”字条写得很潦草，反过来的另一面上，是某个人的名字和地址。</p>
+            <p>——————————————</p>
+            <p>路明非脱下自己的猎装外套挂在衣架上，卸下藏在猎装里的武器，包括袖管中的短弧刀和口袋里的备用弹匣，他如今也是走到哪里都带着家伙的男人了。</p>
+            <p>那支备用弹匣被掏出来的时候，带出了一张白色的纸条，路明非疑惑地打开纸条，上面是潦草的手书，蹩脚的中国字，“世界上不能被辜负的，除了国家，还有一直陪你的女人。”</p>
+            <p>思来想去，唯一的可能是瓦图京在把外套丢给他的时候把这张字条塞进了他的口袋。</p>
+            <p>塞纸条这种事实在不像是瓦图京的风格，有什么话不能开诚布公地说？意思也看不太懂，“一直陪你的女人”，难道是说零么？老爷子大概误会了他跟零之间的关系。</p>
+            <p>路明非躺在床上，对着那张纸条发了会儿呆，困意涌起，睡着了。</p>
+            <p>——————————————</p>
+            <p>伊丽莎白宫的楼顶是个大理石浮雕的阁楼，周围是一圈雕花铁栏杆，零趴在栏杆上，眺望着夜色中的莫斯科。星星点点的灯火，向着遥远的地平线绵延开去。</p>
+            <p>风很大，她已经在这里看了很久，动都不动一下。脚步声从背后传来，苏恩曦在睡袍外披了一件长及脚面的貂皮大氅，把长发在头顶盘起，踩着高跟拖鞋上来了，跟19世纪的贵妇似的。</p>
+            <p>“我是个杀手，我莫得感情。”她把一杯热巧克力递到零手里，和她并肩趴在栏杆上眺望，“要真能那样，你应该会开心很多吧。”</p>
+            <p>她搂了搂零，让她把头靠在自己肩上。</p>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
