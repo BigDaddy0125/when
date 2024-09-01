@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>6.4</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    ::selection {
+      background-color: orange;
+      color: white
+    }
+
+    code[class*=language-],
+    pre[class*=language-] {
+      color: #333;
+      background: 0 0;
+      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+      line-height: 1.4;
+      -moz-tab-size: 8;
+      -o-tab-size: 8;
+      tab-size: 8;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none
+    }
+
+    pre[class*=language-] {
+      padding: .8em;
+      overflow: auto;
+      border-radius: 3px;
+      background: #f5f5f5
+    }
+
+    :not(pre)>code[class*=language-] {
+      padding: .1em;
+      border-radius: .3em;
+      white-space: normal;
+      background: #f5f5f5
+    }
+
+    .token.blockquote,
+    .token.comment {
+      color: #969896
+    }
+
+    .token.cdata {
+      color: #183691
+    }
+
+    .token.doctype,
+    .token.macro.property,
+    .token.punctuation,
+    .token.variable {
+      color: #333
+    }
+
+    .token.builtin,
+    .token.important,
+    .token.keyword,
+    .token.operator,
+    .token.rule {
+      color: #a71d5d
+    }
+
+    .token.attr-value,
+    .token.regex,
+    .token.string,
+    .token.url {
+      color: #183691
+    }
+
+    .token.atrule,
+    .token.boolean,
+    .token.code,
+    .token.command,
+    .token.constant,
+    .token.entity,
+    .token.number,
+    .token.property,
+    .token.symbol {
+      color: #0086b3
+    }
+
+    .token.prolog,
+    .token.selector,
+    .token.tag {
+      color: #63a35c
+    }
+
+    .token.attr-name,
+    .token.class,
+    .token.class-name,
+    .token.function,
+    .token.id,
+    .token.namespace,
+    .token.pseudo-class,
+    .token.pseudo-element,
+    .token.url-reference .token.variable {
+      color: #795da3
+    }
+
+    .token.entity {
+      cursor: help
+    }
+
+    .token.title,
+    .token.title .token.punctuation {
+      font-weight: 700;
+      color: #1d3e81
+    }
+
+    .token.list {
+      color: #ed6a43
+    }
+
+    .token.inserted {
+      background-color: #eaffea;
+      color: #55a532
+    }
+
+    .token.deleted {
+      background-color: #ffecec;
+      color: #bd2c00
+    }
+
+    .token.bold {
+      font-weight: 700
+    }
+
+    .token.italic {
+      font-style: italic
+    }
+
+    .language-json .token.property {
+      color: #183691
+    }
+
+    .language-markup .token.tag .token.punctuation {
+      color: #333
+    }
+
+    .language-css .token.function,
+    code.language-css {
+      color: #0086b3
+    }
+
+    .language-yaml .token.atrule {
+      color: #63a35c
+    }
+
+    code.language-yaml {
+      color: #183691
+    }
+
+    .language-ruby .token.function {
+      color: #333
+    }
+
+    .language-markdown .token.url {
+      color: #795da3
+    }
+
+    .language-makefile .token.symbol {
+      color: #795da3
+    }
+
+    .language-makefile .token.variable {
+      color: #183691
+    }
+
+    .language-makefile .token.builtin {
+      color: #0086b3
+    }
+
+    .language-bash .token.keyword {
+      color: #0086b3
+    }
+
+    pre[data-line] {
+      position: relative;
+      padding: 1em 0 1em 3em
+    }
+
+    pre[data-line] .line-highlight-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      display: block;
+      width: 100%
+    }
+
+    pre[data-line] .line-highlight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: inherit 0;
+      margin-top: 1em;
+      background: hsla(24, 20%, 50%, .08);
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+      pointer-events: none;
+      line-height: inherit;
+      white-space: pre
+    }
+
+    pre[data-line] .line-highlight:before,
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-start);
+      position: absolute;
+      top: .4em;
+      left: .6em;
+      min-width: 1em;
+      padding: 0 .5em;
+      background-color: hsla(24, 20%, 50%, .4);
+      color: #f4f1ef;
+      font: bold 65%/1.5 sans-serif;
+      text-align: center;
+      vertical-align: .3em;
+      border-radius: 999px;
+      text-shadow: none;
+      box-shadow: 0 1px #fff
+    }
+
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-end);
+      top: auto;
+      bottom: .4em
+    }
+
+    html body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+      overflow: initial;
+      box-sizing: border-box;
+      word-wrap: break-word
+    }
+
+    html body>:first-child {
+      margin-top: 0
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
+      line-height: 1.2;
+      margin-top: 1em;
+      margin-bottom: 16px;
+      color: #000
+    }
+
+    html body h1 {
+      font-size: 2.25em;
+      font-weight: 300;
+      padding-bottom: .3em
+    }
+
+    html body h2 {
+      font-size: 1.75em;
+      font-weight: 400;
+      padding-bottom: .3em
+    }
+
+    html body h3 {
+      font-size: 1.5em;
+      font-weight: 500
+    }
+
+    html body h4 {
+      font-size: 1.25em;
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1.1em;
+      font-weight: 600
+    }
+
+    html body h6 {
+      font-size: 1em;
+      font-weight: 600
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5 {
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1em
+    }
+
+    html body h6 {
+      color: #5c5c5c
+    }
+
+    html body strong {
+      color: #000
+    }
+
+    html body del {
+      color: #5c5c5c
+    }
+
+    html body a:not([href]) {
+      color: inherit;
+      text-decoration: none
+    }
+
+    html body a {
+      color: #08c;
+      text-decoration: none
+    }
+
+    html body a:hover {
+      color: #00a3f5;
+      text-decoration: none
+    }
+
+    html body img {
+      max-width: 100%
+    }
+
+    html body>p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      word-wrap: break-word
+    }
+
+    html body>ol,
+    html body>ul {
+      margin-bottom: 16px
+    }
+
+    html body ol,
+    html body ul {
+      padding-left: 2em
+    }
+
+    html body ol.no-list,
+    html body ul.no-list {
+      padding: 0;
+      list-style-type: none
+    }
+
+    html body ol ol,
+    html body ol ul,
+    html body ul ol,
+    html body ul ul {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body li {
+      margin-bottom: 0
+    }
+
+    html body li.task-list-item {
+      list-style: none
+    }
+
+    html body li>p {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body .task-list-item-checkbox {
+      margin: 0 .2em .25em -1.8em;
+      vertical-align: middle
+    }
+
+    html body .task-list-item-checkbox:hover {
+      cursor: pointer
+    }
+
+    html body blockquote {
+      margin: 16px 0;
+      font-size: inherit;
+      padding: 0 15px;
+      color: #5c5c5c;
+      background-color: #f0f0f0;
+      border-left: 4px solid #d6d6d6
+    }
+
+    html body blockquote>:first-child {
+      margin-top: 0
+    }
+
+    html body blockquote>:last-child {
+      margin-bottom: 0
+    }
+
+    html body hr {
+      height: 4px;
+      margin: 32px 0;
+      background-color: #d6d6d6;
+      border: 0 none
+    }
+
+    html body table {
+      margin: 10px 0 15px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all
+    }
+
+    html body table th {
+      font-weight: 700;
+      color: #000
+    }
+
+    html body table td,
+    html body table th {
+      border: 1px solid #d6d6d6;
+      padding: 6px 13px
+    }
+
+    html body dl {
+      padding: 0
+    }
+
+    html body dl dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 700
+    }
+
+    html body dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px
+    }
+
+    html body code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: .85em;
+      color: #000;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      padding: .2em 0
+    }
+
+    html body code::after,
+    html body code::before {
+      letter-spacing: -.2em;
+      content: '\00a0'
+    }
+
+    html body pre>code {
+      padding: 0;
+      margin: 0;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      border: 0
+    }
+
+    html body .highlight {
+      margin-bottom: 16px
+    }
+
+    html body .highlight pre,
+    html body pre {
+      padding: 1em;
+      overflow: auto;
+      line-height: 1.45;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    html body .highlight pre {
+      margin-bottom: 0;
+      word-break: normal
+    }
+
+    html body pre code,
+    html body pre tt {
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0
+    }
+
+    html body pre code:after,
+    html body pre code:before,
+    html body pre tt:after,
+    html body pre tt:before {
+      content: normal
+    }
+
+    html body blockquote,
+    html body dl,
+    html body ol,
+    html body p,
+    html body pre,
+    html body ul {
+      margin-top: 0;
+      margin-bottom: 16px
+    }
+
+    html body kbd {
+      color: #000;
+      border: 1px solid #d6d6d6;
+      border-bottom: 2px solid #c7c7c7;
+      padding: 2px 4px;
+      background-color: #f0f0f0;
+      border-radius: 3px
+    }
+
+    @media print {
+      html body {
+        background-color: #fff
+      }
+
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        color: #000;
+        page-break-after: avoid
+      }
+
+      html body blockquote {
+        color: #5c5c5c
+      }
+
+      html body pre {
+        page-break-inside: avoid
+      }
+
+      html body table {
+        display: table
+      }
+
+      html body img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%
+      }
+
+      html body code,
+      html body pre {
+        word-wrap: break-word;
+        white-space: pre
+      }
+    }
+
+    .markdown-preview {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box
+    }
+
+    .markdown-preview ul {
+      list-style: disc
+    }
+
+    .markdown-preview ul ul {
+      list-style: circle
+    }
+
+    .markdown-preview ul ul ul {
+      list-style: square
+    }
+
+    .markdown-preview ol {
+      list-style: decimal
+    }
+
+    .markdown-preview ol ol,
+    .markdown-preview ul ol {
+      list-style-type: lower-roman
+    }
+
+    .markdown-preview ol ol ol,
+    .markdown-preview ol ul ol,
+    .markdown-preview ul ol ol,
+    .markdown-preview ul ul ol {
+      list-style-type: lower-alpha
+    }
+
+    .markdown-preview .newpage,
+    .markdown-preview .pagebreak {
+      page-break-before: always
+    }
+
+    .markdown-preview pre.line-numbers {
+      position: relative;
+      padding-left: 3.8em;
+      counter-reset: linenumber
+    }
+
+    .markdown-preview pre.line-numbers>code {
+      position: relative
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows {
+      position: absolute;
+      pointer-events: none;
+      top: 1em;
+      font-size: 100%;
+      left: 0;
+      width: 3em;
+      letter-spacing: -1px;
+      border-right: 1px solid #999;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span {
+      pointer-events: none;
+      display: block;
+      counter-increment: linenumber
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+      content: counter(linenumber);
+      color: #999;
+      display: block;
+      padding-right: .8em;
+      text-align: right
+    }
+
+    .markdown-preview .mathjax-exps .MathJax_Display {
+      text-align: center !important
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .status {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+      margin-bottom: 16px
+    }
+
+    .markdown-preview .md-toc {
+      padding: 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    .scrollbar-style::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .scrollbar-style::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    .scrollbar-style::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      overflow: auto
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+      position: relative;
+      top: 0;
+      min-height: 100vh
+    }
+
+    @media screen and (min-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em calc(50% - 457px + 2em)
+      }
+    }
+
+    @media screen and (max-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        font-size: 14px !important;
+        padding: 1em
+      }
+    }
+
+    @media print {
+      html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+        display: none
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      color: inherit;
+      z-index: 99;
+      width: 32px;
+      text-align: center;
+      opacity: .4
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+      opacity: 1
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      padding: 32px 0 48px 0;
+      font-size: 14px;
+      box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: inherit
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+      width: 8px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+      text-decoration: none
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+      padding: 0 16px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+      left: 300px;
+      width: calc(100% - 300px);
+      padding: 2em calc(50% - 457px - 300px / 2);
+      margin: 0;
+      box-sizing: border-box
+    }
+
+    @media screen and (max-width:1274px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        width: 100%
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+      display: none
+    }
+
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+  </style>
+  <!-- The content below will be included at the end of the <head> element. -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // your code here
+    });
+  </script>
+</head>
+
+<body for="html-export">
+
+
+  <div class="crossnote markdown-preview  ">
+
+    <div id="top"></div>
+    <p><a href="6.3.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="6.5.html">下一章</a></p>
+    <hr>
+    <h1 id="center第六章-但为君故center">
+      <center>第六章 但为君故</center>
+    </h1>
+    <br>
+    <br>
+
+    <div class="md-toc">
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#center第六章-但为君故center" class="md-toc-link">
+            <center>第六章 但为君故</center>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第157章-但为君故61" class="md-toc-link">
+              <p>第157章 但为君故61</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第158章-但为君故62" class="md-toc-link">
+              <p>第158章 但为君故62</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第159章-但为君故63" class="md-toc-link">
+              <p>第159章 但为君故63</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第160章-但为君故64" class="md-toc-link">
+              <p>第160章 但为君故64</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第161章-但为君故65" class="md-toc-link">
+              <p>第161章 但为君故65</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第162章-但为君故66" class="md-toc-link">
+              <p>第162章 但为君故66</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第163章-但为君故67" class="md-toc-link">
+              <p>第163章 但为君故67</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第164章-但为君故68" class="md-toc-link">
+              <p>第164章 但为君故68</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第165章-但为君故69" class="md-toc-link">
+              <p>第165章 但为君故69</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第166章-但为君故70" class="md-toc-link">
+              <p>第166章 但为君故70</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第167章-但为君故71" class="md-toc-link">
+              <p>第167章 但为君故71</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第168章-但为君故72" class="md-toc-link">
+              <p>第168章 但为君故72</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第169章-但为君故73" class="md-toc-link">
+              <p>第169章 但为君故73</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第170章-但为君故74" class="md-toc-link">
+              <p>第170章 但为君故74</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第171章-但为君故75" class="md-toc-link">
+              <p>第171章 但为君故75</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第172章-但为君故76" class="md-toc-link">
+              <p>第172章 但为君故76</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第173章-但为君故77" class="md-toc-link">
+              <p>第173章 但为君故77</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第174章-但为君故78" class="md-toc-link">
+              <p>第174章 但为君故78</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第175章-但为君故79" class="md-toc-link">
+              <p>第175章 但为君故79</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第176章-但为君故80" class="md-toc-link">
+              <p>第176章 但为君故80</p>
+
+            </a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+    <hr>
+    <h2 id="第157章-但为君故61">第157章 但为君故61 </h2>
+    <p>这父女俩还真是没完了，一个走了又来一个，他只是个搭车的过客，这些跟他又有什么关系。</p>
+    <p>克里斯廷娜扭头看了他一眼，表情淡定。大概是觉得路明非已经是自己的线人了，大家大可以打开天窗说亮话，用不着藏着掖着。</p>
+    <p>茶几上摆着两杯伏特加，这是连酒都给路明非倒好了，看起来是要深聊。</p>
+    <p>路明非叹了口气，在旁边的沙发上坐下，“深更半夜来我这，你那些崇拜者们如果喝多了提着刀来找我，我该怎么解释？”</p>
+    <p>克里斯廷娜显然也喝了不少，但还没到醉的地步，耸耸肩，满脸无所谓的样子，“我跟他们说我觉得皇女殿下的秘书很有趣，但他一路上都没有多看我一眼，他们都说你跟皇女殿下是一对，当然不会多看我一眼，我就跟他们打了个赌。”</p>
+    <p>“打什么赌？”路明非一愣。</p>
+    <p>“打赌我能叫你迷上我！”克里斯廷娜雄赳赳气昂昂，“这样我来找你说话就不用怕人知道。”</p>
+    <p>路明非心说人家是看热闹不嫌事大，您不一样，您自己就是热闹。</p>
+    <p>但正好套套克里斯廷娜的话，看布宁有没有说真话。</p>
+    <p>他举杯抿了一口，“少尉小姐，是不是应该跟我解释一下您和布宁先生之间的关系？”</p>
+    <p>“他跟你说什么了没有？”克里斯廷娜歪着头看他，眼神凶狠。</p>
+    <p>“刚才散步的时候遇到了。”路明非故意说得含混。</p>
+    <p>克里斯廷娜使劲地咬嘴唇咬了半天，“好！也没什么不能说的！他是我父亲！但我不承认他是我父亲！”</p>
+    <p>路明非点点头，“他也这么说，但我不敢确定，你俩长得真不像。”</p>
+    <p>“我妈妈是个美人，”克里斯廷娜惆怅地盯着那枚黄钻，“我像我妈妈。”</p>
+    <p>“父亲是军火商，女儿是要摧毁军火商团伙的情报员，你家关系真头疼。”路明非把玩着杯子，“他已经知道你的身份了，你想要完成任务很难了。”</p>
+    <p>“我是不会放弃的！”克里斯廷娜冷冷地说，“我的字典里，没有放弃这个词！”</p>
+    <p>路明非心里叹气，“我的字典里没有什么什么词”，这种中二的宣言又有什么用呢？这个世界最终是靠实力说话的，你的字典里没有的词，别人能硬为你加进去。</p>
+    <p>“还是想让我为你搜集他犯罪的证据么？可知道了你的身份，他应该会把所有的马脚收起来。”路明非说到这里，又有点疑惑，因为布宁刚才邀请了他和零参加那场神秘的拍卖会。</p>
+    <p>难道说那场拍卖会上并无什么危险的违禁品，不过是寻常的军火拍卖？可是这群老家族的后裔不远千里跑来西伯利亚做交易，如果只是买点AK步枪或者国际法允许交易的武器，又有点说不过去。</p>
+    <p>“他很在乎你们那位皇女殿下，应该是有什么事有求于你们，细心点总能抓到蛛丝马迹。你放心，你立功的表现我都会写在报告上的。”克里斯廷娜严肃起来就像一位班主任。</p>
+    <p>路明非配合地笑笑，“我会留意的。”</p>
+    <p>“防空洞里的那个大家伙，是什么东西？”克里斯廷娜问。</p>
+    <p>“我们在防空洞里不都说了么？”</p>
+    <p>克里斯廷娜皱眉，“离得太远，又那么黑，没看清，也没听清。”</p>
+    <p>
+      路明非心说没听清就好瞎编了，斟酌了片刻，“你父亲认为苏联时代遗留下来的研究所中，有一个是专门研究神秘主义的，它的遗址就在西伯利亚，但还没被发掘出来。那个大东西是某种基因变异的动物，应该就是从那个研究所里逃出来的。你听说过那个研究所么？”
+    </p>
+    <p>克里斯廷娜疑惑地摇摇头，“没有，我接受的任务书上没说什么研究所，就说他们应该是在西伯利亚交易毁灭性武器技术。”</p>
+    <p>路明非点点头，心说老爹对女儿还是很了解的，克里斯廷娜对于西伯利亚雪原上的真相知道得并不多，她很可能是某位幕后人的棋子，等她摧毁了自己老爹的团伙，没准等待她的就是牢狱之灾和一颗子弹。</p>
+    <p>“明白了，我会帮你留意。”路明非随口敷衍。</p>
+    <p>“你们来这里是想买什么？”克里斯廷娜又问，“核武器？洲际导弹？听说罗曼诺夫家族一直干的都是金融业，怎么会卷进军火交易里来？赚点干净的钱不好么？”</p>
+    <p>“如果我跟你说我们什么都不想买，压根没想当你父亲的客户，你们完全搞错了，你会不会觉得我是在说谎？”路明非苦笑。</p>
+    <p>克里斯廷娜歪着头，审慎地看了他好一会儿，点点头，“好吧，我相信你，但就算你没犯什么罪，跟联邦安全局合作也是明智的。你们要是局外人，我爹没准会杀人灭口，只有联邦安全局和格鲁乌特种部队能保护你们。”</p>
+    <p>“明白，给机会谁不想当正义的伙伴呢？”路明非微笑。</p>
+    <p>“正义的伙伴？这个词很好！”克里斯廷娜情报员眼睛一亮，深深认可路明非的修辞。</p>
+    <p>路明非心说你当然觉得这个词好，因为你从某种意义上跟那个男人是类似的生物啊。</p>
+    <p>克里斯廷娜端起茶几上的酒杯，正要喝，手忽然抖了起来，酒液洒了满桌。她脸色煞白，牙关紧咬，看得出她想要强行控制住自己的手，可颤抖越来越厉害，像是癫痫病人发病的样子。</p>
+    <p>路明非急忙起身，正准备上前查看，却被克里斯廷娜以强硬的手势阻止了。她哆嗦着从随身小包里摸出药瓶，把两粒橙红色的药丸丢进嘴里，用剩下的半杯酒吞服。</p>
+    <p>那是某种见效极快的药物，十几秒钟后她握着杯子的手就稳定下来，全身绷紧的状态也解除了。</p>
+    <p>她看了路明非一眼，又给自己倒了一杯伏特加，“这事儿谁也别说！”</p>
+    <p>“癫痫？”路明非略略放心，癫痫症倒不算罕见，但癫痫病人充当情报员，关键时候犯病怎么办？</p>
+    <p>“不，肌萎缩侧索硬化，听过没有？”克里斯廷娜深呼吸几下，躺在沙发靠背上。这还是她第一次流露出疲惫的表情。</p>
+    <p>路明非摇头。</p>
+    <p>“也叫渐冻人症，我的神经和肌肉系统会渐渐地萎缩，一步步地失去行动能力，最后我会连呼吸的力气都没有，窒息死掉。”克里斯廷娜轻声说，“没有药能治，我妈妈也是死在这种病上。”</p>
+    <p>路明非心里微微一动，克里斯廷娜的说法和布宁的说法不谋而合，那凶狠狡猾的老家伙还真没撒谎博同情。</p>
+    <p>他默默地打量着克里斯廷娜，如零所说，情报员小姐是个真正的美人，青春洋溢，矫健婀娜，那玲珑浮凸的身段，纤细修长的双腿，简直就是上帝用黄金的圆规量着做出来的。</p>
+    <p>可这样完美的作品却被注定悲剧的结局，就像什么书上说的，所谓悲剧，就是把最美的东西打碎。</p>
+    <p>克里斯廷娜赶紧拉扯裙摆挡住腿，然后双手抱怀，把礼服裙的深V开口挡上了，气势汹汹，横眉立目，“看什么看？看女孩脖子以下是很失礼的！”</p>
+    <p>“你的崇拜者们不也把你全身上下的看？”路明非耸耸肩，“你在桌子上跳舞的时候，裙摆都飞到大腿根了。”</p>
+    <p>那些放浪形骸的酒局中，聚焦在克里斯廷娜身上的目光确实都透着赤裸裸的欲望，让路明非有点不适应。但可能斯拉夫民族本就开放，克里斯廷娜又那么火辣撩人，激发了年轻人的征服欲。</p>
+    <p>也难怪布宁有酒必到，在老父亲的眼里，想拱他家好白菜的猪原本并不是路明非这一头。</p>
+    <p>“那不一样！”克里斯廷娜哼哼，“我是故意卖弄色相给他们看，他们不看我岂不是白卖弄了？我那是为完成任务！”</p>
+    <p>路明非收回目光，“我很遗憾。”</p>
+    <p>克里斯廷娜怔了一下，似乎是明白了路明非那番打量的意思。</p>
+    <p>她理了理耳边的细发，“没关系，我从小就知道。虽然活不过40岁，但是我可以活得比别人都有意义！”</p>
+    <p>“记得你答应我的事！”克里斯廷娜站起身来，整整裙子，扬长而去。</p>
+    <p>总算可以独自清净一会儿了，路明非还想望着窗外再发会儿呆，忽然听到床底下传来细微的呼吸声！</p>
+    <p>那毫无疑问是个高手！只有经过严格训练的人才能把呼吸控制得那么缓慢却悠长，类似太极拳中的吐息之术，这种人可以静如处子，但一旦动起来就如雷霆闪电。也是今晚喝了不少酒，他居然没有觉察到房间里其实还有第三个人！</p>
+    <p>用胶布贴在茶几下的沙漠之鹰瞬间就到了他手里，他一个旋身单膝跪地，确保了自己和床之间的安全距离，同时锁定床下的敌人。</p>
+    <p>“是我。”床底下传出熟悉的声音，跟着楚子航从床下爬了出来。</p>
+    <p>路明非想要惨叫说你这尊神从哪里冒出来的？藏在我床底下偷听算什么意思？怎么每次克里斯廷娜来找他，旁边都有人听壁脚？</p>
+    <p>“我来找师兄，师兄不在，我就说在屋里等等你，结果她撬门进来，我以为是敌人，就藏到床下去了。”楚子航拍了拍身上的灰，认真地看着路明非，“我为我之前说的话向师兄道歉。”</p>
+    <p>“你之前说了什么？”路明非没明白。</p>
+    <p>“师兄你不是那样的人，你心里只有师姐！”年轻人说这话的时候带着欣慰的语气。</p>
+    <p>路明非想说你滚！但最后还是苦笑着说，“既然来了，要不要一起喝一杯？”</p>
+    <h2 id="第158章-但为君故62">第158章 但为君故62 </h2>
+    <p>“大晚上的还那么精神，莫非是心潮澎湃？”苏恩曦慢悠悠地说。</p>
+    <p>顶层的大套房里，铺着丝绸床单的大床上，两个女孩并排仰卧，都睁眼看着屋顶。</p>
+    <p>023号城市中，布宁的服务团队人数不少，都住在不远处的简易住宅楼里，条件远没有贵宾们的公寓舒适，苏恩曦就溜来零的房间里睡。在这个荒远的废城里，警卫并不多，广袤的冻土带才是安全保障。</p>
+    <p>“没事。”一如既往的简短回答。</p>
+    <p>“今晚出去幽会，说了什么交心的话？”苏恩曦一个翻身，玩着零胸口的蝴蝶结，两眼闪闪发亮，跟大灰狼似的。</p>
+    <p>“你没在我身上装窃听器？”</p>
+    <p>“就装了那么一次！说得我好像多爱知道你们那些小事情似的！”</p>
+    <p>“问他是不是想死在西伯利亚。”</p>
+    <p>“他怎么回答的？”</p>
+    <p>“他说他不想死，他还想知道自己到底是什么东西。”</p>
+    <p>“阶段性心软了？”苏恩曦一把捏住零的脸蛋，看似凶狠，其实是捏着玩，“背叛老板的话，没准会死哦！虽说是最心爱的小棉袄，但你要是真坏了他的事，他也会狂怒的。”</p>
+    <p>零静静地躺着随她捏，“他要去那里是命运，命运不是剧本，不能改写。”</p>
+    <p>“哎哟哟，命运，说得那么严肃。”苏恩曦撇嘴，“那你还问个什么劲儿？赶快送他一程咯！”</p>
+    <p>“只是想知道他在想什么。”零轻声说，“想听听他的遗言。”</p>
+    <p>“都想那么明白了，还不抓紧时间？我们都到西伯利亚了，一步之遥！要我说赶快甩掉那帮人，带着路明非出发！”</p>
+    <p>“在这里行动，最好有布宁的帮助，这是他的地盘。”</p>
+    <p>“不就是赶路的事儿么？”苏恩曦哼哼，“妞儿你是怀疑老娘的财力？布宁能搞到的，我能搞不到？米26直升机了不起么？我给你整一个中队来！你和路明非各坐一架，四架负责护航，还有两架负责在前面飞8字给你们开路！”</p>
+    <p>“我还想知道这帮人到底为什么来。”</p>
+    <p>“军火商的小买卖，关我们什么事儿？”</p>
+    <p>“不，布宁要交易的绝对不是军火，”零轻声说，“还有，这帮人都不干净。”</p>
+    <p>“不干净？”苏恩曦一怔。</p>
+    <p>“只要靠近某个东西，我就能解析它的结构，生物也不例外。这群人几乎都有龙族血统。”</p>
+    <p>苏恩曦吃了一惊，“一群混血种军火商？”</p>
+    <p>“但都不是高阶血统，如果是在卡塞尔学院，可能D级都算不上。但这么多混血种聚集在一起，如果说他们根本不知道龙族的秘密，是不可能的。”零顿了顿，“只有一个人例外。”</p>
+    <p>“克里斯廷娜？”</p>
+    <p>“不，唯一干净的人，是亚历山大·布宁。”</p>
+    <p>———————————————</p>
+    <p>夜已经很深了，雪下得越来越凶猛，023号城市里到处都是风的尖啸声。</p>
+    <p>酒馆里照旧灯火通明，这座城市里的酒局从不谢幕，只要你还有喝下一杯的量，服务生永远会给你续上新的美酒。</p>
+    <p>不过少了克里斯廷娜的酒局终究还是缺了点活力，贵宾们散去过半，剩下的都是路明非曾在布宁家中见过的那些年轻人。</p>
+    <p>红发的索尼娅，那个在布宁家餐桌上一口干掉过二两茅台的漂亮女孩，擦燃了一根火柴，靠近面前的啤酒杯，杯中立刻飘起了淡青色的火焰，可想而知这杯酒的烈度。</p>
+    <p>酒桌上的客人们都鼓起掌来，索尼娅站起身来，抓起啤酒杯，吹灭火焰，一饮而尽，满桌都是欢快的口哨声。</p>
+    <p>
+      这种俄罗斯风格的喝酒游戏被称为“熊爪”，从一大杯啤酒开始，第一个人喝一口，倒入伏特加添满，第二个人再喝一口，倒入伏特加添满，转着圈喝下去，酒精度越来越高，最后变成一大杯纯伏特加。当这杯酒烈到可以被点燃的时候，就由轮到的那个人一口喝干，然后游戏重新开始。
+    </p>
+    <p>这种“往死里喝”的游戏他们已经玩了半个晚上，还能在桌上战斗的是酒量最豪的那几个。</p>
+    <p>索尼娅缓缓地吐气，吐出的几乎是一口纯粹的酒精蒸汽。</p>
+    <p>她靠在沙发靠背上，叼上了一支“莫斯科人”卷烟，斜眼看着右手边那个英俊的卷发青年，透着一股老辣的风情万种。</p>
+    <p>卷发青年微笑着为索尼娅点燃卷烟，他凑上前的时候低着头，肆无忌惮地往索尼娅低胸的礼服里看。索尼娅一巴掌推在他脑门上，把他推回自己的沙发里。</p>
+    <p>“维什尼亚克你这个混蛋，怎么不去看你的克里斯廷娜小姐？”索尼娅冷笑，“整晚你的眼睛都长在她的大腿上！”</p>
+    <p>卷发青年维什尼亚克大笑，“索尼娅妒忌了！妒忌我们的年轻姑娘！”</p>
+    <p>满桌人都大笑，有人举手打了个响指，这是在招呼服务生送新的啤酒和伏特加来，游戏还要继续。</p>
+    <p>“听说卫国战争时有个家伙喝饱了伏特加，点燃了一支烟，火从他的食道一直烧到胃里，最后烧死了。”索尼娅把烟深深地吸进肺里，盯着那支燃烧着的烟卷，眼神略显阴沉。</p>
+    <p>酒桌上忽然沉默下来，欢闹的气氛一瞬间冷至零度。</p>
+    <p>“所以你是钱不够了么？”维什尼亚克慢悠悠地问。</p>
+    <p>“你在新圣女公墓里的墓地选好了么？我会去献花的。”索尼娅冷冷地说。</p>
+    <p>“是啊，维什尼亚克，你快到时间了吧？”鼻头长着小雀斑的瓦洛佳说，没有外人在的场合，他也并不那么腼腆。</p>
+    <p>“管好你自己！”维什尼亚克低下头，也给自己点了一支烟。</p>
+    <p>“别说这些不开心的事，”这群人里看起来最像大哥的奥金涅茨摆摆手，“大家都是朋友，至少在拍卖会开始之前。”</p>
+    <p>“对啊对啊！喝了酒就该说开心的事！”索尼娅那双漂亮的琥珀色眼睛又亮了起来，“不如聊聊我们的克里斯廷娜！”</p>
+    <p>“她可不是你的竞争对手，她是个可爱的姑娘没错，但她是亚历山大·布宁的宝贝女儿。”奥金涅茨笑笑，“谁真的敢动她，布宁会把那家伙活着丢进焚化炉里。”</p>
+    <p>“布宁？”维什尼亚克冷笑，“他可不是老板，听说了么？今年是他最后一次主持拍卖会。”</p>
+    <p>“所以你准备等到他的服役期结束就对我们可爱的小克里斯廷娜下手？”索尼娅挑眉。</p>
+    <p>“别想了，布宁那个老狐狸，他一定已经安排好了自己的退路。拍卖会结束的那一刻他就会立刻消失，带着他的宝贝女儿。”奥金涅茨说，“否则他怎么舍得带女儿来这里？”</p>
+    <p>“这些年一直是他经手拍卖，你们说，他手里会不会有多余的货？”瓦洛佳压低了声音。</p>
+    <p>奥金涅茨向吧台那边瞥了一眼，服务生们都站得远远的，应该不会听到他们的低语。</p>
+    <p>“很难，每年的货都是有数的，我不相信老板会给他偷东西的机会。”奥金涅茨小声说。</p>
+    <p>“就算是些不合格的货也有价值，就是不知道他愿不愿拿出来卖。”瓦洛佳说。</p>
+    <p>“那个老家伙，我不信他不中饱私囊！”索尼娅也说。</p>
+    <p>“可我们怎么能知道？抓住他拷问么？”奥金涅茨耸耸肩，似乎是在讲个笑话，但神色诡秘。</p>
+    <p>“有什么不可以？他要离开了，老板不会再保护他！”维什尼亚克的话里透着一丝凶狠，“没人能轻易退出！大家都一样！”</p>
+    <p>这个话题似乎触动了客人们的心，但大家你看看我我看看你，显然谁都没法做决定。</p>
+    <p>“把他藏起来的货榨出来，”索尼娅风情万种地笑，“还有他的宝贝女儿？”</p>
+    <p>恰在这时，酒吧的门发出清脆的叮咚声，那是门上挂着的铜铃，一阵寒风卷了进来，亚历山大·布宁带着两肩风雪而来。</p>
+    <p>他根本没有理会自己的贵宾们，而是径直走到吧台边坐下，根本不必招呼，就有一杯他想喝的好酒送到他面前。</p>
+    <p>“女士们先生们，拍卖会将在两天后如期举行。”布宁缓缓地说，“与其胡思乱想，不如尽快凑钱，今年的竞争会很激烈。还有，你们说得没错，谁动我的女儿，我会把他活着丢进焚化炉！”</p>
+    <p>贵宾们骤然色变，奥金涅茨扫视吧台边恭敬站立的服务员们，那些漂亮的、穿着藏青色女侍服的金发女孩，依旧挺胸而立，看起来随时准备着为客人服务。</p>
+    <p>但再认真地看，她们又像是一簇磨砺过的箭矢。</p>
+    <p>啤酒和伏特加端了上来，贵宾们恢复了欢声笑语，熊爪的游戏继续进行，刚才的事情好像完全没有发生过。</p>
+    <p>他们确实不必想太多，这座城市只是看起来静谧温馨，但仍是一座森严堡垒，而亚历山大·布宁，是唯一一个在这里说话算数的人。</p>
+    <p>———————————————</p>
+    <p>原始松林的边缘，男人站在挺拔的西伯利亚松上，厚重的黑色毡衣在寒风中起落。</p>
+    <p>兰斯洛特仰头，喝光了酒壶里的残酒，他其实并不能确定酒壶里的东西到底是什么，已经混了太多种酒进去。他不在乎味道，只是酒精能让他获得短暂的平静。</p>
+    <p>地平线的尽头，023号城市的微光在坚硬的黑夜里显得格外醒目。</p>
+    <h2 id="第159章-但为君故63">第159章 但为君故63 </h2>
+    <p>能够来到这里他们当然有足够强力的交通工具，但被他们在很远的地方抛下了，最后一段路完全靠雪地行军。</p>
+    <p>谁也不敢肯定023号城市附近埋设了什么探查设备，步行是最隐蔽的方式。</p>
+    <p>一名专员急匆匆地来到树下，“兰斯洛特专员，找到了！”</p>
+    <p>兰斯洛特无声无息地落入雪中，衣袖展开就像一只黑色的狐蝠。他跟着那名专员，走不多远就看到俄罗斯分部长和一众专员们聚在一起。</p>
+    <p>专员们闪开一条路，让兰斯洛特走到那个雪坑前，分部长用手电往下照射，雪坑里是一个打开的铁匣，匣中是一部电话。</p>
+    <p>最老式的那种战地电话，用铜线输送信号，什么多余的功能都没有，只能让你跟某个人说两句话。</p>
+    <p>023号城市附近，电磁干扰很强，所有跟外界的通讯都被切断，可居然埋着这样一部固定电话。</p>
+    <p>在无线电还不发达的年代，战争中都会有通信兵铺下几十公里长的铜质导线，指挥部的命令才会顺利地传到前线战壕里。虽然是过时的技术，却恰恰可以避开023号城市的电磁屏蔽。</p>
+    <p>埋设这部电话的人极其聪明地用了布宁使用的那条军用铁路作为导线，避免了在雪原上铺设几百甚至上千公里电话线的苦工。</p>
+    <p>兰斯洛特抓起电话，也不拨号，静静地等着，直到电话对面那个懒洋洋的声音响起。</p>
+    <p>“兰斯洛特专员，真高兴接到您的电话，一路上还顺利么？”</p>
+    <p>“根据您的情报，我们已经找到023号城市，随时可以展开进攻。”</p>
+    <p>
+      “进攻？天呐！我派您去难道是为了进攻一座城市的么？您难道是一位突击旅的旅长么？不不不不，”从声音就能听出对方那一脸的大惊小怪，“我派您去是要拯救世界的！只是拯救世界这样的小事！您帮我把路明非干掉就可以了，悄悄地干掉，然后退出来，最好别惊动其他人。”
+    </p>
+    <p>兰斯洛特沉默了片刻，“那座城市的警戒应该很严密，难免惊动其他人。”</p>
+    <p>“唉，真麻烦。”男人叹了口气，“没关系，谁阻止你就干掉好了，反正都不是什么重要的人。”</p>
+    <p>“明白。”兰斯洛特回答。</p>
+    <p>他已经习惯了这个男人的随性，那种气质甚至不能说是随性，而是不着边际的狂浪。但兰斯洛特相信那个男人，无原则地相信。</p>
+    <p>“你可能会觉得有点棘手，不过那家伙其实正处在一个非常衰弱的时期，别担心他会变身，他要是真变身，只会死得更快。”</p>
+    <p>“明白。”兰斯洛特的回答仍是简洁有力。</p>
+    <p>“不过尸体必须带回来，那种危险的东西，谁知道他不会死而复生呢？”</p>
+    <p>“明白。”</p>
+    <p>“那就祝您好运咯。成为英雄，拯救世界。您会安享晚年的，和您心爱的未婚妻一起。”男人挂断了电话。</p>
+    <p>兰斯洛特拿着话筒在雪地里站了很久，最后微微加力捏碎了电话，把碎片丢在雪地里。</p>
+    <p>这应该就是最后的命令了，无论他带着路明非的尸体回来或者他自己的尸体丢在023号城市里，他都不必再接通这部电话了。</p>
+    <p>———————————————</p>
+    <p>醒来的时候，路明非还以为是深夜，因为拉开窗帘，外面漆黑一片。可看墙上的珐琅小钟，已经是早晨十点了。</p>
+    <p>他一推窗，吃了一惊，如同墙壁那么厚的积雪从玻璃上脱落，天光和风雪一起涌入房间，外面一片晶莹剔透的世界。</p>
+    <p>昨夜开始的风雪把整个023号城市压在了厚厚的积雪下，连灰色的水泥墙都像是抹了一层厚厚的白垩，操场上的篮球架也被淹没了一半。</p>
+    <p>
+      路明非打开房门，门口停着黄铜质地的小车，几个白瓷的盘子上用纯银的盖子盖着。那是他的早餐，来到023号城市之后，早餐一直都是这么送来的，随时起随时吃，附带酒精小炉，加热享用，惬意得很。显而易见猛烈的暴风雪并未影响023号城市的体贴服务，一切照常地运转着。
+    </p>
+    <p>路明非把小车拉了进来，今天的早餐包括了熏制的鲱鱼和浓厚牛肉汁拌的意式宽面，黄金般贵重的Beluga鱼子酱照旧抹满了面包片，居然还有一份来自莫斯科的晨报。</p>
+    <p>路明非喝着温热的红茶赏雪，正准备对宽面下叉子的时候，有人一把推开了门。克里斯廷娜一身高领的哔叽呢长裙，一双硬质的高筒长靴，虎虎生风地走了进来，</p>
+    <p>“格鲁乌部队来不了了！”克里斯廷娜冲到窗口，神情凝重地看着外面，“这种天气，火车肯定无法通行！”</p>
+    <p>路明非愣了一下，明白她的担心了。</p>
+    <p>
+      她想必是随身带着追踪器一类的设备，好让格鲁乌部队循踪而来。但这样恶劣的天气，铁轨被几米厚的积雪覆盖，即使是动力强劲的喷气式列车都无法冲开，格鲁乌部队的装甲列车也同样无能为力。风雪还在继续，雪地车和直升机这类交通工具也都派不上用场，除非沿着铁轨这样的固定标识，否则在这冰封的无人区上开着雪地车赶路等于自杀。
+    </p>
+    <p>老天爷似乎都在帮着亚历山大·布宁。</p>
+    <p>克里斯廷娜一屁股在对面的沙发上坐下，看起来急得冒烟，路明非却埋头吃起了早餐。克里斯廷娜先是意外，再是怒目而视，可就在怒火都要突破眼眶的时候，肚子咕地叫了一声。</p>
+    <p>
+      路明非头也不抬地递上一片白面包，克里斯廷娜跟食欲抗争了几秒钟，接下面包大嚼起来。情报员小姐显然是个对生活充满了热爱的人，看她吃饭那风卷残云的模样就能感受到，什么渐冻人症，什么艰难使命，在吃饭的时候她都能忘掉，倒也侧面印证了她要“活得比别人更精彩”的宣言。
+    </p>
+    <p>片刻之后，两个人摸着鼓起来的肚子靠在沙发上，克里斯廷娜又开始眉头紧锁，显然失去格鲁乌部队的支持这件事令年轻的情报员手足无措了。</p>
+    <p>“关于那场拍卖会，我想知道得更多一点，我该怎么做？”路明非又把红茶端了起来，同时没来由地想到昂热。</p>
+    <p>“雪这么下下去，连我们都会被困死在这里，今年的拍卖会不知道还会不会办。”克里斯廷娜说。</p>
+    <p>路明非把黄铜小车上的牛皮纸大信封递给克里斯廷娜，信封他拆开过，看了一眼里面的东西，就随手丢那儿了。</p>
+    <p>克里斯廷娜从信封里倒出了一张卡片和一封请柬，她读了请柬，脸色难看。</p>
+    <p>请柬上说已经对罗曼诺夫家族的银行账户完成了验证，罗曼诺夫家族提供了足够的财力保证，所以荣幸地邀请路明非参见招待会之后的小型拍卖。</p>
+    <p>布宁是个说话算话的人，昨晚说好的事，今早请柬就送来了。而克里斯廷娜之所以变脸色，无疑是她并未收到类似的请柬。</p>
+    <p>
+      “先是一场招待会，吃吃喝喝，跳舞赌钱。”克里斯廷娜靠在沙发靠背上，“大家互相探探底，有些人是财力不够，有些人根本连请柬都没拿到，大家可以把筹码凑起来，就算结盟。到了午夜，有请柬的人就会被请到更隐秘的会场里，拍卖会的规模很小，一两个小时就能完成，但会有几亿美元的成交。我要知道他们到底在卖些什么，最好能有证据。”
+    </p>
+    <p>“排场真大。”路明非点头，但未必那么言不由衷。在芝加哥的拍卖场上他也曾挥斥方遒，一把砸下上亿美金。</p>
+    <p>“所以你们只是猜测他们在卖违禁军火，仅仅是猜测而已，对么？”</p>
+    <p>克里斯廷娜点了点头，“全世界最高级别的军火交易都比不上那场小型的拍卖会，即使是核弹头，军火黑市上几千万美元一枚也买得到。这些人坚持每年都来，买回去的东西一定有很大的利润，但我们实在想不出来什么样的军火能有这么大利润。”</p>
+    <p>路明非点点头，想你的幕后老板也许是对那笔利润动心了，但这话不方便直接告诉正义的女情报员。</p>
+    <p>“可我只是个秘书，我能拿到请柬是靠着我老板的财力保证，我去了估计也就是帮老板举举牌子。”路明非说。</p>
+    <p>克里斯廷娜挥挥手打断他，从内兜里抽出一个小些的信封，丢给路明非。路明非疑惑地捏了捏这个带着少女体温的信封，里面显然也是一张卡。</p>
+    <p>
+      “里面是一张不记名的银行卡，32位密码，知道密码的任何人都可以用。”克里斯廷娜在一张餐巾纸上刷刷地写下密码，“卡里有2000万美元，安全局通过财政部特批的行动经费，原本我是想也许我也有机会去拍卖会上看看，但我探了其他人的底，他们中少的都带了5000万美元。”
+    </p>
+    <p>她郑重地把密码纸递到路明非面前，手臂伸得直直的，看起来倒像是要给路明非擦脸。</p>
+    <p>“你现在有筹码了，我把我的筹码给你！”克里斯廷娜盯着路明非的眼睛。</p>
+    <p>那份倔强和孤注一掷的勇气让路明非心中一动。</p>
+    <p>
+      不难想到这笔钱来之不易，还附带着巨大的责任。即使中的詹姆斯·邦德先生，带着军情五处的钱参加神秘赌局，还得有个财务官跟着免得他乱花。如果路明非卷款逃跑，这个黑锅就得克里斯廷娜来背。她养父是个清廉的官员，大概也没有多少财产可以帮她填补亏空。
+    </p>
+    <p>可出于革命情感或者莫名其妙的信任，克里斯廷娜就这么把自己的底牌交给路明非了，让他小时候看到的那些漫画。</p>
+    <p>
+      在那个世界里，托付生命也就是一句话的事儿，动不动就是带着我的剑/内丹/机甲/圣衣去战斗吧！多少英雄人物就是死在少女这般的眼神和托付下的啊！分明当时稍微强硬一点或者垂下眼帘，不看那双闪亮的眼睛，就可以潇洒地离去，任凭反派怎么扑腾，怎么杀人如麻血流成河，你还能在远方的小酒馆里喝一杯洗个热水澡，没准出门又遇到新的美少女。
+    </p>
+    <p>事到如今他也没觉得自己是克里斯廷娜一伙，只是小姐姐一厢情愿，但如果接了这张密码纸，好像真的就得战斗到死了。</p>
+    <p>他拿过密码纸，擦燃火柴，点着了丢进烟灰缸里，看着它慢慢地化为灰烬。</p>
+    <p>“你什么意思？”克里斯廷娜大怒，“你这是自掘坟墓！”</p>
+    <p>“不就32位么，看一眼就记住啦。”路明非耷拉着眉毛，继续喝茶。</p>
+    <h2 id="第160章-但为君故64">第160章 但为君故64 </h2>
+    <p>走廊上忽然传来急促的脚步声，路明非微微皱眉，克里斯廷娜却立刻把手伸进了随身的坤包里。</p>
+    <p>想必那支精巧的乌鸦手枪就藏在坤包里，情报员小姐这么做的时候脸上流露出与敌偕亡的凛然神情。</p>
+    <p>那是一群穿着沉重军靴的人在狂奔，仅凭脚步声就能知道那是一群经过严格训练的虎狼之辈，从他们踏入023号城市以来，还没有类似的武装人员露过面。</p>
+    <p>路明非一把抓住克里斯廷娜的手腕，用眼神示意她镇定。果然那群人并不是冲着这间公寓来的，脚步声从门口经过，他们大踏步地上楼去了。</p>
+    <p>路明非和克里斯廷娜对视一眼，两人刚刚出门，就撞上了匆匆赶来的亚历山大·布宁，老家伙显然是得到消息后跑着过来的，两脚雪泥，鹅毛大雪落满了熊皮帽子和黑貂大衣。</p>
+    <p>虽然是那么地心急火燎，可看到克里斯廷娜从路明非的房间里出来，老家伙还是愣在了当场，瞪着两人，呼哧呼哧喘着气，活像一头被人偷了蜂蜜的老熊。</p>
+    <p>“吃早餐！我和克里斯廷娜小姐吃个早餐！”路明非赶紧拉开房门给他看吃空了的早餐车，心里庆幸自己把被子叠了……</p>
+    <p>布宁如释重负，还没来得及说几句话缓解眼下的尴尬，奥金涅兹就带着几位贵宾赶来了，这个稳重的年轻人此刻略显慌乱，但眼神凌厉异常，简直就是苏联时代穿越过来的克格勃干部。</p>
+    <p>布宁严厉地看向克里斯廷娜，“回你的房间去！”</p>
+    <p>“你凭什么管我？”克里斯廷娜立刻顶了回去，漂亮的眉毛扬得快到头顶了。</p>
+    <p>路明非伸手按在她的肩上，“克里斯廷娜小姐，请在我房间里稍等一会儿，我去看一看，回来告诉您发生了什么。”</p>
+    <p>克里斯廷娜应该是没想明白自己临时招募来的小弟为何忽然站到老爹那边去了，正要发作，奥金涅兹已经带着人从他们之间穿过，径直上楼去了。</p>
+    <p>“同志之间不该相互信任么？”路明非沉声说，手上加大了力量。</p>
+    <p>面对这个忽然冷峻起来的秘书，克里斯廷娜居然发作不起来了，懊恼地转身回屋，在背后摔上了门。</p>
+    <p>路明非跟着布宁上楼，狭窄的走道里挤满了人，多数是穿着军靴和铁灰色长大衣的男人，一眼可知他们的大衣下藏着武器。</p>
+    <p>警卫人员封锁了一间公寓的门，奥金涅兹带着人正跟他们用俄语高声争执。布宁冷着脸挥手，暂时地压住了局面，警卫人员们让开一条通道，让布宁和路明非通过。</p>
+    <p>公寓里水汽弥漫，还播着悠扬的音乐。路明非居然知道那首老歌的名字，《伏尔加船夫曲》，当年在中国也算是家喻户晓，经常出现在老艺术家联唱的环节中。</p>
+    <p>血红色的水上飘着玫瑰花瓣，龙头还哗哗地流着，水从青铜浴缸中溢了出来。维什尼亚克，那个最会跳水兵舞的年轻人静静地躺在血水里，赤裸的身体显得那么苍白。</p>
+    <p>虽然已经隐约猜到了这个场面，但路明非还是被那大片的血红色刺激到了，一阵反胃。</p>
+    <p>之所以没让克里斯廷娜上来，是因为他闻到了隐隐的血腥气。隔着一层楼都能闻到血腥气，可以想见血流成河的场面。</p>
+    <p>“什么时候发现的？”布宁低声问。</p>
+    <p>为首的警卫看了一眼腕表，“八分钟前，血从地板渗到了下面一层。”</p>
+    <p>“死亡时间？”</p>
+    <p>“早晨七点或者八点。应该是从酒吧回来之后，他就放了一盆热水泡澡，在浴缸里切开了自己的腕动脉。”警卫说，“典型的自杀，死亡过程很长，通常要一两个小时。”</p>
+    <p>
+      路明非也听说过这种自杀方法，痛饮烈酒之后躺在放满温水的浴缸里，把腕动脉切开，鲜血缓缓地流走，人渐渐因为缺氧而昏迷，最后心脏停止跳动。在名目繁多的自杀手段中，这是最不痛苦的几种之一，但要忍受巨大的心理压力，因为昏迷前的每一秒钟里你都知道自己正经历死亡。
+    </p>
+    <p>这个英俊的年轻人坐着火车不远千里来到023号城市，一路上纵酒狂欢，和女孩们跳舞，一点都不像是来寻死的。可在一场酒后，他踏入浴缸，割开腕动脉，听着老歌，独自等待死神的降临。</p>
+    <p>他走得相当平静，烈酒也并未泯灭他的神智，大衣和皮靴都妥善地收在了衣柜里，卧房整洁得就像军人的宿舍。</p>
+    <p>“他的东西在哪里？”布宁问。</p>
+    <p>警卫指了指窗边的小桌，一个厚实的文件夹放在上面，想来是维什尼亚克临死前整理好的，文件夹上还压着他的家徽戒指。</p>
+    <p>布宁拆开文件夹，快速地翻动，动作粗鲁，像是要把那些文件都撕成碎片。有些文件路明非读不懂，有些却是俄文和英文双语，其中有家族信托的文件，还有一份居然是莫斯科某处墓地的合同。</p>
+    <p>这个有家族传承也有无限未来的年轻人居然在来前就给自己买好了墓地，相比之下路主席虽然也觉得自己会挂在西伯利亚，却毫无准备，路上还跟情报员小姐姐传出绯闻，真是对死亡这件事太不尊重了。</p>
+    <p>布宁最后找到了一个白色的信封，信封里只有薄薄的一页纸，想来是遗书之类的东西。短短的几行，布宁反复读了很久。</p>
+    <p>读着读着，他脸上焦躁的神情褪去，甚至流露出一刹那的凄然，但一闪而逝，路明非也不确定。</p>
+    <p>他把信收进口袋里，“打扫干净，遗体冻在冰柜里。这间公寓封锁，谁也不许进来。”</p>
+    <p>可刚说完这句话，门就被人强行撞开了，奥金涅兹和他的朋友们持枪顶着警卫。警卫们也扒出了暗藏的武器，但谁也不敢射杀这些身份尊贵的客人。</p>
+    <p>跟着冲进来的是索尼娅，这红发的漂亮女孩只穿着睡裙，还散发着浓重的酒气，想来是刚从梦中被叫醒。她透出一种缭乱的美，却不是那种青春活泼的靓丽，而是沧桑的、憔悴的，就像古画上斑驳的美人。</p>
+    <p>看到维什尼亚克的瞬间，索尼娅彻底呆住了，谁都读不懂她的眼神，可每个人都能听到一颗心忽然碎掉的声音。</p>
+    <p>路明非也是纳了闷了，这俩一路上也就互相撩一下，这群人都在互相撩，难道撩着撩着撩出感情来了？你们俄国人动感情是否也太快了一点？</p>
+    <p>他心里的吐槽还没结束，索尼娅一抬腿，睡裙下居然捆着一个枪套，她拔枪对准布宁就射。谁都没有料到这个变故，两名警卫飞扑上去，一个是要扑倒索尼娅，一个是要给布宁挡枪，但都来不及了。</p>
+    <p>索尼娅扣下了扳机，但子弹并未出膛，因为路明非上前一步，伸手按在枪机上，硬生生把枪机卸了下来。他双臂圈住索尼娅，但这女孩像头狂怒的母狮般挣扎，用俄语凄厉地吼叫，像是要扑过去吃了布宁。</p>
+    <p>奥金涅兹他们的眼里也都喷着怒火，一齐把枪指向了布宁。警卫们同时把枪上膛，指向奥金涅兹等人。公寓中的气氛完全冰凝住了，却又像是要爆炸。</p>
+    <p>布宁冷冷地看着索尼娅，毫无怜悯之意，甚至透着嘲讽。路明非心说您这时候还用嘲讽技，胆是不是太肥了？</p>
+    <p>布宁用俄语对索尼娅说了些什么，也就短短的一句话，索尼娅和奥金涅兹他们全都呆住了。路明非清楚地感觉到自己怀中的那头母狮子变得虚弱无力，刚才那股狂暴的力量忽然就从索尼娅的身体里退走了，如果不是靠着路明非，几乎就要瘫倒在地上。
+    </p>
+    <p>奥金涅兹他们都垂下了枪口，悲愤却又无奈地把头转向一边，不去看那凄惨的景象。路明非试着松开索尼娅，这女孩果然没有再对布宁发起攻击。她孤孤单单地站在人群正中央，伶仃的双肩微微颤抖，看起来弱不胜衣。</p>
+    <p>就在路明非觉得她要转过身来趴在自己肩膀上大哭一场的时候，索尼娅用力把他推开，那种“你别碰我”的意味倒像是路明非刚才轻薄了她似的。可这一路上她卖弄风情不在克里斯廷娜之下，跟所有人肌肤相亲。</p>
+    <p>她跌跌撞撞地往前走，和布宁擦肩而过，踏入浴缸，抱起了苍白的维什尼亚克。她就坐在维什尼亚克的血水里为他梳理头发，像是母亲又像是妻子。</p>
+    <p>“这间公寓封锁，除了索尼娅，谁也不准进来。等她没事了，把房间打扫干净，遗体冻在冰柜里。”布宁修改了之前的命令，出门而去。</p>
+    <p>贵宾们和警卫们也跟着退出，没有人说话，两名警卫留在门口看守，其他人沉默地散去。</p>
+    <p>路明非在那扇门关闭之前回头，老歌回荡在氤氲的蒸汽中，维什尼亚克靠在索尼娅的臂弯里，神情安详，像是睡着了，又像是解脱了。</p>
+    <p>零居然也来了，却没有进屋，而是靠在走廊边。她看了路明非一眼，跟没事人似的离开了。</p>
+    <p>布宁站在楼梯边的窗前，抽着烟斗。路明非知道布宁是在等自己，走了过去。</p>
+    <p>“这些事不用跟克里斯廷娜说，”布宁望着窗外的飞雪，“就说我们中有个孩子自杀了。”</p>
+    <p>路明非点点头，“关于这件事，布宁先生不想跟我多解释几句么？”</p>
+    <p>“很遗憾，无可奉告。”布宁淡淡地说。</p>
+    <p>他下了一层楼，另一扇窗边，零站在那里看雪。无疑也是在等自己，大家都有话跟他说。</p>
+    <p>“索尼娅说，是你害死了维什尼亚克，你是刽子手。布宁说，我们谁都不是慈善家，我们中慈悲的人，早都死了。”零学两人的腔调，都惟妙惟肖。</p>
+    <p>她知道路明非最关心什么，索尼娅和布宁的那两句对话是用俄语说的，路明非听不懂。</p>
+    <p>路明非沉默了片刻，“索尼娅跟维什尼亚克应该有一腿吧？”</p>
+    <p>“何止有一腿，简直是老夫老妻。”零说，“不过维什尼亚克一路上都在撩你的克里斯廷娜小姐姐。”</p>
+    <p>“是联邦安全局的克里斯廷娜小姐姐。”路明非赶紧纠正。</p>
+    <p>零耸耸肩，“你有没有觉得自己在一个时光倒流的剧本里？老家族、老朋友、老城市、老夫老妻。”</p>
+    <p>路明非楞了一下，忽然打了个寒颤。零转过身，双手抄在大衣口袋里，自顾自地走了。</p>
+    <h2 id="第161章-但为君故65">第161章 但为君故65 </h2>
+    <p>“畏罪自杀？”克里斯廷娜皱着眉头思索。</p>
+    <p>路明非心里暗暗地叹了口气。他返回自己的房间，把维什尼亚克的死告诉了克里斯廷娜。可情报员小姐姐对于那个一路上热情追求自己的年轻人并无什么惋惜之情，逻辑思维也完全不在线。</p>
+    <p>“索尼娅很难过，她跟维什尼亚克是恋人么？”路明非问。</p>
+    <p>“没听说过，我跟那些人也不熟，多数我也是第一次见。”</p>
+    <p>“维什尼亚克一直在你身边转，他跟你说过什么没有？”</p>
+    <p>“称赞我的美貌，反复称赞。”克里斯廷娜无所谓地耸耸肩，“老套路。”</p>
+    <p>“你难道也没追问？你不是要靠美貌搜集情报么？”</p>
+    <p>“你质疑我的专业程度？”克里斯廷娜横眉立目，“当然有追问！”但她想了想，再度皱眉，“但他什么都不说。”</p>
+    <p>路明非懒得问了，问也白问，以情报员小姐的智商，最佳的职业选择应该是去莫斯科或者伦敦当个女演员，可她偏要以女演员的心态去闯龙潭虎穴。</p>
+    <p>不过他已经完成了一个试探。零说这座城市里有着时光倒流的感觉，一切都兼具新和旧两面，但克里斯廷娜眼中委实没有任何的沧桑沉重，这就是一个孩子，鲜花般的年纪，恣意张扬，像是一朵孤零零的花盛开在冰天雪地中。</p>
+    <p>克里斯廷娜又从坤包里摸出药盒来，麻利地把那种药吞进肚里。这一次她早有准备，没有流露出病态。</p>
+    <p>她的渐冻人症显然已经开始恶化，服药非常频繁，只不过以前一直藏着这个秘密，但路明非既然知道了，她也就不躲了。</p>
+    <p>克里斯廷娜并不急着离去，路明非也懒得逐客，两个人谁也不搭理谁，各干各的事。</p>
+    <p>
+      克里斯廷娜吃着罐子里的杏仁饼干想心事，也可能是在想明天拍卖会上的战略。路明非把玩着“芬格尔”，去楼上的那段时间里这台手机他故意丢在沙发上了，用不着吩咐它也会把克里斯廷娜从头到脚拍个遍。他翻着那些照片，偶尔抬眼打量沙发上的女孩，就像看着刊物封面上的女明星，而女明星本人正坐在你家的沙发上。
+    </p>
+    <p>“喂。”路明非说。</p>
+    <p>“怎么了？”</p>
+    <p>“你有没有什么理想？人生里一定要做的事什么的。”</p>
+    <p>克里斯廷娜愣了一下，“当情报员啊，我已经实现了！”</p>
+    <p>真是鸡同鸭讲，路明非又懒得理她了，继续翻照片玩。</p>
+    <p>———————————————</p>
+    <p>布宁独自坐在办公桌前，墨绿色的丝绒窗帘完全地挡住了阳光。</p>
+    <p>办公桌上是一台黑色电木外壳的老式电话，看起来比这座城市还要古老。几个小时，布宁的视线一直都落在这台电话上，却一次都没有试图拎起话筒。</p>
+    <p>他像是在犹豫着要不要打这通电话，又像是在等着对方给他打过来。</p>
+    <p>维什尼亚克的遗书摊开在他面前，遗书的开篇是一首手抄的诗：</p>
+    <p>“我们只是路过万物，像一阵风吹过。</p>
+    <p>万物对我们缄默，仿佛有一种默契，</p>
+    <p>也许视我们半是耻辱，半是难以言喻的希望。”</p>
+    <p>后面才是维什尼亚克留下的寥寥几句话：</p>
+    <p>
+      “亲爱的亚历山大，我已经厌倦这一切了。我们活在炼狱里，背着自己的墓碑行走，而天堂的门永远不会为我们这种罪人打开。非常感谢你这些年里为我们做的事，尽管有时候我真的恨你。为我昨晚说的话道歉，我无意冒犯你的女儿，她是个可爱的女孩子。我的筹码留给索尼娅，但不要告诉她。她不用连我的墓碑也背上。”
+    </p>
+    <p>最后是漂亮的花体签名。</p>
+    <p>看起来维什尼亚克确实是在清醒的状态下写的这封遗书，昨夜的那场“熊爪”之后他忽然顿悟了生死这件事，与人世诀别的态度甚至说得上洒脱。</p>
+    <p>布宁忽然皱起眉头，一把抓起维什尼亚克留下的那堆文件，快速地翻起来，然而就在这个时候，那台电台响了起来。</p>
+    <p>布宁猛地抬头，死死地盯着那台电话，好像这个叮叮作响的玩意儿是什么危险的野兽。</p>
+    <p>他深呼吸，调整了情绪，坐直了，拎起话筒。</p>
+    <p>“维什尼亚克的事我们已经知道了，非常遗憾，他的家族对我们有所贡献，他的葬礼应当被妥善安排，他的遗体应该被妥善地处理。”</p>
+    <p>平静的男声，高贵而疏远，从声音里根本无法分辨对方的口音、年龄这类信息，但能知道他并不真的多么遗憾于这件事。“他在莫斯科给自己买了一块墓地，想把自己葬在那里。”</p>
+    <p>“骨灰。”</p>
+    <p>“明白。”</p>
+    <p>“交易必须如期进行。这是你最后一次主持交易，我们对你多年的服役表示感谢。”</p>
+    <p>布宁沉默了很久，“如果可以的话，我有个小小的要求……”</p>
+    <p>
+      他鼓起勇气说出了这个要求，态度卑微得像是臣子跪在君王面前祈求一小块用于养老的封地，如果对方此刻站在他面前他甚至会毫不犹豫地双膝跪下。然而对方甚至没有经过思考就拒绝了，“很遗憾，我们必须维持交易的公平性，即使你是主持者，也不能违反规则。”
+    </p>
+    <p>电话挂断了，布宁静静地坐在黑暗里。他狠狠地挂上话筒，用那双粗短的大手狠狠地抹了抹脸，恢复了枭雄的阴狠。</p>
+    <p>———————————————</p>
+    <p>夜深了，酒吧里的聚会还是照旧，克里斯廷娜、路明非甚至零都来了。明天就是拍卖会，大家各怀心事，不像以前那样闹腾。</p>
+    <p>索尼娅也来了。这女孩似乎已经从悲痛中完全地康复了，高跟鞋、丝绸短裙、打着大卷的红发，仍然是热力四射的模样，只不过妆更重了，大概是想遮挡哭过的眼睛。</p>
+    <p>奥金涅兹带大家玩纸牌游戏，每把的输赢都在几万美元，这在普通的赌场应该已经是大手笔了，但在023号城市，这只是热热身。</p>
+    <p>气氛非常地和谐，每个人都把自己的卡留在了吧台，钱自动地转来转去。</p>
+    <p>
+      克里斯廷娜今晚的装束是天青色的薄纱长裙，踩着青灰色的高筒靴，霸气张扬得很，但没什么人理她，大家玩牌的玩牌，喝酒的喝酒，把她晾在一边。她东转转西转转，最后还是零招呼她在自己身边坐下。克里斯廷娜是那种美得剽悍的大美人，零则乖乖小小像个孩子，但两个人并坐的时候，更像是女皇帝带着她的爱妃。
+    </p>
+    <p>“你背着刀来干什么？”路明非跟楚子航耳语。</p>
+    <p>楚子航今晚把刀袋带出来了，堂而皇之地斜背着，谁都看得出里面是危险的凶器，可也没有人太在意，服务生多看了两眼就放他进来了。</p>
+    <p>“总觉得这伙人不知道什么时候就会打起来。”楚子航小声回应，“你死我活那种。”</p>
+    <p>“没错。”路明非点点头，“真打起来记得保护三号师姐。”论资排辈，诺诺是一号师姐，苏茜是二号师姐，零排到了第三位。</p>
+    <p>“三号师姐还用得着我保护？”</p>
+    <p>“说得也对。不过不知道为什么，有点担心，感觉有大事要发生。”</p>
+    <p>街上忽然传来清脆的铃声，玩牌的喝酒的聊天的，所有人都停下了，扭头看向铃声的方向。</p>
+    <p>然后以奥金涅兹为首，客人们沉默地站起身来，披上大衣或者裘皮走出酒吧。路明非跟克里斯廷娜对视一眼，也跟了出去。</p>
+    <p>黑色的灵车缓缓地穿越风雪，车头的铜铃叮当作响，023号城市中回荡着沉重的《伏尔加船夫曲》，正是维什尼亚克选来为自己送葬的音乐。</p>
+    <p>人们先是摘下帽子，低头在路边站着，灵车过来的时候，他们纷纷走上前去，伸手按在车上，护送那辆车前行，目视前方，就像忠勇的近卫军。</p>
+    <p>他们之间既熟悉又明争暗斗，但此时此刻路明非完全不怀疑他们对于这个朋友的哀悼之情。</p>
+    <p>灵车几乎穿越了整个023号城市，在城外的冰河边停下，那里已经架起了一人高的柴堆，亚历山大·布宁默默地站在柴堆边。</p>
+    <p>维什尼亚克的尸体袋被警卫们抬上柴堆，布宁往上面泼了一整桶煤油，摘下嘴角的纸烟卷丢了上去。</p>
+    <p>今早布宁的命令还是要冰冻保存维什尼亚克的尸体，但今晚却又把他火化了。也不知道他有没有亲人，连跟遗体告别的机会都没留。</p>
+    <p>篝火冲天，像是冰原上的图腾，人们围绕着火堆，相互扶持。</p>
+    <p>世界寂静但风雪漫天，路明非想着酒吧里最后那个孤零零的人影。</p>
+    <p>每个人都来送维什尼亚克了，索尼娅却没有，她坐在牌桌边，画着浓重的妆，喝着辛烈的酒，动都没动，好像跟她玩牌的人还坐在对面。</p>
+    <p>克里斯廷娜打了个哈欠，情报员小姐看起来并没有被这里的气氛感染，“你跟他又不熟，你难过什么？”</p>
+    <p>“不是难过。”路明非轻声说，“在想我的葬礼会不会这么气派。”</p>
+    <h2 id="第162章-但为君故66">第162章 但为君故66 </h2>
+    <p>葬礼就这样结束了，烧着烧着，人们逐渐地散去。</p>
+    <p>从河边返回公寓，路过酒吧，索尼娅仍然坐在那里喝酒，却没有人再推开那扇玻璃门。</p>
+    <p>
+      大概是看了葬礼的缘故，路明非做了一个很长的梦，梦里他跟一群人行走在冰封的大河上，其中既有023号城市的贵客们，也有恺撒、楚子航、诺诺和零，连路鸣泽也混在队伍里。河面宽广，大家散得很开，就这么沉默地走着，没有人说话。走着走着，人越来越少，最后路明非蓦然回首的时候，背后只剩下跟屁虫似的路鸣泽。
+    </p>
+    <p>“就剩你了么？”路明非问他。</p>
+    <p>“恶魔离开你的那一天，天使也会离开。”路鸣泽歪着头看他，说出了预言诗般的话。</p>
+    <p>梦是那么地清晰，路明非还以为路鸣泽又找上门来，但那真的就是一场梦，梦里寒风呼啸，世界冰封千里，他和路鸣泽相互搀扶着跋涉，大河仿佛永无止境。</p>
+    <p>醒来的时候已经是早晨了，回想梦中的事，仿佛也是一场葬礼，却不知是他送别大家，还是大家送别他。</p>
+    <p>
+      他刷牙洗脸，收拾整齐，早餐车已经放在公寓门口了，还有一身黑色的礼服挂在门上。礼服是苏联时代军服的式样，双排扣，袖口和领口刺金，显然是照着路明非身材做的，穿上之后每一处都贴合。看着镜中的自己，好像也变成了这座老城市的一部分，不过还是蛮帅的。路明非摆了几个pose，然后花了点功夫拆掉短弧刀的刀镡，以便把它们贴身藏好。
+    </p>
+    <p>他独自吃完早餐，披上大衣出门，道路两侧积雪成墙，风雪已经停了，太阳低低地挂在地平线的上方，阳光弥漫在天空的边缘。</p>
+    <p>他沿着清扫出的路向着023号城市的市中心走去，就是那个巨大的环形建筑，下面埋着那条苟延残喘的龙。</p>
+    <p>交易会将在那里举办，从中午开始一直延续到午夜。</p>
+    <p>
+      走着走着他看到了其他人，男孩们都穿着跟他类似的礼服，女孩们则没有限制，穿着各自的礼服裙。相遇的时候，男孩们把手按在太阳穴边行礼，有点像军礼，女孩们浅浅地微笑。之前大家一直都是烈火烹油般的热闹，忽然变得那么含蓄克制，反倒有种紧张的感觉。每个人手里都捏着一个厚厚的文件夹，一如维什尼亚克放在书桌上的那个。路明非没有，他就揣着两张卡，一张是克里斯廷娜给他的，里面是2000万美元“巨款”，还是有一张是布宁给他的请柬。
+    </p>
+    <p>走着走着又遇到了楚子航，今天他也还是背着那对长刀，俨然独行江湖的杀手。</p>
+    <p>走着走着他们又在桥上遇到了零，显然是在那里等他们。今天她的装束格外地隆重，宫廷风的礼服裙外罩着厚厚的貂皮。</p>
+    <p>环形建筑周围挂满了红旗，点亮了庆典般的气氛。亚历山大·布宁站在环形建筑门前，和大家一一握手，很有主人的派头。</p>
+    <p>还是没有任何安检举措，楚子航公然就扛着刀进去了，反倒是路明非藏着掖着有点多余。</p>
+    <p>
+      踏进那扇门的时候，简直是从社会主义一脚踩进了资本主义。辉煌的水晶吊灯下，牌局已经开始，漂亮得像人偶似的女服务生们来往穿梭，为客人们送上龙虾刺身和香槟酒。旁边的桌上有俄国人喜欢的高度伏特加提供，事实上世界各地的酒你都能在那张桌子上找到，调酒师随时准备着做一杯符合你口味的鸡尾酒，他的背后，满墙的水晶酒杯折射出璀璨的光。
+    </p>
+    <p>深红色的帷幕下，宾客们轻声交谈，女孩们带亮片的眼妆，男孩们的家徽戒指，都比水晶更闪亮。</p>
+    <p>克里斯廷娜一身高调的象牙色长裙，坐在桌边打牌，看到路明非进来的时候飞来一个眼神，大约是让他多留点心眼。</p>
+    <p>
+      路明非懒得理会情报员小姐，问调酒师要了一杯马天尼，他不太懂鸡尾酒，但知道马天尼，因为这是007喝的酒。端着这杯酒他在会场中四处转悠，会场远比一眼所见的大，每道门后都是新的空间，有些是餐厅，客人们饿了随时可以找个位子坐下用餐，厨师等着为这些人服务，路明非还发现了一间日式的小屋，一名寿司师傅对他微笑着说日语；有些是雪茄房和台球室，甚至还有一个篮球场，客人们如果想较量一下篮球的话也不成问题；还有一些房间里就只有沙发和低垂的帘幕，随便你在这里干什么，把门锁上，这个空间就是你的。
+    </p>
+    <p>这简直就是太阳王的盛宴，你可以在这里找到一切你想要的，主人的招待唯恐不够极致。</p>
+    <p>
+      路明非回到赌桌边坐下，跟克里斯廷娜一起玩牌，奥金涅兹、瓦洛佳、索尼娅都在，还有好几个在布宁家晚宴上认识的年轻人。他们对奢华的款待并没什么兴趣，宁愿把时间花在牌桌上，牌局跟昨晚差不多，但赌注差不多大了十倍，每一把都会有价值几十万美元的水晶筹码被推到赢家的面前。索尼娅红裙红发，攻势如火，克里斯廷娜被完全地压制住了，连着输，气得小脸都黑了。她已经把卡给路明非了，剩下的筹码不多，偏偏她又是个好强的人。
+    </p>
+    <p>路明非本想提醒她说你的理想是当专业的情报员，但这话说了也白搭。</p>
+    <p>他的心思并不在牌局上，而是周围人的表现。会场中弥漫着难以言喻的紧张气氛，大家都在试探彼此，无论是通过交谈还是以牌局的形式。为了试探就要把几千万美元码在牌桌上，这游戏玩得有点大。</p>
+    <p>零也来到牌桌边坐下，她的牌技意外地好，一出手就斩断了索尼娅连赢的势头，克里斯廷娜这才喘息过来。</p>
+    <p>楚子航一进会场就消失了，因为杀胚就该干杀胚的活，他会搜索会场的每个房间，记住每条通道，以免任何意外的发生。路明非叮嘱的。</p>
+    <p>说来也奇怪，他堂堂正正的大怪物，逮谁灭谁，却觉得这座城市里藏着连怪物都会不安的秘密。</p>
+    <p>年轻的女服务员来到路明非背后，俯身在路明非耳边说话，吹气如兰，“布宁先生想请您聊几句。”</p>
+    <p>克里斯廷娜警觉的目光立刻投了过来，但被路明非的眼神压制住了。</p>
+    <p>路明非跟着女服务员，进入某一间只有沙发和帷幕的房间，亚历山大·布宁端坐在那张描绘顿河风景的油画下。</p>
+    <p>路明非在他对面坐下，女服务员出去的时候锁上了门。</p>
+    <p>“我需要路先生的帮助。”布宁摇晃着杯中的冰块。</p>
+    <p>“保护您的女儿么？但我不知道我有什么可做的，暴风雪应该已经把格鲁乌特种部队挡在路上了，023号城市里只有你说了算。”路明非说。</p>
+    <p>“我想请路先生帮我买一件东西。”布宁缓缓地说，“拍卖会中的货品，有一样是我想要的。”</p>
+    <p>“你自己主持的拍卖会，你让我去帮你买东西？”路明非愣住，“这不是当托儿么？”</p>
+    <p>“不，我不是要你帮我抬高价格，我是真的想要那东西。”布宁把桌上的大信封推给路明非，“钱我已经给你准备好了。”</p>
+    <p>路明非打开信封，倒出一张卡来，还真奇怪了，这父女两人都卯着劲儿给他送钱。</p>
+    <p>“一张卡里存着三亿七千万美元，有限的时间里我只能筹到这么多，所以拍卖场上还得靠路先生你的技巧，竞争会很激烈。”</p>
+    <p>这个数字连路明非也吃了一惊，布宁的出手是克里斯廷娜的几十倍，但听他的意思，这笔巨资依然未必够用。</p>
+    <p>
+      拍卖靠的主要是实力，当然也有技巧的成分。如何呈现出压倒对手的气势，逼迫对手放弃，或者吸引对手出价，消耗对手的筹码，然后拿下自己真正在意的货品，都是学问。路明非对于自己的技巧没什么信心，他前一次制霸芝加哥拍卖场全靠开挂，但小魔鬼已经很久不来找他了。
+    </p>
+    <p>“如果连货品是什么都不知道，这个忙我没法帮。”路明非耸耸肩，“我连怎么诈人家都不知道。”</p>
+    <p>布宁点点头，“当然，我既然要求您的帮助，就准备好了要给您说得更多。那个神秘的拍卖品，是时间。”</p>
+    <p>“时间？”路明非愣住。</p>
+    <p>
+      “这世界上绝大多数东西都可以标价，但极少数例外，时间就是其中之一。人生下来无论富裕贫穷，拥有的时间却是差不多的，富人在纸醉金迷中过一生，穷人辛苦地过一生，但都是几十年。如果你能找到一种技术把时间封在玻璃瓶里卖给有钱人，供应量又极少，他们会耗尽全部身家来买。”布宁轻轻地叹了口气，“而我的克里斯廷娜，是个缺时间的孩子。”
+    </p>
+    <p>“渐冻人症？”路明非说。</p>
+    <p>“她还真的信任你啊，把这么秘密的事都跟你说了。”布宁苦笑，“她的病远比她自己想的严重，我买通了她的医生，没有告诉她真相。”</p>
+    <h2 id="第163章-但为君故67">第163章 但为君故67 </h2>
+    <p>“所以克里斯廷娜会登上那列火车，是因为她就要死了。”路明非轻轻地叹了口气，“而维什尼亚克自杀，是因为他没钱买下更多的时间了。”</p>
+    <p>“在死神的面前，贫富贵贱都会被虢夺，即使君王也要赤身裸体接受审判。”布宁轻声说，“那大概是人世间最究极的正义之一。”</p>
+    <p>“嘴里这么说，可轮到要死的是自己女儿，你还是不甘心。”</p>
+    <p>“怎么能甘心？”布宁忽然抬起头来，眼中的血丝密集如蛛网，整个人就像陷阱中的困兽，“谁在这个世界上没有个你能为她拼命的人？谁敢伤害我女儿，就算死神！我也给他塞进焚化炉里去！”</p>
+    <p>他忽然意识到这句话未必那么正确，怔了一下，用喝酒掩盖了那一瞬间的失态，“那些只为自己活的人，不可悲么？”</p>
+    <p>看路明非沉默，他又流露出商人的嘴脸来，“路先生请放心，这绝对不是一桩没有报酬的委托！”</p>
+    <p>路明非笑笑，“放心，这件事我接了。在克里斯廷娜小姐看来，我是她路上捡来的小弟，小弟为老大办事，不是理所当然的么。”</p>
+    <p>他起身往外走去，留下一脸惊愕的布宁。</p>
+    <p>在他握住门把手的时候，布宁又追了上来，“路先生你是认真的吧？”</p>
+    <p>路明非转过身来，直视布宁的眼睛，“我小的时候，觉得自己是那种丢在路边都没人捡的废物，想跟班上哪个老大混，还怕人家看不上我。所以哪个老大捡了我，我得对人家好点，不然我的老大没了，我又是路边的废物了。”</p>
+    <p>布宁呆住了。路明非这话听起来根本就是唬烂，可他的眼神那么认真，令人没法怀疑。</p>
+    <p>犹豫了好一会儿，布宁从口袋里摸出一个皮质的小钱包里，看起来跟寻常的零钱包没什么区别，可他交到路明非手里的时候，神情郑重得好像那是他的遗产。</p>
+    <p>“需要的时候，就把这些也当作你的筹码！”</p>
+    <p>小包里是几十枚拇指指甲盖那么大的金色硬币，沉甸甸的，正面是某位古代君王的头像，背面是路明非读不懂的文字，看起来颇有些年头了。</p>
+    <p>“这玩意儿值多少钱？”路明非掂着其中一枚，大约有一盎司那么重。</p>
+    <p>“托勒密一世铸造的金币，可以追溯到公元前四世纪，考古学家们认为这东西根本没有存世的。在023号城市的拍卖会上，价格是浮动的，贵的时候3000万一枚，便宜的时候也有2200万上下。”</p>
+    <p>路明非愣了一下，赶紧数钱。总共35枚，按照布宁的说法，这一小袋古代钱币的价值就超过十亿美元。</p>
+    <p>“你救女儿还藏着掖着？”路明非有些不解，“这是你留着养老的？”</p>
+    <p>“我对女儿怎么会吝啬？”布宁叹口气，“我是不敢拿出来，你是新来的，不可能有这种硬币，他们看你拿出这东西，就知道是我想要买。所以只能在关键的时候用，卡里的钱应该够用，但今年的竞争会特别激烈。”</p>
+    <p>路明非把金币放进嘴里，使劲咬了一下，留下了浅浅的牙印，看起来确实是纯金的。</p>
+    <p>“3000万美元一枚？你确定？就算是古董，能值那么多钱？”路明非有点怀疑。</p>
+    <p>“在这里，我们看重不是硬币本身的价值。”布宁低声说，“它是某种等价物。”</p>
+    <p>———————————————</p>
+    <p>路明非带着三亿七千万美元巨款和那小袋钱币回到外面大厅的时候，赌局已经白热化了。</p>
+    <p>俄国人终究还是扛不住烈酒的吸引，大口喝酒，大把下注，输赢从每把几十万升到了几百万。</p>
+    <p>输光了筹码的人在旁边的沙发上闷头喝酒，赢了的人继续在赌桌上战斗，酒劲上头的男女拉着手跑进旁边的舞厅，也有人神色阴沉地抽着雪茄或者卷烟。</p>
+    <p>靠着零的应援，克里斯廷娜翻了本，面前堆满筹码，大呼小叫，跟奥金涅兹捉对厮杀，奥金涅兹不得不唤来服务生，兑换了更多的筹码。</p>
+    <p>这才是热身的真正意义，不是打两局牌调个情那么简单，输的人可以提前退场，而赢家则会带着更多的筹码和胜利女神傍身的杀气踏入拍卖会场。</p>
+    <p>优雅的牌局演变为凶狠的骰子游戏，克里斯廷娜裸着象牙般的胳膊，把骰钟摇得哗哗作响，就差一脚踏在赌桌上了。</p>
+    <p>楚子航居然也站在桌边围观，神情专注，实在有违这家伙的本性。</p>
+    <p>路明非正想把楚子航从赌桌边拽回来，却被零从背后拉住了。这个场合里每个人都沉浸在某种气氛中，只有零看起来还正常，甚至比平常更加冷漠疏离。</p>
+    <p>“通风系统里混入了LSD。”零低声说。</p>
+    <p>路明非一惊。</p>
+    <p>LSD，学名麦角二乙酰胺，是一种强烈的致幻剂，中央情报局用它来拷问罪犯，艺术家则用它来寻找灵感，绝对的违禁药物。</p>
+    <p>他听说过某些大赌场为了让赌客夜以继日地赌博，而在赌场中吹入高纯度的氧气，但用LSD来活跃赌博气氛，简直等于群体性自杀。</p>
+    <p>“但很微量，只是令人兴奋罢了。”零补充，“以楚子航的体质，不会受很大影响。”</p>
+    <p>路明非略略松了口气，布宁应该只是希望热身环节更热闹一些，但用上LSD未免有点丧心病狂。</p>
+    <p>“像不像养蛊？”零又说，“把危险的虫子放进一个罐子里，让它们杀来杀去，强壮的吃掉弱小的，最后存活的那个就是有用的。”</p>
+    <p>路明非愣了一下，打了个寒战。</p>
+    <p>如果这群年轻的富豪不过是被养育的蛊虫，那么养蛊的人该是何等的恐怖！又是抱着什么样的目的？</p>
+    <p>不是亚历山大·布宁，而是布宁所说的那位幕后老板。</p>
+    <p>说起来布宁那么认真地拜托他救自己的女儿，却没把LSD的事告诉他。也许他也是蛊虫之一吧，布宁希望他更加凶猛，才能在接下来的拍卖场中胜出。</p>
+    <p>“你怎么没事？”路明非忽然想了起来。</p>
+    <p>“你不也没事么？”零看了他一眼，自顾自地走到吧台边要了一杯淡酒。</p>
+    <p>路明非挠挠头，莫非是大怪物的血统对LSD免疫？但这条解释用在零身上无效。</p>
+    <p>解释不清的事太多了，这里的每个人都有自己的秘密，他也懒得追问，继续在会场中溜达，观察每一个人。</p>
+    <p>
+      从赌桌上得胜而归或者失望而返的人聚成一个个的小圈子，他们低声地说话，有人状态低落，有人情绪激动，LSD在每个人身上呈现的效果是不同的。但微量的致幻剂还不至于令他们失去思考的能力，他们其实是在谈生意，就像克里斯廷娜说的那样，他们在聚拢筹码。那些自觉没法在拍卖会上胜出的人会选择把筹码交到强有力的人手里，而收下筹码的人应该也会支付不菲的代价。
+    </p>
+    <p>装着时间的小罐子，布宁并没有明说那种货品到底是什么，但很显然它能让这些年轻人疯狂，为它倾家荡产也在所不惜。</p>
+    <p>可他们每个人都跟克里斯廷娜一样缺时间么？每个人都身患绝症？</p>
+    <p>路明非亲眼看到一个女孩把自己的卡交到瓦洛佳手中，那个腼腆的男孩此时也露出君王般的气场，附身在女孩耳边说了句什么，最后狠狠地吻了她的红唇。</p>
+    <p>那交出筹码和希望的女孩像是被那个吻抽走了灵魂般，无力地躺在沙发上，瓦洛佳带着她的筹码离开后很久，她才挣扎着起身，来到吧台边要了一杯烈酒。</p>
+    <p>腼腆可能是瓦洛佳的伪装，这个低调的男孩应该是带了巨额的筹码来，志在必得，此刻正在场中游荡，像是灵魂的收割者。</p>
+    <p>大约不到十个人仍然保持着旺盛的斗志，其中还包括赌桌上大呼小叫的克里斯廷娜，这个连请柬都没收到的局外人应该只是被LSD迷惑了。</p>
+    <p>路明非始终在看表，时间一分一秒地流逝，这末日般的狂欢让他觉得无趣，值得他期待的只有那场神秘的拍卖会。</p>
+    <p>终于，墙上的挂钟敲响了。这一刻，所有人似乎都从梦中惊醒，扭头看向挂钟的方向。</p>
+    <p>
+      午夜十二点，请柬上注明的时间，唯一一扇始终关闭的门打开了，门背后是斜向下方的通道，铺着猩红色的地毯，墙壁也漆成猩红色，明亮的汽灯绵延向下，感觉倒像是引人去地狱似的。女服务员们来到各自负责的贵宾们身后，小声地提醒他们拍卖会就要开始了，其实根本用不着她们提醒，所有人的心里都有数，他们站起身来，男孩们扣好礼服的扣子，女孩们整理长发和裙摆，神情冷冽凶猛，都像是要奔赴战场的战士。
+    </p>
+    <p>赌桌上的筹码都被收走，重新转化为卡里的数字，每个人都紧紧地攥着自己的卡，那是他们决定能否从蛊虫罐子里存活的武器。</p>
+    <p>看到这一幕路明非没来由地笑了一下，倒不是别的，而是他忽然觉得这跟玩游戏没区别，大家满世界搜集奇珍异宝打造了神兵宝甲，现在是要去竞技场了。</p>
+    <p>这么想忽然就轻松了，对他来说这只是区区的一场游戏，某种意义上说，跟他的人生全无关系。</p>
+    <p>他跟在那个漂亮的女服务生后走向通道，忽然听到背后的脚步声，熟悉的脚步声，奔跑着的，像是轻灵的独角兽穿越森林。</p>
+    <p>
+      他转过身来，名为克里斯廷娜的独角兽长裙翻飞地扑进他怀里，亲吻了他的面颊。这忽如其来的示爱令路主席有种大难临头的惶恐，因为一左一右皇女殿下和楚子航正在围观。皇女殿下也就罢了，楚子航那满脸的震惊好像在说，没想到啊没想到，师兄你还是跟俄国女人搞在一起了！
+    </p>
+    <p>“带着我的卡去！输了就别回来见我！”克里斯廷娜那个吻也就蜻蜓点水，甚至点上没点上路明非都没确定，然后就是一张卡摔在他脸上。</p>
+    <p>路明非恍然大悟，为何情报员小姐在赌桌上鏖战到现在，她是想再给自己的小弟攒上一笔筹码。一介秘书想来是没什么钱的。</p>
+    <p>还真是一位……敬业的情报员。</p>
+    <p>“你也得对我表示一下啊！”克里斯廷娜在路明非耳边压低了声音，恶狠狠的，“不然我凭什么把卡给你？”</p>
+    <p>路明非赶紧点头，也难怪要以这么极具表演性的方式把卡送来，如今在别人看来，他是被克里斯廷娜成功征服的男孩，有了代替大小姐去征战的资格。</p>
+    <p>他轻轻地给了克里斯廷娜一个拥抱，“放心吧，剩下的交给我。”</p>
+    <h2 id="第164章-但为君故68">第164章 但为君故68 </h2>
+    <p>最终的拍卖场不过是间位于地下的圆形会议室，装饰奢华，空间却不多大。穹顶上漆着巨大的红五星，看起来年代久远。</p>
+    <p>最后一名宾客踏入，沉重的安全门在他背后合拢，想来这间会议室也是防空洞的一部分，此刻想从外面打开这扇门，大概得准备一颗原子弹。</p>
+    <p>“还真是个养蛊的罐子。”路明非心里嘟哝。</p>
+    <p>环形的会议桌足够容纳几十人一起开会，在服务员的引导下，客人们纷纷就座。每个人就座的时候都环顾四周，点头致意，结合当前的环境，应该视为拳击手在开场之前跟对手蹭蹭拳套。</p>
+    <p>路明非把“芬格尔”丢在桌面上，他看似随意地晃了一下，摄像头已经记录了每位参赛者的脸。</p>
+    <p>从登上火车以来，这台手机一直默默地搜集每位客人的资料。插上电源，它就会调用有限的计算资源，对每个人做分析。</p>
+    <p>细小的入耳式耳塞藏在路明非的耳道里，芬格尔正跟他点评每位客人，从身材到性格，像一位毒舌的高参。</p>
+    <p>归根到底，拍卖是财力和魄力的较量，有人工智能的辅助，加上丰厚的荷包，他的胜算很大。</p>
+    <p>那张有着巨大靠背的转椅转了过来，矮小但魁梧的布宁端坐其中，一身黑色的礼服，神情肃穆，像是庄严的法官。</p>
+    <p>“女士们先生们，欢迎来到今年的拍卖会。”布宁缓缓地说，“介绍一下，来自苏黎世银行的财务顾问，卡隆先生，他会确保各位的资金安全。”</p>
+    <p>带着圆框眼镜、留着小胡子的中年人站在布宁的椅背后，看起来就是那种帮富人管钱的银行家。</p>
+    <p>“请各位把筹码放入卡隆先生的托盘里。”布宁说。</p>
+    <p>银行家端着黑丝绒的托盘，环绕会议桌行走，每位客人都冷着脸把一张或者几张卡片丢进去。</p>
+    <p>路明非兜里揣着三张卡，还有那价值十亿美元的一小袋金币，但他只放了克里斯廷娜给的两张卡上去。在扮猪吃虎这件事上，他也算是无师自通。</p>
+    <p>零也丢了一张黑卡进去，那种美国运通发行的卡片意味着无限的透支权，但以罗曼诺夫家族的财力而言，这说不上炫耀。</p>
+    <p>轮到楚子航的时候，这家伙冷冷地看了银行家一眼，配合背后的两柄利刃，不像是花钱的大爷，更像是黑社会派来收账的，银行家赶紧绕着走了。</p>
+    <p>银行家返回布宁身边，打开桌上沉重的箱子，里面是一台加密型的电脑，附带多个读卡器，每张卡都被插入卡槽。</p>
+    <p>“卡隆先生已经接入了各位的账户，各位的余额已经显示在这台电脑上了，今年的竞争会很激烈。”布宁击掌。</p>
+    <p>六位女服务生袅袅婷婷地踏入会场，每人都提着一口沉重的黑箱子，手铐把提箱和她们纤细的皓腕锁死。</p>
+    <p>六口箱子并排摆好，但没有人把手铐解开。这些女孩既是货品的运输者，也是保镖，任何一个都比克里斯廷娜更适合当情报员。</p>
+    <p>“很遗憾，今年的货品只有六份，”布宁环顾众人，“这意味着有些急需时间的贵宾可能无法如愿。”</p>
+    <p>会议室里很安静，服务生们绕着桌子行走，在客人们面前摆下伏特加、水、和只写着数字的小牌。路明非的号码是33。</p>
+    <p>“之前出现过囤积货物的情况，依照我们的交易原则，这是允许的，价高者得。但我们是朋友，是兄弟，理应彼此照应。”布宁今晚说话格外地缓慢和威严。</p>
+    <p>但没有人在乎他说什么，从那些女孩踏入会场开始，所有视线都聚焦在那些黑色手提箱上。</p>
+    <p>那是带着敬畏的贪婪，像是能把那些箱子点燃。</p>
+    <p>“赌不赌？无非是些低劣的龙血制品，”芬格尔蛮不在乎地哼哼，“跟你接受的尼伯龙根计划没法比。”</p>
+    <p>路明非懒得回答，因为他跟芬格尔想的一样。</p>
+    <p>布宁说起“装着时间的小罐子”时，他就想到了龙血血清。</p>
+    <p>龙血是至毒的生物制剂，直接注射龙血的话，99%的人都会直接转化为死侍，但经过提纯的龙血血清就会安全很多。</p>
+    <p>
+      卡塞尔学院的尼伯龙根计划就是把龙王康斯坦丁的血清注射给最优秀的学生，试图制造出能够抗衡龙王级目标的混血种。加图索家原本期待这个计划被用在恺撒身上，因为提纯出来的血清少得可怜，仅够一人使用。但在昂热的主导下，血清最后注入了路明非的血管。
+    </p>
+    <p>那份血清确实强化了路明非的身体，但并未达到秘党期待的效果，今时今日不变身怪物的话，他也就是个A级混血种，甚至无法匹配他原本的S级身份。</p>
+    <p>结合防空洞里那条苟延残喘的黑蛇，答案似乎呼之欲出。</p>
+    <p>
+      某个组织意外地得到了一条古龙的残躯，又不知为何得到了提炼血清的技术。他们用那条龙的血液提炼血清，并把这些珍贵的生物制剂以高价卖给出得起钱的人，这会人为地制造出一些低级的混血种，但即使是低级混血种的寿命也长于多数的人类，龙血还能够攻克某些人类医学无法治疗的顽疾，比如克里斯廷娜的渐冻人症。
+    </p>
+    <p>在炼金术中，这种神奇的制剂被称作“万能药”，elixir，而在中国的炼丹术中，它有个更为玄妙的名字，“金丹”。</p>
+    <p>“让我们从第一份货物开始……”布宁说。</p>
+    <p>“2000万美元！”索尼娅举牌了，甚至不让布宁说完。</p>
+    <p>路明非暗暗一惊，要不是布宁帮他补充了筹码，克里斯廷娜老大提供的经费只够举个牌的。</p>
+    <p>“这叫投石问路，石头丢得大点，给对手制造心理压力。”芬格尔点评，“这时候她会观察每个对手的表情，来判断他们手中的筹码。对手们如果谨慎的话，会先观望，因为总共有六份货品，第一份往往不是竞争最激烈的。”</p>
+    <p>果然，索尼娅曼妙的眼睛扫视全场，目光像是问询又像是挑逗。她半趴在会议桌上，身体前倾，裸露的双肩在红裙的衬托下白得惊心动魄。</p>
+    <p>目睹过她踏入浴缸的那一幕，路明非完全不怀疑她对维什尼亚克的感情，但仅仅一天之后，她就变回了那个热情妖冶的女孩。此刻她眼神闪动，像是跟每个人隔空调情。</p>
+    <p>片刻的沉默之后，奥金涅兹举牌，“2100万美元。”</p>
+    <p>“好兄弟昨天刚刚挂掉，现在第一个跳出来跟好朋友的妹子竞价，够狠的！”芬格尔啧啧赞叹，“加价是不温不火的100万美元，这是不想自己的底牌被人看出来。”</p>
+    <p>“2200万美元。”</p>
+    <p>“2300万美元。”</p>
+    <p>“2500万美元。”</p>
+    <p>尽管刚开始的水位就不低，但第一轮的竞价显得很克制，平稳地升到了3500万美元，索尼娅一直平稳地跟进，3500万美元的牌子就是她举的。</p>
+    <p>“4000万美元！”瓦洛佳在此刻举牌杀入战场，他缓缓地抬起头来，瞳孔中流动着寒冷的光。</p>
+    <p>在布宁家的晚宴上认识的时候，他看起来那么腼腆羞涩，不善言谈，热情的索尼娅对他颇为照顾，就像姐姐，但此刻却是他吹响了进攻的号角。</p>
+    <p>“阴险的狙击手，但太沉不住气了。”芬格尔低声说，“他的语速比平时快，应该处在亢奋的状态。”</p>
+    <p>这个出价带来了长达半分钟的平静，布宁缓缓地扫视周围，手中握着小小的木槌。</p>
+    <p>号角一旦吹响，接下来的竞价就会激烈起来，</p>
+    <p>“4100万美元。”奥金涅兹举牌。</p>
+    <p>“这才是老手的风范，无论狙击手怎么躁动，都保持自己的节奏。真正的决战还没开始，第一份货品不过是给今天的拍卖定个参考价。”</p>
+    <p>“4500万美元！”瓦洛佳毫不犹豫地再次举牌。</p>
+    <p>奥金涅兹轻轻地叹了口气，“瓦洛佳，朋友之间应该相互照顾，你没那么急需补充，我们都知道。”</p>
+    <p>“价高者得！我们来这里不是做慈善的，我们中慈悲的家伙早都死了！”瓦洛佳冷冷地重复布宁说过的话，看都不看奥金涅兹。</p>
+    <p>
+      路明非扫视一圈，目光最后落在零的身上，皇女殿下低头用铅笔在纸上划动，笔下居然是一幅漫画，类似达·芬奇的那幅最后的晚餐，但画的是眼下的情形。环形的会议桌被拉开为一幅长卷，冷峻的布宁居中，华艳动人的索尼娅、叹息的奥金涅兹、咄咄逼人的瓦洛佳……众生百态都用简单的画法描绘得挺到位。
+    </p>
+    <p>她自己不在画卷中，路明非和楚子航却在，但路明非是条狗，而楚子航是背着两把刀的豪猪。</p>
+    <h2 id="第165章-但为君故69">第165章 但为君故69 </h2>
+    <p>十五分钟的缠斗之后，第一件货品以一亿四千五百五十万美元的价格被拿下，得手的却不是索尼娅、瓦洛佳或者奥金涅兹。</p>
+    <p>真正的狙击手始终埋伏着，直到最终竞价的阶段才出现，而且是两个人一起杀入战局的。</p>
+    <p>谢苗，此人并未出现在布宁家的晚宴上，他的列车在赤塔跟布宁一行接驳，路明非对他的印象是个优雅的暖男，大家一起聊天的时候，他总是照顾女孩子们，却又保持着距离。</p>
+    <p>还有米哈伊尔，根据克里斯廷娜的情报，这个男孩家里应该是从事伐木业的，俄罗斯有着面积广阔的原始森林，只要获得许可证，伐木业跟矿业一样是无本万利的买卖。</p>
+    <p>他们交替举牌，价格一路飞涨。冷静的奥金涅兹首先退出，索尼娅随后，瓦洛佳挺到一亿四千万美元，眼神也黯然下来。</p>
+    <p>只剩下谢苗和米哈伊尔了，路明非还以为会是一场血战，可几次小规模的加价之后，米哈伊尔就不再举牌了。在众人反应过来之前，布宁已经三次落锤，提着一号箱子的女孩来到谢苗背后站定。</p>
+    <p>“这俩在打配合，”芬格尔低声说，“让人以为他们两个要互相斗，其实只是联手把奥金涅兹那帮人的气势打下去。”</p>
+    <p>路明非轻轻地吹了一声口哨，算是为这俩毛熊的演技喝彩。</p>
+    <p>这俩看起来根本就不是一路人，路上也没有表现出任何的亲近，各喝各的酒，各追各的女孩，可早就是攻守同盟了。</p>
+    <p>路明非有点费解，这玩意儿比他想的便宜多了，可布宁给了他一张存着三亿七千万美元的卡，还怕不够，又给了那袋子小金币。</p>
+    <p>
+      有了第一次的价格作为参考，第二份货品的竞价更为直接利落，来自圣彼得堡的娃娃脸女孩安娜，出起价来却稳准狠，像是一辆一边碾过战壕一边发炮的重型坦克。这份气势令人深信她卡里的余额和必胜的决心，价格被抬高到一亿六千万美元之后，竞争者逐一退却，安娜最终以一亿九千万美元的价格拿下。
+    </p>
+    <p>拎着二号箱子的女孩站到了安娜背后，安娜冷冷地环顾，眼神中满是胜者的骄傲。</p>
+    <p>路明非拿起手机看了一眼——023号城市根本没有网络，因此使用手机也没有限制——但路明非手上的玩意儿是个人工智能，芬格尔给出了密密麻麻的图表，分析在场的每个人。</p>
+    <p>最终进入这间拍卖场的客人共有15位，除了罗曼诺夫家族拿到了三张请柬，其他家族都只有一张请柬，也就是说有资格上桌出价的总共13家，其中11家已经下过场了。</p>
+    <p>芬格尔认定谢苗和米哈伊尔是同盟。他们合作默契，低价赢取了第一件货品，但同盟关系也暴露了，再想打配合不容易。</p>
+    <p>第二轮的竞价中两人仍然凶猛，应该是想再吃下一份货物，只不过遭遇了坦克般的安娜，不得不避其锋芒。即使如此，他们也陪安娜跑到了最后。</p>
+    <p>奥金涅兹、索尼娅和瓦洛佳三人组，应该是老相识了，本该同进退，但事先应该是没商量好，眼下是各自为战。</p>
+    <p>来自圣彼得堡的安娜，娃娃脸的独狼，资金实力了得。</p>
+    <p>此外还有来自罗斯托夫的尼基塔，来自哈萨克斯坦共和国的雅科夫，来自萨马拉的马克西姆，和来自诺夫哥罗德的列昂尼德。</p>
+    <p>这四个人都试探性地出过价，芬格尔判断尼基塔和雅科夫可能是盟友，而马克西姆和列昂尼德更像是对头。</p>
+    <p>
+      除了罗曼诺夫家族，只剩两家还没出手，冷艳的叶卡捷琳娜从喀山来，垄断着当地的进出口贸易，这一路上除了克里斯廷娜，就是她和索尼娅撩动着男孩们的心；戴着复古圆框眼镜的格里高利，来自阿穆尔州，这男孩看起来更像是个修士，不太合群，也很少参加索尼娅他们的酒精聚会。
+    </p>
+    <p>“前两份货品的均价比去年高出10%，”布宁缓缓地说，“这意味着后面的竞争会更加激烈，急需时间的人，注意调整你们的战术。”</p>
+    <p>说这话的时候他有意无意地看了路明非一眼，路明非低头喝水，顺便点了点头，意思是我懂我懂。</p>
+    <p>从前两份货品的平均价格来看，布宁给的钱绰绰有余，最好是别亮出那袋金币就能结束战斗。</p>
+    <p>是时候出手了，得手之后打开箱子拍个照，照片给克里斯廷娜老大当证据，箱子给布宁。帮到这一步也够了，至于父女间能否摒弃前嫌家庭和睦，他也管不来那么多。</p>
+    <p>“今天的第三份货品，它的品质要优于之前的两份……”布宁缓缓地说。</p>
+    <p>路明非心里正嘀咕说这东西还有品质差异的时候，零已经举牌了，“从一亿九千万美元开始吧，没必要浪费时间。”</p>
+    <p>全场震动，无论是跃跃欲试的还是冷眼旁观的都傻眼了，有人似乎是不相信自己的耳朵，急切地看向身边的人求证，有人则愤怒得就差拍案而起了。</p>
+    <p>他们都听闻过罗曼诺夫家族的财力，也都把零看作强有力的竞争者，却没想到皇女殿下的出价是如此地蛮横，隐隐透出“这过家家的小游戏是浪费我时间”的意思。</p>
+    <p>路明非也懵了。克里斯廷娜的病和布宁的委托他都没跟零说，倒不是瞒着她，而是跟她没关系。这小事他自己搞定就好，却不料老板忽然抽风。</p>
+    <p>片刻的沉默之后，谢苗咳嗽了一声，“殿下是觉得罗曼诺夫家族的财力足够碾压我们所有人么？”</p>
+    <p>“试过才知道。”</p>
+    <p>“皇女殿下，我不得不提醒您，我手中已经有一份货品了，它的价格是目前最低的。”谢苗冷冷地说，“即使我高价拿下这份货品，平均下来依然是不错的买卖。而你手中除了钱，没有别的筹码！”</p>
+    <p>“两亿美元。”零淡淡地说。</p>
+    <p>所有人愣了一下才明白，零刷新了价格。可根本就没人跟她竞价，之前一亿九千万美元的价格是她自己出的。</p>
+    <p>路明非也愣了一下，却是因为记忆中芝加哥的拍卖会上，那个穿金色纱丽的女孩也是自己跟自己竞价，凶悍的风格跟零如出一辙。</p>
+    <p>区别只是那女孩的霸气和容光都威慑全场，而零这么做的时候，漫不经心的口气更像是菜市场买豆腐，一块九的豆腐给两块，说声别找了。</p>
+    <p>“拍卖场上只有一种语言，数字。”零继续完善自己的小漫画，“您说得太多，就像一边唱嘻哈一边投篮的球手。”</p>
+    <p>谢苗勃然大怒，优雅暖男形象瞬间崩塌，他离座而起，身体前倾，两眼喷火地盯着零。</p>
+    <p>“谢苗，你应该知道这里的规矩。”布宁低声说。他这么说的时候并不多么咄咄逼人，但也没有一点开玩笑的意思。</p>
+    <p>谢苗强迫自己坐回椅子上，深吸了口气，“米哈伊尔，你的筹码给我！”</p>
+    <p>在场的人都猜到了他跟米哈伊尔是同盟，但这句话说出来，就是不在乎同盟关系的暴露，志在必得。</p>
+    <p>“把我的筹码转到谢苗的名下。”米哈伊尔毫无异议，把号牌沿着桌面滑给布宁。</p>
+    <p>银行家用眼神询问布宁的意见，布宁抓起米哈伊尔的号牌，把它交给身边的服务人员，“我们不限制客人之间交换筹码，何况米哈伊尔已经放弃了自己的坐席。”</p>
+    <p>随着大额资金倒入谢苗的账户，谢苗的信心和气势都倍增。他直视着零，举起手中的号牌，“两亿一千万美元。”</p>
+    <p>“两亿二千万美元。”零却没有跟他四目相对，这可以理解为不屑，也可以理解为她正专心于自己的画作。</p>
+    <p>“两亿三千万美元。”</p>
+    <p>“两亿四千万美元。”</p>
+    <p>价格交替上升，双方寸步不让。没有人加入这场竞争，也不明白这是怎么了，分明后面还有三份货品，这两人却必须在这一轮分出胜负。</p>
+    <p>零淡定如常，谢苗却显得极其兴奋，面色赤红，指节因为用力而发白。</p>
+    <h2 id="第166章-但为君故70">第166章 但为君故70 </h2>
+    <p>“从声线分析，这家伙已经兴奋到顶了。”芬格尔在路明非耳朵里低语，“心跳频率超过200，血压和肾上腺素指标都超标，他随时可能放弃，但突发脑溢血死掉我也不奇怪。”</p>
+    <p>“两亿九千万美元！”谢苗还是缓缓地报出这个数字，吐出每个音节都像是吐出石头。</p>
+    <p>路明非忍不住了，凑过去想问问零这到底是怎么一回事，可没说出话来，零忽然丢掉手中的铅笔，一把抓住他的手腕，摁在桌上。</p>
+    <p>她冷冷地看着路明非，这一刻她的目光吞龙噬虎，整个会场都被她的气场压迫着。</p>
+    <p>“不要劝我！我们曾经失去过国家，再也不会允许自己失去任何东西！”零举起手中的号牌，“三亿美元！”</p>
+    <p>片刻的沉默，除了谢苗和米哈伊尔，每个人都微微颔首，似乎是理解了罗曼诺夫家族那霸道的作风。他们曾经是俄国最高的统治者，时至今日，沙皇的尊严依然流淌在他们的血脉里。</p>
+    <p>皇女殿下只是看起来冷漠淡然，心里却是志在必得。秘书不懂主人的心理，贸然想要劝阻，被主人当场警告了。</p>
+    <p>只有路明非是懵的，因为他根本没想劝阻，他就是想问问这到底是图啥，可就连这句话也没来得及问出口。</p>
+    <p>谢苗盯着自己手中的号牌，三亿美元，这对他来说显然是个心理上的槛。但在零的攻势之下，这个随时会打退堂鼓的年轻人反而不愿放弃了。</p>
+    <p>他看向对面的米哈伊尔，放弃了举牌的权力，但米哈伊尔还留在这张桌上，仍是谢苗心理上的支持。</p>
+    <p>米哈伊尔缓缓地点头，瞳孔亮得像是要烧起来。</p>
+    <p>“三亿五千万美元！”谢苗高举手中的号牌，以嘶哑而骄傲的声音报出了这个数字。</p>
+    <p>零沉默了，在纸上写写画画，每个人都听着铅笔刮擦纸张的声音，等待。</p>
+    <p>她从拍卖开始就在那里写写画画，没人知道她一直在记录什么，也许是记录着出价的先后次序，也许是计算自己能调动的现金。</p>
+    <p>只有路明非清楚，零正为那幅漫画版的“最后的晚餐”画阴影，空气都灼热得像是要烧起来了，她却非要画完那幅小漫画才说话。</p>
+    <p>“罗曼诺娃殿下，”布宁清了清嗓子，“如果您不准备继续出价，三号货品就属于谢苗先生了。”</p>
+    <p>零终于完工了，画完阴影之后，她给谢苗和米哈伊尔的脑袋上加上了两个小光环，并把这张画展示给路明非看。</p>
+    <p>路明非还没想明白，零叹了口气，“我放弃。”</p>
+    <p>巨大的转折让所有人都傻眼了，不是沙皇家族的尊严么？不是不允许自己失去任何东西么？放弃的速度之快，倒像个识时务的意大利人。</p>
+    <p>“三亿五千万美元一次，三亿五千万美元两次，三亿五千万美元三次。胜出者是谢苗先生。”随着布宁的锤子落下，提着三号箱子的女孩走到谢苗身后。</p>
+    <p>出乎路明非的意料，这个艰难胜出的赢家始终沉默着，他的盟友米哈伊尔也沉默着，</p>
+    <p>布宁轻轻击掌，他背后的门打开，又是一条猩红色墙壁的通道。</p>
+    <p>“休息一个小时，需要交换筹码的贵宾可以趁这个时间讨论，当然，需要饮酒和放松的人，这里的服务只会比上面更好。”</p>
+    <p>在服务生的指引之下，客人们经过通道来到新的空间，023号城市的防空洞就像蛛网那样四通八达。防空洞固然不如地面以上的会场开阔，但烈酒、沙发和休息室也一应俱全。</p>
+    <p>客人们多数神色凝重，三号货品的交易价格是个罕见的高点，这意味着接下来的竞争会更加激烈，而没有这种货品，他们中有多少人会在下一个冬天前挂掉，这还不清楚。</p>
+    <p>———————————————</p>
+    <p>“他们的目标是场外交易。”走在通道里的时候，零低声说。</p>
+    <p>路明非愣了一下，摇头表示自己没听懂。</p>
+    <p>“低价拍下货品，等买不到的人加价跟他们在场外买。”零说，“对有些人来说那箱子里面的东西是救命的，对他们来说是用来赚钱的。他们知道今年的货品不够用。”</p>
+    <p>“你怎么看出来的？”</p>
+    <p>“这两人都需要货品的可能性很小，但是拍下第一份货品之后他们还继续出价，一个合理的解释是他们试图推高后面成交的价格。他们买下那份货品的价格是一亿四千五百五十万美元，如果后面的成交价远高于那个数字，就是他们场外成交的底价。”
+    </p>
+    <p>“所以他们不是真的想买第二份货，只是想当托儿。”路明非明白过来的。</p>
+    <p>“他们可能根本没钱买第二份货，但那两个是好演员，他们一直在伪装。我调查过他们的背景，他们俩的生意都遇到了些问题，应该凑不出那么多钱。”</p>
+    <p>“布宁能看到余额，不够钱他怎么会让那俩接着出价？”</p>
+    <p>“卡上的钱未必真是他们的钱，也可能是借来的高利贷。”零淡淡地说，“按照金融黑市的惯例，没有足够的抵押品，借贷美金给他们，存入苏黎世银行的不记名账户，这个利息每天可能高达30%。”</p>
+    <p>路明非明白了，“但你让他们假戏真做了。”</p>
+    <p>“罗曼诺夫家族下场，让他们觉得能把价格推到新的高点。谢苗报出三亿五千美元的时候，心里是确信我会继续接盘，甚至报出比如四亿的高价。”零说，“两个贪心的家伙做了个漂亮的局，但自己陷在自己布的局里了。”</p>
+    <p>“如果你报三亿他们不接怎么办？”</p>
+    <p>“那就买下来，三亿对我不算什么。”零耸耸肩。</p>
+    <p>路明非想了想，这确实是个碾压式的进攻，谢苗说得没错。从游戏开始的那一刻，谢苗就已经是牢笼中的野兽了，而零站在笼子外，看着他扑腾。</p>
+    <p>忽然想起小魔鬼曾经说过，在真正的权与力面前，诡计不过是小丑的表演。</p>
+    <p>“所以你不必担心了，想救克里斯廷娜小姐的话，未必一定要在场内买那玩意儿，至少有两份会进入场外交易的市场。”零淡淡地说，“那两个家伙现在就急着把货品卖掉，金融黑市的无抵押贷款以小时计利，每拖一个小时他们都会收到天价账单。”
+    </p>
+    <p>路明非愣住了，零反过来算计谢苗和米哈伊尔还不是为了取乐，而是已经知道了路明非的计划，为他把路铺完了。</p>
+    <p>“我去洗手间了，你知道该怎么做。”零拍拍路明非的肩膀，转身离去。</p>
+    <p>———————————————</p>
+    <p>跟零的推测一样，刚刚离开会场，谢苗和米哈伊尔就拖着修士般的格里高利一头钻进了一间休息室，锁上了门。</p>
+    <p>路明非之前还在盘算，此刻完全地放松下来，走到吧台旁要了一杯葡萄酒，慢慢地喝着，等着谢苗他们跟格里高利谈完。</p>
+    <p>就算格里高利会买走其中的一份，也会留一份给路明非。三亿五千万的价格路明非还出得起，甚至加到四亿也没问题。他是这个拍卖场上少见的阔佬，谢苗和米哈伊尔没有理由不卖给他。</p>
+    <p>反正钱也是布宁父女出，跟他没有一毛钱的关系。</p>
+    <p>喝了一杯又一杯，喝到第三杯的时候，路明非警觉起来，等得似乎太久了。</p>
+    <h2 id="第167章-但为君故71">第167章 但为君故71 </h2>
+    <p>路明非推了推，休息室的门依然紧锁，里面的讨价还价似乎还没有结束。他正要离去，却注意到门缝下方正汩汩地渗出血来。</p>
+    <p>“来人！”路明非大吼。</p>
+    <p>布宁迅速带着服务人员赶到，看到这一幕老家伙的脸色也变了。他从服务人员那里接过手枪，接连几枪破坏了门锁。门刚一推开，就闻到浓重的血味。</p>
+    <p>休息室里到处都是血，涂满地面、墙壁、甚至天花板。</p>
+    <p>空气中还飘着雪茄的烟雾，茶几上的酒杯中，冰块还没有融化，似乎前一刻还在安静地谈着生意，但下一刻骤变发生，谢苗被一支锋利的短剑钉在了沙发上。</p>
+    <p>
+      动手的人是格里高利。他看起来简直就是个虔诚的修士，但动起手来不亚于一名现役海军陆战队。米哈伊尔立刻反应，他跟格里高利之间有过惨烈的搏斗，这从墙上的血迹可以看得出来，但厚厚的门和墙壁把声响隔绝了。米哈伊尔的格斗术应该也相当精强，但最终被格里高利用一根细细的钢索吊死在吊灯上了。但格里高利也没有机会走出那间会议室，就在他想要取出手提箱中的货品时，被短剑贯穿了心脏的谢苗醒了过来，用一支大口径手枪把格里高利的脑袋炸成了碎片。但这也耗尽了他最后的一点生命。
+    </p>
+    <p>惨烈的场面只是稍微震惊了布宁片刻，他跑到格里高利那没头的尸体旁，检查那两口手提箱。</p>
+    <p>因为急切，他没有来得及避开路明非，破碎的玻璃瓶里，某种黄绿色的软体动物还在微微地蠕动。</p>
+    <p>那东西看起来是某种大型水蛭，路明非家乡也叫蚂蟥的。这价值上亿的货品，所谓罐装的时间，居然是大型蚂蟥。</p>
+    <p>布宁站起身来，暴怒地踹在格里高利的尸体上，“混蛋！”</p>
+    <p>
+      谢苗最后开的不是一枪，而是打完了弹匣里所有的子弹，一枚玻璃瓶被爆掉了，另一枚玻璃瓶则被子弹削掉了一半，连同其中的水蛭，那东西看起来也活不成了，体液从破碎的身体里汩汩地渗出。如此精准的射击，无疑最后谢苗的目标不仅是格里高利，也包括了这两件货品。
+    </p>
+    <p>路明非从谢苗的胸口拔出那支短剑，看制式是当年苏联海军军官佩戴的礼仪短剑，跟现代的军用匕首相比，实在说不上什么利器，但在格里高利的手中威力不亚于子弹。</p>
+    <p>实在很难想像有人会用这种东西作为凶器。</p>
+    <p>“收拾干净！”布宁下令，“尸体焚烧掉，他们的东西全部封存，货品的残渣冷冻起来。”</p>
+    <p>服务人员立刻把围观的客人请了出去，开始清理工作，但消息的泄露已经无可避免。路明非很确定，当客人们围聚过来的时候，关注点都是破碎的货品而不是惨死的友人。</p>
+    <p>他们的神情是惋惜和愤怒的，跟布宁的愤怒如出一辙。</p>
+    <p>
+      现场并不复杂，简单地推理，想做场外交易的谢苗和米哈伊尔找上的却是个强盗，格里高利要么没钱要么没准备出钱，也可能是谢苗的出价他无法接受。但对货品他志在必得，无论用上什么手段。但想不通的是外面都是布宁的人，难道格里高利准备带着一身的血悄悄离开？或者说，他是想把外面的人都杀了？
+    </p>
+    <p>可他的身手纵然凌厉，却怎么也过不了楚子航的那两把刀，可以想见格里高利对货品的渴望，让他变成了孤注一掷的亡命徒。</p>
+    <p>片刻之后布宁从休息室里出来，并不过多地解释，只是走到吧台边坐下，打个响指，立刻有一杯伏特加摆在他面前。</p>
+    <p>他把杯中烈酒一饮而尽，压低了声音，“今年的货肯定不够了，接下来的竞价会更加激烈。”</p>
+    <p>他的旁边，路明非正浅浅地啜饮着一杯红酒。</p>
+    <p>“老板你的委托可还真是麻烦啊。”路明非轻轻地叹了口气。</p>
+    <p>他把用餐巾裹好的海军短剑推到布宁面前，起身离去。</p>
+    <p>这时候客人们聚集在不同的休息室里窃窃私语，他们跟三位死者都是朋友，却没空悼念一下相对无辜的谢苗和米哈伊尔。之前大家还曾为维什尼亚克扶棺，但那份同病相怜的情谊此刻被恐惧冲淡了。不是死亡的恐惧，而是“货不够”的恐惧。</p>
+    <p>———————————————</p>
+    <p>半个小时之后，拍卖会重开。客人们返回桌边坐下，无声无息地交换了眼神。就在过去的半个小时里，他们重新确立了同盟的关系，收拢手中的筹码，预备做最后的搏杀。</p>
+    <p>“一亿五千万美元。”奥金涅兹首先举牌。</p>
+    <p>他和索尼娅、瓦洛佳是一起回来的，索尼娅和瓦洛佳将自己账户上的余额导入了奥金涅兹的账户，现在奥金涅兹是他们这组人的代表了。</p>
+    <p>来自莫斯科的好朋友们似乎重新确立了友谊，又或者说他们已经没有退路。</p>
+    <p>只有三份货品剩下，上半场的相互试探也已经结束，大家都不再隐藏实力，价格很快抬升到了之前零出过的三亿美元。</p>
+    <p>除了罗曼诺夫家族的三位和已经得手一次的安娜冷眼旁观，其他人都参与了竞价。</p>
+    <p>
+      尽管抱着极大的决心，但三亿美元的高价还是像高墙那样挡住了一些人。如此看来这些人的身家都是几亿美元的级别，并非什么顶级富豪，超过一定的数字他们就得跟谢苗一样想办法去拆借，支付惊人的利息。而在场唯一的顶级富豪又开始画她的画了，这一次她起的稿不再是《最后的晚餐》的，但皇女殿下的画功其实并不那么优秀，看她东一笔西一笔地涂抹，路明非暂时还猜不出她想画的是什么。
+    </p>
+    <p>“三亿一千万美元。”路明非举起手牌。</p>
+    <p>“很抱歉，路先生您的余额不够。”布宁冷冷地说。</p>
+    <p>路明非从口袋里掏出布宁给的那张卡，丢了出去，沿着桌面稳稳地滑到布宁面前。</p>
+    <p>验证了余额之后布宁点了点头，“欢迎加入游戏。”两个人一唱一和，都是天生的表演艺术家。</p>
+    <p>其他人立刻警觉起来，冷艳的叶卡捷琳娜首先质疑，“敢问秘书先生的出价是代表罗曼诺夫家族么？”</p>
+    <p>“不是，他只是用自己的筹码玩玩。”零扭头看着楚子航，“你要不要一些筹码？”</p>
+    <p>楚子航摇摇头，零也并不强求。</p>
+    <p>“罗曼诺夫家族的秘书都能动用三亿一千万美元的筹码么？”奥金涅兹沉声问。</p>
+    <p>“三亿两千万美元。”路明非说。</p>
+    <p>他懒得跟这些人啰嗦，所以用上了跟零一样的战术。</p>
+    <p>威压无声无息间降临在会议桌上，这个一路上始终耷拉着眉眼的秘书，感觉给皇女殿下拎包都嫌猥琐，此刻却透着世家子弟般的从容甚至百无聊赖的态度，挥舞着大额资金杀了进来。</p>
+    <p>这毫无疑问是个劲敌，无论站在他背后的是不是罗曼诺夫家族。</p>
+    <p>“三亿两千万美元一次。”布宁环顾四周。</p>
+    <p>“三亿两千五百万美元。”奥金涅兹举牌。他只加了五百万，可能是筹码不足了，也可能是故意示弱。</p>
+    <p>“三亿三千万。”路明非接着举。</p>
+    <p>其实他有点紧张，他账面上统共就四个亿，早知道上半场先声夺人拿下一份。也是格里高利那个亡命徒搞事，他要是不毁掉那两份场外交易的货品，大家此刻也不会杀红了眼。</p>
+    <p>但他提醒自己此刻万万不能露出马脚，不能让别人看穿自己的底牌。所谓世家子弟般的态度只是他回忆着恺撒的行为举止，直到今时今日他也还是学生会的继承者，没吃过猪肉但确实看过猪跑。</p>
+    <p>不过真不够他还可以问零借一点，想来时候布宁也会凑钱还上的。</p>
+    <p>“三亿七千五百万美元。”尼基塔缓缓地报出了这个数字。</p>
+    <p>跟前半场不同，没有人轻易退出游戏，每个人都在坚持。</p>
+    <p>“所有人的资金链都快绷断了。”芬格尔小声说，“现在速战速决！”</p>
+    <p>“四亿美元。”路明非举牌，声音慵懒得像是刚刚起床。</p>
+    <p>———————————————</p>
+    <p>坑边闲话：</p>
+    <p>这几天的进度不甚理想，有些段落之后会有大修改。</p>
+    <p>筹备了几年的几个项目都要在最近面世，虽说影视项目按说是导演的作品，游戏项目是制作人的作品，但作为原作者，难免关心则乱，也有义务配合。</p>
+    <p>媒体采访和宣传的事占据了大部分时间窗口，有些大的采访，比如《人物》的采访，会花掉几天时间。</p>
+    <p>
+      《人物》杂志的记者问我对现在的生活有什么不满意的，我说我当年几乎每天都在写书，但总想着创业做买卖，觉得那样人生才更加充实有意义，现在特别想每天就是写书跑步，可各种事情不断地把我打断。也不知道是不是没处理好自己的工作和生活，总是心愿和当前的节奏差半拍。
+    </p>
+    <p>那些上线真面世的时候我要找个南方海岛去过个一周，晒得黑黑的，像个野人，抱着一颗椰子看海，暂时地把喧嚣丢开。</p>
+    <p>By the way，《权游》这大结局真是有点无厘头。</p>
+    <h2 id="第168章-但为君故72">第168章 但为君故72 </h2>
+    <p>寂静，只有此起彼伏的呼吸声。</p>
+    <p>四亿美元的价格对所有人都是巨大的威压，走进这间会议室的人，不知道抵押了多少，又拆解了多少，合纵连横，才凑够了眼下的资本。</p>
+    <p>但在视钱如粪土的新玩家面前，他们的努力都告白费。就像你练剑三十年想要下山报仇，却发现仇家已经増加了六十年的功力。世界上真正的道理永远是实力，努力虽然感人，终究被感动的只是自己。</p>
+    <p>路明非没来由地想要叹气，虽然甩出这个价码的人是他自己，但在神情惨淡的索尼娅面前，他也并不觉得这有多么值得骄傲。</p>
+    <p>“四亿一次，四亿两次……“布宁举看小槌，威严地扫视。</p>
+    <p>只有路明非知道他是多盼看赶快把这一槌砸下去，但他还不能露出马脚。</p>
+    <p>“五年。”叶卡捷琳娜举起手中的牌子，“四亿美元，加五年。”</p>
+    <p>布宁的脸色微变，但还是稳住了，微微点头，“叶卡捷琳娜増加了出价，四亿美元，加五年。”</p>
+    <p>路明非愣住了，这“五年”算怎么回事？他们来这里就是拍买时间，可难道时间也能作为筹码？那他们买到的罐子里，又密封看多少的时间。</p>
+    <p>短暂的沉默之后，列昂尼德举起牌子，“四亿美元加六年。”</p>
+    <p>“七年。”尼基塔跟看举牌。</p>
+    <p>四亿美元的心理价位一旦被突破，没有人再踌躇，每个人都平静地以时间加价。但在计算时间的价格时他们远比计算金钱更加谨慎，每次加价都是以一年为单位。</p>
+    <p>“三亿五千万美元，加十五年。”雅科夫艰难地说。</p>
+    <p>这暴露了他的底牌，他在加到三亿五千万之后就再也没有出过价，那是因为他的账户中余额已经不足。直到时间取代了美元成为新的硬通货，他才重新加入了战局。</p>
+    <p>“请稍等，我需要打个电话，请示一下卖家，看他是否愿意接受以时间取代货币来继续拍卖。“布宁再度暂停了拍卖进程。</p>
+    <p>
+      他看向路明非，“除了美元，我们也接受服务年限作为计价单位。叶卡捷琳娜小姐的出价是四亿美元加上她的家族为卖家全身心地服务五年，而雅科夫先生则愿意倾家族之力为卖家服务十五年，但由于现金不足，他把货币出价降低到了三亿五千万。这一点我得跟卖家沟通一下，不需要多久，请各位稍作等候。“
+    </p>
+    <p>他起身离开了会议室，留下沉默的卖家们。</p>
+    <p>
+      路明非缓缓地打了个寒颤，他忽然意识到某个可怕的真相。这不是什么养蛊的罐子，这是一个牢笼。这些衣冠楚楚的年轻人一虽然无法确认他们的真实年龄一其实都是某个幕后黑手的囚徒，为了获得更多的时间，他们必须承诺一定时长的服务。在拍卖会上允许服务年限当作价格，这种事肯定不是第一次出现。
+    </p>
+    <p>一个家族一年的服务值多少钱？这就像一个人的一生值多少钱，本该无法确定，但在023号城市，都可以计算。</p>
+    <p>如果连人生都可以计算，那还有什么不能计算？爰情、欢乐、贞操、尊严，为了能更多一些时间，都可以被押在桌上。</p>
+    <p>没来由的恐惧，伴随看没来由的愤怒，他缓缓地握拳，指缝中似乎流淌看嘶嘶作响的真气，就像里的武林高手那样。想要把这张桌子一把掀翻，再掐住那个幕后人的脖子。</p>
+    <p>但一只手及时地按在他的手背上，轻轻地压住了他的怒火。零转过头，深深地看了他一眼，霜雪一样的小脸上什么表情都没有。</p>
+    <p>
+      片刻之后，布宁回到了会议室，“卖家接受了您的出价，雅科夫先生，但他也要求我申明两个原则。以时间出价，只能在您耗尽了所有账面现金之后。其次，以时间加价不能是无限的，这个限度，对每个家族而言是不同的。“列昂尼德敲了敲桌面，“我们能知道各家的额度么？“
+    </p>
+    <p>布宁摇了摇头，“很遗憾，只有在你们触发了这个上限的时候，我才会叫停。“</p>
+    <p>索尼娅凄凉地笑笑，“也就是说我们需要花光我们现在账上的钱，还要透支我们未来所有的生命，才能换到活下去的机会，是么？“</p>
+    <p>“我很抱歉，索尼娅，但我只是一个主持人。“布宁幽幽地说。</p>
+    <p>“我来这里的事情已经办完了，如果布宁先生允许的话，我要提前离开了。“那位来自圣彼得堡的安娜小姐站起身来，现在那个皮箱扣在了她的手腕上。</p>
+    <p>“当然可以，恭喜你，我亲爰的安娜。代我问你丈夫好，我知道快要耗尽时间的人是他。“布宁站起身来，把她送到门边，把她的卡递还，“漂亮的战术，卡里还剩430万美元。“</p>
+    <p>剰下的人神情各异，任谁看到安娜出价时那果决的态度，都会认为她的账面资金非常充裕，但其实她出到一亿九千万的时候，已经是最后一搏。</p>
+    <p>安娜简单地拥抱了布宁，急急匆匆地走了，甚至没有回头看其他人一眼。她凭借机智和侥幸逃出了陷阱，从门在她背后关上的那一刻开始，野兽们就得为仅剰的三个机会搏杀。</p>
+    <p>布宁返回桌边坐下，“之前为我们做过贡献的人，有些人持有那种无法复制的金币，这是卖家对各位诚擎的谢意。它的价值，等于一年的时间，在这张桌子上，它也是有效的流通货币。“</p>
+    <p>路明非意识到布宁是在提醒自己。</p>
+    <p>三十几抆小金币，路明非忽然想明白了，那是布宁历年服役的报酬，他已经为这个组织工作了三十多年。</p>
+    <p>临时筹措了三亿多美元很可能是句假话，他已经把所有的财产都给了路明非。连带主持人都是一只困兽。</p>
+    <p>想得越深越叫人不安，那个连露面都不敢的卖家，在场的人却都畏惧他像是畏惧神鬼。货物此^就在这间屋子里，抢了货物，跟他路明非一样亡命天涯也不失为一种选择。可他们都恪守看卖家制订的规则，不敢逾越雷池一步。</p>
+    <p>
+      “恕我直言，今年集会的人中，只有少数人获得了邀请。筛选原则只有两个，一是准备了足够的筹码，强烈要求参加的，二是有需要的人，你们为了更多的时间，自然会竭尽全力。我理解你们中的不少人都希望在价格低谷的时候获得一份货品，它可以被保存在冷库里，令你们安心。但随看谢苗买下的两份货品被毁，今年已经必然是价格的高峰了。在这个时候，有没有人愿意跟安娜一样退出，给那些更需要的人一个机会呢？“布宁环顾。
+    </p>
+    <p>长久的沉默，没有人说话，所有人都跟自己的盟友对视，却不置一词。</p>
+    <p>布宁轻轻地叹了口气。</p>
+    <p>
+      “继续吧布宁。“列昂尼德低声说，“你知道为何今年的竞争格外激烈么？不是因为货品不足，而是因为你。那么多年来，有你主持这项拍卖，我们一直有所期待，但你的服役期马上就要结束了，明年的主持人是谁，到现在还没有公布。你虽然是个令人讨厌的家伙，但谁也不能肯定你的继任会比你好，也许明年就没有023号城市了，我们坐看火车来到这里，看到的只是白雪覆盖的废墟。这时候谁不想要一份货品存在自己的冷库里呢？“
+    </p>
+    <p>布宁沉默良久，点了点头，“明白了。“</p>
+    <p>“我想问个问题，“零举手，“罗曼诺夫家族也可以用时间加码么？“</p>
+    <p>
+      “关于这个问题，我特意请示了真正的卖家，他表示非常愿意邀请罗曼诺夫家族加入我们。“布宁摇头，“但很遗憾，我们无法对你们的时间做估价，而且你们的财力足够，也根本不必用时间来加价。3000万美元折抵一年的服役时间，殿下您可以继续用美元。“
+    </p>
+    <p>“是这样么？“零淡淡地说，“看来我们还不算被信任的朋友。“</p>
+    <p>
+      “谁敢期待沙皇家族的效忠呢？“布宁说，“三亿五千万美元，加十五年。雅科夫先生刚才的出价，按照3000万美元一年折低，现在的价格等值于八亿美元。路明非开始把玩兜里的小口袋了，他还剰差不多十亿美元的小金币，按照眼下这个疯狂的趋势难说够不够，最好在第四件和第五件货品中拿下一件。
+    </p>
+    <h2 id="第169章-但为君故73">第169章 但为君故73 </h2>
+    <p>“四亿美元，加十五年。“叶卡捷琳娜的声音依然平静。</p>
+    <p>
+      索尼娅却凄凉地笑了笑，“十五年，叶卡捷琳娜，我们已经荀延残喘了多久？就像是被吸血鬼养起来的人类，你能呼吸、能吃东西、能疯狂地购物、跟你喜欢的年轻男人狂欢到天明，可你没有希望。你活得越久，只是为了提供更多的血液，如果你无法完成服役期，你的孩子还要继续为你偿还。活看，真的那么重要么？“
+    </p>
+    <p>路明非上下打量叶卡捷琳娜，这婀娜冷艳的女孩看起来最多25岁，却已经有了孩子。这群人的年龄似乎被那种神奇的水蛭锁死了，他们不老也不死，前提是永远为某个人服务。</p>
+    <p>
+      “我亲爰的索尼娅。“叶卡捷琳娜低头看看桌面，“看看你自己。就在上个月，你抛售了绝大部分的资产，把钱存在一张卡里，带看它来到这里。可你的时间还够用，你原本不需要那么着急，你是为了谁这么做的？那可怜的家伙到死都没明白，你是在帮他筹钱，如果你早点跟他说明白，他也不至于割断自己的动脉了。“
+    </p>
+    <p>路明非心里微微一动。</p>
+    <p>
+      第一次见面的时候他就觉察出他们身上那股陈旧的气息，鲜活的面孔后面，似乎有一双沧桑的眼睛始终审视看你。现在这种猜测被证实了，这是一群靠着邪术滞留在世间的鬼魂，就像吸血鬼。可吸血鬼之间居然还有看这样的羁绊，这个妖冶动人的索尼娅，一路上跟很多人眉来眼去，随便他们为自己争风吃醋，原来始终在意的就只有一个人。而那个人，甚至根本就不知道。
+    </p>
+    <p>真是个孩子气的故事，孩子气得……让人对这个可能是老妖婆的索尼娅有点不忍心。</p>
+    <p>
+      叶卡捷琳娜抬起头，直视索尼娅的眼睛，“你没有孩子，不会廑这个陷阱有多深，你用过那种药，你的后代就会出现基因缺陷，能够糾正基因缺陷的还是那种药。三个月前我给我的孩子做了低温储存的处理，他现在没有心跳也没有呼吸，但那种药能唤醒他，我又会听到他叫我妈妈。我可以为这件事支付任何代价。“
+    </p>
+    <p>索尼娅悚然动容。</p>
+    <p>“幕后那位老板锁定的不是你和你家族的服役期限，还有你的朋友亲人、你的杜会关系，你的一切。“叶卡捷琳娜轻声说，“只有被耗尽的人有资格退出这场游戏，只要你还活看，你就得为活看这件事受刑。“</p>
+    <p>“四亿美元，加十五年。“布宁重申了当前的报价。</p>
+    <p>“五亿美元，加十三年。“奥金涅兹举起了号牌。</p>
+    <p>他一直在观望，至此终于加入了竞价。他捏看自己、瓦洛佳和索尼哑三个人的筹码，这群来自莫断科的好朋友在其他人的压力下达成了一致。</p>
+    <p>“奥金涅兹，你是那个时间不够的人。“列昂尼德忽然说。</p>
+    <p>
+      奥金涅兹的脸色微变，却没有否认。到了这个时候大家的底牌都差不多清楚了，索尼哑筹钱是想帮维什尼亚克，那么她不是缺时间的人。瓦洛佳的攻势虽然凶猛，但最终选择了把筹码交给奥金涅兹，那么一直表现得最冷静的奥金涅兹才是危在旦夕的那个人。表面上他一直试图维持秩序，劝大家不要互斗，真实的情况应该是他很希望趁看价格没有升上来之前自己买下一份。
+    </p>
+    <p>“你知道了又如何？我是个有朋友的人，而我的朋友最后决定支持我。“奥金涅兹看向瓦洛佳和索尼娅，“如果是他们遇到了问题，反过来我也会义无反顾地支持他们。“</p>
+    <p>叶卡捷琳娜没有说话。她紧绷看嘴唇，显然是在犹豫，但也许还没到孤注一掷的时候，毕竟还有两份货品剰下。</p>
+    <p>就在奥金涅兹如释重负的时候，一直沉默的马克西姆叹了口气，“五亿美元，加十五年！“</p>
+    <p>奥金涅兹猛地坐直了，恶狠狠地瞪看马克西姆，目光几乎能杀死这个懒洋洋的男孩。</p>
+    <p>“你忽略了我，这是你战术上的漏洞。留在这张桌子上的人，都不是来旁观的。“马克西姆根本不回应他的眼神，“布宁先生，可以举起您的捶子了。“</p>
+    <p>奥金涅兹眼角抽搐怒气如虎，可在布宁三次重复价格的时间里，他始终没有再度举起号牌。</p>
+    <p>马克西姆付出了七抆金色硬币，加上八年的服役期和卡里的五亿美元，得到了篥四件货品。</p>
+    <p>他跟安娜一样迅速地离开了会议室，没人知道这件货品最后会用在某人身上或者被封存到冷库中去。</p>
+    <p>也许他现在应该做的就是逃亡了，在最后两份货物的归属权确定之后，也许随之到来的就是猎杀。</p>
+    <p>路明非不由得庆幸自己的同伴是一群杀胚。</p>
+    <p>零新的漫画已经画了一半了，居然是一幅地狱变相，狗和负剑的豪猪继续出场，蹲在旁边呆呆地看看尸山血河。</p>
+    <p>“第五份货品，哪位客人第一个出价？“布宁缓缓地发问。</p>
+    <p>“三亿美元。“叶卡捷琳娜谨慎地开始报价。</p>
+    <p>奥金涅兹和列昂尼德随之跟进。剩下有资格竞争的似乎只剰下这三个人了，会议室里他们的声音循环响起。</p>
+    <p>经过15分钟的相互追逐，价格回到了前一轮的高度。路明非心里做看简单的算数，以一年服役时间折算3000万美元计，叶卡捷琳娜的报价其实是八亿五千万美元，而奥金涅兹的报价则是八亿九千万美元，而列昂尼德已经两轮没有给出新的出价了。
+    </p>
+    <p>虽然还紧咬看不放，但双方都已经精疲力竭。</p>
+    <p>“四亿美元，加二十五年，这是叶卡捷琳娜的报价。第一次。“布宁举看槌子。</p>
+    <p>“四亿美元，加三十年。“路明非举起手中的号牌。</p>
+    <p>是时候终结这冗长的游戏了，他兜里的小金币每一抆都值一年的时光，加上卡里的四亿。亚历山大？布宁的视线几度投向了他，路明非懂他的意思。</p>
+    <p>他摸出那个装满硬币的小皮口袋，当看众人的面，一枚一枚地排列成矩阵，排出了三十枚。</p>
+    <p>他这么做的时候全场鸦雀无声，每个人都看看布宁。</p>
+    <p>
+      拍完三十枚之后，路明非的硬币袋子仍然充实。这狡猾的小游戏是他趁着去洗手间的时候往里面混了一坚別的硬币，这给人他的荷包依然充实的错觉，加上那排列整齐的金色硬币产生了如此震撼的视觉效果。没有人跟路明非竞争，布宁的小槌落下，路明非很轻松地拿到了第五份货品，提看丰提箱的女孩来到他背后站定。虽然很想打开手提箱研究一下那种大水蛭到底是什么东西，但他努力装得漫不经心。
+    </p>
+    <p>好在没有人关注他，所有人的注意力都在布宁身上。</p>
+    <p>“原来我们的竞争者还包括了主持人本人。“叶卡捷琳娜幽幽地说。</p>
+    <p>跟布宁想的一样，一旦这小袋金币暴露，所有人都会意识到他是路明非背后的人。</p>
+    <p>
+      “我们的规则并不禁止这样的行为，每个人都可以雇佣代理人，只要你们相信代理人最后会把货品交到你们手上。“布宁冷冷地面对所有人的目光，“我就要离开现在的岗位了，与其带着那一袋金币走，不如带看一份货品走。等有人需要它的时候，应该会有令我满意的报价。“
+    </p>
+    <p>此时此就看出老贼的狡诈来，直到此^他仍然隐瞒了克里斯廷娜的病情，言外之意是它会成为一份库存品，等待场外交易的机会。</p>
+    <p>“我劝大家把注意力集中到最后一份货品上，这个漫长的夜晚就要结束了。“布宁低声说，“我希望它顺利。“</p>
+    <p>路明非听出了他语气中的欣慰之意，就像妖怪刚刚渡动成功。</p>
+    <p>这个在位三十几年的大妖怪，他人生中最大的劫数是那个不懂事的女儿，现在他通过把所有宝器给一个过路的二混子，成功地度过了动数，只能这个夜晚过去就可以飘逸地远遁。</p>
+    <p>可他的动数真的结束了么？总觉得雇佣他的人不会轻易地放他离开，恶魔的代理人哪里那么好当？</p>
+    <p>路明非用眼神示意楚子航，楚子航立刻就明白了，起身拎看箱子离开。有安娜和马克西姆的例子在前，没有人阻止他。</p>
+    <p>有他在货品是安全的，他也会找到克里斯廷娜确保她的安全。但路明非不准备走，他要看看这场廝杀落幕，零也没有想走的意思，她正临蓽恶鬼们最后的表情。</p>
+    <h2 id="第170章-但为君故74">第170章 但为君故74 </h2>
+    <p>最后一份货品，它的纯度也是最好的。布宁低声说，女士们先生们，请准备好你们的筹码。</p>
+    <p>隔着桌子，叶卡捷琳娜和奥金涅兹四目相对，周围的气温似乎都因这危险的凝视而下降。</p>
+    <p>我们没有人会让步的，对么，奥金涅兹？叶卡捷琳娜缓缓地说。</p>
+    <p>生存或者死亡，这是一个问题。奥金涅兹用《哈姆雷特》中的台词回答。</p>
+    <p>已经不是花多少钱的问题了，叶卡捷琳娜轻声说，四亿美元，加25年。</p>
+    <p>这是她前一次最后的报价，但被路明非以五亿美元和30枚小金币力压，此刻她毫不犹豫地把价格直推峰顶。</p>
+    <p>五亿美元，加25年。奥金涅兹缓缓地说。</p>
+    <p>所有人都惊讶地瞪大了眼睛，每个人都认为奥金涅兹的现金已经耗尽，之前他跟叶卡捷琳娜一样，以为幕后老板服务的时间加价，然而他居然还能在现金上加价。</p>
+    <p>这种加价对他来说应该也是痛苦的，他的眼角抽搐、神情凶狠，像是要把叶卡捷琳娜生吞活剥。</p>
+    <p>叶卡捷琳娜震惊之后立刻恢复过来，四亿美元，加30年！</p>
+    <p>把服役期折算后，奥金涅兹的实际出价是12亿5000万美元，而叶卡捷琳娜报出的则是13亿美元的恐怖天价。</p>
+    <p>奥金涅兹还在犹豫，布宁举手打断了这场竞赛，很遗憾，我亲爱的叶卡捷琳娜，你的报价我不能接受。分析你家族的现状，卖家最多能接受的是25年服役期，他甚至无法确定你的家族还能存续25年。</p>
+    <p>叶卡捷琳娜的脸色骤然间惨白，而奥金涅兹惊讶之后不由自主地露出了笑容。所有人都记起了布宁之前说的话，他们的时间并非无限，能透支的额度早已被锁死。</p>
+    <p>我想跟卖家直接通话，叶卡捷琳娜说，关于我的家族，还有很多他不知道的事。</p>
+    <p>这个冷艳倔强的女人，以低微而颤抖的语气说出这句话，隐隐透着求恳，像是匍匐在君王面前的少女。</p>
+    <p>我很抱歉，亲爱的叶卡捷琳娜，卖家从不跟我之外的人通话。布宁轻轻地叹了口气，我很想为你做些什么，但如你知道的那样，我的钱也都已经滚进了卖家的账户。</p>
+    <p>这句话仿佛丧钟敲响，连路明非这种旁观者的心里都生出一股悲凉来。孩子还沉睡在某个低温的箱子里等她，母亲却已经耗尽了现在乃至未来的所有筹码。</p>
+    <p>叶卡捷琳娜手扶桌子，颤颤巍巍地站了起来，忽然间她又从怯生生的少女变成了风烛残年的老妇，但仍强撑着自己的尊严。</p>
+    <p>她似乎是要离开这间会议室了，每个人都目送她，路明非甚至犹豫着要不要起身送送她。他心里忽然多了一丝罪孽感，他完成了克里斯廷娜和布宁的嘱托，就从某个不认识的人的手里拿走了生的机会。</p>
+    <p>叶卡捷琳娜在门边转过身来，怔怔地看着布宁。布宁正要说什么，叶卡捷琳娜打开手提包，从中拔出了精巧的手枪。</p>
+    <p>所有人都起身想要闪躲，布宁身边的女孩们闪电般在布宁面前组成人墙，纷纷掏出武器。</p>
+    <p>放下枪！布宁大吼着把挡在自己面前的女孩推开，想要扑向叶卡捷琳娜。谁都不能理解布宁此刻的作法，只有路明非采取了完全相同的行动，但他被四处逃窜的客人们挡住了，而布宁终究是不够快。</p>
+    <p>叶卡捷琳娜用那支枪对准自己的胸口，毫不犹豫地开枪，子弹带着血和心脏的碎片，从背后的伤口中喷溅而出。</p>
+    <p>布宁抱住后仰的叶卡捷琳娜，扶着她慢慢地躺在地上，鲜血浸透了厚厚的羊毛地毯，血斑越来越大。布宁半跪在门前，抱着叶卡捷琳娜，却没有呼叫医生，谁都知道根本救不回来。</p>
+    <p>这间屋子里的每个刽子手，叶卡捷琳娜直视布宁的眼睛，嘶哑地说，都要踏着我的血走出去。</p>
+    <p>路明非这才明白她何以要走到门口才壮烈地自戕，并非她忽然间被悲愤控制了，而是源于某个古老的欧洲仪式。</p>
+    <p>我向你保证，不会撤掉这块地毯。布宁轻声说，他们都会从上面踩过。</p>
+    <p>叶卡捷琳娜原本已经渐渐涣散的眼睛里忽然流露出那么一点点神光，她怔怔地看了布宁一眼，再见了，恶鬼的仆人，我知道你是想你的女儿活下去……我原谅你。</p>
+    <p>她永远地闭上了眼睛。</p>
+    <p>会议室里静悄悄的，布宁抱着她站了起来，把她交给了一名随从。</p>
+    <p>遗体处理方式跟其他人一样，但她必须被尊敬地对待。布宁轻声说。</p>
+    <p>随从抱着叶卡捷琳娜的遗体匆匆而去，布宁垂手站在叶卡捷琳娜的血泊里，血从他的手上缓缓地低落，倒像他才是那个杀死叶卡捷琳娜的凶手。</p>
+    <p>没有人说话，所有人都凝滞在叶卡捷琳娜死前那一刻的动作上，寂静，除了铅笔在纸面刮擦的沙沙声，零仍旧完善着她的漫画。</p>
+    <p>叶卡捷琳娜掏出枪的那一刻，只有她不曾移动位置，她是冷的，似乎连血液都没有温度。</p>
+    <p>五亿美元，加25年。终于有人开口打破了沉默。</p>
+    <p>布宁缓缓地转身看着那个人，是奥金涅兹，他举着号牌，重申了自己的报价。</p>
+    <p>你的意思，是拍卖还没有结束，是么我亲爱的奥金涅兹？布宁低声问。</p>
+    <p>当然没有，布宁先生，您的服役期还没结束，手中还握着槌子。奥金涅兹加重了语气，五亿美元，加25年！</p>
+    <p>他说这话的时候却不是看向布宁，而是看向最后那名拎着箱子的女孩，眼中喷薄着狂热，那是野兽缓缓地接近受伤倒地的猎物。</p>
+    <p>路明非忽然闻到了浓重的血腥味，却不知是叶卡捷琳娜留下的，还是奥金涅兹散发出来的。</p>
+    <p>是，你说的没错，拍卖会还没有结束。布宁大步回到自己的位置上，并不坐下，而是高举木槌，五亿美元，加25年！一次！两次！</p>
+    <p>奥金涅兹笑了，那是胜利者的笑容，叶卡捷琳娜已经死了，这间屋子里再没有其他缺时间的人，也没有人有足够的筹码。他支付了高昂的代价，但他终于能活下去了。</p>
+    <p>13亿美元。某个人轻描淡写地说。这个价格恰恰是刚才叶卡捷琳娜的报价，只不过没有用服役期来折抵。</p>
+    <p>奥金涅兹狂怒地看向那个人，那个人甚至懒得举牌，因为她的手还要用来画画。</p>
+    <p>能以现金出得起这个价格的人，当然是零。</p>
+    <p>没人想到罗曼诺夫家族还会出手竞争最后一份货品，皇女殿下从头到尾都对拍卖显得毫无兴趣，而她那位半路打劫的秘书却是布宁的代理人。</p>
+    <p>13亿美元是个超出常理的数字，殿下，你确定么？布宁沉声问。</p>
+    <p>布宁先生只需要看我卡里的余额够不够就好了，如果没有人继续竞价，就从里面划走13亿美元。零淡淡地说。</p>
+    <p>布宁沉默良久，刚才插卡的时候我们的系统显示了异常，您的卡没有额度限制，理论上您能划走全世界的钱。</p>
+    <p>
+      所有人惊讶地对视。美国运通发行的黑卡名义上没有上限，但事实上针对每位具体的客户依然有限制，透支到那个额度的时候，银行经理就会打来电话。13亿美元是能够令一个小国破产的巨资，没有任何银行敢让客户划卡就把钱提走，唯一的解释，是这位客户在银行的存款远远超过这个数字，划这样的数字，甚至不需要提前告知银行。
+    </p>
+    <p>如果需要查实的话，我可以先转13亿到您的账户作为保证金。零跟布宁说着话，却抬起头，看着奥金涅兹。</p>
+    <p>路明非心里一动，零很少那么认真地凝视一个人，皇女殿下懒得跟绝大多数人交换眼神。她认真地看着谁，最大的可能是审视敌人。</p>
+    <p>路明非不知道她为何要跟奥金涅兹为敌，以她的性格，树敌这种事她也懒得做。</p>
+    <p>
+      她的眼睛里看不出任何表情，只是冷淡，奥金涅兹却不由自主地想要回避。他深吸一口，双手按着桌面，皇女殿下，我们都相信罗曼诺夫家族的财力，我们中没有人会想在拍卖会上挑战您。对您来说，这场拍卖不过是游戏。我知道您之前出价是看穿了谢苗和米哈伊尔想做场外交易。而我是真的需要这件货，能否赐我少许的恩典，让它归我呢？这番话说得不可谓不诚恳，甚至透着谦卑，可对零完全没用，她耸了耸肩，出过的价，难道还能收回来么？您想要那件货物，就添加新的筹码。
+    </p>
+    <p>奥金涅兹看向布宁，布宁摇了摇头，我很抱歉，您的透支年限也是25年，如果加价，您只能拿出更多的现金了。</p>
+    <p>奥金涅兹的丧钟也敲响了，他呆呆地站在那里，像是魂魄出窍。</p>
+    <p>所有人都下意识地远离他，以免这个走投无路的家伙也掏出枪来，奥金涅兹却举起手来，五亿六千万美元，加25年。</p>
+    <p>他竟然真的又拿出了六千万美元，用现金提高了价格。</p>
+    <p>很抱歉，奥金涅兹，你卡里的额度不够了。布宁说。</p>
+    <p>拿这张卡去，卡里还有钱！奥金涅兹从口袋里摸出一张卡，沿着桌面滑向布宁。</p>
+    <p>奥金涅兹先生，您手中的卡看起来是维什尼亚克的。带着一亿美元来购买时间的维什尼亚克，他死了，但他的一亿美元怎么会在你的手里？零幽幽地发问。</p>
+    <h2 id="第171章-但为君故75">第171章 但为君故75 </h2>
+    <p>奥金涅兹猛地颤抖了一下，如被雷击，但他迅速地恢复了平静，这是维什尼亚克最后的礼物。</p>
+    <p>你的朋友很需要时间，你也很需要时间，但他觉得他带来的钱不够买回时间了，所以他牺牲了自己，把筹码给了你？零淡淡地说，真是令人感动的友谊呢。</p>
+    <p>那晚维什尼亚克喝了太多酒，他太激动了，奥金涅兹缓缓地说，我们这些人永远都走在生死的边缘，想过要结束自己的，不止维什尼亚克一个人吧？</p>
+    <p>他环顾众人，视线在每个人脸上停留，唯独跳过了索尼娅。</p>
+    <p>没有人赞同，却也没有人出言否认。</p>
+    <p>这群用钱来续命的老家伙，钱尽的那一天，也就是命断的一天，趁着兜里还有最后一块金币，结束自己未必不是个好选择。</p>
+    <p>坚持到现在才拿出这张维什尼亚克的卡，是想留住朋友的遗物么？但为了活命，还是拿出来了。零的语气还是淡淡的，听不出是揶揄还是赞美。</p>
+    <p>路明非无意中瞥了一眼零手中的漫画，忽然微微战栗。</p>
+    <p>皇女殿下，在罗曼诺夫家族的财力面前，我们都是蝼蚁。奥金涅兹的语气卑微而诚恳，我再度恳求您的慈悲和恩典，以后有我的家族能为殿下服务的地方，我在所不辞。</p>
+    <p>无所谓慈悲和恩典，太贵了，我退出。零摆了摆手。</p>
+    <p>奥金涅兹愣住了。零来势凶猛，却又轻易退出，让人捉摸不透。</p>
+    <p>
+      再也没有人加价，直到布宁的木槌落下，奥金涅兹才如释重负地笑了。拎着最后一个手提箱的女孩来到他面前，同时递上一把钥匙，他几乎是迫不及待地用钥匙打开手铐，把手提箱拷在了自己的手腕上。没有人寒暄，也没有人跟奥金涅兹道贺，布宁沉默着起身打开了会议室的门，像个管家似的站在门边。客人们脚步匆匆地离开，片刻都不愿多待，这神秘的拍卖场是他们续命的地方，却也是吸干他们鲜血的地方。奥金涅兹冲在最前面。
+    </p>
+    <p>布宁向每个出门的客人鞠躬，这是我最后一次给大家服务了，祝您健康。奥金涅兹的脚步声已经去得很远了。</p>
+    <p>路明非注意到他把唯一一片没有浸透叶卡捷琳娜鲜血的地方站了，这样所有的客人都必须踩过叶卡捷琳娜的血迹才能离开。他居然真的完成了那个嘱托。</p>
+    <p>唯有索尼娅静静地坐在那里，低头看着桌面，路过她身边的时候，零把刚刚画完的漫画放在她的面前，一句话都没说。</p>
+    <p>路明非心事重重地返回外面的会场，克里斯廷娜急切地冲了上来，把他拉到角落里，箱子里装的是什么？</p>
+    <p>你自己看啊。路明非看了一眼站在窗边冷冷四顾的楚子航，箱子还拷在他的手腕上。</p>
+    <p>你的那位倔强朋友说，只有你同意他才能开箱。克里斯廷娜没好气地说。</p>
+    <p>水蛭，箱子里是个玻璃罐子，罐子里面是巨型的水蛭。路明非比了比尺寸。</p>
+    <p>生物武器？值几千万美元？克里斯廷娜瞪大了眼睛。</p>
+    <p>路明非愣了一下，意识到这位大小姐并不知道自家老爹才是真正的买家，为这件货物输送了巨款。</p>
+    <p>事情演变到这个地步他也很想赶快离开会场，找个隐秘的地方研究一下箱子里的水蛭，但今夜的风雪尤其地猛烈，急于离开的奥金涅兹已经推开了会场的门，狂风卷着暴雪扑了进来，把他推得接连倒退几步，布宁的随从们立刻冲上来重又把门关上了。
+    </p>
+    <p>
+      路明非拉开窗帘看了一眼，外面全都是雪。雪已经淹没了道路和这座建筑物的下半截，随从们已经调来了铲雪车，铲雪车闪着黄灯一再地冲向雪墙，但看起来还得几个小时才能把道路清理出来。之前拍得货品的安娜和马克西姆也还留在会场里，不约而同地选择了角落里的位置，布宁派出的荷枪随从们围绕他们组成人墙，奥金涅兹的身边也是如此。
+    </p>
+    <p>还没结束。楚子航凑近他低声说。路明非点了点头，他也感觉到了会场中紧张的气氛，仿佛置身狼群。</p>
+    <p>
+      饥饿的狼群，极其有限的食物，理智有可能泯灭，规则也会被突破。格里高利可以为了货品铤而走险，别人也一样。但这种事应该在布宁的预计之中，所以进入023号城市的贵宾都不能有自己的随从，一切的服务和安保由布宁提供，当然，尊贵的罗曼诺夫家族除外。所以楚子航不允许克里斯廷娜检查货物，他以人挡杀人佛挡杀佛的架势站在这里，随时都会拔出刀来。
+    </p>
+    <p>路明非环顾四周，一身红裙的索尼娅刚从地下室里出来，正穿越会场把手伸向紧张的奥金涅兹。</p>
+    <p>这一路上她都是美艳动人的，无时无刻不在闪光，但从未如此神采飞扬，像是火焰那样冉冉地飘动。</p>
+    <p>奥金涅兹也站起身来，走出随从们构成的人墙，向着索尼娅伸出手去。</p>
+    <p>他们先是拉手，再是紧紧地拥抱在一起，那是胜利之后盟友间的庆祝，如果不是索尼娅和瓦洛佳拿出自己的筹码，奥金涅兹也拍不下最后也最昂贵的那份货物。</p>
+    <p>但下一刻，纯银的裁纸刀就从背后穿透了奥金涅兹的心脏，索尼娅松开刀柄，冷冷地把他推开。</p>
+    <p>奥金涅兹想说什么，可满嘴喷出的只是血沫。扣在奥金涅兹手上的箱子被索尼娅拉开，飞出了那个价值十几亿美元的玻璃罐子，巨大的水蛭在营养液中蠕动着。</p>
+    <p>这一幕激发了在场几乎每个人的贪婪，他们不约而同地踏上一步，可索尼娅从坤包里抽出手枪，对着天花板连射。枪声挡住了所有人的脚步，索尼娅却只是眼睁睁地看着玻璃罐子落地，裂了一道缝，营养液从中渗漏出来。</p>
+    <p>索尼娅立刻压低枪口对准玻璃罐子，看起来竟然是想直接毁掉这价值连城的东西。</p>
+    <p>这对最好的朋友瘫坐在地，凶狠地瞪着彼此，身上沐浴着两个人的血。</p>
+    <p>你们都看到了！是她先攻击我！是她先攻击我！奥金涅兹大吼。</p>
+    <p>索尼娅却说不出任何话来，因为奥金涅兹第一刀就切断了她的喉管。她的伤远比奥金涅兹更重，坚持了几秒钟就仰面倒下。</p>
+    <p>都发生在电光石火般的顷刻间，布宁冲上来扣住索尼娅的手腕，但遗憾地摇了摇头。</p>
+    <p>奥金涅兹同样处在死亡的边缘，但他还是跌跌撞撞地走向已经破裂的玻璃罐子，他拾起了索尼娅留下的手枪，指向身边所有人，最后是布宁。</p>
+    <p>那是我的！那是我的！我为它付了钱！你有保护我的责任！他大吼，凶煞得像是厉鬼。</p>
+    <p>是，作为主持人，我有保护你的责任。那是你的。布宁把玻璃罐子踢向奥金涅兹。</p>
+    <p>奥金涅兹拿到罐子，狠狠地在地下砸裂，抓出其中的水蛭放到自己的喉间。巨大的水蛭如章鱼那样狠狠地吸附在奥金涅兹的皮肤上，奥金涅兹做完了这一切，才仰面倒地，失去了意识。</p>
+    <p>布宁挥了挥手，随从们立刻用担架抬走了奥金涅兹和索尼娅的尸体，奥金涅兹被抬上担架的时候，那水蛭正大口地吸吮着他的血液，他皮下的大血管也随着水蛭的吸吮搏动。</p>
+    <p>他正在经历一场新生，而索尼娅却是真的死了，她苍白得就像纸，以血落笔，写完了她和维什尼亚克的故事。</p>
+    <p>只有她和路明非看到了零的漫画，画的是地狱变相，长着奥金涅兹脸的恶鬼把维什尼亚克的尸体丢入血池。</p>
+    <p>
+      这场血腥的拍卖会从维什尼亚克的死就开始了，他和奥金涅兹都需要时间，但他没有凑够活下去的钱。在奥金涅兹的劝导下，奥金涅兹始终是这帮人里的大哥，那么温和那么循循善诱，维什尼亚克像个脆弱的孩子那样结束了自己的生命，把钱留给了索尼娅。但奥金涅兹拿了他的卡，藏在口袋里作为最后的筹码。零之所以最后要出价，不过是逼着奥金涅兹把那张卡拿出来。
+    </p>
+    <p>
+      零并不想卷入这场恩怨中，所以她把机会给了索尼娅。但奥金涅兹觉察了索尼娅的来意，他故意承受了索尼娅致命的一刀，因为他还有那只神秘的水蛭，只要有那东西在，死神都带不走他。布宁应该也猜出了事情的经过，但根据规则，奥金涅兹做得都对，他是自卫的受害者。
+    </p>
+    <p>布宁靠在吧台边默默地抽着烟斗，随从们清理着地摊上的血迹，客人们各自散开，他们还得等到门前的积雪清理完毕。</p>
+    <p>这群人就是这么奇怪，他们苛求着延长生命，却又对死亡无动于衷。他们鲜活，同时麻木，年轻，而又苍老。</p>
+    <p>路明非走到布宁身边，眼下他是布宁的代理人，这个消息想来很多人都知道了，也不必遮遮掩掩。</p>
+    <p>真相，你应该已经猜得差不多了。布宁低声说。</p>
+    <p>如果没猜错的话，我和你都算这里的年轻人了。莫斯科你的餐厅里有很多画像，画像上的老家伙就是现在跟我们喝酒的人，不是什么子孙后代，你的货物让他们返老还童了。</p>
+    <p>没错。水蛭并不特别，只是一种有着吸血本性的小东西，特殊的血清被储存在这东西的身体里，短时间内不会变质。当它再度吸血的时候，血清也会反过来注入目标的血管。</p>
+    <p>所以并不是什么储存了时间的罐子，就是超级血清，你们从那条黑蛇身上提炼出的血清。</p>
+    <p>那间研究神的研究所，它并没有真的被毁。这种制造超级血清的技术就是从那个研究所里流出来的，而我的老板知道这种技术。</p>
+    <p>所以想要找到那间研究所？</p>
+    <p>
+      可不是么？一本万利的大好事。如今我们要为这些续命的血清花费重金，像奴隶那样服侍幕后的老板，如果让我找到那间研究所，统治世界也不算难事。布宁轻轻地叹了口气，不过看过今天的事，好像统治世界也不是多么让人开心的事。谢谢你的帮忙，箱子里的东西可以给克里斯廷娜看一眼，但还是得给我。我会安排气垫船带你们去你们指定的地方。
+    </p>
+    <p>布宁预备的交通工具居然是气垫船，在茫茫的雪原上确实是再好不过的交通工具，不像飞机那样有起飞条件的限制，也不像雪地摩托那么脆弱。</p>
+    <p>路明非忽然警觉起来，外面传来不同寻常的风声，就像气垫船呼啸着穿越雪原。</p>
+    <h2 id="第172章-但为君故76">第172章 但为君故76 </h2>
+    <p>布宁霍然起身，眼中流露出难以置信的表情，“有人……有人启动了磁场！”</p>
+    <p>这时那乍听类似“风声”的响动越发地清晰起来，更像是什么巨型的设备在运转。</p>
+    <p>布宁冲到窗边，掀起窗帘往外看去，他们所在的这座环形建筑正一盏一盏地亮起红灯，此刻如果从天空里俯瞰下去，密集的红灯呈同心圆的结构。</p>
+    <p>路明非这才记起布宁曾经说过的，023号城市被建立的目的是在强磁场下实现可控的核聚变，它的核心是一座跨时代的超强磁场，也就是他们此刻所在的这座建筑。</p>
+    <p>这时他面前杯中的银质搅棒已经震动起来了，屋子里每件银质餐具都在震荡，到处都是叮叮当当的声音。女士们脖子间的项链也悬浮起来，男士们的家徽戒指上传来一阵阵的电麻感。</p>
+    <p>布宁看到的更为可怕，门外的铲雪车虽然喷着黑烟高声吼叫，却被某种看不见的力量拖向他们的门口。</p>
+    <p>
+      路明非完全傻眼了，努力回忆高中时候学的电磁理论，电荷的旋转形成了电磁场，以光的形式往外传播，也就是电磁波，它的变化由麦克斯韦方程组决定……妈的这些狗屁知识根本没用，连麦克斯韦方程组他都想不起来了。那个早已被废弃的超级磁场想必不是自己醒过来了，而是有人启动了它，此刻看不见但是无比强大的电磁场正如汹涌的狂潮那样横扫每条街道穿透公寓楼和任何障碍物，除非躲在用高抗磁性材料制作的屏障里，否则他们都难免被部分磁化，连带着血液电流和神经电流也都会紊乱。
+    </p>
+    <p>这磁场强到匪夷所思，银是抗磁性很高的材料，但银质餐具中的微量杂质还是被磁化了。</p>
+    <p>
+      几乎就在同一刻，门外的扫雪车仿佛被看不见的手一把抓起，狠狠地砸在这座建筑的外墙上，嵌了进去，彻底毁掉了大门。随从们腰间的武器也都因为含有大量的铁磁性材料，刚拔出来就被吸走了，飞镖一般扎在墙上。客人中也有不少人带着防身武器，从折刀到手枪，无论被藏在那里，都蠢蠢欲动，有某位女士竟然随身携带了一枚手榴弹，还是楚子航眼疾手快把那颗手榴弹抓住，三下五除二拆掉了引信。
+    </p>
+    <p>跟着袭来的是巨大的眩晕感，人体内的生物电全乱套了，细胞膜之间的渗透压也变了，有人立刻蹲下，剧烈地呕吐。路明非和楚子航也是头痛欲裂。</p>
+    <p>“必须离开这里！”布宁大吼，“没穿屏蔽衣我们不能呆在磁场中心！”</p>
+    <p>“有人想启动核反应堆？”路明非跟他对吼，“是不是你干的？”</p>
+    <p>其实他们并不处在非常嘈杂的环境里，但耳鸣和幻听越来越明显，还有幻视，眼前的一切模糊扭曲，所有物体都带着扭曲的彩色光晕。</p>
+    <p>“用不着！光是强磁场就能杀了我们！”布宁苦笑，“要是我干的，我怎么会带克里斯廷娜来这里？”</p>
+    <p>最困扰的是时不时有女孩跟他轻声地说话，但他分不清那是诺诺还是绘梨衣，好像自己又回到了那片深水之中，但是日本海？还是三峡水库？</p>
+    <p>他已经很久不为这些事烦心了，他把诺诺当作包袱放下了，一个人去远方，心里澄澈。可过去就像是狗狗，原来一路都跟着他。</p>
+    <p>客人们有的狂笑有的悲哭，但也有几个心智强悍的还能跟幻觉对抗。</p>
+    <p>
+      零的状态也非常之不好，她的脸色惨白，路明非从没见过她的眼睛里流露出那么多的情绪，时而迷惘时而悲伤，泪水如同涌起的海潮。在这超强的电磁场里，混血种和普通人的差距被缩小，龙血能带来超强的体魄和言灵，却不能你的内心也强大起来。路明非也明白零的过去没有那么简单，但他没想到这位皇女殿下流露出的状态倒像是无家可归的孤女。他冲上去把零抱住，感觉到她在剧烈地颤抖。
+    </p>
+    <p>唯独楚子航看起来没什么大事，从因果逻辑来说，他还是个高中生，除了父亲，没太多值得困扰的过去。</p>
+    <p>他已经把童子切和蜘蛛切拔了出来，神情冷厉地四顾，磁场重启很可能是进攻的前奏，敌人还没真正现身。</p>
+    <p>路明非心中一动，把藏在袖子里的短弧刀也拔了出来，他的短弧刀和楚子航的双刀都是炼金术打造的古刀，再生金属是永远不会被磁化的，眼下只有他们还有武器可用。</p>
+    <p>“跟我走！跟我走！”布宁把克里斯廷娜扶了起来。</p>
+    <p>拼内心顽强的话，情报员小姐不如她作恶多端的老爹，誓要铲除一切罪恶的正义感也比不过“我就是要救我女儿”的狠劲儿。</p>
+    <p>敌人已经现身了，狂风吹起窗帘的时候，路明非看见黑色的人影张着风帆而来。居然是风筝滑雪，在这种恶劣的天气里，单凭滑雪板很难穿越茫茫的雪原，但那些人在腰间捆上了类似降落伞的风筝，强劲的风力带着他们在雪地上高速穿梭。</p>
+    <p>零虚弱得已经站不起来了，路明非只得把她横抱起来。人们跌跌撞撞地跟着布宁，从侧门离开，失去行动能力的就只有丢下。在这种时候，克格勃精英般的随从们反而不如养尊处优的客人们扛得住，老家伙们才是真正经历过大风大浪的人，内心坚如铁石。
+    </p>
+    <p>他们并未跑出多远，就听见了会场中传来的枪声，那些风筝滑雪来的黑影已经冲进了会场。</p>
+    <p>这是一场准备充分的进攻，电磁场的重启只是前奏。单听枪声路明非就知道那些人的身份了，格鲁乌特种部队享有盛名的AN94突击步枪。</p>
+    <p>眼下他们可以依赖的只有布宁，这座巨大的环形建筑中道路复杂，但布宁知道所有隐秘的出入口，他故意走最曲折的道路，给追踪的格鲁乌部队制造麻烦。</p>
+    <p>
+      马克西姆和列昂尼德这些人不再隐藏自己的身手，他们之前很可能都是军队的指挥官，体魄过人战场经验丰富，即使脑子乱成一锅粥也还是有条不紊地推进，他们也都找到了这种环境下好用的武器，随从们用来扣紧军呢大衣的宽皮带，皮带本身不会被磁化，沉重的铜扣也是抗磁性很高的材质，挥舞起来是类似流星锤的武器。
+    </p>
+    <p>
+      格鲁乌部队穿着屏蔽衣，手持工程塑料特别制造的AN94突击步枪，不受磁场的干扰。他们准备好了在强磁场中作战，那么他们对023号城市也了如指掌，很可能已经从某种渠道获得了这座废弃城市的情报，所以克里斯廷娜对他们已经没用了，他们发动进攻前并未告知这位忠心耿耿的情报员。
+    </p>
+    <p>格鲁乌部队的人分成不同的小组守在各个岔道口，他们手中很可能还有这座建筑的地图。</p>
+    <p>列昂尼德狠狠地挥舞皮带，铜扣自下而上，切过格鲁乌战士的下颌，留下恐怖的伤口。他真正年轻的时候应该是个街头斗殴的高手。</p>
+    <p>那边安娜刚用高跟鞋的鞋跟打碎了另一名战士的头盖骨，再回头挥舞手中的铝制手提箱砸在另一名战士的胸口。</p>
+    <p>“干得漂亮安娜。”列昂尼德喘着粗气。</p>
+    <p>“卫国战争的时候她可是杀了118个德国人的英雄狙击手，我们的女瓦西里。”马克西姆说，“她只是缺一支步枪。”</p>
+    <p>
+      话没说完安娜已经开始扒格鲁乌战士身上的装备了，片刻之后她端起了工程塑料制造的AN94，熟练地四下瞄准。他们现在有四个穿着屏蔽衣的人了，无一不是卫国战争期间的英雄指战员，他们的体魄未必胜过格鲁乌战士，但经验和强大的内心素质绝对领先。
+    </p>
+    <p>但情况并不乐观，格鲁乌部队应该已经封锁了这座建筑的所有出入口。他们应该是带着格杀令来的，这场战斗的双方很难说谁手里掌握着正义，也许双方都该死。</p>
+    <p>路明非不想卷进他们的事里，但他眼下不得不跟布宁他们一起行动，他对这座巨型建筑中的道路不熟。</p>
+    <p>他心中隐隐地有些不安，但不是担心格鲁部队的进攻，他和楚子航组队，对方即使全副武装也不要紧。令他不安的是某个黑影，这一路上他始终觉得有什么人跟着他们。</p>
+    <h2 id="第173章-但为君故77">第173章 但为君故77 </h2>
+    <p>零紧紧地蜷缩着，微微颤抖，路明非不得不一路都抱着她。</p>
+    <p>其他人也不好过，除了少数意志极其坚强的，其他人都双眼通红，严重的止不住地流着血泪。</p>
+    <p>幻觉一直追着他们，有人会忽然神经质地看向自己背后，好像有恶鬼跟着他似的，也有人尖叫着说德国人！德国人冲上来了！却又忽然指着上方，高呼看啊，那是我们的飞机！</p>
+    <p>
+      路明非也频频出现幻觉，有时候他会觉得自己走在满是熔岩的洞穴中，浑身着火的猴子成群结队的从后面追上来，超过他跑向前方，有时候他又会以为自己重新走在了前往仕兰中学的路上，天黑黑要下雨，更奇怪的幻觉是他跋涉在破败的教堂里，走廊长得一眼望不到尽头，他怀中不是零而是路鸣泽，路鸣泽如圣徒般裹着染血的白袍，手和脚上有着类似耶稣的被钉子穿透的伤痕。
+    </p>
+    <p>好在这种强磁场导致的幻觉并不像赫尔佐格的梆子声那样无法摆脱，他还是可以通过集中精神来恢复片刻的清醒。</p>
+    <p>“棒极了，我亲爱的瓦列里耶维奇！真是漂亮的一拳！”</p>
+    <p>“尊敬的波波夫先生，您的枪法还是像在古巴时那么准！”</p>
+    <p>“瓦洛佳，捡起他的枪，回忆一下这东西怎么用，然后跟上我。”安娜刚刚撂倒了一名格鲁乌战士，把他的武器踢给了瓦洛佳。</p>
+    <p>瓦洛佳的娃娃脸上仍旧带着几分腼腆羞涩，但检查枪支的麻利手法足以说明这家伙也曾在战场上出生入死过，紧跟着他抬手一枪，子弹从安娜的肩膀上方飞过，打穿了一名格鲁乌战士的大腿。安娜上前几步，高跟靴子踩着那名战士的头，补一枪要了他的命。
+    </p>
+    <p>夺得几件屏蔽衣之后，这帮看似年轻的老家伙居然渐渐地占据了上风，拳打脚踢，皮带挥舞，加上安娜的枪在后面支援，一路平趟。</p>
+    <p>不过这也好理解，经过龙血的洗礼，他们有着比一般年轻人更为强健的体魄，而他们的战场经验远胜于哪怕最资深的格鲁乌战士。听他们的对话，他们中很多人甚至经历过第二次世界大战，枪林弹雨和尸山血河把他们的神经锻造得极其坚韧。</p>
+    <p>可密集的枪声也暴露了他们的位置，格鲁乌部队正向这边靠拢，在一条通道的正前方，格鲁乌部队的重火力手们占据了地利，用狂暴的火力压制了这帮老家伙。即使号称苏联历史上最恐怖的女狙击手，安娜也只能躲在岔道里，偶尔闪身出去开一枪。</p>
+    <p>“他们不是来抓你进监狱，他们是要把所有人就地处决！”路明非说。</p>
+    <p>他和布宁躲在同一条岔道里，布宁紧紧地抱着克里斯廷娜。</p>
+    <p>克里斯廷娜的状态比零更差，患有渐冻人症的她原本神经系统就不健全，磁场彻底搅乱了她的神经电流。她的身体僵硬，瑟瑟发抖，脸色惨淡得像个死人。</p>
+    <p>她的包丢在会场里了，那种特效药在包里。</p>
+    <p>“你难道还没有想明白他们为什么现在出现？”布宁苦笑，“他们也是为了货物来的，拍卖会刚刚结束，货物一定在我们身上。这不是什么执法行动，而是黑吃黑！”</p>
+    <p>路明非使劲地摇头，暂时地把脑袋里那些乱七八糟的声音和画面甩掉了。</p>
+    <p>“你的气垫船停在哪里？”路明非问。布宁摇了摇头，压低了声音，“天台上有一架直升机，但载不下我们所有人。”</p>
+    <p>老家伙的坏心眼又在活动了，他只准备了一架直升机，就是出了问题只准备带着女儿跑路，并没有考虑其他人的死活。</p>
+    <p>“但载下你和你的朋友还是足够的！”布宁看路明非不回答，赶紧补充，“我可以带上你们，但你们要保护我！”</p>
+    <p>“我怎么保护你？我只是个秘书，我兄弟手里也只有两把刀。”路明非说，“靠我们还不如靠你的朋友。”</p>
+    <p>他倒不是想要隐藏实力，而是他不想管这事。这场黑吃黑的争夺里，没有人是正义的。他只想带着楚子航和零离开，开着布宁许诺的那艘气垫船跑。</p>
+    <p>眼下最重要的是跟这帮人分开行动，人少目标就小，有楚子航在，大可愣用君焰炸出一条逃生通道。</p>
+    <p>他也必须走了，他能暂时丢开幻觉，却无法摆脱那种被人跟踪的危机感，如同寒冷的刀锋顶着他的后心。</p>
+    <p>他把装有货物的手提箱踢给布宁，“我帮你你帮我，大家钱货两清，告诉我气垫船在哪里。”</p>
+    <p>布宁抓住箱子提手，但紧紧地盯着路明非，“不，我跟你们走，跟你们走我才能活着退休。”</p>
+    <p>路明非一愣。</p>
+    <p>“我知道太多秘密，这种人通常都活不久。何况我带走了一份货品，为了能活下去，我们之间自相残杀你也看到了。”布宁嘶哑地说，“我还有东西能跟你交换。”</p>
+    <p>“什么东西？”路明非问。</p>
+    <p>“是瓦图京让你们来找我的，瓦图京会让你们来找一个普通的黑市商人么？他让你们来找我，是只有我能带你们找到那里。”布宁说，“只有我。”</p>
+    <p>路明非沉吟，强忍着眩晕，头痛得像是要炸裂。</p>
+    <p>瓦图京为何会被紧急处决，操纵格鲁乌部队来黑吃黑的幕后人是谁，布宁背后的老板又是谁，西伯利亚的雪原上还藏着很多的迷。</p>
+    <p>是否真的能靠一个坐标和一艘气垫船前往那个地点呢？瓦图京看起来并非一个随便的人，在自己被处决之前，他把亚历山大·布宁这个名字告诉了零，这是个引路人。</p>
+    <p>也许还没到把引路人丢下的时候。</p>
+    <p>“需要掩护。”马克西姆从腰间抽出透明的战术匕首，握在手中如同一道寒冰，应该是用某种塑料3D打印出来的，磁场对它完全没用。</p>
+    <p>“三秒钟后掩护开始。”安娜举起手来，手中握着一枚烟雾弹，她把弯曲的手指一根根伸开，开始倒计时。</p>
+    <p>三秒钟后，她丢出了烟雾弹。烟雾弹沿着地面滚动，浓烟弥漫了整条通道，安娜闪身出去连射，马克西姆沿着墙壁发动突击。</p>
+    <p>
+      马克西姆连续中弹，但中弹只是令他稍微趔趄，他从一名格鲁乌战士身上拿到了防弹背心。枪声掩盖了他的脚步声，几秒钟内他就来到了格鲁乌战士们死守的门口，完全靠听力定位，透明匕首纵横切割，生生地把工程塑料制的步枪切断，再是接连几刀直刺，浓烟中喷出大片的鲜血。格鲁乌战士们是来给这些老家伙送葬的，老家伙们却也没准备给格鲁乌战士们留生路。
+    </p>
+    <p>武装起来的客人们纷纷从各自藏身的岔道中闪出，某些女士没有搞到屏蔽衣，还穿着礼服裙和细高跟鞋，却也挥舞着铜头皮带一身狠劲儿。</p>
+    <p>“趁现在，我们走。”路明非起身，浓烟还未散去，他们可以走得悄无声息。</p>
+    <p>但仅仅走了几步路明非就停下了脚步，他们背后传来了犬吠声，似乎正有成群的猛犬向这边靠近。</p>
+    <p>通道尽头的烟气中，客人们正从战士们身上扒下屏蔽衣和防弹背心，女士们大大咧咧地甩掉高跟鞋，褪下礼服裙，就地换装。活了太多年，少女的羞涩感她们自己应该都不记得了。</p>
+    <p>特种作战中使用猛犬是常见的战术，但他们并不关心，对上武装起来的战斗人员，猛犬只是来送死的。</p>
+    <p>“不对。”路明非忽然站住。</p>
+    <p>“不对。”楚子航也流露出警觉的表情。</p>
+    <p>“几条狗而已。”布宁不解。</p>
+    <p>“不是普通的军犬。”路明非把零也交给了布宁，“快跑！”</p>
+    <p>零和克里斯廷娜都算纤细的女孩，但以布宁的体力也难以消受这份左拥右抱的福气，压得直不起腰来。</p>
+    <p>这时候犬群已经接近门口了，客人们端起枪对着黑暗中扫射。奇怪的是，枪声一响，狗就不叫了，黑暗的通道中涌动着某种危险的气息，却寂静无声。</p>
+    <p>几秒钟后，犬群冲破了人群，有的客人还抓着枪对空扫射，猛犬已经咬断了他们的咽喉，至于那些胳膊或者身体被咬中的，虽然没有立刻丧命，但也瞬间骨折或者失去一大块血肉。</p>
+    <p>它们的眼睛是暗金色的，浑身披着斑驳的鳞片，面骨凸凹不平，看起来就像是骷髅，身上的肌肉却如老树盘根般虬结。</p>
+    <p>它们在某几位客人的身上大快朵颐，其余的低吼着推进，经验最丰富的几位战士如安娜还能边开枪边后退，但子弹无法穿透它们身上的鳞片。</p>
+    <p>
+      “那……那是什么东西？”布宁惊呼。路明非和楚子航对视一眼，两个人都听出了犬吠声中的异样，但只有路明非明白那狮吼般的犬吠意味着什么。那些猛犬都算是龙类亚种，龙血改造了它们的基因，使它们成为比狮虎更危险也更嗜血的物种。曾经有人故意制造这种特殊的犬类，用于残酷的地下斗兽场，某种程度来说这些猛犬就是犬类中的死侍，它们在搏斗中能一直坚持到自己和对方都被撕咬掉一半的肌肉，还继续玩命地搏杀。即使对经验丰富的专员来说，遇上这种东西也会恐惧。
+    </p>
+    <p>这支挂着格鲁乌徽章的军队比他们想的还要邪，他们始终知道利用龙类亚种。</p>
+    <p>———————————————</p>
+    <p>坑边闲话：</p>
+    <p>祝大家高考考个好成绩！马上高考了，大家考完试再来看吧！</p>
+    <h2 id="第174章-但为君故78">第174章 但为君故78 </h2>
+    <p>路明非挥挥手令布宁退后，龙血猛犬们已经低吼着扑了上来，它们的奔跑速度追平猎豹，咬合力则堪比鳄鱼。</p>
+    <p>路明非滑步上前，短弧刀平挥，刀术并不花巧，但对上龙血猛犬他并未有所保留，刀上带着刺耳的尖啸。</p>
+    <p>为首的猛犬一口咬住了刀身，路明非吃了一惊，以他的力量一时间竟然没法把刀从狗嘴里抽出，这些龙血猛犬不仅是力量惊人，牙齿也堪与炼金古刀比硬度。</p>
+    <p>猛犬发力把路明非顶在墙上，路明非不得不左手也按着刀背，才能跟那头猛犬抗衡。一人一犬隔着一柄薄薄的短刀角力，路明非觉得自己正推着一头发怒的公牛。</p>
+    <p>两只猛犬越过路明非，高高跃起，直扑楚子航。</p>
+    <p>“小心！”路明非大吼。</p>
+    <p>他想提醒楚子航这些狗狗并不好对付，眼下的楚子航没有关于卡塞尔学院的记忆，也就不会知道这些看起来像狗的东西都能单独对抗狮虎。</p>
+    <p>他还没吼完就愣住了，因为战斗瞬息间就已经结束了。楚子航站在路明非对面，一手按在猛犬的头顶，君焰一瞬间就把它的大脑焚毁了，猛犬重重地趴在地下，楚子航手里还剩半个红热的头盖骨。至于另外两只猛犬，已经趴在地上奄奄一息了。</p>
+    <p>
+      回想几秒钟前那一幕，楚子航右手提蜘蛛切，左手握着蜘蛛切的刀鞘，第一只猛犬扑到他面前的时候，他闪身进了半步，闪过利爪，用肩顶在猛犬的胸口，左手刀鞘自下而上狠狠地撞在猛犬的腹部。猛犬被那股巨大的力量顶得飞起，撞在屋顶，还没来得及落地，楚子航闪身再上半步，用肘击打在另一只猛犬的头顶，猛犬砸在地上，连头都抬不起来，但巨大的惯性推着它一直滑到布宁面前。
+    </p>
+    <p>
+      布宁吓得直往后退，但那长满獠牙的巨口还是贴到了他脸上，稍微合拢就能咬下他的整张面皮来，但那只猛犬只是凶狠地瞪了他一秒钟，忽然倒地抽搐。闪身而过的瞬间，楚子航将蜘蛛切从它的肛门处刺入，这是它全身上下不多的没有被鳞片覆盖的地方。大半个刀身都没了进去，重创了它的脏腑。
+    </p>
+    <p>瞬息间解决掉三只龙血猛犬，看起来轻描淡写，事实上却是对时机、力量和速度的精准控制，还有磐石般稳定的心。</p>
+    <p>这家伙越来越像路明非记忆中的楚子航了，刺客般的简约凌厉，孤狼般的狠。</p>
+    <p>他刚刚苏醒的时候，路明非还能跟他打个平手，但看眼下的架势，楚子航全力以赴的话，路主席也一样被打成狗。但下一刻这家伙就破功了，因为他严肃地盯着路明非的眼睛说，“刺它们的肛门！那是它们的要害！”</p>
+    <p>安娜打空了子弹，被猛犬扑倒在地，她能做的只是用枪格在猛犬嘴里，死命地支撑，但她的力量跟路明非没法比，塑料步枪的强度跟短弧刀也没法比。</p>
+    <p>至于最先被扑倒的几位客人，已经是血肉模糊，眼看是没得救了。</p>
+    <p>楚子航从猛犬的屁股里拔了他的刀出来，微微一振，刀身流过熔岩般的光，刀身周围的空气剧烈波动。那是他在用君焰净化武器，血污顷刻间就被蒸发干净。</p>
+    <p>他从背后拔出童子切来，童子切上也腾起了烈焰，他冲向走廊那边的猛犬群，双刀左右展开，如同火焰的羽翼。</p>
+    <p>倒也符合这家伙的性格，在路明非的记忆中，他还不曾丢下过任何弱者。</p>
+    <p>
+      事已至此路主席也没法脚底抹油了，反握两柄短弧刀，一攻一守，一显一藏，跟着楚子航杀进龙血恶犬的圈子里，炼金古刀在恶犬们的鳞片上斩得火光四溅，刀刀都刺恶犬们的下三路，间或楚子航爆出灼目的烈焰，龙血猛犬们竟然能在这堪比凝固汽油弹爆炸的言灵中存活，被撕裂的伤口中隐约可见暗金色的骨头，可它们还是凶狠地发动了一轮又一轮的反扑。
+    </p>
+    <p>更多的犬吠声从远处传来，不知道格鲁乌战士们带了多少龙血猛犬来，它们循着血腥味找来了。</p>
+    <p>
+      路明非一路杀，心里一路骂娘。即使是他和楚子航联手，也没有开始时候瞬间斩杀三头猛犬的爽利了，这些东西显然受过非常严格的训练，攻守有度，配合默契，即使在受到致命伤的情况之下。而楚子航还不得不控制着君焰的威力，一旦在这狭窄的空间里爆发，除了路明非应该没有人能活下来。
+    </p>
+    <p>偏偏这时候他口袋里的电话响了，023号城市根本没有手机信号，不用想也知道是谁在叫他。</p>
+    <p>他一脚踩在一头恶犬的脑门上把它踢翻，退后几步让楚子航先顶住，摸出手机时顺便擦了擦脑门上的血，“有屁快放！”</p>
+    <p>“你跟一群狗打来打去没完了？”芬格尔的声音听起来心急火燎，“别管这些人了，带着你家师兄快撤！这个围猎的方案像是学院的风格！”</p>
+    <p>“什么？”路明非一愣。</p>
+    <p>“学院有些极端的战术，是不会轻易教给学生们的。比如对付极端危险的目标时，放出受过训练的龙血亚种，其中最容易驯养的就是被龙血侵蚀过的狗。你看看它们的脖子上是不是带着高压静电的项圈？”</p>
+    <p>路明非打了个寒战。这群龙血猛犬确实都戴着沉重的金属项圈，虽然造型不同，可不能不让人联想起人蛇船上的怪物们。驱使怪物去猎杀怪物，这像是学院能干出来的事。</p>
+    <p>
+      难道说格鲁乌特种部队成了学院的私人武装？那么他们真正的目标并非货品，而是他们几个。自从龙血猛犬们加入战斗之后就再也没有格鲁乌战士出现，但指挥这群猛犬的人必然藏在附近。拖不起时间了，必须速战速决，路明非抓起伏地开枪的安娜，用足力气把她丢向背后，顺手从她的腰间拽下另一枚烟雾弹。
+    </p>
+    <p>“撤！撤！撤！”路明非大吼。</p>
+    <p>除了路明非和楚子航，其他人都搀扶着伤者后退。俄国人也是懂强者文化的，目睹了路明非和楚子航的战斗，这帮家伙都知道该听谁的。</p>
+    <p>楚子航再进一步，把双刀挥舞成两个闪亮的火圈，一时间这家伙如同手握两个太阳要往猛犬们的屁股里塞，炽热的气流四向飞射。</p>
+    <p>路明非抓住机会，用大臂狠狠地扼住一头猛犬的脖子，把烟雾弹塞进它的嘴里，再用刀柄一捅，直接捅进胃里，再一脚把它送回了猛犬群中。</p>
+    <p>“龟波气功来一发！”路明非高呼。</p>
+    <p>楚子航退后一步双刀回鞘，双手凭空推出了一面火墙！整个走廊里回荡着他吟唱言灵的声音，狗群被冲击波生生地推到了走廊尽头。</p>
+    <p>这时那头猛犬嘴里喷出惊人的烟雾，这家伙完全懵了，疯狂地摆动着脑袋，但这只不过让它看起来更像一头准备喷火的怪物罢了。烟雾团把整个狗群都给罩住了，路明非和楚子航拔腿就跑。狗群狂吠着，却没有立刻追上来。</p>
+    <p>烟雾弹的成分是黄磷、四氯化锡或者四氯化硅，无论何种，都会跟空气剧烈反应形成浓烈的酸雾，即使是龙血加强过的嗅觉，在酸雾中也会失效，更重要的是，出于本能那头吃下烟雾弹的猛犬会跟犬群呆在一起，犬群也就一直无法摆脱着这团烟雾。</p>
+    <p>至于那藏在暗中的控制者，他的指挥也会因为视线受阻而暂停，虽然只有短短的十几秒，却已经足够他们撤退了。</p>
+    <p>经过岔道的时候，楚子航抬手一道焰柱炸毁了通道的顶部，大块的水泥预制板坍塌下来，应该能够阻挡犬群一阵子，不过它们还是能够绕道过来，只是要多费一点时间。</p>
+    <p>“带我们去找那架直升机！”路明非抓住布宁的领子。</p>
+    <p>“见鬼！我跟你说了直升机坐不下所有的人！”布宁低吼，“我也跟你说了这些人没有无辜的！我们的苦都是自找的！”</p>
+    <p>“为了儿子想要买药的老太婆和为了老公想要买药的欧巴桑，我说不出他们错在哪里。”路明非看着布宁怀里的克里斯廷娜，“你这个为女儿买药的老混蛋，我也没法看不起你。”</p>
+    <p>布宁愣了一下，还没来得及回答，不远处又传来了狗群的吠声。</p>
+    <p>“我们被锁定了，”楚子航说，“他们有某种特别的方法追踪我们。”</p>
+    <p>这个推测并不难得出，这里的道路复杂如蛛网，但他们一路上不断地遭遇格鲁乌部队，甚至还有架设好的重火力点，并非格鲁乌部队得到了地图，他们的人数还不够封锁每个通道的交汇点，而是格鲁乌部队有某种办法知道他们的准确位置。</p>
+    <p>如果不是路明非和楚子航这两条杀胚忽然间跳出来，对方已经轻易地把这伙人团灭并带着货物上路了。</p>
+    <p>“去防空洞！”布宁说，“去黑龙那里！”</p>
+    <p>路明非立刻想到了那密集的自动武器阵列，除了那条黑龙，没有任何生物能从那种金属狂流中幸存。</p>
+    <p>———————————————</p>
+    <p>坑边闲话：</p>
+    <p>各位亲爱的读者老爷，</p>
+    <p>很抱歉。</p>
+    <p>很抱歉。</p>
+    <p>很抱歉。</p>
+    <p>
+      因为近期公司事务繁重，电视电影等项目的上线或即将上线，公司自制项目杀青等事情集中在一起，导致我忙到杂乱无章，影响了写作的状态和时间，非常抱歉因此导致的频繁请假。我会用一段时间来调整我的工作和写作，在我完成该调整目标前，大家可以继续指着我脊梁骨骂我。再度致歉。
+    </p>
+    <h2 id="第175章-但为君故79">第175章 但为君故79 </h2>
+    <p>路明非重又走在了寒冷潮湿的通道里，楼梯一层一层地下行，像是永无尽头，像是某种轮回。</p>
+    <p>龙血猛犬们的吠声在通道里反复折射，听起来时远时近，它们追下来了，不达地狱誓不罢休。</p>
+    <p>客人们或轻或重地受了伤，而且疲惫，安娜打开了枪下悬挂的手电照亮，对于这个曲折复杂的空间她也是迷惑不已。</p>
+    <p>“只有狗，没有人。”楚子航低声说。“是。”路明非点点头。</p>
+    <p>非常奇怪，他们只是在一开始遭遇了格鲁乌战士，之后追踪者就换成了龙血猛犬，原理上说这些猛犬是有人控制的，而且在如此强烈的磁场中，控制的距离不可能很远，但控制者自始至终都没有出现过。</p>
+    <p>铁链摩擦地面的哗哗声越来越清晰了，跟前一次不同，这一次黑蛇显得躁动不安，应该是磁场对它也造成了影响，这家伙的脑部已经严重萎缩，但还残存着部分的脑组织，那些脑细胞的深处可能还藏着些令它也会不安的记忆。</p>
+    <p>
+      幻觉从未离开路明非，四面八方都是脚步声，像是孩子欢快地追逐着，又像是穿着军靴的人大步经过；而对其他客人来说，他们都回到了人生中最荣华和最重要的时间，有的脸上流露出为国献身的坚毅神情，有的则流露出缱绻和甜蜜。还能保持冷静和战斗力的人不过三五个了，安娜和马克西姆算是其中的中坚力量，大概是好不容易拍来的血清提振了他们的精神。
+    </p>
+    <p>“我亲爱的马克西姆，一会儿无论看到什么都不要太惊讶。”布宁低声说，“听我的指令行动。”</p>
+    <p>“很荣幸能参观您的收藏，布宁先生，希望它能让我们大吃一惊。”马克西姆把最后的几发子弹填入步枪。</p>
+    <p>这个时候，路明非踏上了最底层的地面，黑蛇在深槽中不安地吼叫着，吼声在防空洞中引发共鸣，像是四面八方无数古老的灵魂在合唱。</p>
+    <p>“天呐！”马克西姆和安娜都呆住了。</p>
+    <p>———————————————</p>
+    <p>这个时候苏恩曦正蹑手蹑脚地在地下会议室里摸索。</p>
+    <p>
+      不知为何布宁对于服务人员的防备并不森严，也可能是他需要的服务人员太多，来不及一一审核，苏恩曦这种细查起来浑身漏洞的家伙也有机会踏进了这座建筑，只是不被允许进入最终会场。毕竟也是在莫斯科金融圈混过的人，她说得一口颇为流利的俄语，就端着酒走来走去，四处听人说话。因为有几分美貌，还被一位客人骚扰了，黑金天鹅算了一下，觉得对方无论身家还是才貌都不够泡自己，就把他引入角落里的休息室，用高压电击枪把他给放倒了。
+    </p>
+    <p>
+      意外发生的时候，客人们只顾自救，根本来不及管那些服务人员。调酒师和料理师傅这些没有什么战斗力的人立刻就被冲进来的格鲁乌战士就地枪决了，那些想必是间谍学校招募来的、美貌冷酷的女孩们有过短暂的反抗，可她们的武器被强大的电磁场缴械，根本无法跟穿着屏蔽衣的格鲁乌战士们对抗，很快就纷纷倒在血泊中。
+    </p>
+    <p>苏恩曦没参加，她第一时间就拿起番茄酱挤了自己一身然后找个角落里躺倒，死人演得极其逼真。</p>
+    <p>
+      事实上一般情况下扮死人并不那么容易在屠杀中幸存，因为但凡是屠杀总要有个检查尸体的环节，或者不检查，每具尸体的脑袋上补一枪，但苏恩曦对路明非和楚子航的能力很有信心，知道这俩家伙不会让入侵者太好过。果不其然，很快就听到了枪声和爆炸声，应该是客人们跟入侵者交上火了，正要检查尸体的格鲁乌战士们立刻前往支援。
+    </p>
+    <p>
+      苏恩曦爬起来，给自己倒了杯金酒，喝下去定了定神。想要逃出去并非易事，鬼知道有多少格鲁乌战士在周围晃悠，而她委实是个文职干部。跑去跟零汇合也不算一个很好的选择，那等于自己跑去了战场的正中央。不过她倒也不担心零的安全，即使妹子的心智不太稳定，两条杀胚守着，应该没有太大危险。她自己也受了点磁场的影响，总是不自觉地回想起自己的老板来，喝着酒就觉得又回到了丽晶酒店的顶楼，那个半身浴血的人举着透明的玻璃杯子，血沿着手腕滴进杯中。他喝着血红色的酒眺望远方的海浪，又安静又孤单的模样。“真是迷惑人啊。”苏恩曦叹了口气。在对老板的态度上，她跟酒德麻衣和零都不一样，既不是为老板效死的忍者也不是老板的贴身小棉袄，她觉得自己跟老板之间是合作的关系，简单地说她是来打工的，她和老板之间是互相需要的关系，某一天契约完成，她立马就拎包单飞。只是卷进老板的事情里太久了，想到有一天单飞了孤零零的，又有点舍不得。这个世界就是那么孤单，有时候你宁可跟一群你认可的家伙当亡命天涯的混蛋，也不愿寂寞而安全。
+    </p>
+    <p>
+      她忽然想起奥金涅兹来，受伤的奥金涅兹脖子上吸了个水蛭，被送进了地下拍卖场。撤离的时候大家都把他给忘了，现在去正好把他身上那枚水蛭收了，看看水蛭里的血清到底是什么成分。印象中除了卡塞尔学院的尼伯龙根计划，还没有其他组织掌握了纯化血清的技术，在黑暗年代，龙血都是被直接使用，接受者通常忍不了毒性原地爆炸或者直接变成怪物，只有极少数的幸运儿能活下来成为后天混血种。
+    </p>
+    <p>苏恩曦觉得自己有必要多了解一下这场拍卖会幕后的秘密。</p>
+    <p>事发突然来不及关闭通道，格鲁乌战士也曾进入地下会议室，跟外面的情况差不多，驻守在这里的随从在短暂的反抗后被杀，子弹从脖根出射入，血喷得到处都是。</p>
+    <p>
+      苏恩曦在周围转了转，没有发现什么值得留意的情报，这间会议室还是当年的陈设，连书架上的资料都是当年的，关于如何在西伯利亚建成世界上第一个核聚变工厂的宏伟计划。会议室旁边有几间小办公室，其中一间里有一部电话，布宁应该就是通过这部电话跟幕后的卖家联系的。没有什么加工血清的地下实验室，这意味着血清很有可能不是在023号城市生产的，可黑蛇又在这里。也有可能布宁纯粹是抽取黑蛇的血液供给幕后的卖家，卖家负责提纯，其实算是个技术支持。
+    </p>
+    <p>不得不说这是一次令人沮丧的探索，尤其是当她推开最后一扇门，看到奥金涅兹的时候。</p>
+    <p>这家伙赤身裸体地坐在一把椅子上，垂着头。水蛭还吸在脖子上，应该是没来得及起死回生就被格鲁乌战士发现了，胸口多了好几个弹孔，血流下来染红了两条毛腿。</p>
+    <p>
+      随从们大概是为了给他缝合伤口所以把他被扒光了，但这个死相真是令苏恩曦不忍直视。她从旁边的沙发上抓了个靠垫丢在奥金涅兹的胯部，以免自己有非礼之视，这才走上前去，小心翼翼地摘下了那只水蛭。水蛭还是肥硕饱满的，但是已经僵死了，这东西和奥金涅兹进行了血液交换，已经完成了自己作为一枚注射器的功能，然后就死了。由此可见那种血清确实有着神奇的效果，当它保存在这水蛭体内时，它就始终生机盎然。
+    </p>
+    <p>苏恩曦在旁边的架子上找到一个装糖豆的玻璃罐子，拿来把糖豆倒空了，把水蛭的尸体丢了进去。再想还是应该取一些奥金涅兹的血样，正好旁边就有医疗箱，在里面找到了注射器。</p>
+    <p>注射器正要奥金涅兹的颈动脉，她忽然觉得背后有人在看自己，她吓得猛转身，门口竟然真的站着一个人。</p>
+    <p>那是一个金发苍白的男孩，赤身裸体，血正从他那修长的右手上往下流淌，看起来有几分像椅子上死去的奥金涅兹。</p>
+    <p>苏恩曦揉了揉眼睛，不敢确定那是真实还是幻觉，但等她揉完眼睛，孩子已经不见了。</p>
+    <p>
+      她的手不由自主地推着注射器进入奥金涅兹的颈动脉，忽然意识到这具尸体是那么地薄和干瘪，这在她第一眼看到奥金涅兹的时候也有这样的感觉，这个温雅的年轻人看起来衰老和皱缩，像是一个泄了气的充气娃娃。她本以为这是血清交换导致的，但随着她加力，奥金涅兹像是随时都会坍塌。
+    </p>
+    <p>她惊恐地后退几步，脚下绊到了什么东西，再看居然是两名格鲁乌战士的尸体被藏在了沙发后，胸口各有一个空洞。</p>
+    <p>像是有人用极其锋利的爪子，在瞬间摘走了他们的心脏！</p>
+    <p>真相几乎是呼之欲出了，苏恩曦上前一脚踹翻奥金涅兹所坐的椅子，奥金涅兹的躯壳翻了过来，后背从肩胛骨一下到臀部，一道巨大的裂口，里面空空如也。</p>
+    <p>
+      那种神秘的血清竟然让奥金涅兹蜕皮了，恰如一条脱皮的蛇，只不过他脱下来的蜕厚而且韧，所以还能暂时维持人形。而那蜕壳而出的东西——很难说他还是不是奥金涅兹了——一出手就杀掉了两名格鲁乌战士，空手摘取心脏，现在这里只剩下她一个文职干部，和一个刚刚蜕壳的怪物！
+    </p>
+    <p>———————————————</p>
+    <p>坑边闲话：</p>
+    <p>今天是中考，祝愿参加中考的小伙伴考出好的成绩来！</p>
+    <h2 id="第176章-但为君故80">第176章 但为君故80 </h2>
+    <p>苏恩曦调头就往外面跑，作为一名文职干部，临阵退缩这种事她是毫无心理压力的。</p>
+    <p>但是外面传来了沉重的关门声，地下会议室通往外界的唯一通道被锁死了，那扇门连炸弹都炸不开。</p>
+    <p>关门的是谁可想而知，关门的目的也可想而知，那返老还童的小家伙看起来不过六七岁，却准备好了要猎杀苏恩曦。</p>
+    <p>苏恩曦懵掉了，她一直都是运筹帷幄的军师、游刃有余的参谋、挥舞金钱大棒无往而不胜的幕后黑手……但眼下这个状况，是让手无寸铁的诸葛孔明亲自出马狙击吕布。</p>
+    <p>她花了几秒钟安静下来。在死亡的格鲁乌战士身边，她找到了那种工程塑料制造的突击步枪，但很遗憾，已经被齐齐地切成了两截，不过3D打印的透明匕首还插在胸前的刀鞘里，总算有了一件能凑合防身的武器。</p>
+    <p>
+      她的言灵是“天演”，能在短时间内把逻辑推理的能力提升到超级计算机的程度，吞吐大量的数据，在别人看来股市就是一张数字有红有绿无规律变动的大屏幕，她却能穿透那张大屏幕看到后面的资金流向，甚至反推出庄家和炒家的心理。靠着“天演”，她轻而易举地攫取财富，但现在她不得不用这份能力来推测那个恐怖的小怪物。
+    </p>
+    <p>他的攻击性很强，身体一定程度龙化，智力程度不低，从他关闭通道困住苏恩曦就可以看出，如果只是嗜血的野兽，不会把猎杀搞得那么麻烦。</p>
+    <p>他有双锋利的爪子，但应该不够碾压苏恩曦，必须像偷袭格鲁乌战士那样，趁苏恩曦不注意。</p>
+    <p>苏恩曦一进入地下会议室就被他盯上了，他一直悄悄地尾随，等待机会。苏恩曦察觉到有人跟踪的时候，很可能这家伙正想从后面逼近，当时苏恩曦正忙着收集水蛭。</p>
+    <p>从格鲁乌战士的遗骸判断，已经死去有一会儿了，这段时间里这个恐怖的小家伙一直留在地下会议室里没有出外晃悠，应该是畏惧外面的枪声。</p>
+    <p>综上所述，她的对手应该就是儿童智力加猎豹身手的小怪物，他攻击方式一定是偷袭，他藏在某个隐蔽的角落里，等着苏恩曦疏忽或者害怕到手脚发抖。</p>
+    <p>那苏恩曦偏就不害怕。</p>
+    <p>
+      她从旁边架子上抄了一瓶历史悠久的伏特加，长裙拉风，高跟鞋踩地，铿锵有力地来到走廊里。旋开略微生锈的铁盖，她把半瓶酒倒进了肚里，而后嘿嘿一笑，“跟姐姐玩捉迷藏么？抓到了可要打屁股的哦。”跟着透明匕首洞穿配电箱的门，电火花照亮了她带笑的侧颜，两秒钟后地下室陷入了彻底的黑暗。
+    </p>
+    <p>解开背后的拉链，天鹅绒长裙如蝉蜕般坠落，在踮着脚尖离开那双高跟鞋，苏恩曦一袭白色的丝绸衬裙，在黑暗中缓慢地移动，嗅着每一丝气味，听取每一丝声音。</p>
+    <p>猎杀不再是单向的了，苏恩曦和奥金涅兹回到了完全对等的位置上，谁先发现对方，谁就赢。</p>
+    <p>
+      奥金涅兹新生的指甲锋利得就像爪子，苏恩曦的匕首也不差，龙血提升了奥金涅兹的听觉和嗅觉，但除非他恰好跟恺撒一样拥有“镰鼬”那类单独强化某种感官的言灵，否则也强不过苏恩曦，他不过是一个龙血血清强行催生出来的混血种，苏恩曦至少还是原装的。
+    </p>
+    <p>唯一的遗憾是当初酒德麻衣劝她学一些忍者技巧的时候她没有听，不过这也怪不得她，马超想要教诸葛亮耍枪诸葛亮估计也不会学，老子旗下有五虎上将，老子还单挑司马懿不成？</p>
+    <p>如果奥金涅兹把她看作那种会吓得双腿发软会尖叫着往外跑把背心留给他的肥羊，那可就真看错了，要说她们三个人里真正的女流氓，非她苏恩曦莫属。在被那个男人找到之前，她已经看透了太多事，学会了无所谓。</p>
+    <p>那该死的强磁场还在干扰着她的感官，各种幻觉一闪而逝，偶尔觉得那个男人就溜达着跟在她后面，所以更没什么可怕的。</p>
+    <p>1998年，澳门，葡京酒店顶楼，八岁的苏恩曦嚼着薯片坐在赌台边。</p>
+    <p>至今她还记得那天她穿着白色的T恤外搭黑色的直筒裙，一双黑色的小皮鞋配白色袜子，漆黑的长发扎成一个马尾，一脸优等生的模样。</p>
+    <p>那是重要的一天，那天她第一次遇到那个名为路鸣泽的男人，心里对他满是不屑。</p>
+    <p>“我们的小神童苏苏，少爷有没有听说过？”赌厅老板一口港普，胖脸上写满炫耀，双手按在苏恩曦肩上，“拉斯维加斯的赌王都要跟她请教牌技的。”</p>
+    <p>苏恩曦的对面是个看起来还在上中学的男孩，服饰却透着一股老气，白色的皮鞋和西裤，海蓝色的西装夹克，上衣口袋里塞着五彩的丝绸手帕。</p>
+    <p>不过穿在他身上还算凑合，跟同龄人比起来，他显得成熟那么一点，从容那么一点，慵懒那么一点。</p>
+    <p>按理说这种年纪的孩子是不允许进赌厅的，但楼上的私人赌厅管得往往没那么严，砸出重金买筹码，没理由把人家拒之门外。</p>
+    <p>
+      这种小少爷苏恩曦应付过好几个，有的是偷拿家里的钱出来挥霍的，也有父母根本懒得管，给你钱随便你干什么的。年纪小小就什么都经历过了，跑车、名牌甚至漂亮小姑娘对他们来说都不新鲜了，但赌桌他们还没玩腻，仗着兜里的钱，想来体会大进大出的感觉，一场下来如坐过山车，时而上云霄，时而下地狱。
+    </p>
+    <p>赌博这种买卖是世上少见的合法坏买卖，属于那种明知道人类有弱点，却用那种弱点去赚钱的生意。</p>
+    <p>但苏恩曦当时的老板说过一句很有哲理的话，他说人的欲望就像是野马，你就非得让它跑，你不把它跑累了，它就会自己撞死在山崖上。</p>
+    <p>苏恩曦也看不起自己的老板，不过她承认这句话老板说得有道理。</p>
+    <p>
+      苏恩曦这样的女孩老板手下有好几个，无一例外地漂亮、高级、生人勿近的那种范儿，苏恩曦是其中年纪最小的。总有些客人手气特别壮，壮到赌厅都担心的，这时候老板就会隆重地把某个女孩请出来，隆重地介绍给客人。有的女孩外号神算子，有的女孩号称哈佛数学系高材生，反正就是很漂亮很厉害，问你愿不愿意跟她对赌玩玩。
+    </p>
+    <p>男人这个物种其实特别像猫，比女人更像，好奇心贼大，这种时候基本没有不应诺的，但是好奇心害死猫，这话用在男人身上也合适。</p>
+    <p>
+      女孩无一例外地擅长数学，或者说数字，她们对赌桌上概率的分布算得极准，这能稍微地提升她们的胜率。稍微提升那么一点就可以了，胜率只要提升两个点，客人基本上都是掏空了口袋甚至倒欠了赌厅巨额债务才能离开。老板从天南海北收拢这些女孩，好吃好喝养着，关键时刻祭出来，都是法宝。
+    </p>
+    <p>如果真有某个家伙特别警觉，收拾筹码想走，还有更狠的杀手锏，女孩子只要轻笑着说，我的赌注可以是自己，少数意志强如擎天柱的兄弟也只能重新把筹码丢在桌上。</p>
+    <p>其实从他们进入赌厅的那一刻开始，局就已经布下了，环肥燕瘦各种女孩来来去去，有的是服务生给他端东西喝，有的扮作赌客过来小坐片刻，看他注意谁就知道他喜欢什么风格的女孩子，到时候请出来跟他对赌的就是这个风格的，而且更漂亮更高级。
+    </p>
+    <p>
+      苏恩曦能在这里混是因为总有特么几个死恋童癖，基本上都是油腻的老爷爷，用来做烧烤的话都不用抹烧烤酱的。他们看苏恩曦是一寸寸看的，看得苏恩曦都纳闷，自己还没发育，到底有啥可看的？取决于对方行注目礼时的礼貌程度，苏恩曦会控制一下力度，太恶心的就半小时赢完收功，克制的就给他留点路费。
+    </p>
+    <p>对于这份工作她毫无负罪感可言，八岁那年她就觉得自己已经看明白了世界，内心里装着一个毒舌的阿姨。</p>
+    <p>———————————————</p>
+    <p>坑边闲话：</p>
+    <p>刚刚结束上海电影节的工作，原本计划的加倍更新可能要暂缓一下。</p>
+    <p>非常抱歉于最近连载的不稳定，这也让我心生烦恼，正在想办法调整。</p>
+    <p>前几天接受媒体采访，忽然想我其实是个“读者群里成长起来的作者”，理应比一开始就立在殿堂中的作者更加关注读者的意见。</p>
+    <p>谢谢大家的宽容和意见。</p>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

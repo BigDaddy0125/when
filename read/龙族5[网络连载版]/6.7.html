@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>6.7</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    ::selection {
+      background-color: orange;
+      color: white
+    }
+
+    code[class*=language-],
+    pre[class*=language-] {
+      color: #333;
+      background: 0 0;
+      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+      line-height: 1.4;
+      -moz-tab-size: 8;
+      -o-tab-size: 8;
+      tab-size: 8;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none
+    }
+
+    pre[class*=language-] {
+      padding: .8em;
+      overflow: auto;
+      border-radius: 3px;
+      background: #f5f5f5
+    }
+
+    :not(pre)>code[class*=language-] {
+      padding: .1em;
+      border-radius: .3em;
+      white-space: normal;
+      background: #f5f5f5
+    }
+
+    .token.blockquote,
+    .token.comment {
+      color: #969896
+    }
+
+    .token.cdata {
+      color: #183691
+    }
+
+    .token.doctype,
+    .token.macro.property,
+    .token.punctuation,
+    .token.variable {
+      color: #333
+    }
+
+    .token.builtin,
+    .token.important,
+    .token.keyword,
+    .token.operator,
+    .token.rule {
+      color: #a71d5d
+    }
+
+    .token.attr-value,
+    .token.regex,
+    .token.string,
+    .token.url {
+      color: #183691
+    }
+
+    .token.atrule,
+    .token.boolean,
+    .token.code,
+    .token.command,
+    .token.constant,
+    .token.entity,
+    .token.number,
+    .token.property,
+    .token.symbol {
+      color: #0086b3
+    }
+
+    .token.prolog,
+    .token.selector,
+    .token.tag {
+      color: #63a35c
+    }
+
+    .token.attr-name,
+    .token.class,
+    .token.class-name,
+    .token.function,
+    .token.id,
+    .token.namespace,
+    .token.pseudo-class,
+    .token.pseudo-element,
+    .token.url-reference .token.variable {
+      color: #795da3
+    }
+
+    .token.entity {
+      cursor: help
+    }
+
+    .token.title,
+    .token.title .token.punctuation {
+      font-weight: 700;
+      color: #1d3e81
+    }
+
+    .token.list {
+      color: #ed6a43
+    }
+
+    .token.inserted {
+      background-color: #eaffea;
+      color: #55a532
+    }
+
+    .token.deleted {
+      background-color: #ffecec;
+      color: #bd2c00
+    }
+
+    .token.bold {
+      font-weight: 700
+    }
+
+    .token.italic {
+      font-style: italic
+    }
+
+    .language-json .token.property {
+      color: #183691
+    }
+
+    .language-markup .token.tag .token.punctuation {
+      color: #333
+    }
+
+    .language-css .token.function,
+    code.language-css {
+      color: #0086b3
+    }
+
+    .language-yaml .token.atrule {
+      color: #63a35c
+    }
+
+    code.language-yaml {
+      color: #183691
+    }
+
+    .language-ruby .token.function {
+      color: #333
+    }
+
+    .language-markdown .token.url {
+      color: #795da3
+    }
+
+    .language-makefile .token.symbol {
+      color: #795da3
+    }
+
+    .language-makefile .token.variable {
+      color: #183691
+    }
+
+    .language-makefile .token.builtin {
+      color: #0086b3
+    }
+
+    .language-bash .token.keyword {
+      color: #0086b3
+    }
+
+    pre[data-line] {
+      position: relative;
+      padding: 1em 0 1em 3em
+    }
+
+    pre[data-line] .line-highlight-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      display: block;
+      width: 100%
+    }
+
+    pre[data-line] .line-highlight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: inherit 0;
+      margin-top: 1em;
+      background: hsla(24, 20%, 50%, .08);
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+      pointer-events: none;
+      line-height: inherit;
+      white-space: pre
+    }
+
+    pre[data-line] .line-highlight:before,
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-start);
+      position: absolute;
+      top: .4em;
+      left: .6em;
+      min-width: 1em;
+      padding: 0 .5em;
+      background-color: hsla(24, 20%, 50%, .4);
+      color: #f4f1ef;
+      font: bold 65%/1.5 sans-serif;
+      text-align: center;
+      vertical-align: .3em;
+      border-radius: 999px;
+      text-shadow: none;
+      box-shadow: 0 1px #fff
+    }
+
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-end);
+      top: auto;
+      bottom: .4em
+    }
+
+    html body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+      overflow: initial;
+      box-sizing: border-box;
+      word-wrap: break-word
+    }
+
+    html body>:first-child {
+      margin-top: 0
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
+      line-height: 1.2;
+      margin-top: 1em;
+      margin-bottom: 16px;
+      color: #000
+    }
+
+    html body h1 {
+      font-size: 2.25em;
+      font-weight: 300;
+      padding-bottom: .3em
+    }
+
+    html body h2 {
+      font-size: 1.75em;
+      font-weight: 400;
+      padding-bottom: .3em
+    }
+
+    html body h3 {
+      font-size: 1.5em;
+      font-weight: 500
+    }
+
+    html body h4 {
+      font-size: 1.25em;
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1.1em;
+      font-weight: 600
+    }
+
+    html body h6 {
+      font-size: 1em;
+      font-weight: 600
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5 {
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1em
+    }
+
+    html body h6 {
+      color: #5c5c5c
+    }
+
+    html body strong {
+      color: #000
+    }
+
+    html body del {
+      color: #5c5c5c
+    }
+
+    html body a:not([href]) {
+      color: inherit;
+      text-decoration: none
+    }
+
+    html body a {
+      color: #08c;
+      text-decoration: none
+    }
+
+    html body a:hover {
+      color: #00a3f5;
+      text-decoration: none
+    }
+
+    html body img {
+      max-width: 100%
+    }
+
+    html body>p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      word-wrap: break-word
+    }
+
+    html body>ol,
+    html body>ul {
+      margin-bottom: 16px
+    }
+
+    html body ol,
+    html body ul {
+      padding-left: 2em
+    }
+
+    html body ol.no-list,
+    html body ul.no-list {
+      padding: 0;
+      list-style-type: none
+    }
+
+    html body ol ol,
+    html body ol ul,
+    html body ul ol,
+    html body ul ul {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body li {
+      margin-bottom: 0
+    }
+
+    html body li.task-list-item {
+      list-style: none
+    }
+
+    html body li>p {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body .task-list-item-checkbox {
+      margin: 0 .2em .25em -1.8em;
+      vertical-align: middle
+    }
+
+    html body .task-list-item-checkbox:hover {
+      cursor: pointer
+    }
+
+    html body blockquote {
+      margin: 16px 0;
+      font-size: inherit;
+      padding: 0 15px;
+      color: #5c5c5c;
+      background-color: #f0f0f0;
+      border-left: 4px solid #d6d6d6
+    }
+
+    html body blockquote>:first-child {
+      margin-top: 0
+    }
+
+    html body blockquote>:last-child {
+      margin-bottom: 0
+    }
+
+    html body hr {
+      height: 4px;
+      margin: 32px 0;
+      background-color: #d6d6d6;
+      border: 0 none
+    }
+
+    html body table {
+      margin: 10px 0 15px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all
+    }
+
+    html body table th {
+      font-weight: 700;
+      color: #000
+    }
+
+    html body table td,
+    html body table th {
+      border: 1px solid #d6d6d6;
+      padding: 6px 13px
+    }
+
+    html body dl {
+      padding: 0
+    }
+
+    html body dl dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 700
+    }
+
+    html body dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px
+    }
+
+    html body code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: .85em;
+      color: #000;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      padding: .2em 0
+    }
+
+    html body code::after,
+    html body code::before {
+      letter-spacing: -.2em;
+      content: '\00a0'
+    }
+
+    html body pre>code {
+      padding: 0;
+      margin: 0;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      border: 0
+    }
+
+    html body .highlight {
+      margin-bottom: 16px
+    }
+
+    html body .highlight pre,
+    html body pre {
+      padding: 1em;
+      overflow: auto;
+      line-height: 1.45;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    html body .highlight pre {
+      margin-bottom: 0;
+      word-break: normal
+    }
+
+    html body pre code,
+    html body pre tt {
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0
+    }
+
+    html body pre code:after,
+    html body pre code:before,
+    html body pre tt:after,
+    html body pre tt:before {
+      content: normal
+    }
+
+    html body blockquote,
+    html body dl,
+    html body ol,
+    html body p,
+    html body pre,
+    html body ul {
+      margin-top: 0;
+      margin-bottom: 16px
+    }
+
+    html body kbd {
+      color: #000;
+      border: 1px solid #d6d6d6;
+      border-bottom: 2px solid #c7c7c7;
+      padding: 2px 4px;
+      background-color: #f0f0f0;
+      border-radius: 3px
+    }
+
+    @media print {
+      html body {
+        background-color: #fff
+      }
+
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        color: #000;
+        page-break-after: avoid
+      }
+
+      html body blockquote {
+        color: #5c5c5c
+      }
+
+      html body pre {
+        page-break-inside: avoid
+      }
+
+      html body table {
+        display: table
+      }
+
+      html body img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%
+      }
+
+      html body code,
+      html body pre {
+        word-wrap: break-word;
+        white-space: pre
+      }
+    }
+
+    .markdown-preview {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box
+    }
+
+    .markdown-preview ul {
+      list-style: disc
+    }
+
+    .markdown-preview ul ul {
+      list-style: circle
+    }
+
+    .markdown-preview ul ul ul {
+      list-style: square
+    }
+
+    .markdown-preview ol {
+      list-style: decimal
+    }
+
+    .markdown-preview ol ol,
+    .markdown-preview ul ol {
+      list-style-type: lower-roman
+    }
+
+    .markdown-preview ol ol ol,
+    .markdown-preview ol ul ol,
+    .markdown-preview ul ol ol,
+    .markdown-preview ul ul ol {
+      list-style-type: lower-alpha
+    }
+
+    .markdown-preview .newpage,
+    .markdown-preview .pagebreak {
+      page-break-before: always
+    }
+
+    .markdown-preview pre.line-numbers {
+      position: relative;
+      padding-left: 3.8em;
+      counter-reset: linenumber
+    }
+
+    .markdown-preview pre.line-numbers>code {
+      position: relative
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows {
+      position: absolute;
+      pointer-events: none;
+      top: 1em;
+      font-size: 100%;
+      left: 0;
+      width: 3em;
+      letter-spacing: -1px;
+      border-right: 1px solid #999;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span {
+      pointer-events: none;
+      display: block;
+      counter-increment: linenumber
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+      content: counter(linenumber);
+      color: #999;
+      display: block;
+      padding-right: .8em;
+      text-align: right
+    }
+
+    .markdown-preview .mathjax-exps .MathJax_Display {
+      text-align: center !important
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .status {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+      margin-bottom: 16px
+    }
+
+    .markdown-preview .md-toc {
+      padding: 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    .scrollbar-style::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .scrollbar-style::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    .scrollbar-style::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      overflow: auto
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+      position: relative;
+      top: 0;
+      min-height: 100vh
+    }
+
+    @media screen and (min-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em calc(50% - 457px + 2em)
+      }
+    }
+
+    @media screen and (max-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        font-size: 14px !important;
+        padding: 1em
+      }
+    }
+
+    @media print {
+      html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+        display: none
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      color: inherit;
+      z-index: 99;
+      width: 32px;
+      text-align: center;
+      opacity: .4
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+      opacity: 1
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      padding: 32px 0 48px 0;
+      font-size: 14px;
+      box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: inherit
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+      width: 8px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+      text-decoration: none
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+      padding: 0 16px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+      left: 300px;
+      width: calc(100% - 300px);
+      padding: 2em calc(50% - 457px - 300px / 2);
+      margin: 0;
+      box-sizing: border-box
+    }
+
+    @media screen and (max-width:1274px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        width: 100%
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+      display: none
+    }
+
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+  </style>
+  <!-- The content below will be included at the end of the <head> element. -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // your code here
+    });
+  </script>
+</head>
+
+<body for="html-export">
+
+
+  <div class="crossnote markdown-preview  ">
+
+    <div id="top"></div>
+    <p><a href="6.6.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="7.html">下一章</a></p>
+    <hr>
+    <h1 id="center第六章-但为君故center">
+      <center>第六章 但为君故</center>
+    </h1>
+    <br>
+    <br>
+
+    <div class="md-toc">
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#center第六章-但为君故center" class="md-toc-link">
+            <center>第六章 但为君故</center>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第217章-但为君故121" class="md-toc-link">
+              <p>第217章 但为君故(121)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第218章-但为君故122" class="md-toc-link">
+              <p>第218章 但为君故(122)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第219章-但为君故123" class="md-toc-link">
+              <p>第219章 但为君故(123)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第220章-但为君故124" class="md-toc-link">
+              <p>第220章 但为君故(124)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第221章-但为君故125" class="md-toc-link">
+              <p>第221章 但为君故(125)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第222章-但为君故126" class="md-toc-link">
+              <p>第222章 但为君故(126)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第223章-但为君故127" class="md-toc-link">
+              <p>第223章 但为君故(127)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第224章-但为君故128" class="md-toc-link">
+              <p>第224章 但为君故(128)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第225章-但为君故129" class="md-toc-link">
+              <p>第225章 但为君故(129)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第226章-但为君故130" class="md-toc-link">
+              <p>第226章 但为君故(130)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第227章-但为君故131" class="md-toc-link">
+              <p>第227章 但为君故(131)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第228章-但为君故132" class="md-toc-link">
+              <p>第228章 但为君故(132)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第229章-但为君故133" class="md-toc-link">
+              <p>第229章 但为君故(133)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第230章-但为君故134" class="md-toc-link">
+              <p>第230章 但为君故(134)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第231章-但为君故135" class="md-toc-link">
+              <p>第231章 但为君故(135)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第232章-但为君故136" class="md-toc-link">
+              <p>第232章 但为君故(136)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第233章-但为君故137" class="md-toc-link">
+              <p>第233章 但为君故(137)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第234章-但为君故138" class="md-toc-link">
+              <p>第234章 但为君故(138)</p>
+
+            </a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+    <hr>
+    <h2 id="第217章-但为君故121">第217章 但为君故(121) </h2>
+    <p>“听起来好像觉得还有那么一点安慰。”路明非挠头，“所以我能变身成怪物，而且被学院全球通缉这事儿你们也知道了对吧？”</p>
+    <p>“废话！否则你怎么会收到我的电话？避风港从启用那天开始就跟外界隔绝了，连我都不能随便出入，尽管我们很想念你，但不敢主动联络你，每一次对外联络，都是一次泄密的可能。”路麟城说，“但我总不能看着我儿子被欺负！”</p>
+    <p>“也不算被欺负……我自己都觉得自己蛮危险的。说起来我能变成强力怪物这个能力是继承你们俩谁的？”</p>
+    <p>路麟城和乔薇尼对视一眼，“你妈和我都是文职人员……说实话我们也不知道你怎么会有那种能力的。”</p>
+    <p>“你俩生了个怪物出来你俩却不知道怎么回事？”路明非苦笑。</p>
+    <p>“理论上说，只有龙王级别的东西才能做到你做的那些事，我和你老妈的血统虽然也算优秀，但还不至于能生出龙王来。”路麟城叹了口气，“刚开始的时候我和你妈也觉得心惊胆战，觉得我们家孩子是不是被什么怪物冒名顶替了。”</p>
+    <p>“胡说什么？”乔薇尼又火了，“我儿子就是我儿子！怪物也是我儿子！”</p>
+    <p>“乔薇尼你能不能安安静静地讲话？儿子刚回家，爸妈就吵架，你这个脾气要不是我还真不知道谁能忍你……”</p>
+    <p>路麟城和乔薇尼坚持了半顿饭的工夫，还是开始拌嘴了，路明非低头啃着鸡腿不掺和，啃着啃着他的眼泪落在汤碗里，溅起带着油花的涟漪。</p>
+    <p>餐桌上忽然就安静了，乔薇尼瞪了路麟城一眼，挪挪座椅搂着路明非的肩膀，亲了亲他的额头。</p>
+    <p>“我没事，我挺开心的。”路明非用袖子抹抹脸，笑着说，“鸡也好吃。”</p>
+    <p>他是想到那年在丽思·卡尔顿酒店，古德里安教授带来了老娘的信，信里乔薇尼简简单单地写了一句说妈妈爱你，他忽然就被击溃了，在女厕所里哭成了一个傻逼。</p>
+    <p>时隔多年老妈也还是那么横，老爹也还是那么啰嗦。</p>
+    <p>路麟城咂摸了一口伏特加，放下筷子，凝视着路明非的双眼，“应该是有些非同寻常的事发生在你身上了，让你得到了远超自己血统的能力，类似超进化，但比那个更强，我们目前对那个机制还不清楚，但这里有世界上最优秀的专家组，我们总能查清楚。”
+    </p>
+    <p>“那些都是你爸的事，你现在就是好好吃饭，好好休息，别想太多。学院的通缉令在这里是无效的。”乔薇尼说，“就算是昂热，你爹不准他来这里，他也进不来。”</p>
+    <p>路麟城点点头，默认了老婆的说法。</p>
+    <p>“老爹你在秘党里的级别那么高？”路明非有点吃惊。</p>
+    <p>“我不属于你们那个系统，校董会和元老会的话对我都不管用。”路麟城说，“我也不完全信任他们，谁知道暗面君主们的势力是不是已经渗入了卡塞尔学院？”</p>
+    <p>路明非悚然。一直以来他都觉得自己是怪物，自己被通缉被敌视是理所当然的，也就没有怀疑过学院的立场，但如果世界上真有暗面君主这种东西，那么他们可以伪装成任何人。</p>
+    <p>“来，跟老妈讲讲这些年的事，过得怎么样？有没有女朋友啊，有几个啊……”乔薇尼换了话题，总算爹妈不用吵架了，说起这事儿路麟城的耳朵也竖了起来。</p>
+    <p>一家人其乐融融地啃完了那只珍珠鸡，喝完了一整瓶伏特加，酒足饭饱喝茶打嗝的时候路明非忽然想到了一件事，“附近是不是有座港口？”</p>
+    <p>路麟城愣了一下，“黑天鹅港？你知道那个港口？”</p>
+    <p>路明非摇头，“有个朋友说，我的目的地应该是一座港口，黑天鹅港这个名字我是第一次听说。”</p>
+    <p>“那是个很神秘的港口，至今都是一个谜。它应该在北冰洋的沿岸，距离维尔霍扬斯克不远，但不是这里。1992年它毁于一场意外的事故，我们调查过，但至今没有找到它的遗迹。”</p>
+    <p>“那港口是干什么用的？”路明非又问。</p>
+    <p>路麟城知道那座港口而且也在找它，显然它非同一般地重要。</p>
+    <p>“没人知道，也没有资料记载，但那个港口被毁的时候，可能有龙王级的东西从里面逃了出来。”路麟城的神情郑重。</p>
+    <p>餐桌上安静了片刻，路明非又说，“至少有两拨人想把我送到这里来，可能是想通过我找到你。”</p>
+    <p>本以为路麟城会紧张，但老爹只是耸耸肩，“他们找不到，唯有带烙印的人才能进入这里，你是我儿子，天生就带烙印，那些可不是我儿子。”</p>
+    <p>路明非吃了一惊，“我们在尼伯龙根里？”</p>
+    <p>“暴风雪就是这里和外界之间的界面，没有烙印的人会穿越暴风雪而过。”路麟城得意地微笑，“今天就这样，早点睡，你要见识的事还很多。”</p>
+    <p>———————————————</p>
+    <p>路明非躺在那张舒服的单人床上，身下是干燥柔软的亚麻床单，外面是呼啸的风雪声。</p>
+    <p>多年不见，在乔薇尼的感觉里他可能还是个上中学的孩子，乔薇尼一直看着他睡下，给他盖上被子，把床头的小夜灯打开，叮嘱他有事来隔壁敲门，临走还亲吻了他的额头，说宝贝好好睡，搞得路明非都有点不好意思了。</p>
+    <p>
+      这是他很长时间以来睡得最舒服的一晚，唯一例外的是梦里的那一觉，但梦里的事情都是假的，身边这个家则是真真切切的。一路以来的辛苦都值得了，再不是惶惶然的丧家之犬。不曾想过老爹是跟昂热平起平坐的人物，可惜狐朋狗友们没法给他此刻的牛逼鼓掌。双腿僵着就僵着，他跑路了那么久正好歇歇，唯一的担心是暴风雪里跋涉的零和布宁，但那俩的体魄过硬，雪橇上又有足够的给养，应该不是什么问题。
+    </p>
+    <p>喝了酒人有点兴奋，翻来覆去地睡不着，隐约听到轰轰的响声，不但不觉得烦躁反而心里安宁。这座避风港是一个巨大的机械系统，此刻是它轰然运转着，在冰天雪地里撑起安全的结界。</p>
+    <p>在这里他便是太子爷一般的人物，没人能伤害他。</p>
+    <p>
+      路麟城喝了酒放出豪言壮语，说这地儿他说了算，老路家就这么一个宝贝儿子，谁跟路明非为难就是跟他路秘书长为难。乔薇尼鄙夷地说你就是个委员会里负责跑腿的，儿子面前就吹这样的牛逼。路麟城嘿嘿笑着说没有我这跑腿的，委员会那帮老家伙可玩不转！乔薇尼趁热打铁说这话可是你说的，明天我们非非见委员会的人，他们要是不同意非非留下来，信不信我把大衣柜砸你脸上？路麟城拍着胸脯说这事儿包在我身上，我敢把儿子叫来，就能把事儿摆平！
+    </p>
+    <p>
+      这特么才是人生对不对？人家有爹妈我也有！在仕兰中学的时候，同学的爹妈跑去班主任那里告路明非的状，说他打扫卫生的时候偷懒把活儿都丢给自家儿子，那时候婶婶看他不顺眼，跟老师电话道完歉把路明非劈头盖脸一顿臭骂。乔薇尼在就不一样了，乔薇尼那凛凛威风，肯定会骂得班主任和对方家长都抬不起头来！
+    </p>
+    <p>翻着翻着他有些困了，眼皮正打架呢，忽然听到有人敲响了窗玻璃。</p>
+    <p>
+      起初他以为自己听错了，可过了一会儿玻璃又响，路明非这才双臂一撑坐了起来。他的床就在窗下，不必起身走路。拉开百叶窗，玻璃上蒙蒙的一层雪花，窗外居然站着一个十一二岁的女孩子，瘦瘦小小好像营养不良的样子，唯有那头夹杂着雪花的淡金色长发漂亮得像丝绸一样。她一边叩着窗玻璃一边冲路明非喊着什么。这里的玻璃都是双层隔温的，她说什么路明非根本听不清，感觉又是俄语，看嘴型也看不出来。路明非干脆披上毯子，把窗户升了起来。
+    </p>
+    <p>风卷着细雪，一下子就洒了满床，路明非狠狠地打了个寒颤。他这才想起自家住在三楼，外面也并没有阳台之类的东西。</p>
+    <p>那呼喊的女孩如幽灵般消失了，昏黄的灯光里，只有绵绵的雪花。</p>
+    <p>———————————————</p>
+    <p>“三天了，”楚子航低声说，“油箱里的底油也用完了。”</p>
+    <p>他和苏恩曦各裹一件军大衣，靠坐在气垫船的角落里，周围一片漆黑，气垫船里的温度已经降到了跟外面差不多。</p>
+    <p>这是他们留守的第三天，风雪一直没停，出去找油的小队也没回来。起初还能维持基本的供暖，他和苏恩曦找了各种办法来消磨时间，昨天夜里发动机忽然就停转了，低温下蓄电池的电耗得很快，几个小时之后他们连照明的电也没有了。</p>
+    <p>暂时倒是没有生命危险，因为他们有军大衣，足够的食物和酒，裹起大衣来不停地吃东西喝酒就可以不被冻死。</p>
+    <p>“冷不冷？冷了就来跟大姐姐裹一起啊！”苏恩曦还有心情调戏他，“当牛郎的，伺候一下老板娘也是天经地义的事嘛！”</p>
+    <p>“你不担心么？”楚子航裹紧了自己的大衣，满耳朵都是咔哧咔哧的声音，不知道苏恩曦是在嚼压缩饼干还是牛肉条。</p>
+    <p>“担心有屁用，我是个文职人员，我又不能打。”苏恩曦说，“出去的三个个个都比我能打，他们能搞定，你难道不相信你家师弟？”</p>
+    <p>楚子航沉默了片刻，“相信，他很厉害。”</p>
+    <p>“以前你可比他厉害多了，人狠话不多，酷得没朋友，女人特别吃你这套，在你身上花起钱来眼睛都不眨的。”</p>
+    <p>“以前我是这样的么？”</p>
+    <p>“不过一看就是心事很重的人，还是现在这样比较好玩。”苏恩曦说，“还想找回以前的自己么？会连那些难过的事也一起找回来。”</p>
+    <p>“想，”楚子航顿了顿，“难过就难过，至少记得为谁难过。”</p>
+    <p>“我说你小孩子家家的，怎么老学大人说话呢？”苏恩曦说，“你师弟跟你一样，明知道是断头路，非要去看看。”</p>
+    <p>“他会回来的。”</p>
+    <p>“你知道个屁，你连他是什么东西都不知道。”</p>
+    <p>“我是不知道，但我觉得他会回来的。”</p>
+    <p>就在这时气垫船的门开了，有人裹着风雪冲了进来，苏恩曦和楚子航同时反应，苏恩曦是从军大衣里拔出了冲锋枪，楚子航双刀在手俯得很低，瞬间就变成了凶狠的猛兽。</p>
+    <p>来人用手电短暂地照了一下自己的脸，是亚历山大·布宁，他全身都被雪花黏满了，成了彻头彻尾的雪人。</p>
+    <p>“两个人都失踪了，这片暴风雪不对！”布宁神情中透着紧张，“好消息是我找到了油，但只带回来五十加仑。”</p>
+    <h2 id="第218章-但为君故122">第218章 但为君故(122) </h2>
+    <p>“我们知道你是路麟城委员长的儿子，但进入这个避风港的规则是必须核实你的身份和危害性，所以请如实回答我们的问题，这里的测谎仪非常准确，目前为止还没有人能骗过它。”娜塔莎把最后一根电极刺入路明非的颈部。</p>
+    <p>这些针状电极看着？人，但她刺入的动作非常轻柔，路明非只是略微有些麻木，类似针灸的效果。</p>
+    <p>路明非坐在一张简单的木椅上，旁边的推车上摆着测谎仪，看起来不过是一台拼凑起来的破仪器，但路明非并不怀疑她的话。</p>
+    <p>在他面前，委员会的成员们一字排开，他们看上去苍老但矍铄，很难判断他们的年纪，但每个人都有自己强大的气场，那是时间和经验淬炼出来的气场，演是演不出来的。</p>
+    <p>路麟城和乔薇尼居然是这个委员会里最年轻的两个人，路麟城坐在长桌的正中央，他是主持这场测评的人，乔薇尼坐在长桌的边角，母子俩对视一眼，路明非笑笑，表示自己没事。</p>
+    <p>“你的名字、身份和经历，可以给我们简述一下么？”路麟城开场发问。</p>
+    <p>“路明非，卡塞尔学院四年级，中国人，S级血统，现任学生会主席。现在被学院全球通缉，他们认为我是个危险目标，有可能是高阶龙类。”</p>
+    <p>有人看了娜塔莎一眼，娜塔莎盯着仪表台，微微点头，“他配合得很好，神经波动正常，心跳和血压也都在正常范围，他正在诚实地回答各位的问题。”</p>
+    <p>“事实上我们都知道你是谁和为什么被通缉，”一位委员说，“但我想对于这件事，你应该有跟校董会不同的故事要讲。”</p>
+    <p>“我以前非常相信我是个人类，甚至是个很普通的人类，甚至对于S级这个评价都觉得不可思议。我没有明显的言灵能力，如果说有的话，就是变身成能跟龙王级目标对抗的怪物。”</p>
+    <p>“这个能力非常有趣，在目前的言灵列表中，还没有相关能力的记载。”那位委员温和地笑笑，“是你杀死了青铜与火之王诺顿，大地与山之王芬里厄，以及新生的白王赫尔佐格，是么？”</p>
+    <p>“都是我做的。”</p>
+    <p>“这对任何一个秘党成员来说都是重要或者说无比伟大的功绩，为什么从来没有公布出来？”</p>
+    <p>“因为我害怕，我觉得跟那些龙王比起来，我可能更加危险。”</p>
+    <p>“我亲爱的孩子，你知道恐惧是什么么？”另一位委员说，“真正的恐惧来源于未知，当谜底被揭开，恐惧也就自然地消散。我们希望能为你揭开这个谜底，请你暂时地克服一下现在的恐惧，把你知道的都告诉我们。”</p>
+    <p>“我能跟某个魔鬼做交易，他说只要出卖我1/4的灵魂给他，他就能帮我做到任何事。”</p>
+    <p>“包括杀死龙王？”</p>
+    <p>“是的，甚至成为世界之王，他是这么说的。”</p>
+    <p>“这个魔鬼是什么时候出现在你身边的？从小到大一直陪伴你么？”</p>
+    <p>“我在芝加哥火车站候车的时候第一次遇到他，现实中他是不可见的，只有我能看到他。”</p>
+    <p>委员们相互交换眼神，乔薇尼手中攥着笔，看起来是要做记录，但她攥得太紧，暴露了自己的心情。</p>
+    <p>“亲爱的薇尼，你看起来比你儿子还要紧张。”一位委员笑了，“不如给你来一杯酒吧。”</p>
+    <p>立刻就有一杯烈酒送到乔薇尼的面前，有两位委员举起手来表示自己也要一杯。路明非有些惊讶，这场评测会的氛围比他想得轻松多了，即使他说出了天大的秘密，委员们还有心情停下来喝杯酒慢慢聊。</p>
+    <p>“你也要一杯么孩子？”居然还有委员问路明非。</p>
+    <p>“谢谢。”路明非摇摇头，“免得我喝了以后胡说八道。”</p>
+    <p>委员们都笑了起来，气氛越发地轻松起来。</p>
+    <p>评测会按部就班地进行，委员们接二连三地发问，完全不像是楚子航在学院里面临的那场评测，他们问问题都只问事实，不掺杂任何质疑。路明非也都如实地作答。</p>
+    <p>乔薇尼和路麟城始终用眼神鼓励着儿子，清早起来路麟城跟他一起刷牙，语气轻松地说，“没关系，有什么说什么。如果他们真的觉得你有问题，就由老爸拖延时间，你妈带你逃出去。”</p>
+    <p>看他忧心忡忡但又竭力表现出事情尽在掌握的模样，路明非有点哭笑不得，最后还是他安慰老爹说不必担心他会有问必答。</p>
+    <p>他如今上面有人，确实没什么可担心的，如果世界上还有一个地方能救他，就是这里了。</p>
+    <p>“他教给你的那些言灵，或者说类似咒语的东西，都是游戏里的作弊秘籍？”</p>
+    <p>“所有这些作弊秘籍只能生效一次，也就是说你在现实里无法随心所欲地调用它们，是这个意思么？”</p>
+    <p>“你说的那个Something for nothing，对不起在座的都老得不玩游戏了，它在《星际争霸》里的效果是什么？”</p>
+    <p>“你是指那个魔鬼能召唤出虚拟的力量，比如漫画里虚构的东西，黄金圣衣、绝对领域之类的东西？”</p>
+    <p>委员们的问题各式各样，时间过得很快，路明非答得很轻松，因为完全没有难度。偶尔委员们会窃窃私语，还有几位会用小纸条交换意见，大家传看之后都微微点头。</p>
+    <p>最初所有委员都很认真地提问，后来提问的人少了，最积极的是一位认知学领域的专家，他自我介绍名叫杜登，来避风港之前在瑞典皇家科学院做研究工作，两鬓斑白的德国绅士。</p>
+    <p>评测会持续了两个小时，最后没有委员举手提问了，所有人都把目光投向杜登。这位专家从每个委员那里得到了一张字条，读完之后神色略显凝重。</p>
+    <p>“我亲爱的孩子，”他的语气很温和，“我恐怕在你身上确实发生了非常糟糕的事，你自身可能并不危险，危险的是某个尾随你的东西。”</p>
+    <p>路明非微微战栗，感觉好像他被某个鬼魂跟着似的，路鸣泽么？</p>
+    <p>乔薇尼脸色一变，感觉随时会从随身的包里抽出大口径武器来指着杜登，但德国绅士提前以手势示意她稍安勿躁。</p>
+    <p>
+      “测谎仪证明了你所说的都是真的，你应该是深信你自己经历过的这一切，你跟魔鬼交易，用灵魂换取力量，而这些力量也确实被证实为有效。但测谎仪并不能够证明这些是事实，只能说明你说的话没有违反自己的认知，而人类的认知和事实之间相距甚远。布鲁诺因为日心说而被处以火刑，致死他都认为他捍卫的是真理，但如今我们都知道太阳并非宇宙的中心，布鲁诺也同样受到自己认知的局限。”杜登缓缓地说，“容我说出你故事中的一些漏洞。”
+    </p>
+    <p>他竖起第一根手指，“你是个资深的游戏玩家，而恰恰你得到的咒语都来自你最熟悉的那款游戏，《星际争霸》。有趣的是2010年暴雪公司就推出了它的续作，但《星际争霸Ⅱ》中的秘籍却一次也没出现过。我猜你并没有玩过那款游戏，对吧？”
+    </p>
+    <p>路明非点点头。</p>
+    <p>杜登竖起第二根手指，“你非常喜欢动漫，尤其是日式的动漫，你甚至在小的时候很希望那些都是真的，对么？”</p>
+    <p>路明非再度点头，他确实中二过，而且是中二界中的翘楚。</p>
+    <p>杜登微笑着竖起第三根手指，“请告诉我Something for nothing的意思。”</p>
+    <p>“用什么珍贵的东西，换回了空白。“</p>
+    <p>“错，你应该没有学过这句话，只是从字面上猜的。这句话真正的意思是‘不劳而获’，跟你所说的意思恰好相反。”</p>
+    <p>路明非愣住，这句话的意思是小魔鬼跟他说的，他确实没有为此查过字典。</p>
+    <p>“您的意思是，这些都是我臆想出来的？虚构症？”路明非的声音微微颤抖，居然又回到了梦中的那个病，但他虚构的并非自己的人生，而是路鸣泽。</p>
+    <p>
+      “不，如果仅仅是这样，那对你而言真是个好消息。你出现了某种程度的人格分裂，你在意识中虚构出一个叫路鸣泽的魔鬼，他跟你堂弟的名字一样。那样我们只要花点时间帮你做心理辅导就能解决问题。但问题是你确实获得了力量，而那股力量强大到能够杀死龙王，人类不可能有这么强的自我暗示。你如果暗示自己是超人，岂不是能推着星球跑了？”杜登说，“你被某种东西寄生了，可能是实体，更可能是纯粹的精神寄生。限于你自己的认知范围，那个寄生体呈现出某种你熟悉的模样，渐渐地侵蚀着你。”
+    </p>
+    <p>“您的意思是寄生体在操作宿主？”乔薇尼的声音微微颤抖。</p>
+    <p>“听说过僵尸蚂蚁么？”杜登环顾众人。</p>
+    <p>乔薇尼摇头，即使博学多闻的委员们，多数也都是摇头。</p>
+    <p>
+      “一种令人恐惧的寄生现象，某些蛇形虫草属的真菌会寄生在木蚁身上，但这种寄生并不止于要把木蚁变成繁殖它孢子的养料。寄生发生之后，很快木蚁的大脑就被侵蚀，变成了僵尸蚂蚁，但它的神经系统和肌肉都被真菌控制着，它看起来仍然像活的昆虫那样能动甚至可以进食，但它的行为模式完全符合真菌的需要，它会寻找最适合真菌生存的环境，一口咬在某棵树上不停地吸取汁液，为真菌的孢子们提供养分，最后孢子们突破宿主的身体，感染其他的木蚁，一只这样的僵尸蚂蚁，就能摧毁掉一个蚁群。类似的寄生也会发生在蜘蛛、螃蟹、瓢虫这类低等生物身上，但寄生者各不相同。目前还没有高等生物被寄生生物控制的案例，因为高等动物的神经系统太过复杂，一般的寄生生物能力有限。但让我们假设，这个寄生者是个龙王级的家伙呢？”
+    </p>
+    <p>路明非呆呆地坐着，觉得心里裂开了一道缝隙，缝隙里正探出寒冷的鬼爪来。</p>
+    <p>
+      那个可恶却又可亲的小恶魔原来是寄生在自己身体或者意识深处的寄生虫么？不是什么兄弟之间生死相依的关系，而是寄生虫永远都要想办法保护寄主，在寄主的价值被耗尽之前。而他终将破体而出，甚至不会扭头看一眼背后的尸体，就像克里斯廷娜不会看自己蜕掉的外壳。
+    </p>
+    <p>“龙王级别的寄生虫，如果这东西真的存在，可比那些喷火的大型怪物恐怖多了。”某位委员说。</p>
+    <h2 id="第219章-但为君故123">第219章 但为君故(123) </h2>
+    <p>
+      “我们迄今还未观察到这种寄生虫的本体，但事实证明龙的形态千奇百怪。就像中国人说的，‘龙生九子’。”杜登顿了顿，终于把目光投向了乔薇尼，“亲爱的薇尼，情况并没有你想的那么糟糕。你的孩子若干次提到了‘交易’这个词，因为侵蚀他的那家伙仍然不能越过路明非的意志来控制身体，必须通过某种形式的交易来征得路明非的同意，换句说话，只要路明非拒绝他，他就不能自行其是。所以我一开始就说，路明非是安全的，他是个好孩子，一个完全可以信赖的人类。他不是我们的敌人。”
+    </p>
+    <p>“那明非可以留在这里么？”乔薇尼立刻追问。</p>
+    <p>
+      “根据刚才委员们交换意见的小纸条，我们岂止是愿意路明非留下，应该说非常渴望他留下！他是珍贵的研究案例，还是困住那个龙王级目标的牢笼！只要他不认输，龙王就永远被囚禁在他的身体里！”杜登微笑，“我们还需要大约24小时的时间做出最终决议，但其实我已经可以提前恭喜各位一家团聚了。”
+    </p>
+    <p>乔薇尼兴奋地一跃而起，路麟城则是拉开领带，长出了一口气，半瘫在座椅里，他终于不必被老婆用大衣柜砸死了。委员们起身退场，娜塔莎从路明非身上拔出那些细小的电极。</p>
+    <p>她惊讶地发现得到好消息的年轻人并未流露出开心或者如释重负的表情，反而是默默地看着地面，神色中透着一丝哀凉。</p>
+    <p>杜登来到路明非面前，拍了拍他的肩膀，“恭喜你孩子，请保持你的勇敢，和那颗人类的心，至于如何找出那个寄生体并把它跟你剥离，是我们的工作。哦对了，你意识里的魔鬼长什么样？他有固定的相貌么？”</p>
+    <p>路明非勉强地笑了笑，“刚开始见的时候七八岁，后来长大一些了，大概十三四岁的样子，娃娃脸的中国男孩，有点吊眼角，好像总在笑。”</p>
+    <p>他努力地回忆小魔鬼的长相，才发现那张脸在自己的记忆里也是模模糊糊的，唯独嘴角那丝捉弄的笑容却清晰得很。</p>
+    <p>周围忽然安静了，正在离场的委员们站住了，杜登也愣住了，他们的瞳孔微微放大，沉默地交换着眼神。这是评测会开始以来会场中最紧张的一次，竟然出现在评测已经完成之后。</p>
+    <p>路明非没明白为何小恶魔的长相反而是他们最在意的，虚构出来的家伙本可以是任何长相，长相不重要。</p>
+    <p>“亲爱的薇尼，带孩子去吃点东西吧，他看起来有些累了。”杜登低声说。</p>
+    <p>———————————————</p>
+    <p>
+      避风港里居然有“食堂”这种地方，感觉像回到了上世纪七八十年代，不过仔细想也是理所当然的，一个几乎不依赖外界供给资源的避风港，食物是很珍贵的，浪费必须被杜绝，所以他们采取了公共食堂的制度，乔薇尼宰来给路明非加餐的那只珍珠鸡应该是少见的例外。
+    </p>
+    <p>无论那些还在修学中的年轻人，还是负责维护避风港运转的制服男女都在这里用餐，偶尔还会看到那些“瑰宝级”的老家伙，他们有自己的餐位，可以优先领餐，但吃的东西跟其他人没什么区别。</p>
+    <p>
+      跟那只带编号的珍珠鸡相比，食堂的菜委实难吃，牛肉和鸡肉应该真的是用干细胞“种”出来的，在外面这种技术还停留在实验室阶段，在这座避风港它已经是主要蛋白质来源了，螺旋藻和地衣类植物代替了蔬菜供应，配上大杯浓绿色的汤，那是从金属龙头里流出来的，和大坨的营养补充剂，它是糊状的挤压在不锈钢杯子里，像是奶昔但味道寡淡近乎嚼草纸。
+    </p>
+    <p>
+      但就餐的人倒是并不抱怨这些，从食堂的这边走到那边，话题千奇百怪，年轻男孩们照样议论着漂亮女孩，制服男女有的抱怨夜班时间太长有的眉目传情，一个领口里塞着斑斓丝巾的老家伙正跟对面的大胡子聊拓扑学，戴着深度眼镜的印度男孩正在跟消瘦的英国绅士激烈地争论质数问题，想必就是那对等待决斗批准的数学家。
+    </p>
+    <p>“吃不惯的话晚上我再宰一只珍珠鸡。”乔薇尼悄悄说。</p>
+    <p>“你们有很多珍珠鸡么？”路明非嚼着木渣一样的咖喱牛肉。</p>
+    <p>“反正它们会繁殖，有一年我还宰掉了他们用来做对照实验的一条狗，和你老爹吃了一个星期的花江狗肉。”</p>
+    <p>路明非笑着看了一眼狠歹歹的中年妇女，果然即使到了世界尽头女人都是会设法养家糊口的物种。</p>
+    <p>“评测会最后我说起那家伙的模样时，气氛变得有点紧张。”路明非说。</p>
+    <p>“我也注意到了，不过会后杜登博士又跟我确认说你留下来没有任何问题。”</p>
+    <p>“老爹呢？他加班去了么？”</p>
+    <p>“他被委员会的人留下开会了，他们总没日没夜地开会，我已经习惯了。”</p>
+    <p>“可以自我介绍么？”有人来到乔薇尼和路明非的桌边自我介绍，“我叫霍尔金娜。”</p>
+    <p>一个身材高挑的女孩，小头小脸，脸蛋瓷娃娃般精致，明亮的金色长发在头顶扎成一个小丸子，给这个冷艳的女孩添了几分孩子气。</p>
+    <p>路明非坐在轮椅上无法起身，有种这双大长腿怎么抬头都看不到头的错觉。</p>
+    <p>“路明非，刚来的。”路明非赶紧转动轮椅要给霍尔金娜留出一个空位来，霍尔金娜却摆摆手示意不用。</p>
+    <p>“就是自我介绍一下，应该会在课堂上再见的，不打搅你们用餐了。”霍尔金娜看着冷艳如霜，却极有礼貌，弯腰轻轻地拥抱了一下路明非，脸颊和他相贴。</p>
+    <p>这对俄国人来说大概只是礼节，路明非却难免有受宠若惊的感觉，霍尔金娜微笑着跟乔薇尼也摆手打了招呼，然后就返回了自己的座位。</p>
+    <p>路明非凝视那个芭蕾舞演员般修长的背影，似乎随时会轻盈地弹跳起来，同时他也意识到不只是自己在盯着那个背影看。</p>
+    <p>“霍尔金娜·普加乔娃，乌克兰和俄罗斯的混血，来这里之前是莫斯科大学被看作‘珍宝’的预科生，恭喜你现在是男孩们的公敌了。”乔薇尼悄声在他耳边说。</p>
+    <p>“我确实感觉到被寒冷的目光从背后贯穿，她算是这里最漂亮的么？”路明非苦笑。</p>
+    <p>
+      “不不，拼脸蛋和身材的话这里有的是人能跟她比，学业也有人不在她之下，但是从社会学的角度来说，当我们在一个封闭环境中投入一定数量的个体，这些个体的竞争力基本相当，但最后仍然会有某一个个体得到大家的尊重被大家心甘情愿地服从。这就是社会机制筛选出来的王或者说领导者，我们美丽活泼讨人喜欢的霍尔金娜就是女孩中被筛选出来的。当每个男孩都觉得她是好的，是最值得竞争的目标，她的地位就会节节上升，乃至于形成光环效应。”
+    </p>
+    <p>路明非终于记起老娘在考古学中的细分专业其实是研究古代社会的结构方式。</p>
+    <p>“女孩中的王者向你递来了橄榄枝，这有什么不好的么？现在你也分享了这个光环，路麟城和乔薇尼的儿子难道会被光环压垮么？”乔薇尼耸耸肩，“反正你也是杨树剥皮光棍一条。”</p>
+    <p>路明非尴尬地挠挠头，他坦白了一切却唯独没提起诺诺，觉得那算是个人隐私跟世界存续没有关系。</p>
+    <p>“很高兴能见到，卡塞尔学院学生会主席，路明非。”有人在路明非背后说。</p>
+    <p>路明非转过身去，又是一张俄国人的面孔，但是个男孩，消瘦苍白，神情略显高傲，但在面对路明非的时候，他还是彬彬有礼地弯腰，跟路明非握了握手。</p>
+    <p>“无论成为你的朋友还是对手，都是我的荣幸。”安东和霍尔金娜一样并没准备跟路明非多聊，冲着乔薇尼微微点头，也回到自己的餐桌边去了。</p>
+    <p>“安东·别洛佐夫斯基，你潜在的竞争者，至少他自己是这么认为的。”乔薇尼笑着冲安东的背影挥手，语气却透着不以为然。</p>
+    <p>“霍尔金娜小姐姐的追求者？”路明非低声问。</p>
+    <p>“不不，安东是这里最出色的学生，用我们中国人的话来说，学霸。他很可能是误解了，认为你是卡塞尔学院最优秀的在读生，Ｓ级，又是学生会主席。他应该是想跟你在学业上竞争。”</p>
+    <p>“我校学生会基本上是继承制，兄终弟及父死子继那种，我跟上一届主席的私交不错。”路明非倒也不以为耻。</p>
+    <p>“搞起关系来倒是继承了你爹的两把刷子，”乔薇尼的语气颇为欣慰，“等你爹没了，委员长的位子我看也是你的！”</p>
+    <p>“不好这么讲吧毕竟是亲爹。”</p>
+    <p>“你爹变了！自从他在这里混上了领导层，整个人都变了！你知道么他建议过在这里实施一个男性配十个女性的制度！我要是不管着他你同父异母的弟弟妹妹都排队排到门口了！”</p>
+    <p>“他要我传话说除了你他不会多看其他女人任何一眼。”</p>
+    <p>“呵呵，看他那个助理计算员的小眼神！”</p>
+    <p>
+      母子两个有一句没一句地闲聊，乔薇尼跟他讲这座避风港里的逸闻和八卦，这座避风港听起来居然是一个烟火气十足的地方，跟当年那间老研究所全无二致。德高望重的老专家们也会有事没事地找年轻绘图员聊天，所长夫人也曾拎着炒锅冲进所长办公室要他交待问题……又有几拨人过来跟路明非打招呼，应该是某位委员走漏了消息，大家都想见识见识卡塞尔学院最强力的屠龙者，男孩们想跟他交朋友而女孩们视他为明星，真跟老娘说的没差，脸蛋身材能跟霍尔金娜打的还有很多。
+    </p>
+    <p>“看吧，新的生活，儿子别愁，以前是爹妈忙事业对你照顾得不够，你值得更好的。”乔薇尼看着某个过来打招呼的羞涩女孩的背影，轻声说，“新的朋友，更漂亮的女孩子……可你还是有心事，你脸上在笑，但是并不开心。”</p>
+    <p>“在外面我也有几个朋友，他们从没有放弃过我。”路明非轻声说。</p>
+    <p>他避开了真正的重点，这顿饭的所有时间里他都想着那个叫路鸣泽的小魔鬼，想他的一喜一怒，泪水和张狂。</p>
+    <p>
+      在这座避风港之外谁是他最好的朋友呢？很难讲，可能是楚子航也可能是芬格尔，但也有可能是小魔鬼，这个以业务员姿态登门拜访总在说着您的灵魂一定很美味的家伙，却没有做过任何让你失望的事，如果他真的是个寄生虫，那么他不仅保护着宿主的生命安全，还分享了宿主的愤怒和孤独，路明非无法忘记在东京湾上空那恶魔的凌云之怒，也无法忘记他在雨中陪着自己漫步，小脸上混合着雨水的泪。
+    </p>
+    <p>那是另一个自己，要跟他剥离么？就像是砍断手臂般的疼痛。</p>
+    <p>他忽然剧烈地咳嗽起来，带着血块的呕吐物掉进不锈钢汤杯中，他觉得天旋地转，在乔薇尼的惊呼中昏了过去。</p>
+    <h2 id="第220章-但为君故124">第220章 但为君故(124) </h2>
+    <p>再度醒来的时候他又回到了那间熟悉的病房，他的全身插满电极和输液管，乔薇尼和那位德国裔的大夫都在床边，乔薇尼握着他的手，神色忧伤。</p>
+    <p>“明非你终于醒了，别担心，还是冻伤的后遗症，你要好好休息。”乔薇尼摸摸他的头。</p>
+    <p>路明非笑了笑，“来这里之前我受过很多伤，有一次从我身体里取出了一公斤的碎片，我都很快地痊愈了。应该不是冻伤那么简单吧？还有我的腿，告诉我怎么回事吧。”</p>
+    <p>乔薇尼抬头看了一眼大夫，大夫微微点头。</p>
+    <p>
+      “我们有世界上最好的医生，其中包括了干细胞和骨骼神经学的专家，如你母亲所说的，即使某些人生来双腿残疾，我们都能想办法为他恢复。但你的病情非常罕见。”大夫低声说，“你的生命指标很弱，看着还是个二十多岁的年轻人，但体内的脏器非常衰老，细胞分裂速度和自愈的能力很低。这种情况下即使我们对你展开某种疗法，你自己的生命力却配合不上。用你们中国人的说法，你的元气耗尽了。”
+    </p>
+    <p>“怎么会这样？”路明非呆住了。</p>
+    <p>
+      “我们分析了各种各样的可能性，直到今天委员会给了我们一条重要的信息，我们才做出了初步的结论。你体内的寄生者并不是交易走了你的灵魂，而是以某种形式压榨你的生命。衰老是人体最复杂的一种机制，当细胞分裂一定的代数之后，分裂能力就会减弱，皮肤、骨骼、肌肉和神经系统都会因为没有新的细胞及时补充而老化。你自己也说，你受过几乎致命的重伤，体内取出一公斤碎片都能很快痊愈，想像一下这个过程中你的身体细胞代谢了多少代。这就是我所说的，透支生命。”大夫说，“僵尸蚂蚁也会在真菌的驱使之下压榨身体里最后的能量去达成真菌的需求，机理完全不同，但道理是一样的。”
+    </p>
+    <p>“来这里之前我什么感觉都没有。”</p>
+    <p>
+      “即使是濒死的个体，在多巴胺、肾上腺素、内啡肽和血清素的联合作用下也能显得比正常人还要强健，但这只是表象。”大夫说，“还是沿用你们中国人的说法，抵达这里之前你已经油尽灯枯了。在这座避风港里，寄生体的意志被暂时压制，你的虚弱就暴露出来了。”
+    </p>
+    <p>路明非静静地躺着，望着天花板，“所以，我是要死了么？”</p>
+    <p>
+      “你是路委员长的儿子，我们会给你最好的治疗，比如尝试给你补充‘元气’，但我必须坦白地说，那些都不是成熟的疗法，就像还没有通过FDA的临床药，很难预测结果。现阶段更有用的是你自己的意志，生存意志，只要你没有丧失活下去的意志，暂时你不会有事，就能为我们争取到治疗的时间。”大夫说，“委员会也非常希望鼓舞你的意志，因为你的意志应该就是那个恶魔的牢笼，你的精神一旦崩溃，我们不知道会发生什么事。”
+    </p>
+    <p>路明非沉默良久，“我跟家里人在一起，会有勇气的。”</p>
+    <p>病房的门开了，裹着大衣满身雪花的路麟城大踏步地进来，神色郑重。乔薇尼看了他一眼，立刻就想把他推出病房外说话。</p>
+    <p>“我能一起听么？”路明非说，“老爸应该是从委员会那边过来的吧？你们一直在说我的事。”</p>
+    <p>路麟城拍了拍老婆的手，示意她冷静，而后转向路明非，“不用担心，不是你居留权的问题，委员会给了我一项特别批准，他们允许你进入最终圣所参观。你的朋友在那里等你。”</p>
+    <p>路明非愣住了，这座不为人知的避风港，里面居然会有他的朋友？</p>
+    <p>———————————————</p>
+    <p>电梯轰隆隆地下沉，父子之间自重逢以来罕见地沉默，路麟城脸上的神情，甚至比评测会之前还要凝重。</p>
+    <p>“连老妈都没资格来这里么？”路明非低声问。</p>
+    <p>“她没来过这里，没有委员会的授权连老爹我也不能进入那个空间。”路麟城递过来一个口罩和一双手套，“戴上。”</p>
+    <p>非常厚实的口罩和手套，全方位防护，感觉他们要去的地方布满了毒气。</p>
+    <p>路麟城自己也戴上了口罩和手套，并把袖口牢牢地扎住。</p>
+    <p>电梯下降的时间远比去前几层久，最终圣所应该是位于很深的地方，路明非忽然打了个寒战，不是因为心底的寒意，而是他清楚地感觉到下方元素乱流。</p>
+    <p>下方有什么强到令人恐惧的东西。</p>
+    <p>电梯终于停下了，门打开，眼前的空间巨大而高广，不知来源的深红色光芒隐约照亮了周遭的一切，更明亮的则是他们脚下的大型矩阵，矩阵中奔流着幽蓝色的水银。</p>
+    <p>类似的炼金矩阵他曾在卡塞尔学院的地下见过，类似放大器，能让某个言灵成百倍地增幅，当然，搭建这种矩阵也需要炼金术方面的极高造诣。</p>
+    <p>
+      在卡塞尔学院负责言灵矩阵的是副校长，或者说弗拉梅尔导师，他自身的言灵是“戒律”，效果是令几乎一切的言灵失效，借助言灵矩阵，整个卡塞尔学院是他的领域。因此除了自由一日和极少数特殊情况，学生们并不能在校园里随意使用言灵，即使昂热都会被一定程度地压制。当然龙王级的家伙很难限制住，例如康斯坦丁。
+    </p>
+    <p>“就是这个矩阵把避风港变成了尼伯龙根，同时它还有压制言灵能力的效果。”路麟城推着路明非在矩阵之上漫步。</p>
+    <p>周围都是高浓度的水银蒸汽，所以他们需要手套和口罩。</p>
+    <p>路明非点点头，什么都没说，扭头望着这透着些许恐怖的胜景，还真像是“世界尽头”。</p>
+    <p>乳白色的水银蒸汽从不同的喷口往外喷射，像是有上百条巨鲸在矩阵之下呼吸。这里并不是空无一人，身穿防护服的工作人员站得远远的，看来是并不想打搅他们的参观。</p>
+    <p>
+      矩阵的正中央是个巨大的圆形水银池，整个矩阵的水银都从这个水银池中流进流出，不知是炼金矩阵产生了热量或者水银池被特殊的设备加热，它像是微微沸腾，冒着气泡。一道锈迹斑斑的金属桥横过水银池的上方，上面长满了可怕的水银斑，倒像是淹没在大海中几十年的沉船。那座桥应该是由非常耐腐蚀的金属构造的，但还是经受不住长年累月的水银侵蚀。
+    </p>
+    <p>路麟城推着轮椅来到金属桥的正中央，“启动升降机！”</p>
+    <p>
+      轰隆隆的声音从桥下传来，巨大的东西自水银池中升起，那是四根断裂的青铜柱，跟路明非曾在“高天原”中见过的铜柱一样。它们毫无疑问是出自某个龙族城市的遗迹，在水银中浸泡了那么久，丝毫没有锈迹，表面的水银流走后，赤金般的本体上流淌着微光，雕刻着难解的图腾。每根铜柱上都拖着一根赤金色的锁链，把一个苍白的人形吊起在正中央。人形的胸口插着扭曲的暗金色长枪。
+    </p>
+    <p>他在水银池中浸泡了不知多久，水银已经深深地沁入他的皮肤，因此他呈诡异的灰白色，像是用石灰岩雕刻出来的。</p>
+    <p>水银从他的脸上流走，露出一张还带着孩子气的小脸，那一刻路明非痛苦得如同被生生地撕裂，想要嚎啕大哭却又哭不出来。</p>
+    <p>
+      不知多少次在最深的梦境里他看到过类似的景象，废弃的教堂，仿佛永无尽头的幽深走道。在教堂的最深处，他看到苍白的小魔鬼被金色的长枪钉在十字架上，造型有如受难的耶稣。他仿佛是死了又仿佛沉睡了千年，可当路明非在十字架下站住的时候，他睁开眼睛，微笑着说，哥哥，你终于来救我啦。
+    </p>
+    <p>路明非已经猜到矩阵中央的水银池中藏着什么，每个炼金矩阵都需要类似阵主的高阶龙类，这个尼伯龙根其实是由他的意志构造的。</p>
+    <p>但他没有想到那是路鸣泽。</p>
+    <p>“现在你知道为何你说出那个恶魔的模样时委员们会震惊了吧？”路麟城轻声说，“可你不应该见过他。”</p>
+    <p>路明非呆呆地看着小魔鬼，这是他们第一次在幻境之外的地方相见。他等着小魔鬼慢慢地抬起头来对他诡异地微笑，但那孩子并没有，他孤零零地被吊在那里，低垂着头。</p>
+    <p>“不……不……不！不！不！”路明非双手捂脸，痛苦地吼出声来。</p>
+    <p>他不知道该以什么样的心情面对这一切，他只是不敢看。</p>
+    <h2 id="第221章-但为君故125">第221章 但为君故(125) </h2>
+    <p>“他是在中俄边境被猎获的，牺牲了很多人。”路麟城轻声说，“他似乎是沿着西伯利亚大铁路一直走，想要走到中国去。”</p>
+    <p>家中的灯下，父子两人对坐，乔薇尼甚至也不被允许知道这些事。</p>
+    <p>路明非沉默着，颤抖着，从见到路鸣泽的那一刻开始，他始终这样抖个不停。</p>
+    <p>
+      “记得我跟你说过，黑天鹅港中可能逃出了龙王么？他就是那个被认为是龙王的孩子。有人通过秘密的渠道把这个情报卖给了秘党，秘党当然不能坐视不管。我们调用了几乎全部的精英，有些来自卡塞尔学院，有些则是灰色身份的。那是一场极其惨烈的作战，他跟我们接触过的所有龙类都不同，他非常多变，非常狡诈，很像人类。他没有你见过的诺顿或者芬里厄那么强大，但凭着一支黑色的军刺，他沿路杀伤了Ａ级和Ｓ级的秘党成员上百名。就在任务接近完败的时候，最高层下达了清场的命令，这意味着他们要调用当时最强大的武器来结果这个龙类，甚至不惜牺牲附近的秘党成员们。不是核武器或者导弹，那武器是一个人，一个能够使用言灵‘莱茵’的人，这个言灵他一生只能使用一次，效果和核爆差不多。他自己也会在那场核爆中被摧毁。我，当时就在附近，我有了牺牲的觉悟，把你母亲丢上了一列经过的火车，然后独自跋涉过雪地，去往预计的爆心。所以我成了神迹的目击者。”
+    </p>
+    <p>
+      “这孩子本来有很多的办法能逃走，但那个掌握言灵的家伙俘获了他的同伴，一个小女孩。他做了完全不符合龙类准则的事，他提着那支黑色军刺，沿路不断地杀人，强行向着爆心推进。被他杀死的人其实都是诱饵，他大概也没想到等待他的是一场核爆。”路麟城缓缓地说，“‘莱茵’确实被释放了，但我活了下来。因为那孩子把女孩子抱在怀里，用自己的后背挡住了冲击波，而我正好在他的正前方。”
+    </p>
+    <p>路麟城长长地叹了口气，“真是个孤单的孩子啊，所以不愿意放弃最后的同伴。”</p>
+    <p>
+      “我晕了过去，醒来的时候前方上百平方公里的森林都被莱茵烧成了灰烬，周围的雪也融化了，那孩子趴在爆心处，女孩子却不见了。他竟然还活着，近距离直接承受‘莱茵’都没能杀死他，但暂时失去了行动的能力。于是你看到的那支长枪被空投给我，由我亲手扎进他的心脏，那支枪名叫……”
+    </p>
+    <p>“昆古尼尔，命运之枪，北欧神话中奥丁的武器。”路明非轻声说。</p>
+    <p>“你见过那支枪？”路麟城倒是吃了一惊。</p>
+    <p>“很多次，我记得我把它折断了。”路明非抬起头来，</p>
+    <p>
+      “不，这不可能，昆古尼尔在历史上出现过很多次，但似乎都是某种仿制品，尽管拥有类似的能力，但跟本体无法相比。真正的昆古尼尔从很多年之前就是秘党的收藏品，这是一件非常恐怖的武器，接触者都会立刻死亡，因此一位秘党的先辈把它带进了石棺，再把石棺沉入大海。它是命运之枪，也是死亡之枪，但连它都不能杀死那孩子。它只是把那孩子的生机封印了，说封印未必准确，应该是它致死的效果和那孩子复苏的效果形成了平衡。他死不掉，也醒不过来。”路麟城说。
+    </p>
+    <p>这个说法倒也合理，楚子航只是奥丁的一个替代品，如果手持的昆古尼尔是正品，幕后老板的手面未免也太大了一点。</p>
+    <p>
+      “对他的研究持续了很多年，但我们还是无法确定他是不是龙王，除了那匪夷所思的力量，他跟人类完全没区别。不过研究也有些成果，比如基于他的潜意识，我们构造了这座避风港。他死亡的那一天，庇护这个避风港的界面也会崩溃。我们担心他死去又害怕他醒来，所以昆古尼尔始终没有拔出来，还用遗迹中找到的青铜柱为他制造了特殊的监狱，把他藏在最深处的水银池里。”
+    </p>
+    <p>“他说，他是我弟弟。”路明非抬起头来，木然地盯着路麟城。</p>
+    <p>“儿子，你没有弟弟。你的意识被侵蚀了，可能是以我为中间宿主。”路麟城轻声说，“现在，我们知道要吞噬你的魔鬼是什么东西了。”</p>
+    <p>他站起身来，拍了拍路明非的肩膀，“好好睡一觉，你回家了，所有的事情都有办法解决。”</p>
+    <p>———————————————</p>
+    <p>夜很深了，路明非静静地坐在窗前，今夜外面出奇地热闹，原本一色昏黄的灯被替换成五光十色的，男孩女孩们一边布灯一边打着雪仗。</p>
+    <p>圣诞节快到了，虽然宗教信仰不同，但说是大家都认同圣诞节就是避风港里最大的节庆，除了必须在岗的值班人员，所有人都可以享受为期七天的假期，因为没办法走出尼伯龙根的界面，所以他们总是想尽办法把避风港布置成一个到处都可以玩的乐园。
+    </p>
+    <p>人类最后的避风港建在那个男孩的尸骸之上，虽然他还没有彻底地死去，而他的精神寄生在路明非的意识深处，可能是要把路明非变成下一个自己。</p>
+    <p>真像是一场噩梦，如果没有窗外那些绚烂的灯光，路明非不知怎么度过这个夜晚。</p>
+    <p>所谓的兄弟之情只是个谎言，他的灵魂被小恶魔一口口地吃掉了，所以小恶魔渐渐幻化为他的模样，跟他越来越像。</p>
+    <p>
+      小恶魔应该曾是某个王座上威严的君主吧？凶暴、残酷、威严，现在啰嗦得像个嘻哈歌手，这个属性应该是自己灵魂中的糟粕了。不过自己灵魂里有什么精华呢？好像也没什么，真不知道那种君临世界的家伙为什么选择他为宿主，也许是饥不择食吧？实在没得选了。就像那些修真里写的，一代魔君死于正道人士的围攻，最后一刻不得不选了一个就近可得的死者，借骨重生，重生完了一看，竟是地道的一条废柴，文不成武不就，大姑娘不睬小姑娘不爱，连爹妈都觉得难成大器。魔君也没辙，只好一边跟躯壳里的另一个灵魂吵架，一边帮他泡妞打江山……
+    </p>
+    <p>这么想来，惨的倒是魔君而不是废柴，路明非无声地笑了笑。</p>
+    <p>
+      如果有那么一天废柴要跟魔君决裂，难过的是废柴还是魔君呢？是废柴吧？魔君的结局也就是形神俱灭，而废柴会一辈子生活在魔君昔日的光环里，却怎么面对自己其实就是一个废柴的现实？爱过他的各路美女都会渐渐地散去，曾经臣服在他面前恨不得喊爸爸的四方霸主现在连砍他脑袋的兴趣都没有，昔日收藏的宝刀利剑现在举都举不起来……他到底应该选择苟活还是一头撞死去追随魔君？
+    </p>
+    <p>也许从他们合二为一的那一刻开始，世界上既没有魔君也没有废柴，有的只是一个怪物，在这个怪物的身体里，魔君和废柴相互温暖。</p>
+    <p>“咔”的一声响，狂风竟然把双层的保温玻璃窗吹开了，暴雪涌了进来，满屋雪花飞卷，温度急降。</p>
+    <p>路明非双腿废了，连站起来关窗都做不到，喊人也不一定有用，会被暴风雪的隆隆声吞没，这些赫鲁晓夫楼建造的时候为了保温，又把墙壁建得极厚，隔音效果极好。</p>
+    <p>他正急着伸手去够窗户，忽然转过身来，双臂一撑轮椅就想站起来。因为他听到了背后的脚步声，很难相信在狂暴的风雪中能听清那么清浅的脚步声，那是故人踏雪而来的拜访。</p>
+    <p>细细的黑影投在地面上，不是路鸣泽，而是穿着睡衣的瘦小女孩。她赤脚站在雪中，白金色的长发披散着，窗外的灯光照在她赤裸的双臂上，流动着清冷的辉光，仿佛照在白色大理石的雕塑上。</p>
+    <p>是路明非曾隔着窗见过的那个孩子，似曾相识，却又怎么都想不起来。</p>
+    <p>两人四目相对，女孩焦急地说着什么……</p>
+    <p>门“嘭”地被人推开了，乔薇尼旋风一样冲进来，把路明非连人带轮椅往旁边一推，双臂开合把窗户给关上了。</p>
+    <p>这通操作猛如虎，也累得乔薇尼气喘吁吁，扶着窗框喘了好几口气，然后着急忙慌地从衣柜里拿出厚被子抖开盖在路明非身上。路明非这才打了个寒战，意识到自己全身都冷透了，手指冻得完全失去了感觉。</p>
+    <p>高寒地带发生这种事是可能要命的，十几秒内室温就会降低到零下几十度，而当时路明非身上只有一条薄毛毯。老妈估计是担心他的心情所以睡在客厅里，听到了动静，要不是这么生猛的老妈，没准明早他就是坐在窗前的一具冰雕了。</p>
+    <p>乔薇尼抱住路明非的脑袋，气得破口大骂，“路麟城这不废物么？跟他讲了多少遍这窗户要修要修！一点用都没有！”</p>
+    <p>路明非却只呆呆地看着铺满雪花的地面，只有乔薇尼的脚印，并无那个赤足女孩的。刚才的一幕只能是幻觉，不可能有人在冰天雪地里穿着小睡裙乱跑，可那女孩说的话却让路明非害怕。</p>
+    <p>他听不懂女孩在说什么，那似乎是俄语，又轻如蚊鸣，在风雪中细不可闻，但他就是知道那是某种警示，急切的警示，她的神色惶急又忧伤。</p>
+    <h2 id="第222章-但为君故126">第222章 但为君故(126) </h2>
+    <p>“这场暴风雪都足足刮了三天，一点都没有停止的迹象。你们走进暴风雪之后发现风向不停地变化，其实是因为它是一场范围很大的旋风。没什么好猜的，这是一个尼伯龙根，旋风是它的界面，旋风的中心就是我们的目的地。”苏恩曦干脆地下了判断。
+    </p>
+    <p>“尼伯龙根是什么？”布宁和楚子航同时问。</p>
+    <p>
+      苏恩曦原本懒得回答这种小白问题，但还是耐下性子解释，“一种用炼金术制造的虚构空间，不过说虚构也不准确，这个空间是真实存在的，是在真实空间的基础上修改出来的。只要穿越界面，就能进入这个空间，但穿越界面几乎是不可能的。尼伯龙根通常是由龙王级的东西制造的，少数二代种和三代种也能做到，至于技术细节，人类是无法理解的。神话中的异世界、妖精之地之类的地方，基本上都是误入的人类根据自己的理解给尼伯龙根起的名字。”
+    </p>
+    <p>“尼伯龙根里有什么？”楚子航又问。</p>
+    <p>“那得看龙王的心情，可能是藏宝地，也可能是墓地。”</p>
+    <p>“所以那两个人是进入了尼伯龙根？”布宁问。</p>
+    <p>“没错。你身上没有烙印，所以再怎么走都走不到，对那些有烙印的人来说，闭着眼睛都能走进尼伯龙根。”</p>
+    <p>“所以我们的前面就有一位龙王，但我们看不到它，师兄现在正在跟龙王战斗？”楚子航推测。</p>
+    <p>“也有可能是在跟龙王喝着暖暖的热巧克力聊天，讨论如何毁灭世界的话题。你师兄怎么看也像另一个龙王级的怪物，对不对？”苏恩曦耸耸肩，“又或者这个尼伯龙根原本就是他给自己制造的巢穴。”</p>
+    <p>“我们得进去看看！”布宁沉默了片刻，坚定地说，“他们可能需要我们的帮助！”</p>
+    <p>“没错！来都来了！”楚子航附和。</p>
+    <p>“我说两位大哥你们的脑子是不是坏掉了？人家龙王级的大哥聊天，又没叫你过去端茶送水，你过去凑什么热闹？”苏恩曦撇嘴，“就算能进去，你们能管什么用？”</p>
+    <p>楚子航和布宁都沉默了，三个人一人一瓶伏特加，默默地对瓶吹。</p>
+    <p>布宁喝得很快，片刻就喝干了一瓶酒，重重地把酒瓶顿在地面上，“不行！必须进去看看！”</p>
+    <p>楚子航也激动起来，“谁都需要帮手的！进去看看有没有用得上我们的！”</p>
+    <p>苏恩曦白了布宁一眼，“你想进去我懂，你现在就是为了那些世界暗面的君主们活着的，你跑这么远就是要找人玩命。”又瞥了楚子航一眼，“你又是为了什么？”</p>
+    <p>楚子航沉默了片刻，“做人要讲义气的！对不对？师兄对我很好！”</p>
+    <p>两个人都眼巴巴地盯着苏恩曦，原本苏恩曦是个搭顺风车的，看起来很可疑的样子，但零跟她很亲密，路明非则叫她老板娘，自然就显得她地位超然。</p>
+    <p>眼下她是气垫船上唯一的资深者，最了解龙族和尼伯龙根。她才是话事的大姐头。</p>
+    <p>苏恩曦把袋子里的薯片碎渣倒进嘴里，站起身来拍了拍衣服，“既然大家都那么有诚意，那就走起咯。谁开车？啊不，开气垫船？我不会开这玩意儿。”</p>
+    <p>“你同意了？”楚子航不敢相信自己的耳朵，原本他还在心里编了好些理由想要说服这个油盐不进的女人。感觉天塌下来只要没塌到她头上，这位美女都懒得凑过去看热闹的。</p>
+    <p>
+      “我是这个意思没错，”苏恩曦叹了口气，“虽说我要管了这事儿我老板一定很不高兴，我的任务本该把路明非送到这里为止……”她从口袋里摸了根皮筋把长发扎成一个利落的马尾，“可你说得对啊，人要讲义气，人不讲义气，跟咸鱼又有什么分别？我就猜那妞会跟进去，她果然跟进去了。她去了，我又怎么能不去？”
+    </p>
+    <p>布宁沉默了片刻，微微笑了起来，“中国人说将在外军令有所不受，旅行到了这么远的地方，老板的话不听也没问题的。”</p>
+    <p>“谁管那个神经病想什么？”苏恩曦翻了个白眼，“他自己也是朝令夕改的主儿。何况要是他在这台气垫船上，应该也会担心吧，毕竟那是他最心爱的副手，贴身穿的小棉袄啊！”</p>
+    <p>“我来开船。”布宁大步奔向驾驶座。</p>
+    <p>随着他打开燃油阀，加热之后的柴油滚滚注入，低速运转中的发动机立刻高亢地吼叫起来，趴在大雪窝里的气垫船缓缓升起，螺旋桨推进器吹出旋转的雪龙。</p>
+    <p>“先去你之前找到的地堡，把我们的油箱灌满。”苏恩曦在副驾驶座上坐下，二郎腿翘好，俨然还是那个东京夜店里套裙黑丝高跟鞋的女老板，发号施令，威风八面，“然后蒙上我们每个人的眼睛，打开自动驾驶，走直线，笔直地往风眼里开！”</p>
+    <p>布宁吃了一惊，“这可不是大平原地区，自动驾驶系统应付不了太复杂的地形，我们会掉进深渊！”</p>
+    <p>
+      “你懂个屁！没有烙印的人之所以进不去尼伯龙根，因为界面本身就是会迷惑人的，你以为你在走直线，或者只是绕开一个障碍物又回到了原来的航道，其实你就是在绕着这个风暴走。可机器是不会被迷惑的，想要靠近风暴中心，自动驾驶系统比你的眼睛靠得住。”苏恩曦冷冷地说，“怕什么？做鬼不还有老娘这样青春性感的玉女陪着你么？你命值钱还是我命值钱？”
+    </p>
+    <p>“我明白了！我以前看书里说的，遇上鬼打墙，就要闭上眼睛笔直地往前走，因为真正欺骗你的其实是你的眼睛！”楚子航显得有些激动。</p>
+    <p>“这么简单就能突进尼伯龙根？”布宁还是有点疑虑。</p>
+    <p>“当然不行，龙王可不是只会玩障眼法的江湖术士，”苏恩曦瞥了一眼楚子航，“最后的关键是我们中最小最可爱的楚先生，虽然对尼伯龙根一无所知，但他也是个有烙印的人啊……众神之王奥丁的烙印，看看这张门票在这里管不管用吧。”</p>
+    <p>“我？”楚子航一愣。</p>
+    <p>苏恩曦懒得回答这个问题，把头扭了回去。气垫船已经在雪地上狂飙起来，望着挡风玻璃外白茫茫的风雪，她长长地叹了口气，“带着两只哈士奇去打搅君王即位的盛典，我一定是疯了。“</p>
+    <p>“你说什么？”楚子航没听清，气垫船的噪音充斥着周围的空间。</p>
+    <p>“她说我俩是狗。”布宁目视前方，简明扼要地给出了解释。</p>
+    <p>———————————————</p>
+    <p>“委员会通过了你的居留申请，但附加了前提，特别的医疗组，由杜登博士负责，会试着帮你和那个寄生体切割，你必须无条件地配合。”路麟城轻声说。</p>
+    <p>路麟城推着轮椅，带路明非来到最高的那栋赫鲁晓夫楼的楼顶上，说是赏雪，但雪在这里其实无甚可赏，这里最不缺的就是雪，路明非知道老爹是有话跟自己说。</p>
+    <p>连续两个晚上路麟城都没有回家睡觉，看起来颇为憔悴，两眼布满血丝。这应该是他跟委员会拉锯战的结果，最后结果还得由他这个老爹负责传达。</p>
+    <p>路麟城大概是觉得雪中父子二人的对话会让这个决定听起来轻松一些。</p>
+    <p>不过高处看雪真的是很美，那些高耸的云杉都变成了脚下的灌木丛，前一天的夜里，年轻人们爬到云杉的高处给它们系上了各种颜色的彩带，让它们看起来像是一棵棵的圣诞树。</p>
+    <p>“每年的圣诞节都是这么过么？”路明非问。</p>
+    <p>
+      路麟城愣了一下，但还是回答了这个问题，“导师们会送礼物给学生们，我们的仓库里囤积了够送五十年的礼物，大部分人收到的是巧克力，漂亮的女孩会收到时装裙，可惜当年采购的款式现在已经有点落伍了，尺码也不全，还得拿回去自己改改。还会有盛大的舞会，连续几天，很多男孩会选择在圣诞舞会上跟女孩表白，当然也有现场勾搭上的。如果他们觉得彼此合适可以递交结婚申请，然后搬到一起住，也可以申请离婚，但需要等到下一个圣诞节。养殖场里的家伙们会比较倒霉，它们要被宰掉一半，但我们每天都可以吃珍珠鸡和土豆炖牛肉。”
+    </p>
+    <p>“这样大家才会觉得生活有希望，对不对？”</p>
+    <p>
+      “是，在这个生存空间被极度压缩的避风港里，失去了希望，社会就崩溃了。”路麟城说，“听说很多女孩都在打听你的消息，如果参加圣诞舞会的话，你就是今年的明星了，会有人为你争风吃醋的。以老爹的眼光来看，那个霍尔金娜不错，虽然有点自负美貌，不过哪个漂亮的女孩不自负呢？档案显示她的行为一直很规范，没有任何不良嗜好，喜欢读书和跳舞，成绩也是最出色的。医院的记录显示她的身体健康，发育良好，正是合适生育的年纪。”
+    </p>
+    <p>“老爹你这是要我去相亲的意思么？都快世界末日了还流行爹妈介绍的相亲么？”</p>
+    <p>“我只是说那是树林里最漂亮的那只鸟儿，问我的儿子要不要带上网子去树林里看看。”</p>
+    <p>“老爹你变猥琐了，老妈说得对。”路明非笑笑，回过头来，凝视路麟城的双眼，“怎么切割？”</p>
+    <p>“你最常做的梦是什么？”路麟城没有跟他对视，而是把目光投向极远处，问了个奇怪的问题。</p>
+    <p>“梦到我从家里的床上醒来，有时候是我们原来的家，有时候是叔叔家，我在家里或是周围闲晃。来这里的第一天我也做了那个梦，就是梦特别长，梦里的东西特别真，怎么都醒不过来。”</p>
+    <p>“那就是你内心里的世界，那个世界里的你是你真正的自我，在那个世界里你应该一点能力都没有，对不对？”</p>
+    <p>“是的。”</p>
+    <p>
+      “你反复地见到那个寄生体，或者我们就叫他路鸣泽好了，说是在幻觉里，其实也是某种意义上的梦境。那家伙藏在你的梦境里，在那里你没有能力他也没有，这是你唯一能杀死他的地方。”路麟城缓缓地说，“在自己的心里杀死他，这件事只有你能做到。”
+    </p>
+    <h2 id="第223章-但为君故127">第223章 但为君故(127) </h2>
+    <p>“这么简单？”路明非说，“好像有部电影的情节就是这样的。”</p>
+    <p>“普通的梦境中不行，要接受催眠和药物，到达意识的最深层。那种梦境会显得非常真实，做梦的人自己都很难从梦里醒来。在那种梦境中，被杀的人会觉得自己真的死了，再也不会醒来。”</p>
+    <p>“所以如果被杀的是我，我也会真的死掉，对吧？”</p>
+    <p>“没错，那可能是你迄今为止最危险的一次冒险，杜登博士的团队只能协助你。”</p>
+    <p>“老爹，你说过那家伙应该是以你为中间体寄生到我意识里的，那从很小的时候他就在我意识里了对吧？他是跟我一起长大的，那到底哪一部分是我，哪一部分是他？”</p>
+    <p>“就像要割舍部分的自我，对吧？”路麟城点点头，“但假如不这么做，总有一天那家伙会把你彻底吞噬掉，那时候你将是某位龙王。你们俩不可能永远共存。”</p>
+    <p>“让我想想好么？这是一个很大的决定。”</p>
+    <p>“当然，”路麟城的声音忽然变得很轻很轻，“记得我之前说的话么？如果你不愿切割，那就让你妈带你走，去世界上任何地方躲着，只是别回这里或者卡塞尔学院。”</p>
+    <p>“如果我能成功地切割，我就可以在这里住一辈子，是么？”</p>
+    <p>“那你就要准备去树林里看看鸟儿了。”路麟城笑笑。</p>
+    <p>路明非摇了摇头，“我不想住在这里，我想回叔叔家住。”</p>
+    <p>路麟城非常诧异，“这里有爸爸妈妈，这里就是你的家。这里确实很小，但是安全，你回叔叔家，早晚都会遇上战争。”</p>
+    <p>
+      “我很想你们，这些年一直很想，但我不想再跟什么龙族扯上关系了。希望战争晚点来，我能回家过几年一般人的日子。你说的，我受过世界上最好的教育，我什么工作都找得到，也不会有人欺负我了。我不用在树林里找哪只鸟儿，我每天会遇到很多女孩子，喜欢的我就去追，每一天都想办法过得开心点。”路明非自己摇着轮椅走了，“那就是我想过的生活。”
+    </p>
+    <p>天台上只剩路麟城独自看雪，抽着一根纸烟，看着看着身边多了一个人，那是裹着大衣的乔薇尼。</p>
+    <p>“他决定了么？”乔薇尼问。</p>
+    <p>“还没有答应，但他会答应的。”路麟城淡淡地说。他的威仪又出来了，那是居高位者多年养成的笃定和自信。</p>
+    <p>“切割失败了，他会死吧？”</p>
+    <p>“这不是你该担心的，好好照顾他，让他觉得放松。”路麟城把烟蒂丢进雪里，竖起衣领转身离去。</p>
+    <p>———————————————</p>
+    <p>“谢谢你医生。”乔薇尼深吸一口气，把路明非横抱起来放在轮椅上。</p>
+    <p>“我们试着用电极刺激他的神经系统和肌肉，结合干细胞疗法，看看能不能解决腿部肌肉坏死的问题。”医生说，“理论上说会有效的，但需要比较长的时间才能看到疗效。”</p>
+    <p>“多久他能站起来走路？”乔薇尼问“一两年吧，顺利的话。之后还得继续治疗，血液经过了清洗和回输，内脏里积存的毒素也排尽了，但骨髓的造血功能和内脏的衰老问题不好解决，好在杜兰德博士的团队进展迅速，他们的新疗法对路明非应该有用。”
+    </p>
+    <p>“谢谢你医生。”路明非也说。</p>
+    <p>两天来他一直是这样的生活，白天老妈带着他去医院做检查和治疗，晚上回家吃珍珠鸡。自从诊断结果出来老妈就不带他去食堂吃饭了，每顿饭都会宰一只珍珠鸡，这样下去养殖场里的珍珠鸡没准会绝种。</p>
+    <p>路麟城一直没回家，也许是工作忙，也许是还在跟委员会激烈地讨论。</p>
+    <p>乔薇尼推着他回自己住的那栋楼，小路两旁的云杉上挂满了彩灯，年轻人们边跑边打雪仗，一个雪球差点砸中路明非的颈窝，被老妈一挥大衣衣摆挡开了，活像书中女侠的做派。</p>
+    <p>
+      路明非在人群里又看到了霍尔金娜，因为她那头金色的长发实在是太明媚了，尤其是在彩灯的照射下，简直流光溢彩。她穿着一件驼色的绒大衣，带着同色的貂皮帽子，冰天雪地里居然不怕冷地穿着短裙和长筒靴，跑起来羚羊般敏捷，大长腿闪闪发光。不过她可能真的就跟路麟城说的那样，除了对自己的美貌太在乎了一些，其他都是个很好的女孩，看到路明非的时候紧忙抓住篮球架的一根立柱，转了一圈才刹住脚步，远远地跟路明非摆手打招呼。原本她可能是要过来问好的，但刚停步就被一个雪团砸在脸上，她愣了一下，赶紧捏了一个雪团回击，又跟朋友们打在一起了。
+    </p>
+    <p>路明非愣了一下神，想到那个幻影般的小女孩，也是华丽的金色长发，却显得那么瘦小干枯，像是随时都会凋谢的草花。</p>
+    <p>“你老爹很中意那个霍尔金娜，你说他那么大年纪了，还有心思关心小女孩子。”乔薇尼冷冷地说。</p>
+    <p>“不是吧，老爹是想给我介绍来着。”路明非笑。</p>
+    <p>“你喜欢她么？”</p>
+    <p>路明非摇摇头，“老妈你觉得呢？”</p>
+    <p>“要我说你适合那种厉害点的女孩子，能管住你的。”乔薇尼想了想，“我觉得你们班上那个苏晓樯倒是不错，那姑娘狂是狂一点，是个有主意的。”</p>
+    <p>路明非愣了一下，“那是我高中同学，老妈你没见过。”</p>
+    <p>乔薇尼也一愣，叹了口气，“私底下老爹老妈还是想办法了解你过得咋样的，不过你喜欢的那个陈雯雯就不咋样了，整天伤春悲秋，就会哭鼻子。”她顿了顿，“你爹说就算甩掉了那个寄生体你也不想在这里住？”</p>
+    <p>老妈这句话显得有点不悦，路明非立刻紧张起来，“不是不是，我会经常回来看你们的，如果可以的话。”</p>
+    <p>乔薇尼又叹了口气，“儿行千里母担忧啊！我看你这两天魂不守舍的，就知道躲在屋里玩游戏。”</p>
+    <p>这两天路明非确实是这么过的，每天除了吃饭治疗，打开笔记本就玩《星际争霸》，难得老妈有心把卧室布置得跟以前差不多，连笔记本里都装了这个老游戏。</p>
+    <p>说起来也怪，大概是母子感应，分明他玩得非常投入，可老娘就是知道他魂不守舍。当然，他也确实魂不守舍，玩游戏里间隙里他就在窗前坐着，但窗户再也没被吹开，那个女孩的幻影也没出现。</p>
+    <p>路明非望着远处打雪仗的人们，忽然陷入了沉默，乔薇尼敏感地意识到了，停下了轮椅。</p>
+    <p>“老妈，你有没有觉得，也许我不是你儿子。”路明非轻声说。</p>
+    <p>“你这孩子，这话怎么能瞎说呢？”乔薇尼急了，“你不是我孩子你是谁孩子？”</p>
+    <p>“从我很小的时候，那个寄生体就跟我在一起了吧？我是你生的没错，但我身体里寄生了另一个人的意识。”路明非说，“我不能完完全全算是你生的。”</p>
+    <p>乔薇尼沉默了许久，伸手摸了摸路明非的头，“有人说啊，父母和孩子其实就是朋友，某一种朋友而已。还有人说啊，人生就像是旅行，你跟谁走得最久，谁就是你最好的朋友。”</p>
+    <p>她绕到路明非面前蹲下，“你是妈妈的孩子，不是因为你是妈妈生的，是因为妈妈这一辈子就养过你这一个孩子，这一路上都是妈妈陪你走过来的，你就是妈妈的孩子，怪物也是妈妈的孩子。”</p>
+    <p>路明非盯着她眼睛看了好久，前倾过去拥抱她，“我妈最厉害了。”</p>
+    <p>乔薇尼愣了一会儿，紧紧地把他抱住，所以路明非没看到眼泪从她的眼角溢出，在睫毛上挂着，瞬间就结成冰晶。</p>
+    <p>———————————————</p>
+    <p>深夜，灯下，乔薇尼独自坐在餐桌旁，桌上摆着吃了一半的烤珍珠鸡。她凝视着桌上的电子日历，时间已经很接近圣诞节了。</p>
+    <p>她的神情显得有些凶狠，一口口地喝着伏特加，抽着纸烟。她应该是个很讨厌烟味的人，但今夜她抽的烟把小客厅弄得烟熏火燎的。</p>
+    <p>她又转头看着前面那扇门，不久之前路明非已经睡着了，医生叮嘱为了保证休息他要在睡前吃两颗安眠药，此刻安眠药开始起效了，乔薇尼确认了很多遍儿子不是装睡才离开了卧室。</p>
+    <p>外面隐隐传来狗吠的声音，原本是没有的，这两天委员会忽然放出了巡逻的犬队，人们其实是看不到这些猛犬的，它们极耐寒冷，只在避风港外圈巡逻，偶尔强风才会把它们的吠声带过来。</p>
+    <p>乔薇尼忽然起身，打开储藏室拿出一口行李箱来，打开箱子从里面拿出一支重型手枪和一个盒子，1990年柯尔特公司生产的“巨蟒”，这枪大到根本不是女人的手能握住的。</p>
+    <p>乔薇尼从盒子里倒出一把子弹来，卡塞尔学院的人看到这些子弹会惊掉下巴，每一颗都搭配贤者之石的弹头，这东西在屠龙武器中算是极其珍贵的限量版，对龙王级的目标也能造成重度伤害。</p>
+    <p>乔薇尼冷着脸给巨蟒填满子弹，干脆利落，完全就是用枪的老手，然后她提着这支枪推开了路明非的卧室门。</p>
+    <p>路明非被一记耳光打醒，黑暗中乔薇尼的眼睛如同狼那样泛着荧光，她的声音低沉，不容拒绝，“穿上衣服跟我走！现在！”</p>
+    <h2 id="第224章-但为君故128">第224章 但为君故(128) </h2>
+    <p>安眠药的药效还在持续，路明非懵得不行，但还是被老妈那凶狠的神情吓到了，“妈我们去哪里？”</p>
+    <p>“别问问题！”乔薇尼把防寒服丢在路明非脑袋上。</p>
+    <p>看路明非还懵着不知所措，乔薇尼干脆亲自上手把儿子的睡衣扒下来，只剩条内裤，然后三下五除二给他套上厚厚的绒衣和防寒服，一把抱上轮椅。</p>
+    <p>路明非根本没见过老妈这一面，在他心里老娘厉害归厉害，也就是个霸气的家庭主妇，可此时乔薇尼展现出来的劲头，简直就是执行部的顶级专员。</p>
+    <p>
+      路明非呆呆地看着老妈在镜前整理头发，练习微笑，还给自己画出了一对漂亮的长眉，这个买菜做饭收拾家的中年妇女忽然间年轻了十岁，浑身上下都是少女般的英气。她在笔记本前操作，路麟城办公室里的那些控制界面逐一出现在家中的电脑上，乔薇尼手法娴熟地黑进一个个系统。这个避风港的几乎所有空间都被严密地监控着，住户开门关门一次，中控室里都能看到，进门取电像酒店一样必须插卡，卡被拔走就意味着房间里的人离开了。楼道里安装着监控摄像头，楼门口也一样，红外扫描设备反复地扫描每个庭院，监督庭院中的活动者。除掉个人的隐私空间，这里没有秘密。这也并不奇怪，这是人类对抗世界末日的堡垒，不是放纵天性的伊甸园。
+    </p>
+    <p>乔薇尼把巨蟒放进一个有点老气的坤包里，蒙上一条挡风的纱巾，拿轮椅推着路明非出门。</p>
+    <p>路明非没问问题，更没有反抗，他被乔薇尼的神情震慑了，同时他也没有任何理由不信任老妈。</p>
+    <p>在他从梦中醒来本能地抱住老妈的时候，老妈紧紧地回抱，说，“妈妈爱你！”就像某种坚不可摧的宣言。</p>
+    <p>门在背后沉重地合拢时，路明非知道自己又关上了人生里的某个选项。</p>
+    <p>这么晚了楼门口的灯下还有人靠着墙抽烟，乔薇尼推着轮椅从他身边经过，看似随意地说，“睡不着就叫老妈带你出来透口气，别一个人翻来覆去的。”</p>
+    <p>他们在庭院里漫步，细雪落在他们的肩上，走出去很远路明非悄悄地回头，那个男人还在楼门口默默地抽着烟。</p>
+    <p>“非非你相信老妈么？”乔薇尼轻声问。</p>
+    <p>“相信。”路明非简短地回答。</p>
+    <p>“切割可能会害死你，即使你活下来，结果也不会是你想要的。你不用成为英雄，不用每次都做别人想你做的事，老妈就希望你开心，别的不管。我是你妈，我有权自私。”</p>
+    <p>“老爹希望我能同意做那个切割。”</p>
+    <p>“不要相信他，他跟委员会的那帮家伙是一样的。”乔薇尼顿了顿，“其实你连我也不该相信，跑就对了，跑得越远越好。”</p>
+    <p>“这些人都是来监视我的么？”路明非看似无意地环顾，深夜里还有铲雪的人和树下卿卿我我的年轻人，加上树上缠绕的彩灯，他们仿佛置身一个颇为安静的游乐园。</p>
+    <p>“你从卡塞尔学院毕业，你学到的东西足够让你分辨哪些是监视者。”</p>
+    <p>“全部都是，没有例外。”路明非说，“还有巡逻的犬队，没有交通工具我们不可能离开。”</p>
+    <p>
+      乔薇尼推着他步入树林，铲雪的人立刻停下了手里的工作跟了过来，他拖着雪铲，另一只手藏在衣服里。乔薇尼应该是走进了一个监控不到的区域，引起他的警觉。但乔薇尼只是推着轮椅缓缓而行，他们轻声地聊着天，乔薇尼为路明非整理围巾，母子之间显得非常温暖。每当他们停下来的时候那家伙就装作埋头铲雪，路明非推测这是个新手，但孔武有力。
+    </p>
+    <p>乔薇尼停下脚步，从包里摸了一包烟出来，叼上一根。路明非目瞪口呆，老妈叼起烟卷的时候像个美艳的女特务似的。乔薇尼四顾一圈，跟那个铲雪的家伙招招手，“嗨！借个火！”</p>
+    <p>那家伙显然有点懵圈，但还是把雪铲往雪堆里一插，摸出打火机走了过来。</p>
+    <p>这是个身高接近两米体型跟马熊似的大家伙，乔薇尼在女人里也算得高挑，但低头跟他点火的时候却显得娇小窈窕。</p>
+    <p>“谢谢，弗拉基米尔。”乔薇尼微微一笑，从坤包里抽出蟒蛇，右肘垂直上击打在那家伙的下颌上，跟着是沉重的枪柄，这很明显是个泰拳技巧，然后她切换为合气道中的“侧身半立技”，左肘推出，一击崩解！</p>
+    <p>大家伙被这种强力连击打中，甩出去好几米，跌进雪里，居然还挣扎着想要从衣服里抓武器，可乔薇尼已经猎豹般扑上，膝盖压住他的咽喉，狠狠一挥蟒蛇打在他的太阳穴上把他打晕。</p>
+    <p>路明非完全看傻了，这一套连击稳准狠不留余地，说是武林高手绝不为过，就算老妈是混血种体魄不俗，没有幼功也很难练成这样。</p>
+    <p>“没什么好奇怪的，你妈也是S级。”</p>
+    <p>乔薇尼冷冷地说着，从大家伙身上站了起来。</p>
+    <p>她转身推着轮椅狂奔起来，不多久后整个避风港忽然陷入了黑暗，蓄电池供电的探照灯立刻开启，雪亮的光柱在漆黑的庭院里来回地扫，再片刻之后打着手电的人冲了出来，外面的狗吠得也更凶了。</p>
+    <p>这也是乔薇尼干的，她黑入了避风港的控制系统，设置了这场延迟的停电。当她走出家门的时候，这次逃亡的每一步都被计划好了。</p>
+    <p>地下车库里停着成排的雪地车，跟普通的雪地车不同，它们用雪橇般的双轨接触地面，用强劲的风扇驱动。乔薇尼把路明非抱上一辆雪地车后转身离开，不久之后居然牵了一条大狗回来。</p>
+    <p>是那条吊眼角的圣伯纳犬，名叫柳德米拉，这看起来笨笨的家伙吃着乔薇尼塞给它的肉肠，一声不吭。</p>
+    <p>“柳德米拉是引导犬，专门训练过如何在雪地上寻路，它会带我们到界面边缘去。”乔薇尼把圣伯纳犬塞在路明非怀里，“抱住了，不停地给它喂吃的。”</p>
+    <p>雪地摩托呼啸着从坡道驶离车库，车库门口居然没有人值守，大概是停电期间暂时离开了岗位。</p>
+    <p>乔薇尼熟练地驾驶着雪地车，沿着避风港的墙根行驶，避风港的探照灯在雪地上照出雪亮的圆，像是巨大的眼睛那样缓缓地扫视着，乔薇尼慢慢却很准确地在那些光斑之间绕行，雪地车的声音被避风港里的警报声压过了。</p>
+    <p>“老妈你这条逃跑路线是早就计划好的吧？”路明非摸着柳德米拉的脑袋。就算是S级，也不能短时间内想出如此完美的逃跑路线，把避风港的各种漏洞用得溜溜的。</p>
+    <p>“原本不是给你准备的，是老妈自己跑路用的。”乔薇尼冷冷地说，“你老妈我是什么人？什么时候我都有后路！”</p>
+    <p>路明非苦笑，心说老妈我可真不知道你是什么人，我要是知道我老妈比克格勃女特务还高杆，学校里谁敢欺负我？</p>
+    <p>他们终于驶出了探照灯覆盖的区域，雪地车在一处坡地上停下，乔薇尼长长地出了一口气，擦了擦额角的汗，“运气不赖，没轧到地雷。”</p>
+    <p>“还有地雷这种东西么？”路明非吃惊地问。</p>
+    <p>“当然，既有反坦克顶甲雷也有步兵地雷，我花了很长时间才记住了雷区的大概分布，但还是有点冒险。”乔薇尼说，“你以为这是什么地方？大学？研究所？这是个军事堡垒！”</p>
+    <p>“多亏有老妈在。”路明非这话是真心诚意的，他也不是没想过逃走，但即使他双腿没事，应该都没机会，连雷区都没机会踩到。</p>
+    <p>此时此刻从外面看去，那个由赫鲁晓夫楼构成的漆黑建筑群就像一座森严的古堡，又或者一只趴在雪谷中的巨兽，警报声是它的吼叫，探照灯是它的百眼。</p>
+    <p>“才刚刚开始，很快他们就会发觉我们失踪了，然后追击队就会赶过来。他们有直升机，但是应该不敢越过界面。”乔薇尼扭头望向远处，“他妈的，还有那些该死的狗！”</p>
+    <p>风中，狗吠得更凶了。</p>
+    <p>———————————————</p>
+    <p>路麟城气喘吁吁地赶到最高楼的天台上，委员会的成员们已经在那里聚齐了，整齐地眺望着漆黑的远处。</p>
+    <p>“薇尼和路明非都不见了。能黑进我们系统，完美利用我们漏洞的人只能是薇尼。车库了少了一辆雪地车，她带着路明非走了。”杜登博士看了路麟城一眼，又转去看路明非的医生，“那孩子能战斗么？”</p>
+    <p>“不能，他非常虚弱，是乔薇尼的负担。”医生说。</p>
+    <p>“我带追击队过去！”路麟城急切地说。</p>
+    <p>“你？你不会犯跟薇尼一样的错误吧？”杜登博士问，委员们都转过身来，盯着路麟城的眼睛。</p>
+    <p>路麟城深吸了一口气，“我会把他们平安地带回来，我能说服他们，也只有我能说服他们！”</p>
+    <p>委员们互相对视，最后都点了点头。</p>
+    <p>“他们一定会向着界面去，狗群能阻止他们一阵子。第一支追击队已经出发了，你最好快一点，一旦双方遭遇，都会使用暴力的，我们都知道薇尼是什么人。”杜登博士低声说，“希望是你先遇到他们。”</p>
+    <p>路麟城转过身狂奔下楼，助理计算员娜塔莎向着委员们微微点头，紧跟着追了上去。</p>
+    <h2 id="第225章-但为君故129">第225章 但为君故(129) </h2>
+    <p>乔薇尼拖着一个轻便雪橇，正在漆黑的冰湖上跋涉，路明非半躺在雪橇上，手持两柄博莱塔手枪，警觉地倾听着周围动静。</p>
+    <p>
+      他不得不感慨老妈是个资深老特务，她没开出多远就舍弃了雪地车。她用一根撬棍压住雪地车的油门，它在平坦的雪原上一路狂奔向前，留下明显的车辙。那是犬吠声最密集的方向，应该也是逃离这里最快的路，但乔薇尼偏偏舍近求远，步行穿越这片宽阔的冰湖，追击队顺着车辙会找到雪地车的残骸，也会浪费很多时间。
+    </p>
+    <p>但周围仍有时隐时现的犬吠声，不知道有多少支犬队在周围游荡。</p>
+    <p>经过湖心的小岛时，乔薇尼在岛上稍事休息，她的体魄不在零之下，但带着路明非这个大包袱还是严重消耗体力的。她丢给路明非两个能量棒，自己也咬着两根，藏在灌木丛中，时刻留意着周围。</p>
+    <p>“你那帮气垫船上的朋友靠得住么？”乔薇尼问。</p>
+    <p>“靠得住。”路明非说，“他们肯定在附近找我，但是没法越过界面。”</p>
+    <p>“那些一路跟着你来这里的人，都有自己的目的，但我们现在还是得盼着能赶快找到那艘船。”乔薇尼取出夜视望远镜四下观察。</p>
+    <p>“老妈你在找什么？”</p>
+    <p>“狗，我们肯定被某些小狗跟上了，但它们还没有露面。”乔薇尼说，“它们在等我们疲倦了，好冲过来咬断我们的喉咙。”</p>
+    <p>“我们被跟上了？”路明非吃了一惊。</p>
+    <p>“不，巡逻的犬队没有人类跟着，人类跟不住那些狗，也没法承受这种巡逻的强度。”乔薇尼说，“理解成狼应该更准确，避风港周围游荡的狼群，会毫不犹豫地攻击任何活物。”</p>
+    <p>乔薇尼忽然捂住路明非的嘴，把声音压得极低，“来了！”</p>
+    <p>她把夜视望远镜递给路明非，路明非向着她指的方向看过去，幽灵般的影子在冰面上飘荡，它们像是豹子那么大，鳞片上流淌着微光，无声地小跑着，凸凹的脸像是戴着骨质的面具。</p>
+    <p>路明非狠狠地打了个寒战，那些毫无疑问是地狱犬，跟023号城市里的地狱犬一模一样。</p>
+    <p>“苏联时代的遗产，西伯利亚某个育种场培养出来的龙血亚种，犬类的基因，但比狮子老虎更凶猛，身体表面的鳞甲最麻烦，大部分的子弹都打不透。”乔薇尼说。</p>
+    <p>难怪没有人跟着这些巡逻犬，一望无际的荒原上，这些地狱犬饿起来的时候肯定会攻击人类。它们是荒原上的恶灵，避风港是被这些恶灵守卫的。</p>
+    <p>这座避风港竟然用上当年“通天塔计划”的技术积累，难怪透着浓浓的俄式风格，粗糙、强悍、寒冷。</p>
+    <p>地狱犬群一边嗅着一边前进，冰天雪地里，干扰很小，人类的气味会变得格外清晰，北极熊能在一公里以外嗅到人的味道，地狱犬的嗅觉只会比北极熊更强。它们知道猎物不远，但还没法准确地定位。</p>
+    <p>乔薇尼抽出那支巨蟒，检查弹仓，装上枪托、夜视瞄准具和消音器，它就变成了一支小型的狙击枪。乔薇尼准备这支枪，原来是要用来对付地狱犬群的。</p>
+    <p>她开枪了，一上来就连续射击，加长枪管的巨蟒有着惊人的有效射程，路明非眼看着地狱犬一头接一头地倒下。不同于在023号城市里的困境，乔薇尼用的子弹都是贤者之石的弹头，每枪都会撂倒一头地狱犬。</p>
+    <p>更多的地狱犬出现在望远镜的视野里，这个犬队不小，大概有十几头之多。短暂的惊慌之后，它们注意到这座湖心岛了，消音器的作用是免得惊动追击队，但他们在上风口犬群在下风口，风会把硝烟味带过去。</p>
+    <p>地狱犬们一旦奔跑起来就难以瞄准了，乔薇尼的子弹也打空了，她立刻着手装填新的子弹。地狱犬们在巡逻中还经常吠叫，进攻开始的时候却异常地沉默，像是随风急速飘进的幽灵。</p>
+    <p>乔薇尼从灌木丛中起身，将一把荧光棒弯曲之后丢在冰面上，提枪踏上冰面，路明非简直被老妈这英雄气震晕了，乔薇尼冷眼看着那些地狱犬，每开一枪就上前一步，枪枪毙命。</p>
+    <p>她选择冰湖上动手来解决追踪的犬群是有原因的，地狱犬们的利爪在冰面上打滑，这会让她有充分的时间发挥射程的优势。</p>
+    <p>“老妈背后！”路明非惊呼出声。</p>
+    <p>
+      趁着乔薇尼正面阻击犬群，一头极其矫健的地狱犬竟然绕到了乔薇尼背后，极夜的黑暗中乔薇尼只是靠着洒在冰面上的荧光棒照亮，路明非也看不清，因此那头地狱犬现身的那一刻已经对准乔薇尼的背后发起了扑杀。那是一记掏心的攻击，狼经常这么掏出猎物的心脏以防它继续反抗。路明非边喊边用乔薇尼给自己的那对伯莱塔手枪连续射击，但他的枪里装着普通弹药，打在地狱犬的鳞片上只溅起点点火花。
+    </p>
+    <p>千钧一发的关头，乔薇尼如同背后长眼那样轻盈地一个转身，避开了地狱犬的扑杀，擦身而过的瞬间她竟然一把抓住了地狱犬的尾巴。</p>
+    <p>
+      那只地狱犬扭动着想要反身一口，乔薇尼的枪口已经顶住了它的肛门，子弹贯穿了它带着血乎乎的内脏从嘴里喷出来，乔薇尼一脚踩在这只地狱犬的脑袋上，冷冷地看着其余的地狱犬。她被包围了，但从气势看她才是捕猎者，残存的地狱犬们围绕着逡巡了片刻，低低地嚎叫着四散奔逃。
+    </p>
+    <p>乔薇尼冷眼看着它们离去的背影，没有再补枪。直到犬吠声已经很远了，她才缓缓地半跪在冰面上，低低地喘息起来。</p>
+    <p>她打开蟒蛇的弹仓，把打完的弹壳倒在冰面上，六颗弹壳全都冒着袅袅的白烟，她刚才其实已经耗空了所有的子弹，而在那种情况下她根本没有换子弹的机会。</p>
+    <p>再度站起来的时候她已经恢复了冷静和无所谓，回到路明非身边笑笑，“最后那家伙应该是它们里领头的，杀掉就解决了，继续前进。”</p>
+    <p>路明非沉默地看她，好久才说，“你跟我记得的妈妈不一样。”</p>
+    <p>“我说过你身边的每个人出现都是有原因的，躺好。”乔薇尼一脸地不耐烦。</p>
+    <p>她把雪橇的拖绳套在自己肩上，继续在冰面上跋涉起来，远处隐隐传来不一样的风声，那是直升机低空掠过的动静。</p>
+    <p>血一滴滴地打在冰面上，立刻被冻结，仿佛沿路洒下的梅花。“老妈你在掉血！”路明非惊讶地说。</p>
+    <p>“早跟你说不要打那么多游戏！”乔薇尼没好气地说，“这种程度的伤有什么可说的？躺好！”</p>
+    <p>路明非默默地躺好了，真奇怪，分明觉得拖着雪橇的女人跟自己记忆里的老妈完全不一样，可对你管头管脚不容你分辨气急了就要打你屁股的气焰却真正正正就是他老娘。</p>
+    <p>———————————————</p>
+    <p>路麟城站在一辆雪地车的顶上，直升机刚刚从他头顶经过，沿着模糊的车辙去向远处。</p>
+    <p>“找到车辙了，他们正向着界面边缘推进，方向大约60度，全速。”娜塔莎站在他身后，手持一部大功率对讲机。</p>
+    <p>他们的周围，十几辆全副武装的雪地车和雪地摩托，成员们一色的黑色防寒服，头戴夜视盔，更多的单位已经在茫茫的雪原上散开，视野里数不清的尾灯。</p>
+    <p>娜塔莎结束了通话，从侧面看着路麟城。这个消瘦的男人只穿了一件黑色大衣，扣都不扣，黑色的衣摆和花白的头发都飘飞在雪风中。</p>
+    <p>他一直都是那座避风港的领袖，虽然年轻，威望却足以服众。但今夜被追踪的对象是他的家人，谁都想知道他还能不能保持公正和有担当。</p>
+    <p>路麟城始终不下令，直到其他追击队的尾灯都消失在风雪里。一共四支追击队，除掉最早出发的那支，还有另外两支跟路麟城的小队一起出发。</p>
+    <p>“秘书长，你是在帮他们拖延时间么？”娜塔莎不得不打破沉默。</p>
+    <p>“这道车辙是假的，薇尼不是那种头脑简单的人，她很清楚我们追赶的速度，明非不能行走，拼速度他们拼不过。”路麟城淡淡地说，“她会选最难走的路线，穿越冰湖，翻过最高的那道雪岭，在那附近穿越界面。”</p>
+    <p>他转过身，轻而易举地指出了正确方向。</p>
+    <p>娜塔莎吃惊地看着路麟城，想知道这男人是不是在信口胡说，同时本能地举起手中的对讲机，要把这个消息告诉其他的追击队。</p>
+    <p>但路麟城劈手夺过她的对讲机，收进自己的大衣里。娜塔莎惊怒地瞪大了漂亮的眼睛，那台对讲机是她唯一能直接联系委员会的通讯工具。</p>
+    <p>“秘书长，你这是什么意思？”娜塔莎厉声问。</p>
+    <p>“我刚刚借你的嘴告诉另外的三支追击队，他们应该正向着60度方向全速推进。”路麟城淡淡地说，“现在我们没有竞争者了，转向，我们去冰湖。”</p>
+    <p>娜塔莎沉默了很久，最后被男人脸上的表情说服了，他是那么地平静和坚定，就像是面对他最熟悉的数学模型，自有一股将军临阵决胜的气势。</p>
+    <p>她拎起脚下的狙击步枪，如此沉重的大型枪械在她那双只该用来按键盘的素手中被握得轻松而稳定，“愚蠢的女人，走冰湖等于找死！”</p>
+    <p>“你没资格这么说薇尼，同样的条件下，她能轻松地杀死你三次，而你连她的影子都看不到。”路麟城淡淡地说着，挥手划出一道圆弧，“全速进发，必须赶在他们越过冰湖前！”</p>
+    <h2 id="第226章-但为君故130">第226章 但为君故(130) </h2>
+    <p>冰湖宽阔得像是没有尽头，放眼望去只有夹着雪霰的暴风雪，打在脸上生疼，让路明非回想起自己迷失在雪地里的那个夜晚。</p>
+    <p>唯一的区别是现在他前面有一个包里揣着左轮枪的家庭主妇，她做的珍珠鸡很难吃，但她的枪法很准。</p>
+    <p>“老妈，要是累了就休息一下，这么大雪，我们跑路很难，他们追起来也很难。”路明非说。</p>
+    <p>这个倔强的主妇说自己没事，但她走得越来越慢，一直都很挺拔的腰背也弓了起来。</p>
+    <p>“对于人类来说当然很难，但地狱犬会一直跟着，它们习惯了在风雪里行动。”乔薇尼说，“而追击队如果足够聪明的话，会跟着地狱犬走。”</p>
+    <p>路明非紧张地望向背后，对于那种流着龙血的军犬他还是心存恐惧的，尤其眼下他不是战斗力，就凭老妈那一支枪恐怕是猛虎难敌群狼。</p>
+    <p>
+      “它们现在应该回到刚才的地方了，正在吃那些死掉的同类。它们太饿了，任何能吃的东西都不会放过，但那点肉不够它们吃的。血的味道会把周围的犬群都吸引过来，等它们觉得伙伴够多了，胆肥了，就会来追我们了。”乔薇尼大口地喘气，“不过这也不全是坏事，地狱犬集中的区域，追击队都不敢靠近。它们已经饿疯了，连追击队都会攻击。”
+    </p>
+    <p>“我们怎么办？”</p>
+    <p>“往前走，一直走，在地狱犬群追上我们之前逃出去。我们已经很接近界面了，留心周围的声音和闪光，你是带着烙印的，你能发现那些隐藏起来的通道，外界的景象有时候会一闪而过就像是海市蜃楼，但那不是幻觉，那就是通道的位置。”</p>
+    <p>“老妈你是没有烙印的？”路明非惊讶。</p>
+    <p>“能离开的话，大概早就去找你了，你也不会吃那么多苦。”乔薇尼抹了抹额角沾着汗的发丝。</p>
+    <p>———————————————</p>
+    <p>“我们就这么空耗着油，随便让自动驾驶带着我们四处乱转？”布宁摇摇头，又开了一瓶伏特加。</p>
+    <p>很难肯定他们剩下的酒多还是柴油多，如果油耗完了他们也许可以往油箱里灌点上好的伏特加。</p>
+    <p>
+      找到最后的地堡，补足了燃油，他们就按照苏恩曦的“战术”，打开自动驾驶仪，任凭气垫船在雪原上横冲直撞。人类绝不干预航向，按苏恩曦的说法，就算前面看起来要掉进万丈深渊，也绝不伸手摸一下方向盘，因为非常可能深渊是幻觉，直冲过去就进尼伯龙根了。布宁不止一次提醒说这毕竟是前苏联时代的产品，我们宁可相信它的装甲和机枪，也不要相信工程师们会做出可靠的导航仪来，但被灌多了伏特加的苏恩曦以“穿越恐怖的边境即是自由的天国”之类的醉话反驳了回去。
+    </p>
+    <p>唯有楚子航不喝酒，他把蜘蛛切和童子切交叉捆在背后，盘膝坐在客舱的正中央，闭目凝神，像是一位即将要赴战场的武士。</p>
+    <p>
+      他说自己上一次进入尼伯龙根的时候，有种非常特殊的感觉，就是在尼伯龙根里特别地安静。那是一种非常奇怪的安静，他仍然能听到风雨声和车胎碾压路面的声音，但就是世界的背景音忽然间消失了，不再嘈杂，静得令人心慌，仿佛永无止境的长夜。所以他决定听出尼伯龙根的入口。
+    </p>
+    <p>这听起来当然非常没谱，但跟苏恩曦的战术倒也配套，亚历山大·布宁只有喝酒，把命交给酒精似乎都强于把命交给这两位。</p>
+    <p>好在最后的地堡中存油量很大，实在不行就开回地堡去加油，这已经是他们乱转的第二个晚上了，估计还是会一直开到发动机过热，然后随便找个低洼的地方停船睡觉。</p>
+    <p>苏恩曦已经睡着了，布宁也有点昏昏沉沉，就在这时，楚子航忽然睁开了眼睛，眼角仿佛刀剑反光那样寒冷而明亮。</p>
+    <p>“听到什么动静了？”布宁骤然清醒。</p>
+    <p>“电话响了……”楚子航挠挠头。</p>
+    <p>“这鬼地方怎么会有人打电话？”布宁惊得一身冷汗，他以前总是通过电话跟幕后老板联系，电话铃声对他来说就像是催命符。</p>
+    <p>可楚子航从背包里掏出来的却是“芬格尔”，是这家伙正嗡嗡作响，路明非不仅留下了它，还给它设了震动模式。</p>
+    <p>楚子航接通电话，还没来得及说喂，就听见电话里炸雷似地喊，“耳朵聋了么？耳朵聋了么？狗叫声！狗叫声！到处都他妈的是狗叫声你们听不到哇？”</p>
+    <p>楚子航吃了一惊再度凝神去听，果真就听到了犬吠声，但是很容易和风声搞混，听起来令人毛骨悚然，仿佛无数恶狼的幽灵正翻山越野从气垫船旁经过，但就是看不到它们。</p>
+    <p>布宁霍然起身，苏恩曦也醒了，兴奋地搓着手。</p>
+    <p>———————————————</p>
+    <p>一道蒙蒙的光扫过冰湖，伴随着引擎轰鸣的声音，路明非本能地举手遮脸，觉得是追击队发现了他们。</p>
+    <p>但他立刻就发现这只是错觉，周围除了风雪还是风雪，那引擎轰鸣之声似乎只是狂风吹过了树丛。</p>
+    <p>然而下一刻他惊喜地低喊，“老妈！老妈！我听到声音了，像是气垫船的声音！”</p>
+    <p>没错，那是气垫船的引擎声，它听起来很像风声，是因为它本就是用风力螺旋桨推动的。</p>
+    <p>
+      “好极了！”乔薇尼也振作起来，“集中注意力！集中！我们接近界面了！在这个区域你会有种在多棱镜里的感觉，在某些特定的角度你会看到闪光听到声音，但立刻又会消失，不要着急，注意听注意看，你就能找出通道，你的朋友就在附近，他们跟我们可能擦肩而过但我们看不到对方！”
+    </p>
+    <p>喜悦之情刚刚燃起，母子两人的脸色同时变了，因为背后袭来的狂风中，隐隐夹杂着犬吠声。</p>
+    <p>雪橇后的柳德米拉低吼起来，但它戴着裹嘴的罩子，因此吼声只能低低地在喉间滚动。这只圣伯纳犬一直跟着他们，靠着它的指引，他们才没有在茫茫的冰湖上迷失方向。</p>
+    <p>它的吼声中透着恐惧，它可能未必知道接下来会发生什么，但动物的本能让它感觉到那是非常可怕的。</p>
+    <p>———————————————</p>
+    <p>“被最懂她的丈夫追上，不知道乔薇尼会是什么表情。”娜塔莎笑着说。</p>
+    <p>她已经不再怀疑路麟城了，当他们在冰湖上找到那些被啃得只剩骨架的地狱犬时，她的疑虑就消散了。那些骨头上很容易找到枪击的痕迹，贤者之石的弹头，一边洞穿一边炸裂，毫无疑问是乔薇尼的手笔。</p>
+    <p>“如果她冲我发火，威胁我说要把大衣柜丢在我头上，”路麟城说，“那就好了，我只担心她什么话都不说，什么表情都没有地看着我。”</p>
+    <p>
+      娜塔莎修长的手搭在路麟城的肩上，盈盈一握的细腰自然拧出妖娆的线条来，她靠近路麟城的耳边说话，吹出的气息寒冷却甜美，“用得着在乎么？这里就算世界尽头了，家长里短的事在这里不重要，我们要么去死，要么狂欢。这里有的是比乔薇尼更合适你的人，你很清楚委员会把我派给你的用意，我们能够生育完美的后代。”
+    </p>
+    <p>
+      路明非如果有机会旁听这段对话，必然会深感自己那对招子真是雪亮，而且不愧是老妈座下的鹰犬。第一次见到这个助理计算员他就有种异样的感觉，一个整天跟数字打交道的女人，就算在意外表，也不必穿那种半透的白衬衫和把臀部包得紧紧的一步裙。走起路身姿也过于摇曳，并非穿了高跟鞋步子不稳，而是一种美的示威，因为乔薇尼就在门外等着……可是妹子你年轻好看还浪得飞起，何必纠缠一个半老头子呢？门外也只是个容易生气的家庭妇女而已。
+    </p>
+    <p>“我不介意老家伙们想把什么女人安插在我身边，”路麟城淡淡地说，“但别把薇尼看作对手，你从头到脚没有一点能跟她比，这一生也都比不过。”</p>
+    <p>娜塔莎气得说不出话来，美艳的眼睛愤怒地盯着路麟城。</p>
+    <p>“所以她是我妻子，而你只是我的助理计算员。”路麟城补充。</p>
+    <p>犬吠声开始激烈起来，路麟城神色凛然，“它们发现薇尼和明非了！”</p>
+    <p>娜塔莎也收敛了怒火和娇媚，“你怎么知道？”</p>
+    <p>
+      “地狱犬通常是不叫的，吠叫会暴露它们的位置，吓走猎物，或者成为其他猎食动物的目标。只有两种情况例外，一种是某一个犬群要宣称附近是自己的领地，吓走竞争者，另一种是召唤同伴来围攻大群的猎物。”路麟城说，“连续不断地吠叫，这是召唤同伴的叫声，它们已经跟上薇尼他们了……前进！全速前进！”
+    </p>
+    <p>追击队的成员们相互对视，眼中都流露出惊恐，竟然不敢执行路麟城的命令。</p>
+    <p>“不能离地狱犬太近！”娜塔莎说，“会变成它们的捕猎对象！”</p>
+    <p>“我老婆孩子在湖那边！”路麟城冷冷地说，“就算你们不在乎薇尼，你们总在乎明非，对吧？谁也不能把我儿子逼急了，因为谁也猜不到他会做出什么来！全速前进！”</p>
+    <p>雪地车队再度启动，这一次他们揭开了机枪上的防尘罩，打开了所有的大灯，从高处俯瞰像是一只浑身闪光的巨兽，在冰面上高速地爬行着。</p>
+    <h2 id="第227章-但为君故131">第227章 但为君故(131) </h2>
+    <p>这个时候乔薇尼正玩了命地拉着雪橇向前，前方就是那座高高的雪岭，黑暗中他们本应没有那么远的视野，但路明非能不时地看到灯光扫过，有时会照亮雪岭上的树林。</p>
+    <p>乔薇尼说接近界面的时候像是在棱镜中穿梭，但更像是在一片被诅咒的树林中奔跑，你在奔跑你的朋友也在奔跑，你们可能正擦肩而过，却看不到彼此。</p>
+    <p>气垫船的吼声越来越清晰了，好像四面八方不知多少艘气垫船在高速地穿梭着，气垫船上的人可能也意识到他们接近界面了，他们也在焦急地寻找着通道。</p>
+    <p>这是一场艰难的竞速，地狱犬的犬群已经很接近了，犬吠声和气垫船的轰鸣声交相错杂，似乎希望和死神并肩到来。</p>
+    <p>乔薇尼单膝跪在冰面上，大口地喘着粗气。她的体能耗竭了，路明非还没有机会问老娘是什么属性的混血种什么类型的言灵，但看起来她并非典型的战斗型，体能甚至比不上诺诺，只是胜在经验丰富，毕竟那么多年荒废在烧饭上了。</p>
+    <p>“老妈，把你的枪给我。”路明非轻声说着，把自己的博莱塔递了出去。</p>
+    <p>他很清楚博莱塔手枪对上地狱犬是没什么用的，乔薇尼给他这两支枪，与其说是期待他有所作为，不如说是安慰孩子的棒棒糖，给他增加一点参与感。</p>
+    <p>“轮不到你上场。”乔薇尼冷冷地说，“以为自己长大了么？长大了就有资格在我面前说话了么？”</p>
+    <p>
+      她蹲下来摸了摸柳德米拉的头，这只圣伯纳犬已经害怕得不行了，要不是被拴在了雪橇上，估计早都撒腿跑了。它大概是对乔薇尼特别地熟悉，所以乔薇尼摸它脑袋的时候它还能稍微安静下来，但嘴里仍然呜呜呜的，应该是想警告主人说快跑快跑有危险的东西跟在我们后面。乔薇尼打开它的嘴罩，慷慨地把一把牛肉干塞进它嘴里，在这地方人只能一周吃一次真正的肉类，牛肉干无疑是奢侈品。
+    </p>
+    <p>“有人说父母一直都会是孩子跟死神之间的屏障，直到父母都死了，孩子才要自己面对死神。”乔薇尼轻声说，“父母眼睛里，孩子多大都是孩子。”</p>
+    <p>她解开了柳德米拉的项圈，在它脑袋上拍了一巴掌，“跑吧。”</p>
+    <p>柳德米拉跑出了一小段路，呆呆地回头望着主人，不知道主人为什么不跑。乔薇尼抓过路明非的博莱塔，毫不犹豫地一枪打在柳德米拉面前，冰渣四溅，吓了这呆狗一跳。</p>
+    <p>乔薇尼连续射击，柳德米拉左蹦右跳，终于夹着尾巴飞奔而去了，很快就消失在黑暗里。</p>
+    <p>“希望它没事。”路明非说。</p>
+    <p>“不可能没事，”乔薇尼冷冷地说，“它一定会被那些地狱犬围攻而死，双方的速度不是一个级别，但那会为我们争取一点时间。”</p>
+    <p>路明非猛地吸了一口寒气，他一直以为那个抚摸是老妈对狗狗的温柔，原来是准备牺牲这条生命来争取时间。她冷静，经验丰富，而且残酷，跟路明非一直以为的母亲完全不同。</p>
+    <p>“人生是一场很长的旅行，开始的时候你会做加法，把越来越多的东西背在身上，后来你会做减法，减到最后，剩下的那唯一的一件东西就是最重要的。”乔薇尼说，“在牺牲你和柳德米拉之间，当然是牺牲它。”</p>
+    <p>
+      她在路明非身边蹲下，从挎包里取出一支针剂来，“你腿上的血管、神经和肌肉都在坏死，但不是完全没法用，这里面是强效镇定剂和兴奋剂，短时间内能让你重新站起来，当然后遗症会很严重，你可能真的得在轮椅上过下半生了。但是没得选，剩下的路你得跟老妈一起走。”
+    </p>
+    <p>“留在避风港里，真的会发生很可怕的事么？”路明非问。</p>
+    <p>“如果害怕，现在回去还来得及，他们不会对你怎么样的，有你老爹在，我也不会有什么大事，我就是带你出来透气走得远了一点，路上杀了几条狗而已。”乔薇尼说，“你自己选。”</p>
+    <p>路明非接过她手中的针管，扎在自己的大腿上，正要注射，却被乔薇尼狠狠地一把攥住。</p>
+    <p>“我选好了，我当然得信我妈。”路明非说。</p>
+    <p>“不是，是这药不是打在大腿上的，打在腰椎旁边。”乔薇尼隔着衣服手脚麻利地注入药剂。</p>
+    <p>药物起效极快，路明非觉得双腿剧痛，痛得能叫他晕过去，但那些僵硬的肌肉也哆嗦起来，像是从睡梦中被唤醒了。</p>
+    <p>
+      乔薇尼扶着他缓缓地站了起来，双脚踩在地面上的痛感就像无数的细针在刺他的脚心。他们走得很慢，但速度还是远比乔薇尼拖着雪橇快多了，狗吠声越来越近了，四面八方都是，地狱犬们已经聚成了大群，它们在黑暗中奔跑着包围猎物，如同人类调兵遣将。除了飘忽的气垫船的声音，还有其他的引擎声被风带了过来，那是好些辆车组成的车队。
+    </p>
+    <p>“见鬼。”乔薇尼的脸色微变。</p>
+    <p>“追击队么？”</p>
+    <p>“而且是你爹带的追击队，只有他猜我能猜得那么准。”乔薇尼咬牙，“快点走！我可不想赌他的良心！”</p>
+    <p>“那边！”路明非指向前方，那是雪岭中的一处隘口，总有一片蒙蒙的灯光在那里闪烁。</p>
+    <p>枪声响起来了，而且一响就连绵不绝，追击队似乎跟什么人战斗起来。</p>
+    <p>———————————————</p>
+    <p>“不能再靠近了！”娜塔莎的脸色苍白，“我们对付不了那么多地狱犬！”</p>
+    <p>雪地车上的机枪一直在打三连发，每次都把一只试图靠近的地狱犬打得在冰面上翻滚，留下一滩血迹，然后恨恨地退到稍远处。</p>
+    <p>他们也没有携带贤者之石制造的子弹，即使机枪连发，也未必真能要这些恶犬的命，但枪火对于地狱犬还是有威慑的，他们已经深入了地狱犬的猎场，不知道多少地狱犬在附近游荡。</p>
+    <p>“这个时候回撤会让地狱犬认为我们在逃走，独行的狮子想要经过鬣狗的领地，最重要的就是冷静，一步步走，遇到靠近的鬣狗，就吓退它。”路麟城的语气反倒平静，不像研究人员。</p>
+    <p>“我看你是迫不及待地想要救回老婆孩子吧？”娜塔莎冷冷地说，“可那真能算你的老婆和孩子么？”</p>
+    <p>“是为了我们伟大的事业。明非就是我们的事业，只有他能杀死那个魔鬼，为了他我可以毫不犹豫地牺牲你，也可以毫不犹豫地牺牲自己。”</p>
+    <p>娜塔莎盯着这男人的侧脸看了一会儿，端起狙击步枪四下扫射，从红外瞄准镜里看出去，数不清的幽灵般的影子，那些都是集合中的地狱犬，它们隐藏在车灯不可及的黑暗里，等待着发动一场大型的狩猎。</p>
+    <p>猎物可以是乔薇尼和路明非，也可以是路麟城和娜塔莎。</p>
+    <p>———————————————</p>
+    <p>乔薇尼扭头看向背后，地平线方向微微发亮，追击队已经很近了。他们的前方，也是微微的亮光，方向已经确认了，那里就是界面。</p>
+    <p>但他们无法计算自己和界面之间的距离，时间和空间在这里似乎都是扭曲的，界面距离他们可能只有几十米，也可能还有几公里。</p>
+    <p>
+      她摸了摸自己的肋骨下方，伤口位于那里。那群地狱犬中的某一头进化出了类似蝎尾狮的构造，尾巴末端的骨刺里带有剧毒，擦身而过的瞬间乔薇尼避开了它的扑杀，却被骨刺几乎贯穿了。她并不希望路明非知道这事，所以及时地往伤口里丢了几颗医用凝胶，医用凝胶吸血膨胀后把伤口暂时地胶合住了，表面上看起来没什么大事，但内出血已经很严重了。她苦笑了一下，伸手抚摸路明非的脑袋，想跟他说说话，可路明非却没有心情听她说话。
+    </p>
+    <p>令人心悸的声音充斥着他的脑海，路鸣泽的声音。</p>
+    <p>他分不清那是风声、他自己的幻觉或者是因为接近界面了，尼伯龙根对小魔鬼的压制变弱了，他真的在跟自己说话。</p>
+    <p>像是哭泣，像是窃窃私语，又像是尖利的笑。</p>
+    <p>“哥哥你是害怕我了么？”</p>
+    <p>“哥哥快跑啊他们就要来杀死我们了，不只是我哦，还有你。”</p>
+    <p>“没有人值得相信，你身边这个女人也不值得，世上只有我是爱你的。”</p>
+    <p>
+      忽然间巨大的声音震动了冰面，仿佛梵音破魔那样驱散了他脑海中的声音，那是路麟城借着高音喇叭在大喊，“薇尼！别再跑了！这是你们唯一的机会！委员会不会放弃的，即使你们逃出去了他们也不会放弃！别的追击队正赶过来，只有我能保证你们的安全！薇尼！相信我！你必须相信我！”
+    </p>
+    <p>乔薇尼忽然跪下了，路明非一低头，看到老娘脸色惨白直喘粗气，他不知道乔薇尼所受的伤，还想把乔薇尼给扶起来，却被乔薇尼摆手拒绝了。</p>
+    <p>“别管我了，我没事，你老爹已经来了，我就没事了。”她摸摸路明非的脸，“今晚是妈妈很自豪的一天，你也很听话，妈妈很高兴。”</p>
+    <p>“人生是一场很长的旅行，你会结识很多的朋友，”乔薇尼剧烈地咳嗽起来，口中的血块被她扭头吐在一旁，以免路明非看到，“在这一趟我是你妈，你妈很自豪，你妈尽到责任了，以后的路得靠你自己走了。”</p>
+    <h2 id="第228章-但为君故132">第228章 但为君故(132) </h2>
+    <p>她用巨蟒支在冰面上，勉强站了起来，点燃一支烟，深吸一口迎风吐出一口烟来，这一刻的艳光四射，真不敢想像老娘年轻时那是何等的拉风。</p>
+    <p>“不过记住，你可以喜欢任何人，但绝对不要靠近那个叫陈墨瞳的孩子！绝对！”她的口气极其严厉，不给解释，也不容任何反驳，感觉诺诺是他同母异父的姐妹似的。</p>
+    <p>“现在跑吧，向前跑，别回头，绝对不要回头！还记得当年你参加校运会的5000米比赛么？就像那么跑！”乔薇尼说。</p>
+    <p>“不行，我不能把你丢下！”路明非使劲地摇头。</p>
+    <p>乔薇尼笑笑，“混蛋，我是逃不出去的，我没有烙印啊。就算我们一起走，也会在某一刻忽然就失散了。”</p>
+    <p>路明非呆呆地看着老妈，原来她根本就没准备逃出去，因为没有烙印。没有烙印的人即使被有烙印的人带着也无法穿越界面，就像他用绳子跟零和布宁捆在一起，结果还是半路失散了。</p>
+    <p>“我要是不回去，你老爹可就完蛋了，谁都会说是他故意放走老婆和儿子。“乔薇尼扬扬手，“走啦，还有见面机会。儿行千里母担忧，无论去到那里，记得老妈始终担心你的。”</p>
+    <p>“我也会担心你。”路明非说完，转过身，跌跌撞撞地奔向那道闪着微光的雪岭。</p>
+    <p>他的双腿剧痛而且僵硬，就像是肌肉和骨骼里钉进了无数的铁钉，但他咬着牙，玩命地挪动着双腿，像是要逃走的弗兰肯斯坦。</p>
+    <p>乔薇尼望着他的背影，此刻追击队配置的强力射灯已经照亮了周围，她能看着儿子跑出很远很远。</p>
+    <p>“真好骗啊，这样泡妞能不被女孩子欺负么？”乔薇尼摇摇头叹口气，转过身来。</p>
+    <p>她的背后，数不清的金色眼睛自黑暗中浮现，地狱犬群在不久之前已经对他们形成了合围之势。它们可能是世界上最恐怖也最诡秘的犬类，越是接近猎物越沉默，只有浓重血腥味，铺天盖地。</p>
+    <p>追击队不敢靠近正是因为他们之间隔着庞大的犬群，这些凶兽是连豢养者都不愿亲近的。乔薇尼抬起巨蟒，指向雪地车上消瘦孤峭的身影，扣动了扳机。</p>
+    <p>她对准的是路麟城，路麟城丝毫没动，倒是娜塔莎吓得立刻趴下。枪响之后并未有一颗致命的子弹射来，巨蟒喷出了龙息般的烈焰，那道火焰之明亮之可怕，连犬群都为之震慑。</p>
+    <p>火焰闪灭的瞬间，夫妻两人在火光中对视，路麟城的目光是冷冽的，乔薇尼的眼神更是透出寒冷的嘲讽。</p>
+    <p>“她带了龙息弹！她从哪里搞来的龙息弹？”娜塔莎一跃而起，瞪大了眼睛。</p>
+    <p>
+      乔薇尼枪中装填的已经不是贤者之石子弹了，而是更为罕见的龙息弹。它的制造技术至今都是个秘密，号称用炼金术把巨龙的吐息封入了弹头，子弹离膛，弹头中的火元素就被释放出来，形成龙息般的侵蚀性火焰。这当然是强大的武器，但跟贤者之石子弹不同，它无法洞穿坚硬的装甲也无法杀伤龙类或者高阶混血种，却能对缺少甲胄防护的军队造成恐怖的“群体灭绝”效果，因此它真正大显身手的地方其实是中世纪的战场上。有很长的一段时间里，自称为“魔法师”的炼金术师们就是凭着龙息弹的威力赢得君主的恩宠和赏赐，在战场上如同玩弄火焰喷射器那样肆意地屠杀。
+    </p>
+    <p>娜塔莎还没说完，乔薇尼再度扣动了扳机，一左一右射出两道龙息，连冰封的湖面都无法中止这种恐怖的燃烧，两道火墙在乔薇尼的身侧展开，如同巨大的火翼。</p>
+    <p>犬吠声有如万鬼夜哭，原本已经包围了乔薇尼的地狱犬们呜呜地退后，它们聚集起来有上百头之多，轻易能把乔薇尼撕成碎片，却不敢轻易越过火墙。</p>
+    <p>娜塔莎忽然明白了乔薇尼为何要动用龙息弹，龙息弹对他们有装甲的雪地车并无很大的威胁，却会让那些智商低下的地狱犬误以为有一头巨龙出现在狩猎场上，乔薇尼是要吓阻它们好给路明非争取时间。</p>
+    <p>犬群的边缘呈现出溃散的迹象，少数地狱犬开始奔逃，然而它们背后横着追击的车队。它们当然也不愿靠近火力强猛的追击队，但对龙息的恐惧显然更甚，它们在恐惧中毫不犹豫地扑向了其中一辆雪地车。</p>
+    <p>如果只是单独的地狱犬试探性地接近，雪地车的火力完全足够击退它，但几头惊恐的地狱犬同时扑来，雪地车上的机枪手失去了冷静，机枪连续地怒吼，吐着半米长的火焰，连续打爆了两头地狱犬的脑袋。</p>
+    <p>但仅有眼睛等极少数的部位是地狱犬的弱点，更多的地狱犬仗着坚韧的鳞片突进到前腾空而起，落下的时候它们首先撕裂了机枪手的喉咙，然后掏出了驾驶员的心脏。它们饿得太久了，立刻就开始进食，趁着猎物的鲜血还有余温。</p>
+    <p>“我们靠得太近了！”娜塔莎惊呼。</p>
+    <p>“对准油箱射击。”路麟城冷静地下令。</p>
+    <p>
+      旁边那辆雪地车上的机枪手立刻执行了这道命令，他更有经验更冷静，一个三连点射就打爆了那辆溅满鲜血的雪地车。这对车里那些尚残留有意识的人来说无疑是解脱，冲天的火光里地狱犬被纷纷震飞，可这些恐怖的生物落地只是翻滚了几圈，再度爬了起来，嚼着嘴里的碎肉，低吼着绕车队移动，寻找新的破绽。两辆雪地车移动了少许的位置，把暴露出来的缺口补完。
+    </p>
+    <p>路麟城的指挥原本是没有问题的，雪地车之间恰好可以互相援护，他们的火力很强猛，足够威慑一群低智商的畜生，但那辆雪地车上的机枪手太紧张了，他本可以用更从容更准确的射击吓退地狱犬们。</p>
+    <p>“薇尼，别闹，你知道这么做的结果。”路麟城借助高音喇叭说。</p>
+    <p>他的声音在冰湖上激起共振般的效果，传得很远，却平静和煦，根本就是家中饭桌上丈夫在教训不懂事的小妻子，语带责备，却又不忍过于苛刻。</p>
+    <p>“滚你他妈的路麟城，”乔薇尼微笑着说，她平日里都是有麻利有担当的持家妇女，这时候却高高地昂着头，眼风如刀，像是一只桀骜的天鹅，即使是在猎人的枪口下，“带着那个女人来跟我讲条件么？有种你一枪崩掉她再跟我讲条件啊！”</p>
+    <p>娜塔莎一怔，刚要勃然大怒，却被路麟城一把拉住。</p>
+    <p>“薇尼，我跟娜塔莎之间不是你想的那样，她是委员会安排来照顾我的人，我没法拒绝。”路麟城温和地说。</p>
+    <p>
+      “没理解错，照顾你啊，多陪陪你啊，还可以跟你生个孩子什么的。对你们这种人来说也就是繁殖嘛，跟养殖场里的那些珍珠鸡一样，牺牲掉任何一个都无所谓。我也无所谓，我祝你们幸福祝你们快乐，多子多福。可路明非是我儿子，”乔薇尼说到这里声音忽然轻了起来，她指着自己心口，“那个孩子，是我的，谁敢动他，我就杀谁。”
+    </p>
+    <p>她的语气淡淡，说出“杀”字的时候语气轻松得就像在讲吃饭，可任谁都不会怀疑她的认真，大概对于有些人来说，杀戮和吃饭都只是人生中的一件事罢了。</p>
+    <p>
+      娜塔莎一直都从路麟城那里听说乔薇尼的厉害，连委员会都对这个家庭妇女保持着一定程度的尊重，可她偏偏不信，就算那是S级，也不排除她是在智力或者别的方面有着过人的天赋，就算真像路麟城说的那样乔薇尼在极盛时期能瞬杀自己，可摸了那么多年的饭勺，就算是杀人越货的手也会迟钝吧？可当乔薇尼说出这句话的时候，她的瞳孔中仿佛闪过一道亮白的光，寒冷如死神镰刀上的浮光。
+    </p>
+    <p>她举枪对准娜塔莎，毫不犹豫地扣动扳机。娜塔莎吓得立刻躲到路麟城背后，巨蟒的弹仓能装六颗子弹，谁也不敢确定乔薇尼的下一颗子弹是什么。</p>
+    <p>路麟城倒是很镇定，只是略略举手遮挡了自己的眼睛。又是一道龙息般的烈焰，其中仿佛还有巨龙的吼声，但射程终是有限，只不过是炽热的狂风扫过追击队，反倒有点冬日暖阳般的暖意。</p>
+    <p>然而几只来不及闪避的地狱犬被龙息烧到，效果却是恐怖的，地狱犬身上的鳞片原本应该能抵挡火焰喷射器的近距离喷射，但龙息点燃了鳞片，火焰凶狠地侵蚀着它们的骨骼和血肉，它们没跑出多远哀嚎着倒下了。</p>
+    <p>娜塔莎战战兢兢地探出头来，路麟城正低头擦拭着自己的眼镜，无奈地叹了口气。</p>
+    <p>乔薇尼正哈哈大笑，别人看来她笑得连腰都直不起来，事实上她暗暗地摁住自己的伤口，以免被人看出自己受了重伤。</p>
+    <p>伤口并未继续渗血，她觉得自己还能撑得住，于是再度挺直了腰，“路麟城，这个女人不行，还是个小孩子。你老了，别祸害小孩子，人不能老了就变成禽兽。”</p>
+    <p>“是啊，我也觉得自己老了，而且变蠢了。”路麟城叹了口气，擦好了眼镜重新戴上。</p>
+    <p>
+      娜塔莎醒悟过来，乔薇尼只是跟她开了一个玩笑，而她纯属被乔薇尼的声势镇住了。众目睽睽之下谁都看到乔薇尼仅用几句话就把她吓得躲在路麟城身后，而乔薇尼谈到自己的语气就像谈起微不足道的小情人，而且路麟城也没有否认，这俩说话一唱一和的，旁若无人，俨然是夫妻两口子在饭桌上聊天。
+    </p>
+    <p>妒忌就像带毒的火焰，烧得她心脏都疼，她狠狠地咬着牙，激动得浑身哆嗦。</p>
+    <p>
+      “薇尼，这样不行的，他不能这么离开，迟早有一天他会失去自我，完全变成那个魔鬼的容器。”他顿了顿，幽幽地说，“那一千年完了，撒旦必从监牢里被释放，出来要迷惑地上四方的列国，就是歌革和玛各，叫他们聚集征战，他们的人数多如沙海。”这本是《圣经》中的句子，信徒们耳熟能详，可经他的嘴里说出来，在这刺骨的寒风中，闻着地狱犬群中传来的血腥气，每个人都情不自禁地打了个寒颤，像是能亲眼看到那末日般的未来。
+    </p>
+    <p>“如果神命令一个母亲杀死她的孩子，他就不是神了，应该从黄金的宝座上把他拉下来。”乔薇尼冷冷地说，“想要抓他，可以，从我身上碾过去。”</p>
+    <p>她用那么平静却又那么骄傲的语气说出这句话，仿佛时光倒流后她回到了最好的年纪，那么地风姿绰约，甚至飞扬跋扈，她身上那股冷艳的气息会让人忽略她的年纪，让人觉得是男人都会爱上这样的女人。</p>
+    <h2 id="第229章-但为君故133">第229章 但为君故(133) </h2>
+    <p>所有人都看着路麟城，等待他的命令，路麟城却久久地沉默着，难得见到他这么犹豫不决。时间一分一秒地流逝，路明非已经逼近界面，鬼魂即将渡过冥河。</p>
+    <p>“薇尼，你不要逼我……”路麟城抬起头来，声音发涩，眼角微微抽搐。</p>
+    <p>就在这时，什么沉重的东西架在了他的肩上，一声震耳欲聋的爆响，枪口闪灭的火焰把他的视野照得一片炽白。娜塔莎以他的肩膀为枪架，对着乔薇尼开枪。</p>
+    <p>枪口焰灭却之后的两秒钟路麟城的视力才恢复，他眼睁睁地看着乔薇尼倒下，子弹打穿了她的左胸，中枪之后她还保持站立姿势几秒钟，没有看自己飚出的血花，也没有惊或者怒，还是默默地看着路麟城，带着似乎是嘲讽的微笑。</p>
+    <p>她蒙头的纱巾飞了起来，漫漫的长发在寒风中飞舞。那只桀骜的天鹅真的在猎人的枪声中坠落了，她是死了么？或者仅仅是折断了羽翼？</p>
+    <p>“碾过去！”娜塔莎冷冷地说。</p>
+    <p>路麟城忽然间眼眦欲裂，从没有如此愤怒如此狰狞的神色出现在这个男人的脸上，他从大衣里抽出手枪，甩手一枪就打碎了娜塔莎的头，跟着一脚把她的尸体踹下车。</p>
+    <p>乔薇尼其实不用说那些挑衅的话，他当然可以为了乔薇尼一枪崩掉娜塔莎，只是还没有被逼到那个程度。</p>
+    <p>他从车顶上一跃而下，矫健得像是猎豹，一把抓出驾驶员跳上驾驶座，猛踩油门冲向地狱犬群。</p>
+    <p>他乘坐的雪地车装甲最大也最厚，是车队的中心，这辆车一动，雪地车形成的阵型会立刻崩溃，副驾驶座上的人立刻扑上去抢夺方向盘，“路秘书长！冷静！”</p>
+    <p>路麟城没时间冷静，因为他太熟悉那些地狱犬了，一旦乔薇尼倒下，即使有龙息弹制造的火墙威慑，地狱犬们也会觉得危险已经被清除。追击队不会从乔薇尼身上轧过去，犬群却会扑上去，它们饿得太凶了。</p>
+    <p>
+      犬群真的接近了乔薇尼，它们中最大胆的几只被鲜血的气息吸引，凑到乔薇尼身边小心地嗅着，用鼻子拱她，像是小狗围着睡着的主人撒娇，但当它们确认乔薇尼已经失去反抗能力之后，凶性立刻爆发，扑上去狠狠地撕咬。血腥的飨宴一旦开始，所有地狱犬都忍不住了，它们发疯般地往上涌，往乔薇尼身上跳，它们彼此之间也撕咬，以争取分享食物的机会。如果不是身边的火墙还在熊熊燃烧，乔薇尼在瞬息之间就会被撕成碎片。
+    </p>
+    <p>路麟城忽然又松开了油门，他越过犬群看向前方的黑暗，狠狠地打了个寒颤，黑暗的边缘，男孩呆呆地跪着，瞳孔中映着龙息弹留下的火光。</p>
+    <p>他是如此地呆滞，却又如此地绝望，他还保留着要往前扑的姿势，双臂伸出去仿佛要接住那个倒下的中年妇女，但他们离得很远很远，他来晚了。</p>
+    <p>“后退！后退！后退！”路麟城大吼。</p>
+    <p>已经晚了，因为路明非已经看到了一切。</p>
+    <p>路明非也不知道自己为什么会回来，他相信乔薇尼也相信路麟城，相信老爹来了老妈就会没事，他已经抵达冰湖边缘了，凭直觉只要翻过那座雪岭就会看到正急于寻找自己的气垫船。</p>
+    <p>可是他在冰湖岸边忽然停下了脚步，他想起了临别时乔薇尼说的话，她说，“向前跑，别回头，绝对不要回头！还记得当年你参加校运会的5000米比赛么？就像那么跑！”</p>
+    <p>———————————————</p>
+    <p>
+      很多年前的那场校运会，他被体育老师强行指派去参加5000米的比赛，那可以看作一个惩罚，对他体育课上开小差的惩罚。他从小就是个不耐长跑的孩子，跑个1000米会累个半死，心脏像是撕裂那么疼。参加比赛的其他人都是体育特长生，都有机会角逐冠军，在女同学们的欢呼声里冲过终点，而他被讨论最多的时候，就是猜“路明非会被落下几圈”。
+    </p>
+    <p>那段时间他莫名地恐慌，连惯用的厚脸皮都有点撑不住了，被乔薇尼看了出来。乔薇尼说不就跑步么？谁怕谁啊！从今天开始每天早起一小时，老妈带着你练！</p>
+    <p>
+      比赛的那一天，乔薇尼拉着他的手来到塑胶跑道上，说，“明非你知道么？人的潜能是特别大的，书上说有个妈妈单手就把一辆翻倒的公交车抬起来了，因为下面压着她的孩子。人就是这样，你心里想赢就一定能赢，什么体育特长生都是扯淡！不就5000米么？跑不死的！跑就是了，别看别人，更重要的是别回头，心里一点回头的念头都别有。”这时候几个体育特长生结伴从旁边过，有人大声笑着说路明非你妈给你鼓劲儿呢！没想到你还是个妈宝啊！
+    </p>
+    <p>乔薇尼冷冷地看了他们一眼，凭眼神就吓退了那几个男孩。男孩们去找各自的教练热身了，乔薇尼拍拍路明非肩膀，“赢过你自己就行了，老妈相信你不会是最后一名。”</p>
+    <p>
+      那天路明非把老妈的特训发挥到了极致，几乎是他在推着那些特长生在跑，他使劲地咬着牙，挺着胸跑，姿势既不正规也不美观，但就是跑得飞快。他是最后一名，但没有被那些特长生甩下很远，更别说一整圈，反倒是特长生们因为害怕被他超过没面子，纷纷跑出了自己的最好成绩。快到最后一圈的时候，他的力气耗尽了，全校学生的呼声中，特长生们开始加速冲刺了，他跌跌撞撞地跑着，被越拖越远。
+    </p>
+    <p>这时候乔薇尼出现在终点线上，路明非从她身边擦过的时候，想扭头去看她，却听到老妈厉声说，“向前跑！别回头！”</p>
+    <p>
+      那是他进入卡塞尔学院之前最闪光的时刻，在全校同学面前，这个怂货跟特长生们一起开始冲刺了，连惩罚他的体育老师都看懵了，怀疑自己错过了一个天才。路明非觉得自己的视线在收窄，没有了上下左右只有前方，他的心脏发出战鼓般的声音，他的脚步无比沉重可身体又无比轻盈，他扭动着身体猪突狼奔，超过了一个又一个特长生。他的精神好像比身体跑得更快，快得要飞起来。
+    </p>
+    <p>
+      跑在最前面的哥们几乎疯掉了，他是全校众所仰望的田径苗子，有望去省队的人，现在被个野狗般的家伙在后面穷追不舍。这就像一辆法拉利跑在高速路上，后视镜里忽然出现了一辆拖拉机，关键那拖拉机还打着左转灯，流露出想要超车的意思。最后的角逐就在好苗子和好野狗之间了，被甩下的兄弟们甚至停下脚步互相瞪眼，然后一同关注这场比赛的结果。两个人并肩冲线，那时候路明非眼睛里就只剩下老妈了，老妈双手抱怀两脚不丁不八地分立，仿佛江湖上的绝世高手又似劫道的女土匪。他合身撞向终点，在外面看来那不过是野狗在最后一刻失去了平衡，但在他的感觉里那是共工撞向不周山般的勇烈。
+    </p>
+    <p>他不知道胜负也没有力量再多跑哪怕一步，冲过终点就一头栽向跑道，但他并没摔倒，因为乔薇尼一把抱起了自家孩子，把他高高地举过头顶，向着全场观众展示一圈。</p>
+    <p>那时候路明非已经昏昏沉沉了，完全没有想老妈哪来的这把膂力，他如同被托在云端里，以为所有人都是给自己喝彩的，露出一个憨憨的笑容。</p>
+    <p>
+      他最终的成绩其实是第二名，好苗子玩了命终于守住了自己的尊严，但乔薇尼倒也无所谓，她拎着那个廉价的塑料奖杯跟路明非一起回家，路上还买了点菜，洋洋自得地跟路明非说你看老妈说得没错吧？人的潜能很大的，只要你相信你能赢，你就一定能赢，你老爸运动上确实是个菜鸡，可你好歹也遗传了老妈我的基因啊！你老妈我年轻的时候……
+    </p>
+    <p>路明非从来没有跟乔薇尼说过，那跟潜能应该没什么关系，他之所以能跑得那么快那么狠，是因为乔薇尼站在终点，他在奔向自己雄赳赳气昂昂的老娘，因此无所畏惧。</p>
+    <p>———————————————</p>
+    <p>他忽然害怕起来，因为这一次他没有向着母亲的方向跑，他越跑就离母亲越远。他觉得自己再跑下去就会失去那个人了，背后的风里混着枪声吼声和犬吠声，像是一场锣鼓喧天的大戏……谁在开枪？谁在怒吼？</p>
+    <p>他想起小魔鬼的声音在他耳边说这个女人不可信，她也许真的不可信，她会骗你，但她爱你……他掉转头，玩了命地往回跑，但他僵硬的双腿不够快……</p>
+    <p>路明非用颤抖的双手捂住脸，静静的，一点声音都不发出。这男孩似乎根本不愿意相信眼前发生的一切，所以他选择不看，他本该是这种懦弱的想把头埋起来当鸵鸟的家伙。</p>
+    <p>但路麟城还是大吼，“后退！后退！后退！”</p>
+    <p>“不，不，不要，别这样……”冰面上的男孩低声地哭嚎着。</p>
+    <p>“你们怎么敢！怎么敢！！怎么敢！！！”却有另一个声音在冰湖上回荡，像是从天穹正中央笔直地传下，又在大地和天空之间反复回荡。</p>
+    <p>事实上这两个声音都是他一个人发出的，像是真的有另一个人在他的身体里苏醒。</p>
+    <p>连地狱犬们都为之恐慌，不久之前喷吐火焰的巨龙从冰湖上消失了，此刻却有一个更加恐怖的君王出现了，他的气息无处不在，他的威严和愤怒仿佛实质。</p>
+    <p>路明非放下了捂脸的手，血红的眼睛深处，迸射出金色的光芒。</p>
+    <p>回来了，那种君临天下的愤怒又回来了，凶暴的神情浮现，他的声音尖利而扭曲，像是从弯曲的白银号角里吹出来的，恶魔的悲号。</p>
+    <p>他分不清这是他自己的声音或者心中魔鬼的声音，悲伤和愤怒把他的脑海烧得一片通明……杀了他们么？杀了！杀了！那就……如君所愿！</p>
+    <h2 id="第230章-但为君故134">第230章 但为君故(134) </h2>
+    <p>不存在什么交易过程，问答都在瞬息之间，甚至不能分辨那是他和路鸣泽之间的对话还是他的自言自语。</p>
+    <p>极度衰弱的身体在瞬息之间苏醒，每一处关节都像是阀门那样打开，被禁锢的力量洪流洗刷着血管和神经系统，抵达四肢百骸的每个角落。</p>
+    <p>数不清的言灵或者咒语在他脑海里回荡，有些他听得懂有些他听不懂，但是解锁……全部解锁！</p>
+    <p>他冲着恐惧的地狱犬群咆哮说，“杀！”</p>
+    <p>那不是一个字或者一个音节，而是一道命令，焚城之令。命令下达的瞬间，血腥气如罡风那样吹过雪原，地狱犬们坚韧的鳞片被罡风吹得如落叶般四散，它们的血肉都如灰尘般被吹散，化为浓腥的红色暴风雪。</p>
+    <p>曾经出现在绘梨衣身上的神迹在他身上重现了，当他说出死亡的时候，真的死亡就降临，世间万物都是他的镰刀，要顺他的心意，在肆虐的风雪中纵横斩切，不分敌我地剥夺生命。</p>
+    <p>裹着鳞片的罡风席卷了车队，他们如同被钢铁的洪流正面冲击，有人想要逃走，但是没能跑过死神的镰刀，有人却只是呆呆地看着，任凭自己被红色的暴风雪吞没。</p>
+    <p>———————————————</p>
+    <p>“那就是……至尊的愤怒啊。”避风港的楼顶，老人们遥望着远方。</p>
+    <p>事实上以他们和事发地点的距离，只能听到鬼啸般的风声，但其他的追击队已经赶到了风暴的边缘，虽然不敢逼近，却还是想办法传回了前线的画面，那场血红色的风暴仿佛永远不会休止，风暴之中千魔夜啸。</p>
+    <p>“娜塔莎那个蠢货！”有人冷冷地说。</p>
+    <p>“是至尊的愤怒，还是路明非的愤怒？”又有人问。</p>
+    <p>“他们是共情的，”杜登博士低声说，“路明非所爱的一切，至尊也爱，路明非所恨的一切，至尊也恨。何况那位至尊本该是没有母亲的，对他来说，母爱也是弥足珍贵的东西吧。”</p>
+    <p>———————————————</p>
+    <p>风暴平息后的冰湖之上，残存的树上都挂着血红色的冰棱，巨大的冰裂缝四面延伸出去，每一道冰缝都是赤红的。</p>
+    <p>这是一切生命都禁绝的区域，却有一队雪地车缓缓地移动着，橡胶履带轧到碎冰和骨骸的碎片，偶尔发出破碎的微声，都令车上的人心惊胆战。</p>
+    <p>他们亮着大灯，雪后的湖面上能见度很高，大灯能照出很远，蒙蒙的光里那个恐怖的暴君正抱着中年妇女，在尸骸堆中漫步而行，他的眼中空无一物，甚至没有回头看向车队的方向哪怕一眼。</p>
+    <p>他步履蹒跚，似乎双腿随时都会折断，对着天空哭嚎说，不要死！不要死！不要死啊！</p>
+    <p>或者他已经不再是那位暴君，重新又变成了那个孤独无依靠的男孩。</p>
+    <p>
+      从错误方向返回的追击队已经跟踪了他很久，他一直在这个区域游荡，如同迷失了道路的孤魂野鬼，永远也走不出这个圈子。路麟城指挥的追击队已经全军覆没，其中最幸运的就是那些静静坐在雪地车里的血色冰雕，上去轻轻一碰就化为碎片，像是风化了几百年的古尸。没有人知道这是什么言灵制造的效果，它似乎并不存在于已知的言灵序列表中，只是狂泻的暴怒与暴力，把一切生命都洗刷和吞噬。
+    </p>
+    <p>那孩子终于跪下了，僵硬的腿发出折断般的声音，他又跪了几秒钟，这才真正倒下。倒下前的最后一刻，他还紧紧地抱住了怀中高大的妇女。</p>
+    <p>
+      长达五分钟的静默之后，追击队长才挥手下令，两翼的两辆雪地车无声地突前，从两个方向逼近目标。他们的动作轻捷而迅速，车在路明非左右相距十米的地方停下，队员们散开为半月形，轻重武器指向孩子和中年妇女。路明非没有丝毫异动，他紧抱着乔薇尼却把头偎依在乔薇尼怀里，也不知道是孩子要保护母亲，还是母亲保护着孩子。
+    </p>
+    <p>也许他真的昏迷了，也许只要稍微的触碰他就会重新化作恐怖的君王，追击队长狠狠地抽着烟，迟疑。</p>
+    <p>他忽然丢掉了烧了一半的烟卷，从队员手中接过一支突击步枪，将一枚普通的钢芯弹上膛，对准了路明非的后背。</p>
+    <p>他当然不觉得这种程度的武器能杀死对方，不过如果中了这一枪对方还没有反应，那就是真的昏迷或者死了。</p>
+    <p>但在他扣动扳机之前，一把蒙着冰霜的手枪点在他的后脑上。</p>
+    <p>“放下你们的武器，这里有我，这里的事态由我控制。”背后的人嘶哑地说，追击队长能够感觉到对方身上冰寒的水滴打在自己的脖子上。</p>
+    <p>“路麟城秘书长……您……没事就好。”追击队长的声音微微颤抖，他毫不怀疑背后的男人会开枪，所以慢慢地松开了扳机，并且高举右手，好让背后的男人看清楚。</p>
+    <p>追击队员们都盯着那个像是被烈焰灼烧过却又浑身挂着冰棱的男人，他如鬼魅般忽然出现，丧乱潦倒却又文质彬彬。</p>
+    <p>从现身的那一刻开始，他始终盯着远处的妻儿，透过破碎的镜片看不清他的眼神。谁也不清楚到底是那个男孩可怕还是这个文质彬彬的父亲可怕。</p>
+    <p>———————————————</p>
+    <p>气垫船耗尽了燃油，像是疲惫的野兽那样停在了一道雪坡的侧面，布宁愤怒地捶在仪表台上，抄起伏特加灌了一大口。</p>
+    <p>他们在雪原上横冲直撞了一整夜，此刻犬吠声和枪声都消失了，他们终究还是未能突破那扇隐形的门。</p>
+    <p>“门关闭了，他们走了。”楚子航疲惫地说。</p>
+    <p>他一直在凝神地感受透过界面传来的、时断时续的气息，这种气息令他的血液沸腾，像是血管里涌动着强劲的潮汐。但现在退潮了，他重新回复了平静。</p>
+    <p>“连耶梦加得都没法帮你打开这个尼伯龙根，制造它的还真是某个了不起的家伙呢。”苏恩曦嘟哝。</p>
+    <p>“什么耶梦加得？”楚子航没听懂。</p>
+    <p>“江湖黑话，小孩子不用懂。”苏恩曦懒懒地说。</p>
+    <p>“又得拉雪橇去取燃料，”布宁说，“地堡里剩的燃料也不多了，这么瞎闯还是不行。”</p>
+    <p>“只剩最后一招了。”苏恩曦显得有些犹豫，“把这里的坐标发出去，让全世界都知道。几个小时之后，我们应该就会看到空降兵了，卡塞尔学院执行部的人，俄罗斯国防部的人，应该还有不怕死的猎人来凑热闹。”</p>
+    <p>布宁和楚子航对视一眼，目瞪口呆，“要玩这么大么？”</p>
+    <p>
+      “我们看热闹的，从来不嫌事儿大。”苏恩曦挑了挑眉，不知道从哪里摸出一部卫星电话来，“喂……滚！我没问你股价的事儿！拿出你的笔和小本子给我记录，三个小时之内，把BBC、CNN、ABC、FOX、每日邮报、赫芬顿邮报、纽约时报……其他杂七杂八的能买的也都给我买了……我没说要买这些媒体！我说把它们最大的广告位都给我买了！”
+    </p>
+    <p>“广告内容……广告内容……首先是一个坐标，我马上会发讯息给你，”苏恩曦挠着额角，“然后给我加一句话……那一千年完了，撒旦将从监牢里被释放。”</p>
+    <p>
+      “行了行了就这样，他们要是问你为什么投放这条广告，就说是你们家老板的行为艺术，然后把赫尔辛基美术馆给我包下来，随便搞个什么艺术展。至于那些该懂的人，自然会看懂的。”苏恩曦不耐烦地想挂电话，可还是叹了口气，追了几句话，“给我把乱七八糟的股票都抛掉，回笼的现金全部买入黄金、能源和军工股，别问那么多问题！照我说的做！”
+    </p>
+    <p>她挂断了电话，靠在车壁上，有些出神。</p>
+    <p>“这种时候了你还关心你的股票？”楚子航小声问。</p>
+    <p>“买进这些，是真的要世界末日了？”布宁也问。</p>
+    <p>“总得对未来抱有希望，对不对？”苏恩曦耸耸肩，“神话里不也说么，诸神的黄昏之后，被焚烧的世界树仍会重生，幸存的诸神们搀扶着去向南方的旷野。”</p>
+    <p>说到这里她又叹了口气，没好气地说，“可我怀有希望干啥？这世界末日不就是我们几个搞出来的么？”</p>
+    <p>———————————————</p>
+    <p>路明非在黑暗中睁开了眼睛，还是那件灯光昏暗的病房，只不过再也不是温暖柔软的床铺了，他穿着厚重的拘束衣，被锁在钢铁结构的床上，浑身插满了电极和输液管。</p>
+    <p>黑暗中弥漫着淡淡的烟草味，前方一个时明时暗的红色光点，静得能听到点滴的滴答声，滴答滴答，滴答滴答，像是流逝的时间。</p>
+    <p>“你妈没死，但是受伤很重，所以不能陪你了。”抽烟的男人低声说，伸手不见五指，他却立刻觉察路明非已经醒了。</p>
+    <p>眼泪无声无息地流了下来，路明非如同从悲伤至极的噩梦中苏醒，他不想在路麟城面前流露出脆弱，但路麟城只用一句话就打破了他的防线。</p>
+    <p>铁床下面安装着自动升降和反转的机械装置，轻微的马达声中，路明非连人带床被竖了起来。</p>
+    <p>“你们不用这么捆着我，不捆我也动不了。”路明非尽量不流露出哭声。</p>
+    <p>之前只是双腿麻木，现在他从腰以下都失去了知觉，也不知道是因为乔薇尼给他注射的针剂还是再度调用了所剩不多的生命。</p>
+    <p>“委员会的要求，如今我已经没有什么可说服他们的筹码了，你杀了很多人，一念之间，没人知道该把那账算在谁身上，你还是那个魔鬼。”</p>
+    <p>“我还能叫你老爹么？还是路秘书长？”路明非问。</p>
+    <p>“随你的便，我不像你妈，女人就是感情动物，头脑一热就会发疯，这一点你是遗传了她。”路麟城淡淡地说。</p>
+    <h2 id="第231章-但为君故135">第231章 但为君故(135) </h2>
+    <p>“你们一直都知道对么？”路明非轻声说，“所以我会被送去卡塞尔学院，我是一件武器，屠龙的武器。”</p>
+    <p>
+      “不，你想得太多了，你小的时候，我们更愁的是你是个没任何天赋的孩子，一点都不像我和薇尼的孩子。”路麟城说，“真正觉察你天赋的人，是希尔伯特·让·昂热。是他把你用作了屠龙的武器，那家伙只为了复仇活着，任何人对他来说都是武器，连他自己都不例外。”
+    </p>
+    <p>“你爱妈妈么？还是更爱你的事业，比如这座避风港。”</p>
+    <p>“我和薇尼都更爱事业，我们的结合是两个人干着同一个事业，因为相处得太久了，偶然地擦出了火花。是你的降生改变了这一切，否则那就只是一闪而逝的激情。”</p>
+    <p>“那个娜塔莎呢？她是什么东西？”</p>
+    <p>“大人的事孩子不用都懂。”</p>
+    <p>“在你不知道的时候我已经长成大人了，”路明非冷冷地说，“情人么？或者，玩具？我猜在我进入这座避风港之前，你并没跟妈妈住在一起吧？”</p>
+    <p>
+      “记得我跟你说过么？在我最初的规划里这是人类最后的庇护所和新时代的伊甸园，人口比例应该是一个生育期的男人配十个生育期的女人，最强的男女结合剩下最强的后代，然后尝试新的组合。只不过被委员会否定了，他们担心会造成社会结构的崩溃。”路麟城轻描淡写地说，“薇尼是我最重要的女人，但不是唯一的，你不在的时候，我和薇尼也不用伪装成研究所的普通夫妻，恰好委员会又把娜塔莎送来监视我，送这样的女人来，他们是故意的。”
+    </p>
+    <p>“这是我真正的老爹么？Ｓ级混血种和风流浪子，我还以为你真的会为戒烟这种事烦恼呢，现在想来，你大概从来没有戒过烟吧？你和老妈在我面前演的那一套，都是骗我的。”</p>
+    <p>
+      “不完全是，也是免得研究所的人对我们起疑心，那间研究所里有很多龙族相关的古文明资料，我和你妈用了很长时间才解读成功。”路麟城弹了弹烟灰，“那段时间我也很开心那么演戏，好像我真的是一个有家庭的普通男人，真的能够安定下来过岁月静好的生活。你小学的时候，经常被那些家里有势力的孩子欺负，我有时也会很生气，想要出门把他们老爹的头打爆。如果从小陪你长大的是那种老爹，你会不会觉得更幸福一点？”
+    </p>
+    <p>“所以我妈也不是为了那点买菜钱会跟菜贩子吵架的人，对吧？”</p>
+    <p>
+      “当然不是，在我们那一代混血种里，你妈耀眼得就像凤凰，半个卡塞尔学院的人都想追她，在我追到她之后半个学院的人都想打爆我的狗头。她不是战斗型，但学业最棒，行动里胆大心细，是最优秀的特工，喜欢飙车喜欢摇滚，还是赛艇队的中坚力量，帮卡塞尔学院拿下了四届跟芝加哥大学的友谊赛，传统上我们并不会派出体能有天赋的选手，因为那实在太欺负人了。”路麟城说，“还记得那时候我和你妈偶尔出国开会么？落地就会有豪华的跑车接她，她在布达佩斯喝白兰地，穿着12厘米高的高跟鞋跟人跳探戈，回到家里就穿地摊上买的20块一条的裙子，塑料拖鞋，看着你做作业。”
+    </p>
+    <p>他的声音低沉富于韵律，讲得云淡风轻但画面如在眼前，路明非沉默片刻，又一次无声地流下泪来。</p>
+    <p>
+      原来他就生在“楚门的世界”里，在那里默默无闻地长大，降龙伏虎的爹妈们收拢了爪牙在他面前伪装工薪阶层，而他却一直做着白日梦，说自己其实有着秘密的身世背负着拯救世界的重任。可如今想来，他怀念的却是那个虚假的路麟城，除了学问一事无成的小研究员，为了孩子能买上一套婚房而默默地存着出国津贴。
+    </p>
+    <p>在那个他被看不起的梦里，好像更幸福一点。</p>
+    <p>“你妈小的时候，有点像你喜欢的那个陈墨瞳，不过还要更闹一点。”路麟城又说。</p>
+    <p>“我要见见妈。”路明非说。</p>
+    <p>“我知道你不会听我说几句话就信。”路麟城从旁边抓起遥控器，摁下按钮，墙上的大屏幕亮了起来。</p>
+    <p>路麟城就在那块屏幕下席地而坐，衬衫领口松松垮垮地打开，抽着烟，身边都是散落的烟蒂。</p>
+    <p>他胡子拉碴，头发油腻，看起来消瘦得吓人，丧乱又潦倒，却有种独特的魅力，大概这才是他真实的模样。</p>
+    <p>
+      屏幕上是另一间病房，乔薇尼静静地躺在病床上，跟路明非这边比起来那边堪称热闹，各种医护人员进进出出，病床边随时围着三五个人。乔薇尼的脸上惨白，身上跟路明非一样扎满电极和输液管，闭着眼睛，长长的睫毛如同雏鸟的翅膀。她身边的仪器上显示她有着平稳的心跳和呼吸，血压却很低，可以想到如果不是那套复杂的维生装置在保护着她，她随时都会停止呼吸。
+    </p>
+    <p>“放心了吧？她会受到最好的照顾，但要想唤醒她并不简单，医疗组只是说他们会尽力。”路麟城说。</p>
+    <p>“还不行，”路明非冷冷地说，“你让老妈病房里的所有人左手捏右耳朵转过来面向镜头。”</p>
+    <p>路麟城一愣。</p>
+    <p>“我怎么那不是你们伪造的视频？”路明非说，“你也不会让我过去亲眼确认。”</p>
+    <p>路麟城长长地叹了口气，站起身来摘下墙上的电话，“通知薇尼病房的所有医护人员，左手捏右耳朵，转过来对着镜头，把舌头吐出来。”</p>
+    <p>片刻之后，大屏幕上的所有人，除了乔薇尼之外，都如路明非要求的那样做出了怪异的动作，路明非这才点点头表示满意。</p>
+    <p>“老妈还活着，在你们手上，是你们的人质。”路明非说，“你们要我怎么做？”</p>
+    <p>“完成切割，在你的思维深处杀死那个寄生体。”</p>
+    <p>“杀死寄生体之后我就没有任何价值了，我怎么知道你们一定会救醒老妈？”</p>
+    <p>
+      “我是你爹！你想救你老妈我也想！”路麟城忽然怒了，“是你们两个把事情搞成今天这个样子！原本一切都不会有问题！切割会在我的安排下顺利地进行，你会得到自由，你会成为这个避风港的一员，你是路麟城的儿子，在这里会被每个人尊重。我可以像赶走一条狗那样赶走娜塔莎，搬回家里去住，我们可以像以前一样伪装成普普通通的一家人！可是你们不相信我，你们不觉得我是这个家庭的一员！”
+    </p>
+    <p>路明非默默地听他吼完，“对不起，在老爹和路秘书长之间，我觉得你还是更像路秘书长。”</p>
+    <p>“你说什么？”路麟城眼神凶狠。</p>
+    <p>
+      “如果让我在救一万个人和救妈妈之间选，我会选救妈妈，虽然我心里会很难过，但我没法不救妈妈。”路明非无声地笑笑，“老爹你应该会选救一万个人，对吧？你是路秘书长，是要做大事的人，你心里装的是人类的未来，我这种想过平凡日子的人，其实是不配当你儿子的，谢谢你这么多年还一直容忍我。”
+    </p>
+    <p>路麟城沉默了片刻，铁青着脸，然后他不踩灭手中的烟蒂，推门离开。</p>
+    <p>
+      出门前他背对着路明非丢下了最后一句话，“娜塔莎用的只是一枚普通子弹，也避开了你妈的要害，她虽然不知进退，但还不至于敢在我面前杀你妈。真正对你妈造成伤害的是你驱动的言灵，我们连那种言灵的名字都不知道，但它对领域内的一切生命实施群体灭绝式的杀戮，你的愤怒没有指向我和你妈，我们才能勉强活下来，但即使是你‘杀戮’的这个念头，已经足够重创你老妈了。别以为自己是救主，你才是悲剧的源头，而你蠢到相信那个蛊惑你的寄生体！”
+    </p>
+    <p>机械发出嗡嗡的运转声，路明非重新被放平，黑暗中他望着其实看不到的天花板，默默地想着路麟城最后的那番话。</p>
+    <p>记忆回到冰湖上的那一刻，地狱犬群狂喜着扑向乔薇尼，要享受血肉的盛宴，他沉浸在母亲死去的巨大悲痛中，恐惧得不能自控甚至不能呼吸。</p>
+    <p>在外人看来他立刻挥手召唤出了那血红色的罡风，可其实仍有短暂的幻境。</p>
+    <p>
+      在路明非的视野里，原本还有一段距离的乔薇尼忽然躺在了他的双臂中，但时间并未完全停止，她胸口的弹孔正汩汩地渗出血来，脸上身上都是被地狱犬利齿撕出来的伤口。地狱犬群围绕着他们，慢动作扑来，已经一枪爆头的娜塔莎居然又神奇地回到了雪地车的车顶上，跟路麟城手挽着手，郎情妾意郎才女貌，她还妖娆地吹着枪口的硝烟，雪地车上的机枪手们正以慢动作把枪口转过来对准他们。
+    </p>
+    <p>他好像忽然变成了那个连跑完5000米都费劲的孩子，悲伤又害怕地抱着母亲，被整个世界重重地压着，无人回应他的求救。</p>
+    <p>但救主还是有的，巨大的冰树轰隆隆地生长出来，冰湖上瞬息之间生满了玉树琼花，许久不见的路鸣泽踏着节奏而来，白色的风衣起落，鞋跟敲打冰面的声音轻盈美妙。</p>
+    <p>“你怎么还是那么废物呢哥哥？”他忽然就从远方来到了路明非面前，带着责备的语气说话，“自己搞不定的事，交给我就好啦。交给我，放心地沉睡，你爱的人都会幸福。”</p>
+    <h2 id="第232章-但为君故136">第232章 但为君故(136) </h2>
+    <p>“你就这么在意你是不是这具身躯的主人么？你不是愿意为朋友赌上命的人么？”</p>
+    <p>“交给我，我可以救你的朋友，我可以救你的家人，我可以救你在乎的所有人。”</p>
+    <p>“说到底还是你太自私了，你不愿意放弃自己的存在，结果你把所有事情都搞砸了。”</p>
+    <p>“在那个没有你的世界里，你爱的人都会快乐，为什么不呢？你我之间，为什么非要让弱的那个活下去呢？只因为强的那个是恶的么？”</p>
+    <p>“在善良懦弱小孩的世界里，最后所有人都会死，只留下他孤零零的一个人。”</p>
+    <p>路鸣泽化身为在他耳边萦绕的风雪，反复地呢喃，他痛苦得想要捂住耳朵，却无法放下怀中的母亲。</p>
+    <p>如今默默地躺在这里回想，那些话字字鲜明，透着魔鬼的恶意，偏偏又是无可辩驳的真理。</p>
+    <p>一直以来他都觉得自己默默地牺牲着，是他的牺牲一次次地拯救了世界，可也许拯救世界的人其实是魔鬼，而他充其量只不过是献祭给魔鬼的血食。</p>
+    <p>他那么的害怕交易自己最后的1/4生命，也许不是为了什么崇高的目标，只是这个懦弱又可怜的灵魂想要继续占据这个躯体。</p>
+    <p>当这个灵魂沉睡而魔鬼苏醒的时候，世界也许会变得更加美好，魔鬼可能磨牙吮血，但魔鬼跟他爱着同样的人，会对妈妈好对诺诺好对楚子航也好，魔鬼甚至会在他们面前故意装出乖乖的模样，他们甚至都不会察觉到躯壳里的灵魂已经换成了魔鬼的。
+    </p>
+    <p>这样不好么？为什么那个恶的强大的就该沉睡？那个自以为善良的弱者却要自私地霸占着躯壳？没有人真的需要他，他才是真正的累赘。</p>
+    <p>他缓缓地闭上了眼睛，睡着了。真奇怪，睡得那么平静，就像他来到避风港的第一晚。</p>
+    <p>———————————————</p>
+    <p>夜晚寂静而漫长，赫鲁晓夫楼的一个小套间里充斥着烟味，路麟城独自坐在桌边，散着衬衫的领口和袖口，吃着一碟炸焦了的花生米。</p>
+    <p>
+      桌上的杯子里塞满了烟头，一整瓶伏特加已经喝掉了大半。路明非住在这里的时候其实他也没有回过几趟家，这里能不能算作是他的家也是个问题，可此刻老婆孩子躺在医院里不同的病床上，他却回到了这个简陋的房子里，抽烟喝酒吃花生米，很像当年他伪装过的那个潦倒的小研究员。
+    </p>
+    <p>“叮”的一声，路麟城起身来到烤箱旁，从里面端出一只烤珍珠鸡来。</p>
+    <p>他从养殖场要了这只最肥的珍珠鸡，杀好洗干净了，鸡肚子里塞满了姜片料酒和葱段，慢火烤了整整两个小时，鸡皮油亮，香味扑鼻。</p>
+    <p>他端着珍珠鸡回到桌边，用餐刀开，一口鸡肉一口酒，大快朵颐，风卷残云地吃了大半只，忽然停住，丢下手中的餐刀，叼着一支烟靠在椅背上，默默地看着墙上的相框。</p>
+    <p>
+      照片上是夏天的景象，一家三口坐在野餐垫子上合影，戴着草帽的路明非傻呵呵地笑着，乔薇尼举手遮阳，风吹着她的碎花连衣裙裙摆，纹路仿佛涟漪，路麟城自己则颇为神气地扛着自己做的鱼竿。这张照片是刻意用来妆点这个小公寓的家庭气氛的，甚至很可能是假的，合成出来的，路麟城却认认真真地看了很久，忽然呵呵地笑了起来，边笑边摇头，同时眼泪无声地划过脸庞。
+    </p>
+    <p>“我做的珍珠鸡，好像也挺难吃的。”他轻声地对照片里的人说，“也许是一个人吃的缘故吧？”</p>
+    <p>他又给自己倒上一杯伏特加，正要喝的时候，电话铃响了。</p>
+    <p>这男人的神色骤然变了，前一刻他是个喝到快不行的酒鬼，忽然间就变成了出鞘的快刀，眼风扫过似乎都能割伤人。</p>
+    <p>他起身拉开了大衣柜的抽屉，响的不是墙上那部壁挂式的电话，而是抽屉里的电话，黑色的塑料话机，看起来颇有年代感的老东西，此刻正叮铃铃地欢叫着。</p>
+    <p>路麟城抓起听筒放在耳边，沉默着。</p>
+    <p>“很多年都不联系了，还好么？”电话那头的人低沉地说。</p>
+    <p>“只能说仍然活着。”路麟城说。</p>
+    <p>这通电话并没有通很久，路麟城挂上话筒，还没回到桌边，那部壁挂式的电话又响了，路麟城微微皱眉，转而去接这部避风港内部联络用的电话。</p>
+    <p>“路秘书长，您儿子说想见您，我们找了其他所有地方都没找到您，所以试着打这个电话。”电话那边的人语气恭敬。</p>
+    <p>路麟城看了一眼腕表，距离他跟路明非的对话仅仅过去了七个小时，仅够睡一觉的时间，他似乎没那么容易就想通了。</p>
+    <p>但他仍然立刻披上大衣出门，等候在门口的两名持枪警卫立刻跟上了他的步伐。</p>
+    <p>
+      避风港里新的一天又要开始了，年轻人们穿着节日的盛装走在路灯下，怀里抱着书本。乔薇尼和路明非逃亡的事件被简单地遮盖过去，避风港已经提前进入了庆祝圣诞的气氛。一路上都有人跟路麟城打招呼，路麟城也如往常那样举手回礼，但他忽然转换的形象令大部分人措手不及，打完招呼之后很多人自己都迷惑了好半天，不知是不是认错人了。
+    </p>
+    <p>———————————————</p>
+    <p>“给我详细讲讲怎么切割，越详细越好。”路麟城赶到的时候，路明非平躺着眼望屋顶，安静地说话，几个小时前激烈的情绪完全消失了，感觉真是想通了放下了，整个人就差溢出得了福音的光辉了。</p>
+    <p>杜登博士也匆匆地赶到病房，他还没准备好给病人讲治疗方案，路明非的突然袭击倒是搞得他有点措手不及。</p>
+    <p>
+      但他还是迅速地理清了思路，坐在病床边，尽量用平稳的语气开始讲述，“我们会使用剂量很大的催眠药物，你会有一个很长的梦境。这个梦境是你最熟悉的，它会真实到让你怀疑到底什么是真实，但你必须保持清醒的意识，那是梦境，也是你的战场。恶魔就藏在那个梦境里，我们还无法确定他会以什么面貌出现。”
+    </p>
+    <p>“梦境里我和他都没有能力，对么？”</p>
+    <p>“很难说，但你和他在那个梦境里是完全对等的，可能你有能力他也有能力，或者你们俩都没有能力。用佛教的术语来讲，那是你的‘识海’，你们共同拥有那个识海，在识海中战斗，决定胜负的，是意志力。”</p>
+    <p>“就像游戏对么？进入游戏之后，现实里的肌肉就没用了，大家都得按照游戏的规则来，谁都不可能开局的时候就有三个基地。”</p>
+    <p>
+      “很好的比喻，而且谁都不能使用作弊技，这是一场绝对公平的战斗。这也是一场非常危险的战斗，因为梦境过于真实，一旦你失败，你会觉得自己真的死了，在现实里，你的身体也会忽然衰竭。但很快你的心脏就会再度跳动，因为那个恶魔会占领你的身体，一个意志死去了，另一个意志就会趁机苏醒。”杜登博士说，“那种情况下，我们就失败了，你的身躯必须被立刻摧毁，但我们也不确定这么做能不能毁掉那个恶魔。”
+    </p>
+    <p>“博士你们这套方案真的可靠么？像是玄学。”</p>
+    <p>“我也不是十分地有把握，虽然类似的心理实验在古籍中有记载，从现代心理学的角度也能解释，但你说得没错，这就是玄学。”</p>
+    <p>“在梦境里杀了他，就能真的摧毁他么？”</p>
+    <p>“这也是未知的，但至少能够压制他的意识。某些古老的神话中说，英雄杀死了恶魔之后，用身体作为容器封印恶魔的灵魂，以自己的意识为战场，继续和恶魔死斗，而他的身躯已经化作祭坛上的干尸。你扮演的就是那个英雄角色。”</p>
+    <p>“你说的不是古老的神话，你说的是《暗黑破坏神》，我玩过那个游戏。”路明非微笑。</p>
+    <p>杜登博士耸耸肩，“类似的故事在神话里到处都有。”</p>
+    <p>“听懂了，我可以配合，”路明非转向路麟城，“现在轮到我提条件了吧？”</p>
+    <p>“最好别太苛刻，我们并不是万能的魔鬼，无法承诺你一切。”路麟城冷冷地说。</p>
+    <p>“第一条件，我要亲眼看一看妈妈，算苛刻么？”路明非盯着他的眼睛，轻声问。</p>
+    <h2 id="第233章-但为君故137">第233章 但为君故(137) </h2>
+    <p>
+      监控屏幕里，男孩坐在床头剥一只橙子，把橙子瓣上的膜衣也耐心地撕去，喂到中年妇女的嘴里。中年妇女半躺在几只叠起的枕头上，神色慈祥地看着男孩，当男孩把橙子喂到嘴边的时候，她就会露出笑来，像个孩子那样乖乖地把橙子吃下去，有时候橙汁从嘴角溢出来，男孩就默默地为她擦去。
+    </p>
+    <p>乔薇尼和路明非的重逢居然是那么地安静，就像一部默片，路麟城下令所有医护人员都撤出那间病房，只有一个监视镜头沉默地盯着这对母子。</p>
+    <p>当然，镜头的背后却有几十双眼睛。</p>
+    <p>
+      整个上午，以杜登博士为首的团队都在看这场真人实景亲情剧，起初他们全神贯注，眼睛一刻都不敢离开屏幕，恨不得把每一帧画面都定格分析。他们实在不确定路明非脑子里想着什么，也许这世界上最凶狠的恶魔就藏在他的脑海里，甚至没人能确定他此刻是路明非还是那个魔鬼，所以务必严防死守。那个中年妇女也非泛泛之辈，说得上机敏诡秘、心狠手辣。然而路明非一直都在做这些琐碎的事，根本就是一个照顾老年痴呆父母的孩子，两个人之间甚至没有什么对话，仅有的感情交流就是凝视，凝视的时候双方都会无声地笑。众人越看越累，连杜登博士也离开了监控屏幕，端着杯酒在屋里踱步。
+    </p>
+    <p>“结束了！”有人高声说。</p>
+    <p>
+      屏幕上路明非给乔薇尼盖好了被子，贴在她耳边说了几句话，摇着轮椅离开了摄像头笼罩的区域。一群人推门往外疯跑，跑过大半条走廊又急停，平复呼吸之后转过拐角，才看到路明非端坐在轮椅上，透过金属百叶窗望向外面，午间的阳光被百叶窗滤过之后如光栅那样落在他身上，这个穿着白色病号服的男孩居然有几分圣洁的感觉，路麟城站在他背后，扶着轮椅。
+    </p>
+    <p>路麟城一直坐在病房外面抽烟，走廊里弥漫着淡淡的烟味。</p>
+    <p>“她这样只能说是没死，不能说是醒了。”路明非轻声说。</p>
+    <p>“已经尽了全力，单是让她继续呼吸，每天都得消耗大量的资源。”路麟城说，“她没有被放弃，只是因为她是你的母亲。”</p>
+    <p>“如果我不配合，她还是会被放弃的，对吧？”</p>
+    <p>“在这里任何人都可以被放弃，我和委员们也都一样，这座避风港之所以存在，是为了人类的延续，却不是为了某个人类的延续。”</p>
+    <p>“你们真是一帮狗娘养的混蛋啊。”路明非说，“这不是什么伊甸园，只是一个养珍珠鸡的大笼子，每个人都是待宰的珍珠鸡。”</p>
+    <p>“有时候我也这么觉得。”路麟城说，“但这个秘密不能告诉所有的珍珠鸡，那样他们会失去活下去的动力。”</p>
+    <p>杜登博士和他的团队就站在不远处，静静地听着这对父子聊天，论点可以说偏激，也可以说鞭辟入里，可两个人说起这些事的时候，语气淡得就像谈今天市场上的菜价。</p>
+    <p>“第二个条件，无论我是活着回来还是被肉体摧毁，妈妈都会得到最好的待遇。”路明非说。</p>
+    <p>“你希望我们就此签一份协议么？可在一个养珍珠鸡的笼子里，协议有什么用？”</p>
+    <p>“你个人保证就行。”路明非说，“如果委员会违背承诺，你就杀掉几个老家伙给我和妈妈陪葬就行。”</p>
+    <p>“有没有心里的人选？”路麟城说，“我的意思是，我先杀谁好？”</p>
+    <p>“随便吧，你看着来。”路明非顿了顿，“第三个条件，我要再见见那个魔鬼。”</p>
+    <p>“有必要么？真正的他隐藏在你的意识深处，你很快就能见到，我们捕获的只是被他放弃掉的躯壳而已。”</p>
+    <p>“安安静静地告个别，进到意识深处的时候，我和他就是敌人了。”</p>
+    <p>路麟城耸耸肩，一脸无所谓的模样。</p>
+    <p>———————————————</p>
+    <p>最终圣所，弥漫的水银蒸汽中，路明非再度见到了那个被捆在青铜柱之间的魔鬼。隔着生锈的金属栏杆望去，就像在博物馆中看一座古罗马时代的大理石雕塑。</p>
+    <p>“你和他之间，应该有很多往事吧？同生共死的经历，值得记忆的瞬间。”路麟城说。</p>
+    <p>“是啊，所以明知道他是魔鬼都不舍得，好像放弃了他就是背叛。”</p>
+    <p>
+      “人类就是这种奇怪的生物，很盲目，特别适合被神或者魔鬼蛊惑。在《旧约》的时代，摩西在《十诫》中以上帝的名义禁止所有信徒制作偶像，崇拜任何雕塑或者画像都被认为是偏离了神的旨意，然而到了《新约》的时代，天主教的教士们还是画出了圣母和圣子的样子，挂在圣徒们的家里，供他们日复一日地对着祈祷。人类需要偶像崇拜，需要相信某个东西真的关爱着自己，那是耶和华、圣母或者魔鬼，都不重要。”
+    </p>
+    <p>“老妈为什么会喜欢你这种人呢？你分明冷血得很，什么都不信。”</p>
+    <p>“你妈傻呗。”</p>
+    <p>“你们怎么能确定我会在意识深处杀死魔鬼？你们又不能跟踪我的意识，如果我跟魔鬼合谋把你们给玩了怎么办？”</p>
+    <p>“我恐怕你跟魔鬼之间并没有这么深的互信关系，当他意识到你想要除掉他，那他的本能反应就是先除掉你。”路麟城说，“我猜他现在已经知道了，你要打的并不是一场突袭，他就藏在你的识海里，等着你去杀他。”</p>
+    <p>路明非忽然想起源稚女来，在“幽深梦境里，一次又一次地兄弟相杀。</p>
+    <p>
+      他凝视着那张灰白色的小脸，有些想要伸手出去摸摸他，问问他愿不愿意醒来跟自己讲一句真话。问问他在意的到底是这具躯壳的控制权还是他们共有的那份感情？问问他是否在索要了1/4的生命帮他向赫尔佐格复仇的同时，他自己的心里也痛如刀搅？问问他如果为了救乔薇尼，两个人之间必须牺牲掉一个，他愿不愿意对着自己的脑袋开枪……
+    </p>
+    <p>他摇头苦笑，事到如今他居然还想这些有的没的，真是叽叽歪歪的典范了。</p>
+    <p>就在这时候警报声席卷了最终圣所，路麟城猛地抬起头，眼中流过冷厉的光。</p>
+    <p>沉重的脚步声由远及近，穿着防护服的人穿破水银蒸汽跑到路麟城面前，“秘书长！监测到避风港附近出现成规模的空间单位！”</p>
+    <p>“偏偏在这个时候，能否确定空间单位的身份？”</p>
+    <p>“卡塞尔学院执行部，从规模看，整个亚洲区和欧洲区的分部全部出动了。这很可能只是第一波，第二波正在路上。这可能是有史以来，学院最大规模的总动员。”</p>
+    <p>“元老会的老东西们终于闻到我们的味道了。”路麟城沉吟。</p>
+    <p>“我一直都想，你们跟学院其实并不是一拨人。”路明非说，“你们之间也许有某些联系，但你们的风格完全不同。”</p>
+    <p>“你这敏感到底是遗传我呢？还是遗传你妈呢？”路麟城叹了口气，“对于秘党元老会来说，我们比龙王更讨厌吧？”</p>
+    <p>“为什么？”</p>
+    <p>“任何组织对背叛者的讨厌，往往比讨厌敌人还厉害。”</p>
+    <p>———————————————</p>
+    <p>卡塞尔学院，英灵殿会议厅，全体元老和学院的留守教授共聚一堂。通过不同位置的扬声器，EVA的声音无处不在。</p>
+    <p>
+      “如各位所见，六个小时前，通过私下的斡旋，我们获得允许自由进出俄罗斯北方的空域。就在五分钟前，我们的第一批武装力量已经空降在北西伯利亚的荒原上，俄罗斯政府为此次军事行动提供了一个有雪地经验的坦克连作为支持，包括十辆T-95坦克。”
+    </p>
+    <p>大屏幕上，代表执行部精锐小队的蓝色箭头在空降之后立刻开始移动，梳子似的搜索这个区域。</p>
+    <p>大屏幕的角落里，一幅全球地图上，则显示着多条蓝色航线从世界各个角落向着北西伯利亚的某个坐标推进。</p>
+    <p>至于永远旋转的全球投影上，此刻北西伯利亚的某处闪烁的红光染红了小半个北冰洋，通常只有在龙王级目标活跃起来的时候，EVA才会以这样的方式发出警告。</p>
+    <p>“那个在BBC上打广告的家伙会不会耍我们？”图灵先生还有些不确定，“仅仅因为一条广告就做全球动员，我们派出去的几乎是一支军队了。”</p>
+    <p>
+      “鬼才相信那真是赫尔辛基什么美术展的广告！眼下汉高的人应该也已经出发了，世界各地大大小小的势力，至少也会派个观察员过去。”贝奥武夫冷冷地说，“我们早该想到，这种时候能收留路明非的，也只有那帮末日派的家伙。传达元老会的命令，落地之后立刻设置防御工事，不准其他人靠近那个区域，那是秘党的叛徒和秘党的资产，也应该由秘党来回收！”
+    </p>
+    <p>“那帮家伙的待遇跟龙王也差不多了。”图灵先生说。</p>
+    <p>“鬼知道那帮家伙的背后，是不是站着龙王。”贝奥武夫嘶哑地说。</p>
+    <h2 id="第234章-但为君故138">第234章 但为君故(138) </h2>
+    <p>“可那个坐标上什么都没有，只有落满雪的荒原。”图灵先生说。</p>
+    <p>“他们必然在那里制造了一个尼伯龙根，一个巨型的尼伯龙根，我们之前忽略了这种可能性，我们认为人类是不可能造出尼伯龙根的。”贝奥武夫说，“可那帮家伙是疯子，对别人来说不可能的事，对他们未必不可能。”</p>
+    <p>“可不被邀请的外来者是无法进入尼伯龙根的，T-95坦克的滑膛炮并不能轰开尼伯龙根的大门。”图灵先生又说。</p>
+    <p>“规则上来说确实是这样，但少数的例外依然存在，某种高阶言灵没有任何杀伤力，但偏偏就能打开尼伯龙根的门。”</p>
+    <p>“钥匙！”图灵先生恍然大悟，“三峡事件之后他再也没有被启用过，我简直忘了那家伙。”</p>
+    <p>“那家伙的身体非常虚弱，从生下来基本上就活在保育箱里，目前他是唯一拥有该言灵的秘党成员，我们实在牺牲不起。”贝奥武夫说，“但他已经开始热身了。”</p>
+    <p>“热身？”</p>
+    <p>EVA立刻调出了影像，那是一群护士正从一个透明的保育箱里抱出一个男婴来，把他泡在热水里给他洗干净，再仔细地抹上润肤霜。婴儿瞪着一双根本不符合自己年纪的眼睛，默默地看着天花板，偶尔扫视镜头，任凭护士们揉着他的小胳膊小细腿。
+    </p>
+    <p>“他是我们最优秀的猎犬，灵敏的嗅觉会带我们找到那些藏起来的狐狸。”贝奥武夫缓缓地说，“末日派！”</p>
+    <p>“末日派已经消失了很多年。”范德比尔特先生说，“真的是他们？”</p>
+    <p>“他们在北西伯利亚有个基地，我们一直在找。”贝奥武夫回答，“所有的线索就要汇聚，路明非、末日派和那位已经沉睡了数万年的至尊，人类危在旦夕，而我们的责任是不惜一切手段，阻止它们的汇聚！”</p>
+    <p>
+      “亲爱的贝奥武夫，当年分裂我们的，到底是什么？”图灵先生环顾四周，“我想在座的不少人跟我一样并不完全知情，那场有史以来秘党最大的分裂事件，它的资料却只对极少数核心的元老们开放，你是核心元老之一，而知道那件事的多数人甚至已经老死了。你们真的要统统把这个秘密带到坟墓里去么？”
+    </p>
+    <p>“在我的资料库中，关于末日派的数据也已经被彻底删除。”EVA也说，“我曾经知道，但是不被允许记住那些事。”</p>
+    <p>
+      “很抱歉先生们，”贝奥武夫沉默了良久，仍是摇了摇头，“那场事件的真相，没有人真的知道，我也只是读过案卷，那就像读一段历史。历史总是后人写的，写作者的立场决定了事件怎么被解读。我无法还原事情的真相，我只能说，经过某件事之后，秘党中的部分人觉得末日即将降临而人类根本不可能或者不值得被拯救，世界注定将被毁灭，会有新的时代，然而那是龙或者高阶混血种的时代。在漫长的历史中，人类只是卑鄙的簒夺者，在大约数万年的时间里篡夺了龙族的统治权。相信这个理论的人离开了秘党，对他们来说‘屠龙’只是徒劳无功的牺牲。”
+    </p>
+    <p>“也许他们是对的，也许人类真的不值得被拯救。”图灵先生说，他一直是个具备奇思异想的人，“反正我们也没有任何证据能证明人类值得拯救。”</p>
+    <p>就在贝奥武夫对他怒目而视的时候，外面传来了尖锐的汽笛声。</p>
+    <p>
+      所有人都惊讶地望向外面，那无疑是一列CC1100次特别快车正在进站。繁忙的时候，每天都有一两趟CC1100次快车往返于芝加哥和卡塞尔学院之间，汽笛声如同悠扬的风笛声，是这座学院的背景音乐。可眼下学院几乎处在不设防的状态，精锐的专员们都已经分散到了世界各地的分部，为免有人顺着这道最便利的交通线侵入学院，长达数公里的铁轨被拆毁，CC1100根本就是处在停运的状态。
+    </p>
+    <p>这座学院并非不曾被入侵过，元老们如临大敌，他们年轻时也许曾是屠龙战场上的悍将，然而毕竟年纪不饶人。</p>
+    <p>“EVA，我想知道你的防御系统能够承受什么级别的进攻。”贝奥武夫低声问。</p>
+    <p>“我很难确定我能够摧毁他们多少次，但您可能要准备迎接一下客人。”EVA说。</p>
+    <p>“客人？”贝奥武夫愣住。</p>
+    <p>EVA调出了月台上的情形，刚刚停稳的CC1100次列车立刻打开了货仓的门，一辆灰黄色的越野吉普如同出栏野马那样驶了出来。路过镜头的时候，开车的人没有忘记向着镜头挥手致意。</p>
+    <p>很难判定这家伙是敌人还是客人，但即使是客人也是最棘手的那一类。</p>
+    <p>那是芝加哥混血种社群的领袖汉高，希尔伯特·让·昂热当年的朋友和如今的对手，不久之前他的名字还在这张会议桌上被提起过。</p>
+    <p>
+      世界各地的混血种社群有大有小，汉高领导的是其中最巨型的几个之一，有十几个历史悠久的家族组成，也吸收优秀的新成员。这些家族在迁移到新大陆之前就在欧洲大陆上声名赫赫，多半拥有皇族、贵族、银行家或者海洋开拓者之类的背景，积累了巨额的财富，是典型的所谓“Old
+      Money”。他们在声势上并不落后于秘党，在财富积累方面还有过之，只不过他们对于屠龙并无强大的执念，对他们来说最重要的是家族繁衍，藏在人类社会里好好地生活。</p>
+    <p>他们跟秘党时有合作也时有冲突，真的遇到龙王苏醒的高危事件时，汉高是会慷慨地出借自己的力量给昂热的，但在事后分赃的时候，汉高那伙人的本性就暴露出来了。</p>
+    <p>
+      如果说秘党是一群战士，那么汉高那伙人就是一帮流着龙血的商人，他应该也从媒体上得知了那个神秘的坐标，以他的敏感，应该亲自飞往坐标所在地坐镇指挥。即使他不敏感，秘党从全球往北西伯利亚调动的大手笔也足够惊动他。但他居然在这个时候来卡塞尔学院拜访，镜头前那个军礼式的挥手似乎是在说请把茶给我准备好，片刻我就到了。
+    </p>
+    <p>既然是汉高那么铁路恢复运营就可以解释了，那条铁路线一边连着卡塞尔学院一边连着芝加哥，汉高很容易修复他领地中的线路。</p>
+    <p>十分钟后外面传来急刹车的声音，汉高无疑是个高龄飙车手，再过几十秒，英灵殿会议厅的大门被人一把推开，汉高一屁股坐在给自己准备的椅子上，一口喝光了给自己泡的热茶。</p>
+    <p>“我来不是为了你们所谓的末日派，”汉高盯着贝奥武夫的眼睛，言简意赅，“我要见弗拉梅尔，现在！”</p>
+    <p>
+      贝奥武夫被这个不速之客的无礼震惊了，但他仍然是强忍了一下。在秘党中贝奥武夫的“辈分”或者说地位甚至在昂热之上，而昂热却对他并不抱有期待与尊重，因此即使对昂热，贝奥武夫仍然透着居高临下和些许鄙夷的态度。但汉高不同，他不是秘党成员，在他的社群里他是绝对意义上的领袖，连想要挑战他的人都只能希望他快点死。而且尽管他出自一个商人扎堆的混血种社群，他自己却跟秘党成员一样是个真正的战士，贝奥武夫也不得不尊重的那一类人。
+    </p>
+    <p>“弗拉梅尔处在被羁押的状态，我不可能让你见他。反倒是我想问问，是什么原因让尊敬的汉高忽然到访卡塞尔学院，”贝奥武夫冷冷地说，“像个入侵者。”</p>
+    <p>“我是被邀请的，”汉高缓缓地说，这个干枯瘦小如同老牛仔的男人的压迫感不亚于魁伟的贝奥武夫，“邀请我的人是，希尔伯特·让·昂热！”</p>
+    <p>“他已经昏迷了接近一年！”贝奥武夫吃了一惊</p>
+    <p>“邀请早在那之前就送给我了。”汉高从腰间抽出巨大的左轮枪“德州拂晓”，这个举动吓了众人一跳，然而他只是从弹仓中退出一刻银色的子弹来，把它沿着桌面滚向贝奥武夫。</p>
+    <p>贝奥武夫戴上眼镜，仔细地检查着那颗子弹上的细微文字，那段文字甚至包含了一个花体的签名，内容也确实是一份邀请。</p>
+    <p>“我使用这份请柬的前提是西伯利亚北部出现问题了，我必须立刻赶往卡塞尔学院跟他汇合，”汉高顿了顿，“那一刻开始他就处在死亡危机中了。”</p>
+    <p>“校长的心脏基本上都被剖开了，早就跟一个死人差不多了。”图灵先生惊讶地说，“可你甚至没来看过他一眼，你难道要说你其实是他的好朋友么？”</p>
+    <p>
+      “不，我们一直都是对手，但值得当我对手的人在这个世界上人数稀少，我希望他们每个人都活得健康。如果真有某个势力能够消灭我的某个对手的话，那么它也能消灭我，在这种情况下我一定会接受这个对手的嘱托，在那个势力出现的时候及时赶到他身边去。”汉高说，“至于心脏被剖开的事，他没有拜托过我，我也不认为区区心脏被剖开就能杀死他。这么微妙的一种存活状态，我倒宁可相信是他故意的。”
+    </p>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

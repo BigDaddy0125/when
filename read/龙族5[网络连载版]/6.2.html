@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>6.2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    ::selection {
+      background-color: orange;
+      color: white
+    }
+
+    code[class*=language-],
+    pre[class*=language-] {
+      color: #333;
+      background: 0 0;
+      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+      line-height: 1.4;
+      -moz-tab-size: 8;
+      -o-tab-size: 8;
+      tab-size: 8;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none
+    }
+
+    pre[class*=language-] {
+      padding: .8em;
+      overflow: auto;
+      border-radius: 3px;
+      background: #f5f5f5
+    }
+
+    :not(pre)>code[class*=language-] {
+      padding: .1em;
+      border-radius: .3em;
+      white-space: normal;
+      background: #f5f5f5
+    }
+
+    .token.blockquote,
+    .token.comment {
+      color: #969896
+    }
+
+    .token.cdata {
+      color: #183691
+    }
+
+    .token.doctype,
+    .token.macro.property,
+    .token.punctuation,
+    .token.variable {
+      color: #333
+    }
+
+    .token.builtin,
+    .token.important,
+    .token.keyword,
+    .token.operator,
+    .token.rule {
+      color: #a71d5d
+    }
+
+    .token.attr-value,
+    .token.regex,
+    .token.string,
+    .token.url {
+      color: #183691
+    }
+
+    .token.atrule,
+    .token.boolean,
+    .token.code,
+    .token.command,
+    .token.constant,
+    .token.entity,
+    .token.number,
+    .token.property,
+    .token.symbol {
+      color: #0086b3
+    }
+
+    .token.prolog,
+    .token.selector,
+    .token.tag {
+      color: #63a35c
+    }
+
+    .token.attr-name,
+    .token.class,
+    .token.class-name,
+    .token.function,
+    .token.id,
+    .token.namespace,
+    .token.pseudo-class,
+    .token.pseudo-element,
+    .token.url-reference .token.variable {
+      color: #795da3
+    }
+
+    .token.entity {
+      cursor: help
+    }
+
+    .token.title,
+    .token.title .token.punctuation {
+      font-weight: 700;
+      color: #1d3e81
+    }
+
+    .token.list {
+      color: #ed6a43
+    }
+
+    .token.inserted {
+      background-color: #eaffea;
+      color: #55a532
+    }
+
+    .token.deleted {
+      background-color: #ffecec;
+      color: #bd2c00
+    }
+
+    .token.bold {
+      font-weight: 700
+    }
+
+    .token.italic {
+      font-style: italic
+    }
+
+    .language-json .token.property {
+      color: #183691
+    }
+
+    .language-markup .token.tag .token.punctuation {
+      color: #333
+    }
+
+    .language-css .token.function,
+    code.language-css {
+      color: #0086b3
+    }
+
+    .language-yaml .token.atrule {
+      color: #63a35c
+    }
+
+    code.language-yaml {
+      color: #183691
+    }
+
+    .language-ruby .token.function {
+      color: #333
+    }
+
+    .language-markdown .token.url {
+      color: #795da3
+    }
+
+    .language-makefile .token.symbol {
+      color: #795da3
+    }
+
+    .language-makefile .token.variable {
+      color: #183691
+    }
+
+    .language-makefile .token.builtin {
+      color: #0086b3
+    }
+
+    .language-bash .token.keyword {
+      color: #0086b3
+    }
+
+    pre[data-line] {
+      position: relative;
+      padding: 1em 0 1em 3em
+    }
+
+    pre[data-line] .line-highlight-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      display: block;
+      width: 100%
+    }
+
+    pre[data-line] .line-highlight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: inherit 0;
+      margin-top: 1em;
+      background: hsla(24, 20%, 50%, .08);
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+      pointer-events: none;
+      line-height: inherit;
+      white-space: pre
+    }
+
+    pre[data-line] .line-highlight:before,
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-start);
+      position: absolute;
+      top: .4em;
+      left: .6em;
+      min-width: 1em;
+      padding: 0 .5em;
+      background-color: hsla(24, 20%, 50%, .4);
+      color: #f4f1ef;
+      font: bold 65%/1.5 sans-serif;
+      text-align: center;
+      vertical-align: .3em;
+      border-radius: 999px;
+      text-shadow: none;
+      box-shadow: 0 1px #fff
+    }
+
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-end);
+      top: auto;
+      bottom: .4em
+    }
+
+    html body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+      overflow: initial;
+      box-sizing: border-box;
+      word-wrap: break-word
+    }
+
+    html body>:first-child {
+      margin-top: 0
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
+      line-height: 1.2;
+      margin-top: 1em;
+      margin-bottom: 16px;
+      color: #000
+    }
+
+    html body h1 {
+      font-size: 2.25em;
+      font-weight: 300;
+      padding-bottom: .3em
+    }
+
+    html body h2 {
+      font-size: 1.75em;
+      font-weight: 400;
+      padding-bottom: .3em
+    }
+
+    html body h3 {
+      font-size: 1.5em;
+      font-weight: 500
+    }
+
+    html body h4 {
+      font-size: 1.25em;
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1.1em;
+      font-weight: 600
+    }
+
+    html body h6 {
+      font-size: 1em;
+      font-weight: 600
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5 {
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1em
+    }
+
+    html body h6 {
+      color: #5c5c5c
+    }
+
+    html body strong {
+      color: #000
+    }
+
+    html body del {
+      color: #5c5c5c
+    }
+
+    html body a:not([href]) {
+      color: inherit;
+      text-decoration: none
+    }
+
+    html body a {
+      color: #08c;
+      text-decoration: none
+    }
+
+    html body a:hover {
+      color: #00a3f5;
+      text-decoration: none
+    }
+
+    html body img {
+      max-width: 100%
+    }
+
+    html body>p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      word-wrap: break-word
+    }
+
+    html body>ol,
+    html body>ul {
+      margin-bottom: 16px
+    }
+
+    html body ol,
+    html body ul {
+      padding-left: 2em
+    }
+
+    html body ol.no-list,
+    html body ul.no-list {
+      padding: 0;
+      list-style-type: none
+    }
+
+    html body ol ol,
+    html body ol ul,
+    html body ul ol,
+    html body ul ul {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body li {
+      margin-bottom: 0
+    }
+
+    html body li.task-list-item {
+      list-style: none
+    }
+
+    html body li>p {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body .task-list-item-checkbox {
+      margin: 0 .2em .25em -1.8em;
+      vertical-align: middle
+    }
+
+    html body .task-list-item-checkbox:hover {
+      cursor: pointer
+    }
+
+    html body blockquote {
+      margin: 16px 0;
+      font-size: inherit;
+      padding: 0 15px;
+      color: #5c5c5c;
+      background-color: #f0f0f0;
+      border-left: 4px solid #d6d6d6
+    }
+
+    html body blockquote>:first-child {
+      margin-top: 0
+    }
+
+    html body blockquote>:last-child {
+      margin-bottom: 0
+    }
+
+    html body hr {
+      height: 4px;
+      margin: 32px 0;
+      background-color: #d6d6d6;
+      border: 0 none
+    }
+
+    html body table {
+      margin: 10px 0 15px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all
+    }
+
+    html body table th {
+      font-weight: 700;
+      color: #000
+    }
+
+    html body table td,
+    html body table th {
+      border: 1px solid #d6d6d6;
+      padding: 6px 13px
+    }
+
+    html body dl {
+      padding: 0
+    }
+
+    html body dl dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 700
+    }
+
+    html body dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px
+    }
+
+    html body code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: .85em;
+      color: #000;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      padding: .2em 0
+    }
+
+    html body code::after,
+    html body code::before {
+      letter-spacing: -.2em;
+      content: '\00a0'
+    }
+
+    html body pre>code {
+      padding: 0;
+      margin: 0;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      border: 0
+    }
+
+    html body .highlight {
+      margin-bottom: 16px
+    }
+
+    html body .highlight pre,
+    html body pre {
+      padding: 1em;
+      overflow: auto;
+      line-height: 1.45;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    html body .highlight pre {
+      margin-bottom: 0;
+      word-break: normal
+    }
+
+    html body pre code,
+    html body pre tt {
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0
+    }
+
+    html body pre code:after,
+    html body pre code:before,
+    html body pre tt:after,
+    html body pre tt:before {
+      content: normal
+    }
+
+    html body blockquote,
+    html body dl,
+    html body ol,
+    html body p,
+    html body pre,
+    html body ul {
+      margin-top: 0;
+      margin-bottom: 16px
+    }
+
+    html body kbd {
+      color: #000;
+      border: 1px solid #d6d6d6;
+      border-bottom: 2px solid #c7c7c7;
+      padding: 2px 4px;
+      background-color: #f0f0f0;
+      border-radius: 3px
+    }
+
+    @media print {
+      html body {
+        background-color: #fff
+      }
+
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        color: #000;
+        page-break-after: avoid
+      }
+
+      html body blockquote {
+        color: #5c5c5c
+      }
+
+      html body pre {
+        page-break-inside: avoid
+      }
+
+      html body table {
+        display: table
+      }
+
+      html body img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%
+      }
+
+      html body code,
+      html body pre {
+        word-wrap: break-word;
+        white-space: pre
+      }
+    }
+
+    .markdown-preview {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box
+    }
+
+    .markdown-preview ul {
+      list-style: disc
+    }
+
+    .markdown-preview ul ul {
+      list-style: circle
+    }
+
+    .markdown-preview ul ul ul {
+      list-style: square
+    }
+
+    .markdown-preview ol {
+      list-style: decimal
+    }
+
+    .markdown-preview ol ol,
+    .markdown-preview ul ol {
+      list-style-type: lower-roman
+    }
+
+    .markdown-preview ol ol ol,
+    .markdown-preview ol ul ol,
+    .markdown-preview ul ol ol,
+    .markdown-preview ul ul ol {
+      list-style-type: lower-alpha
+    }
+
+    .markdown-preview .newpage,
+    .markdown-preview .pagebreak {
+      page-break-before: always
+    }
+
+    .markdown-preview pre.line-numbers {
+      position: relative;
+      padding-left: 3.8em;
+      counter-reset: linenumber
+    }
+
+    .markdown-preview pre.line-numbers>code {
+      position: relative
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows {
+      position: absolute;
+      pointer-events: none;
+      top: 1em;
+      font-size: 100%;
+      left: 0;
+      width: 3em;
+      letter-spacing: -1px;
+      border-right: 1px solid #999;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span {
+      pointer-events: none;
+      display: block;
+      counter-increment: linenumber
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+      content: counter(linenumber);
+      color: #999;
+      display: block;
+      padding-right: .8em;
+      text-align: right
+    }
+
+    .markdown-preview .mathjax-exps .MathJax_Display {
+      text-align: center !important
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .status {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+      margin-bottom: 16px
+    }
+
+    .markdown-preview .md-toc {
+      padding: 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    .scrollbar-style::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .scrollbar-style::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    .scrollbar-style::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      overflow: auto
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+      position: relative;
+      top: 0;
+      min-height: 100vh
+    }
+
+    @media screen and (min-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em calc(50% - 457px + 2em)
+      }
+    }
+
+    @media screen and (max-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        font-size: 14px !important;
+        padding: 1em
+      }
+    }
+
+    @media print {
+      html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+        display: none
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      color: inherit;
+      z-index: 99;
+      width: 32px;
+      text-align: center;
+      opacity: .4
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+      opacity: 1
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      padding: 32px 0 48px 0;
+      font-size: 14px;
+      box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: inherit
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+      width: 8px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+      text-decoration: none
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+      padding: 0 16px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+      left: 300px;
+      width: calc(100% - 300px);
+      padding: 2em calc(50% - 457px - 300px / 2);
+      margin: 0;
+      box-sizing: border-box
+    }
+
+    @media screen and (max-width:1274px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        width: 100%
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+      display: none
+    }
+
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+  </style>
+  <!-- The content below will be included at the end of the <head> element. -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // your code here
+    });
+  </script>
+</head>
+
+<body for="html-export">
+
+
+  <div class="crossnote markdown-preview  ">
+
+    <div id="top"></div>
+    <p><a href="6.1.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="6.3.html">下一章</a></p>
+    <hr>
+    <h1 id="center第六章-但为君故center">
+      <center>第六章 但为君故</center>
+    </h1>
+    <br>
+    <br>
+
+    <div class="md-toc">
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#center第六章-但为君故center" class="md-toc-link">
+            <center>第六章 但为君故</center>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第117章-但为君故21" class="md-toc-link">
+              <p>第117章 但为君故(21)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第118章-但为君故22" class="md-toc-link">
+              <p>第118章 但为君故(22)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第119章-但为君故23" class="md-toc-link">
+              <p>第119章 但为君故(23)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第120章-但为君故24" class="md-toc-link">
+              <p>第120章 但为君故(24)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第121章-但为君故25" class="md-toc-link">
+              <p>第121章 但为君故(25)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第122章-但为君故26" class="md-toc-link">
+              <p>第122章 但为君故(26)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第123章-但为君故27" class="md-toc-link">
+              <p>第123章 但为君故(27)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第124章-但为君故28" class="md-toc-link">
+              <p>第124章 但为君故(28)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第125章-但为君故29" class="md-toc-link">
+              <p>第125章 但为君故(29)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第126章-但为君故30" class="md-toc-link">
+              <p>第126章 但为君故(30)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第127章-但为君故31" class="md-toc-link">
+              <p>第127章 但为君故(31)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第128章-但为君故32" class="md-toc-link">
+              <p>第128章 但为君故(32)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第129章-但为君故33" class="md-toc-link">
+              <p>第129章 但为君故(33)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第130章-但为君故34" class="md-toc-link">
+              <p>第130章 但为君故(34)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第131章-但为君故35" class="md-toc-link">
+              <p>第131章 但为君故(35)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第132章-但为君故36" class="md-toc-link">
+              <p>第132章 但为君故(36)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第133章-但为君故37" class="md-toc-link">
+              <p>第133章 但为君故(37)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第134章-但为君故38" class="md-toc-link">
+              <p>第134章 但为君故(38)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第135章-但为君故39" class="md-toc-link">
+              <p>第135章 但为君故(39)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第136章-但为君故40" class="md-toc-link">
+              <p>第136章 但为君故(40)</p>
+
+            </a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+    <hr>
+    <h2 id="第117章-但为君故21">第117章 但为君故(21) </h2>
+    <p>神秘的布宁晚宴居然真的是吃饺子，猪肉酸菜馅儿的，牛肉胡萝卜馅儿的，三鲜馅儿的，边儿捏得薄薄的，热腾腾地上桌，蘸着泡了蒜瓣儿的宁化府醋。</p>
+    <p>这餐饭要是盘腿坐在炕上吃，旁边热腾腾烧着火墙，再挂几串红辣椒，就完美东北了。可餐厅完全不是那么一回事儿。</p>
+    <p>
+      巨大的圆形餐厅，挑高十米，金色的水晶吊灯如瀑布般垂落，可供20名宾客围坐用餐的巨型圆桌，客人们面前摆着银质刀叉和水晶器皿。每个人背后都站着一名窈窕的俄罗斯少女，金色长发、藏青色长裙、素白的围裙，随时准备着服务客人，但吃饺子委实没什么可服务的，她们能做的也就是倒酒剥蒜。
+    </p>
+    <p>
+      参加晚宴的居然都是路明非的同龄人，他们优雅谦和，着装得体，男孩们穿着笔挺的猎装，英俊干练，女孩们晚礼服高跟鞋，容光照人。他们似乎都很熟悉彼此，落座后临近的人就自然而然地交谈起来。有趣的是二十张餐椅背后是二十张画像，画像上都是穿着苏联军服的老人，肩章和胸章说明他们为共和国建立的累累功勋，细看那些年轻人的面孔，和画像上的老人颇为神似。
+    </p>
+    <p>“一年到头难得吃上几回饺子，平时还是凑合吃俄国菜。包这一大桌饺子，我家从管家到女佣忙活了半宿。”老林给路明非倒上满满一杯茅台，“兄弟咱们走一个。”</p>
+    <p>烈酒入喉，绵柔芬芳，路明非这种不懂白酒的人也喝得出好来。</p>
+    <p>“85年产的铁盖儿茅台，搁你们国内也得卖4万多，莫斯科有的货，全堆我家地下室里了。”老林拿起酒瓶给路明非看背标，还咂着嘴品着那口茅台的味儿。</p>
+    <p>“所以老林，你就是亚历山大·布宁？”直到此时，路明非才终于有机会问了这个问题。</p>
+    <p>
+      其实答案已经很明显了，在这张巨大的圆桌上，老林坐在主位，来参加晚宴的年轻人都在落座前先向他点头致意。更别说那份随手写就的请柬，能够写出亚历山大·布宁的请柬的人，只能是亚历山大·布宁本人。俄罗斯分部在验证了笔迹之后，含怒撤离，显然亚历山大·布宁的笔迹是可以查询的。然而这个人在莫斯科的声望地位，竟然可以令桀骜的俄罗斯分部暂时退却，路明非不禁很好奇。
+    </p>
+    <p>但另一方面说，俄国军工贸易的水很深，连零都说罗曼诺夫家族虽然在金融圈子呼风唤雨却连军工业的边都摸不到，那么一个地道的中国人，如何成为这个行业的领袖呢？</p>
+    <p>“没错，不过老林这个名字也是真的，很多人叫我老林。”老林同志微笑，“路先生您一定觉得我是个中国人吧？但很遗憾，我是个土生土长的俄罗斯人。”</p>
+    <p>“你是个鞑靼人！”零恍然大悟。</p>
+    <p>“没错，聪明的小姑娘。”老林，或者说布宁先生微笑。</p>
+    <p>
+      提到俄罗斯人，大多数人立刻想到的都是金发碧眼的东斯拉夫人，但事实上俄罗斯也是个多人种的国家。昔年成吉思汗远略欧洲的时候，骑着矮马的蒙古人一直冲到多瑙河领域，把俄罗斯也纳入了金帐汗国。很长的一段时间里，统治这片疆域的其实是黄皮肤褐眼睛的蒙古人，他们被称为鞑靼人。后来鞑靼人的血脉一直在俄罗斯流传，历任沙皇和苏联期间的名将有很多都有鞑靼人的血统，有些看起来完全就是蒙古人的长相。甚至列宁都有很高比例的鞑靼人血统，他的祖母是卡尔梅克蒙古人，列宁家里居然是喝奶茶的。
+    </p>
+    <p>布宁是个鞑靼人姓氏，而亚历山大·布宁是个血统过于纯正的俄罗斯裔鞑靼人，如果他再有一段中国经历，那么跟中国人完全分不出来。</p>
+    <p>
+      “我出身在西伯利亚的埃文基自治区，父母都是合作社的社员。我在国有拖拉机厂工作过，但我是个不安分的人，跑到莫斯科来想做生意。我认识了几个中国来的朋友，他们教我喝茅台和进口服装，给我起了中国名字。那些年我总来往于边境口岸，在口岸的这边，我喝伏特加，说俄语，过了口岸，我就喝茅台，吃饺子和泡面。我在东北地区进货，拉到各个加盟共和国的黑市上去卖，赚了不少钱。但时局忽然就变了，苏联解体，伟大的理想破灭。那是个混乱的年代，你能用一箱茅台酒换到一台刚出厂的坦克，也能用一双丝袜结交到俄罗斯小姐级别的漂亮女孩。红色的巨兽倒下了，但它的尸骨仍是巨大的宝藏。我喜欢喝酒，也很会交朋友，很快我就明白军工业是苏联的最大遗产。船坞里还存着建造到一半的航空母舰，苏27战斗机的零件堆满了仓库，只等着重启生产线把它们装配起来，黑市上甚至有人在叫卖一枚就能毁灭半个美国的白杨洲际导弹。我关掉外贸公司，成了一个军火商人。我结交苏联时代的高官们，通过他们找到苏霍伊设计局、米高扬设计局、金刚石设计局、北方造船厂、共青城潜艇制造厂……帮他们把没用的库存和图纸换成过冬的燃油、给老婆的漂亮衣服、给孩子的玩具。但渐渐地这样的生意不好做了，仓库的库存总有卖完的一天。幸运的是我已经通过军火贸易赚了更多的钱，我在莫斯科的关系也日渐稳固。我转而收购军工厂，承包国防部的项目，渐渐地大家都知道了亚历山大·布宁这个名字。我也知道军火行业里没一个人的手是干净的，所以我给孩子们做点慈善，也许是因为在中国混过，有点相信报应。”布宁先生笑笑，“我是个旧时代遗留下来的人，幸运的是，旧时代留下的东西还能帮我赚点钱，否则我能招待您的只有发酸的黑面包了。”
+    </p>
+    <p>布宁先生指向餐桌边的男孩女孩，“来，认识一下我的朋友们。切尔涅亚尼夫先生，他的曾祖父曾是勃日列涅夫的外交部长，我们一般都叫他瓦洛佳。”</p>
+    <p>身材挺拔、鼻头有点小雀斑、看起来二十出头的男孩向路明非点头致意。</p>
+    <p>“索尼娅，她的祖母伊万诺夫娜曾是苏联外交部的首席机要秘书，在古巴导弹危机事件中表现出色，后来担任过外交部副部长。”</p>
+    <p>那位一昂头就能喝掉二两茅台酒的俄罗斯美少女摆着手冲路明非打招呼，酒精烧红了她的面颊，她的青春活力如同被烧沸的烈酒那样蒸发开来，熏染着周围的每个人。</p>
+    <p>她刚进门的时候芬格尔就吹过口哨了，所以路明非伸手到口袋里把他关机了。</p>
+    <p>布宁先生逆时针介绍下去，一连串光辉显赫的名字，照耀过苏联的政坛，却早已蒙上了历史的尘埃。</p>
+    <p>
+      “我之前的生意伙伴都过世了，都是些被历史遗忘的老家伙，本来就风烛残年了，你现在看到的都是他们的继承人。我们聚在一起的时间也不多，就每年吃顿饺子。他们一开始都吃不习惯，但你看现在他们都能熟练地用筷子了。你可以把我理解为一个合作社，社员们互相帮助。军工产业是个高风险的行业，互相扶持会活得更久一些。这张餐桌上的人基本是固定的，但偶尔我们也会邀请新的朋友，前提是他友善，并且有资格和我们坐在一起。”布宁先生感慨地说，“我们这种老俱乐部，实在不敢一下子引进太多新人。”
+    </p>
+    <p>“你知道他是谁？你认为他有资格和你们坐在一起？”零插入两人的对话。</p>
+    <p>她对莫斯科的军火交易圈子没兴趣，对亚历山大·布宁的兴趣也不高，她来这里，只是因为她相信瓦图京陆军大将。</p>
+    <p>亚历山大·布宁幽默也诚恳，是那种很容易让人产生信任感的人，但对零而言，信任感的积累只取决于相处的时间。</p>
+    <p>
+      “我不知道，卡塞尔学院告诉我的。”布宁先生微笑，“我跟您就读的那间学院之间，是有合作的。他们是群守规矩的生意人，在我们这个圈里很有信用。他们很神秘，但是感觉很有能量，我们彼此尊重但也并不走得很近，直到几个月之前，他们忽然要求我想办法说服国防部，以便他们的网络可以突破防火墙进入俄罗斯境内。这是个很过分的要求，俄罗斯怎么会对一间学院把国门打开呢？卡塞尔学院的人也很清楚这是个过分的要求，他们声称这是为了缉捕一个名叫路明非的危险人物。那是我第一次听说你的名字，我有种感觉，你应该是个很有意思的人。”
+    </p>
+    <p>
+      路明非恍然大悟。事实上卡塞尔学院位于世界各地的分支机构都是情报机关和商业组织，他们时刻监视着龙类的活动，但更多的时间是用来赚钱，卡塞尔学院庞大的开支很多都来自分部的贡献。至于业务则因地制宜，埃及分部养了一批很出色的文物贩子，美国分部则充斥着金融家，英国分部的人钻研黄金和石油期货，中国分部的干部们独辟蹊径，他们收购了众多餐馆和白酒厂，因为吃饭喝酒这事在中国太好赚钱了。
+    </p>
+    <p>不难推测，俄罗斯分部也在从事军工贸易，要做这个圈子的买卖，就不得不结识亚历山大·布宁。</p>
+    <p>“得看您怎么理解‘有意思’这个词了。”零冷冷地说，“但这仍然无法解释您是如何跟踪到我们的。”</p>
+    <p>
+      “我没有跟踪到他，我跟踪到的是您，零·拉祖莫夫斯卡娅·罗曼诺娃殿下。”布宁先生微笑，“我很期待跟您和路先生的见面，但我又希望路先生能证明他真的是我以为的那种有意思的人。所以我找他聊天，给了他一些暗示。如我所愿，他就是那种会自己发光的钻石，即使黑夜都无法掩盖他的光芒。”
+    </p>
+    <p>他忽然间像是变了个人，不再是市井气的商人、你从东北来的二叔和泡在茅台里的酒腻子，而是优雅的贵族、忠勇的骑士甚至金帐汗国的王子。</p>
+    <p>他站起身来，在零的面前单膝跪下，亲吻她的手背，“有什么我能为您效劳的呢？皇女殿下。”</p>
+    <p>零无法拒绝这位骑士的吻手礼，所有人都放下了餐具，站起身来微微躬身，表达他们对罗曼诺夫家族的敬意。唯有路明非和楚子航不知所措。</p>
+    <p>零沉默了片刻，把早已准备好的纸条递给布宁先生，上面是那个神秘的坐标，“我们想去这个地方，它位于军事禁区，您能帮助我们么？”</p>
+    <p>布宁先生看了一眼那个坐标，接过女佣递来的平板电脑查阅了一下，神色惊讶，“这个坐标，不久之后就会被一场核爆摧毁！”</p>
+    <h2 id="第118章-但为君故22">第118章 但为君故(22) </h2>
+    <p>零和路明非震惊地对视。</p>
+    <p>
+      “苏联时代的核试验基地，以西伯利亚北部和新地岛为主，那里土地荒芜人迹罕至，方便保密，成本最小。数以十万计的苏联红军秘密地开进北西伯利亚，在那里建设基地、城镇和铁路，最优秀的大学生响应共和国的号召，成为无名的英雄，奔赴西伯利亚。这些设施在民用地图上都是看不到的，但在苏联极盛的时期，时速200公里的喷气式列车在浩瀚的西伯利亚雪原上来来去去，就像闪电。年轻人们乘着巨型气垫船和地效飞行器从一个城镇到另一个城镇，要是坐气垫船，他们还能迎着风雪唱歌。那是个青春燃烧的年代，不过我没经历过，我也是从国防部的档案中知道的。苏联解体后，西伯利亚的设施都被废弃了，有的做了简单的掩埋，有的就暴露在空气里慢慢地生锈。但那些设施在军事上还有很高的价值，研究它们的话，会得到苏联时代某些超前的军事技术，甚至还有半成品的武器。以今天俄罗斯的国力，要完成这项工作几乎是不可能的，但情报显示越来越多的国际探险队进入西伯利亚北部，他们可能是出于商业目的也可能服务于某个大国。我们不希望旧时代的秘密落入那些人手里，所以最好的办法……”布宁先生双手张开，“嘭！”
+    </p>
+    <p>“用一场核爆把一切都掩埋掉。”零明白了。</p>
+    <p>
+      “准确地说，是一连串的核爆炸。我们将在北西伯利亚试验我们最先进的RS-28萨尔玛特洲际导弹，它会用潜艇从太平洋上发射，首先进入外太空，飞行到北西伯利亚上空的时候丢下15个分导式核弹头，15场小型的核爆炸，15朵蘑菇云，精确地摧毁苏联时代的军事遗产。不会产生很多辐射尘，成本也很低廉，还能顺便测试RS-28的性能。我的公司承接了这项工程，发射洲际导弹是国防部的事儿，我的人负责清场和锁定目标。坦白地说我也是想借机去那些遗址里挖些宝，我是个商人，你们中国人说，无利不起早。”布宁先生摊摊手，“我可能说得有点多了，就把这作为我送给新朋友的礼物吧。你们应该也听说过，我总会送新朋友一份大礼。”
+    </p>
+    <p>零思索了片刻，“我们能去那里么？”</p>
+    <p>布宁先生摇了摇头，“很遗憾，那会违反我们和国防部之间的约定，那个区域已经是军事禁区了，里面的人可以离开，外面的人不能进去。”</p>
+    <p>“真是遗憾。”零冷冷地说。</p>
+    <p>就在路明非以为零会直接告辞走人的时候，零端起满满一杯茅台，“有幸参加布宁先生您的晚宴，那么我们今晚的酒，就从这杯开始吧！”</p>
+    <p>布宁先生先是惊讶，旋即笑出声来，“很好，我喜欢开始，而不是结束。”</p>
+    <p>路明非呆呆地看着这一老一少开始豪饮，用他听不懂的俄语畅叙，零的表现竟然远比她跟瓦图京大将见面时热情。</p>
+    <p>一位身材苗条的女佣过来给他们续上新的茅台，又端着托盘袅袅婷婷地撤了下去。路明非不自觉地盯着她的背影看了几眼，这女佣也是一头海藻般的长发，看起来有点眼熟。那款款扭动的腰肢，在这间老贵族风格的餐厅里，显得有点过于风骚。</p>
+    <p>但他的注意力很快就被拉了回来，因为热情奔放的索尼娅小姐姐已经端着酒杯走了过来，跟在她后面是略显腼腆的瓦洛佳小哥哥。</p>
+    <p>
+      晚宴至此变成了酒会，路明非被莫斯科的年轻贵胄们围绕着，大家握手和拥抱，欢迎这位新朋友。他们把路明非拉进旁边的舞池，男孩女孩们跳起俄罗斯传统舞蹈和探戈。酒精的作用下他们卸下拘谨的外壳，开心地笑着，手拉着手转圈，像是冰天雪地里围着篝火跳舞的少男少女。餐厅里，零和布宁先生酒到杯干，楚子航百无聊赖地吃着饺子，他身后集中了四位女佣，不停地换盘子，永远保证他有热饺子吃。
+    </p>
+    <p>路明非有些累了，靠在舞池旁的柱子上稍作休息，这歌舞看起来会通宵达旦，让人安心和快活。年轻是最美好的事，似乎能对抗世间一切的阴霾，他也还年轻，可不知道留给他的时间还有多少。</p>
+    <p>———————————————</p>
+    <p>天边微微发白的时候，零才回到伊丽莎白宫，推开了自己的卧室。</p>
+    <p>苏恩曦正盘腿坐在床上，用吹风机和直发膏把那头海藻般的长发拉直，对她这种懒惰的女人来说，养护一头卷发实在太费劲儿了。</p>
+    <p>零在苏恩曦身边躺下，缓缓地吐出一口酒气，“查出了点什么么？”</p>
+    <p>路明非亲眼看着她喝下了一斤茅台酒，扛着她离开布宁先生家的时候，她脚步发飘像是踩在棉花上，可说话的语气仍是那么寒冷寂静。</p>
+    <p>
+      她既不喜欢喝酒也不会允许自己真的喝醉，她拉着亚历山大·布宁的唯一原因是苏恩曦那时已经潜入了布宁家。苏恩曦是个文职干部，聪明机变胆大心细都没问题，却不是酒德麻衣那种神出鬼没的忍者，她把主人和客人都拉在餐厅里狂欢，女佣和管家们也都得忙着服侍，苏恩曦行动起来就容易多了。
+    </p>
+    <p>苏恩曦抓起旁边的遥控器按下，激光全息投影笼罩了整间卧室。</p>
+    <p>展现在苏恩曦和零面前的是一个类似博物馆的空间，展品丰富，从二战时的“莫辛-纳甘”步枪到苏联当年为登月试制的月球车模型，展馆正中矗立着那门“沙皇巨炮“的仿制品。</p>
+    <p>她们的视线不停地向前移动，因为这个视频是苏恩曦用全景摄像机拍下来的，她们正跟着当时苏恩曦的步伐去看亚历山大·布宁的宅邸。</p>
+    <p>一切的一切都像是回到了1990年之前，红旗垂地，军礼服笔挺，看起来亚历山大·布宁没说假话，他收藏苏联的旧物，也靠苏联的遗产赚钱，是个旧时代的遗老。</p>
+    <p>苏恩曦一身睡裙，趴在松软的大枕头上吃薯片，跟看电影似的，“一个心理上还活在苏联时代的老家伙，瓦图京大将都比他洋气。他家里倒没有防备森严，没看到保镖，我一路上也就遇到了几个女佣，低个头就过去了。”</p>
+    <p>“他对儿童基金会的事看起来也确实很上心，他家的会议室里有面墙，墙上挂着他跟孩子们在一起的照片，各种各样的小孩子。”</p>
+    <p>
+      “我东摸摸西摸摸，终于让我找到了他的书房，这是收获最大的地方，我在他的书架上找到一台笔记本电脑，推测应该是他自己用的。我破解了它的密码，大概是电脑里的文件并没那么重要，所以密码也就设得很随意。我把里面的文件全都拷了出来，其中就有那份用RS-28型导弹定点清除西伯利亚老旧军事设施的计划书。”
+    </p>
+    <p>苏恩曦再按遥控器，投影切换成那份计划书中的动画演示，地球表面呈暗蓝色的弧形，太平洋上一道火光升起，化为十五个光点在西伯利亚落下，十五个目标点化为红色的叉。</p>
+    <p>“还有28天，这个清除计划就会被执行。亚历山大·布宁的人这时应该正在北西伯利亚地区疯狂地挖遗产，设计图、武器模型、核燃料棒，一切有价值的东西，留给他们的时间不多了。”</p>
+    <p>“俄罗斯国防部那边有什么消息么？”</p>
+    <p>“确实有个试射RS-28洲际导弹的计划，这一点跟亚历山大·布宁的消息能相互作证。”</p>
+    <p>“所以我们没有什么理由怀疑亚历山大·布宁，对么？”</p>
+    <p>“是，那老家伙看起来太诚实了，他说的每句话都有据可查。我很想怀疑他，但我就是没有找出他的漏洞来。</p>
+    <p>“我找到了一个。亚历山大·布宁在说谎，他知道黑天鹅港，至少知道一部分。”</p>
+    <p>“哦？”</p>
+    <p>“我给他的坐标，是错的。”零缓缓地说。</p>
+    <p>“错的？”苏恩曦一愣。</p>
+    <p>
+      “我修改了那个坐标，在地图上漂移了大概120公里，可亚历山大·布宁看了一眼，立刻就告诉我那个坐标是要用核爆摧毁的。他并不是要用一枚超级核弹炸平西伯利亚北部，而是要用15枚小型核弹头精准地摧毁十五处目标，那是外科手术式的核打击。在那种精确程度的打击中，120公里是很大的误差，虽然反映在经纬度上不过是一点点的变化。”
+    </p>
+    <p>苏恩曦思索片刻，“他根本就不知道那个坐标！你随便给他一个坐标他都会说是要被清除的目标！”</p>
+    <p>
+      “苏联时代留下的遗产，航空母舰和核弹头是遗产，基因技术制造的超级战士也是遗产，即使他对龙类一无所知，也该会对超级战士这个概念心动。但他并不知道那个孤儿院的位置，所以他要邀请我们去参加他的晚宴。现在他拿到坐标了，他还控制着那个区域，28天，足够他把黑天鹅港的遗迹翻个底朝天了。”
+    </p>
+    <p>“可他挖到底也只有石头！”苏恩曦大笑。</p>
+    <p>零沉吟了片刻，神情忽然警觉起来，“但你有没有想过，他得到坐标之后，第一件事应该是清除掉其他知道坐标的人？”</p>
+    <h2 id="第119章-但为君故23">第119章 但为君故(23) </h2>
+    <p>伊丽莎白宫里养着两只圆滚滚的暹罗猫，白天就懒洋洋地趴在壁炉上面打哈欠，晚上则会跳上路明非的肚子睡觉，完全不怕生。</p>
+    <p>现在它们醒了过来，喉咙中滚动着低低的嘶声，猫瞳在黑暗中像祖母绿那样莹莹发亮，简直就是领地被入侵的狮子。</p>
+    <p>
+      路明非翻身坐起，一手抱住那只正挠他肚子的小猫，一手已经抓住了藏在枕下的西格绍尔手枪。伊丽莎白宫加装了极严格的安保系统，那些英俊优雅的管家全都配枪，庭院里还有八条看起来懒洋洋的大狗，其实是某种杀手犬。如果不每天用带血的牛肉喂养它们，很快它们就会以打量食物的眼神看你了。
+    </p>
+    <p>现在安保系统没有被触发、狗没有叫、管家们没有鸣枪，两只小猫却像是觉察到某种危险的逼近。</p>
+    <p>路明非推开卧室的门，走廊里，楚子航靠墙而立，手中提着一柄青光流动的利刃——源稚生曾用过的蜘蛛切，这是乌鸦最后的赠礼，它和童子切安纲一起被送上了那架飞机。</p>
+    <p>
+      两人对视一眼，迅速结成了相互防御的队形，背靠背地下楼。从楼梯到走廊，再经过那些雕饰华美的会客室、音乐室和祈祷室，偌大的伊丽莎白宫里静悄悄的，只有他们的脚步声和那两只小猫的喵喵声。它们相互勾着尾巴，一步不落地跟在路明非和楚子航后面。
+    </p>
+    <p>从窗户望出去，那些凶猛的斗犬正聚在一起打瞌睡，并没有被人下毒或者悄无声息地抹了喉咙。所有的迹象都表明情况一切正常，除了这两只猫觉得不对劲。</p>
+    <p>也许它们纯粹就是做了噩梦或者觉得猫生有点空虚求安慰？</p>
+    <p>
+      吊灯的影子摇晃，花瓶中的花枝也摇晃，静谧得就像有风的午后……路明非忽然抬头看着那盏微微摇晃的吊灯，这就是问题所在，这不是什么有风的午后，伊丽莎白宫的门窗紧锁，哪里来的风吹得这么大一盏吊灯也摇晃起来？吊灯摇摆得越来越剧烈，地面都微微地震动起来，警报声忽然间席卷了伊丽莎白宫，那是震动感应器被触发了。
+    </p>
+    <p>难道小猫们预感到的危险是地震？路明非还没想明白，庭院里的斗犬们集体起身，对着某个方向咆哮起来。</p>
+    <p>路明非闪到窗边，举枪瞄准那个方向，下一刻他惊得下巴都要砸脚面儿了。他看见一门巨炮撞开了伊丽莎白宫庭院的后墙！而那门125毫米的滑膛炮属于一架喷着滚滚黑烟的T-64主战坦克！</p>
+    <p>不是地震，而是那台坦克高速行进震动了地面，伊丽莎白宫的隔音做得太好了，所以他们才没有听到坦克发动机的吼声。</p>
+    <p>八条斗犬本来瞪大狗眼放射着“你已经死了”的凶光，现在全傻了，呆呆地坐成一排，看着那辆钢铁战车从它们面前驶过。</p>
+    <p>这是一场俄罗斯式的进攻！明火执仗地用了一台坦克来拜访，而且是在莫斯科市区！</p>
+    <p>“趴下！”路明非猛按楚子航的头，因为他看到坦克的炮塔正在旋转，那门恐怖的125毫米榴弹炮正指向伊丽莎白宫。</p>
+    <p>
+      但楚子航摆脱了他的控制，一手提刀，一手平伸出去，吐出沉雄的龙文，眼瞳转为刺眼的金色。剧烈的爆炸笼罩了T-64，烈光、火流、冲击波，还是路明非熟悉的老配方老味道，师兄十五岁但也还是路明非记忆里的那个狠人。路明非心中一喜，他们手中的武器对上T-64基本上跟苍蝇拍也没什么区别，好在还有这个自带免费炸弹的炸弹人。
+    </p>
+    <p>但下一刻路明非就开心不起来了，被炸得漆黑的T-64冲出烈焰，继续奔向伊丽莎白宫。君焰奈何不了T-64的装甲，虽然是上世纪60年代的产品了，但毕竟是冷战时期曾经威震欧洲的大国武备。</p>
+    <p>
+      管家们狂奔着赶到现场，这些平日里西装革履戴着白手套为你开车开门摆放刀叉的家伙此刻在西装外套着防弹衣，一个个龙精虎猛凶神恶煞，端着各种轻重武器，MG4轻机枪就有好几支，堪称重火力配备。可他们也被这台古董坦克震撼到了，呆站了几秒钟，这才举起手中的武器，猛烈却毫无意义地对着T-64扫射。
+    </p>
+    <p>T-64无视了管家们的火力，笔直向前，看样子是想靠着坚不可摧的装甲直接撞进伊丽莎白宫里去。</p>
+    <p>这时白裙的女士们出现在会客厅，打开了伊丽莎白宫的后门。她们面前是一辆横冲直撞的重型坦克，可她们表现出的优雅镇定，就像是来给主人布置早餐的。</p>
+    <p>伊丽莎白宫的女侍长带着她的队伍赶到了，原本觉得自己是事件主角的路明非和楚子航不得不靠边站来给她们腾出地方。</p>
+    <p>
+      四名女侍居然合力扛来了一具美国造“陶”式反坦克导弹，那位古板得像是从修道院出来的女侍长戴上眼镜，T-64意识到自己的对手终于出现了，铲起大片的泥土高速甩尾，想躲开反坦克导弹的锁定。但这难不倒中年妇女，女侍长的表情好像是提着教鞭的女老师准备教训一个不听话的孩子，或者大母狼冷冷地看着逃跑中的小白兔。
+    </p>
+    <p>锁定，发射，反坦克导弹带着一道夭矫的白色烟迹，准确地命中了T-64的履带，虽然没能摧毁它的装甲，但几乎把它整个地掀了过来。</p>
+    <p>女侍长甚至没有欣赏导弹命中的那一刻，扣完扳机之后她就转身接过手下递来的手巾擦了擦手，大概是不愿意让枪油太久地留在手上。</p>
+    <p>“先生们，我们已经报警，请休息一下，早餐还要一些时间。”女侍长以一贯的冷漠和高贵比出手势，意思是她们来收拾局面，路明非和楚子航可以回屋去刷牙了。</p>
+    <p>然而下一刻她的冷漠忽然变成了僵硬，她沉默了两秒钟，低声说，“设备！”</p>
+    <p>女侍们打开了藏在墙壁上的暗门，暗门后的武器架上挂着整整齐齐的HK416自动步枪，美国海军陆战队的标配武器，还有手榴弹和防弹衣。</p>
+    <p>不到一分钟女侍团队就完成了武装，白裙飞舞，女侍长一脚踹上门，“一组、二组，一楼东西侧，三组去二楼寻找合适的掩体，狙击手观察手去顶楼！”</p>
+    <p>与此同时管家们已经撤进了伊丽莎白宫，看起来这些人中负责全局的居然是女侍长这个中年妇女。</p>
+    <p>战斗只是刚刚开始，黎明的天幕下，军靴踩过刚刚被履带碾过的草坪，头戴防毒面具扛着防弹盾牌的士兵们登场了。</p>
+    <p>T-64没能冲进伊丽莎白宫，却也为接下来的步兵作战打开了道路。</p>
+    <p>
+      在步兵装甲车的掩护下，士兵们一边推进，一边用枪下挂载的榴弹发射器打出烟榴弹，在风的推动下从庭院到室内很快就布满了浓烟。那几条猛犬刚刚醒过神来，吼叫着冲了上去，可随着几声沉闷的点射，猛犬们在浓烟中哀嚎了几下就没声了。那些都是普通人，但经过严格训练而且具备战场经验，这样的人用军事纪律组织起来，就连混血种也不得不警惕。
+    </p>
+    <p>管家们和女侍们也是同样的人，这根本就是两支小型军队的对决，但发生在莫斯科市中心！</p>
+    <p>“不要开枪！不要开枪！不要开枪！”女侍长用毫无起伏的声音不断地重复着这句话。</p>
+    <p>但他们的枪栓已经拉开，子弹已经上膛，他们只是要在敌人进入有效射击距离的时候一次性用饱和火力摧毁对方的锋线。那支默默推进的军队应该也是这么想的。</p>
+    <p>黎明是静悄悄的，但枪声响起的一刻开始，不知多少生命就会灰飞烟灭。</p>
+    <p>路明非看向楚子航，楚子航神色犹豫，如果是对付步兵，“君焰”的效果会明显很多，但那有可能演变成一场屠杀。</p>
+    <p>秘党是绝对禁止在自身没有受到致命威胁的前提下用言灵来对付普通人的，但某种角度来说眼前这个楚子航根本就不是秘党的一员，他是个野生混血种，不受秘党法则的限制。</p>
+    <p>
+      这时候有人拉了拉路明非衣袖，零从三楼的主人卧室里下来了。看起来她被惊动之后还收拾了一下仪容，换了一身带暗纹的驼色猎装和一双高跟的麂皮长靴，淡金色的长发盘起来藏在一顶鸭舌帽里，还拎着个沉重的皮箱，看起来是要跑路。相比之下路明非披着件浴袍，楚子航则是赤裸上身只穿了条牛仔裤。路明非心说不愧是罗曼诺夫家族，跑路都跑得跟在巴黎走T型台似的。
+    </p>
+    <p>“交给他们吧，他们是专业的。”零把他俩抓到大理石壁炉后方。</p>
+    <p>路明非点点头，“你们家管家和女佣都很厉害。”</p>
+    <p>
+      “不过他们很快就会撤退。”零拿着一个精致的镀金小望远镜，看向庭院中的浓烟，和浓烟中隐隐绰绰的人影，“伊丽莎白宫的安全级别被设计为能抵挡一个步兵排15分钟的攻势，雇佣兵们接受的合同也是坚守15分钟，现在还剩7分钟。我们得在7分钟之内完成撤退。”
+    </p>
+    <p>“果然是雇佣兵，你怎么想到要雇一群雇佣兵来做家务？”</p>
+    <h2 id="第120章-但为君故24">第120章 但为君故(24) </h2>
+    <p>“亚历山大·布宁那个老王八蛋么？”路明非恨得牙痒。</p>
+    <p>如果是执行部动手，不至于那么肆无忌惮，秘党狠归狠，为了保护龙族的秘密，行事风格还是低调的。剩下最可疑的就是亚历山大·布宁。</p>
+    <p>
+      这个神秘的军火商人跟国防部关系密切，可能有办法调动军队。他们离开布宁家的时候，布宁亲口承诺会负责他们在莫斯科的安全，即使执行部查出他们住在伊丽莎白宫，都不敢踩上伊丽莎白宫的草皮，但没过几个小时布宁的承诺就被打破了。反过来想，最能保护你的人，也最能杀掉你。
+    </p>
+    <p>
+      随着一声轰然巨响，一枚穿甲弹打穿了伊丽莎白宫的后门，带着地狱般的尖啸把沿路的一切化为齑粉，钢琴、书桌、鲜花和肖像画的碎片在空中飞舞。最后它被一堵坚实的墙壁挡住，喷出恐怖的高温金属射流，不到一秒钟就把精美的祈祷室化为熊熊燃烧的废墟。
+    </p>
+    <p>
+      那是挡在步兵们前面的BMP-3步兵装甲车发射的，它装载的100毫米口径的线膛炮虽然比不上T-64上的那门炮，但是对付伊丽莎白宫这样的老式建筑绝对是绰绰有余。管家们和女侍们立刻还以颜色，数不清的手榴弹从窗口里丢出去，连续的爆炸令格鲁乌特种部队的战士们无法借助炮火优势展开突击。双方都想火力压制对手，雇佣兵们的火力网密集，格鲁乌特种部队的更密集，再加上BMP-3战车上的那门30mm机关炮，伊丽莎白宫的墙壁根本挡不住它的炮弹。
+    </p>
+    <p>光是射进伊丽莎白宫的流弹数量已经堪称“弹雨”了，路明非、楚子航和零被牢牢地压制在那座大理石壁炉旁。</p>
+    <p>
+      路明非亲眼看见一名女雇佣兵被打穿了肺部，虽然立刻得到了救治，一时间死不了，但以这样的伤势拖下去一定完蛋。雇佣兵们的射击是留有余地的，当众杀死哪怕一名格鲁乌特种部队的士兵都会让事态更加恶化，但格鲁乌战士们却不那么在意对手的死活。在他们看来他们是在进攻一座防御森严的堡垒，堡垒里藏着穷凶极恶不经审判就可以杀掉的恶徒。
+    </p>
+    <p>
+      这还不是最糟糕的，最糟糕的是那辆被打断了履带的T-64坦克再度冒出了滚滚的黑烟！所有人都觉得那辆坦克彻底报废了，可它的履带虽然被废，其他部门可能还能工作，尤其是那门恐怖的125mm滑膛炮！刚才坦克的驾驶员大概是被震晕了，现在他再度发动了柴油机。
+    </p>
+    <p>
+      步兵装甲车的火力尚不足以彻底摧毁这座古老的建筑物，雇佣兵们还能有掩体，可如果换成T-64上的滑膛炮，一炮就能撼动伊丽莎白宫的结构，他们甚至有可能直接被埋进废墟里。但他们已经没有第二发反坦克导弹，这从女侍长脸上的表情也能看出来。所有雇佣兵不约而同地分散开来，如果集中在坦克的射击轨道上，被一炮全灭也不是不可能。
+    </p>
+    <p>T-64的炮塔带着哒哒的噪音，转了大半圈，滑膛炮发射的巨响仿佛狂雷。炮弹出膛的同时，炮塔后部喷出了烈焰和浓烟，整台坦克都因这威力十足的一炮而震动。</p>
+    <p>伊丽莎白宫这边，所有人都愣住了，因为T-64那记直射，居然是把步兵装甲车的炮塔给掀掉了！</p>
+    <p>格鲁乌战士们的全部火力都集中到T-64身上去了，但管家们的MG4轻机枪打不穿，他们手里的突击步枪也没用。</p>
+    <p>
+      虽然没有履带跑不动，但T-64的引擎高亢地吼叫着，车尾冒着滚滚的浓烟。数米高的烟墙在庭院中升起，远比格鲁乌部队发射的烟幕弹要有效。因为它原本就不是用来针对步兵的，这种坦克发烟筒针对的是反坦克导弹，导弹袭来的时候，它好把自己隐藏在浓烟中。刚才坦克驾驶员大概是不太熟操作，没找到发烟筒的控制键。格鲁乌战士们失去了目标，他们不得不暂时地后退，因为还得忌惮T-64上的高射机枪。被那玩意儿打中绝对不会留下弹孔，因为哪怕被它的子弹擦到一下，你也会被炸成无法分辨的血肉。
+    </p>
+    <p>城墙般的黑色烟雾里，一个穿着睡衣踩着毛绒拖鞋的老家伙爬出坦克炮塔，挥舞着双手跑向伊丽莎白宫，“别开枪！别开枪！是我！是我！”</p>
+    <p>那辆坦克的驾驶员居然是亚历山大·布宁！</p>
+    <p>布宁从门扇被轰飞的后门冲了进来，四下瞄一眼，立刻钻进了壁炉里。他应该有些军事功底，立刻觉察到这是会客厅中最坚固的角落，适合躲避流弹。</p>
+    <p>“有没有多余的枪给我一支！”老家伙看起来又狼狈又愤怒。</p>
+    <p>“布宁先生，咱能不能先聊聊这到底是怎么一回事？”路明非喘着粗气，“就算你习惯于开着坦克去别人家拜访，能不能请你先停个车？”</p>
+    <p>局面瞬间逆转，亚历山大·布宁用一发榴弹表明了自己的立场。</p>
+    <p>回想起来，其实T-64一直没有表现出恶意，它就是轰隆隆地冲着伊丽莎白宫驶来，把围墙给撞塌了。但它既没有动用那门危险的滑膛炮，也没用高射机枪扫射一番。</p>
+    <p>
+      “我也不太清楚，你们走后不久，我在国防部的一条内线忽然打电话来，总共就跟我说了一句话，让我立刻逃走。”布宁苦笑，“我掀开窗帘的时候，特种部队正像潮水那样淹没我家的花园。天空里有直升机，地面上有装甲车，至少五名狙击手拿枪指着我卧室的窗口，幸亏我装了防弹玻璃。”布宁从猎装口袋里摸出一个扁酒壶大喝了一口，还是浓重的茅台味儿，“我去找我的手机，我的保险柜有很多部手机，负责联络不同的内线，但所有的内线都不接我的电话！我可以说是这座城市里最狠的人，美国人想走政府的后门都得找我帮忙！可我在一夜之间被我的老板们抛弃了，我唯一能做的是开上我的收藏品逃跑！就因为我认识了你！你是谁？你他妈的到底是谁？扎瓦赫里？塞米昂·莫吉列维奇？华金·古斯曼·洛埃拉？你为谁服务？你他妈的到底是贩毒的？贩核弹的？还是爱尔兰共和军？”
+    </p>
+    <p>路明非懵了，布宁吐出的一连串名字对他而言全然陌生。</p>
+    <p>“当今世界上悬赏靠前的几个人，干什么的都有。”零知道路明非这方面学问有限，只好站出来作解释，“布宁先生的意思是你到底是什么人，值得别人用正规军来对付。”</p>
+    <p>路明非苦着脸，“我大学还没毕业，简历都没投过，怎么会有工作？”</p>
+    <p>“所以我们对面的人真的是俄罗斯现役部队。”零低声说。</p>
+    <p>所有人都沉默了，这是个极其可怕的结论。无论他们这一路上怎么危险，都是在跟秘密行动的少数精英对抗，而现在俄罗斯，这个超级大国的继承者站在了他们的对立面上。</p>
+    <p>还有被秘密处决的瓦图京陆军大将，至今仍然查不出是哪个部门、谁下达的处决令，卷进这件事的势力越来越庞大。</p>
+    <p>“如果不找出原因的话我这辈子都只有鼹鼠一样躲着了。”布宁把肩上的背包丢在地下，背包里滑出几个古老的档案夹，“你们的人偷看了我的笔记本，那没用，真正的资料在这里。”</p>
+    <p>零不动声色，“真正的资料？”</p>
+    <p>
+      “实话实说，我根本没有那十五个待摧毁的基地的坐标，所有的坐标都是萨尔玛特导弹发射前由国防部的人输入的。我是通过我的内线知道了这个项目，不要钱为国防部跑腿，充当那个区域的清道夫。作为回报他们给了我其中两个基地的准确坐标，其中一个毫无意义，但另一个是试着装配过仅有的一架图-119核动力轰炸机，那上面有个小型化的核反应堆，很精巧，但不完美，存在核泄漏的问题。如果我拿到它的设计图直接转卖，几千万美元，复制出原型机，一两个亿，再解决掉核泄漏的问题，五亿美元以上。”布宁恢复了一个俄罗斯人，或者说鞑靼人的蛮气，不再装成你和善的东北老乡，“这些档案是我高价从国防部的老人买来的，当年那个超现实的西伯利亚就藏在这里面。”
+    </p>
+    <p>“所以这才是你真正的买卖。”零说。</p>
+    <p>“没有成本的买卖永远是最好的买卖，就像淘金。但你知道了两个金矿的位置，你难道不想知道剩下的十三个？”布宁叹口气，“而你们恰好带着一个坐标来问我。”</p>
+    <p>“没猜错的话，你的探索队已经在去那里的路上了吧？”</p>
+    <p>“12个人，两台武装雪地车，还有60条雪橇犬。周围都是禁飞区，不敢用飞机。”布宁在壁炉中的余灰上借了个火，点燃了烟卷。</p>
+    <p>“老林你开着坦克来冲我们家门难道是想救我们？”路明非插了进来，他还是习惯管亚历山大·布宁叫老林。</p>
+    <p>
+      “一个俄国人，错了，一个鞑靼人，说过的话要算数。我说过要保证你们在莫斯科的安全，而我手里有一台坦克，我没什么可怕的，装甲车拦我我就撞飞他们。所以我就来接你们，可谁知道你们家里藏着反坦克导弹！你他妈的到底是什么人？维克多·安纳托利耶维奇·布特跟你没关系？”布宁又激动起来。
+    </p>
+    <p>“著名的俄罗斯籍军火商，外号死亡商人，现在羁押在纽约。”零继续做补充说明。</p>
+    <p>“谁家藏着奇怪的东西谁知道。”路明非看了零一眼，“我反正不认识什么什么布特。”</p>
+    <p>事到如今零看着也很可疑，昔日同学忽然变身罗曼诺夫家族的皇女，带着泼天的势力要陪你走一条看不到头的逃亡路，怎么想都是心里有鬼。</p>
+    <p>但是路明非就是懒得想，懒得怀疑她。</p>
+    <h2 id="第121章-但为君故25">第121章 但为君故(25) </h2>
+    <p>“如果我们没法从这里逃走，你恐怕再也见不到你的探索队了，即使他们带回好消息。”零强行切换话题。</p>
+    <p>“如果你们不炸断我的坦克履带我有的是办法逃走！”布宁愤怒地大吼。</p>
+    <p>
+      外面的枪声平息了，取而代之的是警笛声，应该是附近的警察也被惊动了，不知多少警车正向伊丽莎白宫汇拢。但他们显然无法干预格鲁乌特种部队的行动，伊丽莎白宫的庭院此刻就是战场，战场上能有警察说话的余地？格鲁乌特种部队应该也不是放弃了进攻，T-64制造的烟雾还没散去，他们也不知道驾驶员已经跑进了伊丽莎白宫。他们应该是去调反坦克导弹了，再补一两发就能让T-64彻底瘫痪，所以布宁也没傻到死守那个铁壳子。
+    </p>
+    <p>烟雾总会散的，反坦克导弹总会来的，他们剩下的时间不多了。</p>
+    <p>“交易，”零凝视着布宁的眼睛，“如果我能带你离开这里，你就帮我们进入禁区！”</p>
+    <p>布宁诧异地看着那张精美绝伦却又如霜雪般寒冷的小脸，这张脸的主人说的每句话你都应该认真地听认真地想。</p>
+    <p>但是怎么做？那些雇佣兵出身的管家和女侍已经投降了，十五分钟一到，他们同时向零点头，放下了手中的武器高举双手。</p>
+    <p>
+      他们遵循着雇佣兵行业的某些江湖规矩，合约写明他们是来当管家和女侍的，他们就低眉顺眼地为你倒酒开车，合约说明紧急情况要坚守十五分钟，他们就算冒着生命危险也会守足十五分钟，但是多一秒种都不行。他们的对手不是爱砍人头的野蛮人，而是堂堂正正的格鲁乌特种部队，尤其是在莫斯科市区里，他们应该会遵循《日内瓦公约》，不伤害任何放弃武装的人。
+    </p>
+    <p>
+      路明非心里微微一震，想起日本的那个雨夜，零来高天原找他们的时候，膝盖几乎废了，一路都是血。这个女孩确有惊人的战斗天赋，能一个人挑掉整个关东支部，换作楚子航，不靠君焰都难以做到。她的真实实力未必强到那种地步，但她应该是那种不把自己当回事的战术，能够忍受别人不能忍受的痛苦，把自己当作机械来使用。
+    </p>
+    <p>“别别别！”路明非赶紧说，“千万别冒险！我们再想办法！”</p>
+    <p>
+      零竖起手掌令他闭嘴，仍旧直视布宁的眼睛，“亚历山大·布宁先生，您是个生意人。这个世界上其实不存在没有成本的买卖，淘金的成本是人命。我很清楚，你不可能轻易为我们打开进入禁区的通道，那是你的大买卖。可看看我们所处的困境，你的高层关系失效了，我的雇佣兵也都放弃抵抗了，包围我们的至少有两个排的格鲁乌特种部队，外加帮助维持秩序的警察。你甚至无法贿赂他们，他们来自不同的部门，他们的眼睛盯着彼此。能确保你们平安离开的人，只有我，而我会支付巨大的代价，我用这个代价，换取进入禁区的门票！”
+    </p>
+    <p>零把手伸向布宁。这时候她仿佛就真是罗曼诺夫家族的最后一位公主，这是即将被炮火覆盖的战壕，她决定带领禁卫军做最后的冲锋，这时候她把手伸给你，叩问你的忠诚，要你答应完成她最后的嘱托。你根本无法拒绝她，你能做的只是低头去亲吻那只手。
+    </p>
+    <p>“成交！”布宁真的这么做了，虽然那身皱巴巴的睡袍有点影响仪式感，“但我还是盼望着您能凯旋！”</p>
+    <p>———————————————</p>
+    <p>五分钟后，他们走在长长的地下通道里。它被挖掘得如此宽阔，以便用它逃走的人从容不迫，甚至闲庭信步。</p>
+    <p>“皇女殿下，家里地下有逃生通道这件事不能叫代价巨大吧？”布宁叹息。</p>
+    <p>本以为击掌成交之后零会祭出什么神秘的高层关系或者重型武器，路明非是担心这妞摸出刀子直奔格鲁乌特种部队的指挥官而去，就像《刺客信条》第三部的片头那样。</p>
+    <p>结果零带他们来到自家地下室，打开逃生通道的门说了声请，关门之前还没忘从冰箱里拿两瓶冰镇矿泉水。</p>
+    <p>“原本伊丽莎白宫并没有逃生通道，修建的时候花了很多钱。”零面无表情。</p>
+    <p>逃生通道的末端是一扇铁门，打开铁门居然是铁路，也不知是莫斯科的哪条地下铁，四个人深一脚浅一脚地走在隧道里，布宁从背包里摸出一个又一个手机，一边拨打一边骂娘。</p>
+    <p>———————————————</p>
+    <p>四个小时之后，这四个人恢复到了衣冠楚楚的状态，登上了一节豪华车厢。</p>
+    <p>
+      亚历山大·布宁在西装外披上了黑貂大衣，再戴上那顶黑貂毛的帽子，看起来像个东北的皮货商。通过车站的时候他出示了一份外交护照，并非他自己的名字，却贴着他的照片。检票员没有为难他，也没有检查他携带的几十口大箱子，当然这也是因为他在护照里夹了厚厚的一叠大面额卢布。他厚颜无耻地声称零是他的孙女，而路明非和楚子航是他从中国雇来的跟班。
+    </p>
+    <p>路明非等三人的新护照是在火车站外面做的，做假护照的人直接开了一辆货车来，车厢就是他的工棚，里面能照相也能做防伪条，还有化妆师帮他们收拾得不太像本人。黑客在车上捣鼓了一番，跟他们说这护照基本跟真的也没区别了，联网都能查到。
+    </p>
+    <p>路明非不得不佩服这老家伙的能量，不愧是黑白两道通吃的大人物。</p>
+    <p>
+      甚至这节豪华车厢都是他专属的，他没有用火车票登车，而是跟月台上的人说把我的车厢拉出来，不久之后一节造型复古的黑色车厢就被拉到了铁轨的支线上。外表看起来平平无奇还很落伍，但登车之后路明非和楚子航就被它的豪华震惊了，不用看那斑斓的波斯地毯和精美的胡桃木家具，光是那能挡住炮弹直射的防弹车身就会惊叹于它的暴力美学。
+    </p>
+    <p>想来也是布宁收藏的苏联时代的专列，当年领袖们便是乘着这样的列车横跨广袤的国土。</p>
+    <p>布宁显得有点肆无忌惮。他的豪宅在几个小时之前被格鲁乌特种部队攻占了，而他却坦荡地登上自己的专属车厢，去往西伯利亚。</p>
+    <p>布宁一路上都在打电话，他随身带着十几部手机，渐渐地有人开始接他的电话了，他豪爽地大笑着和电话那头的人聊天，没有半点丧家之犬的模样。</p>
+    <p>“我的几个内线传了消息来，”布宁合上那台老式手机，把它丢在桌上，“看起来有人向国防部密报我们窃取国家军事机密，他们还认为我家和伊丽莎白宫里藏着职业军人和非法的重武器。”</p>
+    <p>“所以他们出动了格鲁乌特种部队，而不是警察。”零说。</p>
+    <p>“诬陷我们，他们想怎么样？”路明非问。</p>
+    <p>
+      “不不，不是诬告，如果他们搜查我家确实能发现很多没有许可证的重武器，比如我开着跑路的那台主战坦克。伊丽莎白宫里那些雇佣兵就更能说明问题了，皇女殿下您和我都算不上什么良民。”布宁叹口气，“暂时我还没能查出幕后黑手是谁，不过很显然他对那些埋在西伯利亚北部的‘金矿’很有兴趣。”
+    </p>
+    <p>“整个莫斯科有几节这样的车厢？”路明非问。</p>
+    <p>“独一无二。”布宁神情得意。</p>
+    <p>“公爵一样出行会不会太高调了？”</p>
+    <p>
+      “我亲爱的朋友，我是个军火商。你知道对于军火商来说最大的客户是谁么？”布宁大笑，“是政府！购买政府所需的情报，卖掉政府不要的武器。我知道的秘密太多，判我一百次死刑都不够，但就是因为我知道得太多，就一定会有人保我。有人敢接我的电话，就说明我的保护伞还有用。我是通缉对象，但那又算什么？我的敌人想要调动军队来抓我，我的朋友们也会想办法拖延。我上过很多的通缉名单，可能比我睡过的女人还多，可我一天牢都没有坐过。我们这种人如果死，一定是死在一颗神秘的子弹下，而不是被公开枪毙。”
+    </p>
+    <p>“你还不知道幕后的敌人是谁，对么？”零冷冷地说。</p>
+    <p>布宁收敛了笑容，“这是让我害怕的事，在国家的高层中藏着一个想要我命的人，可我居然查不出他是谁。”</p>
+    <p>车身微微震动，这是专车车厢被挂载在一列客运列车上了。汽笛声鸣响，窗外的景物倒流，列车正加速离开莫斯科。</p>
+    <p>布宁猜得没错，没有乘警进来检查，更别说全副武装的军人。瓦图京陆军大将把他们交给了一个臭名昭著的军火贩子，可偏偏就只有他能确保他们的安全。</p>
+    <p>这是那个老人最后给零的帮助。</p>
+    <p>“女士们先生们，现在你们脚下滚动的是世界上最长的西伯利亚大铁路，这条铁路的终点是海参崴。”布宁微笑，“沿路都是我的好兄弟，收过我钱的好兄弟，他们会照顾我们。”</p>
+    <p>“可我们要去的是西伯利亚北部。”零说。</p>
+    <p>“皇女殿下，要穿越广袤的西伯利亚，我们还得更换交通工具。但我可以确保的是在这条铁路上，您是绝对安全的。”布宁起身，举起貂皮帽子行礼，“最大的卧室就作为您的行宫，我和两位先生在隔壁的包厢，有事请随时吩咐。”</p>
+    <h2 id="第122章-但为君故26">第122章 但为君故(26) </h2>
+    <p>他们出门的时候，门口站着神情恭敬的女服务生，手中的托盘里放着浴巾和润肤油，看模样跟布宁一样是鞑靼人。</p>
+    <p>“包厢按摩服务。”女服务生说着走进包厢。</p>
+    <p>布宁的专属车厢里居然还提供按摩服务，登车的时候布宁就炫耀过了，零也立刻吩咐安排此项服务。她有时候是那种骆驼般沉默坚忍的人，但并非苦行僧，对于奢华的享受倒也云淡风轻。</p>
+    <p>“包厢里还可以洗土耳其浴，我尊贵的殿下，请在冰天雪地中尽情享用。”布宁脱帽致敬后走向自己的包厢。</p>
+    <p>门关上之前楚子航一直盯着女按摩师的背影看。</p>
+    <p>“看什么看什么？难道说你也想按按？小小年纪还想异性按摩？”路明非很享受这种不正经，趁着楚子航还没恢复记忆。</p>
+    <p>“那个女人……”</p>
+    <p>“她还能叫个男按摩师？”路明非搭着楚子航的肩膀把他拖走，“走走走，回包厢睡觉，困死我了。”</p>
+    <p>“亚历山大·布宁的专属车厢里怎么会有男按摩师？”布宁哈哈大笑着关上自己的包厢门。</p>
+    <p>门关闭的瞬间，他的笑容就消失了。他把背包丢在沙发上，摸出那个一直没打开过的手机，拨通了存下的唯一一个号码，“我需要一颗间谍卫星，地球静止轨道上的间谍卫星，让它变轨，我要它始终悬在那个区域的上空。”</p>
+    <p>———————————————</p>
+    <p>“啊啊啊啊！对对对！就这里就这里！我这老蛮腰，不能穿高跟鞋，走路多我腰疼！”零的包厢里，斑斓的丝绸床单上，玉体横陈，“下手别那么狠！哎哟哟哟是这里，这里没错！”</p>
+    <p>穿着露背睡裙的是女按摩师，当然她已经除掉了面部的伪装，虽非风情万种，但也是神清气爽的美人。</p>
+    <p>猛施龙爪手的反而是皇女殿下，但那一脸的冷漠，更像是亲自上场拷问犯人。</p>
+    <p>“给你按完了快走。”零冷冷地说，“布宁难道认不出你不是他的人？”</p>
+    <p>“当然认不出，我问过那个按摩师，她说这个专属车厢很少用，她上班以来就没见过亚历山大·布宁。”苏恩曦又疼又爽地哼哼，“服务团队其实是莫斯科火车站给他配的，他只负责出钱。比钱老娘我怕过谁？现在这个车厢里的服务人员都是我的人！”
+    </p>
+    <p>“你觉得他可信么？”</p>
+    <p>
+      “没数，直到现在为止他说的话都有据可查。今天一早他家也确实是被格鲁乌特种部队包围了，他开着坦克从家里冲出来的照片已经上了报纸头条。”苏恩曦的语气里透着无所谓，“他搞鬼也没什么可担心的，我们的人正在军事禁区外集结。布宁就是个帮我们送快递的，一进入禁区我们就把他踹掉。”
+    </p>
+    <p>零点了点头，看起来娇小的手继续强猛地按压着苏恩曦的“老腰”。苏恩曦趴在那里，往嘴里丢着薯片。</p>
+    <p>“西伯利亚大铁路，世界上最长的铁路，跑完一趟要七天七夜。”苏恩曦忽然说。</p>
+    <p>“嗯。”</p>
+    <p>“七天之后，那家伙的旅行就结束了，舍不得的话，就陪他吃个最后的晚餐。”</p>
+    <p>———————————————</p>
+    <p>“国家势力为什么会卷进我们的事里来？”贝奥武夫厉声发问。</p>
+    <p>一直以来秘党都很介意这种事，国家是人类有史以来第二庞大的组织结构，仅次于宗教，秘党不想跟这种组织产生对抗。</p>
+    <p>投影屏幕上是俄罗斯分部长，典型的东斯拉夫人长相，神情凝重。</p>
+    <p>“应该跟那个秘密的港口有关。他们去东京是为了查阅赫尔佐格留下的笔记。”俄罗斯分部长说。</p>
+    <p>“那个港口是否存在还不确定。关于它，唯一的证人是赫尔佐格，他完全不可信。”图灵先生说。</p>
+    <p>
+      既然知道北极圈内有这样一个神秘的研究所，秘党当然会展开调查。技术今非昔比，卫星照相甚至能分辨出某个停车场上一辆车的颜色，可EVA调用过各种卫星去扫描那段海岸线，却没发现任何可疑的目标。1992年被摧毁的港口，时间还不够抹去所有的痕迹。那座传说中的海港笼罩着重重迷雾。
+    </p>
+    <p>“让你的人准备好，增援一到就启程。”贝奥武夫下令。</p>
+    <p>“我们不需要增援。”分部长神情不屑。作为秘党诸多分部中最强悍的几个之一，还需要本部派遣增援，听起来像是侮辱。</p>
+    <p>“你们需要。”贝奥武夫语气威严，不留反驳的余地。</p>
+    <p>被这份威严震慑，俄罗斯分部长沉默了片刻，“他什么时候到？”</p>
+    <p>“很快，他只是绕道去参加了一场葬礼。”</p>
+    <p>———————————————</p>
+    <p>裹着冰渣的飓风以惊人的高速掠过地面，飓风中跋涉的人甚至要额外背着重物才能确保自己不被卷走。</p>
+    <p>“加图索老爷，歇歇脚吧！万恶的地主使唤农奴都没您这么残忍好么？”芬格尔扯着嗓子喊。</p>
+    <p>“那几只北极熊已经跟了我们6个小时，现在停下的话就等于通知它们开饭了。”恺撒也扯着嗓子回答。</p>
+    <p>在这样的飓风中大家必须吼着说话，聊会儿天花费的力气不亚于跑上五公里。</p>
+    <p>冰风暴愈演愈烈，YAMAL号的情况却一天不如一天。他们有武器有食物，冰海上也不缺淡水，但他们缺乏最关键的一个东西，热源。</p>
+    <p>
+      核反应堆一直没能重启，柴油动力舱爆炸的时候连带着他们绝大多数的柴油储备也报销了。YAMAL号上气温越来越低，冰棱从船舱顶上往下生长，冰风暴则在船的外壁上挂了一层半米厚的冰壳，那条功勋破冰船成了寂静的冰窟窿。船员们得用铁锤把压缩饼干打碎成小片，丢进嘴里捂化了吃，为了给施耐德教授取暖，图书馆的藏书已经烧掉了一大半。
+    </p>
+    <p>最终恺撒决定由他带队，前往120公里以外那座废弃的科考站，找那台封存起来的长波通讯设备。</p>
+    <p>芬格尔是他钦点的拍档，尽管芬格尔严肃地抗议，说你都带上30条雪橇犬了，不少我这条狗。</p>
+    <p>
+      他们已经离开YAMAL号24小时了，沿着推定的风向一路前行。这里已经很靠近北极点了，指南针无法工作，GPS定位更是被冰风暴干扰了，但这场恐怖的冰风暴反而提供了他们一项便利。极地的飓风是因地球自转产生的，原理上说是一种行星风暴，跟山脉走向寒流暖流都没有关系，因此它的方向也基本是固定的。他们沿路一直测量风向，来矫正自己前进的方向，否则在这白茫茫的暴风中，他们根本不可能抵达那个科考站。
+    </p>
+    <p>即使是能见度极好的天气里，在雪地上长距离跋涉都是极危险的事。低温、巨大的体能消耗、无差别白色环境引发的幻觉，都能杀死一个单独的旅人。</p>
+    <p>
+      通古斯人说风雪里藏着危险的东西，那是之前死在雪里的旅人的灵魂。他们太孤单了，一心想要留下更多的旅人陪伴他们，他们就会在旅人的前面走，留下脚印。旅人误以为有人在前面走，兴奋地想要追上去，就把自己累死了。这种说法听起来荒诞，但确实有很多雪地旅人说他们走着走着就看见了脚印，这个时候千万不能沿着脚印走必须另选道路，因为你一跟上去就会跟到死，那行脚印是永远没有尽头的。
+    </p>
+    <p>然而这件事是有科学解释的，人的两腿长度总有些微的不同，会不由自主地向一侧打偏，短距离看不出来，路走长了，就会走成一个圈，回到原地，尤其是雪地令人产生幻觉。那些被雪精灵引诱着走上死路的旅人，事实上看到的是他们自己之前的脚印。
+    </p>
+    <p>恺撒坚持要带上芬格尔，因为他也不敢单独在雪地里跋涉，以他的意志力也不敢担保自己不会出现幻觉。</p>
+    <p>芬格尔其实强健得很，他总把自己说得不堪大用甚至楚楚可怜，可看那身腱子肉，真遇到北极熊跟他为难，也能上去肉搏一下的样子。</p>
+    <p>———————————————</p>
+    <p>雪橇犬们又一次吠叫起来，那是因为感知到北极熊的接近。30只雪橇犬拉着两部雪橇，雪橇上是他们的武器和给养。这些家伙绝对是人类在极地探险中最好的伙伴，远比雪地车靠得住。</p>
+    <p>北极熊很少成群狩猎，但尾随他们的几只北极熊看起来是在合作，毕竟那么大的一餐，任何一头熊都无法单独吃下。</p>
+    <p>
+      这些看起来有点蠢萌的动物其实是北极冰面上最顶级的猎食者，跑起来快得像飞，咬合力惊人，可以轻易地咬碎猎物的骨头，嗅觉灵敏，甚至隔着几公里就能嗅到猎物的味道。科考队员们几乎从不敢单独离开科考站两公里活动，因为一旦你觉得周围有北极熊活动，那它就已经盯上你了，你能做的就是调头以最快的速度返回考察站。如果你不赶紧，它就该开始狩猎了。几乎没有人类能逃过北极熊的狩猎，即使你带着枪，枪也很难打穿它们厚厚的脂肪层。
+    </p>
+    <p>好在他们毕竟不是一般人类，恺撒的沙漠之鹰应该能打爆北极熊们的脑袋，芬格尔带的那支霰弹枪也不是吃素的。</p>
+    <p>但芬格尔刚刚拔出霰弹枪，就被恺撒摁下了，“冰面上有很多应力集中的地方，冰层下方的海流也会制造巨大的应力，空气震动有可能触发这些应力，冰层会忽然开裂来释放应力。跟雪崩的道理差不多。”</p>
+    <p>“那怎么办？给自己撒上点胡椒和盐等着熊大爷们来吃饭？”</p>
+    <p>“持续移动，只要我们不停，熊就会觉得我们还没疲倦。从地图上看，还有几公里我们就会看到一处大冰架，跟岛屿差不多。”</p>
+    <h2 id="第123章-但为君故27">第123章 但为君故(27) </h2>
+    <p>“北极熊会因为我们上了冰架就不来吃我们？”</p>
+    <p>“我会先鸣枪惊吓它们，如果它们还不走，我就试着射杀一只，它们应该就会退走了。”</p>
+    <p>“为什么要对熊熊那么残忍？”</p>
+    <p>“不吓走它们，它们会进攻其他人。”</p>
+    <p>芬格尔愣了一下，左右四顾，只看到白茫茫的风雪，“其他人？什么其他人？你说这里有鬼还差不多。”</p>
+    <p>“以你的血统，难道没有觉察到从我们离开YAMAL号开始，就一直有个小队跟在后面么？”恺撒拉紧了防寒服的领口，“不用回头看，你看不到的，他们比我们有经验，距离我们差不多一公里，一直跟着我们的脚印走。”</p>
+    <p>芬格尔紧张地抓紧霰弹枪，“老大你不要吓我！这种地方还能有其他活人？”</p>
+    <p>“五名YAMAL号的船员，都带着武器，受过严格的军事训练。他们不相信我们，不过这也不奇怪，在他们眼里我们都是怪物。”恺撒指了指自己的耳朵。</p>
+    <p>有“镰鼬”在，跟踪他几乎是不可能的事，但船员们并不知道。</p>
+    <p>“早就看出雷巴尔科那厮不是什么好人！”芬格尔愤愤地说。</p>
+    <p>“船长从一开始就有问题，他身边有个小圈子，都是他在阿尔法特种部队的部下，那些人跟其他船员不一样。其他船员是想赚一笔大钱，他们的目的不止于此。”</p>
+    <p>“怎么不揭穿他？”</p>
+    <p>
+      “船上有问题的人太多，船长有问题、那个因纽特女孩有问题、那个遇难的科考队也有问题，不过他们还好，已经是堆在仓库里的尸体了。这趟航行我们并没有预设的目的地，只是要在北冰洋里绕着圈子找利维坦，可从我们登船那一刻开始，就有很多的向导，指引我们怎么去找利维坦。似乎每个人都跟利维坦有关系。”
+    </p>
+    <p>两个人在风雪中又走了一段路。</p>
+    <p>“阿巴斯呢？你的朋友阿巴斯有问题么？”芬格尔忽然问。</p>
+    <p>“我不知道。”恺撒沉默了片刻才回答。</p>
+    <p>“那我有问题么？”</p>
+    <p>“你当然有问题，可我不是盯着你么。”恺撒拍了拍芬格尔的肩膀。</p>
+    <p>很罕见的，芬格尔并未反驳。</p>
+    <p>———————————————</p>
+    <p>北极熊们似乎意识到这帮人类不是合适的捕猎对象，他们看到冰架，或者说那座山一样的冰峰时，北极熊们已经远去了，嗅觉敏锐的雪橇犬们不再吠叫，这说明他们暂时是安全的。</p>
+    <p>恺撒在冰峰中间一段相对平坦的地段扎下了帐篷，盯着暴风雪连续跋涉了那么久，即使混血种也不得不休息进食来补充体力。</p>
+    <p>食物倒不是问题，他们还有一些自加热的罐头，恺撒都带出来了，至于饮水，用燃油炉化几块冰就好。芬格尔自告奋勇地担起了这些体力活儿，恺撒则躲在帐篷里研究那份从航海手册里找到的地图。</p>
+    <p>极夜已经开始了，加上暴风雪，气温降到了零下三十度以下，在这种低温下连强光手电都用不了多久，电池的续航能力不足，恺撒只能用燃油炉照亮。</p>
+    <p>芬格尔狗腿地递上一杯威士忌，“老大，研究啥呢？”他们倒是不缺好酒，YAMAL号上库存的烈酒足够他们喝一个冬天。</p>
+    <p>“那个所谓的科考站，有点不可思议。”恺撒笑笑，“北极和南极不同，南极科考站可以建在南极点上，因为冰层下面是陆地。北极是片连岛屿都很少的大洋，冰架下面就是上千米深的海水，难道那个科考站建在一片浮冰上？”</p>
+    <p>“可别是航海手册上写错了吧？”芬格尔又紧张起来。</p>
+    <p>“这种专业的资料，连标点符号都不会出错。”恺撒合上地图，“无论如何都得去看看，没有支援的话，我们没准都会死。”</p>
+    <p>“除了施耐德那个老家伙有点扛不住的样子，其他人身强力壮，我看扛到明年开春冰化都没问题。”</p>
+    <p>
+      “听说过那个叫富兰克林的英国探险家么？北极探险的先驱，1818年，他带了当时英国最先进了两艘船，‘惊恐号’和‘幽冥号’，想要找到跨越北冰洋去亚洲的航线。船上带了两年的食物，100多名经验丰富的船员。结果他们的船被冰冻住了，没有任何人活下来。几年之后他们被找到的时候，尸体还冻在冰里，栩栩如生，遇难的原因至今都没查明。最后剩下的几十个人想步行越过冰海，一路上以同伴当食物，最后也没成功。跟我们眼下的情况很像。大海想要抹掉一船人，比龙王更容易。航海的人永远要敬畏海。”
+    </p>
+    <p>“可要是冰风暴不停，还能有船来接我们？还有比YAMAL号更厉害的破冰船么？”</p>
+    <p>“还有那么一两艘，也有其他交通工具可选，比如核潜艇，它们在冰层下航行是不受干扰的。”</p>
+    <p>“老大靠谱！”芬格尔竖起大拇指，“要不是看你那么镇定，我已经吓尿了。”</p>
+    <p>“你不会的，”恺撒微笑，“如果我出了意外，就带着这份地图去找那个科考站。睡四个小时，接下来还有一天半的路。”</p>
+    <p>他没给芬格尔说话的机会，钻进睡袋，合上眼睛就睡着了。</p>
+    <p>就着燃油炉的火光，芬格尔看了沉睡的恺撒几眼，连着几天没刮胡子，恺撒显得有些憔悴和落拓。这个从生下来就养在富贵中的公子哥儿变得跟以前有些不同了，话少了很少，思考的时间长了很多，行动起来高效了很多，像个即将要接管王国的年轻君主。
+    </p>
+    <p>芬格尔也钻进睡袋，把霰弹枪枕在脑袋下面，也是一闭眼就睡着了。</p>
+    <p>帐篷外狂风呼啸，一半的雪橇犬醒着，另一半围成一圈睡着了。这些雪地的精灵会在危险袭来的时候发出警报，倒是没什么可担心的。</p>
+    <p>雪峰的最高处，立着松竹般孤峭的身影。即使在零下三十度的严寒中，酒德麻衣也还是穿着那身把全身线条勾勒得淋漓尽致的忍者服，不过是在外面披了一件鸦翼般的毡衣御寒，忍者的极致训练令她可以忍受种种极致的环境。</p>
+    <p>同时出自YAMAL号的两支探险小队其实就在相距不远的半山腰上扎营，从酒德麻衣所在的位置上看出去，冰天雪地的世界里就只有那么两团温暖的亮光。</p>
+    <p>———————————————</p>
+    <p>恺撒忽然睁开眼睛，呼吸有些急促。</p>
+    <p>摸出表看了一眼，只不过过了两个小时。芬格尔还熟睡着，打鼾的声音跟外面那些雪橇犬差不多。</p>
+    <p>并不是睡够了醒来，而是一直没有睡熟，还做了很多梦。</p>
+    <p>
+      梦里他跟诺诺拉着手走在海边的长桥上，什么话都不说；梦里居然还有庞贝，而他回到了孩提时代，庞贝骑着摩托车带他，周围是一望无际的苜蓿田，他兴奋地尖叫，庞贝戴着一副风镜哈哈大笑。恺撒都忘了自己跟老爹还有这样温馨的相处，可一切又都那么逼真，就像是从记忆里捡起来的碎片。
+    </p>
+    <p>然而最后令他醒来的那个梦却是跟母亲在一起，母亲穿着一袭白色的长裙，搂着他的肩膀坐在米兰大教堂的台阶上，天空中有星月，教堂里是如山如海的烛光，巨大的广场上空无一人。</p>
+    <p>他和母亲并未一起去过米兰大教堂，他第一次去那里就是参加母亲的葬礼，即使在梦里他也很清楚母亲已经不在人世了，但他觉得温暖和放松。</p>
+    <p>“我多么希望我的小恺撒永远不要长大，”母亲轻柔地说，“那样一切悲伤的事都不会来找你。”</p>
+    <p>那么温柔的声音，讲的却是亘古不灭的真理，你长大了，悲伤的事情就一定会来找你。</p>
+    <p>他确实长大了，身边所有的人和事忽然都变得不确定，未婚妻忽然就跟人跑路了，还是跟他选定的继承人，废柴芬格尔还是嬉皮笑脸但深不可测，而他最好的朋友阿巴斯可能是个根本没存在过的假人。</p>
+    <p>他装作坦荡和镇定自若，但只有他自己知道心底那股潜藏的彷徨和不安。</p>
+    <p>外面的天微微地亮了，他钻出睡袋走出帐篷，想呼吸一下新鲜空气。</p>
+    <p>走出帐篷的瞬间他被吓到了，浑身都是鸡皮疙瘩，不由自主地大口呼吸，极寒的空气入口仿佛吞了一大块冰下去。</p>
+    <p>极夜已经开始，整个季节北极圈里都不会有太阳升起，当然不会有黎明，照亮天空的是璀璨如女神裙摆的青色极光，无边无际，直到海天的尽头。</p>
+    <p>冰风暴不知什么时候停了，天地寂寥得像是世界初开，那是童话里才有的景色，却美得让人恐惧。</p>
+    <p>恺撒狠狠地打了自己一个耳光，脸颊火辣辣地痛，这不是梦。</p>
+    <p>恺撒甚至来不及叫醒芬格尔，他抓起冰镐，沿着平缓的冰面往上攀爬，想要去往更高的地方，好看得更清楚。</p>
+    <p>他并不完全信任雪，这个女孩讲的像是一个鬼故事，那么多的突然和意外，忽然间他们就看到极光了，忽然间船前方就是落地日了，不像是你在找那座岛，而是那座岛屿来找你了。可这一幕就在他眼前发生了，那么那座神秘的岛屿是不是也来了？</p>
+    <p>放眼出去并没有岛，只有一望无际的冰川，镜面一般倒映着天空中的青色裙摆。</p>
+    <p>空气中回荡着古老低沉的歌声，那是巨鲸的吟唱，它并未现身，而是藏身在冰川之下。歌声越来越近，它向着恺撒游来了。</p>
+    <h2 id="第124章-但为君故28">第124章 但为君故(28) </h2>
+    <p>恺撒甚至没在第一时间调头逃走，因为彻底被震撼了。</p>
+    <p>冰封的海面上开出一朵接一朵的冰花，像是巨大的脚印，仿佛有顶天立地的天女一步步向他走来，步步生莲。那是利维坦携带的极寒领域改变了冰的晶格结构。</p>
+    <p>“镰鼬”能清晰地捕捉到冰下那个古钟般的心跳声，不是一个，而是十几个，那庞然大物竟似有十几颗并列的心脏，以某种协调的频率依次跳动，好把血液输送到巨大身躯的每个角落。</p>
+    <p>它游动时带起的海水激波有差不多一公里宽，秘党的记录中从未有过如此巨大的龙类，倒更像是传说中那死于山巅、黑翼却能覆盖整座山峰的黑色君主。</p>
+    <p>雪橇犬们疯狂地吠叫起来，但这警报来得太晚了。从高处看下去，在冰峰另一侧扎营的船员们纷纷从帐篷里跑出来，甚至来不及穿上他们的防寒靴，就挥舞冰镐，沿着冰峰往上爬。</p>
+    <p>他们的背后，平缓的冰架上，正长出白色的灌木丛来，在极光之下，它们呈现出梦幻般的淡青色。当然不是真正的灌木，而是飞速生长的冰晶。</p>
+    <p>跟那支遇难的科考队一样，他们没跑出多远就化作了冰峰上的雕塑，雪橇犬们跑得更快也更远一些，但最终结果一样，恺撒亲眼看着一只跃起在空中的雪橇犬，落地的时候摔成了冰渣。</p>
+    <p>恺撒掉头狂奔，他也不知道跑到哪里去，只不过逆着冰晶丛林的方向跑，冰晶森林的边缘约等于那个极寒领域的边缘。</p>
+    <p>这片冰架相当巨大，一眼望不到头，但他能跑多远？他在冰面上奔跑的速度能不能超过那头巨鲸游动的速度？</p>
+    <p>这些问题在他脑海里一闪而逝，他没有细想的时间，肾上腺素已经分泌到极致，所有的力量都用在奔跑上。一步都不敢慢，更不能摔倒，否则就会被身后的寒冰地狱吞噬掉。</p>
+    <p>冰架摇晃起来，发出令人心悸的裂响，一道巨大的冰缝出现在恺撒面前。瞬息间它就伸展到几百米长，十几米宽，两边是嶙峋的冰崖，下面是微微起伏的海面。</p>
+    <p>冰面上积累的应力居然在这个时候爆发了，利维坦带来的严寒连这片稳定的大冰架都无法承受。</p>
+    <p>恺撒在滑溜溜的表面上急刹，差一点就坠落冰崖。前面没有路了，后面是迫近的冰晶森林，他也跳不过去。</p>
+    <p>就在这时有人从背后大力地拍他的肩，回头一看居然是芬格尔。连雪橇犬都全军覆没了，这个睡得比狗还死的家伙居然逃了出来。</p>
+    <p>“脱衣服！跳下去！”芬格尔大声说。</p>
+    <p>恺撒惊疑地看向冰崖下，海水呈青黑色，缓缓地起伏，海面上漂浮着数不清的碎冰。</p>
+    <p>在极地环境中，传说撒泡热尿都会在落地前变成冰坨子，实际情况虽然不至于这么夸张，但人体直接暴露在空气中几十秒就会失温，各种机能逐一失效，几分钟内就会冻成一具僵硬的尸体。而芬格尔居然建议他脱光了跳到海里去。</p>
+    <p>芬格尔也不是光建议，而是身体力行，恺撒还没回过神来他已经脱得只剩一条内裤了。即使是混血种的体魄直接暴露在超低温中也不好受，芬格尔浑身红得像只煮熟的大虾，一个劲儿地哆嗦。</p>
+    <p>“气温是零下三十度！冰水混合物是零度！”芬格尔大吼，“别欣赏我的裸体了！不跳就来不及了！”</p>
+    <p>恺撒恍然大悟。</p>
+    <p>北极圈里的气温可以是零下，但海水的温度却远高于气温，靠近冰面的海水差不多是零度，深海中则是差不多四度。所以北冰洋才能有自己的海洋生态圈。</p>
+    <p>
+      水的热容很高，海水的体积可以说是接近无穷，即使是利维坦也不能把北冰洋一直冻到海底。所以原则上说只要他们一直往深海里扎，就有机会躲过利维坦的言灵攻击，零度到四度对于普通人来说是难以忍受的低温，但以恺撒的体魄自由潜半小时应该没问题，至于芬格尔，看他下水之前舒展腰胯甩动胳膊的劲头，悍然也是冬泳健将。唯一的问题是没带水肺，混血种憋气的能力也比普通人要强，但毕竟不是鱼人，隔上几分钟总得冒头出来呼吸，到时候别整个洋面都被冻住了。
+    </p>
+    <p>恺撒还在思考，芬格尔已经变成了一朵白色的水花。确实来不及了，那漫山遍野的白色灌木丛正向着冰峰之巅快速生长，放眼所及莽莽苍苍。</p>
+    <p>恺撒拉开防寒服的拉链，从中鱼跃而出。他在空中回头望去，敞着拉链的防寒服依然站在冰峰之巅，冻得坚硬。</p>
+    <p>极寒的气流笼罩了恺撒，落水之前的几秒钟里他全身长满了白色的冰晶，扎进冰海之后反而感觉到微微的暖意，他全力往深海扎去，白色的冰晶在他背后高速地向下生长。</p>
+    <p>正如他预料的那样，几秒钟之内，刚刚暴露出来的水面上又结出了一层厚厚的冰壳。</p>
+    <p>恺撒一个猛子扎了十几米，才避开了疯狂生长的冰簇，大海现在是他温暖的外衣，心脏缓缓地搏动，把热量输送到全身各处。肺里的空气还够用，至少还能坚持三分钟，他谨慎地游动着，一方面寻找可供呼吸的气孔，一方面寻找那头神秘的巨鲸。</p>
+    <p>他打开了强光电筒，他连沙漠之鹰和狄克推多都没带下来，却抓了这支手电。</p>
+    <p>海水清澈得就像玻璃，光柱的穿透距离惊人，照亮了周围的冰簇，也像灌木丛，不过是倒着往下生长的。</p>
+    <p>令人惊讶的是还有一大群北极鳕鱼在附近游动，青黄色的鳞片闪闪发光，这些大鱼居然根本不受利维坦的干扰，仍在悠然地觅食，芬格尔也游在那群鳕鱼中间。这家伙居然是个自由潜的好手，全凭扭动，居然能跟得上鳕鱼群。</p>
+    <p>恺撒目瞪口呆地看了会儿，忽然明白芬格尔并不是在耍宝。冰下的海水含氧量很低，鱼群虽说可以在水下呼吸，却也必须寻找含氧量更高的区域。所以高寒地带人们会在冰面上打孔，鱼群会聚集在那里呼吸新鲜空气，拿脸盆都能舀出鱼来。</p>
+    <p>芬格尔正试图跟着这群鱼找到冰面上的缝隙。冰面上是一定会有缝隙的，利维坦的出现让冰面上积累的应力爆发，连冰峰都能劈开，细小的裂缝应该不计其数。</p>
+    <p>鳕鱼们正汇成一个巨大的漩涡，在冰层之下缓缓地旋转着，恺撒用手电照过去，果然看到了一道反光的裂缝。在肺里的空气耗尽之前，他们钻进了那道裂缝，探出水面狠狠地吸了一口冰冷的空气。</p>
+    <p>裂缝的宽度接近半米，一眼望不到头，透过顶部的冰层隐约能看到青色的天空，可见头顶的冰层不厚，如果带着冰镐的话，他们甚至有机会挖出一个冰洞来。但眼下还不是时候，那鲸歌还在回荡，利维坦仍然在周围游曳。</p>
+    <p>裂缝里挤满了北极鳕鱼，密集的程度就像是裸体跳进亚马逊河，食人鱼群蜂拥而来。好在北极鳕鱼对恺撒和芬格尔的鲜美肉体无甚兴趣，只是来争抢冰缝里的新鲜空气罢了，但被无数滑溜溜的身体摩擦着，还是很难受，有种光着身子被蟒蛇缠住的感觉。
+    </p>
+    <p>芬格尔恶狠狠地瞪着恺撒，使劲地指恺撒手中的手电，比出“嘘”的手势。</p>
+    <p>恺撒关闭了手电，降低呼吸的频率，缓慢地踩水。他们对利维坦毫无了解，不确定那头巨鲸是用视觉、听觉还是嗅觉来搜寻目标，总之想尽办法降低自己被搜寻到的可能。</p>
+    <p>这群北极鳕鱼是再好不过的掩护，他们几乎完全被裹在鳕鱼群里了。</p>
+    <p>大海缓缓地摇晃着，海水灌进冰中的裂缝，发出雷鸣般的声音。恺撒能清楚地感觉到某个巨大的黑影在他们下方无声地游动，带起强劲而缓慢的激波。</p>
+    <p>甚至不能说它在游动，更恰当的说法是“巡航”，就像一艘战略核潜艇。</p>
+    <p>
+      时间一分一秒地流逝，恺撒的体温越来越低，芬格尔应该也好不到哪儿去，不知是极光照得还是快冻僵了，这家伙的脸看起来有些绿，又结了一层白霜，非常形象地阐释了什么叫秋霜打过的茄子。他们四目相对，贴得很近，不敢发出任何声音。如果他们真的被冻死在这道冰缝里，再被学院的救援队挖出来，大概会被认为很爱彼此。
+    </p>
+    <p>就在恺撒感觉芬格尔快要游过来抱住自己的时候——这样确实能降低热量流失的速度——鲸歌声消失，利维坦终于离开了。</p>
+    <p>它离去时是惊人的高速，整片海都因为它的全速游动而震荡不安。</p>
+    <p>恺撒和芬格尔不约而同地长长出气，但也只敢出那么一口大气，因为感觉把仅剩的热量又吐出去不少。</p>
+    <p>“我们得上到冰面上去。”恺撒抬头看向冰缝的上方。</p>
+    <p>委实说这很难，前后都是冰构成的断崖，目测距离冰面有五六米的高度，如果有冰镐的话还有办法，但他们手里只有一支强光手电。</p>
+    <p>上到冰面上也很危险，冰面上的温度是零下三十度，他们浑身沾满海水，几分钟之内就会冻成冰雕。</p>
+    <p>两人的防寒服还冻在冰峰顶上。</p>
+    <p>就在这个进退维谷的时候，更大的麻烦来了，那群原本以为跑远了的北极熊竟然出现在冰缝的上方，正探头探脑地往下看。</p>
+    <p>这群家伙发出了兴奋的吼声，不知道是捕猎的前奏还是呼喊更多的朋友来分享大餐。</p>
+    <p>它们是冰海上的绝对霸主，成群的北极熊甚至能够捕猎鲸鱼，没有武器在手，他们一点胜算都没有。</p>
+    <h2 id="第125章-但为君故29">第125章 但为君故(29) </h2>
+    <p>为首的那头老北极熊发出高亢的吼叫，这是狩猎的号角声，其他的北极熊也跟着它吼，兴奋地直起身体，用力拍打着冰面。</p>
+    <p>它们富含脂肪的身躯是如此地沉重，震得冰面微微抖动，但它们也能轻松地漂浮在海水中，像企鹅那么快地游泳。</p>
+    <p>
+      就在那头老熊作势要跳下来的时候，它忽然不吼了，也不动了。它的咽喉被一支锋利的直刀贯穿，直刀的主人以黑烟凝聚的方式出现在老熊的背后，纤长的手紧紧地抓住熊颈的长毛，那支直刀是她用脚踩进去的。滚烫的熊血喷在冰面上，血腥气四下弥漫，女孩松手让老熊倒下，环顾。她的体重可能只有老熊的十分之一，纤细曼妙得像一只狐，老熊挥掌就能拍碎她，可老熊居然连挣扎的机会都没有。
+    </p>
+    <p>她看的，是剩下的那些北极熊，眼底流淌着慑人的暗金色。僵持了几秒钟之后，其他的北极熊转身狂奔着撤走，顷刻之间就隐没在黑暗里了。</p>
+    <p>它们是很聪明的动物，意识到双方之间的差距不是靠数量能弥补的，那只狐才是猎杀者，它们忽然间成了猎物。</p>
+    <p>女孩上前一步站在冰缝边，俯瞰下方神色震惊的男人们，长马尾辫在寒风中飞扬，如同黑色的战旗。</p>
+    <p>“我并不介意多看会儿裸男，但你们不冷么？”酒德麻衣冷冷地说着，把冰镐丢入冰缝。</p>
+    <p>片刻之后，一望无际的冰面上点燃了小小的火堆，恺撒、芬格尔和酒德麻衣围绕火堆而坐，恺撒和芬格尔套着石头般硬的防寒服，瑟瑟发抖。</p>
+    <p>
+      酒德麻衣直接下杀手本意是想震慑那群危险的食肉动物，免得要花力气把整群的熊都放倒，可那头死掉的老熊对他们还真有用，肥厚的油脂撒上燃油炉中已经凝固的燃料，才终于点燃了这堆火，火上烤的正是那头熊自己的肉排。原本没人期待这种蛮荒的熊油烤熊排会好吃，但焦香味在冰冷的空气里弥漫开来的时候，连恺撒都下意识地咽了咽口水。热量和蛋白质是他们眼下急需的，冬泳二十分钟的体力损耗跟跑一个马拉松差不多。
+    </p>
+    <p>酒德麻衣的状态也不是那么写意，她紧紧地裹着毛毡外套，清理着身上的冰壳。</p>
+    <p>她逃生的方式跟恺撒和芬格尔一样，但略轻松一些。冬泳对忍者来说是家常便饭，那身忍者服也帮忙不少，它的面料科技含量很高，紧身隔热，不亚于一件保暖的潜水服。</p>
+    <p>“所以你一直藏在YAMAL号上，对吧？”隔着火堆，恺撒盯着酒德麻衣的眼睛。</p>
+    <p>几年前两个人就在冰窖里打过照面，任何见过酒德麻衣的人都无法忘记她的身材，所以蒙面不蒙面对她其实是无所谓的事。</p>
+    <p>“准备问我收船票钱么？”酒德麻衣挑眉。</p>
+    <p>“为了利维坦？”恺撒接着问。</p>
+    <p>“难不成我是蹭船来海钓？”</p>
+    <p>“每个人都在找利维坦，可到底利维坦是什么？”</p>
+    <p>“我也不确定，但我确定你们对利维坦一无所知。”</p>
+    <p>“情报可以共享么？你一个人能猎到利维坦？”</p>
+    <p>“加图索少爷你想得太多了，”酒德麻衣回看一眼身后黑茫茫的天幕，“我们的合作应该从活下去开始。”</p>
+    <p>她暴露自己救恺撒和芬格尔并非纯粹的人道主义精神，而是在如此严酷的环境下，即使是她也未必能独自生还。</p>
+    <p>冰风暴停了，极昼还继续，他们必须在黑暗中跋涉，前方距离那个被废弃的科考站大约60公里，后面距离YAMAL号也差不多60公里。</p>
+    <p>他们很倒霉地被卡在了正中间，前进还是后退，这是一道关系到死活的选择题。</p>
+    <p>前进或者后退都不好走，他们原本是逆风而行，风向就是他们的航标，可现在风居然停了。利维坦和那些巨蛇应该还在周围出没，他们却损失了大部分给养。</p>
+    <p>“大家在这种鬼地方都能遇上，火上还烤着一头熊，缘分啊。”芬格尔说，“我们大难不死，精诚合作，还怕走不出去？”</p>
+    <p>酒德麻衣冷冷地哼了一声，恺撒皱着眉头凝视火堆。</p>
+    <p>“那条鲸鱼不是路过。”恺撒抬眼看看芬格尔，又看看酒德麻衣，“它是来杀人的，我们中的某个人。”</p>
+    <p>三个人都愣了一下，又都沉默。</p>
+    <p>恺撒的逻辑显而易见。他们跟利维坦的遭遇当然不该被视为偶然，就像那个神秘的探险队，利维坦找上他们是因为他们曾经去过落日地，去过神的领域的人都该死。如果说利维坦的目标那几个尾随而来的船员，未免有点牵强。</p>
+    <p>
+      此刻坐在火堆边的三个人和睦地烤着熊排，却属于三个完全不同的阵营，加图索家的继承者、神秘的美女忍者、还有更加神秘的芬格尔。想起出发前他万般推辞，几乎就要撒泼打滚，可再想他带领恺撒如此惊险地避开了利维坦的极寒领域，似乎为了这趟极地旅行早有准备。
+    </p>
+    <p>关于利维坦他们都知道些什么，如果把三个版本放在一起做成拼图，也许能知道得更多一些，可他们却没有那么信得过对方。</p>
+    <p>“也许我们三个都是它想杀的。”酒德麻衣说，“或者说，坐在这里的三个人都能洗脱一个罪名，我们都不是利维坦的盟友。”</p>
+    <p>芬格尔用狄克推多割开熊排，抵到恺撒和酒德麻衣手中，冻成冰坨的威士忌放在火堆旁烤了那么久也解冻了，三人就着瓶口一个接一个地喝。</p>
+    <p>“现在神应该是觉得我们三个都死了，我们是隐形人，我们可以藏在暗处，关键的时候再跳出去将它一军！”芬格尔说。</p>
+    <p>“没错，”酒德麻衣点点头，“说起来你们没有想过神和利维坦之间的关系么？”</p>
+    <p>恺撒一愣。神、利维坦、白色的巨鲸，其实都是某位龙王的代号，他们一直是这么理解的。</p>
+    <p>
+      “神话里的说法，利维坦是神的造物，没有什么智商的大家伙。而你们不觉得刚才的大鱼确实没什么智商么？它只要在这个海域再转上几圈，我们就都得死，可那家伙居然就这么撤了。这倒是很符合龙王的特点，力量强大的往往智慧有限，就像芬里厄，智慧型的反过来，就像耶梦加得，从没有兼具智慧和力量的个体出现。可从另一方面说，这个神又非常地诡秘，像是冥冥中有一只手在引我们进入北极圈，走这条神秘的航线，最后把自己弄丢了。”
+    </p>
+    <p>“你的意思是北极圈里其实是一对双生子？神和利维坦！”芬格尔瞪大了眼睛。</p>
+    <p>
+      酒德麻衣咬着滋滋冒油熊排，摇头，“我不确定，我只是觉得我在跟两个不同的敌人作战。一个诡秘凶险，设置了一个又一个陷阱给我们；一个强大恐怖，所到之处大海都会冰封，其实它真想杀我们，带着那个极寒领域从YAMAL号下面游过就行了，核动力破冰船也会陷在冰里。可奇怪的就是，我们才离开YAMAL号两天，它就找到了我们，我们在YAMAL号上的时候，它却一次都没有出现。”
+    </p>
+    <p>
+      恺撒愣了一下，心中掠过一个诡异的想法。从他们进入北极圈开始，利维坦就找到了他们，跟着YAMAL号游动。它之所以一直没有发动进攻是因为船上有什么人是它不能伤害的，比如双生子的另一个就在船上！雪？阿巴斯？甚至雷巴尔科船长？可那个双生子上船的目的又是什么呢？
+    </p>
+    <p>倒是火堆边三个各怀鬼胎的家伙最纯洁了，算是过命的交情。</p>
+    <p>“老大，往前走，还是往后走？”芬格尔问。</p>
+    <p>恺撒沉吟了片刻，“按照原计划，去找那个科考站。我们必须呼叫救援，YAMAL号损坏严重，这样的一艘船是无法猎杀利维坦的。”</p>
+    <p>“我们得快点。解决掉了我们，利维坦就该回到YAMAL号那边去了。”酒德麻衣说。</p>
+    <p>———————————————</p>
+    <p>YAMAL号，小图书馆。</p>
+    <p>壁炉中，书页燃烧着卷曲起来，化作黑色、火红色和苍白的蝴蝶，被热气流托着飞舞。</p>
+    <p>施耐德拢着厚厚的防寒服，防寒服里面还层层叠叠地套着各种衣物，蜷缩在壁炉边的沙发上。如果不是担心他扛不住重量，帕西只怕还会给他增加衣物。</p>
+    <p>他的身体处在崩溃的边缘，原本他就不适合这次艰难的探险。</p>
+    <p>
+      恺撒离开YAMAL号只有两天，但两天里船上的局面越来越糟糕。越来越多的船员因为奇怪的病倒下，无法确认是中毒还是传染病，也没有任何治疗方案，只能送到医疗舱里去等死。一旦呼吸暂停他们的身躯就会出现奇怪的灰化现象，血肉不是腐败而是化作矿物质般的粉末。任谁看到这景象都会觉得那是中了某种诅咒，而且每个倒下的船员都曾亲眼目睹雪用眼神和尖叫声就杀死了海德拉的幼崽们。
+    </p>
+    <p>船员们处在巨大的恐惧中，要把这个不祥的女孩丢到冰海上去自生自灭的声音在船员之中流传，雷巴尔科已经无法掌控局面了。</p>
+    <p>雪现在还能保住命只是因为阿巴斯和帕西，帕西对船员们发出了直接的警告，表示确保雪活着是恺撒临走时的命令，为了完成这个命令，他不介意把这条船上的人杀到除了雪一个不剩。</p>
+    <p>他说这话时虽未微笑但依然彬彬有礼，然而那股法西斯式的恐怖感还是暂时震住了船员们。</p>
+    <h2 id="第126章-但为君故30">第126章 但为君故(30) </h2>
+    <p>此时此刻这个法西斯式的管家正站在门口，腰带上挂着那柄名为奥古斯都的凶戾的刀，以防失去理智的船员们忽然冲进来。</p>
+    <p>这样施耐德才有跟阿巴斯安静对谈的机会。</p>
+    <p>阿巴斯靠在壁炉边，帮着施耐德把一本本书丢进去，火光照亮了他憔悴的面容。</p>
+    <p>“等恺撒回来，一切都会好起来的。”施耐德嘶哑地说，“如果我还能活到那时候的话。”</p>
+    <p>“教授您找我来并不是要安慰我吧？”</p>
+    <p>“那个因纽特女孩，雪，你对她没有任何怀疑么？”</p>
+    <p>“拼了命要救我的人，我没有资格怀疑她。但是对我，教授您应该是有怀疑的吧？”</p>
+    <p>施耐德沉默了片刻，“日本传回的消息，路明非逃亡时带了一个人，说那就是楚子航。他的格斗术很出色，看起来受过严格的训练。我们还没有机会跟他深入对话，但据前线的人说，如果说那个人是卡塞尔学院毕业的，他们都相信。”</p>
+    <p>“明白了，如果他是真的，那我就一定是假的，狮心会会长一段时间里只能有一个人。”</p>
+    <p>“你是我的学生，我看着你长大，我可以把这些当作无聊的噪音，但这条船上还有其他人知道了这个消息，所以畏惧你的人并不只是那些船员。”</p>
+    <p>阿巴斯点了点头，他终于理解了某些不安的眼神。</p>
+    <p>
+      施耐德叹了口气，“我还记得跟你的第一次见面。诺玛跟我说有个自然觉醒的孩子，写了邮件来，需要学院的人去接他，已经很多年没有自然觉醒的混血种了，我就决定亲自去看看。”老人无声地笑笑，沉浸在往事中，“我们约在一座铁道桥下，见面的那天夜里下着大雨，铁道桥下挂着一盏红绿灯。约定的时间过了，但你并没有出现，我开始想这莫非是个骗局？我竟然会相信有人能不经引导自然觉醒，我决定等到第三列火车经过，当它的车尾离开铁道桥我就会转身离开。第三列火车过去了，你还是没出现，我正要走的时候，有人在铁道桥上跟我说话，跟我说，喂，你是来接我的么？我抬头看的时候，你打着一柄伞，站在铁道桥的最高处，像一只迁徙路上离群的鸟。”
+    </p>
+    <p>“我提早到了，我一直在观察你。我很害怕，不知道来接我的是个什么东西。”阿巴斯也笑笑，“结果是个离了呼吸机都不能活命的老家伙。”</p>
+    <p>“我看得出你的害怕，既孤高又恐惧。如果你真是龙王，从那个时候就开始演戏，难道说我一直生活在谎言里？”</p>
+    <p>“听说有些龙王会因为一直在人类社会里生活而误以为自己是人类，等到某一天他的记忆忽然恢复，他就会把人类的身份彻底丢掉，朋友、亲人、爱人，全都一起。”</p>
+    <p>“我又听出害怕了。”施耐德抬起头，凝视着阿巴斯。</p>
+    <p>“当作为龙王的自己苏醒的时候，作为人类的自己其实是死掉了，对吧？可作为龙王的自己却不会可怜作为人类的自己。如果我真的是龙王，那么现在的这个我不知道什么时候就会死。”</p>
+    <p>
+      “阿巴斯，别想那么多。”施耐德轻声说，“相信自己，这才对得起那些相信你到现在的人。我们对你做过最细的体检，从你的血液到你的骨骼结构，你拥有因陀罗那种高危的言灵，但你的血统稳定。你不是耶梦加得，你是杀死耶梦加得的人，你是屠龙者阿巴斯！”
+    </p>
+    <p>“耶梦加得……”阿巴斯轻声念着这个名字，仰头看着悬下冰棱的屋顶，无声地笑笑，像是自嘲。</p>
+    <p>
+      “冰风暴已经停了，但通讯还没恢复，原因不明。我们对外的解释是太阳黑子爆发、极地大气中的强电离现象，但事情没那么简单，我们似乎被某种力量和外界分开了。冰海孤船，死亡考验，他们的心理随时都会崩溃，我必须想办法安抚。”施耐德伸出枯朽的手，把两个盒子推给阿巴斯，“他们建议给你和那个女孩安装动脉锁。”
+    </p>
+    <p>阿巴斯的眼角微微抽动，“这样就能让他们放心么？”</p>
+    <p>
+      他听说过这个东西，说是动脉锁，其实是种爆破设备，借助心脏造影，准确地把导线设备插入心脏周围，每根导线都会关联一处主血管，必要的时候，它们会造成极其轻微的爆炸，但足够把心脏周围的全部主动脉炸毁。即使以龙王的再生能力都无法在所有主动脉被毁的情况下自愈。
+    </p>
+    <p>
+      南太平洋荒岛上的监狱里，有很多高危的混血种带着动脉锁。他们可以自由地漫步、聊天、晒太阳，甚至偶尔去岛的另一端扎个帐篷过夜都没人管，但岛上有个人握着他们动脉锁的控制器，他一旦失去控制，心脏就会被炸掉。设计做得很巧妙，拆解的话也会直接引爆。
+    </p>
+    <p>“遥控器会控制在我的手里，恺撒返回之后我会交给恺撒，除了我们两个人没有人能伤害到你。”施耐德缓缓地说，“你愿意把命交到我们两个人的手上么？”</p>
+    <p>阿巴斯沉默了很久，“我只能交出自己的命，雪的命不是我的。”</p>
+    <p>“只是微创手术，甚至不能说是手术，说体检更合适。”施耐德耐心地说，“你应该听说了那些船员的事，可能某种病毒被那些大蛇带了进来，它会感染这条船上的每个人。我们需要对每个近距离接触过大蛇的人做体检。”</p>
+    <p>———————————————</p>
+    <p>雪冷冷地看着他，眼神中透出敌意。</p>
+    <p>这女孩已经要回了自己的北极熊皮，扎束起来像个因纽特小猎人，腰带上还扎着几枚从弹药库搜出来的长柄手榴弹。</p>
+    <p>她大概是已经知道船上多数人都不信任她，随时准备着离开这条船去冰天雪地里闯荡。</p>
+    <p>不过恺撒和阿巴斯发现她的时候，她也确实是个因纽特小猎人，虽然心中恐惧，但恐惧没有压垮她，连地核热井里的北极熊她都敢硬刚。</p>
+    <p>“我们每年也做体检，但没听说过要打麻醉针。”雪冷冷地说。她的英语勉强够听说。</p>
+    <p>施耐德之前已经跟她详细说明了手术的过程，其中就包括了全身麻醉。</p>
+    <p>
+      “正常的体检当然不用，但我们要找的是某种人类之前还未遭遇过的病毒，它们可能只寄居在某些北极动物的身上。甚至它们可能来自落日地，这种瘟疫在船上继续地传播，我们每个人都会死。”施耐德说，“阿巴斯和雷巴尔科船长已经做完了体检，两个小时你就会醒过来，不过是身上多几个微孔而已。”
+    </p>
+    <p>阿巴斯就站在窗边，眺望着外面黑茫茫的大海，一直没说话。这时候他转过身来，撩开防寒服和紧身的T恤，身上某几处还在轻微地出血，但看裸露在外的伤口确实是可以忽略的小孔。</p>
+    <p>看到那些伤口的时候雪似乎微微动容，强烈抵触的表情也略微地褪去了。</p>
+    <p>
+      “雪，我们在一个很危险的处境中。你救了全船的人，我相信你，但这不代表船上的每个人都相信你。我们得找出致病的原因，我们还得说服那些迷信的船员，否则我们没有人能逃出神的诅咒。”施耐德轻声说，“事到如今我可以开诚布公，我们来这里，是要杀死被你称为‘神’的那个东西。那东西继续活着，会杀死很多很多人，就像它杀死你父亲那样。”
+    </p>
+    <p>“你们想要杀死神？没人能够杀死神！”雪惊讶地瞪大了眼睛。</p>
+    <p>
+      “我们杀死过很多号称不死之物，跟那些东西相比，你所谓的神并不更特别。”施耐德凝视着雪的眼睛，“我曾在格陵兰海的海底见过它，我这残破的身体就是拜它所赐。但我活下来了，我要让它为这件事后悔。你也是从它手里活下来的人，难道你要一辈子不踏进北极圈躲着它的追杀么？跟我一起去杀了它怎么样？为了你的父亲。”
+    </p>
+    <p>他之前说的所有话都是那么温和，像个循循善诱的长者，说到这里却忽然变了语气，瞳孔中仿佛燃烧着黑色的火焰。</p>
+    <p>无论他怎么掩藏，那份仇恨在被触碰到的时候，还是会如恶魔的黑色尖角那样刺破他的面具。</p>
+    <p>雪怔怔地看着他，久到连施耐德自己都有点尴尬。不知道是自己的情绪无意中外露吓到了雪，或者那一长串的英文这个因纽特女孩根本没听懂。</p>
+    <p>可雪最终点了点头，“我同意。”</p>
+    <p>施耐德教授如释重负地呼出一口气，看了阿巴斯一眼，敲了敲船舱的门，帕西推门进来。</p>
+    <p>“女士已经同意了体检方案，让我们的医生在两个小时内准备好。”施耐德说。</p>
+    <p>帕西向着雪微微鞠躬，“只有一个小小的问题，我们的医生是位男士，希望雪小姐不会介意。”</p>
+    <p>微创手术要裸露上身，执行手术的医生当然不能是YAMAL号的船医而是卡塞尔学院的人，他同时也是位持证的美国职业医生，对于病人的裸体见得太多，心止如水。但病人是妙龄的女孩，又是因纽特人，这些话最好提前说明。</p>
+    <p>“没关系，但阿巴斯要在病房外等着。”雪说。</p>
+    <p>施耐德和帕西对视一眼。</p>
+    <p>“如果我父亲还活着，应该是我父亲看着。”雪补充。</p>
+    <p>施耐德愣了一下，雪对阿巴斯的依赖还真像是对父兄。</p>
+    <h2 id="第127章-但为君故31">第127章 但为君故(31) </h2>
+    <p>阿巴斯靠在病房的舱壁上，听着里面叮叮当当的金属碰撞声。那是医生在为手术器械消毒。</p>
+    <p>遵照雪的要求，他得一直候在病房外。尽管这事实上毫无意义，他是施耐德的同谋。</p>
+    <p>
+      微创手术确实不假，但不是体检，而是安装动脉锁。医生会在雪的身上做极小的切口，让无菌的铂金细丝进入她的体内，缠绕在她心脏周围的动脉上，整个手术过程比装假牙还容易，手术后雪也很难觉察自己身体的变化。控制装置只是指甲盖大小的薄片，藏在肋骨的边缘，全套装置加起来不过十几克重。
+    </p>
+    <p>被植入动脉锁的人带着它过一辈子都没事，但拿着遥控器的人随时能杀掉你。</p>
+    <p>阿巴斯原本已经拒绝了施耐德的建议，但被施耐德的一句话动摇了。</p>
+    <p>施耐德问，“如果夏弥还活着，你会给她安装动脉锁么？”</p>
+    <p>是啊，夏弥，阿巴斯的禁忌词汇。时至今日阿巴斯都无法确定那个女孩是不是存在过，或者从头到尾都是一场精心设计的骗局。</p>
+    <p>如果时间倒回到北京地铁的前夜，他会不会选择放走耶梦加得？阿巴斯反复地询问自己，最后他对自己说我仍然会做同样的选择，因为那是耶梦加得，龙王耶梦加得。</p>
+    <p>也许夏弥真的存在过，是那个龙王精神分裂出的一个人格，可他不能为了留住夏弥的幻影而放走灭世的狂龙。</p>
+    <p>他曾经坚定地选择了站在人类的一边，这条路他必须走到黑，因为他曾为这条路支付了太高的代价。</p>
+    <p>他相信施耐德和恺撒，希望雪只是个普通的女孩。</p>
+    <p>他的手伸到自己的防寒服里面，某一节肋骨处，使劲按下去的话，会觉得有一丁点的疼痛。他确实做了那个微创手术，动脉锁寂静无声地在他的体内工作着。</p>
+    <p>做手术的时候他要求不打麻药，他清醒地感觉着那些铂金丝进入自己的体内，如同毒蜘蛛的触手那样缓缓地缠绕在他的动脉上。</p>
+    <p>这是他为自己的谎言支付的代价。他欺骗了那个因纽特女孩，无论理由为何。</p>
+    <p>———————————————</p>
+    <p>三个人在一望无际的冰原上跋涉，损失了全部的雪橇犬之后他们只得自己充当雪橇犬，每个人都在腰间系着绳子，绳子后面拖着小型的雪橇，里面是他们从冰下抢救出来的物资。</p>
+    <p>极夜刚刚开始，太阳不再升起但天边还是有微弱的亮光，可以当作判断方向的参考，但不太精准，剩下的就得看运气了。</p>
+    <p>“老大你读不读推理？”芬格尔喘着粗气，但还有心情聊天。</p>
+    <p>“我不读推理，我有个女巫一样的未婚妻，任何推理她只要看到一半就会猜到结局。而且，她会跟我剧透。”</p>
+    <p>“1939年，阿加莎·克里斯蒂出版了她的成名作《无人生还》，十个有罪的人被邀请去一个岛上的别墅度假，全部都死在那里。你说像不像我们现在的处境？”</p>
+    <p>“你是说YAMAL号上载的都是有罪的人？”</p>
+    <p>“而且凶手就在船上，《无人生还》里就是这么写的。他会想办法让我们互相猜疑，最后把我们一个个干掉。”</p>
+    <p>“破解那个杀局的办法很简单，只要十个人中有两个人是绝对相信彼此的，一直呆在一起，凶手就不能得逞。”酒德麻衣加入了这个无聊的讨论，“但每个人都猜对方是凶手。”</p>
+    <p>“想不到美女也读推理。”芬格尔说。</p>
+    <p>“不，没兴趣读那破玩意儿，但交过写推理的男朋友。”</p>
+    <p>芬格尔一屁股坐在冰面上，捶打着自己的膝盖，“歇一会儿歇一会儿。”</p>
+    <p>恺撒和酒德麻衣也停下了脚步。确实应该休息了，遭遇利维坦之后他们连续不停地跋涉了十二个小时，体能接近枯竭。</p>
+    <p>恺撒隐隐有些后悔自己的决定，为了那个未知的科考站，放弃了撤回YAMAL号的机会。他们事实上已经迷路了，本应出现在半途中的好几个永久性地标都消失了。</p>
+    <p>从地图上看北极圈，会觉得一切尽在掌握，人类的足迹已经遍布北极圈的每个角落，甚至每年有上千名游客能够亲临北极点，拍照留念，甚至在那块浮冰上举办香槟酒会。</p>
+    <p>可一旦失去机械的支持，北极圈就骤然变作一片恐怖而迷幻的荒原，一个看不见障碍物的迷宫，你往任何方向看去它都是一样的，会觉得自己永远在原地转圈。</p>
+    <p>如果不是酒德麻衣猎杀了那头北极熊，他们的食物供给都是问题，原本充足的自加热罐头居然没能找回来，然而一路烤熊肉的话他们就需要大量的燃料，燃料的供给也是非常有限的。</p>
+    <p>“我们得学因纽特人堆一个雪屋，它比帐篷保暖，雪屋还能隔绝我们的气味，避免再被附近的北极熊闻到。”酒德麻衣说。</p>
+    <p>“它们来了岂不更好？这是送肉上门啊！”芬格尔说，“我现在一口气能吃两只！”</p>
+    <p>酒德麻衣白了他一眼，“我得睡一会儿，我睡着的这段时间里，如果北极熊来了就请弗林斯先生您留它们小坐片刻，我醒来再杀。”</p>
+    <p>恺撒懒得加入这种没营养的对话，已经拔出狄克推多就地挖雪。他的判断跟酒德麻衣相同，他们事实上已经进入了食物和燃料都很短缺的危险境地，从现在开始一切的能源消耗都得被降到最低，雪屋是个很好的办法，必要的话他甚至不介意生食北极熊的肉。
+    </p>
+    <p>极地的积雪非常干燥，堆出一间小小的雪屋只花了他们不到两小时，门口用帐篷来挡风。三个人钻在雪屋里不得不膝盖碰着膝盖，脸也几乎贴着脸，像是三只一起冬眠的狗熊。</p>
+    <p>“谁的长腿？谁的大块胸肌？都收一收！”芬格尔边抱怨边喝酒，“两位大佬，说说呗，现在该怎么办呐？”</p>
+    <p>没有人说话，酒德麻衣和恺撒膝盖顶着膝盖，看似是在沉思，其实已经睡着了。</p>
+    <p>他们都是高效的人，不会把时间用在无意义的聊天上，此时此刻最重要的就是休息，唯有在体力储备充足的情况下他们才能应付突发情况。</p>
+    <p>芬格尔嘟哝了几句，困意卷了上来，拎着酒瓶子就睡着了。</p>
+    <p>恺撒只睡了不到两个小时就醒来了，外面寒风呼啸，雪屋里芬格尔鼾声大作，酒德麻衣的眼睛在黑暗里明亮异常，看上去若有所思。</p>
+    <p>“那个藏在幕后的家伙还真像是要一个个地杀了我们所有人。”酒德麻衣知道恺撒醒了，却没看着恺撒说话。</p>
+    <p>“就像《无人生还》？”恺撒挑了挑眉。</p>
+    <p>
+      “十个人，犯了十种不同的罪，挨个判处死刑。现在被处死的人是部分的船员，还有我们三个，那个因纽特小女孩差点被船员们烧死，但你和阿巴斯救下她。你的朋友阿巴斯也差点被巨蛇咬死，又是因纽特小女孩救了他。如果把这些人除掉的话，剩下的是船长、那位随时都会咳死的教授、和你那个牛排烤得很好的秘书。”酒德麻衣说。
+    </p>
+    <p>“帕西不会对我不利，虽然我也觉得他是个出色的侩子手。”</p>
+    <p>“作为你们家族的秘书，保护继承人是他的责任，但是我们现在在信号完全中断的冰海上，他杀了你也不会有人知道。”酒德麻衣说，“忽然有位带着牛排和酒来船上服侍你的秘书，你不觉得奇怪么？”</p>
+    <p>“我猜他更深的目的是那具龙骨。我的家族对龙骨的归属非常在意，如果我们成功地杀死利维坦，应该会得到龙王之骨。”</p>
+    <p>“雷巴尔科船长呢？他经历过一次神秘的事件，他也看到过那种青色的极光，可他居然说自己什么都记不起来了。”</p>
+    <p>“他值得怀疑，但那些差点死掉的人里也可能会有人伪装。《无人生还》里的凶手就冒充成死者，避开了被怀疑。连这个正在打鼾的家伙都值得怀疑。”</p>
+    <p>“这话当着他的面说无所谓么？”</p>
+    <p>“无所谓。他可是当年格陵兰事件的亲历者，施耐德教授失去了几乎所有的学生，一心要复仇，这家伙失去了所有同级的同学，却跟把什么都忘了似的。”</p>
+    <p>“创伤性的经历会让人刻意避免去回忆某些事。”</p>
+    <p>“总之我们中没有人可以逃过怀疑，所有的线索都是乱的。”</p>
+    <p>“不，”酒德麻衣抬起头来，直视恺撒的眼睛，“有一个。”</p>
+    <p>“谁？”</p>
+    <p>“你，恺撒·加图索。你是黄金鬃毛的雄狮，没有任何必要去行诡计，你从荒原上走过，要吃掉一切卑鄙的动物。自以为正义，实际上是暴君，有时候愚蠢。”酒德麻衣淡淡地说，“如果只有绝对的信任能够破解这个阴谋，我选择相信你。”</p>
+    <p>恺撒沉默了片刻，“可我无法相信你。我甚至不知道你背后是什么人什么组织。”</p>
+    <p>“如果是想借机探问一些情报的话你可以闭嘴了，那个人的名字，不是你有资格问的。我只能请你放心一件事，这次我只是个观察员，想看看北极圈里到底会发生什么有趣的事。”</p>
+    <p>恺撒还想说些什么，但酒德麻衣挥手令他闭嘴。</p>
+    <p>“最后说件秘密作为暂时结盟的诚意金吧。那个全灭的考察队是我们雇佣的，那个因纽特小姑娘似乎没说假话，他们在冰海深处找到了什么了不起的东西。”</p>
+    <h2 id="第128章-但为君故32">第128章 但为君故(32) </h2>
+    <p>“你们的目标也是利维坦？”恺撒盯着酒德麻衣的眼睛。</p>
+    <p>“我如果说我们只是例行考古你会不会觉得很可笑？”</p>
+    <p>“例行考古？”</p>
+    <p>
+      “我们根据各种情报判断，认为北冰洋下有昔日龙类的遗迹，所以就雇了那么一支探险队，让他们来北极圈里转转。他们非常专业，不是专业的赏金猎人，而是专业的考古学家。我们并没对他们抱很大希望，只不过是对北冰洋的投石问路。如果派条船在北冰洋里转几圈就能找到龙族遗迹，那我们也太有狗屎运了。”酒德麻衣叹了口气，“可有的时候人就是会走狗屎运。“
+    </p>
+    <p>“你是说他们真的找到了落日地？”</p>
+    <p>
+      “开始还只是一截从海底捞上来的青铜柱碎片，那东西应该出自某个龙类遗迹。整个探险队因为这个发现欣喜若狂，他们相信自己找到的是远古时期北极圈内有过人类文明的证据。他们的团队里有各种专业人士，他们试着解读青铜柱上的符号，相信北极圈内有人类从未发现过的岛屿。这跟因纽特人传说的‘落日地’相吻合，他们就去找当地的向导。他们认为落日地是一片古代露出水面的陆地，但因为温室效应海平面上涨，被淹没在水下了。”
+    </p>
+    <p>“所以他们的目标并不是利维坦，他们甚至不知道什么是龙族？”</p>
+    <p>
+      酒德麻衣苦笑，“没错。他们只是一帮纯正的考古学家，他们并不是想偷偷摸进龙族的遗迹发笔大财，他们只是太想探索未知的世界了，他们一边向着北极点推进，一边都开始写论文了。我们当然不希望他们继续下去，我们许诺了巨额的回报，跟他们说任务已经结束了，你们做得很好，你们现在可以开船回来了，把那块青铜碎片交给我们就好。那笔钱多到能让一位国王背叛他自己的国家，但这对那帮痴迷学术的疯子没用，队长就像朗诵莎士比亚的台词那样跟我们说，这是他个人的一小步，却是迈向古文明的一大步。啊那辉煌的黄金之国就在我的前方，我怎能停下这奋进的马蹄？他跟我们说在约翰·斯蒂芬斯在洪都拉斯的热带雨林中重新找到玛雅文明的遗迹前，雨林中藏着黄金城的传说已经流传了几百年，却没有一个专业的学者相信。而他就是当代的约翰·斯蒂芬斯。他被那个神秘的岛屿迷住了，他愿意为那个岛去死。他们甚至中断了跟我们的无线电联系，经过危险的浮冰带往北航行，好在我们还有极轨卫星，大概还能掌握他们的航线，直到他们遇到了那片青色极光。”
+    </p>
+    <p>“很好的故事，可惜没什么用。”恺撒说，“我们的雪橇上还有酒，倒是可以致敬一下这些勇敢的先驱者。”</p>
+    <p>
+      “别着急，故事可还没有结束。你也知道，一旦极光出现，强烈的电离现象就会中断这个区域内跟外界的所有联络。所以从他们遇见极光开始，连极轨卫星都无法定位他们了。但那位当代的约翰·斯蒂芬斯居然跟我们主动联络过一次，他明显喝了很多酒，说起话来逻辑混乱，但他最后说了一句很清晰的话，他说，”酒德麻衣顿了顿，“英灵殿的门我们已经关上，里面的东西不应该回到人世间。”
+    </p>
+    <p>恺撒悚然动容，“英灵殿？”</p>
+    <p>“没错，英灵殿，Valhalla，北欧神话里奥丁接待武士英灵的宫殿。”酒德麻衣说，“不是你们学院的那间礼堂。”</p>
+    <p>最后一句纯属调侃。卡塞尔学院里也有一间英灵殿，但那不过是因袭北欧神话里那座欢腾的亡灵圣殿。</p>
+    <p>传说主神奥丁早已预料到“诸神的黄昏”，他命令他的侍女们前往在世界各地的战场，选择勇敢的武士，为末日之战做兵力储备。</p>
+    <p>这些被称作“瓦尔基里”或者“女武神”的侍女骑着骏马经过血流成河的战场，亲吻垂死勇士的嘴唇，把他们的灵魂带往英灵殿。</p>
+    <p>
+      在那座有着540道大门、每道门能供800名勇士并排进出的奢华宫殿里，勇士们终日训练战技，即使死在训练场上也能死而复生，晚间则在瓦尔基里们的服侍下大块吃肉大碗喝酒，痛饮神羊的乳汁。直到末日降临的那天，540道大门同时打开，人类有史以来所有的英灵们蜂拥而出，奔赴必死的战场。
+    </p>
+    <p>北欧神话中的高光桥段，悲壮宏大，再加上“女武神之吻”这种引人遐想的元素，没法不让人印象深刻。</p>
+    <p>可要说北极圈里藏着一座囤满灵魂的宫殿，比“落日地”的说法更像天方夜谭。</p>
+    <p>但恺撒还是点了点头，“我听过一种说法，古代的北欧人认为极光是瓦尔基里们策马在云端奔驰的时候，铠甲的反光。”</p>
+    <p>“鬼扯吧！在这种鸟不拉屎的地方，还指望找到胸大屁股翘的女武神？”芬格尔已经醒了，听得一身是劲。</p>
+    <p>“胸大屁股翘只是你的幻想，更可能是粗壮的北欧大妈战队。”酒德麻衣说，“闭嘴。”</p>
+    <p>恺撒思索了片刻，“故事更加精彩了，但依然只是一个故事，我们除了知道‘英灵殿’这个名字，对于那座岛屿上的情况还是一无所知。”</p>
+    <p>酒德麻衣叹了口气，“加图索少爷，你的智商如果有你这张脸的一半得分，我也许还能给你一个约会的机会。”</p>
+    <p>恺撒有点囧，他这一生中还没有哪个女孩敢这么跟他说话。可在酒德麻衣面前他得认，他确实感觉到酒德麻衣的故事中有个疑问，但他就是想不明白。</p>
+    <p>“那家伙用什么工具跟你们通话的？”芬格尔问。</p>
+    <p>“有些时候我们不应该低估犬科动物的智商。”酒德麻衣摸摸芬格尔的脑袋，雪屋太小了，这么做只是举手之劳。</p>
+    <p>芬格尔，“汪汪！”</p>
+    <p>恺撒立刻明白了，“他是在看到极光之后才跟你联系的，那时候他根本没有可用的通讯工具！”</p>
+    <p>酒德麻衣点了点头，“没错，他去了那个封存的科考站，启用了那里的长波发射器。长波沿着地球表面传播，大气层上空的电离现场干扰不到它。”</p>
+    <p>“所以那个科考站确实是存在的！”恺撒不由得语气欣喜。</p>
+    <p>现在他们太需要和外界建立联系了，相互之间的猜疑，对神秘威胁的恐惧，都会因为和外界的联络恢复而瓦解。</p>
+    <p>但他立刻又收住了快要笑出来的嘴角，在酒德麻衣面前，他好像永远都是被带着走。他的一惊一喜都在酒德麻衣的预料之中。</p>
+    <p>真不知道这女孩的幕后老板是个什么人，这么聪明和骄傲的女孩，怎么会效忠某个人呢？</p>
+    <p>“当然，如果不是这样，我也不会跟着两位离船。你们要去的地方，也是我要去的地方，我们那位当代的约翰•斯蒂芬斯曾经到过那里，也许会留下一些信息。”酒德麻衣说。</p>
+    <p>恺撒从防寒服中摸出那张航海手册上撕下来的海图，研究了一会儿，摇头，“可惜现在我们辨不清方向……”</p>
+    <p>酒德麻衣拿过那张图，随手撕了，“这张图已经没用了，我们应该已经接近那座科考站了。”</p>
+    <p>“你知道方位？”恺撒倒不介意酒德麻衣撕毁地图，大家都困在这片冰原上，谁也不必猜忌谁。</p>
+    <p>“不知道，但是认路不一定要靠方位。你们没有留意么，我们来这里的路上能看到S形的痕迹。”</p>
+    <p>恺撒和芬格尔对视。他们确实都不曾留意，极夜已经开始，虽说天空中还有大气层折射的微光，但能见度很差。</p>
+    <p>“你们猜，我要造这间雪屋，真的是为了隔绝北极熊的嗅觉么？”酒德麻衣慢悠悠地说。</p>
+    <p>恺撒猛地打了个寒颤。</p>
+    <p>雪屋可以隔绝北极熊的嗅觉，也可以隔绝其他猎食动物的嗅觉，但北极的冰天雪地里除了北极熊还有什么动物能威胁到他们？</p>
+    <p>又是什么动物会留下S形的痕迹？</p>
+    <p>是那些暗青色的大蛇！</p>
+    <p>回想起来这一路上都是酒德麻衣在前面领路，而她一路上都在跟着那些大蛇留下的痕迹走！这么走下去他们抵达的岂不是那些蛇的巢穴？</p>
+    <p>
+      “队长最后的通话中，背景音是枪声，密集的枪声。北极熊是北极圈内最危险的猎食动物，它们通常也不一起行动，还有什么威胁逼得他们用那么多子弹去对付？”酒德麻衣缓缓地说，“应该是那些蛇吧？他们去过英灵殿，惊动了里面的守卫，守卫不是胸大屁股翘的瓦尔基里，而是那群巨大的蛇。他们抵达那座科考站，被蛇群追上，在那里发生了战斗。你们没想过那艘黑色的船从哪里来的么？那就是那支探险队的船，他们不是主动放弃那条船，而是那条船被蛇群占据了，变成了蛇穴。”
+    </p>
+    <p>“所以那座科考站其实也是一处蛇穴。”恺撒说。</p>
+    <p>“应该是，希望住客能少一点。”酒德麻衣看一眼恺撒，从自己的背包里取出一根黑色的金属棒，金属棒的一端是锋利的尖刺。</p>
+    <p>她把这跟金属棒深深地钻进三人之间的坚冰中，“加图索少爷，你觉得在这个鬼地方，那些蛇是吃什么东西把自己养得那么大的？”</p>
+    <p>恺撒想了想，“鱼群、虾群、浮游生物，蓝鲸也是吃这些东西，能长到30米以上。”</p>
+    <p>“如果我没猜错的话，那些蛇现在就在我们附近的海里进食，要不要试着听听看？”酒德麻衣笑得春花灿烂。</p>
+    <h2 id="第129章-但为君故33">第129章 但为君故(33) </h2>
+    <p>恺撒把下颌骨紧贴那根冰冷的金属锥，闭目静听。</p>
+    <p>
+      一代音乐巨匠贝多芬在耳聋之后就是用类似的方式听音，咬着木棍，把声音直接导入颅骨，酒德麻衣用的金属锥导音效果更好，此刻方圆几公里内冰面上的声音、冰层下的声音都通过这根金属锥传入恺撒的颅骨。他的言灵是“镰鼬”，听觉的敏锐程度本就远超常人。
+    </p>
+    <p>片刻之后，恺撒直起身来，神情凝重。</p>
+    <p>“老大什么情况？”芬格尔神情紧张。</p>
+    <p>“我什么都没听到。”恺撒摇头，“冰面之下很安静。”</p>
+    <p>“说得我们闯进异形老窝里似的，结果鬼影子都没有。”芬格尔松了口气。</p>
+    <p>“这才不正常，我们遇上利维坦的时候，冰下能看到成群的北极鳕鱼，可这里的冰下静悄悄的，就像坟墓一样。”</p>
+    <p>“因为那些蛇群不久前刚在这里进食过，它们的体型巨大，每天消耗的热量是很恐怖的数字，它们进食过的海域，别说北极鳕鱼，大概连磷虾也剩不下。”酒德麻衣说，“而我们遇到利维坦的海域之所以有那么多的海洋生物，你们还没想明白么？”</p>
+    <p>“那些大蛇，是利维坦的食物！”恺撒缓缓地说。</p>
+    <p>“没错，所以利维坦经过的地方，那些大蛇就不敢出现。而利维坦是不吃北极鳕鱼的，北极鳕鱼群甚至可能会跟着它游动。只要它不唱那种招来极寒的歌，跟着它反而是最安全的。”酒德麻衣说。</p>
+    <p>芬格尔愣了一下，老脸煞白，“那这利维坦得多大啊？”</p>
+    <p>“陆地动物的体重受到骨骼承重能力的限制，但海生动物有浮力支撑身体，原理上可以无限地长大。有人根据抹香鲸身上的吸盘伤疤推断，深海中可能有体长80米以上的大王乌贼。”恺撒说。</p>
+    <p>
+      “人类自认为已经是地球的主人了，龙类和它们的亚种却在不见光的地方形成了新的生态圈。它们猎食和生长，种群悄无声息地扩大。并非所有的龙王都像诺顿或者耶梦加得那样是孤胆英雄，悲伤又愤怒地向世界复仇。也有龙类是聪明的战略家，它们可以隐忍很多年，当它们开始复仇的时候，人类会看到一支军队横渡大海。”酒德麻衣幽幽地说。
+    </p>
+    <p>“你们的立场在人类这一边么？”恺撒盯着酒德麻衣的眼睛。</p>
+    <p>“至少此时此刻，我的立场跟您的立场是一致的，”酒德麻衣微笑，“而我们谁都无法确保自己将来的立场还在人类这边。怎么样？我的诚意金还够么？”</p>
+    <p>“足够。”</p>
+    <p>“所以我们算是暂时地结盟了么？”</p>
+    <p>“从你把我们从冰海里捞起来的时候已经结盟了，”恺撒说，“难道还需要立个誓歃个血？”</p>
+    <p>“从我开始，这一路上我们三个同进同退！大家谁也别背叛谁！谁也别关键时候跑路！直到大家活着离开这个鬼地方！”芬格尔拍着胸脯。</p>
+    <p>听到这些话，酒德麻衣刹那间有些失神，接着她又听到芬格尔说，“说话不算数的人，死爹死妈死全家！”</p>
+    <p>恺撒被这条毒誓震到，吃惊地看着这条忽然江湖起来的败狗。看他那威严肃穆的神情，感觉他才是这个三人组里的大哥、盟主、扛把子。</p>
+    <p>“做兄弟，就是要赌上身家性命对不对？”芬格尔左左右右地看，“该你们了。”</p>
+    <p>酒德麻衣恢复了笑靥如花，“芬格尔老爷都敢发，我又有什么不敢发？说话不算数的人，死爹死妈死全家！”</p>
+    <p>恺撒苦笑，“如果我没有猜错的话，两位的父母应该都是英年早逝的类型吧？”</p>
+    <p>酒德麻衣和芬格尔不约而同地耸耸肩，摊摊手。</p>
+    <p>“既然大家都那么豪爽，没问题，”加图索少爷淡淡一笑，“我母亲过世了，那就赌上我亲爱的老父亲的性命吧！”</p>
+    <p>———————————————</p>
+    <p>庞贝重重地打了个喷嚏，揉了揉鼻子，“这世上还有人会想念我么？”</p>
+    <p>不过他旋即就把这件事抛在脑后了，上半身几乎是趴在会议桌上，语气沉痛，“你们救救我儿子！求求你们救救我儿子！他还是个没毕业的孩子啊！是我们加图索家的独苗啊！你们要对我这个老父亲负责啊！”</p>
+    <p>英灵殿会议厅，秘党全体元老不得不正襟危坐，听取这位老父亲的哭诉。</p>
+    <p>
+      YAMAL号失联已经超过一周了，元老会尝试过各种手段联系它，联络了北极圈内所有的科考站，调用了所有的极轨卫星，至少有十条在北极圈附近航行的船在卡塞尔学院支付了巨额费用之后变更航线搜寻YAMAL号，但都没有结果。那场强烈的极地风暴令所有的通讯方式都中断了，试图救援的船遗憾地通知学院，它们的吨位数和抗风暴能力根本不敢接近冰风暴的区域。
+    </p>
+    <p>事实也如此，YAMAL号是世界上最强的破冰船之一，如果它不能在冰风暴中幸存，那么派别的船去也只是送死。</p>
+    <p>这边焦头烂额呢，那边庞贝就气势汹汹地登门了。元老会无法不接待这位学生家长，因为他同时也是这间学院的校董，还是最大的出资人。</p>
+    <p>进了门庞贝就开始表演，哭天抢地撒泼打滚，悲痛得就像失去了考狄利娅的李尔王。</p>
+    <p>（作者注：考狄利娅，莎士比亚所著戏剧《李尔王》中李尔王的三女，是唯一爱着父亲的女儿，后战败被杀，李尔王抱着她的尸体悲愤而死。）</p>
+    <p>“加图索先生，我们正在想办法，相信很有就会有结果的。”图灵先生温言劝说。</p>
+    <p>他也知道这话空洞无力，但无论如何都得有人站出来说几句话。庞贝已经把会议厅变成戏剧舞台了，不制止的话不知道他会演多久。</p>
+    <p>“想办法？什么办法？请问我还怎么相信你们？北冰洋啊！那是多么险恶的地方！你们拿一艘小破船就把我儿子送去了！”庞贝瞪眼，“你们的办法是再派几艘小破船去找找看么？”</p>
+    <p>
+      “这是一次准备充分的行动！”贝奥武夫忍不住了，“我们花费巨资购买了世界上最强大的破冰船，装备部为它加装了最强的武器，配置了最强的团队，由执行部部长施耐德亲自带队。但任何屠龙的行动都可能遭遇意外，自古以来支撑秘党的就不是刀剑和铠甲，是勇气和牺牲！我们每个人都该有牺牲的觉悟，你的儿子恺撒·加图索，那是个优秀的年轻人，我想他也不想被看作花花公子，或者，懦夫！”
+    </p>
+    <p>他不想把话说得太狠，谁也不想跟加图索家公然敌对，但说到“花花公子”和“懦夫”这两个词的时候，他还是不由自主地加强了语气。</p>
+    <p>
+      “什么叫准备充分？买一艘破船就叫准备充分？他们是去屠龙啊各位老先生！你们甚至连那位龙王的真实面目和能力都不清楚，什么叫准备充分？”庞贝怒了，完全不给这位老前辈面子，“为什么不能派核潜艇护航？航空母舰搞不搞得到？你们美国人不是有11个航母战斗群么？调一个去北冰洋不行么？你们能派航空母舰去波斯湾抓萨达姆，为什么就不能派航母去北冰洋？是萨达姆危险还是龙王危险？跟龙王比起来萨达姆就是个宠物！”
+    </p>
+    <p>范德比尔特先生咳嗽一声，尴尬地说，“加图索先生，很能体会您的心情，可那11个航母战斗群都是美国政府的资产，您想调动它们的话只能去跟五角大楼协商。”</p>
+    <p>“你拿五角大楼来压我是不是？”庞贝立刻就掏电话，“我这就打电话！五角大楼里我有的是好朋友！都是能跟我一起泡妞的硬关系！”</p>
+    <p>“冷静！冷静！”曼施坦因教授不得不站出来打圆场。</p>
+    <p>根据以往的经验，庞贝是那种做事不顾后果的人，急起来真去问五角大楼借航空母舰，五角大楼势必会对北极圈的事态起疑。</p>
+    <p>
+      “加图索先生，您不在这张会议桌上的时候，恺撒就是我们的校董，我们也很在意他的安危。但事情已经发生，我们能做的都做了，眼下只能等待结果。”曼施坦因教授说，“如果加图索家对我们的救援行动不满意，请问我们该怎么做才能令加图索家满意？”
+    </p>
+    <p>“派一个航母战斗群去，再加三艘核潜艇，把我儿子接回来，顺便拿战斧导弹炸死那条龙！这不是很简单的事么？”庞贝摊摊手。</p>
+    <p>曼施坦因尴尬地咳嗽两声，“这是不可能做到的，您说这些只是在开玩笑。”</p>
+    <p>
+      “谁说不可能？我现在还有心思跟你一个秃子开玩笑？”庞贝翻翻白眼，“看谁动手而已。想让我们满意，在我儿子活着回家之前，猎杀利维坦的行动由我指挥，我有权调动执行部在世界各地的分部，我也有权不跟各位元老汇报进度，不过我保证事后你们会收到一份详细的报告。当然，最核心的，我需要EVA的最高权限！”
+    </p>
+    <p>“加图索先生！你的要求太多了！你这是要把秘党当作加图索家的私人武装！”贝奥武夫勃然大怒，额角青筋暴跳。</p>
+    <p>
+      他根本不愿意花时间跟这个浪荡子说话，连看他一眼都觉得恶心。加图索家虽然也有数百年的历史，但跟贝奥武夫家族比起来，只是混血种中的新贵和暴发户。贝奥武夫家族的勇士们仗剑屠龙的时候，“加图索”这个姓氏都没有诞生。可是百年来这个家族英才辈出，成为混血种家族中最显赫的名门，而贝奥武夫家族却日渐衰微，渐渐成为老朽的代名词。
+    </p>
+    <p>是这群狡黠的西西里人夺走了贝奥武夫家族的荣光！他们喝着昂贵的酒，举止轻浮炫耀，跟权贵们往来，游刃有余，敛聚了惊人的财富。加图索家今日的地位是用钱堆出来的，而贝奥武夫家族的姓氏却是用历代勇士的血擦亮的！</p>
+    <p>“先生们，你们还没有明白秘党作为一个组织的本质。”庞贝忽然安静下来，安坐，后仰，靠在那宽大的椅背上。</p>
+    <p>这样的他令人想起《教父》里的艾尔·帕西诺，英俊，沉静，带着微笑，但那是黑暗世界的皇帝，即使坐在阳光里，也是冷的。</p>
+    <h2 id="第130章-但为君故34">第130章 但为君故(34) </h2>
+    <p>
+      “世上所有的组织，无论是阳光之下的政府、大学，还是阴影之中的共济会、光照会，无非都是围绕着某个目的聚集起来的一群人。越是严密的组织，它的目的就越大。秘党当然是个严密的组织，而它的目的，各位前辈是否认真地思考过呢？”庞贝环顾四周。
+    </p>
+    <p>无人回答，有的人是不明白庞贝忽然谈起“组织”这个社会学名词的用意，有的人则是因为不屑。</p>
+    <p>
+      “守护世界和平、压制龙族复兴，我们可以给自己找到各种各样冠冕堂皇的目标。但我们真是这么一群具备献身精神的理想主义者么？”庞贝微笑，“别开玩笑了先生们，理想是人类精神花园中最美的花朵之一，但是越美的花朵盛开得越短暂，仅凭‘理想’二字，秘党不可能存续几千年。请问在座的各位，有几个人没有自己的家族？而你们的家族，又是如何兴盛起来的？贝奥武夫先生，你的先辈曾在斯堪的纳维亚半岛上建国，请问那位屠龙的勇士是靠着什么登上君主之位的？屠龙，靠的是屠龙的丰功伟业，还有龙穴中堆积成山的黄金。范德比尔特先生、图灵先生……”庞贝一个一个地看过去，“如果你们想听，我可以给你们每个人讲讲你们的发家史。”
+    </p>
+    <p>
+      “没错，秘党付出了巨大的牺牲，如果没有秘党，龙王们可能已经再度统治世界了，但组成秘党的各大家族也从屠龙这门生意中赚到了财富、权力、和地位。各位的家族都曾踊跃地把年轻人送到这间学院来接受培养，请问各位想的真是要把他们的生命奉献给我们伟大的事业么？不，至少在我决定要把恺撒送来上学的时候，我想的是秘党的新一代精英中怎么能没有姓加图索的人？如果加图索家退出秘党，就关上了自己通往龙族世界的门，而龙族，既是我们的死敌，也是我们赖以发家的宝库。我的意思是，屠龙，从某种意义上说，是一门生意。”
+    </p>
+    <p>“庞贝！闭嘴！这里是英灵殿！这里收藏着秘党历代牺牲者的骨灰！你怎敢在他们的墓碑前说这种话？”贝奥武夫霍然起身，脸色血红，目露凶光。</p>
+    <p>元老们不约而同地想要起身闪避，肉眼不可见却恐怖的气息从贝奥武夫身上弥漫出来，势如狂潮。</p>
+    <p>贝奥武夫已经展开了领域，这个领域覆盖整个会议厅。他的肌肉骤然隆起，浑身骨骼爆响，本就强悍的身形越发魁伟，随时都会撑裂衬衫。</p>
+    <p>那不是他天生的血统，而是多年来持续用龙类血清强化自身的效果。元老会中当然是卧虎藏龙的地方，但没有人敢正面抗衡贝奥武夫，发起怒来的时候，“嗜龙血者”简直就是现实版的绿巨人。</p>
+    <p>
+      “如果我说的话只是无知的狂言，那么听完也没什么大不了的吧？反正我在各位的眼里从来都是个无知和无耻之徒，即使现在我大腿上坐着个裸女调情，贝奥武夫先生也不至于如此愤怒吧？可为什么我难得说几句严肃的话，您却急于封上我的嘴呢？”庞贝还是微笑，“布鲁诺之所以被烧死在鲜花广场上是因为他说了真话，宗教裁判所无法赢得辩论，就只有毁灭论主了。”
+    </p>
+    <p>他安静地注视着贝奥武夫。</p>
+    <p>虽然是以“伤心欲绝的学生家长”名义登门，但他还是穿着自己招牌的白色西装和白色皮鞋，领口里缠着孔雀尾羽般灿烂的丝绸围巾，像个只能在女人怀里撒娇的老白脸。</p>
+    <p>可这样的庞贝却顶住了贝奥武夫的压力，那狂潮般的气息来到他面前的时候，像是被一堵无形的墙挡住了。</p>
+    <p>“贝奥武夫阁下，”图灵先生低声说，“在这张会议桌上，人人都有表达意见的权力，任何暴力都不该用在这间会议厅里。”</p>
+    <p>贝奥武夫凶狠地瞪视图灵，但当他触及到其他元老的眼神时，狂暴的气息渐渐地消散了。并非每个人都对庞贝的话表现得义愤填膺，有些人默然不语，甚至有些人死死地盯着贝奥武夫，以防他有进一步的异动。贝奥武夫整理衬衫领口，重重地坐了回去。
+    </p>
+    <p>
+      “做生意没什么不好，东印度公司是英国人在印度的生意，之所有会有大航海时代，是因为欧洲想跟全世界做生意。对金钱和权力的追求令人类进步。屠龙是我们大家共同的生意，但能做这门生意的并非只有我们，世界上的混血种家族很多，比如芝加哥的汉高家族。如果龙王们强而我们弱，那么这是一门坏生意，汉高之流躲还来不及，但恰恰相反，我们在对龙王的战场上节节取胜，我们甚至得到了龙王之骨，屠龙变成了一门好生意，汉高之流就会眼红。想像一个所有龙王都化为龙骨摆在博物馆里的时代，那时候真正属于人类的时代就降临了么？错，降临的是混血种的时代，继承了龙族遗产的人就是新的龙族。”
+    </p>
+    <p>元老们的神情骤变，连一直怒目相向的贝奥武夫也在庞贝目光扫过的时候不由自主地回避了。</p>
+    <p>他们当然想过这件事，却很少当众议论这件事。</p>
+    <p>他们每个人都流淌着龙的血液，当纯血的龙族消亡之后，谁最有资格继承龙族，成为炼金技术、高贵血统和神秘世界的掌握者呢？当然是他们。</p>
+    <p>新的龙族，没错，那样的人就是新的龙族。</p>
+    <p>他们之所以不敢讨论这件事，是它违背了秘党建立时的宗旨。可是一旦反抗军赶走了殖民者，岂不就该变成新的执政官么？</p>
+    <p>
+      庞贝把一个文件夹丢在桌上，准确地滑到贝奥武夫面前，“我们在这里高谈阔论的时候，一艘洛杉矶级核潜艇已经离开了既定航线前往北极，满载着鱼雷和‘战斧’巡航导弹。表面上的理由是一艘俄罗斯的阿库拉级核潜艇进入了北极圈，美国应该派遣一艘级别相当的潜艇去制衡。但我们可以把那艘核潜艇称为‘汉高的核潜艇’，如果它同时遭遇了阿库拉级核潜艇和利维坦，肯定会优先把战斧导弹丢给利维坦。而那艘阿库拉级核潜艇又是谁派去的，我们还没查出来，但显然也是有什么人暗中给俄罗斯北方舰队施加了影响力。”
+    </p>
+    <p>贝奥武夫翻开文件夹，读完之后递给身边的人，一言不发。</p>
+    <p>加图索家提供的情报足以证明，那艘核潜艇的派遣确实是汉高家族私下里施加了影响力。名义上它是去北极圈执行军事任务，但那位舰长真正效忠的，却是汉高本人。</p>
+    <p>
+      “先生们，我们在做的是一桩大生意。谁在这个生意场上胜出，谁就是世界未来的运营者。第一次世界大战和第二次世界大战争的是什么，当然也是世界的运营权。人类为了这个权力消耗了千万计的人命和数不清的钢铁、石油乃至于黄金，可你们买一艘破冰船就觉得是大手笔了，称之为‘准备充分的行动’。我问你们要核潜艇和航母战斗群，你们却大惊小怪地看着我，说什么不可能的，您一定是在开玩笑。”庞贝叹息，“你们这是想用一把皮弹弓打赢一场战争。”
+    </p>
+    <p>“汉高有什么资格跟我们竞争？”贝奥武夫语气不屑。</p>
+    <p>“竞争不需要资格，只看实力。汉高之前不敢跟我们竞争，是因为有希尔伯特·让·昂热担任这间学院的院长，他足够镇压汉高的野心。但现在呢，我可怜的老友躺在救生舱里，生死未卜。我们还损失了最重要的资产，我想汉高已经知道这件事了。”
+    </p>
+    <p>“什么资产？”图灵先生不解。</p>
+    <p>
+      “路明非，无论他是不是还未苏醒的龙王，他手中握着屠龙的怪力，那就是权柄，即使汉高也要敬畏这权柄。路明非一天是秘党的成员，秘党一天被敬畏，可他现在成了我们的敌人。”庞贝摊摊手，“汉高有理由相信，没有了昂热和路明非，我们能做的事情他都能做。他杀了利维坦，他就是新的秘党。当龙骨摆在他家的客厅里对全世界的混血种家族展示的时候，人们就会把原本给我们的尊重转给汉高。先生们，你们中的多数人都能说中文，应该知道‘秦失其鹿，天下共逐之’的典故，利维坦是那头鹿，追逐它的人不止我们。你们已经失去了最重要的两张牌，昂热和路明非，但你们仍有一张牌可以打，那就是加图索家。加图索家也愿意继续跟秘党站在同一条战线上。”
+    </p>
+    <p>“不如说加图索家准备替代秘党站在这条战线上！”贝奥武夫针锋相对。</p>
+    <p>
+      “我们要求这个指挥权，自然也会给出合理的价格。事实上在我来这里的路上，英国皇家海军的两艘机敏级攻击核潜艇已经偏离原定的航线前往北极圈，一枚搭载‘天谴’系统的卫星也进入了极地轨道，现在它每天两次经过北极圈上空，它在东京的表现相信是令大家满意的。我们的说客已经启程前往华盛顿和莫斯科，想办法限制美国和俄国的两艘核潜艇。至于破冰船，我们已经调集了四艘，沿着四条不同的航线向着北极点挺近。至于航母作战群，我得承认那是个玩笑，它无法在冰封的海面上航行。”
+    </p>
+    <p>庞贝这么说的时候，北极的实时地图用投影展示出来，围绕着北极点，六条曲折的红色航线，还有一道环绕地球的蓝色圆弧。</p>
+    <p>当知道汉高家族还有某个未知势力向北极圈派出了核潜艇的时候，元老会震惊了，可跟加图索家的手笔相比，那些都是小打小闹，加图索家派出的是一支军队！</p>
+    <p>“先生们，我们要在北极圈打一场战争，一场必须赢的战争！战争需要军火，我就是来给各位送军火的。”庞贝缓缓地说，“投入了那么多，我们总要确保自己的财产安全。”</p>
+    <p>元老们相互对视。一时间数不清的视线越过会议桌，传达着复杂的情绪和截然相反的意见，有人摇头，有人沉吟。</p>
+    <h2 id="第131章-但为君故35">第131章 但为君故(35) </h2>
+    <p>会议厅里静得只剩下呼吸声，元老们端坐如雕塑。</p>
+    <p>
+      这个规矩历史悠久，源于古罗马时期，当战争爆发的时候，奉行民主制度的罗马人就会忽然间转为独裁制，某人会经由元老院的决议，获得“狄克推多”的临时性称号，意为“独裁官”。整个罗马会化作他手中的战斧，去把罗马的敌人斩碎，无人可以质疑他的决定，即使指定他的元老院本身。
+    </p>
+    <p>庞贝启动了这个古老的程序，若他能获得2/3以上的支持票，就能暂时剥夺元老会的控制权。</p>
+    <p>加图索，这个黑道起家却崇尚古罗马文明的家族，终于来至英灵殿前，向秘党索取最高的权柄。</p>
+    <p>庞贝静静地看着大家，嘴角还带着一丝笑意。黑卡在他的指间翻飞如蝴蝶，那是昂热的招牌动作，恍惚间坐在会议桌尽头的还是那个桀骜不逊的老绅士。</p>
+    <p>沉默长达五分钟之久，这无疑是艰难的抉择，每位元老的头脑中都刮过一场风暴。</p>
+    <p>一张接一张的黑卡被丢在了桌上，有人丢出黑卡之后长长地出了一口气，也有人起身离开了会议厅。</p>
+    <p>范德比尔特先生紧紧地攥着自己的黑卡，闭目静坐，眼观鼻鼻观口口观心，像是要用性命保护那张卡，不让它落入加图索家的手中；图灵先生却是第一个丢出自己黑卡的人。</p>
+    <p>反对者对赞同者怒目而视，斥责他们在加图索家的金元攻势面前放弃了自己的立场。昔日的朋友们也会意见向左，背道而驰。</p>
+    <p>每个人都在心里计算着票数，庞贝的支持率越来越高，已经逼近2/3的票数了。在场的绝大多数人已经表明了立场，只剩少数几位元老犹豫不决。</p>
+    <p>庞贝只需要再多一票，再多一票他就成为整个秘党的临时性领袖，但没有那一票他就得灰溜溜地回罗马去。从几位犹豫不决者那里争取到一票，似乎并非难事。</p>
+    <p>
+      范德比尔特先生睁开了眼睛，“先生们，罗马的毁灭是从信仰英雄开始的！从苏拉到西庇阿到伟大的盖乌斯·尤利乌斯·恺撒，他们捍卫了罗马，却也摧毁了罗马的根基！相信英雄的罗马人对他们自己失去了信心，他们一再地呼唤英雄，最终就是呼唤皇帝！看看你们面前的这个人，庞贝·加图索！你们今日奉他为英雄，明日他就会称帝！”
+    </p>
+    <p>苍老嘶哑的声音，却堪称振聋发聩，还没下定决心的元老们不由自主地攥紧了自己手中的卡片。</p>
+    <p>庞贝挑了挑眉毛，“说得没错，范德比尔特先生。但高卢人的战锤已经敲响了罗马的大门，我们真的还有时间讨论制度问题么？”</p>
+    <p>“罗马可以作为罗马而亡，但作为帝国而生，是罗马的耻辱！”</p>
+    <p>清脆的声响打断了庞贝和范德比尔特先生的辩论，那是又一张黑卡被丢在了桌面上。范德比尔特先生的脸色惨白，因为这张黑卡，庞贝凑够了2/3的支持票，反对派的努力全部白费。</p>
+    <p>丢出这张黑卡的，竟然是贝奥武夫，这个一直沉默着的老人甚至被看作是反对派的中流砥柱。</p>
+    <p>“秘党几千年的桂冠，不能让汉高那种人夺走！”贝奥武夫冷冷地说着，威严地环视众人，“罗马不会灭亡，也不会变成帝国！”</p>
+    <p>“先生们！收账了收账了！认赌服输！”庞贝拍案而起，哈哈大笑。</p>
+    <p>他绕着会议桌转圈，一张张地收走元老们面前的黑卡，冲他们比鬼脸吐舌头，手舞足蹈。这男人黑暗君王般的仪态忽然又坍塌了，还是那个风骚的二世祖。</p>
+    <p>他一屁股坐回自己的位子，翻过来覆过去数那些黑卡，像是刚刚逆风翻盘的赌徒，“孩儿他妈！为了咱儿子，我可真豁出老命了！”</p>
+    <p>贝奥武夫冷笑，“还要继续伪装下去么？您刚才的雄辩风采，苏拉和西塞罗都会甘拜下风。我们早该想到，加图索家不可能选出错误的继承人。”</p>
+    <p>
+      “什么雄辩？那套说辞是我秘书写的，我在飞机上背了一路，你难道觉得美国总统的就职演讲是自己写的？”庞贝翻翻白眼，“你以为我真想当你们的老大？还不是我家那些老东西的意思？可他们又不愿自己出头，就叫我帮他们跑腿。我心里可是老大不情愿的，我刚在布拉格陷入了热恋呢，搞得我不得不丢下女朋友，跑到深山里跟你们这帮老家伙打嘴炮。”庞贝又叹了口气，“不过我想了想，为了儿子，少泡几个妞又算得了什么？”
+    </p>
+    <p>贝奥武夫怔了一下。</p>
+    <p>庞贝说这话倒未必全是扯淡，他看起来对于权力的兴趣真是不大，否则作为校董他该更多地出现在这间会议室里，可他先是把投票权丢给了弗罗斯特，继而丢给了恺撒。</p>
+    <p>“有着‘种马’之称的男人，想说自己也是好父亲么？”贝奥武夫稍微缓和了语气。</p>
+    <p>
+      “贝奥武夫阁下，我得纠正您的一个说法。”庞贝叹了口气，“花花公子和种马是两回事，种马是干苦力活儿的畜生，花花公子是热爱美、欣赏美、懂生活的男人。我是个花花公子没错，这样在我快要离开这个世界的时候，我有无数美好的事情可以回忆。而我的儿子恺撒，是这些美好事情中最美好的一件。”
+    </p>
+    <p>———————————————</p>
+    <p>随船牧师还念着临终祈祷文，那名将死的船员却已经被裹在了尸体袋里，只留下供呼吸的孔洞。</p>
+    <p>
+      施耐德和雷巴尔科都参加了这名船员的葬礼，葬礼在甲板上举行，尸体会被直接丢进冰海里去。不是不想把船员的骨灰带回去，但他们已经没有额外的燃油了，焚化一具尸体耗费的燃料对如今的YAMAL号来说是弥足珍贵的。人还未死就被封进尸体袋是因为担心传染，没人知道那种灰化的病是出于什么原因，也许是大蛇们把细菌和病毒带进了YAMAL号，也许是那个因纽特小女巫的诅咒。
+    </p>
+    <p>几天之中他们损失了18名船员，除了两名伤员因温度太低没能熬过来，其他都是这种奇怪的灰化病。</p>
+    <p>施耐德重重地咳嗽了几声，“核动力舱还是没法启动么？”</p>
+    <p>“工程师们还在全力以赴，但设备被破坏得很厉害。”</p>
+    <p>“通讯也没有恢复？”</p>
+    <p>雷巴尔科摇了摇头。</p>
+    <p>“您的人还能控制船上的局面么？”</p>
+    <p>“用AK47勉强可以控制。船员们情绪很不稳定，有人觉得应该杀掉那个女孩，杀掉她我们就会被放过，有人觉得应该弃船从冰面上走回法兰士约瑟夫地群岛去。”</p>
+    <p>“那船长先生您呢？您是为了薪金继续履行职责的么？”</p>
+    <p>“我对加图索先生有信心，相信他一定会带回好消息。”</p>
+    <p>牧师一把抓起尸体袋把它丢下了船舷，甚至没有验一验他的呼吸，但确实也用不着，任何人穿着单衣在这冰天雪地里听完自己的临终祈祷都冻死了。</p>
+    <p>黑色的尸体袋狠狠地砸在白色的冰面上，周围是其余的17个尸体袋。并无血浆流出来，死者的血应该早就冻硬了。</p>
+    <p>———————————————</p>
+    <p>恺撒、芬格尔和酒德麻衣爬上一道冰脊的顶端。</p>
+    <p>“就是这里了。”酒德麻衣低声说。</p>
+    <p>恺撒举起望远镜，靠着微弱的天光，看清了下方那座冰封的科考站。</p>
+    <p>
+      真是不可思议的建筑物，完全构建在一块巨大的浮冰上，规模远比想的要大。本以为世界最北端的科考站只是几座单薄的小房子，结果居然是钢筋混凝土构建的永久建筑，周围围着铁丝网。大型的卫星天线静静地矗立，可以想像里面有相当大功率的发射装置。
+    </p>
+    <p>
+      “苏联时期的奇想，北冰洋应该是北方舰队的后院，所以要建立最北的科考站，彰显苏联的北极战略。建筑方式非常特殊，选择了北极点附近最坚固的永久冰架，用钢管垂直地打下去形成桩基，再在上面盖房子。最多的时候有12名士兵在这里驻扎，配备最先进的雷达设备，穿越北极的军船和民船都在它的监视之中。”酒德麻衣说。
+    </p>
+    <p>“他们就不担心冰架融化？”芬格尔说。</p>
+    <p>
+      “这就是它被废弃的原因。在它被建造的时候。温室效应还不是热门的议题，俄国人觉得上百万年的永久冰架，在这座科考站的使用寿命内，应该是继续稳固的。谁知道地球变暖，永久冰架也开始出现裂缝，这座科考站随时都会掉进冰海里去，即使花费了很多钱也不得不放弃。”
+    </p>
+    <p>“能看到蛇么老大？”芬格尔问。</p>
+    <p>恺撒摇摇头，“但能看到很多类似车辙的痕迹，那是蛇巢没错。”</p>
+    <p>到现在为止他们还没看到活生生的大蛇，不过蛇类跟北极熊这样的哺乳类不同，既不需要频繁进食，也不需要玩耍，进食之后它们就该进入半沉睡的状态，所以那座科考站里如果一条缠着一条满满地塞着大蛇，倒也并不奇怪。</p>
+    <p>“如果那些家伙在冬眠，我们是不是摸进去也没事？”芬格尔又问。</p>
+    <p>“原理上来说是这样，但这些蛇能在北极圈中生存，它们的血液温度就不会太低。它们不是纯粹的冷血动物，而是变温动物，甚至恒温动物。”恺撒说。</p>
+    <p>“这有什么关系？”芬格尔没听懂。</p>
+    <p>
+      “普通的爬行种都是冷血动物，温度降低到一定程度，它们就失去了活动能力，所以才会有农夫和蛇的故事，你在冬天捡起一条活蛇，但在它体温升上来之前都无法攻击你。变温动物就不一样，它们可以自行调节体温，恐龙可能就是变温动物。变温动物是可以被吵醒的，我们不能发出任何声音。”
+    </p>
+    <p>“那这活儿我干不了，我那么多话老大你也不是不知道，这样吧你们进去我在外面放风……”</p>
+    <p>芬格尔还没说完就被酒德麻衣一脚踹下冰脊，加速着冲向那座科考站，这家伙满脸惊恐眼睛瞪得比铜铃还大，却死死地捂住嘴不敢发出一丝声音。</p>
+    <h2 id="第132章-但为君故36">第132章 但为君故(36) </h2>
+    <p>恺撒和酒德麻衣眼睁睁地看着芬格尔像一枚圆润的弹珠那样在冰面上滚动着，越来越快，越来越快，最后笔直地滑进了科考站……</p>
+    <p>两个人都惊呆了。</p>
+    <p>即使是踹他下去的酒德麻衣也并未期待这样的结果，本以为他随便翻个身探个爪增加点阻力就能在冰面上停住的……芬格尔也不是没有翻身探爪，那简直是一条出闸的猛龙或者受惊的野猪在冰面上翻腾，可能是陈年老冰的表面实在太光滑了。</p>
+    <p>一阵裹着冰渣的狂风扫过科考站，恺撒举着望远镜扫视那座建筑的每一处，没有一丝光一丝暖气，不见任何生命的痕迹，简直就是一座坟墓。</p>
+    <p>连活蹦乱跳的芬格尔滑进那座坟墓之后都没再发出哪怕一丝声响，像是被那座科考站给吞噬了。</p>
+    <p>可是忽然间，科考站里传来芬格尔豪爽的大笑，“都进来吧！安全得很，那些蛇都死了！”</p>
+    <p>恺撒和酒德麻衣对视一眼，同时抽出了冰镐。借着冰镐的帮助，他们无声地滑下冰脊，匍匐前进，越过倒伏的铁丝网墙，摸进科考站。</p>
+    <p>科考站的主建筑比远看时还要高大，是一座堡垒式的两层建筑，甚至有挑空的大厅，大厅正面是聚酯材料制造的采光墙，时间久远已经粉化了，只剩下铝合金的框架。大厅前同是聚酯材料制造的伟人雕塑也严重地风化，看起来倒像是被阳光晒化的雪人。
+    </p>
+    <p>芬格尔正直挺挺地站在伟人雕塑前，挺胸腆肚，看气势比那座雕塑还要伟岸。</p>
+    <p>顺着他手指所指看过去——其实不用他指恺撒和酒德麻衣也在第一时间看到了——一条体型略小的巨蛇被一柄鱼叉狠狠地钉死在雕塑上，浑身挂满了冰棱。</p>
+    <p>它临死的时候想必是极其地痛苦，尾部狠狠地缠在伟人身上，令这具雕塑远比雕塑家塑造它的时候更有暗黑的艺术感。</p>
+    <p>那道冰脊位于科考站的背面，所以恺撒通过望远镜观察的时候一切都正常，然而此刻他们站在科考站的正门前，也发现这根本就是一处冰封的战场。</p>
+    <p>数不清的蛇尸分散在四周，更有蛇尾从主建筑里面拖出来，这场战斗应该已经结束了一段时间，一切都被冰封了，却又如此纤毫毕现，恰如它刚刚结束的时候。</p>
+    <p>恺撒和酒德麻衣对视一眼，眼中都写满骇异。</p>
+    <p>两人俯身前行，翻过铝合金框架进入主建筑。这座不可思议的建筑是用某种聚酯纤维的复合材料搭建的，重量很轻，强度很高，使得这种冰盖上的大型建筑成为可能。</p>
+    <p>芬格尔举着燃烧棒跟在后面，迈着方步，俨然领导下到基层视察工作。巨蛇都已经冻成冰坨了，他也就没什么可怕的了。</p>
+    <p>而这正是酒德麻衣和恺撒越发小心谨慎的原因。</p>
+    <p>他们都跟巨蛇作战过，明白这些对手的强度，以他们的能力，遇上这些巨蛇都是生死战，到底是什么人能如此大规模地屠杀巨蛇。</p>
+    <p>那柄插在伟人塑像上的鱼叉甚至暗示着那个人只是随手使用了触手可及的工具，一座位于北冰洋的科考站，备上几把鱼叉并不奇怪。</p>
+    <p>但他们也未阻止芬格尔点亮燃烧棒，首先以对手的能力，如果还藏在这间科考站里，他们就算保持安静也没用，其次他们也确实需要照明。</p>
+    <p>满地都是蛇行的痕迹，墙壁上还残留着弹孔，正如酒德麻衣所说，那支探险队曾在这里跟蛇群枪战。</p>
+    <p>看不到尸体，不过这个不难理解，即使有过尸体，也只能埋葬在大蛇的肚子里。</p>
+    <p>恺撒拔出狄克推多，从墙壁上挖出一枚弹头来，对着光认真地看了看，收进口袋里。</p>
+    <p>
+      酒德麻衣则沿着墙壁巡视，试图找出更多的蛛丝马迹。从现场看情况是很明朗的，那支探险队疲惫而恐慌地来到了这间科考站，他们曾经在这里短暂地驻扎过一段时间，可能是几十个小时。科考站封存之时把救济物资也都打包留下了，还有小型柴油发电机组和充足的柴油，以示苏联对全世界北极探险者的慷慨支持，而这些设备都已经被打开了。他们甚至曾经在某几张床上短暂地休息过，凌乱的床单足够说明这些。有人祈祷过，丢下的祈祷书可以说明，祈祷有很多人参加，熄灭的蜡烛可以说明，一场由很多人参加的祈祷，应该是虔诚又恐惧的。
+    </p>
+    <p>长波通讯设备暂时还没有找到，不过那台设备的体积不小，应该不至于能带着逃走。</p>
+    <p>
+      不久之后蛇群就追上来了，它们虽然能像鱼那样在冰下潜泳，但科考站下方的冰架还是厚实坚固的，它们无法穿透，就只有从很远的地方登上冰面，汇聚而来。探险队应该是留有观察的人，因此他们提早知道了蛇群的到来，还有时间布置工事。这些人里有职业军人或者有人曾经是职业军人，工事布置得很专业，以他们携带的武器，一个连的人也未必能快速拿下这座坚固的科考站。但是蛇群的进攻方式和军队完全不同，他们的工事跟纸糊的也没区别。
+    </p>
+    <p>他们陷入了极大的恐慌，探险队中有人通过长波发射器联系了酒德麻衣，声称自己已经关闭了英灵殿。</p>
+    <p>但意外出现，援军到来，帮他们打退了蛇群的进攻，蛇群留下一地的尸体撤退，这帮人一路往南逃，直到法兰士约瑟夫地群岛才被利维坦干掉。</p>
+    <p>这要是个探险故事应该说是惊险刺激跌宕起伏的，但也未免太惊险，太刺激了。</p>
+    <p>恺撒摸出口袋里的弹头丢给酒德麻衣，那是个丑陋的铅灰色的小金属团，跟普通的子弹截然不同。</p>
+    <p>“贫铀弹头的大口径子弹，我可以理解你的科学家们携带武器，不过特别带了破甲性能最强的子弹，未免准备得太充分了。”</p>
+    <p>酒德麻衣皱着眉头，把玩着那枚子弹。</p>
+    <p>
+      所谓贫铀弹头，是含有核燃料废料“铀238”的弹头。它的微量辐射并不足以快速地置敌人于死地，但它却有着极强的穿甲性能，美军装备贫铀穿甲弹的A10攻击机加起来已经摧毁了上千架坦克。对上巨蛇们坚硬的蛇鳞，这东西当然也是很有效的，如果被蛇群攻击的时候他们有这类子弹，酒德麻衣和芬格尔也不必辛辛苦苦地用白磷手榴弹一条条炸了。
+    </p>
+    <p>准备贫铀子弹，说明探险队意识到自己会对上某种装甲坚厚的目标，北极圈里自然是不会有坦克的，所以恺撒说他们准备得太充分了。</p>
+    <p>“如果诺诺在的话……”恺撒下意识地说。</p>
+    <p>“我知道你未婚妻的侧写能力很出色，”酒德麻衣直接打断，“但我也有我的办法，我能让死人说话。”</p>
+    <p>“让死人说话？”恺撒和芬格尔都没明白。</p>
+    <h2 id="第133章-但为君故37">第133章 但为君故(37) </h2>
+    <p>柴油发电机组哒哒哒地运转起来，科考站上下都亮了起来，送风管道里吹出了微暖的风。</p>
+    <p>苏联科学院当初想必是本着这个地标式建筑物要在北极点附近屹立一百年的宏伟目标做的设计，虽然已经封存了几十年，可一旦开动柴油机，它就回复到了运行中的状态。</p>
+    <p>电动隔热板降下，封闭了年久失修的门窗，这个设计想必是应对极端气候的，外面即使是十二级的狂风零下百度的低温，这间科考站仍然会是人类在极寒地狱中的坚固堡垒。</p>
+    <p>三个人把蛇尸中凡腹部肥硕的都拖到了大厅里，体型最大的几条重量不下十吨，好在他们在仓库里找到了一台履带式叉车。</p>
+    <p>“那支探险队的队长，拉尔夫，那帮冻死的人里没有他。他就是那个用长波发射器跟我通话的人。他是个好领队，只有一件事能让他放弃自己的团队……”酒德麻衣说。</p>
+    <p>“死了。”恺撒说。</p>
+    <p>“没错。所以我猜他就在某条蛇的肚子里，如果这些蛇很快就被赶到的援军杀了，那么拉尔夫应该还来不及被消化掉，我得把他挖出来。”</p>
+    <p>“挖出来有什么用？那家伙是你的男朋友么？你要挖出来给他办个葬礼？”芬格尔说。</p>
+    <p>碎嘴归碎嘴，他正擦拭着不知从哪里找到的消防斧，满脸变态狂魔的凶恶。</p>
+    <p>“真能挖出来再说。”酒德麻衣一把抓过芬格尔手里的消防斧，上去在一条大蛇的鳞甲上敲了敲，火星四射，像是铜铁敲击之声。</p>
+    <p>它们的鳞片本就坚硬，何况还没有完全解冻。</p>
+    <p>“这东西还不够用，”酒德麻衣说，“我们还得找找看电锯和乙炔喷枪之类的东西。”</p>
+    <p>
+      接下来的几个小时里，三个人穿着塑料薄膜的雨衣，恰如电影里杀人狂魔的造型，把所有腹部硕大的巨蛇拆解了，从中拖出了两条大型金枪鱼和三具尸骸，还有几条大蛇则纯粹是肥硕，切出的是暗黄色的脂肪组织。真正指导这个工作的人却是酒德麻衣，芬格尔连续呕吐了几次，恺撒也没能控制住，唯有酒德麻衣神情清冷，好像那根本不是血肉，而是在干伐木工的活儿。
+    </p>
+    <p>恰如酒德麻衣预料的那样，尸体仍然保持着生前的模样，甚至能看出他们临终之前恐怖的表情。</p>
+    <p>“这个是拉尔夫了。”酒德麻衣看着第三具人体从大蛇的食道里被拖出来，终于点了点头。</p>
+    <p>拉尔夫是个瘦削的中年男子，身上的防寒服已经被大蛇的酸液消解了部分，连带着身上的背包。</p>
+    <p>酒德麻衣的目标恰恰是那个沾满黏液的背包，从里面她翻出了一本蜥蜴皮面的笔记本。</p>
+    <p>
+      “拉尔夫是个严谨的考古学家，受过最严格的专业训练，但他同时也是个神秘主义的爱好者，所以被正统的考古学界看作异端。他有个记笔记的习惯，永远会把最重要的事记在随身的笔记本上，以便时候整理成论文。”酒德麻衣擦拭着笔记本封面上的黏液，好在它被放在封口很严的包里，否则纸张这样脆弱的东西不可能幸存。
+    </p>
+    <p>笔记本打开，他们回到了那支探险队的视角，去重看那场神秘的探险行动。</p>
+    <p>
+      笔记本的内容包罗万象，但基本是笔记体，只在必要的时候以注解的方式阐发拉尔夫在学术方面的思考。虽然早已说好这些东西是归属酒德麻衣的，但她还是坦然地在灯下和恺撒一起阅读这册笔记本。芬格尔则一屁股坐在一条大蛇的尾巴上，喝酒来压下胸中的那股子恶心。
+    </p>
+    <p>“……风平浪静的一天，海面上仅有少量的浮冰，我们遵照雇主的指示，继续横穿巴伦支海……”</p>
+    <p>“……这将会是人类历史上继皮尔里抵达北极点之后最重要的北极探险，我们不仅会探索冰面上的世界，还会聚焦冰下的深海……”</p>
+    <p>“……我们尾随一群独角鲸航行了两天，仍然没有值得此行的发现，尊重雇主的要求，我们将转向西北，擦过斯匹次卑尔根群岛，进入格陵兰海……”</p>
+    <p>“……不得不说，我不喜欢这种暴君般的雇主，但我并不后悔接受这次的雇佣，对我来说打开了新世界……”</p>
+    <p>
+      “……遇到了我这辈子航海所见的最浓密的海雾，恰如雇主所说的，我们会遇到经验难以解决的问题。雾气中我们的通讯设备和导航设备全部失灵，雾气粘稠得像是液体，我们的声纳探测到巨大的生物群在我们的下方游动，不亲眼见到那些信号的人不会相信，那简直是繁华的大都市！”
+    </p>
+    <p>“在雇主指定的地点下锚之后我们进行了水下探索，得到了两块金属碎片，语言学家会解读它们的。”</p>
+    <p>“多数人都不相信语言学家的解读！我们甚至争吵起来，但他的解读像极了雇主预言的。”</p>
+    <p>酒德麻衣的神情越发地严肃起来，恺撒冷冷地看了她一眼，但并未说话。芬格尔觉察到气氛发生了微妙的变化，也凑上来一起看。</p>
+    <p>“我记得我说过我不喜欢这种暴君式的雇主，但魔鬼总是洞悉世界的秘密。我们决定继续向北航行，我想亲眼看看那座岛屿。”</p>
+    <p>“今天的海水是翡翠般的绿色，我们怀疑是否海水中密布着绿色的微生物，但检验结果并没有。我感觉我是个阿拉伯人，航行在辛巴达曾经到过的大海上。”</p>
+    <p>“恐慌的情绪在一些人之中蔓延开来，我们不得不把为首的坎贝尔先生囚禁在他自己的船舱里，他说我们接受的是魔鬼的旨意。但在科学的真理面前，神和魔鬼都要跪下。”</p>
+    <h2 id="第134章-但为君故38">第134章 但为君故(38) </h2>
+    <p>“极光来了，就像海潮那样冲我们的船头扑了过来，天啊那是天堂的门！”</p>
+    <p>“我们航行在琉璃之上，船切割海面形成伤口，天空和海的边界是汇合在一起的，我自己的语言无法描述这个画面。”</p>
+    <p>“我觉得我是航行至此的亚瑟王，死亡都不能追逐我来此。”</p>
+    <p>接下来的几页笔记不见了，是被人一把扯去的，锯齿般的裂口说明了撕扯时的仓促。</p>
+    <p>“我曾到过神的地方，见证人类的渺小，我曾触摸神的身躯，但不请求他的原谅，我偷走了他的心脏，这是我为人类所犯的罪行。那雇主是魔鬼，想要打开神国的门，可神苏醒之日，就是人类的末日！”</p>
+    <p>这段话是写在笔记本末页上的。前面都是学者的精准描述，到了这里就成了癫狂的梦呓，字迹却不是狂乱潦草的，而是一笔一划精确得像是印刷体，就像中世纪的僧侣们抄经那样。</p>
+    <p>恺撒扭头看向酒德麻衣，酒德麻衣退后两步，甩了甩长发，双手叉腰，“在这里动手？还是出去打？”</p>
+    <p>根据这个她自己找到的笔记本，她委实是个幕后黑手，那支探险队并非意外地找到了“英灵殿”，而是根据雇主的指引，一步步地登上了那座岛，只不过在最后的一刻他们没有遵照雇主的要求行动，而是“偷走了神的心脏”。</p>
+    <p>联想到雪所说那个冒着血水的铁箱子，里面装的应该就是那颗心脏，至此他们得到了可以互相印证的信息。</p>
+    <p>那边芬格尔也把手伸向屁股后面，看起来是要摸武器，也不知道他的枪口会对准谁。</p>
+    <p>大厅里的温度一时间像是降到了零度。</p>
+    <p>但恺撒只是看了她一眼，又收回了目光，“不，不是你。”</p>
+    <p>“我就是他们的雇主，我付的钱，下的委托，不是我还能是谁？”酒德麻衣反而愣住了。</p>
+    <p>
+      “他们有两个雇主。”恺撒低声说，“你付了钱，并不代表别人不会付双倍的价格。不仅如此，那个雇主还来过这里。即使他们携带了贫铀子弹，也不可能摧毁整个蛇群，应该是在他们即将全军覆没的时候雇主或者雇主派来的援军赶到。想想钉死那条蛇的鱼叉，那不是人类能做到的事。换作你也一样做不到。”
+    </p>
+    <p>酒德麻衣的脸色变了变，转头去看芬格尔，发现这家伙其实并没有摸出什么武器来，而是若有所思地抓着屁股。</p>
+    <p>“而且那个雇主的援军就只有一个人。”恺撒又说。</p>
+    <p>“怎么知道的？”酒德麻衣问。</p>
+    <p>“那些蛇身上的创口都是一样的，”恺撒低声说，“那人用的是一支极长极锋利的矛。”</p>
+    <p>他们解剖巨蛇的时候，恺撒特别留意了蛇身上的创口，固然有贫铀弹头留下的密集弹孔，但致命伤都不是子弹造成的，而是长矛般的东西贯穿了巨蛇的身躯。</p>
+    <p>世上究竟有什么样锋利的长矛能够贯穿如此多巨蛇的鳞甲而不磨损，恺撒能想到的只有他曾在影像中见过的那支……奥丁的矛！</p>
+    <p>
+      “冰，那个援军用的武器是冰质的，”酒德麻衣摇头，“矛之类的东西，刺进去拔出来，造成的是两次创伤，但这些蛇身上的创口只有刺进去的痕迹。那个人是用某种冰棱制的东西刺了进去，就留在里面了，反正这里最不缺的就是冰，他有不限量的武器供应。”
+    </p>
+    <p>恺撒沉思片刻，微微点头。</p>
+    <p>酒德麻衣的推断固然奇特，但能用一柄鱼叉钉死巨蛇的人，未必不能用冰质的武器做到同样的事，只要那支冰矛足够快，就像超高压水流切开钢铁。</p>
+    <p>这份能力即使逊色于利维坦那种神话般的存在，也绝对凌驾于他们三人之上。</p>
+    <p>
+      三个人又都沉默起来，恺撒和酒德麻衣的推断虽然重要，但并无助于解决他们眼下的难题。科考站的空间并不大，他们反复搜索了几轮，一来找不到那台重要的长波发射器，二来也没找到酒德麻衣所谓“探险队的遗产”。那位神秘的雇主如果救下了探险队，是绝对不可能留下那口箱子等着酒德麻衣来收获的。何况根据雪的说法，探险队在半途就把箱子丢进大海里去了。
+    </p>
+    <p>英灵殿中并不是英灵们的酒宴，而是躺着神的身躯，人类偷走了他的心脏，防止他再度苏醒，这些神秘的词句交织起来，就像是一首诡异的预言诗。</p>
+    <p>“休息四个小时，”恺撒看了一眼腕表，“我们得恢复一下体力，趁着这里还有取暖设备。”</p>
+    <p>“闻着这股臭味儿我可真睡不着。”芬格尔说。</p>
+    <p>此刻的大厅仿佛超大型的凶杀现场，蛇血横流，被剖开肚子的蛇尸横七竖八，芬格尔说臭，但用腥味和血腥味形容更为准确。</p>
+    <p>“关闭其他取暖管道，只留一间最小的房间。”恺撒说，“这样还能降低油料的消耗，我们不知得在这里呆多久，剩下的油料要节省着用。”</p>
+    <p>科考站里封存的油料原本是充足的，但他们必须加热整个大厅好让那些冻得石头般硬的蛇尸化冻，油料消耗得很迅速。</p>
+    <p>他看向酒德麻衣，“如果女士介意的话，我们可以留两间。”</p>
+    <p>“我对跟年轻男孩同住一间可是非常乐在其中的呢。”酒德麻衣露出大灰狼般灿烂的微笑，不过那也是娇艳如海棠的大灰狼。</p>
+    <p>科考站的灯光全部熄灭，原本它就像是这炼狱中的最后一点星火，此刻寒冰的炼狱重新陷入了绝对的黑暗。</p>
+    <p>
+      发电机组以最低的功率运转，产生的所有热量仅供最小的那间屋子。这应该是低阶士兵的宿舍，比YAMAL号上最小的船舱还小一半，宿舍里只有两张略大于肩宽的双层小床，小床之间的间距极小，尽管和酒德麻衣分睡两张小床的上层，偶尔翻身相对的时候，恺撒还是有同床共枕的怪异感。酒德麻衣倒是睡得坦然，连忍刀都是随便丢在床脚，芬格尔更是一沾枕头都打起鼾来。
+    </p>
+    <p>想来他们这个组合也真是怪异，分明站在完全不同的立场，却莫名其妙地坚守着各自的信诺。</p>
+    <p>
+      休息的建议是恺撒提的，反而是恺撒难以入睡。倒不是思考这个波诡云谲的北极圈里到底会发生些什么事，而是身为加图索家的继承人，他一直都觉得自己应该是事情的主导者和问题的解决者，然而眼下他根本就成了一个陪跑的。神、利维坦、蛇群、还有那个投掷鱼叉和冰矛就能灭杀群蛇的神秘雇主，在北极圈里组成了一个人外有人山外有山的力量体系，而他只是个闯入这个力量体系的孩子，能够信任的居然只剩下这两个看起来完全不可靠的临时盟友。
+    </p>
+    <p>可能他一直都是个孩子，就像梦里母亲期待的那样。</p>
+    <p>
+      他可以选择一辈子都当一个孩子，泡泡妞玩玩船，照样能坐上家主的位置。不知为何有种奇怪的感觉，长老们对他并不存有那么多的期待，他的功课不必优秀，素质也不必出色，缺什么加图索家就给他补什么，金手指随便开。可素来奉行精英文化的加图索家为什么要把一个孩子捧成家主呢？因为他是庞贝唯一的儿子？因为老人对子孙无条件的爱？
+    </p>
+    <p>说起来庞贝好像就是这么过的一生，从来不对谁负责，从来不为谁付出，没心没肺，过得也挺好。</p>
+    <p>
+      话说如果庞贝处在眼下他的处境，会怎么行动呢？恺撒忽然想试试用老爹的思路解决问题，不过很快他就打消了这个念头，庞贝肯定会先把芬格尔捆起来堵上嘴，然后自己滚到酒德麻衣的床上去，绝地求生这种事庞贝永远会放在求爱之后。恺撒想到这里心里微微一动，与其说庞贝是个好色之徒，倒不如说他对活命这件事并无特别大的追求。他所谓的活着只是在当下，一杯美酒，一个美人，哪管明天地球爆炸。
+    </p>
+    <p>他释放了镰鼬，脑海中的世界里，无数冰白色的飞鸟从他的身体里飞了出去，徘徊在黑夜和寒风里。</p>
+    <p>在他小的时候，这种方法总是能让他快速地入睡，仿佛整个人融入了自然的节奏里，风声和溪水声对他来说是世界的风景。</p>
+    <p>他猛地坐了起来，伸手握住酒德麻衣的手腕。酒德麻衣醒了，一把抄起脚边的忍刀，无声无息地落地，落地就化为一团蒙蒙的黑雾。恺撒的眼睛里明显透着警戒的意思。芬格尔还在死睡，却被她一脚踹醒，还被丢了一把冲锋枪在脸上。</p>
+    <p>“怎么了怎么了？”芬格尔紧张地抹抹脸。</p>
+    <p>立刻他的脸色就变了，不用恺撒解释他也明白了，因为那种鳞片摩擦冰面的声音越来越清晰了。当然不是外面那些巨蛇死而复活了，而是成群的巨蛇正向着科考站聚集过来。</p>
+    <p>他们犯了一个严重的错误，先入为主地认为巨蛇这种体型庞大的动物进食完毕就要休眠，看到科考站里遍地死蛇又会本能地觉得这不会是巨蛇的巢穴。</p>
+    <p>可如果巨蛇并不需要休眠呢？</p>
+    <p>你钻进了山洞没有找到狗熊，并不能说明这肯定不是熊洞，也可能是熊吃饱了在山里散步，散完步它还是要回家睡觉的。</p>
+    <p>“多少条？”芬格尔压低了声音。</p>
+    <p>“多于五十少于一百，心跳声太多，数不过来。”恺撒轻声说。</p>
+    <h2 id="第135章-但为君故39">第135章 但为君故(39) </h2>
+    <p>芬格尔一个虎跳跳上双层床，去拆暖风通道外面的格栅。巨蛇群已经游进了科考站，找新的藏身地已然来不及，这间小屋就一扇门连窗都没有，唯一的机会就是顺着通风管道爬走。</p>
+    <p>但卸下格栅就知道这条路也没希望，送风管道由两根直径不过十厘米的圆形管道组成，顶多能够容纳一只兔子通过。</p>
+    <p>这时候蛇鳞刮擦地面的声音又变了，领先的巨蛇已经游进了科考站的大厅，鳞片摩擦水泥地面的声音自然跟摩擦冰雪的声音不同。</p>
+    <p>它们如同狂风而来，争先恐后地归巢。大厅里还弥漫着它们同类的血腥味，它们智力再低下也该知道有人侵入了它们的巢穴。</p>
+    <p>
+      恺撒点亮强光手电，并用手掌遮住灯光，只靠缝隙中透出的微光照亮，三个人的脸色都是惨白的。如果有办法唤出天羽羽斩或者暝杀炎魔刀，酒德麻衣和芬格尔还有机会跟蛇群一战，但逼到这个份上刀也拔不出来，显然是真的没带。要不是被堵在这间小屋里，以芬格尔超卓的长跑能力没准还能跟蛇群赛个跑，所谓“上天无路入地无门”应该就是这个意思。
+    </p>
+    <p>恺撒从防寒服中掏出一个小小的金属盒子，打开来，里面是两枚石英制的弹头，里面封锁着细丝般的红色结晶。</p>
+    <p>由帕西带来交给他的最终防身武器，从龙王诺顿的骨骸中提炼出的纯粹的火元素，仅仅微量就能引发剧烈的燃烧，把整间科考站化为灰烬。</p>
+    <p>“用上这玩意儿这间科考站都会被炸上天！我们也没命！”芬格尔把声音压得极低。</p>
+    <p>“还有个办法是你冲出去咬死它们。”恺撒把一枚石英弹填入沙漠之鹰，缓缓地扳动枪机，轻微的“咔”声子弹入仓，那是死神在振动自己的镰刀。</p>
+    <p>此时此刻能期盼的大概只剩下那位神秘的雇主了，期盼他带着鱼叉从天而降杀光巨蛇。</p>
+    <p>“脱下衣服把门缝塞住！”酒德麻衣忽然说。</p>
+    <p>“又脱？”芬格尔一愣。</p>
+    <p>
+      恺撒却已经明白了。如果是普通的建筑物，单凭墙壁传到的温度就足够引起巨蛇的注意，但这间科考站在设计上必须优先考虑保温，所以才会用聚酯纤维材料来制造墙壁。这些聚酯纤维砖中含有大量的微泡，是世界上最佳的隔热材料之一，如果他们塞住那道细细的门缝，几十度的温差不一定能传导出去。只要没有一条寝室管理员式的巨蛇挨个查房，他们也许还能在这个小空间里继续躲下去。
+    </p>
+    <p>厚重的防寒服当然塞不进门缝，芬格尔麻利地脱下自己的短袖汗衫，严严实实地塞好门缝，再用两个人的防寒服捂上。</p>
+    <p>
+      巨蛇全都涌进了科考站，满耳都是鳞片刮擦地面甚至屋顶的声音，苏联人的设计以坚固耐用著称，这间科考站的骨架居然能支撑起体重至少数吨的大蛇。它们在不同的角落里找到了自己的栖息地，也有些闯入了房间，迅速地安静下来。蛇群绝非第一次光临这里，就算这里不是它们的巢穴，也是它们借来躲避风暴和寒冷的落脚点。北极点附近除了少数天然的大型冰洞就只有这间科考站适合作为栖息地，它们只要还在附近活动就一定会来这里。
+    </p>
+    <p>一道聚酯纤维的墙壁隔开了爬行动物和人类的世界，但任何一丝热气泄露，蛇群冲破这道墙跟撕开一张纸没什么区别。</p>
+    <p>
+      三个人全都背靠着门，努力把呼吸声压到最低，连心跳声都怕惊动外面的蛇群。他们也不敢移动，因为都知道蛇也能靠感知地面的震动来查探猎物或者敌人。印度的耍蛇艺人就会玩这样的把戏，他们装作是用笛声把蛇从竹篓里唤起，其实脚下打着拍子，蛇其实感觉到的是脚踩地面的节奏。
+    </p>
+    <p>“其实我们可以说话。”恺撒说，但还是把声音控制在刚能听到的程度，“蛇没有耳朵，几乎听不到声音。”</p>
+    <p>芬格尔竖起耳朵听了许久，确定蛇群确实没有异动之后才低声回应，“所以我们只要等到它们下一次出去觅食就可以逃走么？”</p>
+    <p>“野生蛇类甚至可以一年吃一次东西，低温情况下它们能忍得更久。它们还没饿，我们三个就得抽签决定先吃谁的问题了。”酒德麻衣眉头紧锁。</p>
+    <p>后一句是玩笑，前一句却是真的，蛇群似乎集体进入了冬眠，一点声音都听不到了。甚至会误以为刚才只是误听，外面根本没有什么蛇群。</p>
+    <p>静了片刻，芬格尔忽然想起了什么，“可发电机组还在运转……它们难道感觉不到发电机组的震动？”</p>
+    <p>恺撒一惊。发电机组正以最低功率运转，这间科考站的发电机组位于冰层下方，超长的螺栓把机组固定在冰架上，即使细微的震动都会传导到蛇的腹部。然而这些巨蛇却像是毫无知觉似的。</p>
+    <p>这时候鳞片刮擦墙壁的声音传来，那是一条巨蛇在极其缓慢地从门外游过。那种缓慢令人想起人小心翼翼地走路，不敢发出任何声音。</p>
+    <p>蛇群并没有沉睡！它们很可能都醒着，只是出于某种原因保持着静默，它们应该也感觉到了发电机组的震动，但置之不理。它们甚至可能已经觉察了恺撒等人。</p>
+    <p>什么原因会让蛇群采取如此诡异的行动？就算巨蛇的智商超越普通蛇类，也根本不必用在他们身上，捕食他们三个跟捕食老鼠差不多。</p>
+    <p>“是因为利维坦，利维坦来了！”恺撒忽然说。</p>
+    <p>他一直没有关闭“镰鼬”，周围所有的声音，包括每条巨蛇的心跳都在他的监控中。</p>
+    <p>冬眠的动物本该心跳缓慢，但这些蛇的心跳却越来越快，就像战鼓似的。随着某个低沉的歌声的逼近，那些心跳声越来越快。</p>
+    <p>那是……利维坦的歌声。</p>
+    <p>并不似之前他们听到的那样古奥森严，这歌声是悠扬放松的、田园牧歌般的，正从他们脚下经过。</p>
+    <p>
+      那头太古的巨鲸或者巨龙正在科考站的冰架下游动，带起缓慢而庞大的洋流。恺撒最初还担心利维坦的严寒，不知道科考站的聚酯纤维墙壁是否能抵御，但他随即意识到这一次利维坦并未释放言灵。那鲸歌不过是它跟鲸群的对话，数十条巨鲸正尾随着这鲸中的帝王游动，如果利维坦释放了言灵，那它固然可以轻易冲破自己凝结的冰层，追随它的巨鲸们却无疑会冻死在深海里。
+    </p>
+    <p>雷巴尔科的某种说法居然得到了验证，利维坦或许真的是北极圈中的鲸王，这是它出行的仪仗，一如千百名骑着骏马的侍从跟随着王的銮驾。</p>
+    <p>北极圈中的鲸鱼数量急剧下降并非是它们畏惧被利维坦捕食，而是出于某种原因它们尾随着利维坦游动。</p>
+    <p>神来了，神的侍从们当然会屏息静气地等待，群蛇不敢发出一丝一毫的声音。</p>
+    <p>利维坦围绕着科考站的方位游动，这里似乎就是它的目的地，但科考站下方的冰架厚达数十米，突破冰架似乎难以想像。</p>
+    <p>蛇群依然保持着静默，利维坦悠然地唱着歌游动，科考站被一种神秘而宁静的气氛包围着，仿佛天地初开，万物各安其所。</p>
+    <p>
+      地面忽然剧烈地震动起来，像是烈度极高的地震，恺撒等三人一时没留意齐齐地跌倒在地。按道理说无论冰面的震动还是他们跌倒的震动都足以惊动外面的巨蛇了，但清醒着的巨蛇群依然安静地匍匐着。利维坦和它的鲸群正用它们坚硬厚重的身躯撞击冰架，它们潜到极深的水下，加速往上游动，临近冰架的时候猛地转身甩尾。恺撒听说过巨鲸的甩尾可以打碎一条小船，却没想到它们会用这种原始但野蛮的方式来破坏冰架。
+    </p>
+    <p>
+      其中最沉重的撞击自然是来自利维坦，它的每一次撞击都会造成冰架开裂。这片寿命上百万年的冰架虽然还维持着巍峨的形态，内部却早已密布着裂痕，裂痕、应力和鲸群的撞击，三者合力，冰架竟然呈现出破裂的兆头。在南北极这样的事情并不算罕见，全球变暖的今天，时常会有一道裂缝割开百万年的冰壳，然后一个小国那么大的冰架就沿着洋流飘向了南方。
+    </p>
+    <p>科考站也无法承受这样的撞击，聚酯纤维的墙壁上出现了裂缝，高硬度铝合金的骨架发出刺耳的弯曲声。</p>
+    <p>恺撒他们从墙上的裂缝中看出去，满眼都是深青色的鳞片，整间科考站塞满了巨蛇，像是挤得满满的沙丁鱼罐头。</p>
+    <p>诡异的是这群蛇依然保持着静默，心跳却越来越快。</p>
+    <p>海水从冰缝中涌了进来，就像是间歇泉的喷发那样，鲸群造成的缝隙终于贯穿了整个冰架，不需要多久这块冰架就会碎成零碎的冰山。</p>
+    <p>这个时候蛇群忽然动了起来，它们蜂拥而出，沿着冰缝往下游动，坠入冰海之中。它们在水下的活动能力竟然不亚于巨鲸，入水之后就高速地游动起来。</p>
+    <p>顷刻之间科考站里连一条蛇都不剩下了，只剩下恺撒等三人坐在摇晃的地面上——感觉是艘快要沉没的船——惊骇莫名。</p>
+    <p>“它们……它们是去水下开派对了么？”芬格尔问。</p>
+    <h2 id="第136章-但为君故40">第136章 但为君故(40) </h2>
+    <p>三个人跌跌撞撞地奔出科考站，外面也是地动山摇，海水从冰缝中涌出，像是间歇泉。</p>
+    <p>对于酒德麻衣和芬格尔来说，那场残酷的搏杀都是不可见的，但镰鼬们带回的声音碎片在恺撒的脑海中交织成瑰丽的画面。</p>
+    <p>
+      巨蛇们将长牙刺入利维坦的身躯，想必还顺带把毒素和酸液注入进去，再用身体一圈圈地缠绕利维坦。利维坦愤怒地吼叫着——恺撒只能推断那是吼叫，因为低沉的鲸歌骤然变得高亢——剧烈地扭动身躯想摆脱那些蛇，但巨蛇缠在它身上就像是粗壮的钢索。酸液腐蚀和扩大伤口，大量的鲜血进入海水，冰缝中喷出的海水带上了血色，脚下的冰架也由蓝白色变成血红色。里面也混合着巨蛇们的鲜血，浑身缠满巨蛇的利维坦狠狠地撞击在冰山底部，利用冰山底部那些锋利的凸起刮擦巨蛇。巨蛇的鳞片能够挡住普通子弹的射击，但那种暴力的刮擦也对它们造成了惨烈的“剥鳞”效果。
+    </p>
+    <p>
+      追随利维坦的鲸群也来帮忙了，它们尾随着利维坦游动，应该是想把缠在利维坦身上的巨蛇咬下来。它们的身长和巨蛇差不多，但体重和力量都远远胜过，它们咬住巨蛇，立刻就跟利维坦反向游动，强行把巨蛇扯成两截。但那些没有缠上利维坦的巨蛇立刻就展开了反击，它们缠住来救援的鲸鱼，咬穿它们的腹部，钻进了鲸鱼的身体！利维坦的吼声越发地愤怒，但它并没有释放那恐怖的极寒，恺撒想了一下就明白了，那是因为鲸群还围绕着它。
+    </p>
+    <p>他们每个人都觉得利维坦应该是那种所过之处寸草不生的死神，可它居然会在乎自己的鲸群，即使在自己面临强敌的时候。</p>
+    <p>“你们还在等什么？等它们打完，这片冰架也完蛋了！你们是准备游泳回家么？”芬格尔大吼。</p>
+    <p>芬格尔说得没错，冰架上布满了裂纹，随时都会分崩离析。这场搏斗的结果是鲸群捏死蛇群还是蛇群捏死鲸群目前还难有结论，但看戏的三个人要死基本上是一定的。</p>
+    <p>可恺撒也只有苦笑，如此剧烈的震动，他们想在冰面上站直了都不容易，更何况跑动起来。</p>
+    <p>“见鬼！”酒德麻衣说，“长波发射机还在里面！”</p>
+    <p>恺撒扭头看去，科考站正随着震动一点一点地陷入冰架中去，冰架都要被这些怪物摧毁，埋在冰架里的承重架当然也没用了。</p>
+    <p>这间科考站在几十年前被预言将会沉入冰海，今天真的要应验了。可他们还没来得及找出那台长波发射器，原理上说那台设备还在科考站里，它大得难以随身携带，就算探险队不愿意后来者找到它而把它破坏掉了，至少也能找到残骸才对。</p>
+    <p>恺撒拔腿就往回跑。</p>
+    <p>“老大！一台长波发射器，犯不上啊！”芬格尔在他背后大喊。</p>
+    <p>恺撒跟没听见似的。酒德麻衣愣了一下，也拔腿跟了上去。芬格尔急得原地直跳脚，跳了几下，还是咬牙冲了进去。</p>
+    <p>
+      三个人分别搜索不同的区域，打开每一扇门每一个柜子，希望找到那台体积巨大的无线电设备。但其实每个角落他们都翻过了，还不止一遍。就算这间科考站的规模远超过他们之前的猜测，但建在北极冰盖上的建筑，再怎么都会节约空间。它的整体结构一眼就可以看出来，仅有的一处地下室也不过是留给柴油发电机组的。而长波通讯机对抗恶劣气候的能力如此之强却很少被使用的一个原因是，它极其巨大。
+    </p>
+    <p>
+      长波发射机的天线阵列通常是一些铁塔般的金属架子，用密集的钢缆穿在一起，尺寸至少得是发射波长的1/4。假设这个科考站的长波通讯机发射的长波波长为1000米，这已经是最短的长波了，那么它得装有一个直径250米的天线阵列。恺撒他们开始误以为那个大型碟形天线就是长波发射机的天线，但静下来一想就知道不对，他们不必是无线电工程学的专家，仅凭基础物理知识就能推导出来。
+    </p>
+    <p>直径250米的天线阵列，它立在北极冰原上隔着几公里就能看到，根本没有可能安装在这个科考站里。但那只探险队却又真的从这间科考站里发出过信号。</p>
+    <p>深海之中已经成了血腥的修罗场，恺撒能听到蛇的嘶叫和鲸的咆哮，他甚至可以想像巨蛇钻透了鲸腹带出内脏的情景，还有鲸的牙齿咬碎巨蛇骨头的情景。</p>
+    <p>利维坦的歌声越来越高亢，但它应该是受伤了，游动的轨迹越来越紊乱。它不知道怎么除掉这些恐怖的寄生虫，虽然强韧的身躯避免了自己遭到其他鲸鱼那样的噩运，但只要一条巨蛇撕开缺口侵入它的腹部，其他的巨蛇也会跟着进入。</p>
+    <p>曾经在他们的想像中利维坦是如此恐怖难以战胜的对手，但对上蛇群竟然处于下风，也许就像传说中的那样，老鼠钻进大象的鼻子就能要了大象的命。</p>
+    <p>可蛇群为什么要攻击利维坦？它们甚至在攻击利维坦的时候显露出惊人的智商，这是一场有预谋的伏击战，蛇群盘踞在这里，就是知道利维坦会来。那么利维坦又是为了什么而来？总不能也是来找长波发射机的。</p>
+    <p>科考站猛地摇晃，随即而来的是明显的下坠感。冰架进一步崩溃，科考站的一层整个地陷入了冰架中去。</p>
+    <p>“再不走就来不及了！”酒德麻衣大吼。</p>
+    <p>“找到了这玩意儿！”芬格尔拖着一个沉重的木箱来到大厅。</p>
+    <p>酒德麻衣从二楼一跃而下，踢开木箱的盖子。电路板就固定在木箱的内壁，上面插满了二极管，所有标注都是俄文。这是一台专门定做的设备，不标准，没有说明书，而且年代太过久远，酒德麻衣实在很难判断它是不是长波发射机。</p>
+    <p>“在哪里找到的？”酒德麻衣问。</p>
+    <p>“你真的想知道？”芬格尔问了个奇怪的问题。</p>
+    <p>酒德麻衣一愣。</p>
+    <p>“它根本没有被藏起来，它是被一坨蛇的粑粑盖住了。你知道动物在垂死挣扎的时候是会排泄的。”</p>
+    <p>
+      酒德麻衣一阵反胃，不由得干呕了几下。他们进入科考站的时候，确实看见过几大堆蛇的排泄物，以巨蛇的体形，排泄物的体积也颇为惊人，出于本能她当然是绕着这些东西走，所以忽略了去检查排泄物下面有什么。倒是亏得芬格尔有这样的细心，不过细心到能把蛇粑粑铲开来看，脑回路也真是异于常人。
+    </p>
+    <p>“没你想的那么恶心，那些粑粑都已经冻硬了，就跟饼干外面裹的巧克力一样，你用手都能抠下来。”芬格尔拍拍酒德麻衣的后背。</p>
+    <p>想到那只温暖的大手可能刚刚抠过蛇粑粑，酒德麻衣又连着干呕了几下。</p>
+    <p>这时候恺撒赶到了，他是这些人里唯一能熟练使用俄语的人，读了电路板上的标注之后眼睛发亮。</p>
+    <p>“没错！接收机和发射机都齐了。”他环顾左右，“但我们还缺最重要的东西，天线阵列。”</p>
+    <p>“天线阵列那么大的东西怎么可能藏在房间里？没准苏联人把天线阵列建在附近了，我们带上接收机和发射机先跑再说！”芬格尔说。</p>
+    <p>“不，根据女士的说法，给她的信息是蛇群进攻的时候发出的，那场攻防战发生的地方就是这里。”恺撒说，“而且在这种时常有冰风暴的地方，他们肯定不会使用常规的天线阵列，那东西扛不住风暴。苏联人一定是用了特殊的方法来设计天线阵列！”
+    </p>
+    <p>蛇群和鲸群的战斗渐渐明朗起来，竟然是蛇群占据了上风，巨鲸的心跳声已经消失了一半。并不是受伤的巨鲸退出了战场，而是巨蛇把毒素注入了它们的心脏。利维坦似乎已经疲惫了，游动的速度开始减慢，甚至不知道它还有没有力量释放那极寒的言灵。
+    </p>
+    <p>如果它真的是龙王，却被一群蛇咬死了，那真是历史上最憋屈的龙王了。</p>
+    <p>科考站再度摇晃，聚酯纤维的墙壁开始崩塌，露出硬质铝合金的骨架来，血水和海水的混合物像是暴雨那样撒了进来。</p>
+    <p>恺撒忽然狂喜地指着上方，“我明白了！我明白了！这间科考站就是天线阵列！”</p>
+    <p>酒德麻衣和芬格尔一愣，也都明白了。这间科考站其实是搭建在一个埋在冰架中的铝制承重架上，它自己也是用硬质铝做成龙骨。这连成一体的巨型铝制框架就是它的长波天线阵列，这栋建筑本身就是一个巨大的发射机。</p>
+    <p>
+      三个人一起行动起来，科考站里应该有能跟天线阵列接驳的端口，但他们还没找到，不过最简单的办法莫过于用金属导线把发射机跟暴露出来的铝制框架直接连在一起。地下室里的柴油发电机组竟然还在运转，这是他们最后的机会。把发射机和天线阵列接驳在一起，把发电机的功率调到最大，对着全世界发出求救信号，那直径一千米的长波会沿着地表和海面传播，突破神给他们设置的这片通讯迷雾，在瞬息间到达地球的每个角落。
+    </p>
+    <p>“接线的活儿交给我了。”酒德麻衣抬头望着裸露出来的龙骨。</p>
+    <p>“没辙了，我去搞定那台柴油发电机，最大功率不是么？”芬格尔叹了口气。</p>
+    <p>恺撒有些惊讶，谁都知道这时候去地下室是最危险的，海水正沿着冰缝上涌，随时都会淹没地下室，居然是他们中最怕死的家伙扛了这个活儿。</p>
+    <p>但留下来呼叫的人只能是恺撒，此时此刻只有加图索家继承人的呼叫才足够分量。</p>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

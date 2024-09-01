@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>6.3</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    ::selection {
+      background-color: orange;
+      color: white
+    }
+
+    code[class*=language-],
+    pre[class*=language-] {
+      color: #333;
+      background: 0 0;
+      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+      line-height: 1.4;
+      -moz-tab-size: 8;
+      -o-tab-size: 8;
+      tab-size: 8;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none
+    }
+
+    pre[class*=language-] {
+      padding: .8em;
+      overflow: auto;
+      border-radius: 3px;
+      background: #f5f5f5
+    }
+
+    :not(pre)>code[class*=language-] {
+      padding: .1em;
+      border-radius: .3em;
+      white-space: normal;
+      background: #f5f5f5
+    }
+
+    .token.blockquote,
+    .token.comment {
+      color: #969896
+    }
+
+    .token.cdata {
+      color: #183691
+    }
+
+    .token.doctype,
+    .token.macro.property,
+    .token.punctuation,
+    .token.variable {
+      color: #333
+    }
+
+    .token.builtin,
+    .token.important,
+    .token.keyword,
+    .token.operator,
+    .token.rule {
+      color: #a71d5d
+    }
+
+    .token.attr-value,
+    .token.regex,
+    .token.string,
+    .token.url {
+      color: #183691
+    }
+
+    .token.atrule,
+    .token.boolean,
+    .token.code,
+    .token.command,
+    .token.constant,
+    .token.entity,
+    .token.number,
+    .token.property,
+    .token.symbol {
+      color: #0086b3
+    }
+
+    .token.prolog,
+    .token.selector,
+    .token.tag {
+      color: #63a35c
+    }
+
+    .token.attr-name,
+    .token.class,
+    .token.class-name,
+    .token.function,
+    .token.id,
+    .token.namespace,
+    .token.pseudo-class,
+    .token.pseudo-element,
+    .token.url-reference .token.variable {
+      color: #795da3
+    }
+
+    .token.entity {
+      cursor: help
+    }
+
+    .token.title,
+    .token.title .token.punctuation {
+      font-weight: 700;
+      color: #1d3e81
+    }
+
+    .token.list {
+      color: #ed6a43
+    }
+
+    .token.inserted {
+      background-color: #eaffea;
+      color: #55a532
+    }
+
+    .token.deleted {
+      background-color: #ffecec;
+      color: #bd2c00
+    }
+
+    .token.bold {
+      font-weight: 700
+    }
+
+    .token.italic {
+      font-style: italic
+    }
+
+    .language-json .token.property {
+      color: #183691
+    }
+
+    .language-markup .token.tag .token.punctuation {
+      color: #333
+    }
+
+    .language-css .token.function,
+    code.language-css {
+      color: #0086b3
+    }
+
+    .language-yaml .token.atrule {
+      color: #63a35c
+    }
+
+    code.language-yaml {
+      color: #183691
+    }
+
+    .language-ruby .token.function {
+      color: #333
+    }
+
+    .language-markdown .token.url {
+      color: #795da3
+    }
+
+    .language-makefile .token.symbol {
+      color: #795da3
+    }
+
+    .language-makefile .token.variable {
+      color: #183691
+    }
+
+    .language-makefile .token.builtin {
+      color: #0086b3
+    }
+
+    .language-bash .token.keyword {
+      color: #0086b3
+    }
+
+    pre[data-line] {
+      position: relative;
+      padding: 1em 0 1em 3em
+    }
+
+    pre[data-line] .line-highlight-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      display: block;
+      width: 100%
+    }
+
+    pre[data-line] .line-highlight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: inherit 0;
+      margin-top: 1em;
+      background: hsla(24, 20%, 50%, .08);
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+      pointer-events: none;
+      line-height: inherit;
+      white-space: pre
+    }
+
+    pre[data-line] .line-highlight:before,
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-start);
+      position: absolute;
+      top: .4em;
+      left: .6em;
+      min-width: 1em;
+      padding: 0 .5em;
+      background-color: hsla(24, 20%, 50%, .4);
+      color: #f4f1ef;
+      font: bold 65%/1.5 sans-serif;
+      text-align: center;
+      vertical-align: .3em;
+      border-radius: 999px;
+      text-shadow: none;
+      box-shadow: 0 1px #fff
+    }
+
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-end);
+      top: auto;
+      bottom: .4em
+    }
+
+    html body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+      overflow: initial;
+      box-sizing: border-box;
+      word-wrap: break-word
+    }
+
+    html body>:first-child {
+      margin-top: 0
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
+      line-height: 1.2;
+      margin-top: 1em;
+      margin-bottom: 16px;
+      color: #000
+    }
+
+    html body h1 {
+      font-size: 2.25em;
+      font-weight: 300;
+      padding-bottom: .3em
+    }
+
+    html body h2 {
+      font-size: 1.75em;
+      font-weight: 400;
+      padding-bottom: .3em
+    }
+
+    html body h3 {
+      font-size: 1.5em;
+      font-weight: 500
+    }
+
+    html body h4 {
+      font-size: 1.25em;
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1.1em;
+      font-weight: 600
+    }
+
+    html body h6 {
+      font-size: 1em;
+      font-weight: 600
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5 {
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1em
+    }
+
+    html body h6 {
+      color: #5c5c5c
+    }
+
+    html body strong {
+      color: #000
+    }
+
+    html body del {
+      color: #5c5c5c
+    }
+
+    html body a:not([href]) {
+      color: inherit;
+      text-decoration: none
+    }
+
+    html body a {
+      color: #08c;
+      text-decoration: none
+    }
+
+    html body a:hover {
+      color: #00a3f5;
+      text-decoration: none
+    }
+
+    html body img {
+      max-width: 100%
+    }
+
+    html body>p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      word-wrap: break-word
+    }
+
+    html body>ol,
+    html body>ul {
+      margin-bottom: 16px
+    }
+
+    html body ol,
+    html body ul {
+      padding-left: 2em
+    }
+
+    html body ol.no-list,
+    html body ul.no-list {
+      padding: 0;
+      list-style-type: none
+    }
+
+    html body ol ol,
+    html body ol ul,
+    html body ul ol,
+    html body ul ul {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body li {
+      margin-bottom: 0
+    }
+
+    html body li.task-list-item {
+      list-style: none
+    }
+
+    html body li>p {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body .task-list-item-checkbox {
+      margin: 0 .2em .25em -1.8em;
+      vertical-align: middle
+    }
+
+    html body .task-list-item-checkbox:hover {
+      cursor: pointer
+    }
+
+    html body blockquote {
+      margin: 16px 0;
+      font-size: inherit;
+      padding: 0 15px;
+      color: #5c5c5c;
+      background-color: #f0f0f0;
+      border-left: 4px solid #d6d6d6
+    }
+
+    html body blockquote>:first-child {
+      margin-top: 0
+    }
+
+    html body blockquote>:last-child {
+      margin-bottom: 0
+    }
+
+    html body hr {
+      height: 4px;
+      margin: 32px 0;
+      background-color: #d6d6d6;
+      border: 0 none
+    }
+
+    html body table {
+      margin: 10px 0 15px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all
+    }
+
+    html body table th {
+      font-weight: 700;
+      color: #000
+    }
+
+    html body table td,
+    html body table th {
+      border: 1px solid #d6d6d6;
+      padding: 6px 13px
+    }
+
+    html body dl {
+      padding: 0
+    }
+
+    html body dl dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 700
+    }
+
+    html body dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px
+    }
+
+    html body code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: .85em;
+      color: #000;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      padding: .2em 0
+    }
+
+    html body code::after,
+    html body code::before {
+      letter-spacing: -.2em;
+      content: '\00a0'
+    }
+
+    html body pre>code {
+      padding: 0;
+      margin: 0;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      border: 0
+    }
+
+    html body .highlight {
+      margin-bottom: 16px
+    }
+
+    html body .highlight pre,
+    html body pre {
+      padding: 1em;
+      overflow: auto;
+      line-height: 1.45;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    html body .highlight pre {
+      margin-bottom: 0;
+      word-break: normal
+    }
+
+    html body pre code,
+    html body pre tt {
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0
+    }
+
+    html body pre code:after,
+    html body pre code:before,
+    html body pre tt:after,
+    html body pre tt:before {
+      content: normal
+    }
+
+    html body blockquote,
+    html body dl,
+    html body ol,
+    html body p,
+    html body pre,
+    html body ul {
+      margin-top: 0;
+      margin-bottom: 16px
+    }
+
+    html body kbd {
+      color: #000;
+      border: 1px solid #d6d6d6;
+      border-bottom: 2px solid #c7c7c7;
+      padding: 2px 4px;
+      background-color: #f0f0f0;
+      border-radius: 3px
+    }
+
+    @media print {
+      html body {
+        background-color: #fff
+      }
+
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        color: #000;
+        page-break-after: avoid
+      }
+
+      html body blockquote {
+        color: #5c5c5c
+      }
+
+      html body pre {
+        page-break-inside: avoid
+      }
+
+      html body table {
+        display: table
+      }
+
+      html body img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%
+      }
+
+      html body code,
+      html body pre {
+        word-wrap: break-word;
+        white-space: pre
+      }
+    }
+
+    .markdown-preview {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box
+    }
+
+    .markdown-preview ul {
+      list-style: disc
+    }
+
+    .markdown-preview ul ul {
+      list-style: circle
+    }
+
+    .markdown-preview ul ul ul {
+      list-style: square
+    }
+
+    .markdown-preview ol {
+      list-style: decimal
+    }
+
+    .markdown-preview ol ol,
+    .markdown-preview ul ol {
+      list-style-type: lower-roman
+    }
+
+    .markdown-preview ol ol ol,
+    .markdown-preview ol ul ol,
+    .markdown-preview ul ol ol,
+    .markdown-preview ul ul ol {
+      list-style-type: lower-alpha
+    }
+
+    .markdown-preview .newpage,
+    .markdown-preview .pagebreak {
+      page-break-before: always
+    }
+
+    .markdown-preview pre.line-numbers {
+      position: relative;
+      padding-left: 3.8em;
+      counter-reset: linenumber
+    }
+
+    .markdown-preview pre.line-numbers>code {
+      position: relative
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows {
+      position: absolute;
+      pointer-events: none;
+      top: 1em;
+      font-size: 100%;
+      left: 0;
+      width: 3em;
+      letter-spacing: -1px;
+      border-right: 1px solid #999;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span {
+      pointer-events: none;
+      display: block;
+      counter-increment: linenumber
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+      content: counter(linenumber);
+      color: #999;
+      display: block;
+      padding-right: .8em;
+      text-align: right
+    }
+
+    .markdown-preview .mathjax-exps .MathJax_Display {
+      text-align: center !important
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .status {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+      margin-bottom: 16px
+    }
+
+    .markdown-preview .md-toc {
+      padding: 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    .scrollbar-style::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .scrollbar-style::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    .scrollbar-style::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      overflow: auto
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+      position: relative;
+      top: 0;
+      min-height: 100vh
+    }
+
+    @media screen and (min-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em calc(50% - 457px + 2em)
+      }
+    }
+
+    @media screen and (max-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        font-size: 14px !important;
+        padding: 1em
+      }
+    }
+
+    @media print {
+      html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+        display: none
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      color: inherit;
+      z-index: 99;
+      width: 32px;
+      text-align: center;
+      opacity: .4
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+      opacity: 1
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      padding: 32px 0 48px 0;
+      font-size: 14px;
+      box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: inherit
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+      width: 8px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+      text-decoration: none
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+      padding: 0 16px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+      left: 300px;
+      width: calc(100% - 300px);
+      padding: 2em calc(50% - 457px - 300px / 2);
+      margin: 0;
+      box-sizing: border-box
+    }
+
+    @media screen and (max-width:1274px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        width: 100%
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+      display: none
+    }
+
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+  </style>
+  <!-- The content below will be included at the end of the <head> element. -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // your code here
+    });
+  </script>
+</head>
+
+<body for="html-export">
+
+
+  <div class="crossnote markdown-preview  ">
+
+    <div id="top"></div>
+    <p><a href="6.2.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="6.4.html">下一章</a></p>
+    <hr>
+    <h1 id="center第六章-但为君故center">
+      <center>第六章 但为君故</center>
+    </h1>
+    <br>
+    <br>
+
+    <div class="md-toc">
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#center第六章-但为君故center" class="md-toc-link">
+            <center>第六章 但为君故</center>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第137章-但为君故41" class="md-toc-link">
+              <p>第137章 但为君故(41)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第138章-但为君故42" class="md-toc-link">
+              <p>第138章 但为君故(42)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第139章-但为君故43" class="md-toc-link">
+              <p>第139章 但为君故(43)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第140章-但为君故44" class="md-toc-link">
+              <p>第140章 但为君故(44)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第141章-但为君故45" class="md-toc-link">
+              <p>第141章 但为君故(45)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第142章-但为君故46" class="md-toc-link">
+              <p>第142章 但为君故(46)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第143章-但为君故47" class="md-toc-link">
+              <p>第143章 但为君故(47)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第144章-但为君故48" class="md-toc-link">
+              <p>第144章 但为君故(48)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第145章-但为君故49" class="md-toc-link">
+              <p>第145章 但为君故(49)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第146章-但为君故50" class="md-toc-link">
+              <p>第146章 但为君故(50)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第147章-但为君故51" class="md-toc-link">
+              <p>第147章 但为君故(51)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第148章-但为君故52" class="md-toc-link">
+              <p>第148章 但为君故(52)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第149章-但为君故53" class="md-toc-link">
+              <p>第149章 但为君故(53)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第150章-但为君故54" class="md-toc-link">
+              <p>第150章 但为君故(54)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第151章-但为君故55" class="md-toc-link">
+              <p>第151章 但为君故(55)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第152章-但为君故56" class="md-toc-link">
+              <p>第152章 但为君故(56)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第153章-但为君故57" class="md-toc-link">
+              <p>第153章 但为君故(57)</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第154章-但为君故58" class="md-toc-link">
+              <p>第154章 但为君故58</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第155章-但为君故59" class="md-toc-link">
+              <p>第155章 但为君故59</p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#第156章-但为君故60" class="md-toc-link">
+              <p>第156章 但为君故60</p>
+
+            </a>
+          </div>
+        </div>
+      </details>
+
+    </div>
+    <hr>
+    <h2 id="第137章-但为君故41">第137章 但为君故(41) </h2>
+    <p>“天线阵列接驳完毕！”酒德麻衣大吼。</p>
+    <p>“发电机组最大功率！”芬格尔在地下室里大吼。</p>
+    <p>发电机组高速地运转着，所有的电力输入长波发射机。</p>
+    <p>恺撒接通长波发射机的电源，电路板上的发光二极管亮了起来，时明时暗。这台老旧的设备早已过了使用年限，这套脆弱的二极管电路随时都可能烧掉。</p>
+    <p>所剩的时间不多，科考站还在继续下沉。海水通过冰缝上涌，再灌进科考站里来，没到了恺撒腰间。整片冰架濒临崩溃，到时候这座建筑会永远地沉入冰海。</p>
+    <p>
+      恺撒握紧呼叫器，用颤抖的手调整频率，反复呼叫，“这是恺撒·加图索和卡塞尔学院执行部在北极点附近的呼叫，请任何接收到的人转发该信号，这是恺撒·加图索和卡塞尔学院执行部在北极点附近的呼叫，我们的船只遇险，我们的通讯被阻断，我们的坐标是……”
+    </p>
+    <p>长波带着他的声音越过高山和大洋，不断地耗损着，去向世界的每个角落。</p>
+    <p>他竭力保持着冷静的语气，好让自己的声音经过损耗仍能清楚地听到，但他的声音颤抖且嘶哑。</p>
+    <p>冰冷的海水快速地消耗着他的体能，发电机高速地消耗着他们不多的柴油储备，而他的每一次呼叫都是在消耗三个人的生命。</p>
+    <p>芬格尔再没有返回大厅，废柴这一次应该不是临阵逃脱，而是他承担了最艰难的任务，进入最危险的地下室，地下室里的灌水情况应该比大厅里更严重，他很可能是被水困住了。</p>
+    <p>酒德麻衣则坚守在裸露出来的铝制框架上，确保高压线不会从框架上脱落，她没有时间把高压线牢固地接驳上去，只能用双手来固定。框架上流动着亮紫色的电火花。</p>
+    <p>他们身在强劲的高频电磁场中，全身的电荷分布都受到影响，耳鸣、眼花、心悸。</p>
+    <p>
+      这是一场豪赌，恺撒不敢确定这台长波发射机的频率能穿透北极附近的冰风暴，也不确定一定有人能接收到。最糟糕的是这台设备其实就是一台古董的长波电台，除了功率强劲，跟老式收音机没太大区别，恺撒必须手工调试每个波段，把每个波段都呼叫一遍。而他的时间已经不够了。
+    </p>
+    <p>
+      耳机里传出刺耳的噪音，偶尔恺撒会听到扭曲的音乐和播音员的只言片语，那应该是来自世界某地的某个长波广播电台。原理上北极点并不在他们的有效范围中，但总有一些幸运的电磁波碎片能越过高楼大厦和崇山峻岭，神奇地流落到远方。某位播音员用恺撒听不懂的语言讲着什么笑话，把自己乐得哈哈大笑。
+    </p>
+    <p>忽然有种从未感受过的孤独，仿佛你在世界的尽头呼喊，世界却不理睬你，自顾自地喜怒哀乐。</p>
+    <p>孤独得甚至想要听到庞贝的声音，希望在调到下一个波段的时候，那个男人懒懒的声音忽然跳出来说，“嗨！儿子！报上你的坐标！爸爸去救你！”</p>
+    <p>
+      巨大的开裂声响彻整个冰架，狂灌进来的海水吞没了恺撒和发射机。冰架终于崩溃了，如果他们站在科考站外，会看到裂谷般的巨大冰缝在顷刻间延伸了数公里长。科考站恰恰在冰缝旁边，它修建时的承重架就像是一把利刃插入了冰架，冰架一旦开始崩溃，这是最完美的应力点。
+    </p>
+    <p>整个科考站翻滚着，和巨石般的碎冰一起下坠，恺撒只来得及冲屋顶上的酒德麻衣高喊了一声，“走！”</p>
+    <p>她是唯一有机会撤走的人，也许凭借那不可思议的忍者身手，她能在冰架崩溃的最后一刻跳上某块巨大的浮冰等待救援。</p>
+    <p>但酒德麻衣没走，相反她看了恺撒一眼，从屋顶上一跃而下。</p>
+    <p>恺撒被狂涌的水流吞没之前还不由得好奇了一下，这种脆弱的结盟关系似乎并不足以让酒德麻衣舍身忘死地来救他，难道说这冷艳的日本女孩对自己动了感情？</p>
+    <p>科考站穿透几十米厚的冰架，沉入冰海。坚硬的铝合金骨架挺住了，但海水瞬间就充满了科考站里的每一寸空间。</p>
+    <p>冰冷的海水冲入恺撒的肺部，他的意识瞬间就模糊了，肺部有着撕裂般的痛感，却又生出温暖的错觉，奇怪地想起幼年时母亲给他洗澡的事。</p>
+    <p>那次他也是不小心呛了水，哇哇大哭了很久，母亲许诺教他游泳，这样就再也不会呛水了，他才停止了哭泣。</p>
+    <p>可惜这里是冰海，不是母亲房里温暖的浴盆，他游泳技术好得能穿越英吉利海峡了，却还是死在呛水这件事上。</p>
+    <p>忽然有人从背后狠狠地抱住了他，把一个面罩捂在他嘴上，压缩空气涌入，缺氧的症状立刻减轻。恺撒剧烈地咳嗽几下吐出部分海水，忽然意识到抱住自己的是个女孩。</p>
+    <p>忍者训练能够炼去酒德麻衣身上的每一寸赘肉，但女孩还是女孩，身体再怎么强韧，也还是柔软的。</p>
+    <p>酒德麻衣点亮手电，先照自己的脸，这是告诉恺撒自己不是敌人，她的另一只手抓着一个压缩空气瓶。</p>
+    <p>
+      恺撒忽然想了起来，他们在搜索科考站的时候找到过全套的蛙人设备，只不过年代久远，气瓶中的气早就跑光了。想来是酒德麻衣多留了一个心眼，偷偷给一个气瓶灌注了压缩空气，科考站里既然有蛙人设备，也就该有压缩空气的机器。但她既没有告诉恺撒和芬格尔，也没多准备两个气瓶，唯一的解释是这是她准备跑路的手段之一。带着这套设备她大可以在冰下潜泳半个小时甚至一个小时，恺撒和芬格尔别想跟上她，甚至不会觉察她怎么跑的。
+    </p>
+    <p>至于她为何考虑跑路，恺撒懒得去想，至少在生死关头，这脆弱的结盟关系跟科考站的硬质合金骨架一样，又挺住了一次。</p>
+    <p>
+      恺撒又被狠狠地抱住了，这回不是酒德麻衣而是芬格尔，这货瞪着牛一样的大眼鼓着腮帮子，显然憋气憋得快要昏过去了。无法想像他怎么从地下室里逃出来的，可能是天堂和地狱都不愿意收贱人。恺撒把面罩递给他，芬格尔就像饿鬼看到了蛋糕似的，简直恨不得把那个呼吸面罩吃下去。直到酒德麻衣憋得没气了，才一把把呼吸面罩抢了回去。
+    </p>
+    <p>三个人，一个气瓶一个面罩，以他们三人的憋气能力来说，轮流用不会死。但原本供一个人用的空气分到三个人头上，也就支撑十几分钟。</p>
+    <p>
+      他们仍然没有逃出死神的手掌，如果找不到那道冰缝，他们也还是会死。冰下潜水最大的危险就是如果你找不到下潜的冰洞了，那么大海对你而言就是永远都走不出去的迷宫，你的上方是坚不可摧的冰盖，你只能变成冰盖下漂流的浮尸。冰架裂开的那道缝大得像是一条河，但他们被海流带着漂了一段路，这时四面看都是一片漆黑，酒德麻衣往上照去，是坚厚的冰层，一眼望不到边。
+    </p>
+    <p>前一次他们是幸运地遇到了那群北极鳕鱼，跟着鱼群找到了可供呼吸的冰缝，这一次却难有那么好的运气了。</p>
+    <p>
+      三个人相对干瞪眼的时候，酒德麻衣忽然警觉，把手电照向身后。带着血水的半截巨蛇正被水流推了过来，隐约可见漂浮的消化道。这一幕令人反胃更令人惊恐，他们并未远离利维坦和蛇群的战场，那些怪物的战场是方圆几公里甚至几十公里的巨大海域，它们随时都会出现。
+    </p>
+    <p>
+      蛇尸飘走了，但酒德麻衣的眼神变得更加惊恐，她缓缓地看向自己的脚下。恺撒也感觉到了，强劲的水流自下而上涌来。除了上下层海水的温差很大，这种垂直洋流是很少见的，要么下方有一座海底火山，要么是某个大到不可思议的东西正在高速地上浮。能有这样的体积的东西，附近只有一个！
+    </p>
+    <p>强光忽然笼罩了三人，带着光柱升起的并非利维坦，而是巨大的黑色战舰。</p>
+    <p>一艘漆着英国皇家海军标志的……机敏级攻击核潜艇！</p>
+    <p>它连续地闪光，那是航海灯语，“英国皇家海军鹦鹉螺号核潜艇，欢迎登舰，恺撒·加图索先生。”它的正上方，用于海难救援的浮舱正缓缓地升起。</p>
+    <p>“我跟您的父亲保证过，会把您活着带回罗马，但这艘潜艇是英国皇家海军的财产，务必请您遵守舰上的规则。”</p>
+    <p>三个人裹着厚厚的毛巾，坐在鹦鹉螺号潜艇的船长室里，瑟瑟发抖。在冰海里浸泡了太久，身体失温严重，连酒德麻衣也显得憔悴狼狈。</p>
+    <p>虽然对方开门见山的表明了自己是庞贝老爹请来的救兵，然而落汤鸡一样被这样一艘威严的战舰救援，硬撑气势似乎也没什么意义。</p>
+    <p>所谓对方，是身着深蓝色海军制服的舰长，肩扛上校军衔。出人意料的，这艘潜艇的指挥官居然是一位身姿挺拔的女士，撇开那冷若寒霜的表情，甚至说得上是一位中年美人。</p>
+    <p>可以想见她的优秀，如果不是英国皇家海军中顶尖的人物，也不可能在潜艇这个男人主导的世界中当上舰长。这种女人，只会比男人更强悍。</p>
+    <p>芬格尔第一时间流露出感激涕零的表情，然而令酒德麻衣意外的是恺撒的神情冷漠。从舰长踏进这间舱的那一刻开始，他一句话都没说过，只冷着脸听。</p>
+    <p>他是有教养的贵族，即使坐在对面的不是救命恩人，只是普通的优雅女性，他也会带着温柔和“我能为您做些什么么”的微笑。</p>
+    <p>舰长虽然冷漠，但这不是恺撒也要冷脸以对的理由。</p>
+    <p>“咖啡、红茶或者烈酒，需要什么就跟我的勤务官说。”舰长女士起身离开。</p>
+    <p>舱门关上之后酒德麻衣才压低了声音，“你对这位舰长有什么不满？还是你单纯讨厌你父亲派来的救援？”</p>
+    <p>“没必要客套，”恺撒冷冷地说，“我和那位舰长女士认识。”</p>
+    <p>酒德麻衣一愣。</p>
+    <p>“上一次见到她的时候，她穿着低胸晚礼服，正跟我老爹在我家沙发上激吻。”</p>
+    <h2 id="第138章-但为君故42">第138章 但为君故(42) </h2>
+    <p>“女士们先生们，你们最好来指挥舱一下。”舰长去而复返，神情凝重。</p>
+    <p>外面传来急促的脚步声，水兵们狂奔在狭窄的通道里，去向各自的岗位。</p>
+    <p>恺撒霍然起身，完全没有抗拒的意思，酒德麻衣和芬格尔也跟了上去。</p>
+    <p>不用想也知道出了什么事，利维坦和蛇群的搏斗还未结束，巨型海洋生物的猎杀有时候会持续几个小时之久，正因为此，抹香鲸才需要能水下坚持两个小时的惊人肺活量，这样它才能潜入深海去猎杀大王乌贼。</p>
+    <p>潜艇的声呐系统能监控周围大约十几海里内的动静，鲸这样巨大的生物只要进入它的范围内就必然会被发现。</p>
+    <p>———————————————</p>
+    <p>指挥舱狭小紧凑，密布着监视器，水兵们神情紧张地扑在工作台前。原本还有人左顾右盼，舰长踏入指挥舱的一刻，所有人都绷得更紧了，视线不离监视器和仪表。</p>
+    <p>这艘潜艇上到现在他们还没有看到第二个女人，但就像酒德麻衣曾经判断的那样，她就是这舰上的阿尔法，单凭凌厉的眼神就慑服这群训练有素的男人。</p>
+    <p>真不知道庞贝是怎么把她泡到手的，分明是个老娘炮，却摁住了雌狮子。</p>
+    <p>“报告情况！”舰长在指挥舱中间站定。</p>
+    <p>“中型目标，快速逼近中，时速30节，37.5度，深度150米！”</p>
+    <p>“排除潜艇，排除鱼雷，红外反应高，没有接收到无线电信号，判断为某种生物！”</p>
+    <p>酒德麻衣愣了一下，没明白为何利维坦那种庞然大物会是中型目标，但立刻就明白了。他们正在一艘机敏级攻击核潜艇上，这东西被设计出来是针对同级别潜艇的，单论体型，鹦鹉螺号才是真正的钢铁巨兽，利维坦跟它相比不过是中型。</p>
+    <p>舰长转过头来，饶有深意地看了恺撒一眼，压低了声音，“利维坦？”</p>
+    <p>恺撒吃了一惊，但当他注意到舰长眼底的金色一闪而灭的时候，就明白自己老爹为何会跟这位英武的女军人扯上关系，以及她为什么能震慑这些桀骜的水兵。</p>
+    <p>同为混血种当然容易相互吸引，她可能并不在秘党的阵列中，却是有资格知道龙族秘密的人。</p>
+    <p>“目标加速靠近！目标加速靠近！”水兵高声警告。</p>
+    <p>“推进力100%，下潜，右舵，展开规避！”舰长下令。</p>
+    <p>
+      基本听不到什么发动机声，却能感觉到微微的顿挫之后潜艇忽然加速，同时潜艇的地板大角度倾斜。舰长和站着的水兵都熟练地后仰来应对这个倾斜的角度，稳稳地站在原地，酒德麻衣和恺撒晃了一下，也凭借出色的平衡能力迅速站稳，芬格尔却咕噜咕噜地打了两个滚，这才翻身站起。
+    </p>
+    <p>机敏级号称世界上最安静的潜艇之一，全速的时候也像鱼那么安静。这艘潜艇正俯冲着下潜，好从利维坦的前进轨迹上闪开。</p>
+    <p>英国皇家海军的潜艇当然不会对一条鲸鱼开火，即使那条鲸鱼的体型匪夷所思，舰长用只有她和恺撒能听到的声音说出“利维坦”这个名字，本就暗示了水兵们并不了解自己面对的东西是什么。</p>
+    <p>“目标转向！目标转向！继续逼近中！”水兵大吼。</p>
+    <p>武器控制台前的水兵一把摘下耳机，转头看向舰长，“对方有攻击性行动，请求动用武器！”</p>
+    <p>舰长冷着脸，看不出她的内心活动。但以恺撒对潜艇的了解，这种时候站在她的角度是必须还击的，攻击性核潜艇不会允许未知目标近身。</p>
+    <p>利维坦改变轨迹冲向鹦鹉螺号，显然是锁定了他们，而非意外地靠近。而且对于鹦鹉螺号来说，那东西是不是生物还无法确认，即使是生物，也同样可能是武器，苏联就曾研究过让海豚背着炸弹变成生物鱼雷。</p>
+    <p>但开火也同样是危险的选择，北冰洋号称俄罗斯的后湖，此时此刻应该还有不止一艘俄罗斯籍的核潜艇在北极圈中游弋，巨大的爆炸声在海中会传出很远，如果附近有俄国潜艇且被惊动，可能会是外交事件。</p>
+    <p>北极圈中的法则，各国的潜艇都相安无事，你可以默默地尾随别国的潜艇，展示肌肉传达无声的警告，却几乎没有人敢在这片敏感的海域动用武器。</p>
+    <p>“你父亲让我把是否摧毁利维坦的决定交给你，”舰长低声说，“虽然我并不认同，但他觉得你能做出正确的决定。”</p>
+    <p>她转向武器控制员，以女王般的威严语气下令，“激活1号、2号、3号鱼雷管，发射准备！”</p>
+    <p>机敏级核潜艇的鱼雷管中藏着号称世界上最快也最重的“旗鱼”鱼雷，如果不把那怪胎般的“风暴鱼雷”算进来的话，一发就可以炸沉一艘巡洋舰。</p>
+    <p>如果一发“旗鱼”不能摧毁利维坦坚硬的鳞片，也没关系，鱼雷库里还存着足够的备弹。</p>
+    <p>这无疑是最好的机会，被蛇群重创的利维坦连那极寒的言灵都无法释放，而他们的装备是世界上最先进的核潜艇之一。</p>
+    <p>一次辉煌的齐射后，就可以乘着鹦鹉螺号返回罗马，那会是一次值得纪念的凯旋……但恺撒沉默了。</p>
+    <p>
+      心里有个隐隐的念头，摧毁利维坦并不能解决北极圈中的问题，北极圈中的问题远比利维坦更加严重，那座神秘的岛屿，那个神秘的雇主，神的躯体和心脏，都会因为利维坦的陨落而成为永远的谜团。而且利维坦似乎并非想像中无情恐怖的生物，如果不是为了它的鲸群，它也不会沦落到生死的边缘。
+    </p>
+    <p>“以我们的机动性，有机会回避么？”恺撒问。</p>
+    <p>“报上目标速度！”舰长盯着恺撒的眼睛，头也不回地问。</p>
+    <p>“时速已经上升到35节！”</p>
+    <p>“我们潜行的极速是32节，单凭速度我们甩不开那家伙，”舰长转身下令，“全速下潜，释放干扰雷！”</p>
+    <p>“释放干扰雷！下潜速度到达极限！深度450米！继续下潜！”</p>
+    <p>鹦鹉螺号侧面的两排孔洞同时排出高压气体，推出圆球状的干扰雷群，白色的气流在鹦鹉螺号身边张开的时候，就如芭蕾的裙摆。</p>
+    <p>诱导雷群借助旋转的桨叶稳稳地浮在某个深度，鹦鹉螺号则继续下潜，二十秒钟后诱导雷集体爆炸，芭蕾裙摆变成了火焰的裙摆，整片海域都被照成火红色。</p>
+    <p>冲击波震动了远离爆炸核心的鹦鹉螺号，舰体剧烈地摇晃，指挥舱里的一切都在摇晃，舰长却还是背着双手，稳稳地站着，如同一位将军遥望着连天的炮火。</p>
+    <p>干扰雷通常是用来干扰对手放出的制导鱼雷，在它产生的高温、冲击波和光幕中，潜艇凭借高速遁入深海。</p>
+    <p>声呐屏幕上一片亮白，干扰雷爆炸的时候，连鹦鹉螺号自身的声呐系统也被干扰了。</p>
+    <p>但在干扰雷爆炸之前，能从声呐屏幕上看到那高速的“中型目标”冲入了爆炸的中心区。</p>
+    <p>鹦鹉螺号关闭了引擎，无声地在海水中滑动。这位优雅的舰长大概参加过不止一次的潜艇猎杀，冷静老辣。潜艇间的猎杀战，就像狙击手之间的战斗，最重要的是谁先锁定敌人的位置，谁先开枪。</p>
+    <p>
+      50米以下的深海中，阳光根本无法穿透，是一片漆黑的世界。无论是传统的短波雷达还是先进的激光雷达都没有用武之地，声呐才是最有效的探查设备，可以说潜艇完全靠着听力行动，深海动物也是一样。所以潜艇并不会像战斗机那样凭借高速地颤抖，它们会藏在某个深度上，把自身发出的声波减到最弱，等待敌人首先露出马脚。干扰雷群爆炸的时候，几秒钟内双方的听觉都被阻断，鹦鹉螺号就是趁着这个机会再度进入了静默的深海滑行
+    </p>
+    <p>
+      指挥舱里一瞬间变得死寂，所有的水兵都紧紧地抿着唇。芬格尔刚要出声就被酒德麻衣一把捂住嘴。这也是潜艇上的规矩，当静默航行的时候，所有人都沉默，只凭眼神和手势交流。潜艇本身是中空的金属壳，是声音的极佳导体，海水也一样，潜艇中极其细微的声响，在海水中却会被放大几百倍。鲸类和潜艇某种意义上是类似的，巨大、听觉敏锐，甚至速度都是接近的。舰长在潜艇猎杀方面的经验恰好有用。
+    </p>
+    <p>干扰雷的威力当然远逊于旗鱼鱼雷，按理说是炸不死利维坦的，但重伤的利维坦呢？没人能确定利维坦是活着还是死了，更无从知道它的位置。</p>
+    <p>鹦鹉螺号关闭了主动声呐，只用被动声呐扫描周围，这样探查的效果会差很多，如果利维坦也以跟他们类似的方式缓慢地滑行，得到双方排开海水的激波触碰到对方的时候才能觉察彼此。</p>
+    <p>计算时间的话从蛇群攻击利维坦开始已经接近一个小时过去了，如果利维坦和巨蛇没有进化出类似腮的结构在水中呼吸，那无论它们谁赢了都该上浮了。</p>
+    <p>一旦胜者快速地上浮，鹦鹉螺号一定能发现，那时候他们就安全了。</p>
+    <p>酒德麻衣瞥了一眼身边的芬格尔，芬格尔扶着潜艇上随处可见的扶手，站得跟大理石雕塑似的，但是满脸涨得通红。</p>
+    <p>他用可怜的眼神回应酒德麻衣，在酒德麻衣的手心里写，“我不敢动，但我想上厕所。”</p>
+    <p>“就在这里没事，我不介意，我觉得舰长也不会介意的。”酒德麻衣回复。</p>
+    <h2 id="第139章-但为君故43">第139章 但为君故(43) </h2>
+    <p>“最低推力巡航，右舵，匀速下潜。”舰长戴上麦克风，低声发布新的命令。</p>
+    <p>鹦鹉螺号打开水密舱吸入海水，带着细微的气泡沉入更深的海里去。</p>
+    <p>
+      声呐屏幕上出现了海底的扫描结果，这里海深不到1000米，海底密布着小型山脉。鹦鹉螺号的最大潜水深度是800米，但通常军用潜艇都能比操作手册上标称的数字潜得更深一些，1000米应该是真正的极限。舰长正指挥它贴近海底来巡弋，借助海底复杂的地形来隐蔽自己，这样做得非常小心，如果撞上海底会对艇身造成损坏，有时候这类损毁会把整艘潜艇埋葬在深海里。但看水兵们镇定的模样，类似的操作对于鹦鹉螺号应该是家常便饭了。
+    </p>
+    <p>
+      利维坦完全从声呐屏幕上消失了。如此巨大的目标忽然间消失是非常古怪的事，倒像是在干扰雷爆炸的瞬间它和鹦鹉螺号采取了同样的策略，进入了静默的深海潜行。这是个标准的猎杀战术，没准它就在附近的海域中潜行，跟他们一样慢一样警惕，因为关闭了主动声呐，连海水激波都很弱，才能避开被他们的声呐发现。
+    </p>
+    <p>大海就像厚厚的一层迷雾，双方是两个在雾气中摸索的刺客，有时候雾气太重，刺客的手脚又太轻，忽然碰面时没准连拔刀的距离都不够。</p>
+    <p>还有一个可能性是利维坦已经死了，冲向鹦鹉螺号的时候它已经身受重伤连干扰雷的威力都足够杀死它了。它巨大的身体缓缓沉入了海底，化为了海底山脉的一部分，这也有可能避开声呐系统的搜索。</p>
+    <p>
+      深度已经超过了航海手册上标称的极限，潜艇内部回荡着令人心悸的怪声，那是艇壳扭曲变形的声音。在这样的深度，艇壳会承受极其巨大的压力，事实上整艘潜艇都会在海水的重压下缩短，艇壳发生变形是必然的事，舰长和水兵们的神色都镇定，倒是航海经验不多的酒德麻衣有些警觉，恺撒向她摆摆手，意思是这不值得担心。
+    </p>
+    <p>他闭上眼睛，集中精神，“镰鼬”的领域张开到极限。</p>
+    <p>
+      他自己也可以算作一部声呐，没有鹦鹉螺号探索的范围那么广，但是精度还是极其优秀的。“镰鼬”们翻飞着为他带来全舰上下所有的声音，金属艇身本就是极好的声音导体。蒸汽轮机低速运转的声音、鹦鹉螺号吸入海水的声音、海流扫过艇壳的声音……恺撒忽然睁开了眼睛，神色惊恐。
+    </p>
+    <p>他并没想着用“镰鼬”去跟鹦鹉螺号强大的声呐系统对比，不过是想知道在寂静的深海中会有什么样的声音。可他居然真的听到了不可思议的声音，那好像是……这艘潜艇的心跳声！</p>
+    <p>
+      就在这艘潜艇的内部，有个巨大的心脏在缓慢而沉重地搏动着。恺撒刚开始听到的时候愣了一下，误以为自己是听错了，把某种设备运转的声音听成了心跳声，可再仔细听，那真的是心跳声。巨大的、强劲的心脏，每一次搏动都会输出数以吨计的鲜血，就像是被缓缓敲击的战鼓，咚咚咚咚地响着。一艘人类制造的核潜艇，居然是用生物心脏来提供能源的？虽然之前也不乏列宁号那样的案例，古龙的茧孵化的时候，整艘船都被它的血肉侵蚀，但英国皇家海军真的能邪异到这个程度？
+    </p>
+    <p>舰长注意到恺撒怪异的表情，把冷冷的目光转了过来。</p>
+    <p>恺撒缓缓地退后两步，盯着舰长的眼睛，“我们的船上，有个巨大的心跳声。”</p>
+    <p>
+      他防备着舰长甚至这间指挥舱的水兵暴起，对他们发起进攻，提前已经用眼神暗示了酒德麻衣。也许这艘船根本不是庞贝派来的，庞贝泡过眼前这个女人跟她此刻的立场毫无关系，庞贝泡女人纯粹就是泡女人，目的直接纯粹，跟对方的立场没有任何关系。他们踏入了一座钢铁的陷阱，一艘有心跳的机敏级攻击核潜艇。
+    </p>
+    <p>舰长微微皱眉，“鹦鹉螺号的心脏是罗尔斯-罗伊斯公司生产的压水式反应堆，它不该有心跳声。”</p>
+    <p>她顿了顿，脸色忽然也变了，“如果你确实听到一个巨大的心跳声，那么是某个东西正贴着我们航行。”</p>
+    <p>
+      恺撒悄悄地打了个寒战。这当然也是有可能的，但那东西得靠得多近才会令恺撒误以为那是这艘潜艇的心跳？难怪他们一直都没有搜索到利维坦，如果利维坦贴着他们游动，声呐系统会把利维坦带动的激波和鹦鹉螺号带动的激波混淆，利维坦就把自己完美地藏进了声呐系统的盲区中。可那大东西真的有这样的智商么？它要真这么了解潜艇，应该是英国皇家海军学院毕业的。而它的体型那么巨大，做出这种动作几乎是难以想像的。
+    </p>
+    <p>“释放水下摄影机，高光照明！”舰长下令。</p>
+    <p>
+      这个深度下潜望镜已经无法伸出了，取而代之的是深水机器人。鹦鹉螺号表面的射灯亮起，把附近的一小片海域照亮，同时深水机器人们拖着电缆离开鹦鹉螺号的表面，就像鹦鹉螺号的眼睛，看向不同的方向。这当然是冒险的措施，深海中能够发出这种等级光亮的应该只有火山，这就像在至暗之中举火前行，但如果利维坦已经跟着他们游动，这个危险似乎也是可以忽略的了。
+    </p>
+    <p>不同方向上摄取的画面呈现在舰长前方巨大的屏幕墙上，几乎同时恺撒听到了鳞片摩擦潜艇表面的声音，那东西被潜艇发出的强光惊动了，下意识地收紧身躯把鹦鹉螺号缠得更紧了。</p>
+    <p>“天呐。”所有人都在心里轻声说。</p>
+    <p>
+      并非利维坦，而是一条巨大的海德拉，神话中九首的水蛇。曾有一条海德拉登上YAMAL号，但最终被阿巴斯的因陀罗强行殛灭了，对比体型来看，那条应该是这条的子系，或者说还没有成熟的幼体。巨型海德拉紧紧地缠在鹦鹉螺号的表面，倒像是一条大王章鱼包住了猎物，只不过它一直以来没有发动真正的攻击，也不知道它裹着鹦鹉螺号游动了多远。它那十几米长的颈部在海水中摆动，缓缓地靠近深水机器人，跟深水机器人对视，眼瞳深处仿佛燃烧着金色的巨烛。
+    </p>
+    <p>“那是……那是什么东西？“一名水兵终于突破缄口的规矩，说出了每个人心里的话。</p>
+    <p>“巨型史前生物，基因变异生物，不管它是什么，如果它敢发动进攻，就是皇家海军的敌人！”舰长冷冷地说。</p>
+    <p>她的镇静给全舰的人注入了勇气。没错，他们是皇家海军，他们是鹦鹉螺号，他们的弹仓里带着旗鱼鱼雷，他们遇到史前生物，应该是史前生物的不幸。</p>
+    <p>“我们没有能针对它的武器。”舰长在恺撒耳边低声说，“旗鱼鱼雷能够摧毁它，但也会摧毁我们自己。”</p>
+    <p>“干扰雷对它有效么？”恺撒问。</p>
+    <p>“它刚好把干扰雷的发射口给缠住了。”</p>
+    <p>
+      这近百米长的巨型生物正一圈圈地缠绕着鹦鹉螺号。它固然长度惊人，但跟鹦鹉螺号相比还是纤细，重量也远远不如鹦鹉螺号，因此它附在鹦鹉螺号身上行进，就像䲟鱼贴在鲨鱼和海龟身上，毫不费力地穿越整个大洋。但好死不死地，它把干扰雷的发射口给封了。
+    </p>
+    <p>海德拉不知是有意还是无意地收紧了身躯，潜艇表面立刻传来密集的刮擦声，那感觉连艇壳表面的隔音瓦都被它的鳞片刮下来了。</p>
+    <p>没人知道它能不能暴力破坏艇壳，也没人知道它是什么时候缠上来的，它像个吸血鬼似的纠缠着鹦鹉螺号，也许随时能把这个“罐头”打开吃掉。</p>
+    <p>“这个海域是软质海底还是硬质海底？”恺撒问。</p>
+    <p>舰长立刻把目光投向副手，作为舰长，她不必知道这些琐碎的信息，一个眼神就该有回答。</p>
+    <p>“软质海底。”副手立刻回答，“这里的海底铺有大约三到五米厚的淤泥和微生物。”</p>
+    <p>“直接撞击海底么？”舰长看了恺撒一眼，“单论勇气的话，看来你父亲信任你不是没有理由。”</p>
+    <p>“他从不关心我的勇气，他只是觉得这件事必须是加图索家的人做决定。”</p>
+    <p>
+      海底分为石质和软质两种，以军用潜艇的坚固程度，哪怕是刮擦到石质海底都可以导致艇壳漏水，在接近1000米的深度，艇壳漏水绝对是致命的，但如果是软质海底，则只是考验鹦鹉螺号的龙骨韧度。海底软泥产生的巨大的阻力有可能把海德拉从艇身表面剥离掉，接着顺手给它一枚旗鱼鱼雷就能把它送回地狱去。
+    </p>
+    <p>“50%推力巡航，匀速下潜，随时准备加速！”舰长下令。</p>
+    <p>已经极其贴近海底的鹦鹉螺号进一步下沉，所有水兵都把自己固定在座椅上，舰长、恺撒和芬格尔也用带子把自己捆在扶手上，做好了迎接冲击的姿势。</p>
+    <p>倒是酒德麻衣无所谓，以忍者的平衡能力，就算鹦鹉螺号瞬间倒过来她都能站住。</p>
+    <p>鹦鹉螺号开始加速了，它已经不管利维坦或者其他东西会不会发现它了，有足够的速度才能在海底的软泥中碾压海德拉。</p>
+    <p>海德拉似乎意识到自己所寄生的这个金属怪鱼开始变得不安分了，九头狂舞，缠着鹦鹉螺号滑动，战鼓般的心跳声越来越高亢。</p>
+    <h2 id="第140章-但为君故44">第140章 但为君故(44) </h2>
+    <p>“下方海床平坦！距离50米！40米！30米！20米！”</p>
+    <p>“推进力100%！全舰准备迎接冲击！”舰长大吼的同时，亲自坐上了舵手的位置。看那娴熟的操作，她不仅是位指挥若定的舰长，大概也是这艘战舰上最老练的舵手。</p>
+    <p>鹦鹉螺号的蒸汽轮机发出沉雄的吼声，劈波斩浪的同时，向着海床快速地“坐”了下去，舰首高高地扬起，呈现出冲锋的势头。这艘排水量数千吨的攻击型核潜艇，在舰长的手中敏捷得像一条海豚。</p>
+    <p>
+      潜艇触底，艇身剧震，没用安全带固定好自己的人都被掀翻。鹦鹉螺号并没有立刻扎入软泥层，而是轻盈地弹跳起来，就像是打水漂的石子在湖面上跳动。它每一次接触海床，都在软泥层上溅起缓慢散开的巨大涟漪，每个涟漪的直径都是数百米。当涟漪中蕴藏的巨大力量崩溃的时候，软泥层爆裂开来，淤积了上百年的泥沙化作灰色的烟尘冲天而起，清澈的海水顷刻间就变成了浑浊的泥汤。
+    </p>
+    <p>潜艇和软泥层接触的瞬间，指挥舱中断电，照明灯和屏幕集体熄灭，刺眼的电火花照亮了所有人惊恐的脸。</p>
+    <p>但冲击并未对鹦鹉螺号造成致命的损伤，断电也只是潜艇在防冲击状态下的自我保护，它强大的动力核心仍在工作，主螺旋桨和喷射式推进器协同工作，始终保持着高航速。</p>
+    <p>如此巨大的冲击力，应该足够把海德拉从鹦鹉螺号表面剥离了，此时此刻它已经陷在软泥层中了，但鹦鹉螺号却还没有摆脱危险，现在它的敌人是帮它甩掉海德拉的软泥层。</p>
+    <p>
+      水深接近1000米，已经大大超过了机敏级的设计极限，每平方厘米的艇壳要承受大约100公斤的压力，在这惊人的高压下，木材这种有缝隙的固体材料会被压缩到原体积的一半大小。鹦鹉螺号还能够轻盈高速地航行，不仅仅因为它的合金外壳能抗高压，也是因为各个方向上的压力是均匀的，相互抵消。但它的腹部一旦接触到软泥层，情况就发生了翻天覆地的变化，软泥层无法给它提供足够的支撑力，上方巨大的压强会把它不断地压向软泥层的深处，最后它会一直沉降到硬质海底，变成一件被软泥层包裹的标本。
+    </p>
+    <p>所以舰长才会亲自操船，她始终控制着鹦鹉螺号以高速前进，艇身仅有1/3接触到软泥层的表面。这惊险的动作就像是在软泥层上玩滑雪，一旦高高扬起的舰首陷入软泥层，他们就会被软泥层吞噬掉。</p>
+    <p>指挥舱的供电恢复了，屏幕们跳闪着纷纷亮起，舰长仍旧端坐在舵手的位置上，冷冷地盯着仪表和屏幕，好像根本没有黑过灯这回事。</p>
+    <p>“老大你这小妈是个人物啊！”芬格尔大吼。</p>
+    <p>接下来是死是活不清楚，这种话就当是赞美了，舰长听见也无所谓。</p>
+    <p>“但我想这不是我老爹选她的理由！”恺撒也被舰长折服了。</p>
+    <p>如芬格尔所说，抛开她跟庞贝的关系，她本身也是位值得尊敬的女性。也许是舰长大人雌威凛然，排开一众妖艳拿下了庞贝呢？这么想来倒比老爹泡上了她更符合逻辑一点，恺撒心里也舒服一点。</p>
+    <p>水下摄影机再度弹出鹦鹉螺号的表面，强光向着舰尾照射，从屏幕上可见满天的泥尘上升到几百米的高度，简直就是一座接天的城墙。鹦鹉螺号并未被泥尘包围，因为它的航速比泥尘弥漫的速度更快，但那堵恐怖的墙壁正高速向着它推来。</p>
+    <p>被那堵墙追上他们就会死，泥水中应该混合着大量的岩石碎片，可能重创主螺旋桨。但由于舰长精准的控制，他们并未因接触软泥层而严重减速，舰身重新变得轻盈，舰腹依然贴着软泥层滑行，但正缓慢地升起，他们正在脱离危险。</p>
+    <p>“恺撒·加图索！”舰长说。</p>
+    <p>恺撒来到舰长身后，准备听从她的吩咐。他承认了舰长在这艘船上的阿尔法地位，就没把她再看作“老爹的某个女人”。</p>
+    <p>舰长抬眼看了他一眼，眼眸依然锐利，但她的制服胸口处已经被鲜血浸透。</p>
+    <p>恺撒立刻半跪，手势极轻地从她的胸骨往下按。结果如他所想，胸骨和肋骨粉碎性骨折，断骨想必插进了内脏。她的身体表面并无伤口，那些血是她吐出来的。</p>
+    <p>鹦鹉螺号接触软泥层的瞬间，所有人都采取了防冲击姿势，半蜷身，双手保护头部和胸腹，唯独舰长端坐着操纵潜艇，她要确保那一刹那潜艇的姿态。但是意外地某件重物横飞，砸中了她的胸口，而她在重伤之下仍然坚持着操纵潜艇，直到脱离危险。
+    </p>
+    <p>恺撒正要高呼医疗官，但舰长用力抓住了他的手臂，“听我把话说完。这艘潜艇是皇家海军的财产，我不能交给你，你也没有足够的经验。但我会把指挥权交给我的大副，你可以信任他，他会间接听从你的指令。”</p>
+    <p>“是。”</p>
+    <p>“如果再度发现利维坦，你应该摧毁它。在这种情况下，鹦鹉螺号想要自保必须摧毁任何可能的敌人。旗鱼鱼雷中的部分加装了改造过的弹头，我的大副知道那些改造鱼雷的编号，启用它们，不要犹豫。”</p>
+    <p>“是。”</p>
+    <p>“尽力保证我的部下们安全返回朴次茅斯，他们中的多数都是普通人，跟龙类作战不是他们的义务。”</p>
+    <p>“是。”</p>
+    <p>舰长缓缓地靠在座椅上，瞳孔中的金色和锋锐的气息同时退去。这个强悍的阿尔法忽然流露出疲惫和温和来，那双虎虎生威的眼睛也因此多了温婉含蓄的美，倒有点像恺撒第一次见她时的模样。</p>
+    <p>酒德麻衣和芬格尔也觉察了异样，围了上来。</p>
+    <p>“如果我没法活着返航，请帮我转告你的父亲……”舰长轻声说。</p>
+    <p>芬格尔用胳膊肘捅捅恺撒，意思是这时候就别纠结你家里那点桃色故事了。舰长动了动嘴唇，她履行完了舰长的职责，意志已经开始松懈，呼吸变得断续，吐出一个字都是艰难的。</p>
+    <p>但她仍是强行振作起来，一字一顿，“他是个应该被阉掉的混蛋！”</p>
+    <p>恺撒点点头，“同意，我会如实转告。”</p>
+    <p>“但你应该爱他，因为他爱你。”舰长抬起眼帘，深深地看了恺撒一眼，“你的母亲，那个名叫古尔薇格的女人，他并不讨厌她，但对他来说，那是想要逃避的宿命。”</p>
+    <p>恺撒心中微微一动。</p>
+    <p>许多年来他一直对父母的婚姻存有疑惑，父亲显然并不爱母亲，却接受了家族指派给他的新娘。庞贝是个很难被规矩约束的人，即使家中的长老们对他也是束手无策，唯独在新娘的人选上，庞贝连挣扎都没有挣扎过。</p>
+    <p>古尔薇格是个神秘的姓氏，迄今为止恺撒没有见过母亲家的任何人，只知道母亲出自另一个混血种的豪门。</p>
+    <p>豪门之间的联姻……想要逃避的宿命……难道说父亲对母亲的死无动于衷，并非他庆幸于从此可以没有家庭束缚为所欲为了——事实上在他有家有室的时候也还是浪迹在各色女人之间——而是这样他就可以暂时脱离某件命中注定的事了。</p>
+    <p>舰长似乎知道些什么，但她缓缓地闭上了眼睛，再也没有睁开。水兵们也都意识到舰长受了重伤，但是直到此刻他们依旧坚守在各自的岗位上，只有少数几个人短暂地看向这边。这个女人直到失去了行动能力，余威还是足够维持舰上的秩序。</p>
+    <p>一名军官来到恺撒面前，快速地行了个军礼，“张伯伦少校，鹦鹉螺号的大副，接下的事情请交给我。”</p>
+    <p>“谢谢，张伯伦少校。”恺撒站了起来。</p>
+    <p>“卡塞尔学院1985级，炼金机械系。”大副低声说完，抱起舰长，转身大吼，“医疗官！”</p>
+    <p>恺撒微微松了口气，看来鹦鹉螺号上不止一名知晓内情的混血种，他们接下来的行动会有足够的支持。</p>
+    <p>医疗官还没有赶到，恺撒忽然听到了刺耳的摩擦声，用不着“镰鼬”，指挥舱里的每一个人都听到了。那是某种坚硬的东西在刮擦潜艇的外壳！</p>
+    <p>潜艇接触海底之前，恺撒已经收回了镰鼬，否则那巨大的声浪会永久损伤他的听觉。“镰鼬”对于细微的声音可以放大和解析，但在震耳欲聋的巨声中却根本无法使用，音乐厅中强劲的鼓点被“镰鼬”加强之后，都像是一连串的暴雷。</p>
+    <p>“水下摄影机！对准舰尾！”恺撒大吼。</p>
+    <p>其实用不着水下摄影机他也猜到了原因，他们并未摆脱海德拉，那东西附在鹦鹉螺号身上的力量之强，超过了他们的想象。</p>
+    <p>影像立刻出现在屏幕上，半条海德拉正从艇腹的淤泥中艰难地往上爬动，浑身都喷着浑浊的血，蛇颈就像章鱼的触手那样一点点移动。之所以是半条，因为它超过一半的脖子已经折断了，幸存的头部是三个或者四个，看不清楚。</p>
+    <p>软泥层确实对海德拉造成了重创，它被在软泥层中拖拽了差不多半海里远，本身又是纤细的结构，再强的骨骼都承受不住。几条蛇颈折断，蛇头都留在了软泥层里。</p>
+    <h2 id="第141章-但为君故45">第141章 但为君故(45) </h2>
+    <p>屏幕上的画面令人脊背发寒，海德拉摇摆着长长的脖子，无声地呼吼咆哮，赤金色的瞳孔如同刺眼的明灯。</p>
+    <p>它的下半身陷在软泥层中，倒像是鹦鹉螺号长出了尾巴，那“尾巴”拼命地翻动，搅碎了软泥层平滑的表面。</p>
+    <p>看起来像是海德拉要把鹦鹉螺号拖拽到地狱去中，但实际情况恰恰相反。这是一种求生行为。</p>
+    <p>海德拉受了重伤，凭自己的力量已经无法上浮，它用尽全力附在鹦鹉螺号的外壳上，是希望鹦鹉螺号的动力能把它拔出这片深海泥潭。</p>
+    <p>如果被鹦鹉螺号抛下，它会被海水的压力慢慢地压到软泥层的深处去。</p>
+    <p>“100%推力！”恺撒大吼，“我们必须摆脱这家伙！”</p>
+    <p>原本已经在高速滑行的鹦鹉螺号进一步加速，舰腹在软泥层上犁出巨大的深沟。大副接替了舰长的工作，他排空了所有的海水，以获得最大的浮力，好摆脱软泥层的吸附力。</p>
+    <p>
+      但海德拉的阻力极大。它如果肯老老实实地趴在潜艇表面，阻力反而会小，鹦鹉螺的动力足够把它带出软泥层。但它硕大的腹部陷到软泥层中去了，它的体型在颈部之下急剧地膨胀，变得比鲸鱼更加粗壮，再往后才是长长的蛇尾。这粗壮的腹部陷在软泥层里，鹦鹉螺号就像拖着一个沉重泥沙口袋。
+    </p>
+    <p>泥尘弥漫的速度超过了鹦鹉螺号，在鹦鹉螺号的摄像机视角下，那是通天的巨壁把它和海德拉一起吞没了。</p>
+    <p>强光照不透这浑浊的泥汤，屏幕上一片昏暗，偶尔光柱能贯穿泥水的时候，可以看到海德拉的长颈妖冶而痛苦地摇摆着。</p>
+    <p>“舰上还有什么武器？”恺撒冲大副吼叫。</p>
+    <p>“我们潜得太深了！这种深度下没有武器能发射！”大副也是吼叫着回答。</p>
+    <p>尾部传来震耳的巨响，泥尘中夹杂的石块正撞击主螺旋桨，那些巨型的桨叶用韧性极高的铜合金铸造，甚至能切开一条金枪鱼而不受损，但对上岩石还是有极大的概率折断。如果失去主螺旋桨，单凭喷射推进器，他们没有任何机会逃出这片深海。</p>
+    <p>大副的脸上都是冷汗，他还在尽力控制潜艇，想把头部抬起来，但鹦鹉螺号正缓缓地下沉。</p>
+    <p>“我们已经没有机会安全返航，”大副抬头看着恺撒，压低了声音，“只剩下最后一个选择。”</p>
+    <p>“什么？”</p>
+    <p>“在舰内引爆所有鱼雷，我们会跟海德拉一起被埋葬。”</p>
+    <p>“我们正在跟海德拉一起下葬，没必要多此一举吧？”酒德麻衣也是脸色苍白。</p>
+    <p>“那会确保海德拉被杀死，爆炸还会令舰内的一些杂物浮上海面，如果有救援来的话他们会知道鹦鹉螺号已经自爆。不这么做的话我们会悄无声息地死在海底，甚至没有人能确认我们的死亡，我们的名字会永远留在失踪名单上。”</p>
+    <p>“我现在相信你是卡塞尔学院毕业的了，”恺撒拍了拍大副的肩膀，“但我的决定是等待救援。”</p>
+    <p>“接近1000米的深海，能够救援我们的设备人类尚未研发出来。”大副惨淡地笑笑。</p>
+    <p>“我们的救援未必是人类。”恺撒说，“打开主动声呐！最大功率！”</p>
+    <p>自从释放了干扰雷，鹦鹉螺号的主动声呐一直处在关闭的状态，那台强大的设备能够放出集束状的高频声波，通过回声定位来探查周围的海域，但它一旦开机，也就等于对周围所有的舰船暴露了自己的位置。</p>
+    <p>“老大你难道是指望那家伙？”芬格尔似乎明白了什么，“感觉比指望我还靠不住。”</p>
+    <p>“开启主动声呐，最大功率发射。”大副下令。</p>
+    <p>恺撒闭上眼睛，“镰鼬”的领域却最大限度地张开了，海水挡不住那些栖息在他脑海深处的白色妖怪，它们在茫茫的深海中四散出去。</p>
+    <p>
+      集束状的声波在海底和海面的冰层之间高速地往来，反射和散射。和冰层接触的时候发出的是玻璃破碎般的声音，和海底软泥层碰撞的时候发出的声音像是在拍打一面没有绷紧的鼓，穿越密集的鱼群的时候，声波好像忽然变成密集的水泡，边上升边破碎，而在越过水温不同的海域的时候，它还会走出彩虹般的弧线。这些声音的碎片都被镰鼬抓住并带回给恺撒，它们回荡在恺撒的脑海里，仿佛空灵的乐章。
+    </p>
+    <p>他同时要忍受巨大的噪音，海德拉狂暴的心跳声、蒸汽轮机高频的运转声、还有鹦鹉螺号骨架弯曲变形的异响，这种声音令人心胆俱裂，这艘潜艇似乎随时都会分崩离析。</p>
+    <p>而他真正期待的是那个雄浑的歌声，苍凉、静谧、浩瀚，就像亘古不息的鼓，或者神在世界之外的低语。</p>
+    <p>它来的时候，会像雷霆闪电那样威严迅捷，把一切都击碎，把一切都席卷！</p>
+    <p>越来越多的屏幕黑了下去，那是因为水下摄影机陷入了软泥层，鹦鹉螺号的头部已经下沉，大副把推进力调低到30%，这种情况下推进力越高越麻烦，他们会一头扎进软泥层的深处去。</p>
+    <p>半个舰身已经陷在软泥层里面了，海德拉还在疯狂地往上爬，它要爬到舰背上去，拿这艘舰艇当作踏脚石升上海面。</p>
+    <p>大副看向恺撒，这是他们最后的机会了，与敌协亡的机会。</p>
+    <p>“来了……”恺撒轻声说。</p>
+    <p>“来了。”这一次他的语气笃定了许多。</p>
+    <p>“来了！”恺撒睁开了眼睛。</p>
+    <p>他很少会把同样的话说三次，他这种含着金汤匙出生的人，生下来就有太多人等着为他服务，他哪怕轻声细语也有人奔跑着去帮他把事情办好，又怎么用得着重复？</p>
+    <p>可他说到第三次的时候，语气中透出的兴奋就像是敦刻尔克沙滩上的残兵看到了海平面上浮现的舰队，满怀着死里逃生的欣喜，还有尊崇和赞叹！</p>
+    <p>他仰头望着正上方，眼神炽热，仿佛他的目光能看穿艇壳。</p>
+    <p>“所有的水下摄像机对准上方！”大副大吼。</p>
+    <p>所有的聚光灯，所有的摄影机都指向了海面，舞台已然准备完毕，只等着巨星的登场。但他们所见只有浑浊的泥水，泥水中像是有万千的黑蛇摇摆，那是海德拉长颈挡住灯光时造成的阴影。</p>
+    <p>每个人的信心都在悄然崩溃，他们所剩的时间已经不多了，大副正以眼神暗示武器官做好最后的准备，唯独恺撒平静得像是一位信徒等着他的神降临。</p>
+    <p>白色的影子如电光那样撕裂了黑暗，巨兽垂直下潜，以万军冲阵般的气势穿过泥水层，一口咬在海德拉的颈部，毫不停留地拖着它升空而起。</p>
+    <p>它一来一去不过是瞬息间的事情，可直到它在镜头里消失了几十秒钟，所有人都还沉浸在那个瞬间里。那就是狂龙从云端里忽然探下身躯，隆起的龙背连接天与地，它一口叼走了张牙舞爪的恶鬼，留下惊鸿一瞥的身影在天地间慢慢地消散。</p>
+    <p>等人们回过神来，鹦鹉螺号已经变得轻灵起来，自动驾驶仪正控制着它在软泥层的表面平稳地滑动。</p>
+    <p>“那是什么？”一名水兵喘息着问。</p>
+    <p>“鲸鱼！那是一头白鲸！”有人大声回答。</p>
+    <p>“白色的抹香鲸！”有人更加坚定。</p>
+    <p>恺撒和大副对视一眼。</p>
+    <p>利维坦来去太快，他们看到的也不过是个白色的虚影，即使把录下来的画面回放，能看清的也不过是一张獠牙毕露的大嘴，几乎占据了整个屏幕。</p>
+    <p>但确实，那道虚影看起来很像是一只抹香鲸，高高隆起的巨大头部是这种动物的天生印记，没有任何其他鲸类具备这样的特征。它的体型也只是略大于普通的抹香鲸，长度甚至弱于海德拉。</p>
+    <p>尽管一直有传闻说利维坦是头巨鲸，但尊贵的初代种居然真的是一头鲸鱼的模样，未免有点太过平淡了。</p>
+    <p>“安静！留在各自的岗位！后平衡舱补水，恢复水平！推进力以10%为阶梯上升，每十秒钟一次！”大副高声说。</p>
+    <p>没有了海德拉的拖累，鹦鹉螺号很容易地找回了水平，和抹香鲸类似的刀锋式头部缓缓地扬起，尾部气流吹动泥水形成巨大的乱流，当推进力升到100%的时候，这条被困住的铁鱼如同飞机起飞那样，昂首脱离了软泥层。</p>
+    <p>指挥舱中一片欢呼声，水兵们久久地把双手举过头顶，呼喊咆哮。他们在看见地狱门开的时候所经受的恐惧和高压，在逃生之后彻底地释放出来。</p>
+    <p>“老大，你怎么知道利维坦会帮我们？”芬格尔低声问。</p>
+    <p>“海德拉从一开始就缠上了我们，它不是想要攻击我们，而是借助我们的高速避开利维坦。”恺撒低声回答，“是它带领蛇群屠杀了利维坦的鲸群，利维坦追着我们，是来复仇的。”</p>
+    <p>酒德麻衣微微点头。她也想到了这种可能性，所以海德拉缠住了鹦鹉螺号却并未发起攻击，因为它和鹦鹉螺号之间不是猎手和猎物之间的关系，而是寄生虫和寄主。</p>
+    <p>恐怖的利维坦居然是个有人性或者说社会属性的生物，它会有复仇这样强烈的念头，不过这也符合鲸鱼的天性，它们确实是能感受到愤怒和悲哀的生物，甚至会背负着已经死去的孩子随着海水漂流，长达几星期地哭泣。</p>
+    <p>鹦鹉螺号以极速上升，主动声呐和被动声呐都以最大功率开启，搜索着海德拉和利维坦的踪迹。</p>
+    <p>搏斗中的巨兽无法潜行，立刻就被鹦鹉螺号的声呐捕获，它们的死斗发生在接近海面的地方，但是当鹦鹉螺号试图靠近的时候，利维坦又再度带着海德拉深入海底。它的上浮下潜速度极快，鹦鹉螺号根本跟不上，只能停留在接近海面的水层等它。</p>
+    <p>果然利维坦片刻之后又返回来了，海德拉紧紧地纠缠和撕咬着它的身体，它则狠狠地咬着海德拉的脖根处，两只巨兽都伤痕累累，但它们的搏杀甚至比开始的时候更加惨烈凶猛。</p>
+    <p>鹦鹉螺号打开舰首的大灯，把周围一片海域照得雪亮，所有人都惊恐又激动地欣赏着这场血战，它们撕咬着、翻滚着、带着几百米长的血烟上下游动，利维坦在高歌，海德拉在嘶吼，如同神话古卷在人类面前打开。</p>
+    <h2 id="第142章-但为君故46">第142章 但为君故(46) </h2>
+    <p>利维坦再一次带着海德拉冲上海面，速度极快，撞破冰架最薄弱的地方，带着漫天的碎冰翻转，再度入水，一头扎向大海的深处。</p>
+    <p>“它们就这么互相咬着游上游下？”芬格尔看了一眼身边的酒德麻衣。</p>
+    <p>
+      “抹香鲸猎杀大王乌贼就是这种战术，在深海之中咬住大王乌贼，用最快的速度把它带到海面，水压的巨大变化会让气体从它的体液中快速析出形成气泡，造成血管栓塞，甚至让猎物的肺泡爆炸。体积那么巨大的对手，光用咬很难造成致命伤，它这是要让海德拉窒息而死。”酒德麻衣说。
+    </p>
+    <p>“是条狠鲸啊！”芬格尔赞叹，“那海德拉还有机会么？”</p>
+    <p>“毒液，海德拉唯一的机会是在窒息而死前把足够的毒液注入利维坦的身体。”恺撒说。</p>
+    <p>海德拉残余的四首全部咬在利维坦的颈部，长尾一圈圈缠绕着利维坦，笨重的腹部坠在一旁，上面满是凄惨的伤口，应该是在软泥层中拖拽造成的。</p>
+    <p>这是一场耐力的搏杀，双方都忍受着巨大的痛苦。</p>
+    <p>“我们应该希望谁赢？”酒德麻衣问。</p>
+    <p>“海德拉，那东西的毒液对鹦鹉螺号没用，但如果利维坦喘息过来，它可以封冻整片海域。”恺撒回答。</p>
+    <p>“那么你希望谁赢？”酒德麻衣直视恺撒的眼睛。</p>
+    <p>这一次恺撒没有回答，而是扭头看向大副，“请把我们的六个鱼雷管全部装载上旗鱼鱼雷，随时准备发射。”</p>
+    <p>
+      恺撒曾有一次机会对利维坦发射旗鱼鱼雷，但他放弃了，因为对那头神秘的鲸王产生了好奇心。如果不考虑它那寒冰地狱般恐怖的言灵，利维坦居然是那种会让人喜欢的动物，它巨大而高洁，沉浑地吟唱着游过漫漫冰海，像是吟游诗人踏过莽莽荒原；它像一位真正的君王那样爱护着它的族群，否则它根本不会面临眼下的困境，直接展开领域，海德拉不可能近身；它还像一位侠客那样慷慨激烈，重伤之下它并未选择退出战场确保自己的安全，复仇对它来说根本不能等。
+    </p>
+    <p>酒德麻衣问的是恺撒是否会如舰长建议的那样消灭利维坦来确保鹦鹉螺号的安全，恺撒的回答是他不会因为奇怪的认同感而对利维坦手下留情。</p>
+    <p>
+      这场死斗的结果其实已经清楚了，原本海德拉就畏惧着利维坦的报复，所以才会缠绕在鹦鹉螺号上，经过软泥层中的拖拽，它已经是奄奄一息的状态，而利维坦虽然曾经穿越干扰雷组成的雷区，但那个级别的爆炸对于它的伤害毕竟有限，它从咬住海德拉的那一刻开始，就是这场复仇战的主导者。
+    </p>
+    <p>但真正的战场控制者却是鹦鹉螺号，旗鱼鱼雷拥有射程上的绝对优势，威力强到能把整片海域清场，而且它只用静静地旁观，从容地等待。</p>
+    <p>这是历史上罕有的情况，龙类和流着龙血的亚种拼命搏杀，人类倒像是君王那样高高地端坐在看台上，手握着生杀予夺的大权。</p>
+    <p>“事后销毁水下摄像机录制的所有资料。”大副低声下达命令。</p>
+    <p>一名军官微微点头，其他的水兵还目不转睛地看着屏幕上怪兽们的死斗，就像是创世的黑烟中，神与魔纠缠在一起，相互撕咬，要为这个世界定下未来的主宰者。</p>
+    <p>
+      长达20分钟的殊死搏斗之后，海德拉终于耗尽了所有的体力，蛇头一个又一个离开了利维坦的身体，缠着利维坦的长尾也松开了。它白色的肚皮翻起朝上，缓缓浮起，原本钢铁般强硬的长颈变得柔软无力，整体看去倒像一只随波逐流的乌贼。百万年的冰架已经被这两个大家伙的战斗弄得支离破碎，飘着极光的夜空之下，大海起伏，波光粼粼，海德拉的尸身漂浮在碎冰之中，利维坦围着尸体游动，喷出十几米高的水柱，唱着只有恺撒能听懂的、苍凉的歌，水柱在半空中就冻成了冰晶，仿佛钻石组成的雨，倾洒在海面上。
+    </p>
+    <p>鹦鹉螺号的潜望镜在远处升起，恺撒透过潜望镜观察着，体会着那苍凉的鲸歌。连续遭遇这神秘的怪兽之后，他能觉察出鲸歌中的一些变化了，隐约能感知到那庞然大物的情绪。</p>
+    <p>
+      它是悲伤的，又是迷惘的，就像一个人切断了仇人的喉咙之后，提着沾血的刀围着仇人的尸体转圈，一刀断喉的凶狠和血性还在他的身体里激荡，他忍不住要发出野兽般的吼叫，可内心深处那股强烈的意志却在退却，觉得世界寒冷又孤单，无论做什么其实都是于事无补的。这片大海之上漂浮的尸体远不只是海德拉，还有它的鲸群，只不过多数的尸体都藏在了冰架之下。
+    </p>
+    <p>
+      利维坦游向海德拉，张开满是利齿的嘴，似乎是要吞吃掉这该死的仇人。然而就在它咬到海德拉的那个瞬间，海德拉居然再度睁开了眼睛！它臃肿的腹部爆开，数不清的白色幼蛇带着血浆冲天而起，落水之后立刻游向利维坦。幼蛇们钻进了利维坦身上的伤口，而海德拉不顾破损的腹部中某些脏器都流了出来，恶狠狠地扑上去再度咬住了利维坦的头部，继续注入毒液。
+    </p>
+    <p>“又是这招！要不要脸啊？”芬格尔惊呼。</p>
+    <p>类似的情况在YAMAL号上也发生过，在自身将要崩溃的时候，海德拉竟然放出了腹中的幼蛇群去攻击阿巴斯。</p>
+    <p>
+      这条海德拉用装死的方法赢得了在海面上漂浮的时间，这让它暗中吸入了大量的空气，从接近窒息的状态中喘息过来。除了毒液，它自己难以对利维坦造成致命的伤害，但幼蛇细小的身躯却能钻进利维坦的伤口之中，一口口地咬穿这条巨鲸。利维坦原本悲壮的歌声立刻变得愤怒，它带着海德拉和幼蛇群奋力地撞向附近的冰架，撞出大片的冰尘，冰架上生出巨大的裂缝。
+    </p>
+    <p>但如此猛烈的撞击并不足以帮它摆脱幼蛇群的围攻，它们已经成了利维坦身上的蛆虫，在寄主和寄生虫的战斗中，胜出的往往都是寄生虫。</p>
+    <p>海德拉仿佛巨大的章鱼那样包裹着利维坦，它这一次选择攻击利维坦的头部而不是颈部，为的是堵住利维坦唯一的鼻孔。</p>
+    <p>
+      抹香鲸只有一侧鼻孔是通畅的，另一侧鼻孔天然封闭，用来储存更多的空气，传说大王乌贼想要战胜抹香鲸的唯一办法就是堵塞抹香鲸的鼻孔，但人类从未目睹过抹香鲸和大王乌贼的搏斗。海德拉居然真的这么做了，利维坦再也无法使用潜入深海高速上浮的战术，因为它自己都要窒息而死了。这场战斗居然是以海德拉的胜出为结束的，利维坦还在疯狂地撞击着冰架，但除此之外它已经没有任何反击的办法了。所有人都只能静静地围观着那庞然大物的死亡，就像看着神从自己高高的御座上摔下来，被蛆虫们活活地咬死。
+    </p>
+    <p>“1号、3号、5号鱼雷管！发射！”恺撒忽然下令。</p>
+    <p>大副愣了两秒钟之后转发了这道命令，这是一举毁灭利维坦和海德拉的最后机会。利维坦如果死了，海德拉会毫不犹豫地选择逃亡，它能够神出鬼没地缠上鹦鹉螺号，也能有别的办法避开鹦鹉螺号的声呐探测。</p>
+    <p>鹦鹉螺号微微震动，舰首左侧的三枚发射管同时开启，三枚重型鱼雷依次在海水中划出优美的弧线，探测到了目标之后，弹道立刻绷得笔直，从不同的方向接近利维坦和海德拉。</p>
+    <p>它们在海水中滑行的时候安静而飘逸，身后带着密集的气泡，仿佛蓝天之上白鸟飞翔，身后带着风的轨迹。所有人的视线都跟随着那美好的轨迹，等待着灿烂的礼花。</p>
+    <p>
+      三枚鱼雷前后命中的时间差不过一秒钟，旗鱼鱼雷是世界上航速最高的量产化鱼雷，仅次于“实验室产品”风暴鱼雷，无论海德拉还是利维坦都没有足够的高速闪避它，可以说一旦旗鱼鱼雷锁定了它们，战斗就已经结束了。连续的三次爆炸，就像太阳在海面上连着升起了三次，狂暴的气流吹散了浮冰，冲击波令远在一海里之外的鹦鹉螺号巨震，海水化作漫天的暴雨，在爆炸结束后还足足下了一分钟之久。
+    </p>
+    <p>指挥舱中的水兵们都大力地鼓起掌来，完美的战机，完美的发射，即使舰长还在指挥鹦鹉螺号也不过如此。</p>
+    <p>大副威严地环顾，代替恺撒接受了水兵们的赞美，然而真正的指挥官恺撒却依然通过潜望镜，凝视着爆炸的中心。</p>
+    <p>“有人跟我说，恺撒·加图索生来就是那只长着黄金鬃毛的狮子，他在草原上走过，就像太阳起落。他可以倒下，但他的正义不能倒下。”酒德麻衣拍了拍恺撒的肩膀，“这样很容易害死自己的，鬣狗围攻你的时候，可不管正义不正义。”</p>
+    <p>恺撒沉默不语。</p>
+    <p>单数号的鱼雷管里，旗鱼鱼雷装的是普通弹头，249公斤的超大装药量，曾经一发击沉阿根廷海军的“贝尔拉诺将军”号巡洋舰。</p>
+    <p>而双数号的鱼雷管里，都是经过改造的弹头，装药量进一步提升之余，还封入了对龙类有着剧烈毒性的精炼硫磺。</p>
+    <p>
+      恺撒下令发射的是普通弹头的旗鱼鱼雷，它的威力对相对“脆弱”的海德拉更为致命，爆炸时的高温也足够把幼蛇群烤成一团团焦黑的蛋白质，但利维坦却有机会幸存，只要它强壮的身躯还能扛下这三轮爆炸。恺撒没有使用改造弹头就是想要给利维坦留下一条生路，当然恺撒可以解释为自己想捕获活的利维坦，但这种谎言对酒德麻衣应该无效，所以恺撒也懒得跟她废话。
+    </p>
+    <h2 id="第143章-但为君故47">第143章 但为君故(47) </h2>
+    <p>他下令在鱼雷管中填充鱼雷的时候，目标确实是利维坦。但当利维坦陷入危险的时候，他那该死的认同感还是发作了，因为从某种角度来说利维坦就像他自己。</p>
+    <p>他能接受神和魔鬼死战，最后胜者举起败者的头颅高呼，却不想看到卑鄙和恶心的胜利。</p>
+    <p>但恰如酒德麻衣提醒的那样，冰海和荒原都不是要贯彻正义的地方，这是你死我活的黑暗森林，卑鄙也是活下去的技能之一。</p>
+    <p>不过这次任性也没关系，就算利维坦从爆炸中幸存下来，舰上还存着30件以上的武器，包括战斧巡航导弹，他们无所畏惧。</p>
+    <p>如此想来仅凭一艘YAMAL号就想来北极圈里屠龙还是钱没花够，早把鹦鹉螺号调出来，根本不会有之前的艰难险阻。元老中的不少人都鄙夷加图索家只会花钱办事，但这个世界上钱花到位了还办不成的事委实还不多，而庞贝的逻辑是我花双倍。</p>
+    <p>“声呐探测已经恢复，没有探查到大型活动目标。”负责声呐的军官说。</p>
+    <p>恺撒从潜望镜里看出去，只有漆黑的大海起伏。</p>
+    <p>旗鱼鱼雷爆炸的时候，声呐系统曾暂时中断工作，但那不过是十几秒钟的时间，以利维坦的速度还不足以游出声呐系统的监视范围。</p>
+    <p>
+      恺撒无声地叹了口气，那头鲸王可能直接被炸成了碎片，也可能是沉到深海中去了，死活未知。但鲸鱼总要浮到海面上来换气，抹香鲸虽然拥有惊人的肺活量，但在如此重伤的情况下它不可能深潜太久。几分钟内如果还是没有探查到利维坦，那它应该就是死了。
+    </p>
+    <p>———————————————</p>
+    <p>半小时后鹦鹉螺号在爆炸点附近破水而出，探照灯在海面上照出雪亮的光斑，恺撒、酒德麻衣和芬格尔在大副的陪同下爬出舰桥，站在了平坦宽阔的前甲板上。</p>
+    <p>声呐屏幕上一直是空荡荡的，利维坦的信号再也没出现。</p>
+    <p>空气中弥漫着一股血腥味，如果不是温度低的缘故，血腥味大概会浓得呛人，到处都漂浮着动物肌体的碎片，倒像是屠宰场中清洗内脏的水池。</p>
+    <p>倒也未必是利维坦或者海德拉的残骸，蛇群和鲸群都为这场伏击战付出了巨大的代价，舰桥上带自动索敌功能的大口径机枪缓缓地扫过海面，以免还有没死绝的鲸类或者巨蛇。</p>
+    <p>“天呐！”大副忽然指向前方。</p>
+    <p>
+      整条海德拉的颈部漂浮在那里，它的肌肉骨骼再怎么坚硬，但体型太过修长，果然被旗鱼鱼雷炸碎了。高温火焰和冲击波剥离了部分血肉，裸露出暗金色的骨骼，仿佛用什么金属铸造的巨大荆棘。缠在利维坦身上的时候，看不出海德拉的巨大，这时凑近了看去，单那颗被炸碎了半边的头就有一间小屋大小，跟寻常生物的头骨不同，密布着绚烂的花纹。
+    </p>
+    <p>单海德拉就是基因学和生物学上的奇迹，这颗头骨要是拖回伦敦去，不知有多少古生物学家会跪着膜拜它，更别说利维坦的尸骨。</p>
+    <p>
+      但他们只是并肩而立，默默地看着那颗巨大的脑袋随水远去。就让怪物们沉入海底吧，永眠于人类的世界之外。事后再抹除水兵们的记忆，他们可能会在自己的余生中反复梦见神秘的巨型海洋生物，却不知道那是真实存在过的。他们也许会把这些编成故事讲给孙子孙女听，神秘而荒诞，孩子们听得津津有味。
+    </p>
+    <p>恺撒转身走向舰桥，就在此刻，他背后的冰山坍塌了，战舰般巨大的白色身影暴露出来，凝视着鹦鹉螺号。</p>
+    <p>甲板上的所有人都僵住了，除了海浪拍打着鹦鹉螺号的侧舷和那个巨大的身影，一时间天海俱寂。</p>
+    <p>恺撒很慢很慢地转过身来。冰山倒塌的那一刻，他忽然听到了战鼓般的心跳声，不是一只鼓，而是一群战鼓轰然作响。为了给巨大的身体供血，利维坦像腕龙一样有多颗心脏。</p>
+    <p>
+      它扛过了爆炸，也并未立刻逃遁，也许它根本就没有力气这么做了，它藏身在冰山之下，等着鹦鹉螺号撤走。它把自己的心跳频率压得极低，躲开了声呐系统和镰鼬的追踪。对抹香鲸来说这并非什么难事，它们是节约氧气的大师，在深海中猎杀的时候，甚至能把心跳频率缩减到每分钟一下。但被它自己撞过的冰山已经遍布裂痕，冰山一坍塌，它也就不隐藏自己的心跳了。
+    </p>
+    <p>那真的是一只巨大的白色抹香鲸，但也就是大鲸的尺寸，不像猜测中的那样有着近百米的伟岸身躯，可能是它游速很高，所以才会带起那么强劲的海水激波。</p>
+    <p>
+      它也不像其他古龙那样古奥狰狞，除了体表覆盖着珍珠般反光的白色鳞片，其他就跟寻常的抹香鲸没两样，巨大的脑袋，高高隆起的额头，却长了一对不成比例的小眼睛，缓缓地眨巴着，居然是只有点呆萌的生物。它受了很重的伤，鳞片的缝隙里都是血红的，一侧的身躯被炸得焦黑，但缠绕在它身上的海德拉可能帮它扛下了爆炸的大部分威力。
+    </p>
+    <p>“2号、4号、6号鱼雷管，准备发射。”大副用极低的声音跟指挥舱中的武器官通话。</p>
+    <p>他不敢高声，利维坦的方向传来巨大的威压，连呼吸都被压迫住了。</p>
+    <p>“现在发射鱼雷你们全都会死！”武器官回复。</p>
+    <p>“你要做的是服从命令和把鹦鹉螺号带回去！”大副说。</p>
+    <p>鹦鹉螺号和利维坦之间的距离不到200米，以这两个庞然大物的身长，这个距离基本等于人面对面地说话。</p>
+    <p>在这个距离上，旗鱼鱼雷造成的巨浪和冲击波会把甲板上的每个人卷走，鹦鹉螺号虽然也会受到巨大的震动，但应该能够存活。</p>
+    <p>转眼之间，利维坦和鹦鹉螺号之间的海面上起了薄冰，先是巨大的六角形冰花，瞬息间冰花就连成了片，冰晶仿佛倒着生长的植物那样，向着海平面之下蔓延。</p>
+    <p>利维坦释放了它的言灵，尽管威力大幅衰减，但片刻之间它就在鹦鹉螺号和自己之间构筑一道冰障。</p>
+    <p>恺撒制止了大副，缓步走到甲板的最前方，远远地跟利维坦对视。</p>
+    <p>“老大！老大！这不是中二的时候！我们应该先用机枪！”芬格尔在他背后说话，声音微微颤抖。</p>
+    <p>但酒德麻衣一把捂住了这家伙的嘴。</p>
+    <p>看上去恺撒确实有“用王者之气跟值得尊敬的敌人对话”的意图，但这一路行来，她能够觉察到恺撒的变化，不再是当年那个要跟她比“牛仔拔枪”的男孩子了，也不再认为世间万物是为他而存在的，他变得审慎而沉默。</p>
+    <p>机枪无法压制利维坦，根据前一次的经验，那恐怖的极寒领域扩张速度极快，瞬间就能推到他们面前，他们根本不够时间爬回鹦鹉螺号。</p>
+    <p>恺撒什么都没做，他就是静静地站着，好像这是他的游艇，他开着游艇来到海上观鲸。但有他站在那里，利维坦那铺天盖地的威严似乎被挡住了部分，其他人终于能喘过气来了。</p>
+    <p>利维坦沉重地喘息着，发出有韵律的声音，尾巴搅动海水形成涡流。利维坦周围的海面已经封冻了，冰晶带着清脆的声音推向鹦鹉螺号。</p>
+    <p>大副微微地颤抖，如果冰晶堵住了鱼雷发射管，他们连跟利维坦同归于尽的机会都没有了。</p>
+    <p>但利维坦忽然喷出巨大的水柱，鹦鹉螺号的头部射灯照在那道水柱上，折射出灿烂的虹光。这头巨鲸转身甩尾，砸碎了自己冻的冰层，带着巨浪游向远去。</p>
+    <p>海面上回荡着浑厚的鲸歌，那是它和远去幸存的巨鲸们在呼应。</p>
+    <p>酒德麻衣和芬格尔冲到恺撒身边，防寒服下，他们也是浑身汗透。那是呆萌的生物还是白色的死神，没人敢确定，恺撒似乎是在赌利维坦的“人性”，好在他赌赢了。</p>
+    <p>“它一直在唱歌，歌声中没有进攻的意愿。”恺撒遥望着利维坦远去的背影。</p>
+    <p>酒德麻衣恍然大悟。利维坦的歌声频率接近人类的听力极限，只有恺撒能够听清歌声中的每个细节，他和利维坦沟通并不是靠“男子汉的对视”，而是靠声音。</p>
+    <p>草原上的金鬃狮子在冰海上遭遇了巨大的歌者，双方警觉地对峙，却都没有进攻的意愿，最后歌者调头远去。在漫长的极夜中，这场相遇有些童话般的气质。</p>
+    <p>酒德麻衣拍了拍恺撒的肩膀，“你那套倒还吃得开。”</p>
+    <p>恺撒无声地笑笑。</p>
+    <p>“探测到鱼雷发射！探测到鱼雷发射！”大副的耳机中忽然传出吼声，声音高到周围的人都能听到。</p>
+    <p>所有人都傻了。舰长昏迷之后，有权下令发射鱼雷的人只有大副，而大副一直呆在甲板上，没有下达任何命令。</p>
+    <p>“关闭鱼雷引信！”恺撒大吼。</p>
+    <p>鱼雷一旦发射就无法终止，但命中之前仍然有机会关闭引信，这样鱼雷就不会爆炸。这是为了避免鱼雷错误锁定己方战舰而做的设计。</p>
+    <p>“关闭鱼雷引信！”大副立刻传达了这条命令。</p>
+    <p>“大副先生……不是我们的鱼雷！”</p>
+    <p>恺撒猛地扭头看向远处，几秒钟后，巨大的火柱冲天而起，爆炸的中心正是利维坦和它的鲸群！</p>
+    <h2 id="第144章-但为君故48">第144章 但为君故(48) </h2>
+    <p>路明非醒来的时候，楚子航正贴着包厢的门倒立，任凭火车摇晃，这家伙挺立如松。</p>
+    <p>
+      路明非竖个大拇指就懒得理他了，见惯不惊。他拉开老式的丝绒窗帘往外看去，已经不是离开莫斯科时那般白雪皑皑的景象了，他们正穿越莽莽苍苍的原始森林，参天巨木在铁轨的两侧立起高墙，阳光的碎片星星点点落在窗上，莫名其妙地令人心安，仿佛疏离了世界，也疏离了各种各样的烦恼。
+    </p>
+    <p>他们离开莫斯科，沿着西伯利亚大铁路一路向东南方行进，越过号称“欧亚之门”的乌拉尔山，现在已经奔行在被称作”西伯利亚”的土地上了。</p>
+    <p>西伯利亚并不像路明非想的那样苍白荒芜，相反，透着巨大的生机和活力，经常能看到小鹿的影子在树间一闪而过，湖上白鸥追逐着鱼群飞翔，山形柔和如少女的脊背。</p>
+    <p>时值晚秋，根据山上的植被不同，山色从墨绿到苍黄，斑驳而绚烂，仿佛巨匠的笔触。</p>
+    <p>咚咚咚，包厢的门被敲响了，楚子航无声无息地翻身而立，手藏在背后握住插在那里的短弧刀。</p>
+    <p>虽然还没有恢复记忆，但这家伙越来越像真正的自己了，始终绷紧如弓弦，像是从没有一刻松弛。</p>
+    <p>“先生们，早餐时间。”布宁在门外捏着腔调说话，像是上了年纪的管家。</p>
+    <p>路明非一个眼神，楚子航已经把刀收好了。两人以大梦初醒的慵懒模样打开门，镀银的早餐小车停在门口，布宁靠在走道边抽着烟斗，嘴角带着江湖老混子的专属笑容。</p>
+    <p>
+      经典的俄式早餐，薄煎饼、脆黄瓜、涂满蓝莓酱的切片面包，还有永远不会缺席的煎红肠。要说有什么特别，就是Beluga鲟鱼子酱。这价比黄金的食材，只产在年龄60岁以上的白鲟的肚子里，每生产一箱鱼子酱，就要杀死一条白鲟，即使在顶级餐厅里，厨师也只是在菜上点缀上有限的几粒，整张餐桌因几粒鱼子酱而熠熠生辉。可在布宁的列车上，这东西不限量供应。路明非和楚子航把这东西当作酱豆腐，抹在面包上吃。
+    </p>
+    <p>“还有三个小时路程到贝加尔湖港，结冰之前风景不错，可以下车看看。”布宁送完餐车之后，继续靠在门框上抽烟。</p>
+    <p>路明非微微一愣，居然快到贝加尔湖了。这个他自小就在地理课本中学过的地名，马上就要出现在他眼前了。</p>
+    <p>
+      想来这些年他也闯荡过不少地方，经历过风风雨雨，见过这个世界的很多角落，很多人应该会羡慕他的人生，可他却算不清值不值得。当初诺诺为他打开了这条奇怪的路，让他自己选择走不走，如果回到那个时间点，他是会再度选择这条华丽、惊险但疲惫的路，还是甘愿退后一步，在那座小城市混吃等死，连去趟新马泰都是人生中难得的记忆。
+    </p>
+    <p>他放下手中的面包，转过头，呆呆地看着窗外的大湖，一只黑鸢正如电光般掠过湖面，利爪划出一道涟漪，抓起了一条肥硕的大鱼。</p>
+    <p>“西伯利亚其实是蒙古语，意思是‘宁静之地’。”布宁的语气舒缓悠长。</p>
+    <p>“名字起得真好。”路明非由衷地说。</p>
+    <p>“早在公元前，你们中国人就探索过这里，最前端可能一直到达北冰洋。《神异经》中说，‘北方有层冰万里，厚百丈；有溪鼠在冰下土中，其形如鼠，食冰草，肉重千斤，可以作脯。’”</p>
+    <p>路明非想了想，“海豹？”</p>
+    <p>布宁笑笑，“更可能是说海象，海豹的体重不够。那时候它真的是片宁静的土地。金帐汗国控制了西伯利亚之后，派人去四方考察，他们宣称找到了遍地白银的银谷，还有日不落之山。”</p>
+    <p>“北极圈的极昼？”</p>
+    <p>布宁点点头，“再后来它从金帐汗国里分裂出来，成了失必尔汗国。16世纪末，库楚汗战败逃亡，失必尔汗国才被莫斯科公国吞并。”</p>
+    <p>路明非一时间神游万里，游荡在那片古老的“宁静之地”上。它由层冰万里构成，有永远不会落日的山，还有满地是白银的山谷，寒冷宁静，遗世独立。</p>
+    <p>“在前面的小站我们会停车更换牵引车头，先生们可以考虑下车透透气。”布宁顿了顿，像是忽然想起了什么，“听说昨晚皇女殿下包下了整个餐车请路先生用餐？”</p>
+    <p>但那闪烁的眼神似乎说明他亲自来送早餐就是为了问这事的。</p>
+    <p>路明非愣了一下。倒不是有什么秘密不能说，而是委实说没啥可说的。</p>
+    <p>这一路上，三餐都是由服务生送到包厢里，可昨天傍晚，服务生只送了楚子航的晚餐来，并请路明非前往餐车跟皇女殿下共进晚餐。</p>
+    <p>走进餐厅的那一刻，路明非吃了一惊，诺大的餐车空荡荡的，就只有一张餐桌上铺着白色的亚麻桌布，点着蜡烛。</p>
+    <p>
+      零静静地坐在烛光里等他，穿着一件蕾丝花边的白色丝绸衬衣，下面是一条驼色的长裙和同色的高跟鞋，白金色的长发梳成辫子又在头顶盘起来。倒也不是说穿得多么隆重，但看得出是刻意地修饰了一下。路明非的第一感觉不是好美好仙，而是酒无好酒宴无好宴，皇女殿下这是要图穷匕见。
+    </p>
+    <p>自从入境俄罗斯以来，他们凡事都指着零，但零从未说明自己到底为什么要帮路明非。给人的感觉好像她这么做就是理所当然……其实路明非心里也觉得这是理所当然的……</p>
+    <p>但情感归情感，理智上路明非还是觉得零这么做不是单纯为了“义气”二字，背后有什么理由。</p>
+    <p>今晚零摆出了“严肃说话”的阵仗，没请布宁没请楚子航，单独把他拉出来吃饭，想来是有什么大事要说。</p>
+    <p>他战战兢兢地落座，脑子里转过各种可能性，只等皇女殿下吩咐。</p>
+    <p>晚宴极其丰盛，而且居然不是俄餐而是中餐，有干烧明虾、花雕蒸珍宝蟹这样的名门大菜，也有路明非最喜欢的黄焖羊肉和麻婆豆腐，鬼知道零从哪里找来这么地道的中国厨师。</p>
+    <p>可路明非哪有心情吃？一顿饭的工夫屁股就没落实在椅子上，随时等着世仁·黄·罗曼诺娃冷冷地说，“欠我们罗曼诺夫家族的债也该还了吧？地主家也没有余粮啊！”</p>
+    <p>两个人默默地吃完了那顿饭，路明非感觉自己都满到嗓子眼了，零却没说出什么有价值的话来。</p>
+    <p>准确地说她总共就说了三句话，第一句是开场的时候，她拎起筷子说“吃吧”，第二句是两个人相对打嗝的时候，她问路明非“吃饱了没有”，路明非点点头，她说“那就这样吧”。</p>
+    <p>那顿莫名其妙的晚餐就这么结束了，就算布宁铁了心要打破砂锅问到底，路明非能做的也不过是给他报个菜名儿。</p>
+    <p>“我听餐车的人说，为了那顿晚宴，皇女殿下三天前就让准备食材，还让在沿途的车站找一名过硬的中国厨师。”布宁继续试探，“皇女殿下对跟路先生吃饭看得很重啊。”</p>
+    <p>“吃个饭而已！”路明非忽然硬气起来，“我俩经常一起吃饭的！”</p>
+    <p>他觉得布宁这是在猜测自己跟零有一腿，这种子虚乌有的事情势必要坚决否认。</p>
+    <p>这倒也是句实话，在卡塞尔学院的时候，除了芬格尔，就是零跟他吃饭吃得多。每次他靠着零的帮忙通过考试，作为回报就得请零吃宵夜。</p>
+    <p>回想那些年卡塞尔餐厅的烛光下，穿着T恤衫的皇女跟他一起啃着烤猪腿，窗外蝉懒洋洋地叫着，真是美好的时光。</p>
+    <p>“罗曼诺夫家族在莫斯科的生意场上从来都是横征暴敛的风格，否则也不会在短短的几年内扎下了根基。当暴君显得特别友善的时候，多想想为什么总不会错。”布宁说完，转身离去。</p>
+    <p>路明非愣住了。原来布宁关心的根本不是他跟零的关系，对亚历山大·布宁这种老江湖来说，女人从来不是个事儿。路明非跟零有一腿很正常，没一腿反而是他没有珍惜大好机会。</p>
+    <p>布宁关心的是罗曼诺夫家族在这场苏联遗产的争夺战中扮演的角色，多一个分赃的人，布宁入手的遗产就会少一份。</p>
+    <p>———————————————</p>
+    <p>隔壁的主人包厢中，身穿女佣裙的苏恩曦正靠在窗边磨指甲，穿着睡裙的皇女殿下亲自打扫卫生。</p>
+    <p>苏恩曦是以打扫卫生为名进来的，离去的时候卫生必须做好，可黑金天鹅从来是个邋遢的人，连自己的卧室都收拾不好。为了避免露馅，只能是零来打扫，借机说上几句话。</p>
+    <p>“晚餐怎么样？”苏恩曦吹了吹指甲，忽然想了起来。</p>
+    <p>“你说走完西比利亚大铁路需要七天时间，今天是第六天了，可我们连贝加尔湖都还没到。”零冷着脸。</p>
+    <p>“我是说快车，可布宁这趟车停停走走，是趟地地道道的慢车！”苏恩曦叹气，“你说他这是逃跑呢？公干呢？还是出来游山玩水？”</p>
+    <p>零无话可说。</p>
+    <p>
+      她也觉得布宁应该一路上风风火火，就算不是为了避开莫斯科派出的追兵，也该心急火燎地要去那些神秘的遗迹里面挖掘宝藏。可布宁居然把自己的车厢挂在了最慢的一趟火车上，这根本就是一列观光火车，基本上每站都停，稍大一点的城市甚至能停上好几个小时，足够乘客们下车吃饭逛街。
+    </p>
+    <p>所以虽然她已经请路明非吃完了断头饭，可因为车速太慢的缘故，路主席平白多出好几天的命来。</p>
+    <p>就像葬礼办完了，事主还继续活蹦乱跳。</p>
+    <p>“我那句话是个玩笑，可你还真画好了妆吹好了头发去请他吃告别饭。”苏恩曦慢悠悠地说，“遇上路明非这个二货，你好像也有变成二货的趋势。”</p>
+    <h2 id="第145章-但为君故49">第145章 但为君故(49) </h2>
+    <p>高亢的汽笛声由远及近，路明非探头看出去，另一列火车正缓缓地靠近，他们乘坐的这列火车也以汽笛声回应。</p>
+    <p>片刻之后，两列火车缓缓地撞在一起，驶来的那辆列车把自己的车头和几节车厢交给了这列火车，而这列火车也丢下了多数车厢，以更高的速度向着贝加尔湖进发。</p>
+    <p>这就是布宁所说的“更换牵引车头”，如今他们已经不再是驶出莫斯科的那列火车了，而是“布宁专列”，那些买了票要前往海参崴的乘客已经被他们丢在后面了。</p>
+    <p>
+      车厢之间的门打开，漂亮的索尼娅扑上来，挨个拥抱布宁、路明非和楚子航，出于对皇女殿下的尊重，到了零的面前她只是微微欠身行礼。跟在她后面是瓦洛佳、阿历克塞、尼古拉、谢苗……他们也都带着热情洋溢的笑容，连腼腆的瓦洛佳都热切地跟路明非握了手。在布宁家的酒局上，他们见过面。
+    </p>
+    <p>布宁在莫斯科的“生意伙伴”也赶了过来，那列火车想必是一路追赶，直到贝加尔湖附近才追上他们。</p>
+    <p>
+      这一路上每过一处大的交通枢纽他们都会挂上新的车厢，而且都是豪华的防弹车厢，车厢里走出各式各样的年轻人，他们来自天南海北不同的州和共和国，父辈都是前苏联军政两界鼎鼎大名的人物。他们有的谦逊低调，有的高傲冷漠，但无一例外的，他们都受过最好的教育，远比同龄人显得成熟。他们都对零表达了敬意，对路明非和楚子航也颇为友善，只不过有时候仍然会递来审视的眼神。他们带了自己的餐车来，每晚都在那里聚餐，喝多了酒之后会唱苏联时代的歌曲，挽着胳膊跳老派但是英武的俄式踢踏舞，想来都是“家学”。
+    </p>
+    <p>这才是布宁缓缓而行的原因。从莫斯科出发的那一刻，他就已经召集了全国各地的同伙。所有人都以最快的速度出发，向着这条横贯西伯利亚的大铁路靠近。</p>
+    <p>过去几天赶到的年轻人也走进布宁的车厢，大家相互拥抱、行贴面礼、寒暄，显然都相互认识，服务生穿梭在人群里递上小杯装的烈酒，俨然是一场年轻人的派对。</p>
+    <p>“布宁先生，你是在组织一支观光团么？但恐怕西伯利亚的荒原上并没什么值得观赏的东西。”零冷冷地说。</p>
+    <p>“都是我在全国各地的生意伙伴，我告诉他们有笔苏联时代的巨大财富等着我们去西伯利亚继承，他们就都兴奋地赶来了。”布宁端着一小杯酒，带着长辈的笑容看着年轻人们，“他们会是殿下您的禁卫军。”</p>
+    <p>“最安全的做法应该是像刺客那样潜行，而不是大张旗鼓地带着禁卫军在西伯利亚的铁路线上游荡，即使你们有防弹车厢，但挡不住一颗对地导弹。”</p>
+    <p>“殿下想没想过世界上最大的军火贩子是谁？”</p>
+    <p>零愣了一下，没明白这个问题的含义。</p>
+    <p>
+      “是国家，我的祖国可是在全世界范围内推销他们的苏式战斗机呢，我这点小买卖，不过是吃国家的剩饭。即使这口剩饭，也是祖国默许我这么做，我才能做的。我的大量利润都奉献给了我的保护伞们，而他们，就是我的保护伞。”布宁朝年轻人们努了努嘴，“准确地说，是他们的父辈，这些孩子的家族仍然把持着这个国家的命脉。”布宁说到这里忽然压低了声音，“有他们在这列火车上，我们才不必担心有颗导弹会从天而降把我们炸翻。”
+    </p>
+    <p>零沉吟良久，点了点头，转身返回自己的包厢。</p>
+    <p>路明非在旁边听着，不禁感慨于布宁的老奸巨猾，名义上他找了一堆人来分赃，其实是给这列火车挂上了一堆肉盾。</p>
+    <p>不知道谁第一个鼓起掌来，有节奏的掌声中，保留的踢踏舞节目再度上演。列车载着欢声笑语冲破绵绵的细雪，寒冬正在接近，西伯利亚南部也开始下雪了。</p>
+    <p>———————————————</p>
+    <p>兰斯洛特静静地坐在屋檐下，雪花飘落在他的肩头。</p>
+    <p>
+      他所在的位置是西伯利亚中部，一座简陋的火车站，简陋到就只有那么一间红砖房子给铁道员遮风挡雨。这地方甚至不能称作一个标准的车站，而只是铁路附近有自然村落，为了便于村落中的居民出入，勉为其难地设置了这样一个停靠点，可能一年都未必有几辆车在这里停靠。
+    </p>
+    <p>俄罗斯分部长好奇地打量这个男人，这就是学院一定要派给他的援军。兰斯洛特来的时候一个人一口箱子，箱子里是那套七宗罪。</p>
+    <p>俄罗斯分部长也听说过兰斯洛特的名字，在执行部的系统里，没听说过兰斯洛特的人不多。那应该是个温文尔雅的年轻人，风度翩翩，从容不迫，骨子里带点法国人的浪漫，讨女孩子喜欢。</p>
+    <p>
+      可来的人憔悴消瘦，胡子很久没刮了，头发也是凌乱的，仿佛一直都是湿湿的，垂下来遮住眼睛。他的身上带着浓重的烟味和酒味，沉默的时候就会一直抽烟，皮衣的口袋里总是带着一个薄酒罐。他喝得很快，经常会走进街边的小商店买一瓶随便什么烈酒灌进去，倒很像俄罗斯人的做法。他似乎始终都是醉的，又像是永远都不会喝醉，他总是默默看向远处，却不落在任何人身上，有时候是看一盏灯，有时候是一张毫无意义的破旧的路牌。
+    </p>
+    <p>
+      学院居然派这种人来指挥俄罗斯分部，原本应该是会遭到一致反对的，可所有人都默认了兰斯洛特是他们新的临时指挥官。他身上透着令人恐惧的气息，当他静静地看着你的时候，那股气息尤其地强烈。俄罗斯分部长曾听过一种说法，战场上最可怕的对手往往不是那种眼神凌厉身形彪悍、豹子般的家伙，而是那些眼神空洞荒芜、安静下来如木偶般的士兵。这些人的意志曾经被残酷的战场彻底打碎又重新聚合在一起，就像是在地狱中走过一次的亡魂。
+    </p>
+    <p>兰斯洛特只用眼神就征服了这群桀骜的俄罗斯人。</p>
+    <p>“确定他们会从这里经过么？”俄罗斯分部长问。</p>
+    <p>兰斯洛特把手中的地图递给分部长，“西伯利亚大铁路到不了西伯利亚北部，他们会在赤塔或者贝加尔湖附近转到贝阿铁路，再往北推进就只有少数的军用线，这是必经的一站。”</p>
+    <p>俄罗斯分部长看了一眼地图上被兰斯洛特用红笔标出来的线路，确实如兰斯洛特所说。</p>
+    <p>“他们一定会乘火车去？”俄罗斯分部长问。</p>
+    <p>“他们有很多的人质，那些高贵的年轻人不会愿意开着车在雪地上探险，管理那样巨大的车队也很困难，铁路是最便捷的选择。”</p>
+    <p>“所有车厢都是防弹车厢，我们的武器未必能拦得住他们。”</p>
+    <p>“炸断铁轨。”</p>
+    <p>俄罗斯分部长的心里微微一寒。</p>
+    <p>一路上兰斯洛特都是这样，他并不凶神恶煞咄咄逼人，相反他回答所有问题都条理清晰甚至温和耐心。</p>
+    <p>可就是在淡淡说出“炸断铁轨”四字的时候，那股安静的凶狠让人不寒而栗，就像那种视人命如草芥的暴徒说的话。</p>
+    <p>“列车上有很多无辜的乘客。”俄罗斯分部长不得不提醒。</p>
+    <p>“我很遗憾，但他们被卷进来了。”兰斯洛特的眼神游离在缭乱的飞雪中，“牺牲一些人，是必须的代价。”</p>
+    <p>———————————————</p>
+    <p>路明非回到自己的包厢，一头倒在床上。</p>
+    <p>今晚又是那种热烈的、唱歌跳舞的酒宴，布宁邀请了他和楚子航，他喝着喝着就被热情的索尼娅拖到了跳舞的人群里去。</p>
+    <p>不得不说跟这群年轻人在一起还是开心的，一切的烦恼都可以暂时放下，他们年轻有活力，感觉浑身有用不完的精力，也从不为明天担忧。连瓦洛佳那样腼腆的家伙，喝多了都能跳上餐桌跳舞，更别说把裙摆甩得极高，毫无保留地露出长腿的索尼娅。
+    </p>
+    <p>路明非没法不羡慕他们，跟他们比起来，他显得心事重重。</p>
+    <p>
+      如果可以的话，他倒是真的愿意在火车上的时间再长一点，不过在挂载了高速牵引机车之后，他们推进的速度陡然加快。在贝加尔湖附近他们转向了北边的贝阿铁路，一路风驰电掣，越往北去温度越低，贝加尔湖的南部还是波光粼粼，北部则已经封冻，再往北走就只有冰天雪地了。
+    </p>
+    <p>有人敲响了包厢的门，路明非想也没想就爬起来去开门，他离开餐车的时候楚子航还被索尼娅拉着跳舞，应该是楚子航回来了。</p>
+    <p>但打开包厢门，首先飘进来的是浓烈而冷的香水味，路明非一下子就醒了酒！</p>
+    <p>
+      并非那种香味太过提神醒脑，而是门外是一身低胸礼服裙的女孩，靠在门框上抽着纸烟。晚间走廊里的灯光已经调暗，但仍旧足够照透她那身半透明的长裙，可见身躯的玲珑浮凸，每一根曲线都精美紧致。这画面的冲击力太过巨大，吓得路明非下意识地要关门。
+    </p>
+    <p>但女孩早就想到路明非看见她时的惊慌，一手按在门上，她的手腕纤细，但腕力颇强，竟然能和路明非僵持住。</p>
+    <p>“有几个小问题请教路明非先生。”她提着长裙踏入包厢，步步逼上。</p>
+    <h2 id="第146章-但为君故50">第146章 但为君故(50) </h2>
+    <p>女孩拎起纱裙，背后一脚踢上了包厢的门，冲着路明非步步逼上。</p>
+    <p>高跟鞋敲打着地面，咄咄逼人，她的香水味弥漫开来，像是冰冷的海水，路明非步步后退，直到背靠墙壁。</p>
+    <p>女孩一手撑墙，上身前倾，酒气直喷到路明非脸上，非常强硬的姿势，路明非无路可逃。</p>
+    <p>克里斯廷娜，路明非忽然记起这女孩的名字了，她也参加了今晚的餐车酒会，自我介绍是来自鞑靼共和国的克里斯廷娜，父亲是当地的军政长官，基本等于鞑靼共和国的公主。以盛产美少女著称的鞑靼共和国，克里斯廷娜并未辱没自己家乡的名誉。</p>
+    <p>整个晚上克里斯廷娜小姐姐都在跟不同的男人跳舞，她是那么地冷艳那么地闪亮，想跟她跳舞的人暗中已经排起了队。路明非的身份是皇女殿下的随行秘书，自然不是克里斯廷娜小姐姐会看在眼里的人。</p>
+    <p>谁知道他刚刚离开餐车，克里斯廷娜就跟了过来，难道他路明非的魅力真的大到了这种惊世骇俗的地步？这位傲娇的鞑靼公主是要表白呢？还是霸王硬上弓呢？</p>
+    <p>
+      若是在四年之前有如此遭遇，路主席心中应该是十万头小鹿乱撞，谢天谢地拥抱爱情，可惜克里斯廷娜小姐壁咚的是在北京屠过龙、在东京出过道的路主席，在东京的夜店里，楚楚可怜的小樱花被肥婆们翻过来覆过去地壁咚，早已学会了如何从肥婆们的臂弯里逃走和及时地用一杯香槟堵住她们的嘴。
+    </p>
+    <p>路明非的酒意退了，后退的时候，他已经采取了应急措施。</p>
+    <p>
+      应急措施分为两项：首先他把那部手机放在了旁边的小桌上，“芬格尔“这么机灵的手机，应该已经开始偷偷地录像了，足以证明他路主席的清白，纯粹是克里斯廷娜小姐姐强扑上来；其次他装作跌跌撞撞，但一直拍着包厢的侧墙。隔壁就是零的主人包厢，零并未出席今晚的酒会，应该是早早地睡了。火车包厢的墙壁就是一层薄板，零只要醒来就能知道这边的动静，有皇女殿下解围，鞑靼公主倒也不算什么。
+    </p>
+    <p>路明非不想在这列火车上惹麻烦，否则以他如今的体魄大可以把鞑靼公主举过头顶抡上四五圈丟在床上……不不，还是安安稳稳放回地面上让她知难而退的好，丢在床上算怎么回事？</p>
+    <p>可隔壁包厢里一直静悄悄的，零不知道是出去了还是睡得很死。</p>
+    <p>克里斯廷娜脸色酡红，呼吸声沉重，傲人的胸口起伏……</p>
+    <p>路明非说，“你要不要先冷静一下？”克里斯廷娜能说流利的英语，两人沟通起来没什么障碍，还是能讲理的。</p>
+    <p>克里斯廷娜脸色酡红，呼吸声沉重，傲人的胸口起伏……</p>
+    <p>路明非说，“克里斯廷娜小姐你没事吧？”</p>
+    <p>克里斯廷娜脸色酡红，呼吸声沉重，傲人的胸口起伏……</p>
+    <p>路明非等得有点不耐烦了，这壁咚的pose摆了一分钟了还没亲下来，换作爱情电视剧观众还以为是卡了呢。</p>
+    <p>就在他准备施展在东京夜店学会的灵巧身法从克里斯廷娜臂弯中闪出的时候，克里斯廷娜一把抓起旁边的花瓶，大口大口地吐在了里面。路明非这才明白克里斯廷娜为何要壁咚他，这纯粹是酒喝多了不得不撑墙休息一下。</p>
+    <p>为表绅士风度他只能递上纸巾，克里斯廷娜胡乱地抹抹嘴，把盛满呕吐物的花瓶放在一旁，再度呈现出凶猛的态势，把一张证件推到路明非的鼻尖上。</p>
+    <p>“克里斯廷娜·卡巴耶娃，俄罗斯联邦安全局少尉，你可以呼救，但是在那之前你最好听完我的话，认真思考。”她的脸色还是酡红的，可眼中的妖艳迷离已经退去，取而代之的是军人特有的锐气。</p>
+    <p>如此戏剧性的转变令路明非有点不知所措，克里斯廷娜少尉则不由分说地把自己的证件塞到路明非手里，退回去在床上坐下，不知从哪里摸出一根皮筋，把长发扎成一个高高的马尾辫，这样她看起来就有点像一位莫斯科特派的女少尉了。</p>
+    <p>这样看起来她也有点像诺诺，但路明非迅速地压下了这个念头。</p>
+    <p>他认真地研究了那份证件，看起来很像真的，但考虑到自己现在拿的那本护照看起来也很真，这东西实在不足为凭。</p>
+    <p>路明非在椅子上坐下，双手支在膝盖上，上下打量克里斯廷娜少尉，一言不发。</p>
+    <p>克里斯廷娜被他的目光激怒了，下意识地按住胸口，她身上那件薄纱裙太仙太透，今晚抢了酒会的风头，可要扮演审讯官的角色就有点弱气了。</p>
+    <p>“你看着我干什么？”克里斯廷娜气势汹汹地问。</p>
+    <p>“你建议我听完你的话，认真思考，所以我在等你说话。”路明非老老实实地说。</p>
+    <p>克里斯廷娜愣了一下，气势稍微受挫。她的冷艳、骄傲和凌厉，在面对这位秘书先生的时候居然全部无用，任你掌力惊天，他自岿然不动。</p>
+    <p>“不愧是罗曼诺夫家族的秘书，看起来貌不惊人，言辞倒也锐利！”克里斯廷娜冷冷地说。</p>
+    <p>路明非苦笑，经历过那么多事，居然还是一脸怂货的模样。</p>
+    <p>“这列火车每年都会发车一次，横贯整个俄罗斯，挂载上来自各地的车厢，最后前往西伯利亚北部。”克里斯廷娜开口了，第一句话就令路明非心中一寒。</p>
+    <p>难道这并不是一列逃亡的火车，而是每年都会发车的特殊专列？他要去的地方其实一直都有车来往，冥冥中某种力量引导着他登上了这列火车。布宁没有跟他讲真话，他并非狼狈地逃出了莫斯科，而是正在他每年一度早已定好的旅途上。</p>
+    <p>克里斯廷娜说的虽然匪夷所思，但这似乎也能解释为何布宁把这列苏联时代的专列保持在最完好的状态。这并非什么收藏品，而是一辆交通工具。</p>
+    <p>
+      “我们只知道他们都跟亚历山大·布宁的军火交易沾边，但不清楚他们赶去西伯利亚北部的真正目的，那里是一片冰天雪地，除了猎熊想不出还有什么能吸引这帮军火贩子的。”克里斯廷娜接着说，“唯一的办法是派一个人打进这个组织。我花了三年时间，也是第一次收到邀请。”
+    </p>
+    <p>“俄罗斯联邦安全局想追踪一列火车的话，有很多的办法，比如追踪器，比如军用卫星，火车必须在轨道上运行，很容易追踪。”路明非说，“动用人力是最原始最不讨巧的办法。”</p>
+    <p>克里斯廷娜流露出好奇的眼神，认真地看了路明非几眼。“你有点见识，受过些训练。”她审慎地给出了自己的判断。</p>
+    <p>
+      路明非不由自主地笑了笑。他意识到这位走路带风的克里斯廷娜特派员其实也只是个大孩子。这列火车上的年轻人们非富即贵，她应该是从三年前就离开了原本的圈子，伪装成鞑靼共和国中某位军政长官的女儿，以她现在的年龄倒推，那时候应该也就20岁上下。
+    </p>
+    <p>这个笑容立刻就令克里斯廷娜不悦了，这个俄罗斯女孩横眉立目，怎么也不肯让自己的气势略低于路明非。</p>
+    <p>“所以你们决定用最原始的办法解决问题，是所有的跟踪设备都没用，对么？”路明非问。</p>
+    <p>“没错，我们试过所有的跟踪设备，但这列火车开着开着就消失在西伯利亚的冰原上了。”克里斯廷娜也只好回答。</p>
+    <p>“他们为什么选你来执行这个任务？”路明非又问。</p>
+    <p>克里斯廷娜骄傲地挺胸，“这么重要的任务，当然需要优秀坚定的人！”</p>
+    <p>路明非叹了口气，“看你的样子应该从小养尊处优，就算受过最完整的军事训练，但不代表你就有足够的经验潜伏在一群危险的军火商里。”</p>
+    <p>克里斯廷娜脸色一变，“你怎么知道的？”</p>
+    <p>这句话刚出口她就意识到自己说错了，下意识有个要捂嘴的动作，但又立刻忍住了。就像路明非猜的那样，这姑娘只是自命为优秀坚定的特派员，她故意摆出厉害的模样，其实心里还是个孩子。</p>
+    <p>克里斯廷娜沉默了片刻，一直撑着的高傲气焰有所低落，“他们选我是因为我不用伪装，我的父亲就是鞑靼共和国的军政长官。”</p>
+    <p>路明非点了点头，这才是合理的解释，克里斯廷娜小姐的优点在于她真真正正就是一位大小姐，但她莫名其妙地向往着成为一名特工。</p>
+    <p>“你是秘密受训？你的父亲不知道？”</p>
+    <p>克里斯廷娜再度扬起头，颈部曲线如天鹅般好看，“我的父亲跟其他人不一样，他很清廉，是为人民服务的人！他知道我的身份，也支持我的选择！”</p>
+    <p>路明非还是笑笑，不知为何他在这位克里斯廷娜小姐面前总觉得自己是位宽厚长者。</p>
+    <p>“所以格鲁乌特种部队突袭伊丽莎白宫是因为我们跟亚历山大·布宁先生有接触？”路明非接着问。</p>
+    <p>“我们并没准备突袭伊丽莎白宫，原本突击的目标只是布宁的住所，是布宁开着坦克一路把格鲁乌特种部队带到了伊丽莎白宫。”</p>
+    <p>路明非点点头，心里有些为这位克里斯廷娜小姐担心。其实直到现在为止，他并未在克里斯廷娜和布宁之间选择自己的立场，他不过是个免费搭车的。他耐心地跟克里斯廷娜说话就是为了套她的话，现在克里斯廷娜已经是有问必答了。</p>
+    <p>“但伊丽莎白宫里不仅藏着反坦克武器还有一支雇佣军小队！所以罗曼诺夫家族真的是布宁的买家？”克里斯廷娜的眼神又变得锋利起来。</p>
+    <p>“你们觉得我们是来买军火的？”路明非有点懵。</p>
+    <p>“我们推断，每年这些军火商都会在西伯利亚北部交易非常重要的产品，这些产品的价值大到他们不惜跑上几千公里……”克里斯廷娜娓娓道来，路明非也不打断她了，静静地听。</p>
+    <p>隔壁的主人包厢里，贝雷塔战术手枪顶在墙上，零站在黑暗里，穿着华丽的丝绸睡袍，用素白纤细的手腕稳稳地持着这柄沉重的武器。</p>
+    <h2 id="第147章-但为君故51">第147章 但为君故(51) </h2>
+    <p>
+      “黑市里有种说法，只要带够钱，亚历山大·布宁能卖给你一切，核原料、洲际导弹、浓缩铀离心机……这些东西可不是AK系列步枪，落到坏人的手里，它能摧毁一个国家！但我们一直没有抓到他这方面的证据，他很谨慎，只跟他信得过的买家交易，而且很可能这些交易就发生在西伯利亚的无人区里。此时此刻，格鲁乌特种部队的高速列车正尾随我们！西伯利亚境内所有的雷达都锁定了我们！格鲁乌部队最高长官戈东诺夫准将说，他会全力支持我们这次的行动，无论亚历山大·布宁在政府里有多少保护伞，这都会是他人生中的最后一趟旅行！”克里斯廷娜一路慷慨激昂，把自己的行动计划全都卖给路明非了。
+    </p>
+    <p>“可关于布宁在西伯利亚的交易，你们只是猜测，格鲁乌特种部队之所以还没有行动，是在等着你的证据。”路明非托着腮，看着这威风凛凛的傻妞。</p>
+    <p>
+      他大概听明白了，亚历山大·布宁的军火生意很可能分为黑白两层，他在公开市场上卖卖突击步枪和榴弹炮，在地下市场里卖卖核武器，靠着小心谨慎和重重的保护伞，一直都没露出马脚。这一次联邦安全局和格鲁乌特种部队盯上他了，决心要拿下这个军火集团，但他们必须有证据在手，否则布宁的保护伞依旧会稳稳地撑在他头上。
+    </p>
+    <p>“这有什么可怀疑的？”克里斯廷娜瞪大眼睛，“亚历山大·布宁那样的败类，只要给他机会，他是一定会作恶的！”</p>
+    <p>路明非耸耸肩，“克里斯廷娜少尉，这种事来找我说真的没问题么？我也是布宁先生的客人，布宁先生的朋友圈要真是邪恶集团，那我也是邪恶集团的成员不是么？”</p>
+    <p>克里斯廷娜冷冷地一笑，“布宁一定跟你讲过一个故事吧？他们是个很封闭的小圈子，但每年都会邀请一位新朋友加入，而罗曼诺夫家族，就是今年的新朋友。”</p>
+    <p>路明非愣了一下，“难道是假话？”</p>
+    <p>“不假，每年都会有一位新加入的客人，这位客人也一定会被邀请登上这列火车，可是回来的时候，他就消失了。”克里斯廷娜幽幽地说，“就像是在西伯利亚举行了一场野餐会，大家把他吃掉了似的。”</p>
+    <p>路明非愣了片刻，悄悄打了个寒战。</p>
+    <p>
+      倒不是因为克里斯廷娜说的那个恐怖的比喻，克里斯廷娜摆明了就是要吓唬他。但他忽然想到了布宁家的大餐桌。每张餐椅后面都有一幅画像，画像上的人佩戴着苏联时代的勋章，坐在画像前的应该就是他们的子女，从相貌上依稀可以分辨。一把椅子不多，一把椅子不少，他们三个所坐的椅子属于那些没能赶来参加晚宴的人。布宁没有给“新朋友”准备位置，因为“新朋友”并不会参加第二年的晚宴。
+    </p>
+    <p>就像落难的人在荒岛上遇见了食人族的篝火晚会，饥肠辘辘的他被邀请参加晚餐，却发现篝火上空空如也，也没有摆他的餐具。</p>
+    <p>不过再一想他有啥可怕的？就算这列火车上载满了食人魔，他路明非可不比食人魔可怕多了么？食人魔碰到他，那是食人魔倒霉。</p>
+    <p>“那你呢？”路明非问，“你不也是第一次接到邀请么？”</p>
+    <p>“我能来这里是代表我父亲。苏联解体之后，为了换外汇买粮食，他把一个大型的武器仓库交给了布宁。”克里斯廷娜的气势略微低落，“布宁卖空了那个仓库，交付了美元。”</p>
+    <p>不过她立刻又强调，“如果他不那么做，很多婴儿和老人都会死在那个冬天！”</p>
+    <p>路明非思索片刻，点点头。</p>
+    <p>这个军火组织的结构是如此地严密，就不难理解联邦安全局为何不得不启用克里斯廷娜这只菜鸟，克里斯廷娜的父亲可以说是这个组织的反叛者。</p>
+    <p>“我只是罗曼诺夫家族的秘书，我对您能有什么用呢？”路明非摊摊手。</p>
+    <p>“虽然我不清楚布宁在西伯利亚卖什么，但我知道它的形式是拍卖。”克里斯廷娜双手抱怀，“只有财力足够的人才能进到最终的拍卖场。”</p>
+    <p>“拍卖会？”路明非一愣。</p>
+    <p>
+      “我们每个人都准备了大量的现金，存在苏黎世的银行，入场之前这笔资金会被核实，拍下货物之后通过卫星电话安排支付。我们这些人也未必都能进入最终的拍卖场，但罗曼诺夫家族是一定可以的，你们的资金雄厚，全俄罗斯都知道。”克里斯廷娜又说，“如果我进不去最终拍卖场，就靠你在场内给我情报了。”
+    </p>
+    <p>“你没准备够钱，是么？”路明非恍然。</p>
+    <p>克里斯廷娜局促了那么一小会儿，沉下脸来，“跟你说了我父亲是个为人民服务的清廉官员！联邦安全局那边也申请不到那么多费用。”她顿了顿，“今年的规格据说特别高，竞争会很激烈。”</p>
+    <p>路明非看了看她食指上那颗硕大的黄钻，流光溢彩耀人眼目，看切割的工艺应该是件古物，没准是从某国的王冠上拆下来的。</p>
+    <p>“清廉官员的女儿戴着价值上百万美元的黄钻？”路明非随口说。</p>
+    <p>“是我妈妈留给我的。”克里斯廷娜愣了一下，眼神黯淡了一瞬间，“我生下来她过世了。”</p>
+    <p>“为什么选我？你在火车上不是有很多的朋友么？我看你们关系都很好。”</p>
+    <p>这些天来克里斯廷娜一直表现得风情万种，各种冷艳各种性感，路明非觉得有好几个男孩在为她较劲。</p>
+    <p>克里斯廷娜流露出不屑的表情，“那是任务需要！本来想着能靠脸争取到一张入场券，看有没有哪个家伙能真的被我迷住，可是一说到最终拍卖场的事，他们就都不说话了。”</p>
+    <p>路明非点点头，看来克里斯廷娜对自己的脸还蛮有信心。</p>
+    <p>
+      “我一直在观察你们罗曼诺夫家族，那位皇女殿下我看不透，你的兄弟看起来有点蠢，你看起来是个有理性和良知的人。”克里斯廷娜又说，“所以我准备冒个险，跟你谈谈。你给我提供情报，我把你算作污点证人，重罪轻判，轻罪从无。你是个中国人，你可以平平安安地回家，你还年轻，有的是机会！罗曼诺夫家族也不是什么好东西，别跟这种人混在一起。”
+    </p>
+    <p>路明非心里感慨，真是愧对克里斯廷娜小姐姐的信任，还理性和良知，火车上最丧心病狂的家伙应该就数他了。</p>
+    <p>“听我的！我保你没事！”克里斯廷娜应该是想要一举攻克路明非的心理防线，身体前倾，死死地盯住路明非的眼睛。</p>
+    <p>看着那双绿宝石般漂亮的眼睛，路明非没来由地笑了笑。倒不是被克里斯廷娜的魅力折服了，而是忽然想起说要罩他的诺诺。</p>
+    <p>路明非还没来得及回答，外面传来了脚步声，亚历山大·布宁的脚步声，那是他特有的慢悠悠的节奏！</p>
+    <p>克里斯廷娜的神情变了，像只受惊的猫。她是偷偷过来找路明非摊牌的，如果被发现，布宁势必会有所怀疑。她和路明非之间就不该有交集。</p>
+    <p>
+      她牙一咬心一横，一跃而起甩掉高跟鞋，路明非还没来得及阻拦，这位飞天小女警已经麻利地从车窗爬了出去。她不能算经验丰富的特工，但确实受过非常严格的训练，徒手在飞驰的火车外攀援，一点压力没有。布宁还没走到包厢门口，克里斯廷娜已经爬到了车顶上，路明非探身出去看，只见赤着脚的女孩子在风雪中轻盈地奔跑，半透明的纱裙子飞舞起来，如同缭乱的烟。
+    </p>
+    <p>包厢的门被人推开，外面站着布宁和楚子航，楚子航大概是在路明非离开之后又喝了不少酒，走路有点轻微的摇晃。</p>
+    <p>“我们的年轻人喝多了点酒，我送他回来休息。”布宁说着扫视包厢，“看见克里斯廷娜了么？到处都找不到她，今晚大家真是喝得太多了。”</p>
+    <p>“克里斯廷娜小姐如果在我的包厢里，明晚他们应该会喝得更多。”路明非淡淡地说。</p>
+    <p>布宁比了个略猥琐的鬼脸，“是的，围绕我们漂亮的克里斯廷娜，战争已经够多了。晚安先生们，好好休息。”</p>
+    <p>布宁转身离去，路明非关上门，这才长长地舒了一口气。</p>
+    <p>如果布宁走进来要聊几句，就会看到那双晶光闪闪的高跟鞋，路明非已经没有时间收拾它们了。</p>
+    <p>他两脚把高跟鞋踢回床底，楚子航已经直挺挺地睡下了。路明非熄了灯，躺回自己的床上，仔细回想克里斯廷娜跟他说的每句话。</p>
+    <p>他不知道自己该相信谁，这趟前往西伯利亚的旅途显得迷雾重重，也许最好的办法是接近目的地的时候悄悄地离开这列火车。</p>
+    <p>“我不会跟师姐说的。”楚子航闷闷地说，“但这样是不对的。”</p>
+    <p>路明非愣了一下，没明白这句话的意思，直到他想到那双床底下的高跟鞋。</p>
+    <h2 id="第148章-但为君故52">第148章 但为君故(52) </h2>
+    <p>“照那个俄国妞的说法，我们根本就是在格鲁乌部队的掌控中咯？”苏恩曦四仰八叉地躺在床上。</p>
+    <p>“是，只等那位廷娜小姐找到布宁走私违禁武器的证据，他们就会包抄上来。”零按部就班地拖地擦灰，以皇女殿下的高贵冷漠，行贤妻良母的职责。</p>
+    <p>每天早晨苏恩曦都会以清洁为名进来晃一圈。晚上她睡在服务人员的车厢里，总抱怨那里的床硬得像是铁板，所以会借机在零的软床上打几个滚。</p>
+    <p>白得刺眼的光从窗外照进来，不仅是太阳初升，还有阳光在雪地上的反光。</p>
+    <p>他们已经深入了西伯利亚腹地，正奔驰在中西伯利亚高原上。</p>
+    <p>“应该是真话，跟我们距离大约30公里，有台高速列车一直跟着我们，两天了，应该是格鲁乌部队的战斗装甲列车。它的火力把我们摧毁个几十次不是问题。”</p>
+    <p>“查到那位廷娜小姐的资料了么？”</p>
+    <p>“跟她说的没差，鞑靼共和国军政长官的女儿，十五岁之前是个各项完美的中学生，像一个女版的楚子航。十五岁后忽然被父亲送出国留学，不过想来是被联邦安全局的特殊学校录取了，接受了特训。”</p>
+    <p>“你好像一点都不担心。”零停下手中的活儿，“如果格鲁乌部队介入，会很麻烦。”</p>
+    <p>“我有什么可担心的，我能知道后面有辆列车在追我们，布宁能不知道？这是他常跑的线路，他如果连这点警惕性都没有，早给联邦安全局抓住证据了。他都没慌，我慌什么？”苏恩曦望向窗外，“跟有件事比起来，这些都是小事。”</p>
+    <p>“什么事？”零皱眉。</p>
+    <p>“我们现在跑的，是贝阿铁路上延伸出来的支线，军用铁路。这条铁路不会一直到达北冰洋，我们以这样的速度跑下去，很快就能看到它的终点了。”</p>
+    <p>“所以联邦安全局才搞不清布宁真正的目的地。”</p>
+    <p>苏恩曦看了一眼表，点点头，“准确点说，再跑两个小时我们就会一头撞在山崖上。”</p>
+    <p>———————————————</p>
+    <p>
+      “我推开门，你绝对没法想像那场面，那位酋长的宫殿里居然是个浅浅的水池！至少100个黑美人赤身裸体地躺在水池里，她们的皮肤像是绸缎那么光滑，我敢打赌，如果她们从水里站起来，身上一滴水都挂不住。酋长坐在水池正中间的黄金座椅上，四个女人在为他按摩，还有四个在给他剪手脚的指甲。空气里都是致幻剂的味道，我都不敢大口呼吸，怕吸多了药劲上头。”
+    </p>
+    <p>
+      餐车里，布宁正和路明非吃早餐，讲自己当年往非洲倒卖军火的经历，讲得眉飞色舞，“酋长当着我的面在一柄象牙柄的左轮枪里填了一发子弹，要跟我玩俄罗斯轮盘赌的游戏，如果我输了我就留下全部的货物，如果我赢了就能拿走价值800万美元的钻石原石。我心说这家伙莫不是疯了么？他想吞掉我的货，居然拿自己的命来赌。”
+    </p>
+    <p>布宁很会讲故事，他早年贩卖武器走南闯北，有过不少惊心动魄的经历，可路明非实在不明白为何一早起来布宁要邀请他共进早餐。</p>
+    <p>餐车里空荡荡的，年轻人们还没从昨夜的宿醉中醒来，空气里残留着酒精气息和女孩子的香水味。</p>
+    <p>路明非神游物外，忽然又想起克里斯廷娜拎着纱裙在风雪中奔跑的背影，像个跳脱不羁的精灵。</p>
+    <p>那样的女孩子应该不会说谎吧？这条铁路的尽头到底是什么在等他？</p>
+    <p>
+      “我觉得他是在诈我，就哈哈笑着说，我的命怎么配跟酋长您赌呢？这时候他身边那个最性感的那个妞儿站了起来，接过酋长的枪走到我面前，赤身裸体地对着我。酋长说如果你赢了，你还能得到这个女人。”布宁继续吐沫横飞，“我想知道我逃不掉了，即使我甘愿放弃全部的货物，他也会在我的背后开枪。我只能说我很荣幸能跟您玩这个游戏，那个尤物立刻用枪对准自己的太阳穴开了一枪。”
+    </p>
+    <p>“天呐。”布宁的故事实在是精彩，路明非飞散的思绪被拉了回来。</p>
+    <p>
+      “我强撑着跟他赌，心里只剩一个信念支撑着我。我想这么美的女人，酋长应该不舍得她死吧？她才十六岁或者十七岁，她自己也不想死的对吧？所以那颗子弹其实是颗哑弹，酋长是要看我的胆量，我玩这个游戏，就能成为他的供货商，将来会有无数的钻石原石等着我拿。”布宁叹了口气，“可我错了，她第三枪就把自己的脑袋瓜打碎了。”
+    </p>
+    <p>路明非打了个寒战，从布宁脸上的表情看，这似乎并不是什么惊悚故事，而是真实经历。</p>
+    <p>
+      “酋长站起来跟我拥抱，恭喜我赢了游戏。我活着离开他的宫殿，带着价值八百万美元的钻石原石。我回到镇上的旅馆，那个女孩的尸体躺在我的床上，我这才想起酋长说过，如果我赢了游戏，那个女孩也归我。”布宁喷出一口烟雾，“我花二十美元找了个当地人把她埋在旅馆后面，那里还埋着几个军火商和几个女孩。”
+    </p>
+    <p>“人命在当地那么不值钱么？”路明非问。</p>
+    <p>
+      “后来我忽然理解了那个女孩。”布宁幽幽地说，“她活在地狱里，她属于酋长，是酋长的收藏品之一。她活着只不过反复地被酋长占有，跟酋长一起大口地吸食致幻剂。她在当下无比快乐，却又根本没有未来可言。如果我是她，对着自己脑袋开枪的时候也会坦然得多。”
+    </p>
+    <p>路明非抬起头直视布宁，布宁说到这里忽然不再是显摆人生经历的语调，似有深意。</p>
+    <p>布宁耸耸肩，“我邀请罗曼诺夫家族加入我们的晚宴，其实是因为你的缘故。第一次见你的时候，我像是再次看到那个女孩的眼睛。”</p>
+    <p>“我让您想到一个……黑皮肤的裸女？”路明非一时不知怎么接。</p>
+    <p>“亡命之徒，无路可退。你有一双亡命之徒的眼睛，我不知道你和皇女殿下之间的真实关系，但总之不是主人和秘书。皇女殿下更像是你的陪同人员。“布宁慢悠悠地说。</p>
+    <p>路明非悚然。布宁果然是个老狐狸，在老狐狸的眼睛面前，任何伪装可能都是多余的。</p>
+    <p>“别紧张，我没有恶意，我很欣赏你的眼神。”布宁笑笑，“所以有些秘密准备单独和你分享。”</p>
+    <p>“什么秘密？”路明非竖起了耳朵。</p>
+    <p>
+      布宁却没接这个茬，“很多人都看不起亡命之徒，觉得他们是走投无路的疯狗，那是因为他们低估了亡命之徒的力量。无路可退的时候，只有亡命之徒有机会冲出一条血路，人们觉得他们的举动就像是飞蛾扑火，但他们也有一线机会像凤凰那样浴火重生。当你能够克服恐怖，坦然地把命押在赌台上，便能爆发出不可思议的力量。那种像是死人一样呆滞的眼神，其实是最为强大的。路先生，你有一丝这样的眼神。”
+    </p>
+    <p>路明非想要分辨几句，却被布宁挥手打断。</p>
+    <p>“后来我一直在想，如果死在那场赌局中的人是我，女孩会得到什么奖赏？酋长吞了我八百万美元的货，应该会把自由还给她吧？”布宁轻声说，“真是漂亮的眼神啊，亡命之徒的眼睛，像是燃烧那样，让人不敢直视。”</p>
+    <p>布宁举杯喝光杯中的伏特加酒，忽然抓起路明非的胳膊，不由分说地拉着路明非走出餐车。</p>
+    <p>餐车是最前面的车厢，推开餐车的前门，白茫茫的风雪扑面而来。</p>
+    <p>两侧都是松林，前方的铁轨全都被大雪掩埋了，但这列火车的动力之强，车头倾斜的钢板把成吨的雪铲向空中，扬起化作阵阵的雪浪。</p>
+    <p>这条军用线路很有可能根本就是一条废弃的线路，一路行来他们没有跟任何一列火车错车，当然也不会有人铲雪和维护道路，真难以相信这种年久失修的铁轨还能经得起沉重的防弹专列高速奔跑。</p>
+    <p>
+      “苏联时期的铁路，坚不可摧。在它上面跑过沉重的货物列车，列车上装载过坦克和N-1火箭的发动机。整个国家最重要的战略物资通过这条生命线运往西伯利亚腹地，要建造一个钢铁堡垒般的后方，即使欧洲部分落入了敌手，苏联仍旧可以再度崛起。”布宁扶着铁栏杆，迎着大雪，倨傲的神情竟有几分像瓦图京陆军大将。
+    </p>
+    <p>“这是我的家，我在这里长大。”布宁转头看着路明非。</p>
+    <p>路明非吃了一惊，“您之前并不是这么说的。”</p>
+    <p>“那些是谎言。”布宁不屑地说，“那时候我还没有决定要邀请你们登上这列火车，有些事超出了我的预料。每年这列火车都会发车一次，目的地就是西伯利亚最北端，那里是一场真正的盛宴，从登上这列火车开始，你们才算是亚历山大·布宁的朋友。”
+    </p>
+    <p>路明非完全愣住了。昨夜克里斯廷娜说的那些他本来还将信将疑，可布宁转头就跟他坦坦荡荡地承认了。</p>
+    <p>前方传来叮叮当当的铜钟声，好像那里有一座老式的站台，他们已经很久没有遇到车站了。路明非眯着眼睛看了出去，却没有看到任何建筑。</p>
+    <p>“这么多年来，联邦安全局一直想要知道这列火车的目的地。”布宁不屑地笑笑，“可他们一直都查不出来。收到邀请的乘客们也没法知道，因为在最关键的那个晚上他们全都喝下了大量的烈酒，中午之前无法醒来。”</p>
+    <p>路明非忽然明白了，难怪昨夜的酒会那么疯癫，好饮的俄罗斯人，煽风点火的布宁，那些昂贵的烈酒中还可能掺入了化学品。</p>
+    <p>所以本来应该冷静谨慎的克里斯廷娜小姐姐失去了自制力，跑到路明非的包厢里来坦白身份。</p>
+    <p>布宁指着前方，“欢迎来到新西伯利亚。”</p>
+    <p>风雪中，忽然间出现了一个孤零零的红绿灯，不是常见在十字路口的那种红绿灯，这东西出现在铁轨旁应该称作信号机。跟一般的红绿灯差不多，它是绿灯通行红灯禁行，不同的是它的黄灯代表可以进入岔道。</p>
+    <p>但就像高速公路上通常没有红绿灯，红绿灯出现的时候就意味着前方就是城镇了，铁轨边出现信号机往往也表示即将抵达某个车站。</p>
+    <p>这么一个孤零零的信号机忽然出现，有种白日见鬼的感觉，还亮着禁止通行的红灯！</p>
+    <h2 id="第149章-但为君故53">第149章 但为君故(53) </h2>
+    <p>汽笛声由远及近，在盖满雪的两山之间回荡。</p>
+    <p>屋檐下，兰斯洛特站起身来，狠狠地嘬了一口手中的烟卷，这一口仿佛把半支烟都吸进了肺里。他丢掉烟蒂，戴上手套，这才吐出那口长得似乎没头的烟来。</p>
+    <p>“信号机亮红灯，爆破手准备。”兰斯洛特低声说。</p>
+    <p>俄罗斯分部长挥了挥手，屋檐下，身穿白色作战服的专员们整齐地起身，退入站台后的树林里。</p>
+    <p>兰斯洛特没跟他们一起退入树林，而是背上七宗罪，双手扳着屋檐翻了上去。他静静地蹲在风雪里，很快就被雪覆盖了，和白色的世界融为一体。</p>
+    <p>大雪抹掉了他们出没的痕迹，废弃的山中小站，好像根本没有人来过。</p>
+    <p>列车拖着浪涛般的雪尘，咆哮着进站。俄罗斯分部长暗暗地吃了一惊，这群军火贩子像是根本不想理会站前亮起的红灯，准备以全速甩站通过。</p>
+    <p>兰斯洛特下令信号机亮红灯是一份好意，他们在小站前的铁轨下埋了几十公斤铝化炸药，炸起来上百米的路基都会断裂，如果这列火车看到红灯的时候减速，车上的乘客的生存几率会高很多，不减速的话，他们会以上百公里的高速滑出轨道。</p>
+    <p>可行动已经无法叫停了，那些强劲的铝化炸药是靠压力触发的。</p>
+    <p>爆炸声连环，列车下方腾起一道又一道的火柱，俄罗斯分部的爆破专家精准地控制了每个爆炸点的威力，不会把列车直接炸成两截，而是炸碎了路基。</p>
+    <p>列车带着铁轨一起转向，但仍不减速，可能是驾驶员已经吓傻了。它的自重太大，靠着惯性前冲了很长一段路，最后断裂翻滚，冲入道边的原始森林，撞断了无数的雪松。</p>
+    <p>“该死！”俄罗斯分部长低吼。</p>
+    <p>原计划是列车看到信号机后会减速，然后铁轨被炸毁，列车无法继续前进，刚好停在小站附近，俄罗斯分部的专员们短时间内控制住局面。</p>
+    <p>他们已经把这个宁静的山中小站改造成了猎龙的陷阱，十几个大型汞罐被埋藏在地下，此刻它们正带着尖利的啸声，释放出大量的汞蒸气，这东西对龙类和混血种来说都是剧毒，而专员们穿着防护服戴着面具。</p>
+    <p>谁料到这列火车根本没有减速的意思，冲过小站大约一公里才停下。准备工作都白费了，这个时候靠得住的只有人。</p>
+    <p>一辆轨道检修车停在备用铁轨上，蒙着雪地迷彩罩，他们就是坐那辆检修车来的。专员们蜂拥而出，纷纷跳上轨道车，准备向着列车的残骸发动一场突击战。</p>
+    <p>轨道车开出几十米，俄罗斯分部长回头看去，吃惊地发现兰斯洛特依然保持着雕塑般的动作，身上的雪片都没有飘落，只是扭头看着车来的方向。</p>
+    <p>他忽然明白了为何兰斯洛特没有跟他们一起行动，因为铁轨仍在震动，那是另一辆高速列车即将进站的信号！</p>
+    <p>情报有误，怎么会有两列火车？而且两列火车相距如此之近，就像是在追赶前面那列。</p>
+    <p>他扭头看去，飘飞的大雪中，忽然闪过一道微弱的火光，某种力量扭曲了雪幕，形成类似漩涡的结构。</p>
+    <p>俄罗斯分部长来不及思考，但本能救了他一命，他跳下轨道车，同时嘶吼，“跑！”</p>
+    <p>他对那股扭曲雪幕的力量异常地恐惧，尽管看上去那只是一个微弱的扰动。</p>
+    <p>部分专员跟他一起而下，但也有人没来得及反应，两秒钟后，兰斯洛特的吼声才抵达，也是一个“跑”字。</p>
+    <p>一颗狂暴的穿甲弹几乎平行于地面贯穿了轨道车，剧烈的爆炸令整个轨道车跃上空中。</p>
+    <p>俄罗斯分部长这时候才来得及想明白自己为何恐惧，那是一枚红外线制导的超音速炮弹锁定了他们，炮弹的速度如此之快，他们甚至来不及听到声音，而是先看到火光，看到雪幕被搅动。</p>
+    <p>在两秒钟后，震耳欲聋的炮声才席卷了小站，一瞬间就把这座平静的山中小站化作硝烟弥漫的战场。</p>
+    <p>真的是有另一辆列车跟在后面，还带着直射榴弹炮。</p>
+    <p>“趴下！”他大吼。</p>
+    <p>话音未落，密集的弹幕扫过月台前的空地，那列火车远远地用机枪扫射他们，大口径的多管机枪，一名专员直接被打飞出去，在空中身躯炸裂。</p>
+    <p>跟在后面的是一列武装快车，直射榴弹炮这种军用级的武器显然不可能随便架在什么列车上，而一列武装快车的火力当然不仅止于一门炮，摧毁这个车站对它而言微不足道。</p>
+    <p>他不顾一切地向着树林狂奔，然而第二颗超音速炮弹已经来了，跟前次一样，甚至听不到它的声音，却能感觉到死神就在身后，伸出的镰刀已经勾住了自己的喉咙。</p>
+    <p>但兰斯洛特鬼魅般出现在俄罗斯分部长身后，张开了双臂，这个胡子拉碴、憔悴、阴郁的醉鬼，全速行动起来的时候，人们甚至看不到他的残影。</p>
+    <p>但以身挡炮弹这种奇怪的应对方式……固然神勇，可是炮弹是会爆炸的，爆炸的威力仍然足以葬送整个俄罗斯分部。</p>
+    <p>但不符合物理规律的事再度发生，炮弹确实爆炸了，可刺眼的火光以兰斯洛特为界，被一层看不到的力量屏障生生地挡住了！</p>
+    <p>兰斯洛特沉重地呼吸着，背后的匣子弹开，七宗罪的刀柄弹出，他左手“饕餮”右手“暴怒”，向还未现身的武装列车冲去。</p>
+    <p>———————————————</p>
+    <p>这个时候，布宁的专列正飞越浓密的雪松林，莽莽的雪原起伏，仿佛白色巨兽起伏的背脊。</p>
+    <p>路明非赞叹地望向天空中，巨神般的米26直升机正卷着垂直的暴风，它的身影遮天蔽日。</p>
+    <p>半个小时前，那个神秘出现的信号机前，布宁的专列从容地减速，然后车厢之间的连接断开。早已等候在路边的工兵们爬上列车，对着天空高举小旗。</p>
+    <p>
+      成群的直升机从侧面靠近铁轨，狂风把积雪吹得漫山飞舞。它们甩下钢缆，工兵们轻松地把这些沉重的钢制钩子钩在车厢的四角，显然对于这项操作已经非常熟练。机车、餐车和设备车都被抛下，只有乘客和乘务人员的卧车被吊起在空中。整个过程不过是几分钟，乘客们还在各自的车厢中酣睡着。
+    </p>
+    <p>米26直升机，世界上最重型的直升机，苏联时代的机械杰作，虽然耗油量惊人，但美国人引以为豪的“超级种马”重型直升机的载重量还不到它的1/4。</p>
+    <p>能把加重的防弹专列吊起的直升机，世界上大概只有这一种了。在米26辉煌的历史上，它甚至曾把一架重达50吨的中型客机吊起到2000米的高空中。</p>
+    <p>所谓专列凭空消失，不过是大力出奇迹的结果，布宁用他的财力和想象力在雪原上变了一场令人叹为观止的大型魔术。</p>
+    <p>
+      剩下的车厢重新组合，轰隆隆地沿着原本的轨道推进，车头铲起两人高的雪浪。工兵们完成了任务之后立刻撤离，包括那个信号机都连杆带走。雪地上只剩下深深的一道痕迹，沿着铁轨继续向前延伸，路明非忽然想到克里斯廷娜说后面有一列联邦安全局的列车跟着他们，布宁其实早就知道了。
+    </p>
+    <p>格鲁乌特种部队的精英们很难察觉部分车厢已经被吊走了，连工兵们留下的脚印都被米26掀起的雪尘给遮蔽了，他们会追着那辆空无一人自动驾驶的列车去向铁路的尽头。</p>
+    <p>
+      “联邦安全局的老爷们一直想知道这趟专列的最终目的地，可他们无论沿着那条铁路线跑上多少遍，都找不出任何一个岔道口，这就制造了一种神秘感，我们凭空地消失在西伯利亚的雪原上。”布宁大笑，“我喜欢这种神秘感，喜欢他们把我想成一个魔术师。”
+    </p>
+    <p>“格鲁乌特种部队还能顺带帮你解决掉一个小麻烦，”他拍拍路明非的肩膀，“根据我的情报，前方一座废弃的小站里，有一只神秘的小分队等着伏击我们，我猜他们是为你而来的。”</p>
+    <p>路明非悄悄地打了个寒战，不是为自己而是为那位骄傲的克里斯廷娜特派员，西伯利亚的一切好像都在布宁的掌握中，是否也包括了克里斯廷娜？</p>
+    <h2 id="第150章-但为君故54">第150章 但为君故(54) </h2>
+    <p>一个小时之后，他们再度看到了铁轨，原本这条铁轨被雪埋没，但早已抵达此地的工兵们清扫出近一公里长的铁轨来。</p>
+    <p>重型机车已经等着了，米26把六节车厢逐一地放在铁轨上，重新完成连接，组成了一列新的火车。它看起来和原本的那列一模一样，甚至连餐车的布局都全无二致。如果不是极其细心的人，根本不会意识到这列火车的一部分已经被更换了。</p>
+    <p>
+      “西伯利亚一直都是苏联最重要的战略纵深，第二次世界大战的时候，他们从西伯利亚调集了一千万红军去欧洲的前线。二战之后，有人提议在西伯利亚北部建立完整的铁路交通网，把那些从未曝光过的研究所、军事堡垒和半不冻港连在一起。有了这样巨大的后方，即使苏联的欧洲部分被核弹摧毁，也能靠着西伯利亚深山中的军工厂继续作战。”布宁的声音悠远，像是在讲一个百年前的故事，尽管那个国家刚刚消失了还不到30年，“但是他们低估了在西伯利亚修建铁路网的难度，又忙着跟美国人在太空里搞军备竞赛，最后宏伟的规划只实现了很少的部分，就是你脚下的这条‘黑曜石’铁路。”
+    </p>
+    <p>“联邦安全局不知道还有这条铁路？”路明非问。</p>
+    <p>
+      “联邦安全局和国防部是两个部门，这条铁路的资料只在国防部有留存，可能连国防部都没几个人记得它了。而且理论上它已经废弃很多年了，为了避免它被人利用，它和目前运营的线路之间的连接线被拆除了，所以我们必须用重型直升机吊过来。”布宁微笑，“虽然是条老铁路了，但还是能承受得住涡轮喷气机车！”
+    </p>
+    <p>“喷气机车？”路明非愣了一下。</p>
+    <p>恰在这时他们的火车开始加速，前方的重型机车上方竟然冒出两道蓝色的火柱，那种火柱似乎只应该出现在喷气式战斗机的尾部。</p>
+    <p>这个重型机车提速之快，以路明非的平衡能力，没有防备的情况下几乎被掀翻。</p>
+    <p>尽管身在冰天雪地，可是前方袭来滚滚的热浪，不难想像那两台喷气式发动机的强悍程度。</p>
+    <p>布宁哈哈大笑，“SVL机车，加里宁机车厂的杰作，车顶上装了两台AN-25涡扇发动机。上世纪70年代，这家伙就能跑出250公里的高速，像你们中国的高铁那么快。”</p>
+    <p>“这不就是在铁轨上跑的飞机么？没翅膀的那种！”路明非死死地抓着铁栏杆，以免自己被狂风吹走。</p>
+    <p>“没错！西伯利亚大建设的年代，就是这东西横贯西伯利亚，为勇敢的年轻人们送去香烟、烈酒和心上人的照片！”布宁娴熟地把着铁栏杆，大衣的衣襟被狂风吹得翻飞。</p>
+    <p>这时有人推开门出来，是睡眼惺忪的克里斯廷娜，想来是刚刚睡醒，想出来透透气。</p>
+    <p>
+      联邦安全局暗探克里斯廷娜居然还穿着昨晚那件烟雾般的礼服裙，踩着高跟鞋，不过在外面披了一件短貂大衣挡风，应该是自负体质非凡。可她刚刚吐出一口酒气，就被眼前的景象惊呆了，雪花和松林都飞速地往后退，他们如同奔驰在时间的隧道中。尖细的鞋跟卡在脚下的缝隙里，克里斯廷娜差点摔个倒栽葱，幸好斜侧里伸来一条有力的胳膊，揽住了她的细腰。
+    </p>
+    <p>不是路明非，而是亚历山大·布宁，这老家伙一把搂住克里斯廷娜一把接住她肩上脱落的短貂，风度翩翩地给她披上，拍着她的肩膀安慰她，挥手划过浩瀚的雪原。</p>
+    <p>那个瞬间，布宁流露出一股少年人的朝气和得意，仿佛向着心仪的女孩展示自己的收藏。</p>
+    <p>联想到布宁之前说自己是在西伯利亚长大的，路明非立刻明白了，那烈火喷油鲜花着锦的建设年代就是布宁的青春或者孩提时代。</p>
+    <p>即使时过境迁，油已凉花已谢，在布宁的记忆中，西伯利亚永远封冻在最美好的年代。</p>
+    <p>———————————————</p>
+    <p>格鲁乌部队的装甲列车翻倒在铁轨旁，全副武装的特种兵们跪在雪地中高举着各自的武器，被俄罗斯分部的专员们团团围住。</p>
+    <p>整个车站都化作了废墟，列车零件四散，最大的零件是半片锻造车轮，它飞出去的时候砸碎了半边月台。</p>
+    <p>所有人，无论是甘愿被俘的格鲁乌战士们还是负责看押的俄罗斯分部专员，都心惊胆战地看向列车残骸上提刀站着的人影。</p>
+    <p>兰斯洛特已经在那里站了许久，当他发现从列车中高举着手走出来的不是莫斯科军火商联盟的人时，他忽然就停止了行动，呆住了，所有的杀气都在那一刻涣散。</p>
+    <p>尽管就在片刻之前，他冒着武装列车的弹雨冲锋，在和列车交错闪过的瞬间，一刀砍断了车轮之间的联动轴。那看起来根本不是人类能做出来的事。</p>
+    <p>火车随即就失控翻出了铁轨，如果没有兰斯洛特在场，以格鲁乌特种部队的火力，俄罗斯分部的专员们能存活多少都是问题。</p>
+    <p>俄罗斯分部长来到列车的残骸边，摇了摇头，“那列火车里一个人都没有，格鲁乌特种部队的那帮家伙说，他们也是追踪亚历山大·布宁的专列，误以为我们是布宁派来伏击的雇佣兵。”</p>
+    <p>“怎么会这样？”兰斯洛特的声音低哑浑浊。</p>
+    <p>“布宁的专列似乎少了几节车厢，我猜他们中途换了车头，把一列火车分成了两列。”</p>
+    <p>兰斯洛特沉默了片刻，转身跳下车头，走向残破的月台。</p>
+    <p>没走几步，他忽然哆嗦起来，像个癫痫病人发病似的，几秒钟前他还威严得像个杀神，现在却像站都站不稳似的，不得不用那柄危险的“饕餮”支撑身体。</p>
+    <p>在俄罗斯分部长还没想明白要不要上去搀扶的时候，兰斯洛特已经摸出了药盒，用颤抖的手把药片送进了嘴里，用烈酒灌服。</p>
+    <p>他扶着刀柄，半跪在雪地上。半分钟后，他重新控制住了自己，喘息着站了起来。</p>
+    <p>“去找新的交通工具。”兰斯洛特丢下这句话，穿越铁轨，跳上月台。</p>
+    <p>俄罗斯分部长望着这个男人的背影，不知为何他觉得这个男人快要燃烧干净了……快要死了。</p>
+    <p>———————————————</p>
+    <p>布宁专列缓缓地驶入站台，此刻他们已经越过了广阔的中西伯利亚高原，但并未接近路明非目标中的维尔霍扬斯克。</p>
+    <p>民用地图上应该不会出现这个车站，它甚至没有名字，只在站台前有个数字编号，“23”号车站。</p>
+    <p>但它并非一处小站，月台宽阔，足够停靠重型列车，站台上看不到人，但列车抵达之前站台上的积雪已经被清扫干净，路明非注意到了履带留下的印记，显然这个月台上曾经跑过重型的履带式机动车，坦克，或者大型牵引车之类的东西。</p>
+    <p>服务人员贴心地把红毯铺到主人车厢前，零一身青灰色的大衣，冷着脸下车，麂皮的高跟长靴踩在红毯上，布宁在车门旁迎候，轻轻托起她的手。</p>
+    <p>其他的客人就没有这样的待遇了，同样踩着高跟靴子的克里斯廷娜差点就在月台上摔了个狗啃泥，好在崇拜者够多，立刻有人一左一右地把她架起。</p>
+    <p>零环视四周，只有茂密的松林，树冠上的积雪接近一米厚，远望去是连绵起伏的群山。鬼知道在这冰天雪地鸟不拉屎的地方为什么要修一座大型车站。</p>
+    <p>“我们恐怕不得不在这里休息片刻，车头的燃料也消耗殆尽了，容我带皇女殿下看看我的故乡。”布宁彬彬有礼地说。</p>
+    <p>“你在一个火车站长大？”克里斯廷娜完美地展现了自己的线性思维模式。</p>
+    <p>
+      布宁笑而不答，带着他们穿越树林。树林茂密得令人惊讶，树冠遮天蔽日，肥壮的鸟儿在高处梳理着自己的尾羽。也许是因为太过茂密的缘故，林中的积雪并不多，也许是清扫过，正是早晨，冬日的阳光明媚但是柔软，洒在他们身上星星点点，不像是荒原上的跋涉，倒像是早间慵懒的散步，对于来过的人来说并不稀奇，零的神情也冷淡，倒是楚子航和克里斯廷娜睁大眼睛好奇地四顾，路明非没来由地觉得这俩没准能凑一对儿。
+    </p>
+    <p>“这里他妈的没有GPS信号。”耳机里传来芬格尔的声音。</p>
+    <p>在这种地方戴着耳机很容易引起怀疑，所以路明非在脑袋上扣了一顶雷锋那种遮耳朵的帽子，但看起来不像雷锋，更像智取威虎山里的土匪。</p>
+    <p>“怎么可能？GPS是卫星信号。”路明非掉在队尾，低声说。</p>
+    <p>“只有一种可能，就是某种设备干扰了GPS信号，”芬格尔说，“无论它是在什么地方，它还在运转。”</p>
+    <p>GPS干扰设备并不罕见，但那台干扰设备还在工作，就说明这个车站通往的不是废墟。</p>
+    <p>前方出现了铁丝网，铁丝网上挂着禁止进入的指示牌，但比起铁丝网，更能阻止游客的还是地理位置，没有布宁这样的财力或者带着军用装备，就是知道位置也很难抵达。</p>
+    <p>布宁摸出钥匙打开了铁丝网上的锁，请零走在最前面，其他人跟在后面。</p>
+    <p>越往前走视野越开阔，最后他们远远地看到了建筑物，展开在远处的，是一座真正的城市！而他们脚下踩着的大道笔直宽阔，仿佛通往白金汉宫的礼宾大道。</p>
+    <h2 id="第151章-但为君故55">第151章 但为君故(55) </h2>
+    <p>整齐的住宅楼、有着粗大烟囱的发电厂、街边随处可见烈酒铺子和小商店、十字路口的喷泉已经封冻了不知多少年。</p>
+    <p>可以想见当年这座小城是何等的热闹，它的规模并不很大，却包含了一座城市该有的一切。这里甚至还有一座小型的儿童乐园，蒙着冰雪的木马静静地等候，却不再有孩子光临。</p>
+    <p>
+      布宁的先遣部队已经做了简单的收拾好迎接贵客——尽管放眼看去一个服务人员都没有，但路明非知道一个响指就能令他们出现，跟零家里的女侍们一样——街边挂起了彩灯和旗帜，结冰的街道清扫得明亮如镜面，照得出人影，街边的窨井中冒出绵密的白色蒸汽。它像是一间博物馆，又像是一个封存起来的时间胶囊，但最像是童话里睡美人的城堡，只能一个清亮的敲门声把它唤醒。
+    </p>
+    <p>克里斯廷娜本该表现得更矜持一点，但没走出半条街她就趴在小卖部的玻璃上了，眼睛瞪得跟铜铃似的，跟孩子进了迪士尼乐园差不多。</p>
+    <p>布宁还真的打了个响指，立刻就有人从角落里走出来，是衣冠楚楚的服务生，手中的托盘上是一杯杯的伏特加。他在人群中游走，任宾客们端走酒杯。</p>
+    <p>布宁也饮着一杯伏特加，率先而行，带着惬意的笑容，挽着零的胳膊。零倒也不拒绝，但那一脸的冷漠，实在太像是主子对奴才。</p>
+    <p>城市的中央是一座巨大的环形建筑，建筑前矗立着直冲天空的列宁雕像，看起来像是礼堂或者音乐厅，却不知为何要修成环形。</p>
+    <p>
+      红毯一直铺到列宁雕像下，他们拾级而上，一扇扇的精钢大门在他们面前对开，再往里竟然是工厂般的构造，弯弯曲曲的管道、大大小小的阀门、随处可见的“危险”标志。原有的照明系统大概是不能用了，但布宁的服务团队用无数的应急灯照亮了贵客们脚下的道路，暖风系统倒是在工作，走着走着大家不约而同地脱下大衣，脚步也随之变得轻盈。
+    </p>
+    <p>
+      “欢迎诸位光临新西伯利亚023号城市，我的故乡。”布宁在一扇门前停步，转过身来，张开双臂，“有些人已经不是第一次来了，但也有些朋友是初次光临。安全的区域都为大家整理好了，请随便参观，有任何需要请打一个响指，你需要的服务立刻会来到你身边。”
+    </p>
+    <p>他转过身，向零和路明非比了个手势，“不介意的话，请皇女殿下和路先生跟我走。”</p>
+    <p>人群里的克里斯廷娜立刻把目光投了过来，但布宁显然没有准备邀请其他人，那扇自动门开而复合，把其他人挡在了外面。</p>
+    <p>布宁带着他们穿过走廊，打开了走廊尽头的门，门背后是一间苏联风格的办公室，家具陈设都还是当年的模样，略显破旧，但收拾得整整齐齐，甚至说得上舒适。</p>
+    <p>
+      布宁示意他们在帷幕下的皮沙发上坐下，为他们倒上烈酒。尽管在火车上跟路明非表白说自己真正看重的不是罗曼诺夫家的势力而是路明非的眼神，但到了谈判的时候布宁还是对着零，路明非扮演低眉顺眼的秘书，零端着酒杯，直视布宁的眼睛。布宁笑了笑，挪开视线，并未采取针锋相对的姿态。
+    </p>
+    <p>
+      “我出生在这里，在我偷偷钻进一列火车离开之前，我知道的世界就这么大。世界上只有唯一的一间学校，唯一的一间医院，唯一的一个儿童乐园，卖烟和酒的小商店倒是很多，但烟只有莫斯科人牌，酒只有红星牌伏特加。我知道有莫斯科，却不知道莫斯科是什么。城里有一间电影院，但孩子不能进，担心孩子看到外面的世界起了好奇心，就不愿在023号城市呆了。”布宁抽着烟斗，“我的父母并非什么了不起的人物，熟练工人而已，但他们对自己的工作非常自豪，他们总是跟我说我们家要在这里住上一百年，建设世界上最繁华的新西伯利亚。我们会造出飞到火星上去的飞船，还会造出能摧毁美帝国主义的空天母舰。”
+    </p>
+    <p>“但你还是偷偷地钻进了一列火车。”零说。</p>
+    <p>
+      “因为有一天我偷偷地溜进电影院，和大人们一起看了一场关于莫斯科的电影，电影里有穿花格裙子的漂亮女孩，比023号城市里的任何女孩都漂亮。我忽然想明白了，世界其实是很大的，就算一百年后我造的空天母舰摧毁了帝国主义，我也老了，那个电影里的女孩子也老了。何况我为什么要摧毁帝国主义？我连什么是帝国主义都没见过。”布宁笑笑。
+    </p>
+    <p>“你说它是个城市，但它更像是一个研究基地，或者一座超级工厂。”零说。</p>
+    <p>“您的观察很准确，当年足有三万人住在这里，军人、工人、科学家，他们被赋予的责任是造出能为整个苏联供电的聚变核反应堆。”</p>
+    <p>“聚变核反应堆？”路明非吃了一惊，“不是说人类还没造出能用的版本么？”</p>
+    <p>“不，他们已经造出来了。”布宁微笑，“你们有没有好奇这座建筑为什么是圆形的？”</p>
+    <p>路明非点点头。</p>
+    <p>
+      “我们的正下方，埋着当时世界上最大的电磁铁。”布宁说，“在它产生的磁约束场里进行核聚变，聚变就是可控的。你们错过了当年这块磁铁通电时的情景，所有金属的物品都会向着城市中心移动，如果你口袋里揣了一枚钉子，它也许会飞起来变成一件凶器。我曾经亲眼看到某个门上的门把手脱落下来，飞了起来。大家穿的衣服里面都带着铜丝，这能帮着屏蔽磁场，否则在那种强磁场中人会心悸，也活不长。”
+    </p>
+    <p>“可这项技术从未真正被应用，对么？”零说。</p>
+    <p>“没错，输出的能量虽然惊人，但它不够稳定。一旦磁约束场失效，这东西就会变成一枚氢弹。不过他们曾经用核聚变产生的电能给一台超级激光发生器供电，把美国人的卫星打了下来。直到今天美国人都不清楚那颗卫星怎么丢的。”</p>
+    <p>“它叫023号城市，说明还有类似的城市，对吧？”路明非说。</p>
+    <p>
+      “没错，广袤的西伯利亚无人区里有很多类似规模的军事城市，它们被赋予不同的职能，有的是要造出核动力轰炸机，装载一次燃料能够绕地球飞上几十圈的那种，有的则是为了研究反物质湮灭弹，理论上说那玩意儿能把地球炸成两半，还有城市本身就是一个超级计算机矩阵，建造在冰天雪地里散热就很好解决了。每座城市都在探索人类想象力的某个极限，甚至有一座城市研究的是时间机器，利用只存在千分之几毫秒的小型黑洞。据说他们真的把猴子送进去过，也许那只可怜的猴子还在时空的裂隙中漂流，等人去救它。”
+    </p>
+    <p>“你们每年在这里聚会，就是为了交易这些技术？”路明非说。</p>
+    <p>“虽然是些不完全成熟的技术，但客人们出起价来还是很慷慨的。”布宁叹了口气，“很抱歉我亲爱的朋友，我欺骗了你们，实在是你们给我的那个坐标看起来就是某个类似的城市。”</p>
+    <p>“所以要用核弹摧毁这些城市也都是假的。”</p>
+    <p>
+      “那倒不是，不过是我游说国防部这么做的。你想啊，我的人已经把能挖的都挖出来了，能卖的都卖掉了，我总得毁灭罪证对不对？”布宁比了个鬼脸，“所以七天之后核弹确实会落下来，我们所剩的时间不多了。现在，能不能把真实的坐标告诉我了呢？皇女殿下。”
+    </p>
+    <p>“我给您的就是真实的坐标。”零那一脸的端庄冷漠，路明非也是佩服的。</p>
+    <p>“别逗了行么？没有人比我更了解西伯利亚，”布宁一脸的嫌弃，“您说的那地方是片原始森林，除了狐狸和熊，什么都没有。”</p>
+    <p>“西伯利亚那么大，连联邦安全局都没法彻底搜查，您却能从一个坐标知道那里是原始森林？”</p>
+    <p>布宁一时间哑口无言，挠了挠脑袋，“好吧，拿到那个坐标的当晚我就派人空降去看了，就是片原始森林。”</p>
+    <p>“拿到我给的坐标，您觉得找到了新的城市，说明您并未掌握新西伯利亚的全部军事城市。”零继续发问。</p>
+    <p>她的声音里听不出起伏，但语气咄咄逼人，布宁跟她对上，就像克里斯廷娜跟路明非对上，不由自主地就成了回答问题的人。</p>
+    <p>布宁意识到自己已经被零的话术压制了，不过他倒也没有太想反抗，“苏联解体的时候，这些城市的资料全都遗失了。这些年来我通过各种途径购买当年的老档案，挖了一个又一个城市，但我始终没能找到新西伯利亚的三大神座。”</p>
+    <p>“三大神座？”路明非问。这个名字实在太过中二，他不由得起了好奇心。</p>
+    <p>“刨掉时空穿梭和反物质湮灭弹那种异想天开的东西，新西伯利亚的军事城市中有三座是最秘密的，它们研究的东西既匪夷所思又接近完成，价值根本无法估算，被称为三大神座。分别是超级战士项目、永生项目和‘关于神的研究’。”</p>
+    <p>“关于神的研究？”路明非一愣。</p>
+    <p>“根据目前的情报，那座城市干的事就叫‘关于神的研究’。”布宁耸耸肩。</p>
+    <p>“可苏联人应该是帮无神论者。”路明非歪眉斜眼，这个名字有点搞鬼的感觉。</p>
+    <p>“没错，可当一群无神论者认认真真开始研究神，那么他们应该是找到了神存在的证明。”布宁的神情有些诡秘，“有人说，他们意外地找到了神的尸体。”</p>
+    <p>神的尸体！路明非心中没来由地一寒。</p>
+    <p>“所以也许我们找到那座城市，就能找到神的尸体？”零倒还平静。</p>
+    <p>“可能我们已经找到了，”布宁顿了顿，“不过说是天使的尸体更准确一些吧。”</p>
+    <h2 id="第152章-但为君故56">第152章 但为君故(56) </h2>
+    <p>布宁有力地击掌几下，那面挂着红旗和伟人胸像的墙壁悄无声息地滑开，幽深的通道通往地下。</p>
+    <p>布宁看了路明非和零一眼，起身打开办公桌旁的柜子，拿出了一盏类似矿灯的照明设备。他比了个请的姿势，拎着矿灯走在前面，零欣然接受邀请，起身跟随在后。路明非没得选，也只有跟上。</p>
+    <p>通道曲折而潮湿，层层向下，它修得很粗糙，但用厚实的水泥糊墙，看起来异常坚固。某几个转弯处钉着警告牌，但路明非读不懂上面的俄文。</p>
+    <p>“没写什么特别的，只是说未授权的闯入者会被击毙。”零看出了路明非的疑惑，附耳跟他悄悄说。</p>
+    <p>路明非耸耸肩。作为一头潜藏的大怪物他倒不至于害怕，但明知道是去某个危险的所在，主客双方都显得那么淡定是怎么回事？感觉是结伴去酒窖里拿瓶酒。</p>
+    <p>下行的深度估计超过十层楼，光是耗费的水泥总量就相当惊人，更别说工程量了。</p>
+    <p>“是这座城市的防空洞，它被设计为能防御千万吨级的氢弹爆炸，能容纳整座城市的人。”布宁解释。</p>
+    <p>路明非点点头，一座军事城市当然应该有如此的设施，而深深的地堡中藏着天使的尸体，想来真是宏大又诡异。</p>
+    <p>走出通道，零那双高跟靴子敲打地面的声音忽然间带出了回声，矿灯的光柱也失去了落点，很明显这是个极其巨大的空间。</p>
+    <p>布宁带着他们走上一道水泥浇筑的栈桥，栈桥两侧都是深不见底的黑暗。他们在栈桥的正中央站住，布宁把矿灯指向上方，隐约可见圆柱形的拱顶，一道道半圆形的水泥梁。这防空洞大到能塞进一枚重型火箭，却空无一物。</p>
+    <p>“你们中国人怎么说的来着？这是见证奇迹的时刻。”布宁忽然把矿灯照向正下方。</p>
+    <p>路明非惊呆了。栈桥下很深，却没有水，冰冷的地面上趴伏着巨大的黑色的生物，它的身体上钉入了无数的铁链，黑色的鳞片沾满了污垢，灰暗无光。</p>
+    <p>它没有腿也没有翼，看起来就像一条极其粗大的黑色橡皮管，更古怪的是它的后半身已经完全死亡，只剩下一根古铜色的脊椎骨。</p>
+    <p>就在路明非猜测这东西是个死物的时候，也许是被矿灯的光刺激了，它缓慢地游动起来，像条巨大的蛇那样，浑身挂着的铁链摩擦地面，声音刺耳。</p>
+    <p>“这是什么天使的尸体？这是一条……大蛇！”路明非惊呼。</p>
+    <p>他当然知道那是什么东西，那是一条古龙的残躯。但不知为何它失去了翼和腿，所以看起来像是一条巨大的黑蛇，就像失去了四肢的人。</p>
+    <p>这是非常罕见的情形，以龙类超强的自愈能力，完全能再生翼和腿，可这么多年来，这尊贵的古龙就这么拖着残躯在寒冷肮脏的地下工事里爬来爬去，像个失智的残废老人。</p>
+    <p>他改口称这东西为蛇，是因为直到此刻他还不确定布宁对龙族知道多少。但说这话的同时他已经捏住了袖管中的短弧刀。</p>
+    <p>“不不，这绝对不是蛇那么简单的东西。”布宁摆手，“相信我，这是某种具备神性的东西。”</p>
+    <p>“神在你家的地窖里爬来爬去？”路明非死死盯着布宁的眼睛，想要从中看出些什么。</p>
+    <p>
+      “容我先解释这东西的来历。”布宁说，“1992年的秋天，亚纳河上的几家渔业公司纠集渔民们斗殴，原因是他们都觉得对方使用了违规的拖网。亚纳河产整个西伯利亚最肥美的白鲑和狗鱼，这些渔业公司完全靠秋天的捕获季活着，但那一年亚纳河上下游都捕不到鲑鱼。我当时已经开始做现在的买卖了，知道了这个消息之后我很兴奋。我的猜测是亚纳河附近出现了核污染，核污染让鲑鱼群都死绝了，这当然是件糟糕的事，但也说明亚纳河附近有一个很大的核污染源，那很可能就是一座我不知道的军工厂。你知道苏联时代大家有种迷信说核能是无所不能的。”
+    </p>
+    <p>“难道是这东西把鱼群都吃掉了？”</p>
+    <p>
+      “没错，亚纳河上下游一点核辐射都测不出来，但我的人在河附近调查的时候听见了牛一样的叫声，河里似乎是有什么大东西。我让人在河里下了一种纳米丝纺织的大网，强度足够拦住一艘小型驱逐舰。不久之后，就网到了这家伙。我从莫斯科赶来看它，当时可真把我吓傻了，还以为自己抓到了侏罗纪幸存下来的恐龙。”布宁说，“不过这家伙显然不是野生的而是有人养的，我们抓到它的时候它身上缠着很多的铁链，我们在铁链找到了五角星的标志。我最初的推断并不全错，亚纳河附近有一个我不知道的工厂，那不是核工厂而是生物工厂，这东西是从那座工厂里逃出来的。”
+    </p>
+    <p>“养大蛇的工厂？”路明非再度强调“蛇”这个字。</p>
+    <p>“不！龙！”布宁的语气极其坚定，“这东西是条龙！龙形状的天使！它来自那个传说中研究神的研究所！”</p>
+    <p>“龙？天使？”路明非懵了。</p>
+    <p>
+      “你读过《圣经》么？是什么诱惑了亚当和夏娃，让人类吃下了智慧果，是蛇！古蛇！又是什么跟米迦勒激战，失败之后坠入了地狱？是红龙！也叫古蛇！也叫撒旦！那家伙原本是在天上的，但他在天国里被打败了，所以掉进了地狱！”布宁的语气激动，“所以古蛇、龙或者撒旦是一个东西，它曾经是天使中的一员，它堕落了，再也回不到天上。我找到的不是原始形态的天使，而是堕天使！我们分析了这家伙的基因，你想知道结果么？”
+    </p>
+    <p>路明非摇头。</p>
+    <p>“正常的DNA是双螺旋，而它的DNA是四条螺旋，复杂程度远远高过我们已知的任何生物！它在进化树上的位置比人类更高，那它只能来自……”布宁手指天空，“天上！”</p>
+    <p>“你对得起自己唯物主义者的立场么？”路明非忍不住吐槽。</p>
+    <p>布宁所谓的龙，跟路明非所理解的龙完全是两种东西，在布宁的想象中，那是天使的一种形态，想来是那个“关于神的研究”的机构给他造成的影响。</p>
+    <p>“它来自天上又怎么样？唯物主义的铁拳照旧狠狠地抓住了它！”布宁不以为然，“当人类最终洞悉了神的秘密，神也就成了唯物主义的一个部分！”</p>
+    <p>这时候黑蛇再度转身，浑身的铁链摩擦地面，发出令人牙酸的声音。</p>
+    <p>“为什么说那是尸体？”路明非指指黑蛇。</p>
+    <p>
+      布宁长叹一声，“这是个非常好的问题。我也很希望自己抓到的是个活体，它看起来也确实是个活体，但它的大脑，”布宁指指自己的太阳穴，“已经死亡了。我们试着给它照过脑部CT，它的大脑萎缩到只剩下脑干，也可能是腐烂掉了。一个人，心脏还在跳动，但脑死亡了，你还能称他为一个活人么？这种生物的生命力是如此之强，即使脑死亡了，它也还能凭借某种本能继续活动。”
+    </p>
+    <p>路明非点了点头。他之前的疑惑得到了解答，这条尊贵的古龙之所以未能凭借超强的自愈能力恢复腿和翼，是因为它在某种意义上已经死了。</p>
+    <p>
+      “穷尽这一生，我一直想要找到那座神秘的研究所。”布宁趴在栏杆上，望着正从下方穿越的黑蛇，“开始是想赚一笔大钱，后来我赚了很多钱，钱对我来说意义越来越小了，可那个研究所在我心里的光芒却越来越强烈。哪怕让我去一次，看看躺在里面的神的尸体，我也心满意足了。你们出现之前，我本来已经放弃希望了。原本今年的交易会上，我准备把这个秘密卖掉了，免得我一直惦记，变成遗憾。可你们带了那个坐标来找我，它就在亚纳河畔。我猜它有个更准确的版本对不对？尊敬的皇女殿下。如果你愿意把它告诉我，售卖那个研究所的收益，我们可以对半分，你们也需要我的交易渠道。”
+    </p>
+    <p>零没有回答。路明非这才意识到他跟布宁说话的这段时间里零一直沉默着，她蹲在那里，蜷成小小的一团，抓着栏杆，呆呆地看着那漫无目的爬行的巨大生物。</p>
+    <p>这样的她看起来特别的小，根本就是个孩子，那种呆呆地看着熊山里狗熊爬来爬去的孩子，眼神空洞。</p>
+    <p>路明非一瞬间误以为那双空洞的眼睛里会流出泪来，那是孩子可怜狗熊的眼泪。</p>
+    <p>“如果没有人的出价您满意，那就由我出钱买下，价格随您开！”布宁提高了声音，也提高了价码。他的眼神热切，希望得到答案。</p>
+    <p>零骤然间从出神的状态恢复过来，涣散的目光重新聚拢，仍然是那个目中无人的皇女殿下。</p>
+    <p>“瓦图京陆军大将让我来找你，他来过023号城市的防空洞么？”零缓缓地问。</p>
+    <p>布宁愣了一下，“当然，他是为数不多来过这里的客户。我听说过瓦图京陆军大将和您的关系，不过对那个男人的了解您可能比不上我。”布宁显得有些洋洋得意，“我们是生意伙伴，他也是我专列上的贵宾。”</p>
+    <p>“如果我告诉你他是被秘密处决的，你还觉得你自己是安全的么？”零直视布宁的眼睛。</p>
+    <p>布宁愣了一下，“被处决？谁处决的他？谁有资格处决瓦图京陆军大将？有人要对他不利他为什么不来找我？看在老朋友的份上这个忙我还是会帮的。”</p>
+    <p>
+      “他的名字早已被列在了一份处决名单上，如果世界上真有关于神的研究所，知道那个研究所的人都得死。我去找了瓦图京陆军大将，所以他死了，现在我找到了您。”零冷冷地说，“那个研究所根本不是什么无主之物。这么多年过去了它仍然被秘密地监视着，想要触碰那个秘密的人都得死。”
+    </p>
+    <p>布宁和路明非的脸色都变了，布宁或许是被零的话惊到了，路明非却是因为瓦图京陆军大将的死，这一路上零从未提起这件悲伤的事。</p>
+    <p>那个老人为他指路的代价是自己的生命。</p>
+    <p>三人都沉默的时候，忽然什么东西从天而降，重重地砸在水泥栈桥上，布宁立刻用矿灯照了过去。</p>
+    <p>路明非脑袋“嗡”的一声，那是一柄精巧的MP-443“乌鸦”半自动手枪，虽然不像全自动手枪那样火力强猛，但因为可靠稳定，是俄罗斯安全部门的配枪。</p>
+    <h2 id="第153章-但为君故57">第153章 但为君故(57) </h2>
+    <p>“看起来并没真的甩掉格鲁乌的笨蛋们啊。”布宁冷冷地说着，高举矿灯照向上方。</p>
+    <p>可防空洞的穹顶太高，矿灯的光柱还没有接触到穹顶就弥散在黑暗中了。</p>
+    <p>布宁从口袋里掏出形如遥控器的设备，按下按钮之后，密集的暗红色光束纵横交错，封锁了防空洞中的每一寸空间。</p>
+    <p>布宁当然不会大意到把一条龙养在废弃的防空洞里，这个看似破败的混凝土结构必然是个精心设计的堡垒，未经授权的闯入者会被击毙这一点绝非空洞的恐吓。</p>
+    <p>穹顶上到处都是密集的“咔嚓”声，感觉有一千支枪在同时上膛。倒不是误解布宁在穹顶上布置了一千名枪手，而是穹顶上安装了数不清的自动武器，由安保系统自动控制，它们原本都处在休眠状态，现在被激活了。</p>
+    <p>那些暗红色的光线就是它们的瞄准光束，本身并不致命，但当它们扫描到入侵者，就会立刻把弹雨倾泻过去。非常老派的安保措施，但粗暴有效。</p>
+    <p>零静静地站着，像是一尊低头凝望的雕像，路明非也是手指都不敢动一下，暗红色的光束网也把他们笼罩在内，委实不知道它们的激发条件是什么。</p>
+    <p>“它们会自动扫描高温和运动中的目标，但我们三人例外，我们身上都有用于身份识别的芯片。”布宁冷冷地说着，从大衣下抽出老式的马卡洛夫手枪，熄灭了矿灯。</p>
+    <p>灯光熄灭之前，老家伙的神色透着残酷，令人不寒而栗。</p>
+    <p>路明非几乎可以确定那支乌鸦手枪是克里斯廷娜的，他甚至可以想像那姑娘此刻正倒挂在穹顶上，像只蹲在陷阱里的兔子。</p>
+    <p>勇气可嘉，但智商感人。</p>
+    <p>在军火黑市上纵横那么多年，亚历山大·布宁当然不是没牙的兔子，他已经动了杀心。他熄灭矿灯，免得自己成为入侵者的目标，剩下的事情就交给滴水不漏的安保系统了。</p>
+    <p>
+      也许这些瞄准光束的移动有什么规律？克里斯廷娜可以像电影里的妙贼们那样轻盈地避开？她毕竟也算个苗条的姑娘，在联邦安全局的学校里也该学过些东西……路明非为克里斯廷娜情报员想着脱身之策，他没跟克里斯廷娜情报员达成什么合作，但也不想看着那个笨蛋在这里被射杀。
+    </p>
+    <p>枪火忽然划破黑暗，路明非本能地按着零的肩膀趴下。那些子弹是从他们头顶上方掠过，路明非能听到子弹发出的尖啸声。</p>
+    <p>枪声就是那么短促的几下，片刻之后是什么东西坠入下方的深槽中，弹跳着，发出清脆的“叮叮”声。</p>
+    <p>“皇女殿下是丢了什么东西出去吧？”布宁倒是淡定。</p>
+    <p>“一枚硬币，想测试一下您的安保系统，看起来无懈可击。”零淡淡地说。</p>
+    <p>“克里姆林宫的防空洞，安保系统也不过如此。”布宁的话里透着骄傲。</p>
+    <p>路明非心中一寒，连一枚硬币都未能躲过，克里斯廷娜就算学过凌波微步也没用。</p>
+    <p>
+      两个人缓缓地站起身来，零拍了拍大衣衣摆上的灰尘，发出单调的啪啪声。路明非心里微微一动，零的举动似乎是在提醒克里斯廷娜不要冒险挑战安保系统，可路明非并未跟零说过克里斯廷娜的事。倒不是故意对零保密，而是在路明非看来那根本就是一段无关紧要的小插曲，而且那个菜鸟情报员也并未允许路明非把她的秘密告诉别人。
+    </p>
+    <p>那些自动武器是安装在穹顶上的，所以穹顶上的克里斯廷娜身在射击的死角，但她没有任何机会踩上地面。</p>
+    <p>三个人静静地站在黑暗里，时间一分一秒地过去。一个人单纯以臂力，哪怕辅助某种工具，能在穹顶上吊多久？</p>
+    <p>
+      黑蛇对于这一切根本没有反应，仍旧拖着浑身的铁链，在下方的深槽中游来游去。布宁的结论是对的，这家伙已经死了，不过是凭着本能行动，是类似僵尸的东西……路明非忽然想到了什么，在这个巨大的空间里，只有黑蛇在移动，却没有触发那些瞄准光束，那些哗哗作响的铁链也没有。即使布宁在黑蛇的身上也装了识别芯片，总不能连铁链也装上。
+    </p>
+    <p>他低头看向下方，唯一的解释是那个黑暗的深槽并不在安保系统的管理范围内，无论瞄准光束在深槽里扫描到什么，都会被忽略。</p>
+    <p>这种设计当然非常合理，就像你不会为了躲避水枪而跳进动物园的狮虎山。即使是僵尸般的东西仍旧非常恐怖，它能吃光亚纳河里的鱼群，可以想见那强大的捕食能力。</p>
+    <p>路明非还在琢磨，深槽中忽然传来叮咣叮咣的声音，像是什么铁质的小东西在滚动。片刻之后，自下而上的强烈闪光照亮了整个防空洞。</p>
+    <p>闪光弹，克里斯廷娜竟然往深槽里丢了闪光弹！</p>
+    <p>
+      深槽中的黑蛇咆哮起来，这家伙被闪光激怒了。尽管已经失去了双翼和四肢，它仍旧以巨龙般的姿态仰起头来，对空吐出暗蓝色的吐息。那道吐息寒冷之极，防空洞里的温度直线下降，空气中的水分凝结为冰晶炸开，地下空间里仿佛飘起了一场暴雪。古龙的威严像是某种高压气场那样膨胀开来，每个人都觉得自己的心跳被压迫住了。接下来整个防空洞都摇晃起来，尤其是他们所站的这道水泥栈桥，像是地震袭来。
+    </p>
+    <p>布宁不得不重新打开矿灯，以便知道周围的情况。</p>
+    <p>
+      矿灯照亮的是那个巨大的龙首，龙首搭在栈桥上，但巨大的身躯还在深槽里，被激怒的黑蛇想要游出深槽。不知道经历了什么样的磨难，龙首上属于“龙”的印记很多都被磨掉了，那光秃秃的脑袋显得有点可笑，但那双惨白色看似已经失明的眼睛里，依然透出隐约的暗金色光芒，像是残烛的微光，但顽固地不肯熄灭。
+    </p>
+    <p>“天呐！”布宁掉头就跑。</p>
+    <p>路明非一把抓住零的手，想要拉她离开。如果黑蛇再度发动那寒冷的吐息，他们会被直接命中，根本没有任何机会幸存，除非路明非能控制自己瞬间龙化。</p>
+    <p>但零推开了他，站在满是裂痕的栈桥上，和龙对视。巨大而残缺的龙奋力地往上爬，像个无助的孩子，娇小的女孩在它喷出的寒风中屹立不动，对它低声哼着某种类似儿歌的调子。</p>
+    <p>路明非有种奇怪的感觉，这并非一场意外，而是多年后的重逢。</p>
+    <p>
+      他没来得及细想，整个防空洞的枪都响了起来，数不清的子弹倾泻在龙首上，溅出密集的火花。路明非猜的是对的，黑蛇游来游去却不会触发安保系统，是因为那个深槽不在安保系统的范围里，可一旦离开深槽，黑蛇也同样会被识别为入侵者。这个设计也有助于避免黑蛇的逃逸。
+    </p>
+    <p>
+      人类的子弹尚且不能洞穿古龙的头盖骨，但仍旧有紫黑色的血飙射出来，溅在零的裙子和大衣上，黑蛇愤怒地吼叫着，大幅度地摆动脑袋，用尽了全身的力气。但它其实根本没机会离开那个深槽，布宁没有拆除它身上的铁链，而是把铁链的另一端都固定在了地面上，此刻这些铁链已经绷紧如钢琴的弦。
+    </p>
+    <p>看着这曾经尊贵高傲的生物被这些凡俗的武器围攻，路明非心里没来由地有些悲哀，但他没时间悲哀太久，用力抓住零的手不让她挣脱，拉着她就跑。</p>
+    <p>黑蛇在他们的身后咆哮，每一道呼吸都那么寒冷，却不是那种致命的吐息。</p>
+    <p>
+      到处都是硝烟和水泥粉末的气息，路明非也顾不上找布宁了，拉着零就往通道那边跑，刚刚跑出栈桥就觉得被人从背后抱住了，一闻那股寒冷的香气就知道是克里斯廷娜，这姑娘大概是临时决定要跟着他们潜入，来不及洗掉身上的香水，给了路明非一点软玉温香抱满怀的感觉。
+    </p>
+    <p>路明非心说这姑娘莫不是给吓傻了，他们头顶上有一千条枪，背后有一头龙，不甩开腿跑，抱他有什么用？</p>
+    <p>这时候黑蛇终于被密集的弹雨击退了，拖着一道黑血坠回了深槽，重重地砸在深槽底部。那蜂群般的暗红色光点再度分散，密集的瞄准光束把空间切割成一块一块。</p>
+    <p>“快跑啊！你身上有识别芯片！”克里斯廷娜一身白色迷彩作战服，瞪着眼睛冲路明非吼，猛捶他的肩膀，完全不是“小哥哥你可终于来救我了大恩无以为报我从今往后就是你的人”的传统桥段。</p>
+    <p>路明非这才想明白为何克里斯廷娜情报员要紧紧地抱着他。</p>
+    <p>
+      黑蛇想要游出深槽的时候，整个安保系统都被惊动，所有的枪都对准它饱和射击，克里斯廷娜是趁着那个机会降到地面上的。但黑蛇已经退回深槽，安保系统重置，克里斯廷娜只要站在地面上就会被射击。除非她跟一个带有识别芯片的人紧紧地贴着，让安保系统把他们误认为是一个人。这种招数并不新鲜，地铁里逃票的情侣也懂，两个人只刷一张地铁票。抱着通过检票口。
+    </p>
+    <p>零冷冷地看着克里斯廷娜，片刻之后小女王高傲地伸出右手，仿佛赐予臣下吻手礼的机会，“你抱着我也可以，我身上也有识别芯片！”</p>
+    <h2 id="第154章-但为君故58">第154章 但为君故58 </h2>
+    <p>克里斯廷娜立刻松开路明非，弯腰就把零横抱起来。</p>
+    <p>她身材高挑而零娇小，公主抱这件事对她来说毫不费力，倒是零吃了一惊，下意识地想要挣扎，可克里斯廷娜已经抱着她飞跑起来，把路明非一个人留在原地。</p>
+    <p>路明非愣了一下，轻声笑了出来，克里斯廷娜还真是个直线条的女孩，着急想跑，又担心零身体弱跑不快，但事实上即使穿着高跟长靴皇女殿下也能跑赢羚羊。</p>
+    <p>望着鞑靼公主那且跑且跳的背影，路明非莫名其妙地想到林间穿梭的、矫健的独角兽。心情忽然明亮起来，像是阴霾裂开了一道缝，阳光透入。</p>
+    <p>他们沿着原路返回，冲进那间办公室。原本以为布宁开启了安保系统，荷枪实弹的警卫们已经把门口封锁了，可办公室中空无一人，桌上还摆着三人喝过一口的伏特加。</p>
+    <p>克里斯廷娜放下零，细白的手指几乎是点在路明非的鼻子上，“你所做的这些联邦安全局都会记录在案！在法庭上会为你减刑！”</p>
+    <p>那一脸的威武神气，看得路明非想笑。可他奇怪地想起源稚生来，于是又不想笑了。只有那些心里还是孩子的人才会一直坚守着自己的正义吧？克里斯廷娜是这样，源稚生其实也是。</p>
+    <p>所以他只是淡淡地说，“谢谢，克里斯廷娜情报员。”</p>
+    <p>克里斯廷娜转身去开办公室的门，忽然愣住。她使劲地拧动把手，但门纹丝不动。她使劲地捶了几下门，发出的声音像是在敲击一块厚实的钢板。</p>
+    <p>路明非心里一惊，立刻明白为何没有警卫出现在办公室里，因为不需要。安保系统开启的时候，一个重武装的连可能都打不开这个防空洞。</p>
+    <p>身后的通道里传来了急促的脚步声，隐约还能听到布宁气喘吁吁的声音。他已经是老人了，体力没法跟路明非还有克里斯廷娜相比，晚一步才回到办公室。</p>
+    <p>
+      克里斯廷娜抽出藏在皮靴里的战术匕首，一脸凶相像是要跟布宁玩命，可看向路明非的焦急眼神却暴露出这姑娘心里很虚。路明非在心里叹了口气，推着克里斯廷娜的肩膀把她送进了办公桌旁那个老式的榉木衣柜里，这是办公室里唯一能藏下一个大活人的地方。零和路明非的判断完全一致，路明非伸手搭在克里斯廷娜肩上的时候，她已经拉开了柜门。
+    </p>
+    <p>两人在桌边落座，各自举起之前所用的酒杯，交换一下眼神，不约而同地喘起气来，默契得就像演了多年对手戏的男女主角，感觉刚刚爬楼梯的长跑对他们都是不轻的负担。</p>
+    <p>布宁满头满脸的泥尘，跌跌撞撞地冲进办公室，转身用遥控器关闭入口，之后扶着双膝大口喘气。</p>
+    <p>“皇女殿下，路先生，你们没事真的太好了。”布宁喘息完毕，来到沙发上坐下，抓起酒杯一饮而尽，又给自己续上了一杯，“看来有联邦安全局的情报员上了我们的列车！”</p>
+    <p>不愧是老江湖，只凭那柄“乌鸦”半自动手枪，布宁就猜出了克里斯廷娜的身份。</p>
+    <p>“您的秘密恐怕保不住了。”零还是冷淡的语气。</p>
+    <p>
+      布宁诡秘地一笑，“那又怎么样？如果是在莫斯科，那位勇敢的情报员应该已经用手机拍下一切传出去了，可这是023号城市，这里连卫星电话都打不通。他还在防空洞里，我刚才就已经锁死了所有出口。如果我们的朋友是个聪明人，很快就会敲那扇门投降了。”他顿了顿，摇晃着杯中的酒，盯着零的眼睛，“皇女殿下，我已经把我的底牌亮给两位了，不知道有没有荣幸看看您的底牌呢？”
+    </p>
+    <p>“您是说真正的坐标？”</p>
+    <p>“当然！”布宁耸肩，“生意是有来有往的事，西伯利亚是我的地盘，没有我的帮助你们绝不可能找到那处神座，而我也非常希望有荣幸成为两位的合作伙伴！”</p>
+    <p>“只凭一具爬行动物的残骸，就想交换神座的坐标么？”零摇头，“布宁先生，您的出价还不够。”</p>
+    <p>“那不是什么爬行动物！那是龙！是活生生的龙！”布宁脸上那不忿的表情一看就是装出来的，就像是小商品市场上被客户狠狠砍了价的小贩，“那我做什么可以换到两位的信任呢？”</p>
+    <p>
+      “我要知道是谁下令处决了瓦图京大将。他被处死只能是一个原因，灭口。”零缓缓地说，“那个神座的秘密，这个世界上绝不只有你和我知道，不找出那个下处决令的人，你我谈何分享神座？以布宁先生您在莫斯科的影响力，应该查得出来，我有耐心，可以等。现在，还请您打开这间办公室的门。联邦安全局的情报员已经被您关在防空洞里了，构不成威胁，就麻烦您带我们在您的家乡四处走走。”
+    </p>
+    <p>零站起身来，向着布宁伸出手去。她比出这个动作的时候，总是带着令人难以抗拒的威仪，似乎允许你触碰她是一种礼遇。</p>
+    <p>路明非心里暗暗叫好。他们一旦离开这间办公室，克里斯廷娜就有机会溜走。他没跟零说过克里斯廷娜的事，零也不问他为何要援助这位看起来不太靠得住的情报员小姐姐，但她知道路明非不希望克里斯廷娜出事，于是不动声色地做好了。</p>
+    <p>“乐意为您效劳，皇女殿下。”布宁叹了口气，接过零的手，象征性地用留着小胡子的嘴蹭了一下，权当吻手礼。</p>
+    <p>布宁按下遥控器上的按钮，那扇夹着防弹钢板的办公室门自动打开。</p>
+    <p>就在路明非心中长出一口气的时候，布宁忽然重重地打了个喷嚏，路明非也觉得鼻子痒，跟着打了个喷嚏。</p>
+    <p>防空洞里那阵密集的齐射打得水泥结构灰尘四射，他们几个都是一鼻子灰。</p>
+    <p>
+      路明非忽然闻到了高而寒的香水味，像是玫瑰冻在冰块里的气息。克里斯廷娜的香水味，这个女孩总是不介意自己成为人群中的焦点，包括她独特的气味。她急于潜入防空洞因此没有时间洗掉这层气味，犯了谍报人员的大忌，幸运的是防空洞里空间太大，又充斥着黑蛇身上那股介乎潮湿和腐烂之间的气味，不太明显。但在这间办公室里，尤其是在打完喷嚏嗅觉重新变得敏锐时，就再也不可能被忽略。
+    </p>
+    <p>布宁抽出腰间的马卡洛夫手枪，那双笑眯眯小商人一样的眼睛骤然变得冷厉，扫视办公室一圈，大步走到唯一能藏下一个活人的衣柜前，枪口指着柜门。</p>
+    <p>路明非还没来得及想出帮克里斯廷娜解围的办法，克里斯廷娜已经一把推开了柜门，她比布宁还高了一头，冷冷地俯视着这个凶狠的小老头。</p>
+    <p>她甚至连靴筒中的匕首都没拔出来，而布宁手中是一支上膛的手枪，可反倒是布宁后退了半步，像是被克里斯廷娜的眼神压迫到了。</p>
+    <p>“克里斯廷娜？”布宁的语调透着震惊。</p>
+    <p>“俄罗斯联邦安全局，克里斯廷娜少尉！”克里斯廷娜骄傲地仰起头，那架势简直就是共产党人在被反动派逮捕的前一刻，冷冷说出自己的代号。</p>
+    <p>两个人对峙了几秒钟，布宁忽然收起手枪，转身离开了办公室，丢下一头雾水的路明非和零。</p>
+    <p>克里斯廷娜冷着脸走出衣柜，在原本布宁的位置上坐下，把布宁倒给自己的那杯伏特加一饮而尽。</p>
+    <p>———————————————</p>
+    <p>贵宾们的住处被安排在023号城市中一处废弃的高档公寓。023号城市有着普通小城镇该有的一切设施，除了酒店，因为并不会有常来常往的旅客。</p>
+    <p>说是高档公寓，但也只是一栋水泥外立面的四层小楼，看起来倒像是上个世纪中期遍布中国的那种老楼，挡风的回字形结构，中间是露天的操场，还矗立着已经半朽的篮球架。</p>
+    <p>
+      小楼内部很明显经过细心的修整，厚实的羊毛地毯，古铜色的壁灯，天鹅绒窗帘，屋内陈设都是精美的雕刻家具，大床上铺着华美的丝绸床单，更像是老牌的欧洲酒店。墙内墙外，根本就是两个世界。这也足以证明类似的拍卖会是定期举办的，023号城市便是这群军火商的据点。
+    </p>
+    <p>
+      房间绰绰有余，路明非和楚子航都分到了单独的房间，零则理所当然地入住了顶层的套房。唯一的不便是老房子的隔音效果差强人意，总能听见走廊上的脚步声和歌声。这群苏联老家族的后代在火车上就没完没了地喝酒，到了023号城市更是放浪形骸，喝醉了就挽着膀子大声唱老歌。
+    </p>
+    <p>路明非坐在窗前的沙发上，打着酒嗝，望着操场孤灯下的篮球架，这景象令他莫名地安心，像是回到了童年时的家中。</p>
+    <p>
+      那个家属大院里也都是这样的老楼，楼下也有锈迹斑斑的篮球架，只是没有这么精美的内部陈设。邻里之声相闻，大家还要带上各自的脸盆和毛巾去公用浴室洗澡。他一点都不烦那群醉鬼弄出的声音，因为小时候也是这样，他在家里的窗下写着作业，听到熟悉的脚步声就知道是父母回来了。那时候他对父母的陪伴还没有什么明显的感觉，因为反正每天醒来都会见到，下了班他们就回来，但路麟城回来的时候经常会给他带点吃的。如今坐在这扇陌生的窗下，听着外面的声响，好像那个熟悉的脚步声还会忽然出现，路麟城推门进来，拎着一袋糖或者橘子。
+    </p>
+    <h2 id="第155章-但为君故59">第155章 但为君故59 </h2>
+    <p>防空洞那件事莫名其妙就结束了，布宁摔门出去了，也不见警务们赶来，克里斯廷娜喝完那杯伏特加也一言不发地跑掉了，剩下零和路明非干瞪眼。</p>
+    <p>夜晚降临的时候克里斯廷娜照旧跟那帮追求者们去喝酒，023号城市仅有的一间酒吧里24小时免费不限量地提供顶级美酒。喝多了情报员小姐姐还在桌子上跳舞，裙摆飞扬，笔直的双腿春光隐现，周围都是掌声和口哨声。</p>
+    <p>路明非当时也在场，可是克里斯廷娜像是根本不认识他那样，只顾着和其他人眉来眼去。不过这一切对路明非来说都无所谓，他也高高兴兴地跟大家一起喝酒，学唱俄语的老歌。</p>
+    <p>
+      黑蛇的残躯还在地下的防空洞里蠕动，危险的军火贩子们在狂欢，联邦安全局的情报员已经混进来了，执行部的追猎团应该也在赶来的路上，总觉得这座极北之地的荒芜小城里会发生些了不得的事，这只是暴风雨前最后的宁静。可连这些他也不太关心，坐在这里醒酒发呆就很好。
+    </p>
+    <p>当当当的敲门声，路明非警觉了那么一下，也就放松下来。没准是克里斯廷娜喝醉了又来敲门，在情报员小姐姐的眼里，他如今应该是个信得过的线人。</p>
+    <p>他拉开门，却是零站在门口，长及脚面的驼色羊绒大衣，同色的水貂皮帽子，小脸还是那么地冷素，说出的话却是邀请，“想找个人陪我出去走走。”</p>
+    <p>———————————————</p>
+    <p>夜间的023号城市灯火通明，供电系统已经恢复，满城的路灯都亮了起来，不像东京那样密集璀璨，倒像童话里的小城那样静谧温柔，即使是在冰天雪地中。</p>
+    <p>路面上厚厚的一层冰，路明非只好跟布宁那样搀着零走路，大概是对自己的身高存在很大的不满，零总是穿着高跟的长靴。</p>
+    <p>一路上两个人都没说话，偶尔看见醉鬼们挽着膀子唱着歌踏正步而过，还向他们脱帽行礼，可转眼间又哈哈大笑，想必是猜测皇女殿下和秘书之间有那么一二三四五腿。</p>
+    <p>路明非知道他们是什么意思，但也懒得辩解。他也猜测皇女殿下是否对他有那么点意思，不过每次想到这个点上就懒得继续想下去了，他觉得自己配不上，而且也没那个冲动。</p>
+    <p>最好皇女殿下今晚只是单纯地找他出来散散心，或者皇女殿下是要坦白一下罗曼诺夫家族在这件事里的利益，跟路明非达成某种交易，这样他也觉得不欠零什么。</p>
+    <p>“克里斯廷娜那件事，多谢了。”憋得太久了，最终还是路明非打开了话题。</p>
+    <p>“她闯进你包厢的时候，我就在隔壁睡觉，都听到了。”零的语气漫不经心，“鞑靼共和国高官的女儿，居然会去联邦安全局当情报员，也是个奇怪的女孩。”</p>
+    <p>“都听到了你不来帮我解围！”路明非忽然有点不忿。</p>
+    <p>“漂亮女孩跑进你房间里，我进去是给你捣乱还是给你解围？也许人家真是要找你谈谈感情呢？反正你也不会损失什么。”</p>
+    <p>路明非一时语塞，下意识地要挠挠头，可惯用的那只右手还扶着零呢。</p>
+    <p>“如果是打开门看见的师姐你怎么办？”零又说。</p>
+    <p>“我是那么随便的人么？”路明非只好强撑，“在东京她睡床我睡浴缸，我抱怨过没有？不信你问楚子航！”</p>
+    <p>“这件事你倒不用告诉我。”零直视前方，不紧不慢继续走。</p>
+    <p>路明非被怼得一愣一愣的，干脆装死不说话了。时过境迁，他如今也说得上身怀绝技，但嘴笨这件事真的没地儿去练。</p>
+    <p>“其实也没什么不好的，对不对？”走了好一段路，零又说话了，“也许认识了就会喜欢，反正你也不止喜欢过师姐一个人。”</p>
+    <p>路明非知道她在说陈雯雯。悔不当初，以前老是一起宵夜，喝了几杯红酒，把从小到大那点儿事都跟零交待了，比如陈雯雯还交待了好几遍，说给零听他倒是没什么心理负担，零绝对不是个四处传话的大嘴巴，但没想到皇女殿下会记录在案留着怼他。
+    </p>
+    <p>“一生那么长，你总会遇到那个几个人是喜欢的，这个错过了还有下一个，但是也不那么多。最后都错过了，将来不会后悔么？”零话里居然有几分撮合的意思。</p>
+    <p>“我哪还有什么一生？”路明非哼哼，“走到哪儿算哪儿。”</p>
+    <p>“走到哪儿算哪儿你还不抓住机会？克里斯廷娜不是挺好的么？她很好看。”</p>
+    <p>“她好看跟我有什么关系？你真的信她是联邦安全局的特工？”</p>
+    <p>“我信，好看女孩子说的话我都信。”</p>
+    <p>“你能不能讲点理？”</p>
+    <p>“我在跟你讲感情。”</p>
+    <p>“能不能留点余地？讲不过你我认输行不行？”要不是还得扶着零，路明非就举手投降了。</p>
+    <p>两个人接着溜达。</p>
+    <p>
+      这一番好像就这么揭过去了，零走走看看，路边商店的玻璃橱窗里还摆着玩具和当年的烟酒，倒像是个苏联时代的实景博物馆。克里斯廷娜踏进023号城市的时候也是这么趴在橱窗上瞪大眼睛看，那时候零由布宁搀着走在最前面，目不斜视仿佛御风而行。看此刻她的模样对这个城市也是充满好奇的，可就能装得那么云淡风轻。路明非不由得觉得女孩子在想什么自己永远都不会懂，就像诺诺，就像零，甚至当年的陈雯雯。她们说着讨厌你未必是真的讨厌你，她们凡事都叫你一起也未必真的喜欢你。
+    </p>
+    <p>如今他才确定自己真乃一条钢铁直男，比特么秦直道都直。</p>
+    <p>“我看你这一路上还挺开心的。”零忽然又说，“我看他们叫你喝酒你也去，睡得也好。”</p>
+    <p>这确实是件还挺不可思议的事。作为一个在逃犯，前途未卜，时刻处在危机之中，不久之前苏茜还死了，他本该郁郁寡欢，眉头紧锁，可路明非居然养成了什么都不去想的好习惯，也可能是麻木了。</p>
+    <p>“想也没用。”路明非说。</p>
+    <p>“你是不是觉得，自己会死在西伯利亚？”</p>
+    <p>路明非一怔。这件事他从来没跟零提过，但心里隐隐约约的他是这么觉得的，那个神秘的坐标，尽管是老爹打电话告诉他的，可总觉得那里会立着一块墓碑，墓碑上写着他自己的名字。</p>
+    <p>
+      “我倒是不想死，可总觉得死不死这件事也不是我自己说了算。”路明非迟疑了片刻，坦白了，“但我还是想知道自己到底是个什么东西。要是我真的死了，师兄的事情还没解决，能不能拜托你把师兄带去什么安全的地方。他现在比较傻，没了我，他也会死。”
+    </p>
+    <p>“如果还不想放弃，我可以帮你。”</p>
+    <p>“帮我什么？你帮了我很多了，我都还没问你为什么要帮我。”</p>
+    <p>“不，”零摇了摇头，“我没有帮过你，是你一直在帮我。”</p>
+    <p>她忽然站住了，抬头眺望出去，冲着前方努了努嘴。路明非跟着她看过去，前方一条冰封的小河，跨河的小桥上路灯格外明亮，身材矮小茁壮的男人靠在路灯杆上抽着烟斗。</p>
+    <p>亚历山大·布宁。</p>
+    <p>———————————————</p>
+    <p>路明非心里微微一动，忽然意识到这并非一场偶遇，布宁是故意在这里等着他们。防空洞那件事之后布宁就没有再露过面，而一路上他都是大家的组织者，有酒必到。</p>
+    <p>零和路明非在路灯杆下站住，布宁沿着小河望向前方，目无焦点，“克里斯廷娜，是我的女儿。”</p>
+    <p>江湖上所谓的一剑封喉大概就是这个意思，这一路上大家说话都是云里雾里，谈生意的调调，如今老家伙图穷匕见，第一句话就把路明非给整懵了。</p>
+    <p>不过认真回想起来，竟然是合理的。</p>
+    <p>列车上的酒局那么喧闹，任何人出出入入都是常事，偏偏克里斯廷娜消失了，布宁会出来找。这当然可以解释为布宁早就怀疑克里斯廷娜的身份了，可真要是那样，布宁大可以拒绝她上车。</p>
+    <p>拉开衣柜门之前，布宁一脸的凶神恶煞，一开柜门，他就傻眼了，反倒是克里斯廷娜一身的有恃无恐。</p>
+    <p>还有那个不经意之间的搂腰，老家伙并非要在女孩子身上占点便宜，而是要跟女儿说，看啊看啊，这就是你爹战斗过的地方！那得意！那自豪！</p>
+    <p>可女儿是正义的情报员，老爹是走邪路的军火贩子，两人道不同不相为谋，一路上甚至没有过几次眼神交流。</p>
+    <p>今夜的布宁看起来特别的消沉和苍老，透着一股东北老汉的气息，给他换身衣服就可以去演《乡村爱情》。</p>
+    <p>
+      “父亲是个军火贩子，干的是朝不保夕的买卖，女儿不能接着走这条路。”布宁低声说，“我能给她最好的安排是送她去一个信得过的家庭长大，养育她的人得是走正道的，可我不认识几个走正道的。只有那么一个家伙，如今是鞑靼共和国的军政长官，苏联刚解体那会儿，卖过一个军火库给我，我手里有他的把柄。但我知道那家伙是个好人，连女人都不乱搞，而且没有孩子。只有他能保护我女儿。”
+    </p>
+    <p>“贤父女之间的爱恨情仇我们不知道更好。”三个人之间可以说中文，恰可发挥皇女殿下的毒舌本质。</p>
+    <p>“就当陪个空巢老人聊聊天。”布宁苦笑，“我跟你们说过，我想要离开023号城市，是在电影上看到一个穿花格裙子的莫斯科小姑娘。后来她从童星变成了电影演员，我在莫斯科赚了点钱，把她追到手了。”</p>
+    <p>路明非目瞪口呆。这个爱情故事委实太过传奇，一个小城镇的男孩为了一部电影里的女孩离家出走，经过长时间的不懈奋斗，最终抱得美人归。</p>
+    <p>“莫斯科有很多漂亮女孩，没有比她更好的么？”零问。</p>
+    <p>“当然有比她更好的，可我是个固执的人，先遇到的那个，谁也比不了。”布宁幽幽地说。</p>
+    <h2 id="第156章-但为君故60">第156章 但为君故60 </h2>
+    <p>零听到这里扭头看了路明非一眼。路明非立刻把头转开，不接她的目光，不用想就知道零又在暗示他诺诺的事。</p>
+    <p>“我们过了几年快活的日子，那时候我甚至想不再做这行了。”布宁又说，“人有个安稳的地方可去就不想冒险了，可后来那个安稳的地方没了，就觉得冒险也无所谓了。”</p>
+    <p>“您夫人过世了？”路明非想起克里斯廷娜始终带着的那枚黄钻，清廉的官员应该是没钱给妻子买这种首饰的，但如果是出自军火商老爹之手，那就非常合理了。</p>
+    <p>
+      “她有遗传性的家族病，从小就知道自己活不过40岁。但她一定想要为我生个孩子，她跟我说亚历山大·布宁，你这个冷酷无情的混蛋，你这辈子爱过的人就只有我，要是没有我你非得把人类都给毁灭了！所以我要给你生个女儿，这样没了我，在这个世界上你还会爱某个人。”
+    </p>
+    <p>布宁说起这番话的时候，语气仍是淡淡的，却分明是个脾气强硬的女人的口吻，像极了克里斯廷娜。</p>
+    <p>路明非一时间百感交集，零也收住毒舌保持了沉默。</p>
+    <p>“怀孕对她来说很危险，本来她还有几年好活。最后决定要母亲还是要孩子的时候，是她自己签字决定要先保住克里斯廷娜。”布宁顿了顿，“从那以后我干什么坏事都无所谓了，没人在乎。”</p>
+    <p>“你女儿应该是在乎的。”零说。</p>
+    <p>“是，她的养父大概给她灌输了太多的正义。”布宁的神情有点懊恼，“在她的眼里，亲爹是这个世界上最先要除掉的恶棍，我对她来说是个抹不掉的污点。”</p>
+    <p>路明非点了点头，他现在明白克里斯廷娜身上那种绝对的、激烈的正义感了。</p>
+    <p>“我们能为您做点什么？家庭事务我可能处理不好，没什么经验。”零说，“我家的亲子关系也很差劲。”</p>
+    <p>
+      “我想请两位帮我保护克里斯廷娜，”布宁双手把零的一只右手握在掌中，路明非从没在这个老家伙眼里看过那么诚挚的眼神，“联邦安全局的目的并不单纯，有可能决定处决瓦图京大将的人就在联邦安全局里。这个行动是一连串的，某个人决定要摧毁我们，克里斯廷娜不过是他动用的棋子。”
+    </p>
+    <p>“并不单纯？”零问。</p>
+    <p>
+      “利益，我控制着巨大的利益集团，我的利益直接跟上层相关。如果某些人想要重新瓜分利益，他们就会干掉我，用一个新的我取代。”布宁苦笑，“我也明白军火行业是这个世界上最邪恶的行业之一，但战争烙印在人的基因里，一个军火贩子倒下，必然会有人拿走这个市场空间。”
+    </p>
+    <p>“如果风险那么大，不应该立刻取消今年的交易么？以布宁先生的人脉，应该能找到安全的避风港。”零说。</p>
+    <p>“不，我做不到。”布宁摇头，“与其说我是这场交易的老板，不如说我是它的主持人。我每年主持一次这样的交易，直到尽完我的义务，才能离场。提前离场的话，瓦图京大将的结局就是我的结局。”</p>
+    <p>零和路明非对视一眼，谁都没说话。</p>
+    <p>“今年是我要主持的最后一场交易，交易结束，我的服役期就结束。”布宁低声说，带着祈求的口吻，“克里斯廷娜相信路先生，路先生你也愿意保护她，在023号城市里，我能够相信的人只有你！”</p>
+    <p>“你和你的客户们不都是过命的交情么？”零冷冷地说，“从苏联时代直到现在。”</p>
+    <p>
+      “交易的双方之间怎么会有真正的友谊？”布宁苦笑，“大家的关系能够维护到现在，只是这里面的利益大到谁都不敢背叛对方。克里斯廷娜是个局外人，她什么都不知道。其实我早就知道联邦安全局在我们里面安插了卧底，如果被我挖出来，我一定会把他埋在冻土层里。可一个父亲怎么会首先怀疑自己的女儿？”他说到这里又懊恼起来，“他妈的我就不该把克里斯廷娜交给那个老王八蛋，只会讲道学！把我女儿教成这么个笨蛋！”亲爹对干爹的嫉恨溢于言表。
+    </p>
+    <p>“所谓巨大的利益是指？”零追问。</p>
+    <p>
+      布宁沉默了片刻，忽然笑笑，恢复了生意人的嘴脸，“两位想必都知道了，我们会有一场拍卖会，去拍卖会上看看，就都明白了。拍卖会一结束，我会立刻带两位前往那个地方，那笔财富，包括神的秘密，我分文不取，都是两位的……不过，参观一下那个研究所可以么？”
+    </p>
+    <p>这不能不说是慷慨的交易，没想到意外得到了布宁女儿的信任，导致老奸商甘心舍弃那笔无法计算的利益。尽管那个神秘的坐标可能根本不存在什么利益可言，或者那利益是人类无法消受的。</p>
+    <p>路明非还在思索布宁是否在说真话——为了女儿老奸商忽然双膝跪下露出谄媚之态怎么想都有点可疑——零已经点了点头，“成交！”</p>
+    <p>路明非心说怎么就成交了，这不是我的事儿么？你一个助攻你拍什么板？可零已经把手从布宁的掌中抽了回来，悬在空中等着路明非接。路明非一介秘书，不能不接。</p>
+    <p>“如果没有别的事，我们还要散会儿步，就不陪布宁先生了。”零冷冷地说，“还有，以后如果要见面聊些事的话，最好别跟着我们，直接来房间敲门就好了。”</p>
+    <p>原来布宁是一路跟着他们，零已经觉察了，路明非却因为一直在跟皇女斗嘴，忽略了这个鬼鬼祟祟的跟踪者。不过换个角度想，让老父亲屈尊做出这样举动，确也说明那是个得来不易的宝贝女儿。</p>
+    <p>路明非扶着零走了没几步，背后又传来布宁的声音，“路先生，那天晚上，我女儿确实是在你的包厢里吧？”布宁的话里透着一股子说不清道不明的味道。</p>
+    <p>路明非站住了回头，“是，但她……不太想见你。”</p>
+    <p>布宁搓了搓手，看着地面，“我女儿……没有难为你吧？”</p>
+    <p>路明非一愣，心说难为？克里斯廷娜怎么难为自己？非要拉自己上贼船当污点证人算不算难为？</p>
+    <p>“布宁先生的意思，是你有没有跟克里斯廷娜小姐发生什么不可告人的事。”零冷冷地说。</p>
+    <p>路明非恍然大悟，孤男寡女酒后独处一室，老父亲这是在操心自家的好白菜有没有被他这只猪拱了……</p>
+    <p>布宁干笑几声，“和她妈妈一样，性格有点奔放，对自己的美貌倒是很自信的。我倒是信任路先生是正人君子，但女孩子喝多了主动也是有的。”一边说着，一边眼睛滴溜溜。</p>
+    <p>零冷冷地一笑，“您的女儿已经成年，这些事应该由她自己决定，联邦安全局的精锐，路秘书这副身板应该是无法强迫她的。这些话没必要问，即使发生了什么，他不会告诉您，也不会告诉我。我们何必问一些注定没有答案的问题呢？”</p>
+    <p>路明非心里惨叫，说哇哇哇刚才分明说好的你在隔壁什么都听到了，这时候把队友往火坑里推！可零手上忽然加力，强行拉着路明非离开。</p>
+    <p>走了好远，路明非还觉得背后射来的目光简直是两束高能激光，要把他整个烧成焦炭。</p>
+    <p>———————————————</p>
+    <p>两人走出很远，零忽然笑出声来。路明非从没有听过她这么笑，吓得呆住了。零笑着笑着就蹲了下去，抱着膝盖还是笑个不停，听得出这还是她故意压低了笑声，以免在夜里传得太远被布宁听到。</p>
+    <p>
+      路明非傻愣着看了好久，最后居然被零的笑声感染了，也跟着笑了起来，只是笑得有点苦恼。经过今晚的谈话，只怕布宁会更加用力地观察他，想要知道他是不是自己未来的女婿了。如果布宁真的信了这一点，以军火商老爷子的性格，要么对路明非呵护备至，要么就得准备杀掉他埋在西伯利亚了。
+    </p>
+    <p>零笑完了站起身来，恢复了招牌式的冷漠，“走吧，逛了那么久，回去还要走好远。”</p>
+    <p>“从来没见你那么笑过，真的那么好玩么？”路明非终于有手可以挠头了。</p>
+    <p>“不是，”零轻声说，“你囧起来的时候，更像我刚认识你的时候。”</p>
+    <p>路明非愣了一下，忽然想起刚才布宁说的那句话，“固执的人，先遇到的那个，谁也比不了。”</p>
+    <p>回去的路上他们再也没有说什么沉重的话题，路明非说023号城市倒有点像他小时候住的地方，零也说自己小时候生活的地方也跟这里很像。路明非好奇地追问零是在哪里长大的，在他想来所谓皇女都该长在锦绣堆里，可零却绕开了这个话题。</p>
+    <p>返回公寓的楼下，他们要去往不同的单元，零走了几步忽然回过头来，“如果还不想放弃，我可以帮你。”</p>
+    <p>她没给路明非说话的机会，径直转身离开，高跟靴子踩在雪地上的脚印，像是兔子或者鹿的足迹。路明非在雪地里站了很久，直到纷飞的细雪盖住了零的足印。</p>
+    <p>他推开自己房间的门，脑袋嗡的一声，那身如烟雾般的裸色纱裙子飘在窗前，克里斯廷娜正托着腮帮子跪在沙发上看下雪。</p>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
