@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>PPT汇报</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: '\00a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+
+            <h1 id="centerppt汇报center">
+                  <center>PPT汇报</center>
+            </h1>
+            <h2 id="01封面">01封面 </h2>
+            <p>老师同学们大家上午好，今天我给大家分享的是《对当前我国会计研究的反思与展望》。去年的时候我给同学们分享了一篇讲会计研究发展现状的英文文献，发表在<em>Journal of Accounting and
+                        Economics</em>期刊，那篇文献具体讲述了中国会计学者在国际会计研究上取得的进展。今天我分享的是在国内期刊发表的讲会计研究现状的文献，这篇文章则更侧重国内会计研究的一些问题。这一次我没有分享实证论文或案例论文，权当是抛砖引玉，给同学们写论文提供一些帮助。
+            </p>
+            <h2 id="02摘要">02摘要 </h2>
+            <p>首先我们来看一下摘要部分，看看这篇文章都讲了什么。（念一遍摘要）</p>
+            <h2 id="03目录">03目录 </h2>
+            <p>从摘要中我们已经可以知道，这篇文章主要分为四个部分。分别是新时代我国会计研究的重要成就、会计研究存在的问题、对会计研究问题产生的原因的系统反思、对未来会计研究的展望，具体包括五个方面。</p>
+            <h2 id="04第一章">04第一章 </h2>
+            <p>首先我们来看一下第一章——新时代我国会计研究的重要成就</p>
+            <h2 id="05">05 </h2>
+            <p>首先是国内部分，党的十八大后，国内会计学者取得了一系列学术研究成果。</p>
+            <h2 id="06图表">06图表 </h2>
+            <p>作者统计了2012-2022这十年国内会计类C刊和集刊关键词词频和中心度。变动主要体现在三个方面。（介绍三个方面）近十年会计研究领域呈现宏观化趋势，围绕国家发展等进行了深入思考。</p>
+            <h2 id="07国家治理体系建设">07国家治理体系建设 </h2>
+            <p>具体而言，在国家治理体系建设方面，首先是构建了新时代政府会计理论体系。（……）其次是从风险管控以及国企健康发展拓展国家审计的效果功能。第三是，为国企改革提供经验证据，突出了政府与市场关系。</p>
+            <h2 id="08高质量发展">08高质量发展 </h2>
+            <p>在高质量发展上，首先是聚焦企业创新，像研发投入、专利发明等都和创新相关。第二是聚焦企业社会责任，包括可持续发展、绿色、企业社会责任等方面。</p>
+            <h2 id="09资本市场">09资本市场 </h2>
+            <p>在资本市场方面，首先对制度改革的效果进行科学评估。接着探究了分析师关注等信息中介的作用，信息中介提高了信息透明度，发挥了监督作用。最后是资本市场问题与风险，具体包括股权质押、股价崩盘风险、商誉暴雷等。</p>
+            <h2 id="10国际">10国际 </h2>
+            <p>从国际上看，作者统计了2012-2022年国际会计五大刊非期刊本土作者国别的前五位。中国在这十年中以388的发表量排在第一位。表明我国会计学者在国际会计学术界的影响力逐步提升。</p>
+            <h2 id="11">11 </h2>
+            <p>纵向来看，2001-2011中国作者仅在五大刊发表99篇文章，2012-2022发表388篇。2001-2011中国作者中国故事仅发表8篇，而2012-2022年中国作者中国故事发表60篇。</p>
+            <h2 id="12">12 </h2>
+            <p>在这60篇中国作者中国故事中。有三方面突出贡献。第一是审计研究不再局限于被审计单位，而是从审计机构自身的所有权、并购活动、审计师自身特征等方面展开。第二是考虑到我国的特殊国情，利用我国政府主导的改革冲击，能够从会计视角很好的回答处理政府与市场关系的重要问题。具体涉及考核机制设计、政治关联与税收、反腐败等话题。第三是以中国为例，明确新兴资本市场的发展机制路径。具体涉及资本市场并购效率问题、中小股东保护改革、互动式或实地调研等新型信息获取路径的经济后果等。
+            </p>
+            <h2 id="13第二章">13第二章 </h2>
+            <p>虽然我国会计研究取得巨大成就，但也存在一些问题。作者将其归纳为五大问题。</p>
+            <h2 id="14问题1">14问题1 </h2>
+            <p>问题1是研究会计“真问题”呈下降趋势，首先一个重要的概念在于什么是“真问题”，作者认为真问题的判断在于会计研究是否具有指导实践的作用与服务理论发展的作用。然而会计学发展至今，向其他学科的理论溢出服务效应始终有限，那么当前会计学术研究的生命力就应当取决于指导实践的能力。然而国内部分高校年轻学者缺乏企业实践了解和会计实务经验，研究容易追求时髦话题和空洞概念，而在解释其作用机理，挖掘有价值的研究方向上，存在不足。
+            </p>
+            <h2 id="15">15 </h2>
+            <p>具体而言，首先是“奇葩式选题”与“跟风式”研究日益盛行。作者举了几个例子。比如管理者面部特征、高铁开通、独立董事性别，由于不了解研究内容的真实背景，这些研究在核心理论上并未做出显著创新，理论研究价值匮乏。再比如管理者自信自恋，在中国由家族企业或者国有企业组成的市场中，这些企业选聘经理人有其特殊的规则，讨论管理者心理特征的经济后果，进而为选聘提供指导的价值可能并不突出。
+            </p>
+            <h2 id="16">16 </h2>
+            <p>其次是部分研究选题过度拓展，日益脱离会计学科。当前会计研究的交叉式研究与金融学、经济学甚至心理学学者的研究方向愈发雷同，研究选题缺少立足本学科的理论创新。同时会计研究的选题和企业管理等方向的区别在哪，是否所有企业层面的问题都是会计学术问题？这些问题都会弱化会计学科自身的生命力。
+            </p>
+            <h2 id="17">17 </h2>
+            <p>最后是部分研究选题存在“新瓶装旧酒”现象。当前会计研究的总体趋势是宏观化，部分研究在未搞懂搞通宏观经济问题的前提下，直接套用宏观层面的新概念。在实际研究过程中，也并未深挖新理论或新方法。或采用未经充分论证的某一会计变量进行度量，使得对问题的讨论片面甚至偏离宏观问题本身。这些“新瓶装旧酒”的研究都缺乏实质性创新。
+            </p>
+            <h2 id="18问题2">18问题2 </h2>
+            <p>问题2是亟待解决的重大战略性会计问题研究不深。作者提到了两个重大问题，第一个是数据资产问题。数字时代背景下，数据已经成为推动我国经济高质量发展的关键要素。现行会计准则下编制的会计报告，仍然侧重对有形资产信息的披露。当企业的价值创造更多依赖非实体资产时，会计报告反映的账面价值与企业真实价值之间的偏离也不断提高，从而导致了会计报表“信息相关性危机”。另外，数据资产会计标准依然没有根本性突破。
+            </p>
+            <h2 id="19">19 </h2>
+            <p>另一个重大问题是无形资产会计准则。一是，大量无形资产难以被确认。面临审计压力，大量研发支出以费用形式体现在报表当中，绩效指标被严重扭曲。智力资本难以入账。二是，后续计量对于无形资产价值变化反映不足。并不是所有无形资产都会在价值创造过程中发生价值减损，有的甚至随时间积累出现价值提升，与无形资产的摊销相违背。
+            </p>
+            <h2 id="20问题3">20问题3 </h2>
+            <p>问题3是会计基础理论研究存在明显不足。由于对其他学科的依赖，会计基础理论研究存在问题。首先是盲目利用西方理论解释中国会计问题。作者举了一个企业破产风险的例子，第二个更为常见，基础理论匮乏导致的“万能机制”问题。缓解代理问题或降低信息不对称等理论。不管碰到什么问题都离不开这两个理论。
+            </p>
+            <h2 id="21问题4">21问题4 </h2>
+            <p>问题4是研究方法出现严重的“唯实证”倾向。过于在乎实证过程，而忽略了研究过程和分析过程。带来的结果是用“众所不知”的语言去讲述众所周知的道理。同时研究者过度依赖档案式实证研究方法。缺乏实验研究、问卷调查、案例研究。也缺乏对研究模型和研究方法的论证与创新。样本与检验方法存在主观操纵问题。现有结论后有过程。
+            </p>
+            <h2 id="22问题5">22问题5 </h2>
+            <p>问题5是研究结论缺乏实践价值分析。作者建议应当积极通过学术研究与讨论提升研究结论对实践工作的指导作用，发挥中国本土会计学术研究的社会价值。既不要用复杂技术检验“常识”，也不要让学术研究自娱自乐。</p>
+            <h2 id="23">23 </h2>
+            <p>针对刚才提出的五大问题，作者进行了深刻的反思。</p>
+            <h2 id="24科学性">24科学性 </h2>
+            <p>学者们面临着时间压力和期刊压力。（……）</p>
+            <h2 id="25多样性">25多样性 </h2>
+            <p>由于种种原因，会计学术生态系统资源向解释问题领域聚集，而对理论、实务以及教学较为忽视。这将导致学术保护倾向显现，可能成为影响项目立项、论文发表的非公平性因素。同时会计类权威期刊的选稿倾向“唯权威”“唯帽子”“唯项目”“唯实证”“唯热点”。选稿倾向也将影响学者的研究方向。
+            </p>
+            <h2 id="26博士培养">26博士培养 </h2>
+            <p>博士和高校教师一样面临着文章发表压力。现有培养以及考核机制使得培养的博士生大概率是“数据处理专家”，而不一定是懂会计、能够进行深入的理论思考以及解决现实会计问题的“会计专家”。</p>
+            <h2 id="27第四章">27第四章 </h2>
+            <p>针对国内会计研究出现的问题，作者从五大关系提出对未来会计研究的展望。</p>
+            <h2 id="28">28 </h2>
+            <p>第一大关系是理论发展与实践创新的关系，这要求会计研究将理论与实践相结合。</p>
+            <h2 id="29">29 </h2>
+            <p>第二大关系是实证研究与规范研究的关系。目前会计研究以实证研究为主流，学者也应当高度关注分析式研究方法在会计学术研究中的应用。</p>
+            <h2 id="30">30 </h2>
+            <p>第三大关系是会计学科与其他学科的关系。一方面要借鉴其他学科的优势并创新融合，另一方面又要塑造向其他学科供给思想理论与方法的能力。</p>
+            <h2 id="31">31 </h2>
+            <p>第四大关系是国际一般性理论与中国特殊国情的关系。考虑到中国的特殊国情，在将国际一般性规律用于解释中国会计问题时，应当保持谨慎态度与批判思维。同时也要注重本土理论创新，为社会主义市场经济会计理论做贡献。</p>
+            <h2 id="32">32 </h2>
+            <p>第五大关系是中国自主话语权体系与国际会计主流研究的关系。从会计实践看，在会计准则制定上，要始终坚持国际会计准则趋同的原则。从会计学术研究看，应当建立中国本土会计学术研究理论自信，构建中国会计学术话语体系，从“跟随式”研究转向“引领式”研究，为国际会计主流研究贡献中国思想和中国智慧。
+            </p>
+            <h2 id="33">33 </h2>
+            <p>我的分享到此结束，感谢大家聆听。</p>
+
+      </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
