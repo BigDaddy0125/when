@@ -1,0 +1,1068 @@
+<!DOCTYPE html><html><head><title>10</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="09.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="11.html">下一章</a></p><hr><h1><center>第10夜 喀什一夜</center></h1>
+<p>山一程，水一程，身向榆关那畔行，夜深千帐灯。</p>
+<p>风一更，雪一更，聒碎乡心梦不成，故园无此声。</p>
+<p>——纳兰性德《长相思》</p>
+<p>我有个表哥，你们都认识，他出生在喀什，名叫叶萧。</p>
+<p>叶萧是知青子女，我姑姑的儿子，十二岁从新疆回到上海，寄居在我家读书。我们是一起长大的。</p>
+<p>有一年，早已成为警官的叶萧，忽然跟我说，除去在公安大学的四年，他在上海生活的时间，已跟在新疆一样久了。说完，他有些伤感。我想，他是终于在内心跟新疆做了个永别。</p>
+<p>最近一次见到叶萧，他说，很久没有回喀什去看看了。</p>
+<p>没过两周，我去了新疆。</p>
+<p>第一站乌鲁木齐，第二站吐鲁番，第三站布尔津，第四站喀纳斯，第五站克拉玛依，第六站回到乌鲁木齐，第七站——</p>
+<p>喀什。</p>
+<p>临行前，有人开玩笑对我们说，这时候还敢去喀什？</p>
+<p>我摸了摸脖子，好像头还在，坐上飞机，来到喀什。</p>
+<p>2014年9月16日。</p>
+<p>喀什。中亚的阳光，奔放热烈。杨树参天茂密。维吾尔商贩的街市，长袍包裹的西域女子，深目高鼻白须的老汉。市中心的大街上，也可见到武警车辆，像特种部队背着冲锋枪与盾牌的士兵。街头贴着许多“同仇敌忾铲除暴恐”之类标语，皆因近期紧张的安全局势。</p>
+<p>入住喀什噶尔宾馆，访问上海援疆指挥部。下午，依次去香妃墓、高台民居、艾提尕尔清真寺。黄昏，清真寺旁的维吾尔乐器店，我花七百块买了把热瓦甫。不饰雕琢的老琴，声音倒是清亮通透，轻轻弹拨竟有古典吉他的各种音色。做琴的维吾尔老师傅帮我弹奏一曲，不少人围观，我们一起吃西瓜，其乐融融。</p>
+<p>可惜，行程只安排喀什市区。叶萧的父母，我的姑姑和姑夫，至今仍住在喀什远郊的农三师。我给叶萧打了电话，他让我不必去探望了。</p>
+<p>新疆时间比北京时间晚得多，八九点太阳才下山，晚餐后已是深夜十点半。</p>
+<p>喀什的夜。</p>
+<p>很想出去走走，我打电话给同行的甫跃辉。他是云南人，小我几岁，《上海文学》的编辑，棒棒哒的小说家。他的胆子不小，跟我一样跃跃欲试。</p>
+<p>结伴走出喀什噶尔宾馆，门口几个保安站岗，用诧异眼神看着我俩——要知道一个半月前，新闻联播里那起严重暴恐事件，就发生在喀什地区。</p>
+<p>我和甫跃辉也是蛮拼的了，决定步行前往喀什市中心，距离大约两三公里。刚出宾馆那条路，稍嫌荒凉，无甚人家，惟树丛高墙。维吾尔男人们出没，三三两两路边聊天，或骑摩托电动疾驰而过。</p>
+<p>出门前，我发了条微博，无非是白天拍摄的喀什照片，很快有不少评论。有朋友提醒我注意安全，遇到急事呼叫@老榕搭救。好吧，他绝对想不到，我们会在深夜行走在喀什街头。为了不让你们担心，不发微博了。我相信自己逃跑挺快的，抄家伙反抗的能力也是有的，不至于再发生昆明火车站那种事。或许，这是男人渴望冒险的本能。</p>
+<p>拐过一个路口，远远望见亮着彩灯的摩天轮。我喜欢，看过《谋杀似水年华》的懂。</p>
+<p>为了打破紧张的气氛，我想起甫跃辉是云南人，便说，九十年代，有部电视剧很热，叶辛的《孽债》，你肯定知道。讲一群云南孩子到上海，寻找各自爸爸妈妈——都是跟当地人结婚的上海知青，当年为了回上海抛下孩子，留下一笔孽债终究要还的。</p>
+<p>那年头，我们班里有许多回沪知青子女，差不多有三分之一的同学，大部分来自江西、安徽，也有从更遥远的黑龙江和云南来的。</p>
+<p>至于远到无法想象的新疆，只有一个，她来自喀什。</p>
+<p>她是初一那年来的插班借读生。</p>
+<p>我记得，她有双大眼睛，很长的睫毛，脸颊红扑扑，乌黑长发披到肩上。尚是寒冬，大家裹着厚厚的衣服，她依然显出身材，比别的女孩发育得早。</p>
+<p>班里每个同学都有绰号，她很快有了“古兰丹姆”这个名字。大家先叫她新疆妹，后来学校放了部老电影《冰山上的来客》。九零后不懂的。</p>
+<p>其实，她是汉族，姓李，叫李晓梦。</p>
+<p>跟许多同学一样，她的父母也是上海知青，到新疆多年早已扎根，便让孩子回来投靠亲戚借读，若运气好还能报上户口。</p>
+<p>她的学习成绩一般，并非不认真听课，而是从新疆转学过来跟不上。她不爱说话，上海话的水平糟糕，普通话都有一股新疆味。她很少跟别人玩——连我这个感觉迟钝的男生，都能看出女生们故意孤立她，大概是她过于漂亮缘故。</p>
+<p>第一个学期，学校春游，在两公里外的长风公园。老师要求每个人表演节目，想到班里有个新疆来的，说她一定会唱新疆歌，跳新疆舞，要是穿上新疆人的衣服裙子，戴上小帽子，肯定很给老师扎台型。</p>
+<p>李晓梦说自己不会唱，更不会跳，从没穿过新疆人的衣服。大家都不相信。她说，如果一定要她上台表演，可以吹笛子，就是江南丝竹的那种。</p>
+<p>可是，我们班已有了一个笛子独奏的节目，那就是我。</p>
+<p>春游那天，长风公园大草坪，少先队员雕像前，我当着全校师生，用笛子吹了一首《婉君》。</p>
+<p>“一个女孩名叫婉君，她的故事耐人追寻，小小新娘，缘定三生，恍然一梦，千古伤心。一个女孩名叫婉君，明眸如水，绿鬓如云，千般恩爱，集于一身，蓦然回首，冷冷清清……”</p>
+<p>说实话，那首琼瑶剧里的曲子，我吹得实在糟糕。可我不知哪来的自信，一点都不怯场，似乎整个公园都传遍我的笛声。</p>
+<p>唯独，在坐满草坪的几百名同学里，当目光扫到我们班的“古兰丹姆”身上，看到她一脸幽怨的表情，就让我立马吹错了两个音。</p>
+<p>“蔡骏，我猜你一定喜欢上了她。”</p>
+<p>二十多年后，遥远的喀什的夜，走在我身边的甫跃辉如是说。</p>
+<p>我不知该如何回答？</p>
+<p>经过一座大桥，豁然开朗，桥下是宽阔的东湖，难以想象在这南疆的沙漠中，还会有这么大片的水面。更远处几栋高楼，另一边高台民居。土黄色的千年建筑，倒映水面，穿越的感脚。</p>
+<p>桥上走过几对情侣，一看就是汉人，还有外国游客，我们放心了。</p>
+<p>一路有惊无险。穿过摩天轮下的桥洞，来到喀什人民广场，最醒目是尊毛主席雕像——中国现在仅存的几座广场毛主席像之一。</p>
+<p>深夜，高高的台阶上，坐着两个维吾尔族青年。我和甫跃辉也坐下来，遥望广场对面，类似金水桥的建筑，前头停着一排警车和军车，许多特警正值勤。大街依然车水马龙，只是行人稀少。</p>
+<p>我们坐着聊天。</p>
+<p>在喀什的毛主席像底下，甫跃辉说着靠近缅甸边境的云南农村的种种生活，而我说起刚在《上海文学》发过的一篇小说《北京一夜》——有段情节是我读初中时，不小心碰落块玻璃，从教学楼顶掉到操场，幸运的是没砸到人。</p>
+<p>其实，这件事是真的。</p>
+<p>那块致命的玻璃，几乎砸中操场上的一个女生，就是喀什来的古兰丹姆。玻璃在她脚下砸得粉碎，碎渣布满裤脚管，要是再往前走一步，多半就被砸死，至少也是重伤，乃至植物人。</p>
+<p>从那天起，我对李晓梦总觉得有什么亏欠。</p>
+<p>不久，放学路上，我跟在她背后，想要给她买根盐水棒冰或冰砖，作为玻璃事件的赔礼道歉。她突然回头，瞪圆大眼睛盯着我，却点点头，答应了。</p>
+<p>吃完我请客的棒冰，她才有了表情，说，你的笛子吹得太烂了。</p>
+<p>这是她主动跟我说的第一句话。</p>
+<p>古兰——不，李晓梦，你也会吹吗？</p>
+<p>嗯。</p>
+<p>我想听听。</p>
+<p>晚上来燎原电影院的街心花园吧。</p>
+<p>八点，我从家里溜出来，带着笛子。刚到电影院门口，远远听到笛声。我跟老师学过，知道那是传统曲目。大簇鲜艳绽开的夹竹桃下，“古兰丹姆”李晓梦坐在石墩子上，持着一根大号竹笛，正鼓着腮帮子吹呢。我的耳膜，跟着心里也发潮。这声音起码能传出两站路。</p>
+<p>月光下，她的脸白皙而透明，笛子反手持在背后，如同握着把宝剑，让我想起《书剑恩仇录》的霍青桐，我看的第一部金庸书。</p>
+<p>这回轮到我了，硬着头皮掏出笛子，眼睛一闭吹起《梅花三弄》——对不起，不是传统曲目的《梅花三弄》，而是琼瑶阿姨的电视剧主题曲。</p>
+<p>那年头，许多男生女生都有本小簿子，抄写各种电视剧歌曲。有家《每周广播电视报》，刊载当时热播的电视歌曲的简谱，我把这一小块豆腐干剪下来，天天对着谱子练习。我的水平也仅限于此。</p>
+<p>听我吹完，她笑了。</p>
+<p>咳！我害羞，也暗暗高兴，第一次看到“古兰丹姆”的笑容。</p>
+<p>此后，隔三差五，我们就会来到燎原电影院门口的街心花园，通常在黄昏时分，偶尔也在月夜之下。我吹一首流行歌曲，她吹一首传统曲目。</p>
+<p>她的水平比我好一百倍。《姑苏行》《鹧鸪飞》《牧笛》，个个都醉了，最厉害的是一曲《帕米尔的春天》，让人听得简直灵魂出窍。</p>
+<p>我问她，这笛子是谁教你的？</p>
+<p>李晓梦看着天上新月，淡淡道，我爸爸，他在人民文化宫当音乐老师，我从小在文化宫长大。</p>
+<p>喀什人民文化宫？</p>
+<p>是啊，很漂亮的房子呢，在喀什人民公园里头。</p>
+<p>就像上海的人民公园？</p>
+<p>差不多吧，里头有许多大树，以前还能看到坟墓，比你们上海的还要大。</p>
+<p>你们上海？</p>
+<p>李晓梦不再说下去了，重新举起笛子，吹了一首《鹧鸪飞》。</p>
+<p>这是她最常吹的曲子，每次都会吹一遍，似乎无数飞鸟，惊起黑幽幽的林中，有毒的夹竹桃花蕊，纷纷摇落……以前看笛子谱，说这曲子的意境，来自李白的“越王勾践破吴归，义士还家尽锦衣。宫女如花满春殿，至今唯有鹧鸪飞”。</p>
+<p>而我听“古兰丹姆”的《鹧鸪飞》，却想起“明月出天山，苍茫云海间。长风几万里，吹度玉门关。汉下白登道，胡窥青海湾。由来征战地，不见有人还。戍客望边邑，思归多苦颜。高楼当此夜，叹息未应闲”。</p>
+<p>随着她的笛声，想象鹧鸪飞出玉门关，直抵疏勒河，李白出自西域，想必也曾照过喀什的月光。</p>
+<p>然而，我无数次问她关于新疆与喀什的一切，她的回答却不超出喀什人民公园的范围。</p>
+<p>关于她的父母，除了音乐老师，也很少被她提及，更从没听她提起过妈妈，只知道也是个援疆的上海知青。</p>
+<p>五月四日青年节，操场上搭起临时舞台，先是一群女生表演四重唱，接着轮到李晓梦。</p>
+<p>她第一次穿了红色连衣裙，老师给她化了淡妆，画面太美简直不敢看。我和许多男生坐在台下，都流下漫长的口水。</p>
+<p>“古兰丹姆”李晓梦走上舞台，刚刚举起笛子，就发生了意外。</p>
+<p>她的脚下一滑，整个人摔了底朝天，裙底风光都泄露了，这下全校师生哄堂大笑。现在想想，真该挨个拉出去枪毙。</p>
+<p>除了我。</p>
+<p>我很难过，看到她趴在地上起不来，我冲上了舞台。没想到脚底打滑，踩到什么油腻上，果然也摔了个狗啃屎。我和李晓梦倒在舞台上，膝盖和肩膀都摔破了。看到她眼眶里的泪水，还有台下几个笑抽了的女生，我明白了——就是刚才的四重唱，她们下台时悄悄洒了些油在台上，为了让李晓梦当众出丑。</p>
+<p>“听着让人好难受啊。”</p>
+<p>2014年，喀什的深夜，云南人甫跃辉站起来，回头看着毛主席像。</p>
+<p>我也站起来，不想再回忆下去，说，去对面走走吧。</p>
+<p>走过大街，穿过喀什人民广场，回头看着月光下的毛主席像，让人恍惚的画面。几个武警警惕地看着我们。广场上也有些汉族在聊天，两个男人坐在微缩版的“金水桥”上手拉着手。</p>
+<p>我们径直往里走，看到喀什人民公园的牌子。</p>
+<p>要去吗？甫跃辉问我。自治区文联的工作人员，听说我们半夜跑出去，已经急得要命了。</p>
+<p>喀什人民公园？</p>
+<p>1994年，“古兰丹姆”唯一跟我提到过的喀什的地名，如此不真实地扑到眼前。</p>
+<p>于是，我又不得不回忆起她。</p>
+<p>那一年，五四青年节的文艺汇演，她在舞台上摔倒，有条腿严重扭伤，几天不能走路，躺在家里休息。</p>
+<p>我去探望过她一次。她寄居在叔叔家里，楼梯下的亭子间，刚够摆一张床。她的叔叔婶婶还有表妹都住在楼上。</p>
+<p>屋子小到让我抬头就会撞到后脑勺，她说，就坐在我的床上吧。</p>
+<p>我很紧张，却无法抗拒，便坐在她的床沿，这是我第一次坐到女孩子床上。</p>
+<p>床头的墙上，挂着她最喜爱的笛子，也在舞台上摔坏了，裂开一道深深的口子。我帮她用透明胶反复缠绕，但音色已无法恢复。她难过地说，那是爸爸送给她的笛子，在她离开喀什去乌鲁木齐转车往上海的长途汽车站上。</p>
+<p>唯一的床头柜里，她掏出几张发黄的相框。那是1968年，许多上海知青离家远行，胸口戴着大红花，在列车窗口挥手告别，个个意气风发，其中有一个就是她爸爸。</p>
+<p>她说，她爸爸离开上海时，吹了一曲笛子《我们新疆好地方》。在火车站，有不少人听了这首曲子，就主动报名来了新疆。没想到，二十年后，这些人都跟她爸爸成了死敌，说是当年被他骗来了新疆，没想到吃了那么多苦。但，所有人再也回不去了。</p>
+<p>你爸爸回来过吗？</p>
+<p>嗯，半年前，他好不容易回了一趟上海，却跟我叔叔打了一架。叔叔说，能容纳我住下读书已经不错了，怎可能再让我落个上海户口呢？她看了看头顶的天花板，说，他们兄弟打到头破血流。最后，爸爸独自回新疆去了，真想跟他一起回去啊。</p>
+<p>后来，我才明白，这种事情太常见了。当年离家的知识青年，为了给自己或子女赢得一个回城的户口，要征得原籍的兄弟姐妹签字同意，常常因此反目成仇，乃至大打出手，也不乏闹出人命。</p>
+<p>不久以后，学校里又传出一件大事，关于李晓梦。</p>
+<p>大家都在说——古兰丹姆真的是古兰丹姆，她不是汉族，她的妈妈是维族人。难怪啊，她长得有些特别。</p>
+<p>学校领导也来过问，发公文去喀什调查，要搞清楚李晓梦是不是身份造假才来借读的？</p>
+<p>她拒绝跟任何人说话，包括我在内。虽然，我没有看到她掉眼泪，但从她怨恨的眼神看得出——全世界都成了她的敌人，感觉再也不能一起愉快地玩耍了。</p>
+<p>第七天，她消失了。</p>
+<p>我去李晓梦家找过她，她叔叔说晓梦回新疆去了。</p>
+<p>那是初三中考前的一个月。</p>
+<p>哎，我再没有见过她，整整二十年。</p>
+<p>2014年9月16日，深夜，喀什人民公园。</p>
+<p>四周寂静，布满树林，还有一地落叶，仿佛回到江南的公园。已近子夜，大门却敞开着，幽暗灯光下，聚拢着四个维族人，三个老头，一个年轻人，坐在地上聚会，令人狐疑。</p>
+<p>走进一看，才发现他们四个在打扑克牌，我和甫跃辉相视一笑。</p>
+<p>月黑风高。</p>
+<p>继续往公园深处走去，渺无人烟。古人说黑夜遇林莫入，我们两个是胆大包天。此处回头再看人民广场，似是两个世界，依稀眺见对面毛主席像的灯光。</p>
+<p>眼前出现一栋建筑。</p>
+<p>正面很不起眼，只有一层楼，门口有颗红星，像是苏联建筑，有块指示牌——喀什人民文化宫。</p>
+<p>我的心脏，不知被什么刺了一下，这个名字，仿佛从冰库缓缓解冻，苏醒，复活……像她的眼睛。</p>
+<p>绕到文化宫的侧面，才觉得规模不小，有个古朴典雅别具民族风的边门。</p>
+<p>我听到了笛声。</p>
+<p>颤音、滑音、叠音、吐音、飞指、换气，各种技巧，棒棒哒呢。</p>
+<p>甫跃辉讶异地看我，谁都不曾想到，在这喀什的黑夜里，整个中亚和维吾尔文明的中心，竟会突然响起江南的竹笛。</p>
+<p>这笛声，这旋律，我依稀记得，不，是永远难忘。</p>
+<p>鹧……鸪……飞……</p>
+<p>这首曲子，二十年前，我的“古兰丹姆”李晓梦，她最爱在燎原电影院街心花园的月夜下吹奏——而今那座电影院早被拆了至少十年。</p>
+<p>那指法，那气息，那节奏，还有特别的剁音，我记得一清二楚，少一分，多一秒，都绝不会搞错，在耳朵中，在心里头。</p>
+<p>是她吗？</p>
+<p>两年前，我梦到过一次“古兰丹姆”，突如其来，毫无理由。梦中的她长大了，依然有她的笛声，此刻耳边的《鹧鸪飞》。当时，我很恐惧，她会不会死了，才会给我托梦？</p>
+<p>上穷碧落下黄泉，两处茫茫皆不见。</p>
+<p>到现在，我才明白，我一直，一直，很想，很想，她。</p>
+<p>我的古兰丹姆。</p>
+<p>喀什的夜。</p>
+<p>从前，她不曾跟我说起过高台民居，也未提过香妃墓，更没有艾提尕尔清真寺，她只说起喀什人民公园，还有喀什人民文化宫，这是我的中学时代，对于喀什仅有的两处印象。</p>
+<p>古兰丹姆，我来了，用了二十年时间，走过五千六百公里，你还在吗？</p>
+<p>循着笛声如诉，我如鹧鸪飞似的，疯狂地在林子里寻找她，也许就在背后，某棵大树的转角，人所不见的黑暗里。</p>
+<p>我好想再见到你，哪怕你已嫁作人妇，儿女绕膝……我只想，对你说句话——</p>
+<p>二十年前，我托表哥叶萧，在他暑假回新疆跟父母团聚时，顺便打听一下喀什人民文化宫的李老师。</p>
+<p>表哥回来后告诉我一个秘密——</p>
+<p>李晓梦的妈妈，并非上海知青，而是当地的维吾尔族，曾在喀什非常有名的舞蹈演员，家住老城的高台民居里。李晓梦的爸爸，在工人文化宫当音乐老师，他俩因此相识。虽然所有人反对，他还是娶了她为妻，不久就有了一个女儿。李晓梦三岁时，她的妈妈死于难产。</p>
+<p>那一年，开始了知青回城的大潮。</p>
+<p>按照当时政策，李晓梦爸爸这种跟当地人结婚的，很难得到回城名额。李晓梦十三岁那年，爸爸托了许多关系，跟一个离婚的上海女知青假结婚，修改了李晓梦的身份信息，终于得到让她回上海借读的机会。只要将来亲戚们同意，就可以让女儿落户。</p>
+<p>这个秘密，李晓梦守口如瓶，这也是她从未提起过妈妈的缘故。</p>
+<p>而我的表哥叶萧，真有做警察的天赋呢。</p>
+<p>但我从未有勇气告诉过李晓梦。我怕她会立刻翻脸，永远都没得朋友做了。她是打心眼里不愿让别人知道的，我想。</p>
+<p>后来，不知何故，这个秘密泄露了出去。虽然，永远纸包不住火，但如果我不托叶萧去调查，在上海不会有人知道的。</p>
+<p>这一切都是我的错吧，是我逼走了“古兰丹姆”，因为该死的好奇心，因为我喜欢你。</p>
+<p>对不起，这是我唯一要对你说的话。</p>
+<p>“在那里！”</p>
+<p>子夜，喀什人民公园的树林里，还是甫跃辉帮我发现端倪。</p>
+<p>我看到一个黑乎乎的身影，在人民文化宫的屋檐下，端坐着吹笛子的模样。</p>
+<p>一点点接近，笛声越发婉转，轻微的悲怆。</p>
+<p>我抱住她了。</p>
+<p>虽然，看不清她的脸，但可想象，她月亮般的双眼，长长的睫毛，红扑扑的小脸，好像王洛宾歌里的人儿。</p>
+<p>那是二十年前的她，现在她会怎样？</p>
+<p>不知从哪里，亮起一盏灯，微弱光线里，只看到一个老头。</p>
+<p>晕，我怎么抱着一个老头，虽然没亲他，但总让人满面尴尬。</p>
+<p>老头是汉人，手里握着笛子，神情并不慌张地，看着不速之客的我。</p>
+<p>甫跃辉连忙代我道了几声对不起——虽然，我本就是来说对不起的，也许才是这次喀什之行的真正目的。</p>
+<p>老头继续吹笛子，鹧鸪接着飞，在喀什的夜。</p>
+<p>看着汉人老头的眼睛，忽然令我想起什么？</p>
+<p>喀什人民文化宫的屋檐下，我知道他是谁了，我猜。</p>
+<p>忽然，背后又响起某种声音。</p>
+<p>是维吾尔乐器，弹拨的弦乐，分明就是……对，黄昏时我在艾提尕尔清真寺边买的那把热瓦甫，就是这种音色与旋律。</p>
+<p>笛声还在，热瓦甫声也在，难以想象，这两种乐器，并不冲突，竟有管弦二重奏的效果。笛声如鹧鸪飞入夜空，热瓦甫声似流水潜入地底——宛如几天前，我在吐鲁番的高昌古城，突现个维吾尔老人，坐在一千年前的佛寺遗址里弹奏的琴声。</p>
+<p>终于，我看到了弹琴的人儿，是个维吾尔少年。不过十一二岁样子，戴着小花帽，坐在一棵大杨树下。浑然忘我，右手弹拨，左手按弦。竟比黄昏时我听到老艺人的热瓦甫，多了某种东西，就像魂。</p>
+<p>月光从云间洒出来。</p>
+<p>喀什人民公园，笛声与热瓦甫，我和甫跃辉，都会毕生难忘。</p>
+<p>我啥都没说，就连酝酿了二十年的“对不起”，也未曾吐出口，便匆匆离别。</p>
+<p>后半夜，回到公园门口，那三个维吾尔族老者和一个年轻人，还在地上打着扑克牌，不晓得是斗地主还是大怪路子？</p>
+<p>刚才吹笛子的汉人老头，就是李晓梦的爸爸？甫跃辉猜测道。</p>
+<p>大概是吧。</p>
+<p>蔡骏，你不用内疚的。</p>
+<p>喀什人民公园的夜空，笛声与热瓦甫齐飞。忽然，热瓦甫中断了几秒，或许是维族少年弹错了音？笛声还在继续，热瓦甫重新接上，但已今非昔比，琴瑟和鸣已被打破，两种声音怎样糅合，都变得异常刺耳，仿佛亲兄弟打了一架，</p>
+<p>甫跃辉接着说，刚才你说，李晓梦的爸爸和叔叔关系很差。</p>
+<p>我抬起头，看着喀什清亮的月光，再低头，看着自己拉长的影子……忽然，打了二十年的结，瞬间解开了。</p>
+<p>是啊，那个秘密，关于李晓梦的妈妈是维族的秘密，无论我还是叶萧，都从未向任何人泄露过。在上海，唯一可能说出去的人，就是她的叔叔啊。因为李晓梦读书与落户的问题，兄弟俩早已反目成仇。为把讨人嫌的侄女赶回新疆，不至于将来房子和家产被分杯羹，才到处说侄女的身份造假，这不是顺理成章的事吗？</p>
+<p>我呆坐在公园门口的栏杆上，却不曾减少丝毫的内疚，在最漫长的那一夜。</p>
+<p>走出喀什人民广场，我们在路边打了一辆出租车。司机是个维族小伙子，放着巨响的维吾尔电声音乐。我说了句回喀什噶尔宾馆，不消几分钟就穿越喀什的夜，下车时收了五块钱起步费。</p>
+<p>第二天，告别喀什。</p>
+<p>9月19日，我从乌鲁木齐回到上海，连夜给表哥叶萧警官打了个电话。</p>
+<p>二十年前，那个秘密是他为我调查出来的，现在也应该由他来终结的为好。</p>
+<p>今晚，上海苏州河畔的家中，恰逢台风“凤凰”来袭。风雨声声，似有惊涛骇浪，令人怀念喀什，怀念干燥的阳光与清凉的月光。</p>
+<p>我接到叶萧的回电。</p>
+<p>根据户籍系统查询，李晓梦就住在喀什。她早就结婚了，丈夫是维吾尔族，有个十二岁的儿子，全家人开了个民族乐器行。她改了自己的身份证，在民族一栏标注的是维吾尔族。</p>
+<p>李晓梦变回了古兰丹姆。</p>
+<p>我吐出有二十年那么长的气，拿出喀什买回来的热瓦甫，手指抚摸五根琴弦，拨出几个清亮的音色，仿佛在说……</p>
+<p>你好吗？</p>
+<p>我很好。</p>
+<p>风雨带走黑夜</p>
+<p>青草滴露水</p>
+<p>大家一起来称赞</p>
+<p>生活多么美</p>
+<p>我的生活和希望</p>
+<p>总是相违背</p>
+<p>我和你是河两岸</p>
+<p>永隔一江水</p>
+<p>波浪追逐波浪</p>
+<p>寒鸭一对对</p>
+<p>姑娘人人有伙伴</p>
+<p>谁和我相配</p>
+<p>等待等待再等待</p>
+<p>心儿已等碎</p>
+<p>我和你是河两岸</p>
+<p>永隔一江水</p>
+<p>我的生活和希望</p>
+<p>总是相违背</p>
+<p>我和你是河两岸</p>
+<p>永隔一江水</p>
+<p>等待等待再等待</p>
+<p>心儿已等碎</p>
+<p>我和你是河两岸</p>
+<p>永隔一江水</p>
+<p>——《一江水》王洛宾/词</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

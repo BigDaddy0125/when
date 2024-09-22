@@ -1,0 +1,980 @@
+<!DOCTYPE html><html><head><title>30</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="29.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="31.html">下一章</a></p><hr><h1><center>第30夜 与神同行的一夜</center></h1>
+<p>天空没有留下翅膀的痕迹，</p>
+<p>但我已飞过。</p>
+<p>——泰戈尔《流萤集》</p>
+<p>二○○八年是个闰年，也是国际语言年、国际地球年、国际卫生年。起先陈冠希老师上了头条，旋即南方雪灾、暮春汶川地震、盛夏北京奥运、仲秋“神舟”七号太空漫步。</p>
+<p>春节前夕，我去印度和尼泊尔旅行。从上海飞德里，先去斋普尔，再赴阿格拉的泰姬陵，从德里乘机抵达加德满都。我在博卡拉住了三晚，再经加德满都飞回德里。</p>
+<p>最后一夜，我在德里机场度过。</p>
+<p>我低估了印度北部的冬天，北风爬过兴都库什山与帕米尔高原，席卷过克什米尔山谷，蹂躏着亚穆纳河畔以及莫卧儿人的帝都。当我一踏上这片土地，就为之诧异怜悯的不计其数的流浪汉，包裹着单薄的南亚式线衫或毛毯露宿街头，还不如随处可见的马匹、骆驼与野狗。我在机场度过了漫长的一夜。</p>
+<p>取到登机牌，才知道航班延误，不知要等多久。我托运了两个行李箱，装满各种以波斯风格的帝王将相、花鸟虫鱼为装饰的漆器盒子。我把它们像俄罗斯套娃那样装起来，大盒子套小盒子再装更迷你的盒子。我还手提两个大包，全是难辨真假的开司米羊绒地毯。</p>
+<p>过了印度海关，透过候机楼的玻璃，眺望德里难得清澈的夜空。大概是寒流洁净了空气，一排排巨大的国际航班飞机涂装着的各自标志，在跑道灯光和无垠黑夜的衬托下，散发着乡间夜总会争奇斗艳的浓浓气息。</p>
+<p>晚点，机场等候，无处可去，如丧家之犬。延误航班堆积如山，许多欧美背包客各自寻找空地坐下，有些干脆全家打起地铺。路过贵宾休息室门口，偶遇一场轻度争吵。男服务生用印度人特有的表情申明某种无奈，抗议的旅客是个戴着口罩、包裹着厚头巾的印度男人，露出一双老鹰似的眼睛。他鹤立鸡群，个头至少一米八五。从眼角皱纹看来已上了年纪。和许多印度人一样，眉心着一点朱砂。古风白袍，衣摆飘飘，从头顶到脚底，加上羊毛围巾，像宝莱坞电影里的蒙面强盗，又不似裹头巾的锡克人。虽然我的英语拙劣不堪，但这些天耳濡目染，已能与店主讨价还价——“This one”“How much money”“Impossible"……我的印式英讲水平突飞猛进，竟然听懂了争执的大概。因为航班大面</p>
+<p>积延误，头等舱和商务舱休息室人满为患，不再接待更多乘客。该印度男人几乎要摘下口罩，露出真容，但手指颤抖着垂落，悻悻然走开。</p>
+<p>我订的经济舱，登机口坐满了人，至少有两个航班的乘客挤在一起。我害怕在机场过夜，也不期待这种环境里的艳遇，尽管眼前闪过一两个印度与欧美的美人儿，浓烈的香水味冲了我一鼻子。趁着还有大把时间，我去免税店买了两条烟：上海卷烟厂的中华，包装上全是恶俗的图案，价格比国内便宜不少。我这辈子没抽过一支烟却要经常买烟送人。</p>
+<p>好不容易，觅到个空荡荡的书店。下雪了。不是幻觉。雪花细碎轻盈，比不得北国的鹅毛大雪，却被横冲直撞的风裹挟，在候机楼的玻璃上，砸出无数小白点。</p>
+<p>“德里近一百年来的第一场雪。”背后传来一句典雅悠长的印式英语。</p>
+<p>回头看到说话人的脸，裹着白色头巾，好像刚从《一千零一夜》中的飞毯上下来，就要掏出笛子与眼镜蛇——这不是在贵宾休息室门口撞见的印度老爹吗？</p>
+<p>他的口罩不见了，面孔罕见的白，几乎像南欧人的肤色。五官是标准的印度人模样，但更为立体和端正，唇边两撮灰色小胡子，有古代雅利安人的遗韵。这是一张令人难忘的脸。</p>
+<p>“Nice to meet you!"</p>
+<p>从不与陌生人打招呼的我，不由自主地蹦出一句英语，丝毫不带中国或印度口音。</p>
+<p>“Nice to meet you, too．”</p>
+<p>他用印式英语回答。后半夜的机场，许多人都已经去了酒店，书店是最安静的角落。我的英语结结巴巴，经常搜肠刮肚想半天，还要掏出口袋本《英汉字典》。看到我的狼狈，与我交谈时他故意放慢语速，耐心地反复说两三遍，同一个意思用不同的相近词语表达。</p>
+<p>印度老爹先问我是不是中国人，说很高兴认识我，我是他的第一个中国朋友。接着他抱怨自己的航班也延误了，贵宾室进不去，说那些服务生就是屎。没错，他用了个经典的“Shit”。</p>
+<p>我问他干吗戴口罩。他回答，在印度，从总理到议员到百万富翁到不可接触的贱民，没有一个不认识他这张脸。</p>
+<p>但我不是很相信这种鬼话。老头也许只是想找人解闷。他与我肩并肩，站成一排，欣赏德里百年一遇的雪。夜空的下半部分，被灯光照得略显污浊；上半部分，冷月被乌云屏蔽，露出银盘般的光晕。</p>
+<p>他说了声“Good Bye"，戴上蒙面口罩，独自走向候机楼另一端。他没携带任何行李，双手空空地离开，也许全部家当都藏在宽大的长袍里？他没留下名字，但这并不遗憾，反正我也没做自我介绍。</p>
+<p>在书店待了一个钟头，可惜大多是英文书，看完一部插图本《爱经》，我走向登机口碰碰运气。印度航空公司居然没通知我就开始登机！也许广播被我听漏了？人在国外总是自动忽略各种听不懂的广播声。再晚三十分钟，或在书店打个盹，我就要在德里机场多待一天。确认是飞往上海的航班后，我排在队伍末端。乘客大多是中国人，一张张疲惫不堪的面孔，几乎每人都提至少两个行李箱。</p>
+<p>凌晨三点，终于，上了飞机。我晕头转向地往前走，直达经济舱尾端。我的座位糟糕，双通道的大飞机，被夹在中间。左边是肤白似雪的中国大妈，右边是面黑如炭的印度大妈，散发出浓烈的咖喱味。俯瞰德里雪夜的愿望，就这样被两位大妈剿灭了。</p>
+<p>舱门关闭，等待起飞。我准备睡一宿，有位空姐走了过来，皮肤黑了点，但眼睛又人义亮，标准的印度美人。她的印式英语速度很快，表情亲切友善，不断向我做出“请起来”的手势，但我只听清最后两个单词：“Come on”。</p>
+<p>多希望后面再加上个baby。不明白啥意思，我尽情幻想一番，往人世间最美好的方向，将红眼航班化作红颜航班，但貌似合理的结论只有一个：她把我当作恐怖分子，想用甜美的笑容将我诱捕……我却无法拒绝这样的“Come on”，挤出狭窄的座位，印度空姐示意我拿好行李。我拎着大包小包，在经济舱乘客众目睽睽之下，跟着空姐从客机尾部走向前端，来到土豪坐的头等舱。</p>
+<p>第一排左侧，靠窗的座位上，有个白布裹头的印度老爹，看到我就摘下大口罩。哇，原来是今晚认识的新朋友。他露出和蔼的微笑，伸开双臂邀请我坐。</p>
+<p>原来我被莫名其妙地升舱了。我对天使般的印度空姐心存感激，没来得及询问QQ号或手机号，飞机就开始滑行了。</p>
+<p>我放好行李，坐在印度老爹身边，系紧安全带。我能清晰地看到舷窗外，大雪毫无停歇之意，灯光闪烁的候机楼，犹如神话里的水晶宫。</p>
+<p>本次航班的头等舱很空，三个中国人，两个欧美人，只有他一个印度人。他告诉我，看身边座位正好空着，想到我便吩咐空姐给我升舱。我问他哪来那么大的权力，他还是那句话：在印度，没有人不认识他的脸。</p>
+<p>空客A340客机冲过跑道，加速度将我推向椅背。我感激地看着身边的老头，经历漫长而疲倦的机场之夜，突然与这样一个人近在咫尺，肩并肩要度过五六千公里的旅途，放在唐玄奘的时代需要度过半辈子光阴，真有种做梦的感觉！</p>
+<p>飞机腾空的瞬间，印度老爹镇定自若，毫不理会脱离地面的体感。六十秒内，我想已达上千米高度。机身略微倾斜，夜空中雪花弥漫，天穹露出一道弧度，停机坪上的飞机们被远远抛在身后。</p>
+<p>舷窗外，有一只老鹰的影子，几乎与我的视线平行，难以想象它能飞到这样的高度。老鹰在印度是无处不见的动物。昨晚我住德里市中心，酒店上空平时就有几十只老鹰密集盘旋，好像等着冲下来享用住客的腐尸。而在中国大城市的天空，这一物种已基本绝迹。我把头凑到舷窗边，贴着印度老爹的胡子，鸟瞰整个德里。黑暗无边的贫民窟里，孩子们正在没有光的世界里，被寒冷的死神带往恒河的波涛。</p>
+<p>飞机渐渐平稳，三万英尺，向东而去。他问我还好吗？我说棒极了，反问他：“你叫什么名字？”</p>
+<p>他说出一串我完全听不懂的词。</p>
+<p>“好吧，印度人的名字。”</p>
+<p>但他摇头说，这些都不是人的名字。</p>
+<p>“不是人？”我想起各种空难题材恐怖片的画面。</p>
+<p>老爹话锋一转，“都是神的名字。”</p>
+<p>“神？”</p>
+<p>“嗯，你相信吗？我就是神。”</p>
+<p>他微笑，长长的嘴角几乎弯到耳根子，眉心那点朱砂更为细长，宛如二郎神杨戬的第三只眼。</p>
+<p>神——</p>
+<p>我默默在心里补充了两个字：经病。</p>
+<p>谁都能看出我的不屑。老爹并无不快，继续给我印度式的微笑，用极慢速的印式英语，在后半夜的国际航班，接近天庭的云端上，讲述神的故事。</p>
+<p>天地玄黄，宇宙洪荒。日月盈昃，辰宿列张……印度人也是如此想象，上古，在他们的大洪水时代，有个宇宙金卵，孵化出第一位神，名号“梵天”。在茫茫宇宙间漫步，因孤独而创造了一位女神莎维德丽。她很害羞，不愿接受大神每时每刻的关注，但无论躲到东南西北哪一边，大神都会生出一个头来看她。此时又有了一位唤作湿婆的大神，虽然出道晚于梵天，却有后来居上之势。为救莎维德丽出苦海，湿婆砍掉了梵天的第五个头。从此，梵天只有四个脑袋、四条胳膊，就是泰国常见的四面佛。他以四头四臂示人（我想哪吒是他的盗版），坐骑是孔雀或天鹅，偶尔乘坐七只孔雀或天鹅所拉的战车出巡宇宙……</p>
+<p>后来，梵天与另一位叫作毗湿奴的大神，偶遇湿婆大神的林伽，上顶黄天，下接厚上，如同竣工的通天塔。梵天与毗湿奴分头前往寻找林伽的终端。毗湿奴变成野猪向下挖洞，梵天变成天鹅翱翔苍穹。</p>
+<p>但这林伽太伟大了，根本找不到头。毗湿奴只好让湿婆收下自己的膝盖，承认湿婆才是宇宙真实的梵，是宇宙真正的老大。梵天却不以为然，他的资格最老，岂能示弱？他化身为天鹅一直往一上飞，谎称发现林伽的起点。湿婆是全知全能的神啊，大发雷霆，诅咒梵天不被三界众生所拜。</p>
+<p>为解释自己的身世，坐在我身边的“神”，在纸上精确地画出林伽、野猪和天鹅。</p>
+<p>看到图画才明白一一林伽就是男人的性器官，湿婆大神威武！</p>
+<p>“如果你是神，那我是什么？幻觉吗？”为了表述“幻觉”这个词，我翻出口袋本《英汉字典》。</p>
+<p>他从容作答：“神，可以化作不同的形象来到人间，未必是神像呈现的模样。有时是个女子，有时是个顽童，有时却是个动物，比如天上的老鹰。”</p>
+<p>起飞时看到的那只鹰，难道也是梵天的化身之一？也许还有无数个分身正在飞往中国，分布在这架飞机上的各个角落。</p>
+<p>“凡间的人们多是瞎子和聋子，根本无法看到真正的神。他们以为到庙里跪拜焚香就行了？大错特错了，神怎么会是毫无生命的石头和木头呢？神是宇宙间无所不在的力量，是无穷无尽的灵性，往往就在你们身后，甚至在你自己身上，你们却一无所知！可怜的凡人！”他说了三遍，碰到我不懂的词，还帮我确认《英汉字典》上的拼写。</p>
+<p>“神”说到口干舌燥，问空姐要了杯水。飞机在浓密云层上东行，左边恰能遥望喜马拉雅山的雪峰，在数千公里之远，仿佛不断露出海面的白色群岛，微暗而连绵不断。印度时间，凌晨四点三十分，一轮巨大的月亮，悬挂在珠穆朗玛或别的什么八千米高峰之上，将整个夜空渲染得如同迷梦，美不胜收。太不真实了，我很想把自己掐醒。</p>
+<p>老头却睡着了。梵天大神的最后一颗脑袋，正倚在舷窗边，发出均匀的鼾声。神就是神啊，打呼噜都这么有节奏这么性感。不过，我以为一位大神，他的睡眠应是盘腿飘浮在机舱中间，或端坐在机翼之上，衣袂飘飘地穿越云层与月光。</p>
+<p>我也困得不行，但又怕这场梦会很快破灭，醒来一切都不存在，仍然在经济舱被左右两位不同肤色的大妈护法着。我强忍疲惫，打开背包，取出一本介绍印度文化的小书，从中国带来阅读解闷的，翻到其中一页——</p>
+<p>梵天本是宇宙精神“梵”的人格化体现，当他演化为具有肉体，便不可避免地开始堕落。他在天官享受荣华富贵，贪恋美色，霸占属下的智慧女神；他庇护了无数魔鬼在世间作恶。公元六世兰纪后，原本梵天享有的万有之神的地位，逐渐被湿婆或毗湿奴取而代之。至今，全印度只剩两座供奉他的庙宇。</p>
+<p>当我醒来，还在头等舱，刚才撑不住睡着了。我的左边，那位伟大的神打着呼噜，唇边挂着一长串口水，像许多上了年纪的大人物，一派衰老之相。我想象几万年前，这位大神在天上寻欢作乐的情景，再看眼前这老头，口水已弄脏了长袍。我忍不住，掏出几张纸巾，擦干净他的嘴角。他没被弄醒，继续发出鼾声。</p>
+<p>舷窗外，晴空万里。机翼下，浓云密布。想必已至中国领空。算算时差，北京时间过中年了吧？我顺便调整了手表的时间。</p>
+<p>空姐来询问餐牌。我们的“神”懵懵懂懂睁开眼，向空姐投去烈焰似的目光。头等舱可选择菜单，他大概是回忆起“神”的身份，老老实实选了素食。坐在印度教徒旁边，我不好意思点牛肉，便挑了咖喱土豆米饭。</p>
+<p>我想，要是“神”的这副躯壳得了老年痴呆症，会不会遗忘了自己是神，而彻底混同于凡人呢？幸好他还记得我，问候我休息得如何。空姐把早餐连带午餐都送来了。她含情脉脉地看着我们，当我想入非非时，才发现她盯着旁边的老头。她向“神”递出一张便笺纸与一支笔，祈求他赐予签名。</p>
+<p>空姐对老头说：“先生，很高兴为您服务，我是看着您的电影长大的！还有我爸爸也是！”</p>
+<p>看得出她很激动，但得体有礼，不像脑残粉失控一般打扰别人休息，如获至宝之后便退到帘子背后了。</p>
+<p>我盯着老头的脸，似乎看出几分脸熟。也许对中国人来说，所有宝莱坞明星统统都长一个样，就像中国人到了国外都被认为是李小龙或成龙。</p>
+<p>他微微皱起眉头，表情复杂，难以言尽。</p>
+<p>终于，“神”说话了，“我承认，我是个电影演员。”</p>
+<p>六十六年前，他出生在南印度一个小公务员家庭，属于第二等级的刹帝利种姓。在那个阳光浓烈、人民肤色黝黑、说着南印度语的邦里，他的浅肤色和美男子容貌，简直万里挑一。他受过不错的教育，印式英语流利，十八岁考取印度最好的大学。他从小爱电影，最崇拜格利高里·派克，在大学就开始表演戏剧，又去宝莱坞参加选秀，一门心思投入演员生涯。他的第一个角色是侦探，又是拳头又是枕头地征服了杀人犯和美女，也征服了上亿的印度粉丝。他成了炙手可热的明星，年纪轻轻就拿了影帝，每年至少主演六部电影，海报贴遍整个印度乃至最闭塞的穷乡僻壤。</p>
+<p>“你会跳舞吗？”</p>
+<p>我印象中的印度电影，哪怕恐怖片，都会没由来地蹿出一群男女欢快地载歌载舞。</p>
+<p>老头点头称是，手舞足蹈，摆出一组很古怪的姿势，在我看来就像羊痫风。这是他在一部经典电影中的舞姿，曾如神曲般传遍印度大街小巷，每个孩子都会跳上一段，略像几年后流行全球的《江南style》。</p>
+<p>他告诉我，三十岁后，他拒绝出演任何现实题材和偶像人物电影，只扮演一种角色——神。</p>
+<p>演过湿婆、毗湿奴、罗摩，甚至演过释迦牟尼与耶稣，但他最爱演的是梵天。三十多年来，他在一百多部电影中扮演梵天，但很少扮演男一号，通常是男二与男三，有时竟是反派。但他的这张脸，作为梵天大神，却深入到每一个印度人的心底，尤其是在文盲与半文盲成群结队的农村地区。每次他深入地方拍戏或旅行，都会被人民群众当作大神降临，纷纷拿出贡品以至于全部家当来奉献。而在达官贵人面前，他也具确‘一’种神的气质，被好几届印度总理奉为上宾，还曾指名要求陪同出访国外。</p>
+<p>我问他：“结婚了吗？”</p>
+<p>他伸出六根手指。</p>
+<p>第一个在老家，父母安排的婚姻，刚上大学就离了。第二个才是初恋，曾经在大学校园爱得死去活来，可他刚成为电影明星就抛弃了对方。第三个也是电影演员，婚后不久却成为富商公子的情妇。第四个，他吸取教训，找了个医院护士，为他生了两个儿子和一个女儿，维持了长达十年的婚姻。第五个，真正的贵族之家，全家不是议员就是部长，爷爷曾是尼赫鲁总理的密友。但她不愿住在印度，她讨厌自己的国家，每年有七个月在英格兰或加利福尼亚度过。而梵天大神离不开这片神圣国土，定期前往恒河朝圣沐浴，两人因此分手。第六个，知识分子家庭出身的女粉丝，比他年轻三十五岁，后来车祸死了自那以后，他未再娶，独身至今。</p>
+<p>老头慢悠悠地说：“我的影迷有上亿人，成为举足轻重的大人物后，每次出行都有几百号人跟随。我学会与各种人打交道，跟德里的政治家谈平民的权利，跟孟买的巨商说能源危机与汇率浮动。五十岁生日那天，我决心从政，组建自己的政党，而我是当之无愧的党魁。我在家乡发展力量，很快扩展到整个南印度，凡是我的影迷都是支持者，吸收了几百万党员，他们多是草根，刚从农村进城，目小识丁，家徒四壁，寄居在拥挤的贫民窟里。但他们相信我就是神，只有我能带领大家脱离苦海，前往一个幸福的神奇的印度。”</p>
+<p>他当选了家乡所在邦的首席部长，相当于中国的省委书记兼省长。他的政党自然也在该邦执政，邦议员全是他的小弟和影迷，上到税务局和地方银行，下到在街头公开受贿的交通警察，他的政党简直权力无边。他每天视察贫穷的农村和失业的劳工，发誓要解放黑砖窑里的所有童工，与各个种姓乃至贱民共进午餐。但能到他的私人客厅里来的，只能是CEO和银行家，陆军准将与板球明星，要么是大学校长或诺贝尔奖获得者。</p>
+<p>他庇护了整个邦的流氓和恶霸，这些坏蛋只要白天老老实实，黑夜就可以无法无天。作为交换条件，有家报社记者，刚写了两篇批评首席部长的专栏，就无声无息地“被失踪”了，坏蛋们保证无人胆敢挑战“神”的权威。</p>
+<p>但他年轻的妻子难以容忍，尤其当一个强奸十四岁少女的无耻浑蛋，仅被法官判处了三年缓刑的时候。妻子扬言要向媒体揭发这个伪善的政客，但很快遭遇意外车祸。首席部长兼宝莱坞明星兼“神”在妻子葬礼一上流泪的画面，通过现场直播的娱乐新闻，传遍南亚次大陆，让他的支持率又上升七个百分点。</p>
+<p>新世纪的第一年，他决定挑战执政的人民党，坐上印度总理的宝座，欲步好莱坞明星罗纳德·里根总统之后尘。他宣称将根除祸害印度多年的腐败，消灭饥饿、愚昧、疾病和贫民窟，并与西边的宿敌巴基斯坦实现永久和平，把印度建设成比美国更强大的国家，让印度人的价值观传播到地球上每个角落。</p>
+<p>可他忘了自已只是个演员。影帝般的演技对政治家来说很重要，但政治家最重要的绝不是影帝般的演技。而他的对手可不是一个人，而是一个高不可攀的世界。</p>
+<p>不到半年，他的瑞士银行账户，匿名的海外房产和劳斯莱斯，跟洗钱集团的通话录音，依次暴露在报纸和网络上。还有不计其数的私生子，纷纷上电视控诉这个始乱终弃的父亲，其中有四五个可能是真的。他的保护伞下的黑社会头目与大地主，也如墙头草般背叛。原本在一贫如洗的家中供奉他的照片作为神像的人们，由他捐款建造并以神为之命名的小学和中学的校长们，也将他的头像清理进了下水道。</p>
+<p>经过漫长而拉锯的官司，身败名裂的前任首席部长，面临被判终身监禁的危险。最后一次开庭，他的头发全白了，第一次像个老人，风烛残年，行将就木。当律师完成辩护陈词，检控官列数了他十大罪状。被告席上的他，对所有人报以神一般的微笑。法官愕然之时，他骤然挣脱警卫，冲出疏于防备的法庭。没人想到他会这样，又不是暴力犯罪分子，何况一把年纪的富贵之躯。他像二十岁的小伙子，在最高法院的走廊横冲直撞。存警卫抓住他的衣角前，老头撞向一扇古老的窗户，英国殖民者的彩色玻璃粉碎，整个人飞出楼外。</p>
+<p>这是法院的七楼，他没有丝毫害怕，而在内心坚信——自己是神。</p>
+<p>梵天大神，将变成一只天鹅，展翅高飞，直达九霄云顶，没人再能抓住他。</p>
+<p>然而并没有什么飞翔，只有自由落体运动，只自凡人无法抗拒的地心引力，将他直接拉向大地。最高法院外的大街上，场外直播的电视媒体，仰着脖子拍摄这一罕见的死亡过程……短暂的痛苦后，他看到自己走在一片荒原，旱季的故乡，赤地千里，不见任何活物，村庄和神像残垣断壁，干涸的溪流布满鱼和鸟的尸体。无边无际的旷野'有个焦炭般的小孩，衣衫褴楼，瘦得只剩骨头。那是一个贱民，世代清扫厕所，绝对不可接触，哪怕看一眼都会被诅咒。突然，他发现自己回到了七岁，伸出嫩嫩的右手，高贵的浅色皮肤，触摸贱民孩子的黑色脸颊。微热的肮脏的接触，对方触电般倒地，蜷缩成一团，乌黑的身体迅速变白，两只脚几乎消失，双臂化作翅膀，皮肤长出羽毛，最后变成一只天鹅，眼泪汪汪地看着他的眼睛。当他怜悯地抱起天鹅，亲吻它细长柔软的脖子，天鹅雪白的腹部却渗出鲜血，奄奄一息。他慌张地逃回家，才听说有个贱民的孩子死了。他被爸爸揍了三个钟头，赤身裸体在水桶里浸泡了三天，三个月不准坐上餐桌吃饭。那年夏天，蒙巴顿勋爵宣布印巴分治，印度独立，紧接着是与巴基斯坦的战争，圣雄甘地遇刺身亡，而在南印度许多个土邦，盛传梵天大神已秘密降临人间……“9.11”那一年，他曾在最高法院跳窗坠楼。可是奇迹发生，一辆敞开的垃圾车经过，他掉到数米厚的食物残渣、塑料瓶子以及动物尸体上。侥幸避免了血溅五步，粉身碎骨，但头部受到重力撞击。</p>
+<p>他在医院昏迷了七天七夜，醒来后清晰地说出那个梦。留洋归来的医生说那不是梦，而是标准的濒死体验。只有他自己才明白，那是七岁时真实的记忆。</p>
+<p>审判时逃跑自杀的他，引起全国影迷的强烈同情。舆论风头转向，无数人上街呼吁赦免他，指出对他的审判是一场政治迫害。于是，他被法官从轻发落，以获刑七年告终。</p>
+<p>他的新家在德里监狱，典狱长给他安排了一个单间，方便他每天祈祷和阅读。从前他经常公开演讲，面对成千上万把他当作神而顶礼膜拜的人们，大段背诵史诗《罗摩衍那》，也能信手拈来泰戈尔的《新月集》和《园丁集》。但他并不了解其中含义，只是死记硬背。而在监狱里的日子，他终于能安静地阅读，从每晚八点到凌晨两点。文字像无穷的海水，一点点浸湿大脑里的海绵，挤压出各种颜色的尘泥。每次在监狱大院放风，他都会悄悄撒出一把灰尘，那不是来自墙壁的，而是他自己的一部分。</p>
+<p>没人来监狱探望过他，包括在国外的三个婚生子女，以及难以统计的私生子。但他每天都能收到玫瑰，还有年轻时代的电影剧照——只有影迷们忠诚不渝。这些粉丝也是世袭的，有的已祖孙三代。也只有影迷们，才将他当作一一个演员，而不是神。</p>
+<p>听完他的故事，我沉默好久，顺便感叹我的印式英语达到了新东方结业的水准。</p>
+<p>“那么多大神里，你为什么偏偏喜欢梵天？”</p>
+<p>“因为，梵天变成美丽的天鹅，飞到苍穹之上，寻找林伽的起点。”</p>
+<p>“你喜欢飞？”</p>
+<p>“是，我喜欢一切会飞的物质，比如飞鸟、昆虫、风筝、蒲公英，还有飞机。”</p>
+<p>就像现在！，漫长的飞行接近尾声，天色渐渐变暗，夕阳追在飞机后头。透过云朵的缝隙，依稀可见长江下游的田野和城镇。</p>
+<p>老头说，上个星期，他才服完刑期，走出德里监狱的大门，身上只有一套《泰戈尔诗集》，还有一笔不多的积蓄，刚够买张去中国的头等舱机票。</p>
+<p>“飞来中国干吗？”</p>
+<p>他去过世界上所有的国家，包括南极和北极，唯独没到过中国。他知道中国是个古怪的国度，中国人与其他任何民族都不同。除了人口众多，其余几乎都与印度相反。</p>
+<p>还有个原因，他在狱中最爱泰戈尔的《流萤集》。大师曾经去中国和日本旅行，常有人邀请他把诗句写在扇子和绢素之上，因此就有了这部诗集。</p>
+<p>我想起一张上世纪二十年代的著名照片，经常被文艺女青年用来伤春悲秋——左边是林徽因，右边是徐志摩，中间是穿着汉服的泰戈尔，白须飘飘，仙风道骨。</p>
+<p>老头擅长星象和占卜，预测这一年中国会发生许多大事。他还说，我在这一年里也会有大的变化。</p>
+<p>“你怎能预言我的未来？”</p>
+<p>“因为，我是神。”</p>
+<p>说了半天，印度老爹又绕了回来。</p>
+<p>我有些大脑缺氧，无力再转换这些词语。飞机下降，冬夜过早降临。舷窗外的云端上，拉着一条漫长的晚霞带，灿烂得灼人眼球。空姐关照系紧安全带，座位不断颤抖，耳膜阵阵疼痛。老头却无任何反应，平静地俯瞰舷窗之外。</p>
+<p>北京时间晚七点，飞机开始倾斜，机身转向，从南边绕过上海市区，飞往浦东国际机场。千米之下，灯光星罗棋布，宛如天上的黄道十二宫。我能分辨出高速公路的车流，黑夜里异常耀眼。</p>
+<p>望见机场候机楼，无数灯光簇拥胞道，巨大的飞机呼啸降落。起落架轮胎撞击跑道的瞬间，我的心像被扎了一下，整个人向前俯冲。舷窗外是黑夜中的停机坪，一架又一架国际航班客机，给我一种仿佛回到德里的错觉。</p>
+<p>上海也在下雪。飞机滑行很久才停稳，但没有靠到候机楼边上，而是在停机坪中央。一辆摆渡车和一辆中巴开来。舷梯搭上前部舱门，广播通知头等舱旅客先下机。</p>
+<p>在空姐的祝福和道别声中，我踏出舱门，头顶是空旷寒冷的夜空。没想到下的同时，还有一轮又大又圆的超级月亮，是专门来迎接“梵天大神”的吗？</p>
+<p>我披上厚外套，刚要沿着舷梯往下走，回头看一眼印度老头，想要个联系方式，电话号码或E-mail。</p>
+<p>他却先说话了——“谢谢你，年轻人，很高兴你能陪伴我共同飞行。”</p>
+<p>这话说得我受宠若惊，“我也很高兴认识您！真的！”</p>
+<p>“我是神，你相信吗？”</p>
+<p>看着老头认真的表情，我一本正经地点头，“我相信！”</p>
+<p>突然，他给了我一一个大大的拥抱，在我猝不及防的同时，印度式的两颊亲吻，就差像勃列日涅夫嘴对嘴亲吻昂纳克了。</p>
+<p>但我一点都没抗拒，反而把他拥抱得更紧，感受到他体内神一般灼热的温度。</p>
+<p>后面在排队等候，美丽可爱的空姐，她通情又达理，没有催促我们快下去。</p>
+<p>老头咬着我的耳朵说：“你知道吗？我会飞！”</p>
+<p>然后，他松开我，两臂如十字架般伸展，双脚便脱离舷梯，整个人飞上夜空。</p>
+<p>他真的会飞。</p>
+<p>五分钟前坐在我身边的老头，此刻在我的头顶飞翔，盘旋凌驾于无数巨型客机之上。浦东机场的雪夜，透明银河般无边无际，只剩一抹纯白的影子。</p>
+<p>Namaste!</p>
+<p>最漫长的那一夜，很多双眼睛都可作证，在高处不胜寒的夜空，有一只雪白的天鹅，消失在超级大的月亮里……</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

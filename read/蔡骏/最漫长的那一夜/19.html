@@ -1,0 +1,1029 @@
+<!DOCTYPE html><html><head><title>19</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="18.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="第二季.html">下一章</a></p><hr><h1><center>第19夜 诺基亚与摩托罗拉也有春天</center></h1>
+<p>别忘了寂寞的山谷的角落里，野百合也有春天。</p>
+<p>——罗大佑</p>
+<p>我的第一台手机是摩托罗拉。</p>
+<p>黑白屏幕，单调的电子铃声，不能照相，蓝灰色外壳。我用这台手机玩过短信游戏，为写那个“你知道地狱的第19层是什么”的故事，那还是手机WAP的时代。</p>
+<p>后来，我换了台国产品牌的夏新，涂着蓝色金属的翻盖，有个女孩说它看起来像玩具。</p>
+<p>一年以后，我拥有了自己的第一台诺基亚。刘德华为这款手机做过广告，我记住样子就买了。说起拿诺基亚当榔头敲小核桃之类的——我没试过，但确实结实耐用，无它。</p>
+<p>网上流行过一首歌“我赚钱啦赚钱啦，不知道怎么去花？我左手买个诺基亚右手买个摩托罗拉，我移动联通小灵通一天换一个电话号码呀”。那年我真的赚钱啦，自己买了两套房，买俩手机又算啥呢？我又买了一台摩托罗拉，翻盖手机，总是不停响起“Hello MOTO”。</p>
+<p>2008年，我换了自己的第六台手机。多普达，又薄又宽的，当时看起来很商务，但死机与卡慢问题严重，用得不爽几近奔溃时，真想要扔到水里去啊——当你脑子里成天想一件事，这件事往往就会变成现实。</p>
+<p>不过，那台手机却是诺基亚。</p>
+<p>诺基亚的主人叫一草，百度百科上这样介绍他——</p>
+<p>一草，本名黄杨健，江苏泰州兴化人，知名青年出版人，作家，青少年人生、职场励志培训师，北京作家协会成员，广东永正图书发行有限公司CEO兼总编辑。已出版个人图书十余部，包括《那时年少》《毕业了我们一无所有》等畅销书。已成功在北京大学、北京师范大学、对外经贸大学、西安工业大学等近百所高校开展“毕业了一无所有到年薪百万”的励志讲座，深受广大学生追捧。</p>
+<p>其实，我所认识的一草，并不客气的说，是个奇葩。最初认识一草，彼时他还在上海，长得五大三粗，脑后留着马尾巴，下巴蓄着山羊须，说话嗓门很大，普通话不怎么标准，根本不是传说中文学青年的样子——除了无业游民这一点符合。</p>
+<p>后来，一草去了北京，进到图书出版这行，阴差阳错成了我的编辑，负责的图书就是《天机》。他陪我跑过全国很多场签售，我们曾经躺在火车软卧包厢里，整个晚上聊天。我们有些共同认识的朋友，他也说了不少他的秘密，有关郭敬明的八卦。窗外是中国沉睡的田野，碾压过沧桑的金属轨道，偶尔黑夜闪过几点光线，不晓得是诡异的灯光，还是熠熠的星空？</p>
+<p>七年前，国庆节的第三天，一草陪同我去杭州签售。</p>
+<p>我们从上海出发，那会儿还没高铁，去杭州最快的车从南站出发。那天早上，当我准备跟一草汇合进站，才知道他已经在里面了——可是，火车票还在他手里呢！为了赶签售不误点，我想要逃票冲进去却被逮住，要买站台票却不准。我急得没办法，只能藏到一个隐蔽的地方，有个小门是工作人员进出的，我跟在后面混了进去，这才找到我们的站台，前脚刚跳上车，后脚就开动了。他的表情尴尬，而我吐槽无力，在沪杭线上，直奔杭州而去。</p>
+<p>到了杭州，在庆春路的新华书店签售完《天机》。下午还有时间，一草突然提出，去西湖走走。西湖，我早已走过无数遍，但或许一草去的不多，虽然疲倦，我们还是打车前往。</p>
+<p>十一的西湖，两个男人，人山人海中劈情操，沿着湖滨路往北走去。一路倒是柳树成荫，唯独湖光山色，只能透过别人后脑勺间的缝隙，管中窥豹而已。到了北山街，整个西湖的东北拐角，一转弯就要到断桥了。他却在游船码头边坐下，好不容易找到一个空间，可以没有阻拦地直视西湖。下午三点，远远的水色天光，孤山似有暮霞，右手的白堤，与正对面的苏堤上，虽然依旧人头攒动，但也是可以被忽略的。</p>
+<p>我们坐了很久，每隔一两分钟，一草就掏出手机看看。我催他再往前走走，或是登船去湖上转一圈。但他愣在那里不动，看他体壮如牛的样子，也不像走不动了。我问他有什么事，他回答“呵呵”。</p>
+<p>原地坐了一个钟头，一草最后看了眼手机，幽幽叹气，一秒钟变身贾宝玉，软软地起身说，我们上床吧。</p>
+<p>哦？</p>
+<p>上船吧。</p>
+<p>我才听明白，但至今仍不确定，他这么说是因为普通话不标准？还是心里头想到了什么？</p>
+<p>招呼来一艘游船，谈好价钱，船夫放下船板。我先上船，回头喊一草上来。</p>
+<p>他心不在焉，东张西望，被我催得心急慌忙，跳上船板时手一滑，手机顺势掉下去了。</p>
+<p>我清晰地听到手机与西湖水面的撞击声，那个啪啪啪啊……几乎要飞溅到你脸上。</p>
+<p>永别了，诺基亚君。</p>
+<p>一草和我趴在船舷边。游船与堤岸之间，小小的浪头翻滚，除了几个矿泉水瓶子与水草，再无任何手机的踪影。</p>
+<p>这哥们沉默半天，才说这是上个月买的诺基亚。</p>
+<p>我说要捞手机，一草说不可能再捞到了，游船的老大也说，怎么可能，下面水很深，全是淤泥，每年都有人把手机相机掉下去，没人捞得上来。</p>
+<p>游船划向西湖深处，我把手伸到冰冷的水里，很快被黑色水波覆盖。</p>
+<p>我说，对不起，是我不该催你走的，我再给你买一个？</p>
+<p>跟诺基亚没缘分，算啦。</p>
+<p>我们在西湖里飘荡划到黄昏，西边的丘陵中霞光一片。转过湖心亭与阮公墩，回看小孤山背后的保俶塔，水面上星罗棋布着各种船只，没有看到白娘子，也没有许仙，更不见小青，倒是见着几位一边坐船一边打手机的法海。</p>
+<p>回到岸边，天黑了，我问他还想要捞手机吗。</p>
+<p>一草呵呵着摇头，急着赶火车回去，杭州之行告终。</p>
+<p>打那以后，我看到他就有愧疚，总说要送他一台诺基亚，但每次一忙就忘了。不好意思，至今都没送出去过。至于将来嘛，恐怕再没有机会了，因为诺基亚都没了。</p>
+<p>也许，是忘不掉那台西湖水底的诺基亚的缘故，第二年我自己也换成了诺基亚。侧面可以滑出一个全键盘，打字特别舒服，几乎是我用下来最好用的一款。</p>
+<p>大概是和诺基亚有缘分，我的第八台手机还是诺基亚。那一年，iPhone都出到4了，而我的这款诺基亚N9，是全球唯一使用MEEGO系统的机器，虽然很特别，但说实话，很多应用都下不了，越来越感到软件上的不方便。</p>
+<p>用过诺基亚的你，总会记得开机画面的两只手。你更不会忘记诺基亚自带的铃声，来自古典吉他曲GRAN VALS，原作者是西班牙人Francisco Tarrega，他死于1902年，创造了古典吉他演奏的最高技巧，比如轮指。据说在诺基亚的全盛时代，全球每天响起这首曲子18亿次，每秒钟响两万次。有段时间，每次听到就会让我精神紧张，现在想来也是洗脑神曲的缘故。</p>
+<p>2012年底，缘尽的时刻终难避免，我彻底告别了诺基亚。我不是电子产品发烧友，也没有赶时髦的兴趣，加上对iPhone有某种奇怪的抗拒心理，我选择了三星。</p>
+<p>其间又经历了很多事，2014年，我开始在微博上写作#最漫长的那一夜#。</p>
+<p>今年年初，我换了手机，还是三星的Galaxy Note 4。差不多，就是同一时间，我收到一封邮件，来自那个叫一草的男人，整封邮件唠叨了半天，都是关于《最漫长的那一夜》出版的，但我只记得四个字——不忘初心。</p>
+<p>看到他的邮件，唯一让我忘不了的，是当初坠落到西湖水底的诺基亚。</p>
+<p>2015年6月1日，我把《最漫长的那一夜》第一本图书的出版权利签给了一草的公司。</p>
+<p>那天，我和他一起聊这本书的编辑想法，聊着聊着就跑题了，说到七年前的杭州签售，说到国庆节的西湖边，说到……</p>
+<p>不知是我哪根筋搭错了，忽然问，一草，你说，那台诺基亚还在不在？</p>
+<p>在哪里？</p>
+<p>西湖的水底啊。</p>
+<p>我却想到令狐冲，他被梅庄四友关在西湖底下与任我行做狱友。</p>
+<p>不知道啊。</p>
+<p>一草，我们去一趟杭州，到西湖里把你的手机捞上来吧？</p>
+<p>这是个疯狂的念头，一草搔搔脑后的马尾巴说，你想多了。</p>
+<p>好吧，我承认，这只是我开的一个玩笑。</p>
+<p>但在那天深夜，接近十二点钟，我收到一草的短信——买好飞杭州的机票了，你一起去吗？</p>
+<p>第二天，我和一草飞到了西湖边上。</p>
+<p>西湖黄昏。</p>
+<p>不是双休日，再过几天就是高考了，不再人山人海。我和一草穿过几行垂柳，找到游船码头，认出了七年前的位置。不知是否由于潮汐运动，湖水的浪头翻滚起来，不断拍打着堤岸，发出轰轰水声的同时，激起无数泡沫。逝者如斯夫，川流不息，但不管水往哪里去，西湖没有挪过窝，断桥也从未断过，这条堤岸就在脚下，记忆恍如昨日，哪怕刻舟求剑，也不会有误差。</p>
+<p>我穿过断桥上拍照和自拍的人群，沿着白堤往前走去，在一片含苞待放的荷花边上，找到个上了年纪的环卫工人，手里有个捞垃圾的网，一根长长的竹竿支撑着。我说有台手机掉进西湖了，想要借个网捞一下，当然我没说那是七年前。</p>
+<p>环卫大爷很客气地把网借给了我，夕阳从栖霞岭和保俶塔的背后照着我，右手边的西湖上金光四射，宛如千万片鱼鳞滚动。</p>
+<p>我回到一草身边，站在游船码头边，两人合力将竹竿深入西湖之中。</p>
+<p>旁边已经有人围观，指指点点，我只能旁若无人，看着水面吃到竹竿的高度，底下果然很深呐，绝对能淹死人的节奏。</p>
+<p>好像捞到了什么东西？</p>
+<p>对，我能够感觉到底下除了淤泥和水草，还有些稀奇古怪的物件，但愿不是些垃圾和石头，要是在断桥下修炼了一千三百多年的青蛇妖精呢？</p>
+<p>我和一草的劲头更足，轮流探着竹竿，终于捞上来一大堆家伙。</p>
+<p>那是什么？黑乎乎的，好像是手机的形状吗？不止一台，居然有四台手机。我们放在岸边洗了洗，发现一台爱立信，一台松下，一台波导（手机中的战斗机），还有一台叫不出名字的山寨机。</p>
+<p>再接再厉，继续捞吧。</p>
+<p>我们的第二网，又捞上来六台手机，各种牌子和型号都有，还附送了一台佳能数码相机，和一个手机充电宝。这一批里有两台诺基亚，一台是最古老的那种，差不多是2002年的款型，还有台就是我用过的N9，这一款式2011年才出来的，不可能是我们七年前掉下去的。</p>
+<p>天快黑了，最后一抹晚霞沉没在西湖，一草看着岸边混浊的水，目光呆滞，满满的无力感。</p>
+<p>别泄气！我鼓励着他，把竹竿再次深入水底。</p>
+<p>第三网，手上就感觉有些特别，分量不能说很重，但是很粘稠，好像被什么缠住了——刹那间，我真的想到了死人的头发，比如溺水或者被杀害沉湖的女子……</p>
+<p>一草帮着我一起拽这竹竿，终于捞起一大坨水草，居然还带着几尾小虾。</p>
+<p>那团千丝百结里头，似乎还有东西。西湖边亮起路灯，我们顾不得干净与否，用手剥开层层叠叠的水草，终于摸出两台手机。</p>
+<p>它们就像被捆绑在一起SM的男女，水草结结实实地包裹着，在西湖水底打了无数个死结，无论如何都无法解开了。一草掏出把瑞士军刀，好不容易割断水草，将这两台手机解救了出来。</p>
+<p>一台诺基亚，一台摩托罗拉。</p>
+<p>好像是啊，这台诺基亚。一草用了两包餐巾纸反复擦拭。</p>
+<p>不错，七年前，从西湖坠落的手机，就是眼前的这一台。</p>
+<p>人说沧海还珠，这是西湖还机呢。</p>
+<p>捞上来的其它十几台手机，我们送给了环卫大爷，假如还会有像我们这种闲得蛋疼的失主找过来的话。</p>
+<p>但我带走了那台摩托罗拉，就是跟一草的诺基亚紧紧缠绕的那个，这个世界上没有无缘无故的SM，我想。还有一个原因，它看起来比七年前的诺基亚还要古老，似是十多年前的款型，很像我的第一台手机。</p>
+<p>虽然，在西湖底下泡了七年，诺基亚的外观还算完整，只是后盖掉了，电池板裸露在外面——至少这个不能再用了。一草卸下电池板，找到西湖边一个厕所，洗手台旁有烘手机。我们把诺基亚塞进去，吹风了十分钟，差不多干了。</p>
+<p>我万万没想到，一草这个极品，居然自带了一块新的电池板，正好跟这台七年前的诺基亚配套，不晓得他从哪个电子博物馆里淘来的。他把电池板塞进西湖里捞上来的手机，然后开机。</p>
+<p>诺基亚，赐予我力量吧。</p>
+<p>天哪，大概是前面的铺垫太过曲折，或许就是七年间我的命运发生了太多变化，此刻的我紧张到了极点，根本不敢再看一眼。</p>
+<p>等待的半分钟间，整个西湖仿佛都安静了，似乎全世界的人都已消失，只剩下一汪如镜的水面，倒映着天上月光，在断桥的桥孔底下。</p>
+<p>忽然，耳边响起某种熟悉的声音，好像是诺基亚的开机音乐。</p>
+<p>我和一草同时睁开眼睛，看到七年前的手机屏幕上，一只大手牵住了一只小手，底下出现五个字母：NOKIA。白底蓝字就像芬兰国旗。</p>
+<p>小强般的机子啊。</p>
+<p>一草把这台诺基亚捧在手掌心，慢慢等它进入首页桌面，毕竟在西湖底下沉睡了七年，就像刚醒来的植物人，新陈代谢缓慢到了极点……</p>
+<p>我看着手表，几乎过去一刻钟，才陆续显示首页图标，直到见证奇迹的时刻——中国移动的信号出现了。</p>
+<p>五分钟后，响起了短信铃声。先是一下，还来不及看内容，响了第二下，接着铃声就没有停过，此起彼伏响了二十多分钟，无法统计进来多少条，原本充满的新电池被消耗了两格。</p>
+<p>我们找了家西湖边上的咖啡馆，随便点了一些简餐。我问一草怎么还能收到短信，他说七年前，他手机掉西湖里以后，他回北京换手机同时也换了号码。所以啊，原来的SIM卡继续有效，以前办过一个什么套餐，几乎等于永不停机。</p>
+<p>七年里收到了哪些短信？</p>
+<p>一草却不给我看了，诺基亚被他紧紧攥在手心，他说全是无聊的垃圾短信，还有不计其数的来电提醒。</p>
+<p>窗外的西湖月光，好像也是七年前的，什么孤山啦，断桥啦，保俶塔，雷峰塔，三潭印月，花港观鱼，全都模糊成了黑色的碎片。</p>
+<p>这时候，我接了个漫长的电话，《最漫长的那一夜》导演打来的，我们在电话里讨论了两个钟头，关于剧本创作中的各种问题，以及怎样处理细节。我没有跟他说我正在西湖边，陪伴我的编辑一草找回了丢失的诺基亚。</p>
+<p>打完电话，已近子夜，咖啡馆里人不多了，整个西湖才安静下来，连同湖底下沉睡的几万部手机和存储器中的记忆。</p>
+<p>一草没有任何表情，仍然在看他的诺基亚，背对着我，脑后的马尾巴似乎发白了。</p>
+<p>我拍了拍他的肩膀问，一草啊，七年前的国庆节，我们在西湖边的游船码头，你是不是在等一个人？</p>
+<p>他愣了一下，回头看了看我，不置可否。</p>
+<p>从一草凝滞的眼神里，我看得出来，他这一辈子都不会吐出答案的。</p>
+<p>突然，诺基亚的铃声响了，还是曾经最熟悉的旋律——GRAN VALS。</p>
+<p>刚过子夜十二点，我和一草都愣住了，这手机在西湖底下泡了七年啊，那个人是谁呢？</p>
+<p>古典吉他的轮指回旋着，一草把诺基亚放在桌上，这古老的铃声持续不断，边上那桌抽烟的大姐转头侧目，宛如回忆起了什么。</p>
+<p>接啊！我喊了一嗓子。</p>
+<p>一草手指哆嗦着拿起手机，按下通话键，嘴里拖出一个漫长的“喂……”</p>
+<p>我很想凑近了听到诺基亚里的声音，但一草在耳边捂得很紧，只能听到他急促沉闷的呼吸。</p>
+<p>通话持续了三分钟，一草却始终一声不吭，不晓得那边在说些什么，貌似有些灵异。</p>
+<p>突然，一草对手机说：对不起，我没有这方面的需求。</p>
+<p>他挂了电话，对我傻笑了一下。大半夜的，打什么推销电话！</p>
+<p>随后，他将诺基亚小心地塞进包里，站起来吼了一嗓子，买单。</p>
+<p>半夜的湖滨路上，尽是开着跑车撩菜的富二代们。我们打不到车，一路走了回去，我也再没有问过他任何话。</p>
+<p>回到酒店房间，推开窗户，可以看到西湖的一个角落，月亮下黑乎乎一片的，偶尔闪过几个光点。</p>
+<p>凌晨两点，我才睡下，一草住我隔壁，虽然隔着一堵墙，但我能清楚地听到他的哭声。</p>
+<p>是啊，一个大男人的号啕大哭，持续几个钟头，从凌晨到黎明。那惊天动地排山倒海的气势啊，是要把西湖哭得翻涌呜咽，教岳武穆悲伤得从坟里头惊醒，让钱塘江泛滥成灾一发不可收拾，你能想象吗？</p>
+<p>果然，杭州的后半夜下起了大雨。</p>
+<p>整个后半夜，我都没有睡着过，被他的哭声和窗外的雨声吵的。我几次冲出去敲他的门，怕他会出什么事情，比如悲伤过度寻了短见，或是一把鼻涕呛在气管里……但他不开门，只有哭泣声。</p>
+<p>次日中午，我们冒着暴雨离开西湖，我回上海，一草回北京。</p>
+<p>临别之时，我对他说，亲爱的，那台诺基亚，你可要放好啊！</p>
+<p>虽然，一草的眼圈还是通红，却笑着说，今天早上，我悄悄跑到西湖边，又把这台诺基亚扔回水里了。</p>
+<p>我沉默了一分钟，很想扇他个耳光。</p>
+<p>但，我还是拥抱了他一下。后会有期，兄弟。</p>
+<p>回上海的高铁上，忽然感到包里有个东西，打开里面的塑料袋一看，原来是台肮脏破旧的摩托罗拉——昨天被我从西湖底下打捞上来，跟一草的诺基亚纠缠在一块儿的。</p>
+<p>好吧，一草的诺基亚还给西湖君了，这个摩托罗拉算是给我的纪念。</p>
+<p>这天晚上，我回到家里。窗外，暴雨如注。黑夜灯光下，无数细小的污垢，沿着玻璃慢慢地冲刷下来。但我知道，没过几天，还会积起新的灰尘，碎片似的，难以抹去。</p>
+<p>而我花了三个钟头，在鼓点般的雨声伴奏下，翻箱倒柜，掘地三尺……</p>
+<p>终于，找到了我的第一台摩托罗拉，还有第一台诺基亚，原来以为早就扔掉了，其实还藏在角落里啊。</p>
+<p>夜深人静，闭上眼睛，等待了好一会儿，仿佛暴雨和雷声隔绝了世界，我才打开摩托罗拉和诺基亚。我的手机里没有照片，只有短信，翻着一条又一条，那么多年留到现在还没删的，一定是有些特别的缘分……</p>
+<p>看完摩托罗拉里的短信，我从哭到笑。</p>
+<p>再看诺基亚里的短信，我又从笑到哭。</p>
+<p>如此反反复复，不知道哭了多少遍，至于笑嘛，仅仅两三次而已。</p>
+<p>在最漫长的那一夜，雷雨滂沱，我却回到某个烈日炎炎的盛夏，落叶满地的深秋，结冰与飘雪的后海，细雨绵绵的梅雨季，还有那年诺基亚和摩托罗拉的春天。</p>
+<p>终于，我也懂了昨夜和今晨的一草。</p>
+<p>隔了几日，想起西湖里捞出来的摩托罗拉——不知道它的主人是谁，活着还是死了？从外表也难分辨男款女款。为什么偏偏和一草的诺基亚捆绑在一块儿呢？就像一对殉情而死的男女。</p>
+<p>我给它换了新的电池板，但始终无法开机，更不可能倒出里面的数据内容，虽然我不是偷窥狂。</p>
+<p>但我想起一个温州朋友，家族企业，老有钱了，在杭州湾南岸有家工厂，专门回收处理废旧手机。他告诉我在那家厂里，可以恢复任何数据，无论是被火烧过还是被水泡过，或是被大卸八块的手机。</p>
+<p>我独自开车找了过去，穿越嘉兴与绍兴间的跨海大桥，带着西湖里捞上来的摩托罗拉。</p>
+<p>那是在一片滩涂田野里，工厂车间内的旧手机堆积如山。这里的统计单位永远都是“万台”，随便一辆卡车拖来的手机数量，放在2005年就足够左右一次超级女声的投票结果。我本来已有心理准备，但是亲眼看到这一幕，依然让人震撼。</p>
+<p>从诺基亚到摩托罗拉到爱立信到各种国产品牌，个别的还有前几年的iPhone和三星。它们先经过一轮手工挑选，有专门的机器来测试手机性能。有个负责检测的女孩告诉我，只要手机存储器还在，即便删除了全部内容甚至格式化，也能被她轻而易举地恢复出来。只要她愿意的话，就可以看到许多人的短信、照片，还有文件，总而言之，在这里任何人都没有秘密可言……我想，冠希们怎样处理手机才能万无一失呢？除非不拍。</p>
+<p>如果测试下来，手机还能继续使用，并且款型的年代不太古老，就会变成翻新机重新流入市场。至于那些已经损坏的，或者陈旧到扔街上也没人要的，则会像尸体一样被法医肢解，拆卸零件，粉身碎骨。据说在一部手机中，百分之五十四是钢铁，百分之二十是铜铝，百分之十七是塑料，还有金、银等贵金属。七块手机电路板，能提炼出一条金项链，这个比例超过了南非的黄金矿石，可以说我们用剩下来的手机集合起来就是座巨大的金山。</p>
+<p>看得出这地方污染很严重，工厂旁的小河表面，覆盖厚厚一层金属光芒，空气中有股断了电的冰箱里的腐烂味。工人没有任何保护措施，都说习惯了黄金的气味——黄金是什么气味呢？从此以后，我的鼻子记住了，但依旧无法用文字描述。</p>
+<p>在我朋友安排下，厂里负责手机检测的女孩，只用了十分钟，就帮我倒出了那台摩托罗拉里所有数据。她说这款手机已经很罕见了，即便在他们厂里，最常见的是五年到七年前的款型，而这台摩托罗拉是2000年左右出厂的。她把摩托罗拉里的数据刻在一张光盘里，包括所有的短信和通讯录。</p>
+<p>我很感谢这女孩，并且友善地提醒她最好戴着口罩上班，然后把这台摩托罗拉送给了工厂。</p>
+<p>回程路上，淅淅沥沥的小雨，我在高速上保持一百二十公里时速，车载音响里是Beatles的《昨天》。</p>
+<p>我想，每个人，曾经用过的每一个手机，都埋葬着各自的记忆。手机可以被我们抛弃被毁灭，但构成手机的零件、元素，乃至金属，将永远留存在这个世界，哪怕化为碎片。就像记忆，同样是无数光盘似的碎片，连同我们的青春一道粉身碎骨。</p>
+<p>经过杭州湾上的大桥，两侧是宽阔无边的江海，我缓缓放下车窗，雨水溅入眼眶，右手握紧方向，左手捏着光盘，用尽全力扔出窗外。</p>
+<p>只一刹那，通过左后视镜，眼角余光瞥见，铅灰色的乌云和雨幕下，光盘闪闪发亮地旋转，飞向天空最深处，带走某个陌生人的昨天。</p>
+<p>PS：本文亦是《最漫长的那一夜》后记，感谢我的兄弟一草，感谢他在西湖底下的诺基亚，感谢昨天的自己，感谢今天正在看这本书的你。</p>
+<p>蔡骏</p>
+<p>2015年6月12日星期五</p>
+<p>Yesterday all my troubles seemed</p>
+<p>so far away</p>
+<p>Now it looks as though they're</p>
+<p>here to stay</p>
+<p>Oh I believe in yesterday</p>
+<p>Suddenly I'm not half the man</p>
+<p>I used to be</p>
+<p>There's a shadow hanging over me</p>
+<p>Oh yesterday came suddenly</p>
+<p>Why she had to go? I don't know</p>
+<p>she wouldn't say</p>
+<p>I said something wrong, now</p>
+<p>I long for yesterday</p>
+<p>Yesterday love was such an</p>
+<p>easy game to play</p>
+<p>Now I need a place to hide away</p>
+<p>Oh I believe in yesterday</p>
+<p>Why she had to go?</p>
+<p>I don't know she wouldn't say</p>
+<p>I said something wrong, now</p>
+<p>I long for yesterday</p>
+<p>Yesterday love was such an</p>
+<p>easy game to play</p>
+<p>Now I need a place to hide away</p>
+<p>Oh I believe in yesterday</p>
+<p>Hm hm hm hm hm hm hm</p>
+<p>——Beatles Yesterday</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

@@ -1,0 +1,1103 @@
+<!DOCTYPE html><html><head><title>04</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="03.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="05.html">下一章</a></p><hr><h1><center>第4夜 男孩与兵人</center></h1>
+<p>他哀怨地低头，接着鼓起精神，脸贴地面，用大人的口气说——喂！士兵们！前方就是葛底斯堡的战壕，打败那些北方佬，就能结束战争，提前回家啦，为了弗吉尼亚！</p>
+<p>这个故事，适合在六月一日，深夜阅读，给你自己。</p>
+<p>去年，在成都。作家富豪榜的活动，我只是个打酱油的，坐在嘉宾席上跟兄弟们聊天。童话大王郑渊洁作为上届首富登台，他说最烦恼的是不断有人来借钱。紧接着江南上台，他说不怕被借钱，因为他的钱全变成了房子。</p>
+<p>其实，我很怕别人向我借钱，真的。</p>
+<p>最近的一次，也是去年，但借的不是钱——而是对我来说，比钱重要一百倍的东西。</p>
+<p>那一夜，我的小学同学俞超来找我。</p>
+<p>开始完全没认出他来。看似比我大几岁，穿着廉价的灰衬衫，裤腰带束在外面。要是戴上一顶鸭舌帽，基本就是快递员。</p>
+<p>他说他认识我。我正独自在家刷微博，认识我的人很多，比如微博上的二百七十万粉丝，虽然要去掉二百五十万的僵尸粉。</p>
+<p>阿骏，你不记得我了吗？我是俞超，北苏州路小学，二班。</p>
+<p>没有人这么叫我！</p>
+<p>俞超——记忆中他最后的脸，像恐怖片里的受害者般模糊。</p>
+<p>难道，他是听说我已成了所谓名作家，才特意找过来的？</p>
+<p>千万不要是来借钱的！</p>
+<p>我祈祷。</p>
+<p>然而，不知是装傻还是真傻，俞超并不知道我现在干吗。他打听了许多老同学，才辗转找来——我承认自己还需要更努力一些。</p>
+<p>他的语速很慢，表情迟钝，嘴里像吃过苍蝇，散发腐尸味，让我不由自主后退。</p>
+<p>我始终回避一个问题：你有什么事吗？</p>
+<p>终于，俞超直勾勾看着我的眼睛问——那些兵人在哪里？</p>
+<p>兵人？</p>
+<p>脑子短路。空白。火花。黑洞。一群小兵人悄悄绕到背后，用枪口瞄准我们……</p>
+<p>二十年前。</p>
+<p>所谓兵人，就是一种小兵玩偶，只属于男孩的玩具。</p>
+<p>在我的小学时代，每个男孩都有一两个小兵人。学校对面的杂货店，运气好的话，五毛钱能买好几个。兵人多是硬塑料做的，约摸手指头大小。从纳粹德军到皇家陆军再到八路军，有端着刺刀冲锋的，也有挥舞手枪的军官。有的兵人两个叠在一起，成为重机枪组。既有质地粗糙需要涂色的欧洲老兵，也有做工精良栩栩如生的美国大兵。</p>
+<p>我们班最会玩兵人的，就是俞超。</p>
+<p>他是小个子，顶顶不起眼的那种，瘦成豆芽似的，脸上总挂着鼻涕。他的学习成绩属于中游，很容易被老师跟同学们忽视。他很沉默，不跟大家一起玩，就算在体育课上，也蔫蔫呼呼的。最糟糕的差生，也有机会得到老师表扬，但俞超从没有过。</p>
+<p>有一次，他带了许多小兵人来学校。课间休息的操场上，他煞有介事地摆开阵势，一边是德国兵，一边是苏联兵。他在地上画了个X形，说一条是伏尔加河，另一条则是顿河，伏尔加格勒在中心位置。小学三年级，几乎没有孩子知道这些，除了我。</p>
+<p>当我饶有兴趣地趴下，要跟俞超一起玩斯大林格勒战役时，兵人们却被踢飞。原来是两个高年级男生，就喜欢欺负弱小。我也害怕，但看到俞超拼命地在地上捡兵人，便忍不住要保护他。我跟那两个大家伙打了一架。</p>
+<p>自然，是我吃亏。</p>
+<p>从此以后，我成了俞超唯一的朋友。</p>
+<p>每天，他会在口袋里塞几个兵人，从不给其他同学看到，只在放学后，与我在街心花园的角落里玩。他跟我有着相同的爱好，都爱看战争历史电影和电视剧，看过拿破仑和希特勒的传记，对于二战兵器如数家珍——在我们这个年龄，都可算是异种。</p>
+<p>有一回，俞超悄悄跟手里的小兵人说话，我差点以为他有精神病。</p>
+<p>俞超平静地回答——我有特异功能。</p>
+<p>许多年后，我们习惯于把这个叫做超能力。那年头，流行气功大师与异能人士。大兴安岭火灾时，有位大师在千里之外发功，帮助政府扑灭了大火。每场气功讲座都比四大天王演唱会还热闹，人人头顶一口锅，自称接受宇宙信号，以达天人感应。</p>
+<p>我摇头，颇有科学精神地说，瞎七八搭！</p>
+<p>他笑笑说，是啊，没有人相信的。</p>
+<p>小学四年级，六一儿童节那天，学校组织了许多活动。但在我和俞超看来，都超级幼稚，只有小女生们欢天喜地。</p>
+<p>放学路上，俞超在我的耳边说：喂，今晚，邀请你来我家玩，好吗？</p>
+<p>从来没人去过他家。有几次，我到了他家门口，他也挥手让我回去。听说，俞超的爸爸妈妈不是普通人，都在某个神秘的军事科研所工作，严禁他带任何小朋友来串门，连老师家访也被拒之门外。</p>
+<p>他说，军方有项重大科学实验，爸爸妈妈都连夜赶去西北沙漠某军事基地，说不定过两天会上新闻联播。如果这项实验成功，什么核潜艇啊航母啊都不需要了，我们再也不用害怕美国和苏联。</p>
+<p>明白了，他今晚一个人在家，才有机会请小朋友来家里玩。但只邀请我一个，因为他没有别的朋友。</p>
+<p>但我想，俞超请我来玩的真正原因，是他晚上不敢一个人睡觉吧。</p>
+<p>开始我没答应，我家管得也严，夜里不准出门。</p>
+<p>回到家，吃晚饭，做功课。六月一号，可以多看会儿电视，连看两集新加坡电视剧《人在旅途》。十点钟，我上床睡觉，又偷爬起来，带着钥匙出门。警告小朋友，切勿模仿。</p>
+<p>儿童节的夜，我步行十来分钟，来到俞超家楼下——他家是栋独立的老宅子，隐藏在黑黝黝的梧桐树影中，是军队分配的。</p>
+<p>紧张地敲门，露出小伙伴的脸。底楼是巨大的客厅，摆设很简单，没什么家具与电器。灯光幽暗，到处有腐烂气味。俞超没想到我真会来，他打开冰箱与橱门，拿出所有好吃的东西。我毫不客气地吃了几块牛肉干和话梅。</p>
+<p>他拖我上楼，来到卧室——真心大啊，木头小床边，堆满了各种小玩偶和兵人。</p>
+<p>最醒目的，是一群金属材质的兵人。十九世纪的灰色军装，美国乡村宽边帽，扛着带刺刀的滑膛枪。既有光着下巴的年轻人，也有满脸卷毛胡子的大汉。有位穿灰大衣的军官举着配剑。还有士兵举着一面小旗子，红底破布上深色大叉，画着十三颗白色五角星。</p>
+<p>如此精致漂亮的兵人，我闻所未闻，刚想去摸，却被俞超拦住。</p>
+<p>他在墙角点了几根蜡烛，关了卧室里的灯。幽暗光影中，他盯着那些金属兵人，轻轻吹了口气，送入它们每个人的鼻孔。</p>
+<p>随后，他拉着我钻到床底下。</p>
+<p>嘘……安静！</p>
+<p>想干吗？但在他家，我乖乖闭嘴。藏身在小床底下，吃力地仰头，注视地板上的玩偶们。晕染般的烛光摇曳，兵人影子都被拉长。我的心被悬起，有什么事要发生。</p>
+<p>突然，举着佩剑的兵人微微抖动。以为是被风吹的，但烛光没变化。它转头向四周张望，又向前走了两步，再把剑放到地上，伸懒腰，打呵欠。说了几句貌似正宗的英语。</p>
+<p>周围的金属兵人都活了，要么举枪做射击状，要么坐地休息。像多年老兵，彼此亲切地打招呼，我能清楚地听到它们说“Hello”“Good night”。</p>
+<p>其中，一个小兵走近床脚，举起刺刀向我搜索，微型金属刀锋，闪过杀人的寒光。</p>
+<p>我尖叫。</p>
+<p>小兵人们突然不动，像电影中的定格画面。</p>
+<p>对不起！我意识到闯祸了。</p>
+<p>俞超拍拍我说，没关系的，我们出来吧。</p>
+<p>小心翼翼走到烛光里，我拿起一个正在脱帽的金属兵人。</p>
+<p>天哪！俞超，你是怎么做到的？</p>
+<p>我说过，我有特异功能！</p>
+<p>它们是从哪里来的？</p>
+<p>这是个秘密——俞超咬着我的耳朵说：是我爷爷留下来的。他二十多岁就出国读书，差不多是在二战前夕，去过德国、法国、意大利很多地方，最后去了美国。回国的时候，他带来了这批小兵人——它们都是用锡做的。</p>
+<p>锡兵？</p>
+<p>我看过一篇安徒生童话《坚定的锡兵》。</p>
+<p>十九世纪的欧洲和美国，最流行这种小锡兵了。俞超继续为我科普——同一组的锡兵基本上都长得一样，因为从一个模子里烧出来的。但是，这队锡兵除了有个军官，每个小兵都各有特点，我能叫出每个不同的名字——约翰、哈利、老乔治、本杰明……</p>
+<p>是什么国家的军队啊？</p>
+<p>南北战争！我们常玩的打仗游戏啊。看到这面南方军旗了吗？十三颗星，代表南部联盟的十三个州。北军是蓝色，南军是灰色。不过，南军物资短缺，军服都很破烂，大多戴着自家帽子，更像农民而不是士兵。但这些家伙都是神枪手，打起仗来可厉害呢，把北军打得屁滚尿流。你看这个军官背后的字——</p>
+<p>我认不出这一长串英文，俞超解释道：弗吉尼亚州第八步兵团。</p>
+<p>结棍！</p>
+<p>他颇为自豪地说：我爸爸从小玩这些兵人长大的，后来留给了我。</p>
+<p>现在怎么办？</p>
+<p>嘿嘿，别害怕，我还能让他们再动起来。俞超笑眯眯地趴在地上，对它们哼起一首曲子。音乐课上五音不全的他，居然哼得有模有样，还有几分耳熟——对啦，电视上看过的美国老片《乱世佳人》。</p>
+<p>锡兵们又动了，在军官指挥下，排列整齐队形：前排八个，后排九个，军官在前面，身边有人举军旗，总共十九人的战斗队列。</p>
+<p>更神奇的是——这些小兵也都齐声高唱，真人般有各种音色。整栋大屋战歌嘹亮，应是美国南方口音。</p>
+<p>俞超得意洋洋：阿骏，这首歌叫迪克西，只要我唱起这个，就能把兵人唤醒。</p>
+<p>你真有特异功能？我抓着他的手，又摸他脑袋，仿佛装满神秘力量，还是住着一个小外星人？</p>
+<p>可惜你们都不相信。他哀怨地低头，接着鼓起精神，脸贴地面，用大人的口气说——喂！士兵们！前方就是葛底斯堡的战壕，打败那些北方佬，就能结束战争，提前回家啦，为了弗吉尼亚！</p>
+<p>俞超说的是普通话，带着上译厂的翻译腔，但兵人完全听懂了。它们个个鼓起胸膛，怒目圆睁，军旗指引，列队前进。</p>
+<p>这不是排队去被枪毙吗？不过，那时战争就是这样，只有视死如归的战士，才能站在枪林弹雨中不退缩，披荆斩棘，夺取胜利。</p>
+<p>他们是男孩，他们是士兵，他们是兵人。</p>
+<p>但在葛底斯堡，他们都将变成死人。</p>
+<p>兵人队列越过一道障碍——不过是一堆课本，有人不幸倒下，似乎迎面射来密集弹雨。</p>
+<p>俞超涨红了脸，大喊：为了弗吉尼亚！</p>
+<p>我爬到前进中的兵人们身后，仿佛成为他们中的一员，举着滑膛枪奋勇前进。忽然，有一颗子弹射进了我的额头。</p>
+<p>致命的撞击感，无法自控地仰天倒下，后脑勺砸在一堆塑料兵人上。</p>
+<p>那个瞬间，我以为自己真的死了。</p>
+<p>但没流血，只隐隐作痛。当我爬起来，兵人们都已牺牲，军官也被一枪毙命，只剩那名小小的旗手——他战死在军旗下，像具雕塑不再动弹。</p>
+<p>二十五年前，6月1日，深夜，南部联盟的旗帜依然在盖底斯堡飘扬……</p>
+<p>在我的童年时代，最漫长的那一夜。</p>
+<p>忘了是怎么回家的，总之，我对于那些兵人，留下永不磨灭的印象。它们不是金属玩偶，而是真正的士兵。死亦为鬼雄，缩小囚禁在二十世纪的中国。</p>
+<p>6月2日，俞超没有来学校。</p>
+<p>拥挤的教室里，我看着他空空的座位，心里还惦记着那些小兵人。</p>
+<p>几天后，才听说，俞超的爸爸妈妈死了。</p>
+<p>他们是在执行军方任务中殉职，俞超得到烈士家属的优待。他由亲戚继续抚养，从部队大宅搬走。当他回到学校上课，我没看到他有哭过的痕迹，但更为沉默。我想去安慰他，却被淡淡地拒绝。</p>
+<p>从此，俞超失去了他唯一的朋友。</p>
+<p>我没有再去过他的新家，更没机会见到那些小兵人。但在许多个漫长的夜里，我会梦到那栋大屋，梦到十九个南军战士，梦到葛底斯堡的邦联军旗，梦到罗伯特·李将军……</p>
+<p>后来，网上流传过一条军方泄密信息——那一年，那一夜，深夜二十三点，在西北沙漠的军事基地，某项重大实验过程中发生意外，有对科研人员夫妇殉职。</p>
+<p>可能是人类史上第一次超能力心理战实验，据说可瞬间催眠几万人，不战而屈人之兵，孙子兵法的最高境界。但准备时间太过仓促，按原计划是在半年后，却突然接到紧急命令，必须提前进行实验。</p>
+<p>可惜，所有人都失败了。</p>
+<p>进入九十年代，开始严厉批判特异功能与伪科学，军方至今再无机会重启。</p>
+<p>当年，那个绝密的科研项目，名叫“男孩与兵人工程”。</p>
+<p>我猜想，俞超之所以有超能力——遗传自他的父母，或者说是他的爷爷和爸爸。他的爸爸是个强大的超能力者，却默默无闻地为国家和军队服务。</p>
+<p>那个儿童节的深夜，当我在俞超家里玩兵人，阵亡于葛底斯堡战役同时，他的爸爸妈妈，正在万里黄沙之外，为了社会主义祖国和人民而粉身碎骨。</p>
+<p>小学毕业，我和俞超升入同一所初中。但在不同班级，更没机会说话。有时在操场上碰到，我主动跟他打招呼，他却低头不理。</p>
+<p>令人意外的是，他的学习成绩越来越好，考试总分经常排到年级第一名。老师们最喜欢这种学生，成绩好，脾气乖，虽有些沉闷，但有什么要紧呢？初二，他就加入了共青团，成为市三好学生。</p>
+<p>那一年，电视台在放TVB剧《大时代》，许多男孩都梦想成为方展博那样的人物。</p>
+<p>中考前一个月，我正在家被逼着背英语单词，俞超意外出现了。</p>
+<p>深夜，他背着个大皮箱子，嘴角已冒出胡根，瘦高个子像具僵尸。</p>
+<p>我问他什么事。我爸差点要把他赶走。</p>
+<p>俞超把皮箱放在我家门口，用变声期的公鸭嗓说：送给你，现在，我不需要它们了。</p>
+<p>然后，他匆忙地消失在黑夜。</p>
+<p>我疑惑地打开皮箱，发现一堆锡做的兵人：灰军服、宽边帽、大叉十三星旗……弗吉尼亚州第八步兵团。</p>
+<p>老天，我捧起这些勇敢的士兵。虽然积满灰尘，但不敢用湿布去擦，害怕会掉漆什么的。我偷来爸爸清理照相机镜头的毛刷子，剔除兵人缝隙间的污垢。我把皮箱子藏在床底下，仿佛有十九个人为我站岗放哨，安心入眠。</p>
+<p>星期天，父母不在家。我难得有半日空闲，便把兵人们拿出皮箱，拉紧窗帘，弄得像是深夜，再点上两根蜡烛。我买了一本关于南北战争的书，希望营造出当时北弗吉尼亚军团的气氛。我提前去过图书馆，借阅了一本歌谱集，有美国南方歌曲迪克西。我先练习熟了，便趴在床底下唱歌，期望看到锡兵们的行动……</p>
+<p>但是，他们再也没有动过。</p>
+<p>中考结束后的暑假，几乎每个夜晚，我都偷偷观察兵人。可无论怎样，兵人们永远沉睡，恍如从来没有过生命。</p>
+<p>最后，我也开始厌倦他们了。</p>
+<p>我在每个兵人的后背上，都用美工刀刻上我的名字，仿佛这样他们就会永远属于我。</p>
+<p>很快，我认识到了一个可悲的现实——我不是俞超，我没有超能力，我不可能成为兵人们真正的主人。</p>
+<p>那年夏天，俞超考进了重点高中，而我读了邮政学校。</p>
+<p>我们两个的人生，就像两条漫长的射线，只在多年前的6月1日深夜相交，然后向不同的方向奔去，永无重逢的可能。</p>
+<p>不曾料到，去年那个深夜，我还会再见到俞超。</p>
+<p>他已被时光彻底屠宰，眼角的皱纹，嘴上的法令纹，还有几乎半谢的头顶，颓丧无神的目光。想起我们的最后一面，他用高傲的眼神看着我，恩赐似的将皮箱子送给我，或者说是甩给我一堆垃圾。那时候，他即将展翅高飞，冲上云霄；而我将停留于凡间，注定碌碌无为，虚度余生。</p>
+<p>命运却在十几年间，将我们两个倒转了过来。</p>
+<p>我给俞超泡了杯绿茶，让他坐在我的沙发上，想要听听他的故事。</p>
+<p>他说，上重点高中后，他读书刻苦，还有烈士遗属加分，果然考进名牌大学。</p>
+<p>曾经在美国留学三年，攻读经济学硕士。有一回，路过宾夕法尼亚州葛底斯堡，当年战场，如今麦田，他死人般仰卧，以为能听到罗伯特·李将军的声音，听到迪克西的军乐，听到双方士兵临死前的悲吟。但是，他只听到一个安静如坟墓的世界。</p>
+<p>回国后，他进入金融投资机构上班，年薪百万的那种。二十七岁，买房结婚，抱得美人归，还生了个儿子。</p>
+<p>后来，经济不景气，他破产了，房子被银行收回。妻子跟他离婚，带儿子回了西部老家。</p>
+<p>俞超已一无所有。</p>
+<p>今夜，他想起当年送给我的兵人，想要再看一眼它们。</p>
+<p>兵人？</p>
+<p>十九个南北战争的锡兵？床底下的皮箱子？中考那年的暑假，我无法唤醒它们，就再也没打开过那个箱子。</p>
+<p>可是，箱子又在哪里呢？下意识地冲到床底下，除了灰尘，啥都没有。</p>
+<p>对，我搬过几次家，肯定不在这里，会不会早被扔了？</p>
+<p>我决定回老房子看看。</p>
+<p>已逾子时，两个男人出门。我开车载着俞超，穿越早春的寒夜，来到七层楼的老式工房。</p>
+<p>很久没人住过了，迎面有股熟悉的气味——许多年前，俞超就是在这里，放下装着兵人的皮箱离去。</p>
+<p>回到我的床底下，居然还没有被扔掉。一堆厚厚的尘土之中，拽出古老的皮箱子。</p>
+<p>俞超一眼认了出来，这是他爷爷从美国带回来的，在遥远的二战前夕。</p>
+<p>打开箱子，一阵腐烂的烟，我们剧烈咳嗽之后，小心地取出那些兵人。</p>
+<p>一、二、三、四……十九，一个都不能少。</p>
+<p>用纸巾擦干净，才露出灰色漆皮，带着刺刀的滑膛枪，还有南部联盟的军旗。</p>
+<p>关灯，拉窗帘，点蜡烛。回到二十五年前，6月1日，最漫长的那一夜。我们把小兵人排开阵势。俞超闭上眼睛，嘴角默念什么话，对着兵人吹了口气。</p>
+<p>然后，他拖着我爬到床底下。</p>
+<p>两个成年男人，如何能挤在一张古老的钢丝床下面？还有满眼的灰尘，只能彼此捏着鼻子，又不敢发出任何声音。</p>
+<p>一个钟头过去。</p>
+<p>兵人们纹丝不动，像已死去多年，变成僵硬的木乃伊。</p>
+<p>我们也憋不住了，从床底下爬出来，无奈地看着这些小兵人。</p>
+<p>唱歌吧！我提醒了他一句。</p>
+<p>可是，俞超摇摇头，他已经忘了那首歌的旋律。</p>
+<p>迪克西啊！</p>
+<p>我还记得，便带着他一起唱，这首美国南方的老歌，鼓舞士兵的冲锋曲与思乡曲。</p>
+<p>然而，兵人们还是呆若木鸡。</p>
+<p>他们不会再动了。</p>
+<p>俞超率先放弃，打了自己一个耳光，颓丧地坐在地板上说：对不起，是我记错了，兵人们从来没有动过，我也没有过特异功能，一切都是小孩子的幻觉。</p>
+<p>而我不知道该说什么好，重新把兵人们装进大皮箱，塞回我的床底下。</p>
+<p>凌晨三点，我和俞超在老房子楼下分别，我本想要开车送他，却被他委婉地拒绝。</p>
+<p>他只说，想要一个人走走。</p>
+<p>最漫长的那一夜，看着他佝偻萎缩的背影，我好像永远丢失了什么。</p>
+<p>几天后，我听说，俞超死了，自杀。</p>
+<p>他吃了许多安眠药，把自己锁在一个大箱子里，活活闷死。</p>
+<p>没有人为俞超举办葬礼，直接送去火葬场烧了。他没其他亲人，前妻也不接受骨灰，最终归宿是下水道。</p>
+<p>俞超死后第七天，我想到了老家床底下的大皮箱。</p>
+<p>那是他送给我的礼物，又在他临死前还一起玩过，老法里说太不吉利了。我决定把兵人们烧了，还给它们原本的主人，在天上团聚吧。</p>
+<p>头七，传说鬼魂在人世间游荡的最后一天，也是佛教所说的中阴。</p>
+<p>我回到老宅，从床底下拖出皮箱子，感觉轻了些，打开才发现空空如也。</p>
+<p>十九个兵人消失了。</p>
+<p>不可能，记忆错乱了吗？还是放在其他地方？我又在老家里每个角落，仔细搜索一番，确定那些兵人都失踪了。</p>
+<p>难道有梁上君子光顾？还是在俞超自杀以前，悄悄潜入过这里，带走了所有兵人，准备给自己陪葬？</p>
+<p>我怅然若失离开，直到三个月后。</p>
+<p>五月，最后一周，我接到一个女人的电话。</p>
+<p>她的声音还算年轻，在反复确认我的身份后，在我不悦地挂电话前，她才说——对不起，我是俞超的前妻。</p>
+<p>这个女人，没有带俞超的儿子来参加葬礼，我很厌恶，但我保持克制，问她有什么事。</p>
+<p>她说，最近她儿子在玩一些奇怪的玩具小人，背后都刻着我的名字。而她恰好看过我的书，不敢相信这个名字就是我。但她查了资料，发现她死去的前夫，跟我就读过同一所小学。于是，她几经打听才弄到我的电话号码。</p>
+<p>她问我这些玩具小人是如何到她儿子手里的。</p>
+<p>其实，我也很想知道答案。</p>
+<p>她希望我能把这些玩具小人拿回去。</p>
+<p>好奇怪，为什么要我去拿？我说可以快递给我，费用到付。</p>
+<p>忽然，她的声音变得颤抖：求你了，看在死去的俞超的份上。</p>
+<p>听到俞超的名字，我的心软了。正好刚写完新书，便决定出趟远门。</p>
+<p>很远很远的门，巴山蜀水的深处，距上海几千公里。没有直达航班，只能先飞到重庆。再走穿梭于深山的铁路，最古老的绿皮火车。最后，需要坐浅水客轮，上溯到某条长江支流的上游，才是那座峡谷间的县城。</p>
+<p>那天，正好是六月一号。</p>
+<p>2008年的大地震，一度将这里夷为平地。小城里一切都是新的，她家的房子很漂亮，简直是土豪别墅，听说是前任县长家，院子里停着辆黑色奥迪。</p>
+<p>我看到了俞超的儿子——他叫俞小超。</p>
+<p>七岁，快要读小学了，他穿着超人服，正在地板上玩十九个小兵人。</p>
+<p>刹那间，我以为，回到了三十年前，小学一年级的教室——通常，儿子都像妈妈。但，俞小超是个例外，那张脸还有体形和眼神，都跟他爸爸小时候如出一辙。</p>
+<p>蹲下来陪他一起玩，抚摸灰色军服的锡兵，放到眼前，看它背后，依稀辨认出刻痕——我的名字，十六岁那年亲手刻上去的。</p>
+<p>兵人们身上有明显磨损，许多漆皮蹭掉了，有的缺胳膊少腿，有的折断了刺刀。那面南部联盟的军旗，已然破碎大半。</p>
+<p>我心疼。</p>
+<p>小超，你是哪里得到这些小兵人的？</p>
+<p>我想看清他的眼睛，看到某个遥远的黑夜。男孩毫无畏惧地看着我，嘴角露出狡黠的笑意，却不响。</p>
+<p>他妈接口道：他说是从门口垃圾堆里捡来的，谁知道是真是假。这孩子越来越鬼了。</p>
+<p>为什么要我拿回去？</p>
+<p>女人面露难色，看我不依不饶，才说出口：这些小人刚来时，嫌它们又脏又破，她就扔进了垃圾堆。可是，到第二天晚上，它们重新出现在小超的房间。她很害怕，隔了几天，趁儿子睡着，把兵人们扔进汹涌的江水。没想到，它们很快又回来了。儿子很喜欢这些家伙，成了他唯一的玩具。她非常担心，意外发现小兵背后刻着我的名字。</p>
+<p>她还要说些什么，似乎很可怕，却欲言又止。</p>
+<p>我感觉到了某种东西。</p>
+<p>对不起，我不能把这些兵人带走——我告诉她，今天儿童节，就当是我送给小超的礼物吧。因为，这些宝贝本来就是属于他的。还有，请千万要记住，别把它们扔掉或送人。否则，你儿子会遗憾一辈子的。</p>
+<p>离别前，我轻轻抱了男孩一下。</p>
+<p>真的，很想亲吻他的脸颊，但又怕把孩子弄脏了。</p>
+<p>我看了十九个小兵人最后一眼，终于要说永别了——弗吉尼亚州第八步兵团，葛底斯堡的老男孩们。</p>
+<p>唯有兵人，永不背叛。</p>
+<p>六月一日，回家路上。我坐着颠簸的客轮，趴在危险的栏杆边，看着山谷间的湍急河流，因为滥砍滥伐和采矿污染而变得又黑又黄。</p>
+<p>也许，走了太多的山路，双腿肌肉酸痛，仿佛随波逐流。天空越来越远。我闭上眼睛，溢出泪水……</p>
+<p>真相，是这样的——</p>
+<p>俞超死后第七天，我计划把所有兵人烧给他。前一夜，十九个兵人复活，从床底下的大皮箱逃跑，溜出窗户缝隙，顺着落水管到地面。这些南北战争的老兵，从便利店偷了张中国地图。危险重重的行军，穿越火线般经过无数路口，差点被车轮压得全军覆没，才从市中心走到飞机场。它们越过铁丝网，沿着候机楼屋檐下，找到这架飞往西部的航班，通过舷梯钻进行李托运舱。</p>
+<p>一夜之间，飞过几千公里，来到遥远的中国西部。沿铁轨，翻山越岭，一路向北。走了半个多月，每天十公里，昼夜不息。有条嗅觉敏锐的中华田园犬，将它们当做敌人和晚餐，发起狂暴的攻击。兵人们面对怪兽，毫不畏惧地作战，付出惨重代价，丧失了五条胳膊和三条腿。侥幸到江边，列队点名，竟一个都不少，但伤痕累累。老兵说，伤疤是男人更是士兵的勋章。锡兵们不会游泳，入水便会沉没。但他们克服恐惧，跳上一艘运沙的木船，逆流而上二百公里，直达烟云缭绕的县城。</p>
+<p>终于，兵人们找到了新主人——这个叫俞小超的男孩，跟当年的小主人一模一样，并遗传了爸爸的特异功能。每个深夜，只有他能跟这些老兵说话，指挥它们重整旗鼓，冲锋陷阵，战无不胜。男孩是最勇敢的士兵，也是最优秀的将军。</p>
+<p>但，秘密被妈妈发现了。于是，我来了。男孩并不简单，他不但能看透兵人们的心，也看穿了我眼里的秘密，还有他爸爸的往事……</p>
+<p>那是去年的事。</p>
+<p>整整一年后，六月一日将近。我听了整晚上《乌兰巴托的夜》，突然，想念起那个男孩。</p>
+<p>就在刚才，二十一点三十分，我给男孩家里打了个电话。</p>
+<p>俞小超同学接了电话，我只说了一句：儿童节快乐！</p>
+<p>千里之外的男孩，听声音有些紧张，甚至有些迟钝和机械，喘不过气来。他说，自己正在做数学题，过几天就要期末考试了。</p>
+<p>突然，他妈妈抢过电话，客气却又严厉地说——喂，蔡老师，你好啊。现在，我儿子读书很好，老师们都说他会很有出息的。下学期，我会带他去省城读重点学校，请你不要再打电话来了，拜拜！</p>
+<p>我什么都没说，电话就被挂断。</p>
+<p>乌兰巴托的夜啊，那么静，那么静。</p>
+<p>最后一个超能力者死了，我想。</p>
+<p>男孩与兵人，卧于尘埃，永不醒来……</p>
+<p>穿越旷野的风啊</p>
+<p>慢些走</p>
+<p>我用沉默告诉你</p>
+<p>我醉了酒</p>
+<p>飘向远方的云啊</p>
+<p>慢些走</p>
+<p>我用奔跑告诉你</p>
+<p>我不回头</p>
+<p>乌兰巴托的夜啊</p>
+<p>那么静那么静</p>
+<p>连风都不知道我不知道</p>
+<p>乌兰巴托的夜啊</p>
+<p>那么静那么静</p>
+<p>连云都不知道我不知道</p>
+<p>飘荡异乡的人啊</p>
+<p>在哪里</p>
+<p>我的肚子开始痛</p>
+<p>你可知道</p>
+<p>穿越火焰的鸟儿</p>
+<p>不要走</p>
+<p>明知今夜疯掉的啊</p>
+<p>不止一个人</p>
+<p>乌兰巴托的夜啊</p>
+<p>那么静那么静</p>
+<p>连风都不知道我不知道</p>
+<p>乌兰巴托的夜啊</p>
+<p>那么静那么静</p>
+<p>连云都不知道我不知道</p>
+<p>——左小祖咒《乌兰巴托的夜》贾樟柯/词</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

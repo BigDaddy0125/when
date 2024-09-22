@@ -1,0 +1,1130 @@
+<!DOCTYPE html><html><head><title>33</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="32.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="34.html">下一章</a></p><hr><h1><center>第33夜 宛如昨日的一夜</center></h1>
+<p>1</p>
+<p>@蔡骏：撑最漫长的那一夜#你有过在深夜街头独行的经历吗？你有过在黑夜里做过的最疯狂的事吗？你有过在后半夜哭成狗的时刻吗？你有过在午夜出租车上听说过最诡谲的故事吗?你有过在……请告诉我——你所经历过的最漫长的那一夜。</p>
+<p>这是我在七月发的一条微博，不久冒出上千条评论。粗略统计，将近一半是失恋：男友或老公劈腿，女友提出分手，异地恋无疾而终，表白失败……一百条说到亲人离世，有爸爸妈妈、爷爷奶奶、外公外婆，似乎没有看到兄弟姐妹，因为我们这一代多为独生子女。此外是各种意外事件，高速公路车祸、汶川地震被困废墟一夜。有人提到好友死于去年马航空难（我的粉多灾多难）。有的看似无关痛痒，分为毕业狂欢、打工奇遇、旅途长夜、灵异体验等等，对当事人而言却是毕生难忘。许多人提到生孩子的疼痛，特别是麻药过去醒来后的一夜。我不是女人，但对此确信无疑。有人说，自己一辈子顺顺利利，平平淡淡，没有经历过最漫长的那一夜。但你错了，每个人出生时，妈妈都会经历最漫</p>
+<p>长的那一夜，不是吗？</p>
+<p>我们都来自最漫长的那一夜。</p>
+<p>以上，是记忆。默默看完所有评论，也许能治愈你三分之一的不开心。这是我开微博至今，底下评论价值最高的一条，没有之一。</p>
+<p>其中，有一条一</p>
+<p>十八岁，海岛旅行。深夜，海边有悬崖和古庙，黑色大海激起黑色浪头，像黑色天空拍打黑色乱石。你们生起篝火．一群人吃着海鲜烧烤傻笑，轮流唱张雨生还有张国荣的歌。时光一晃，两个歌手都已不在人世．而我还活着。她呢？最漫长的那一夜，我终究是错过了。好遗憾啊。你好蔡骏，我是左叶。</p>
+<p>左叶，我记得他。中学时候，他整张脸爬满青春痘，接近毁容的程度，被起了个绰号“游坦之”。看过《天龙八部》的秒懂。</p>
+<p>“游坦之，现在哪里？”我给左叶的微博发了一条私信。</p>
+<p>只隔一夜，我收到他的回复，并约我见面。</p>
+<p>在四季酒店的咖啡吧，左叶衬衫领带打扮。青春痘早褪了，只留几个淡淡痘疤。多年未见，他已是高级工程师，任职于一家可穿戴智能设备公司，刚被谷歌用十九亿美元收购——使得谷歌股价上涨了3.8%．</p>
+<p>没来得及叙旧，左叶邀我去体验新研发的一款产品。我表示不感兴趣，我不是电子产品爱好者，也不是果粉之类的科技教徒，更不想做小白鼠的实验品。</p>
+<p>左叶露出it男标准的微笑，很有乔布斯遗像里那种感觉，神秘兮兮地告诉我，这教新产品的名字叫——“宛如昨日”。</p>
+<p>我低声复述一遍，声音在喉咙里滚动着，挤压出大提琴般的低音，“宛如昨日”——这样一个名字，似乎对我有无穷无尽的吸引力。</p>
+<p>“为什么选我？”</p>
+<p>“因为最漫长的那一夜，你带着千千万万人进入了回忆。”左叶说。</p>
+<p>2</p>
+<p>回忆，还有宛如昨日，与其说是老同学左叶，不如说是这些词汇，带着我前往地图上也找不到的X区。</p>
+<p>既然地图上都找不到，我就不复述怎么走了。总之，那鬼地方距离大海不远，空气中有滩涂的咸味。如大海与墓地间的荒村。矗立着孤零零几幢建筑，没有尽头的天际线下，像科幻片拍摄基地。</p>
+<p>研发中心开着超强冷气，仿佛深秋。人们穿着白色工作服，包括挂着胸卡的高级工程师左叶。穿T恤的我冻出了鼻涕。</p>
+<p>一间没有窗户的实验室，除了墙壁就是电脑屏。我坐在正中间的椅子上，如受审的犯人。左叶为我戴上设备，像谷歌眼镜式的茶色墨镜。还有一套耳机，戴上听不到其他声音。设备有USB充电口，可随身携带。他的手掌压在我的肩头，墨镜变成黑屏，剥夺了视觉和听觉。</p>
+<p>“你还在吗？”</p>
+<p>我呼喊左叶，没有回音。刚想摘下墨镜，耳机里传来他的声音：“请不要有任何动作，也不必说话，更不要试图摘下设备，你的眼前会有提示文字，你按照提示进行思考即可。”</p>
+<p>半分钟后，黑屏上亮出一行文字：你最想回忆哪一夜？</p>
+<p>我习惯性动手指要打键盘，才想起左叶的关照，什么都不用做，只用脑子想就可以了。</p>
+<p>最想回忆哪一夜？</p>
+<p>天哪，这是我问别人的问题，可是我自己竟然没有真正思考过。</p>
+<p>耳机里又响起左叶的声音：“听着，你不需要做任何事，只要闭上</p>
+<p>眼睛，尽情回忆。”</p>
+<p>简直是抑郁症的催眠治疗！寻找回忆的起点。</p>
+<p>回忆……回忆……回忆……</p>
+<p>深蓝色方块，月牙儿近在眼前，幽暗的小阁楼楼顶，小窗突兀。脚尖踮在床头，手扒木头窗台，轻轻推开玻璃窗，小脸儿边上，层层叠叠的瓦片，长着青草。月光下的野猫，猫眼黄色核桃般，屈身弓背，疾驰而过。苍穹居然干净。月光隐去，繁星熠熠，蝉鸣此起彼伏。才发现自己双手好小，胳膊也细细的。发出声音，变成小孩子的童声，带一点点奶味。开灯，镜子里是张小男孩的脸。反复提醒自己，这只是回忆，一次新产品的实验，并非回到过去。床上躺着一个人，他在均匀地呼吸，头发白了，脸上有皱纹——他不是早在坟墓里了吗？这不是棺材，而是我跟他一起睡的床。外公，我轻轻唤他。他醒了。天也亮了。我想解释什么，徒劳，外公抱我下阁楼，外婆已做好早饭。天哪，我看着他俩，想要哭，就真的哭了。外婆端来痰盂罐，让我往里头尿尿。一天过得很快，下起小雨，我看着窗外的屋檐。黑白电视机，正在播《聪明的一休》。小和尚看着白布小人，响起片尾曲：哈哈五一萨玛……又一天，爸爸骑自行车送我去幼儿园，他还那么年轻，我在自行车后座上．仰着脖子看最高的楼，不过五六层罢了。我很快读小学了。老师的脸，同学们的声音，原本早就忘光了，对啊对啊，但只要再回到面前，百分之百确信无疑。这是我的记忆。小学三年级，外婆给我做完早饭的那天，她因为脑溢血昏迷，不久离开人世。就是那个清晨，被我彻底遗忘的清晨，完完全全在眼前。那时十岁的我，哪里知道是与外婆的最后一面啊。后来我许多次梦到过外婆，第一次明白死亡是什么。</p>
+<p>当我号啕大哭，有人为我摘下墨镜和耳机。我像个小学生，一把鼻涕一把眼泪，跪倒在左叶面前。他把我拽起来，漂亮的女职员带我离开，送来一杯热饮料。左叶问我感觉怎么样？</p>
+<p>“宛如昨日。”</p>
+<p>除了这四个字，我想象不出其他更贴切的回答。不但视觉，还有声音，连味觉和嗅觉的记忆都是准确的，栩栩如生。比如外婆做的阳春面的味道，我最爱吃漂浮在面汤上的葱末，因为外婆说吃葱的孩子聪明。</p>
+<p>这不是虚拟现实，而是真的发生过，只是随着时间流转，像刷在墙上的字，渐渐褪色淡去，又被新的文字涂抹掩盖。但那些字存在过，如假包换，哪怕被自己遗忘。</p>
+<p>对，就像重返童年，重返早已被拆掉的老宅子，看小时候的照片和录像带，宛如昨日。</p>
+<p>左叶毫无表情，托了托滑下鼻梁的眼镜。虽然不见粉刺，我仍然回想起“游坦之”。他用了一个钟头，解释这套可穿戴装备“宛如昨日”——归根结底，就是所有记忆，不管多久远，只要有过微弱印象，哪怕前看后忘，也在大脑皮层里有过映射。比如你坐地铁，车厢里几百个人，除非有美女或帅哥在面前，否则你连一张脸都记不住。但实际上在记忆中，已存留这些影像，你的眼睛就是监控探头。只不过存储器容量有限，只能抓取最容易记住的，其余的就被扫入记忆的垃圾箱——但这个垃圾箱始终在你脑中，永远没被倒掉过，就是所谓的深层记忆。</p>
+<p>“宛如昨日”可立即找到你的深层记忆，把被遗忘的昨日唤醒，如同老电影重新放映，无论听觉、视觉、味觉、嗅觉、触觉……左叶和他的团队，已为此开发七年，分别在美国与中国注册专利。谷歌以十九亿美金并购后，他套现了几亿人民币。</p>
+<p>我未作评价，告别时说：“很感激今天的体验，多年来一直想重温外婆走的那天，记忆却是空白。但我不会再回来的。就算这款产品投放市场，我祝你们大卖，却不会购买。”</p>
+<p>左叶嘴角挂着不可捉摸的微笑。</p>
+<p>但没过一礼拜，我又开了五十公里的高速公路，来到左叶面前，祈求再给我一次体验的机会。</p>
+<p>戴上“宛如昨日”，左叶让我放轻松些。这套系统完全根据大脑思维控制，回忆可以更加跳跃。我闭上眼睛，世界变成一张黑色的网，布满一个个数字。每个数字都是四位数，不，全都是年份。</p>
+<p>我选择了一九九五年，你们懂的。《谋杀似水年华》中，十三岁的秋收被警察老田带去虹口体育场，差点抓住凶手。那一年，我也在虹口。第一场比赛，我看到了。眼里满是二十年前的人影，耳边是震耳欲聋的喇叭声与欢呼声。我才十来岁，大概是看台上年龄最小的。一九九五年四月十六日，甲A联赛上海申花第一场，对手是延边现代。我买了最便宜的学生套票，位子在球门后面，只能看到半边。下半场，第五十六分钟，范志毅进了第一个球，欢声雷动。十分钟后，对方扳平，最终比分1比1。我随着汹涌的人潮散场，回家的公交车上，听一群球迷聊起英超金靴阿兰·希勒。</p>
+<p>二○○八年，那年的二月有二十九天。中国发生许多大事。雪灾、大地震，洪水、奥运会。过年前，我去了趟尼泊尔。有一夜在博卡拉，费瓦湖畔，住在山顶的酒店。海拔两千多米，四周全是悬崖绝壁，只有条小路通达山巅。独自走人酒店花园，空气寒冷，极目远眺，黑夜清澈，层层叠叠的山峦，月光下各自陡峭。走到花园边上，扶着栏杆俯瞰，一步之遥，万丈深渊，稍不慎就粉身碎骨。近处有瀑布轰鸣，忽远忽近，山谷布满水汽，浓雾缭绕。环绕酒店外围，尽是绝险山崖，偶有山花在黑暗中孤独绽开，自生自灭，管它谁人来嗅？那一夜，我用前台的固定电话，跟某人打了两个钟头国际长途，花光了身上一千多美元现金。二○一五年，尼泊尔大地震。而我去过的很多地方，至今还保留着照片的古迹，已是一片废墟瓦砾。</p>
+<p>走出实验室，我狂奔到外边的野地，呼吸大海的空气，才像溺水的人得救。</p>
+<p>左叶不喜烈日，解开衬衫领带，告诉我——我是第十九个体验者。前面十八个人都给“宛如昨日”打了满分，表示如果产品上市，一定会掏腰包购买。谷歌总部已在讨论定价，估计在七千到一万美元之间。虽然这对于一款电子产品来说有些昂贵，但能满足人们最深层次的需求，如此估价也不过分。</p>
+<p>“什么是最深层次需求？”</p>
+<p>“马斯洛的需求层次理论——生理、安全、爱与归属感、尊重、自我实现。”</p>
+<p>左叶说，我们以为人类总共只有五层需求，其实还有第六个层次。马斯洛在去世前，发表了重要的《Z理论》。简而言之，就是我们需要“比自己更大”的东西。</p>
+<p>我表示听不懂。</p>
+<p>“还有第七层需求——人们在满足了所有需求之后，更高的需求就是记忆，或者说重温记忆中的美好，因为现实不能给予这种美好。”</p>
+<p>“对不起，我还能再体验一次吗？”</p>
+<p>“好，但你需要休息。”左叶向我解释，“每次使用‘宛如昨日’，体验者都会在精神上消耗很大，无异于跑了十公里或在健身房剧烈运动过。”</p>
+<p>他给我准备了客房，就在实验室楼上，可眺望无边无际的滩涂。视野尽头，海天之间，幻影般不真实。入夜，署气消退，空气莫名潮湿。白天体验太过疲倦，不到八点，我强迫自己睡下。接连不断的噩梦，出现各种各样的人，甚至三年前走失的狗——巧克力色的中国骨嘴沙皮犬，曾陪伴过我长达十二年。它蹲在床前，眼神无辜地看着我。当我惊喜地抚摸它的脑袋，才意识到它早已不见了，梦中失声痛哭。</p>
+<p>我哭醒了。</p>
+<p>刚好子夜零点，想想刚才所见，必是犬的托梦。三年前，暮年的它走失，生死不明，今夜怕是已不在此世间了吧。</p>
+<p>再不可能睡着，走到外面，发现实验室还亮着灯。左叶红着眼圈，喝着黑咖啡。他说系统仍在不断改进，满足年底全球上市的需求，工程师们每晚都在加班。</p>
+<p>肴不到自己的表情，我猜想嘴唇有些发抖，应该很糗，“能否再体验一次‘宛如昨日’？现在。”</p>
+<p>左叶像是看穿了我，“好吧，但不要回忆刚做完的梦，那会让你的记忆与梦境混乱。因为严格来说——梦也是一种记忆，有时候大脑皮层无法分辨清楚。”</p>
+<p>凌晨一点，我进入实验室。还是左叶为我戴上设备，他说他会监控我的状态，若有问题会随时中止。</p>
+<p>黑色的网。我没选择任何时间，当然也刻意避开走失的狗。我并没想好要回忆什么，只是夜宿在这海边的房子，总能唤起嗅觉里的某种记忆。</p>
+<p>海。</p>
+<p>看到一片黑色的海。耳边满是海浪与岩石的撞击声，无数白色的泡沫飞溅，消失在乌黑的天空和沙滩。盛夏潮湿苦咸的海风，让夜空轮廓变幻无常。光脚走在粗糙石子堆积的海岸线，足底接连不断的刺痛，提醒我是来自-○-五年的幽灵。这又是什么时候？我看到直插入大海的悬崖，上面有座古庙，孤零零地撞进视野。几个少男少女奔跑而过，我记得他们的脸。最后一个暑期，学校组织海岛旅游。亮起光，火星飞溅，同学们点燃篝火，傻乎乎地烧烤海鲜。有人唱张雨生的《大海》，情景交融。有个男生冰镇啤酒喝多了，用蹩脚的粤语唱《倩女幽魂》，听得人直起鸡皮疙瘩。那一年张国荣还活着。</p>
+<p>不是梦，确凿无疑。这是记忆，十八岁。我能感到篝火的温度，海鲜和啤酒的气味，女生们的清脆笑声，爬上脚背的小螃蟹，不时拍打着礁石的冰冷海浪。我看到一个男生，满脸青春赤痘，蜷缩在角落眺望大海。他戴着耳机，恰是当时流行的walkman，不晓得在听什么。有人从背后叫他：“游坦之，打牌吗？”</p>
+<p>他没反应。我想说话，却没声音——差点忘了这是记忆。不是穿越。我看着他离开，消失在海浪与悬崖之间。这座海岛布满黑色乱石，若非山上那座古庙，平时鲜有游人登岛。</p>
+<p>忽然，身边坐下一个女生，长发被海风吹乱，有几根撩到我的脸颊。</p>
+<p>小枝。我想起了她的名字。</p>
+<p>她嚼着口香糖，对着天空吹泡泡，问我怎么不去篝火边玩。</p>
+<p>“那你呢？”我反问。</p>
+<p>小枝的眼角眉梢有个性，平常就引人注目。她在单亲家庭长大，爱做些出格的举动，常对男生们呼来唤去，早恋也不是一次两次，都是跟校外的社会青年。</p>
+<p>“蔡骏啊，今夜好像永远都不会过去的样子。”她对我说。</p>
+<p>“大概你在潜意识里希望暑假再久一点吧。”——现在的我都忘了那时自己居然看过弗洛伊德。</p>
+<p>小枝笑着一口气吹在我的脸上，就当我以为要天上掉馅饼了，她却起身离去，短裙上沾着沙粒，肩上还有个小包，眨眼在夜空下不见。</p>
+<p>当我想要起身去追，身体却还停留在原处——我原来只是个记忆的魂魄。</p>
+<p>有人为我摘下设备，“宛如昨日”到此为止。左叶压住我哆嗦的左手，问我回忆到了什么。</p>
+<p>“十八岁，海岛上的那一夜，真的好漫长。对了，记忆里还有你，游……左叶！”</p>
+<p>要命，我差点对他喊“游坦之”。</p>
+<p>他淡淡地说：“你该回去休息了。”</p>
+<p>我颓丧地点头，不想再重复十八岁的记忆。最后一个暑期，在东海的孤岛上，发生了一桩大事——有个女生在黑夜大海里游泳，不幸溺水身亡，她叫小枝。</p>
+<p>一个星期后，左叶给我打电话，说是“宛如昨日”完成了一次升级，增加了许多功能，希望我能再来体验。</p>
+<p>犹豫三天，我答应了他。我驱车来到实验室，左叶颇显憔悴。他说连续熬夜好多天，睡眠不超过四个钟头。根据所有体验者的反馈，人人痴迷于清晰的记忆，产生一种欲望——能否在“宛如昨日”的记忆中，带着现实的意识，主动改变自己的行为，或影响到当时的其他人？</p>
+<p>甚至，改变过去？</p>
+<p>比如，当你回忆到死去的亲人，而你非常后悔没有说过“妈妈我爱你”之类的话。所有人都强烈希望在“宛如昨日”中说出口，这对于内心是极大的慰藉。左叶他们这些天的工作就是实现这个，让系统升级到不但能真实体验，还能随心所欲。</p>
+<p>我不喜欢用“随心所欲”来形容。</p>
+<p>左叶机械性地笑笑说：“我知道你的担心，‘宛如昨日’只是辅助你唤醒记忆的工具，而不是让你穿越的时间机器。这是一种虚拟现实的体验，就像你戴着其他可穿戴设备进入异度空间，未来都将是家常便饭，没什么神秘的。所有这一切的行为与记忆，都只发生在你的大脑，根本无法改变现实。”</p>
+<p>“那么这个玩意儿有什么用呢？就是为了心理安慰？”</p>
+<p>“也许，对你这种意志强大的人来说，的确只是一种无用的小玩具。但对长期生存在往昔阴影中的人们，对于病情严重的抑郁症患者而言，却几乎是可以用来救命的治疗手段。”</p>
+<p>我不再和他争论，重新戴上那套装备。宛如昨日，这回眼前出现的是条隧道，环形内壁中不断浮现记忆画面——从五六岁的小阁楼，到小学校园里的无花果树，再到中学图书馆里的借书卡。我感觉进入了剪辑室，人生就这样被剪成一段段胶片，在以神之名的导演掌控下，重新组织成一部电影，是希区柯克或大卫·奇式的。</p>
+<p>我选择十六岁，报考美术学院专业考试那天。真实的记忆里，那天是在家里度过的——我逃跑了。因为我半路出家，没受过专业训练，虽然从小喜欢画画，考试前还拼命练习了半年，每天对着石膏像画素描，但毕竟不能跟人家学了十几年的比。我为此后悔了很多年。</p>
+<p>清晨，还在以前的家里，床边是石膏像《马赛曲战士》，桌上有各种画画工具。这是记忆。但我收拾行装，踏出大门，坐上公交车去美术学院。而这不是记忆——我发觉自己不再是个魂魄，突然拥有了活生生的肉身，还是那个瘦弱的中学生。我不但能听到看到闻到和呼吸到世界，还能大声唱歌，告诉邻座的姑娘未来应该穿成什么样，没有人低头玩手机，街上仍是自行车大军，天空都清澈了一些。我来到美术学院，拿出准考证检验入场，这是我在十六岁没敢做过的事。我和许多考生坐在一起，每人面前一个画架。虽然我来自二十一世纪，依然胆怯得笔触发抖。刚画几笔，我就在想，万一考上了呢？是不是接下来几年，就要每天对着人体模特儿画画？我也不可能再是如今的我了吧?而我是多么喜欢现在的自己啊。想到这里，我羞怯地退出考场，像个逃兵似的，坐上公交车跑回家里，最好什么都没发生过，记忆如常。</p>
+<p>摘下设备，我离开实验室，左叶跟在后面追问：“你改变了记忆？”</p>
+<p>我摇摇头，“这就像后悔药吗？”</p>
+<p>“不能这么理解。”</p>
+<p>“但我不会再尝试了，这只是一种幻觉，你改变不了什么。”</p>
+<p>我驱车离开，后视镜里留下左叶的人影。他站在阴惨惨的乌云底下，连同实验室的建筑也显得格外凄凉，接着下了一场瓢泼大雨。</p>
+<p>4</p>
+<p>左叶住在公司附近——一栋海景别墅，硕大的露台可眺望海天。典型的单身汉与技术宅，屋里堆满各种杂物、吃剩下的泡面碗。创业成功以后，常有人给他介绍各种异性，微信上有入主动投怀送抱。偶尔，他会带女人来这里过夜，但从没超过第二夜。</p>
+<p>雨夜，打开冰箱喝了几罐啤酒，不知不觉在卫生间睡了一宿。当脑袋枕在马桶圈上，他梦到了小枝、十八岁，海岛……</p>
+<p>清晨醒来，浑身湿透，仿佛从海里游泳上来，并有股窒息的感觉。马桶里全是自己的呕吐物，整个鼻孔被酸臭填满。他打开所有窗户，裸着上半身，眺望那片海。</p>
+<p>雨继续下。</p>
+<p>半小时后，左叶回到实验室。休息日，难得没有一个人加班。他独自戴上“宛如昨日”，自动程序控制。</p>
+<p>眼前出现黑色隧道，过去三十多年的人生，摄影展似的依次贴在墙上。这是他亲手设计的，根据人类濒死体验的描述。死亡前夕会出现类似隧道的场景，人一辈子的记忆重新回放——从这个角度而言，人生下来就是渐渐遗忘的过程，直到死亡的那天才能恢复记忆。</p>
+<p>其实，“宛如昨日”就是让你经历一次濒死体验，这是绝对不能告诉体验者的秘密。</p>
+<p>左叶选择了十八岁，中学时代最后一个暑期，海岛旅行的一夜。</p>
+<p>这是他第一次进入“宛如昨日”。以往他都是在无数个电脑屏幕后面，同时透过单面透明的玻璃，观察每个体验者的表情和状态。他无数次想象过进入其中，想象那种真实到让人毛骨悚然的记忆。而他的每一次记忆，最后都会停留在十八岁那年的海岛。</p>
+<p>他来了。黑色夏夜，脚下踩着坚硬的石子，鼻子里充满海风的咸味。他抚摸自己的脸，痘疤已恢复为青春茂盛的粉刺，月光下迸发的几粒新的小家伙，已被挤爆出几毫升脓水和鲜血。但愿这座岛上没有镜子。他的左耳里插着耳机，连着沙滩裤口袋里的walkman．正在放那年流行的恰克与飞鸟的Say Yes。有人生起篝火，他的右耳听到《大海》和《倩女幽魂》。这都是记忆。他不想靠近那些同学，因为在二十一世纪，他们大多一事无成。</p>
+<p>“游坦之，打牌吗？”</p>
+<p>有个男生在背后放肆地叫喊，他摇头，等那个王八蛋走远，轻声说了个“滚”。</p>
+<p>他想离那些人更远些，最好不要被任何人看到。转过几块巨大的岩石，独自沿着海岸线游荡，转眼把全世界甩到身后。来到那座黑色悬崖下，头顶就是古庙，传说是宋代留下的，有个被强盗掳获的名妓舍身跳下，尸骨无存，或许就在海底的礁石里？</p>
+<p>右耳净是汹涌的海浪声，左耳充盈恰克与飞鸟的歌声，两个男人声情并茂地唱着他听不懂的言语。</p>
+<p>他想，她大概不会来了，正要离开，有人从背后拍他肩膀。在这荒凉黑暗的孤岛上，差点以为是八百年前的女鬼来了，回头却见到小枝的脸。虽在阴影底下，但他千真万确认得她，哪怕只是通过嗅觉。</p>
+<p>她穿着短裙，背个小包，靠近他耳边说：“游坦之，你没想到我会来吧？”</p>
+<p>“阿紫……”</p>
+<p>紧张到完全说不出话，都忘了把耳机摘掉。自打初二，他得了“游坦之”这个绰号，就找了《天龙八部》来看，发现游坦之一辈子挚爱阿紫——阿朱的妹妹，也是大理王室段正淳的私生女。</p>
+<p>从此以后，在他的眼睛里头，小枝就成了阿紫。</p>
+<p>虽然，小枝总把别的男生写的小纸条、送的小礼物展示给同学们看，顺便对他们大肆羞辱一番，她却从没暴露过“游坦之”的秘密。</p>
+<p>她说过一句话：“你很特别，游坦之，未来你会成为了不起的人物。”</p>
+<p>而他始终记在心里头，十八岁以后的很多年间，将之作为人生的目标，从未更改。</p>
+<p>海岛之夜，古庙与悬崖底下，远离所有人的角落深处，暗夜的海浪淹没两个人的脚踝。</p>
+<p>他问她：“你有多少个男朋友?”</p>
+<p>小枝伸出手指算了算，七个。</p>
+<p>但阿紫只喜欢萧峰一个。</p>
+<p>不，最后她心底里是喜欢游坦之的。只是她太骄傲，就像对游坦之的所作所为。她骄傲到不敢承认，萧峰永远属于阿朱——而阿紫属于游坦之，也可以反过来说。</p>
+<p>小枝靠近他，海风吹起发丝，纠缠少年的耳朵与脖子，她的嘴唇印在他的脸颊上。</p>
+<p>初吻。</p>
+<p>在二○一五年看起来太清淡了，当年却是做梦都不敢想的天堂。</p>
+<p>左耳深处，恰克与飞鸟不断重复着“say yes”……</p>
+<p>小枝的嘴唇从游坦之的脸上挪开，轻轻说了一句——</p>
+<p>“等我回来，或者，你来追我。”</p>
+<p>说罢，她当着他的面，脱下衣服，换上泳衣。黑暗的岩石底下，他只能看到一个大致的轮廓，并能听到自己牙齿间的兵刃相接。</p>
+<p>他看见一个光溜溜的身体，美人鱼般没人海水。</p>
+<p>月光出来了。</p>
+<p>黑色水浪与白色泡沫相间的海面上，仿佛有一条中华白海豚忽隐忽现，背鳍上缠绕着湿透了的乌发。海风夹着苦咸的浪珠，无比真实地打到脸上，他难以分辨这是记忆还是什么。</p>
+<p>往前踏了一步，十八岁的记忆涌上耳边——岛上有规定，晚上严禁下海游泳，因为有许多暗礁和漩涡，去年夏天淹死过好几个人。</p>
+<p>他大声呼唤她的名字。</p>
+<p>再也看不到她了，月光又陷入白莲花般的浓云，海面上升起一团氤氲的烟雾，底下似乎隐藏着东海龙王狰狞的宫殿。</p>
+<p>他会游泳。五岁开始就学会了，小学时甚至进过少年体校的游泳队，后来因为身体不够强壮而被刷掉。但这不影响他每年夏天去游泳池，偶尔还会下水野泳，潜水好几分钟不成问题。</p>
+<p>可是，眼前这片黑漆漆的大海，俨然一口巨大的蒸锅，冰冷而沸腾，蚀骨销魂，任何人或生物都无法幸免。</p>
+<p>泡在海水里的脚踝，仿佛正在被灼烧熔化，伴有焦煳的味道。他摘下耳机，脱了外衣，只剩一条短裤，却再不敢往前走一步。这就是记忆，不可更改的时间轴上的串珠，每一粒都闪闪发光，哪怕暂时被锁入抽屉，它们也仍在黑暗中闪烁，不时蹦出来刺瞎你的双眼。</p>
+<p>对啊，他依然记得，十八岁，黑夜的海岛，他眼睁睁看着小枝下海游泳，自己却因为胆怯，不敢跟在后面下水。小枝再也没有回来。第二天，她的尸体在海滩上被发现，已被锋利的暗礁割得支离破碎，苍白，泡得浮肿，只剩下一张脸还是完整的，望着天。</p>
+<p>现在还是记忆吗？他看着脚底下的海水，似乎前头有一道透明的墙，横亘于少年与此刻的自己之间。它阻拦着你打破某种看似坚不可摧的东西，有人叫作时间，有人叫作命运。</p>
+<p>宛如昨日。</p>
+<p>去你妈的昨日！他跳下了大海，十八岁的身体像条光滑的鱼，劈开黑暗冰冷而灼热的咸水。他能感到底下布满礁石，一不留神就会撞上去，有时脚下深不可测，回转着致命的漩涡，有时脚下的暗礁宛如利刃，当你裸身游过其上，顷刻间会给你开膛破肚。</p>
+<p>这不是吗？他感觉自己的双脚裂开了口子，差点还被女人长发般的海藻缠住。但他依旧往前游去，将头探出水面，借助微弱的夜光，寻找小枝的身影。</p>
+<p>不，等一等，双腿又被缠住了，这回不是女人长发般的海藻，而是海藻般的女人长发。</p>
+<p>他转回头来，黑暗的海底，参差暗礁的缝隙，闪过一抹幽灵般的暗光，他看到了她。</p>
+<p>少女，十八岁的少女，海底的黑色少女，她的四肢全是流血的创口，海的颜色变成司汤达的小说。</p>
+<p>他抱住了她，摆动双腿，浮出海面。</p>
+<p>呼……吸……呼……吸……</p>
+<p>离开死神之海，劈开杀人的波浪逃亡，回到悬崖下的乱石滩。</p>
+<p>少女仰天躺着，牙关紧锁，面如绢纸，尚被锁闭在濒死隧道中，回忆十八年来的人生，不晓得有没有游坦之的一席之地。</p>
+<p>还阳。</p>
+<p>她痛苦地呛出几口海水，用流满鲜血的胳膊抱住他。他想，她并没有看清他的脸，但这不重要。因为他的气味，已经牢牢地渗透进她的鼻子、、肺叶和心脏，盖上了属于游坦之的印章。</p>
+<p>这是他和她所经历过的最漫长的那一夜。</p>
+<p>5</p>
+<p>左叶摘下“宛如昨日”的设备，看电脑上的时间是二○一五年。浑身上下被汗水湿透，还带着海盐般的苦成味，打摆子般的颤抖。他逃出空无一人的实验室，没想到整个白天已经过去，夜幕席卷着海风扑面而来，才明白古人为何用“白驹过隙”来形容时间过得飞快。</p>
+<p>不过，耳边依旧回响着恰克与飞鸟的歌声。宛如昨日。</p>
+<p>他果不其然地生病了，在医院里输了三天液，陷于各种噩梦的昏睡之中。大部分的梦境，他都在幽暗的海底，在嶙峋暗礁与女人长发般的海藻缝隙，不断拖起一具少女的骷髅……</p>
+<p>医生找不到具体病因，只能以疲劳过度草草了事。左叶想起在国外的科技文献上看到过，如果试图进行时间旅行或者穿越的话，可能会破坏人体内的细胞，引发癌症之类恶性病变，也是人类试图挑战造物主规则所受的惩罚。</p>
+<p>但他不在乎。</p>
+<p>凌晨三点，左叶回到实验室。他给自己注射了一管镇静剂，这是他向医生行贿要来的。</p>
+<p>“宛如昨日”的黑色隧道，自呱呱坠地开始的人生，他刻意跳过十三岁到十八岁，直接进入二十岁。</p>
+<p>那一年，他读大学。当别的男生忙于泡妞和打游戏以及“鉴赏”武藤兰的时候，他成天泡在实验室和图书馆，连女生的手都没摸过。上一份学年论文关于爱因斯坦，正在做的这份关于荣格。</p>
+<p>他躺在宿舍里，依然满脸青春痘，只是没人再叫他“游坦之”了。手机忽然响起，来电显示却是——小枝。</p>
+<p>早期的摩托罗拉手机，不断重复着“Hello Moto”。犹豫许久，接起电话，电波那头熟悉的女声响起，“游坦之啊，别忘了今晚去电影院哦!”</p>
+<p>“哪个电影院？”</p>
+<p>千真万确，小枝的声音，她报出看电影的时间地点，竟是李安的《卧虎藏龙》。</p>
+<p>他冲出宿舍，这不是自己的记忆，或是记忆的错觉？但他想要见到她，迫切地。</p>
+<p>电影院门口，他看到二十岁的小枝，穿着小碎花裙子，长发飘飘，青舂无敌。他不知如何寒暄，也不清楚他们之间是啥关系，小枝一把揪住他，胳膊像条冰凉的水蛇，牢牢挽住他的右手，并把头靠在他的肩膀上。不用说了，她是他的女朋友。</p>
+<p>他小心翼翼地说话，避免表现得像个白痴，或者来自二○一五年。他很会套话的技巧。等到玉娇龙自万丈深渊一跃而下，差不多摸清了情况——两年前的暑假，同学们去海岛旅游，小枝在黑夜的大海里溺水，是他勇敢地跳下海救了她的命。他们很快成为恋人。两个人在同一座城市的不同大学，他是名牌大学的理科，而她在师范学中文。不少男生垂涎于小枝，她看来还算专情，说喜欢他的勤奋与努力，未来必有大出息。</p>
+<p>闭上眼睛，重新回到黑色的隧道，时间跳跃到二十八岁那年。左叶在一家科技公司做工程师，年薪五十多万。小枝毕业后没做语文老师，自己开了家小清新的咖啡馆。但她不会经营，门可罗雀，偶尔热闹时分，就是她作为老板娘给朋友们免单开party，每年亏掉几十万，全靠左叶从工资里贴钱支撑。</p>
+<p>他俩谈了快十年的恋爱。左叶似乎从没变过。倒是小枝的咖啡馆里，经常出入些奇怪的男人，比如乐队的吉他手、开哈雷摩托的富二代、经常上电视的妇女之友情感专栏作家。他发现她跟这些男人都有来往，但和每一个的关系保持都不会超过一个礼拜。</p>
+<p>两个人一次一次吵架，但他一次又一次原谅她。</p>
+<p>最后，他提出分手。她哭着求他不要走，但他头也不回地离开，躲在家里大醉了三天。</p>
+<p>三天后，小枝出了车祸。事故很严重，在出租车上，司机死了。小枝重伤，幸好没有破相，但眼睛瞎了。</p>
+<p>碎玻璃扎进双眼，彻底破坏了她的眼角膜。左叶火速赶到医院，紧紧抓住小枝的双手，听着她的哭泣声与忏悔声，决定为她捐献出自己的一个眼角膜。三个月后，手术顺利举行，左叶的左眼角膜，移植给了小枝的左眼。小枝睁开眼睛后看到的第一个人，是左叶。</p>
+<p>又隔了三个月，小枝嫁给了左叶。</p>
+<p>离开“宛如昨日”，左叶躺在二○一五年的实验室里，闭着眼睛回想着记忆——貌似很美好。</p>
+<p>他尝试着只睁开一只右眼，看到的世界果然不太相同，好像从3D电影退化到了2D电影，就连使用键盘都古怪起来。</p>
+<p>不过，据说右眼能见到鬼。</p>
+<p>左叶给自己放了个假，也就几天时间。他驱车回到市区，找到过去的家，从床底下的垃圾堆里翻出那台walkman。他没找到恰克与飞鸟，倒是有大量的张国荣的歌。他还想找到毕业照，但无论如何都找不见。几年前，他去墓地给小枝献过花，那天是她的忌日。左叶开车去了墓地，成百上千的墓碑之中，再也找不到小枝的所在．他给公墓管理处的老头递了一包烟，依旧没查出小枝的姓名。难道她的坟墓被她父母迁走了?</p>
+<p>他漫无目的地开着车，转过城市的每条街巷。大屏幕上亮着Apple Watch的广告，如果三个月后，跳出来的是“宛如昨日”，不晓得会有怎样反应。</p>
+<p>再踩了踩油门，左叶开出市区，时速一百多公里开上高速，回到海边的研发中心。</p>
+<p>等到深夜，实验室里空无一人，他戴上“宛如昨日”的装备。</p>
+<p>濒死体验般的隧道，被改变了的回忆。他看到二十八岁，自己的婚礼。很奇怪，他知道在那个瞬间，自己应该很幸福，至少感觉很幸福。可他不想去体验，不仅因为从未体验过，也不仅因为失去了一只眼睛。</p>
+<p>婚后，“宛如昨日”继续开发，有人看到其商业潜力，天使轮800万人民币．A轮就到了1500万美金，B轮已涨到7000万美金，然后是谷歌的19个亿美金。</p>
+<p>虽然，左叶已习惯独眼龙的生活，平时基本不戴眼罩或墨镜，别人也看不出来。但一只眼睛看世界，总有些不便，吃饭用筷子都会出错，更不可能开车。他想起“游坦之”，也许小时候被人叫什么外号，长大后就会变成那个样子吧！</p>
+<p>小枝关了咖啡店，安心在家做主妇。他们很努力地造人，小枝却没什么变化，仿佛一直停留在二十来岁。他俩去医院检查，结果非常罕见，夫妻双方都有问题——左叶死精，小枝输卵管阻塞。左叶问医生，是否因为十八岁那年，两个人在黑暗的大海里差点溺水身亡的缘故？医生说你想多了。</p>
+<p>他少了一只左眼，而她也仅剩一只由他捐赠眼角膜的左眼。两人对视之时，用的都是左叶的眼角膜，仿佛互相看到自己。他们都判断不清距离，接吻会把鼻子或下巴磕痛。想要拥抱，却只抓到对方胳膊，或者干脆撞墙。</p>
+<p>左叶越来越少回家，彼此也没什么话。她总是砸坏家里的电器，而他默默去网上买斯的。</p>
+<p>结婚第六年，左叶出轨了。对象是投行的一个女孩子，并不在乎他是有妇之夫，还说很喜欢独眼龙。</p>
+<p>巧妙地隐藏了一年，终究还是被小枝发现。夫妻俩争吵、打架，差点把两千万买的海景别墅烧了。</p>
+<p>她的手指对准眼窝，“游坦之！我要把眼睛挖出来还给你！”</p>
+<p>左叶浑身颤抖，似乎回到十八岁那年的海岛，黑色的悬崖和古庙底下。</p>
+<p>他拖着小枝冲到海边，两个人坐上一艘摩托艇，开向灰暗的大海中央。</p>
+<p>黄昏，风雨欲来，浓云遮蔽海天，不断有飞鱼跃出，像一壶就快烧开的水。他关掉摩托艇的引擎，站在摇晃的海面上，艰难地保持着平衡，用幸存的右眼，看着妻子的左眼。</p>
+<p>亲爱的小枝，告诉你一个秘密——你只是个幻影，是我记忆中的幻影。在真实的世界里，你根本就不存在，十八岁那年，你就在黑夜的人海里淹死了。对不起，那一夜，我没有勇气来拯救你。你所经历的大半辈子，都是我改变了自己的记忆后产生的，储存在一个叫“宛如昨日”的数据系统里。</p>
+<p>小枝摇摇头，言简意赅地说了三个字，“去死吧！”</p>
+<p>两秒钟后，左叶摸了摸自己瞎了的左眼，将小枝推人大海。</p>
+<p>她像一只下了锅的蒸饺，消失在暗潮汹涌的水波间，连个挣扎的扑腾都没有。自从十八岁那年溺水后，她很多年没游过泳了，产生了畏水症。要不是左叶的公司就在海边，她才不想住什么海景房呢。</p>
+<p>左叶开着摩托艇转了一个钟头，直到黑夜覆盖额头，确信记忆里不再有小枝了。</p>
+<p>坟墓般的海洋。</p>
+<p>7</p>
+<p>左叶还在海上。</p>
+<p>他闭上唯一可见的右眼，回忆一切的回忆，开头是美梦，后来做成了噩梦。</p>
+<p>现在，他杀人了。</p>
+<p>但有什么可怕呢？反正一切都是假的，就像打游戏，CS里头杀人如麻，刚才杀的也是梦境，谁没在梦中疯狂过呢？</p>
+<p>左叶想要摘下“宛如昨日”设备，在头上抓了半天却无果。他想，是自己太心急了，忘了先要闭上眼睛，退出记忆的隧道。</p>
+<p>闭眼，却不见隧道，身体却随着黑色海浪而浮沉。</p>
+<p>等待了不知多久，再睁开眼睛，一切如常，不是二○一五年的如常，而是孤独地躺在摩托艇上的如常，头顶覆盖着海天的云，雨点带着咸味，一滴一滴，坠落到眼底。</p>
+<p>他感觉自己也在流眼泪。</p>
+<p>回不去了？或者，被“宛如昨日”抛弃在了记忆的异次元时空？</p>
+<p>趴在摩托艇的船舷边，向着深不可测的海底呼唤小枝——仿佛她仍是十八岁少女，长眠在暗礁与海藻的坟墓。</p>
+<p>转眼间，海上下起瓢泼大雨，风浪几次要把摩托艇打沉。不能再这样等待下去了，左叶掉转船头，飞快地往岸边驶去。</p>
+<p>他把摩托艇抛弃在滩涂上，徒步冲回海景别墅。这里早被小枝搞成了废墟，他不知道该往哪里走，看了一眼电脑，似乎明白了什么。</p>
+<p>不，是时间，因为现在不是昨日，而是二○一五年的夏天，就是今天……</p>
+<p>记忆走得飞快，从时间隧道来到顶点。就是一条射线，原本我们只是看着过去无数个点，但当记忆追上此刻，就再也无法逆转。左叶脑子发涨，刚想去卫生间呕吐，听到了敲门声。</p>
+<p>窗外电闪雷鸣，波涛汹涌，似要吞噬陆地上的一切。打开房门，是两个警察。他们说接到邻居投诉，这里有激烈的争吵和打斗，怀疑发生家庭暴力。</p>
+<p>左叶解释说是夫妻吵架，家常便饭，但绝对没有人动过手。</p>
+<p>警察问他妻子在哪里。他说吵架后回娘家去了，现在电话关机找不到人，大概明天早上就会回来的。</p>
+<p>警察将信将疑地离去，左叶后背心发凉——记忆与现实，已合二为一？或者说，自己被困在这个记忆的世界里，真的成了杀人犯？</p>
+<p>他打开窗户，透过劈头盖脑的暴风雨，看到隔壁邻居家的灯光。那个家伙是偷窥狂，恐怕不但听到了争吵声，还看到了他开摩托艇带着小枝出海，甚至看到了他独自从海上回来。</p>
+<p>左叶换上一身衣服，独眼龙不能开车，他骑上一辆运动自行车，顶着大雨如注，冲到公路上。疲惫不堪地骑行了一整晚，差点被大卡车撞死，还摔倒过两次，额头磕出了血。不像噩梦坠落后的惊醒，这些疼痛如此真实，让他分外小心，以至于害怕一旦死亡，再也无法复活。</p>
+<p>天明时分，到了市区。他不敢住在旅馆，因为要登记身份证，只能找一家浴场。他在澡堂泡了一整天，氤氲的蒸汽如绞索。对面是电视机屏幕。几个老头在吹牛逼，两个小弟在刷朋友圈。电视上发布了警方通告，在海边发现一具女尸，经核实为工程师左叶的妻子小枝。左叶现已失踪，具有重大犯罪嫌疑，警方正在全城通缉。屏幕上出现嫌疑人的照片，特征是一目失明。他潜入浑浊的池水，以免被周围人们发现。</p>
+<p>接下来十多天，左叶昼伏夜出，不停地在浴室，车站、桥洞、大学门口的钟点房旅馆更换住址。他不敢使用信用卡，只用身上的几千块现金。他把手机也扔掉了，作为科技工作者，他知道留着手机是个隐患。他感觉自己像只老鼠，随时会被猫逮住。没错，他是个杀妻的逃犯，干人唾骂，遗臭万年。</p>
+<p>终于，他在城乡结合部的小网吧里，看到了一个多月前，自己回复过的那条微博，关于最漫长的那一夜。</p>
+<p>十八岁，海岛旅行。深夜，海边有悬崖和古庙，黑色大海激起黑色浪头，像黑色天空拍打黑色乱石……</p>
+<p>8</p>
+<p>记忆可以被改变，现实同样也可以被改变。</p>
+<p>同理，如果现实可以被改变，那么反过来也可以再次改变记忆。</p>
+<p>凌晨三点，左叶回到海边。整个公司都没有人，自从他出事以后，就放了带薪假期。他用指纹识别开门，潜入“宛如昨日”的实验室。</p>
+<p>默默戴上设备，眼前掠过一条黑色隧道，他选择了十八岁，海岛之夜。</p>
+<p>悬崖、古庙、黑色大海、黑色浪头、黑色天空、黑色乱石，还有黑色的少年——就是这个“奇点”，最漫长的那一夜，改变记忆的“奇点”，就像万物生长的起源，宇宙大爆炸的瞬间。</p>
+<p>他依然是“游坦之”，毁容边缘的十八岁男生，两只眼睛除了轻微近视还很完美，右耳插着随身听walkman，有两个日本男人在唱着Say Yes。</p>
+<p>小枝出现在他身后，幽灵般的，在悬崖和古庙底下。</p>
+<p>十八岁。</p>
+<p>你有多少个男朋友？</p>
+<p>七个。</p>
+<p>但阿紫只喜欢萧峰一个。</p>
+<p>不，她最后从心底里是喜欢上游坦之的……</p>
+<p>十秒钟后，小枝给了他一个初吻。</p>
+<p>等我回来，或者，你来追我。</p>
+<p>她跳入黑夜的大海游泳，暂时忘记了海面下布满暗礁的警告。</p>
+<p>月光忽明忽暗，他大声呼唤她的名字，但徒劳。</p>
+<p>“游坦之”只看到一片貌似安静的大海，黑漆漆的如同棺材底下的世界。海水淹没他的脚踝，无法催他往前迈动一步。他闭上双眼，泪水混着海水从脸颊落下。耳边依旧是恰克与飞鸟。他只是默默等待，让时间的沙漏流尽，计算暗礁举起匕首。她被海底的女妖拽入深渊，遍体鳞伤，粉身碎骨。他与她，便不会再有余生悲伤。</p>
+<p>他看见，时间无比漫长，似乎毕生在这一夜殉爆，海底绽开不计其数的焰火，美极了。</p>
+<p>恍然之间，睁开双眼，他摇头。摘下耳机，脱下衣裤，赤身裸体。鼻尖的青春痘，蓬勃爆裂，脓汁鲜美。</p>
+<p>十八岁哪吒，白马脱缰，冲进冰冷黑暗的大海，奔向深海礁石里的十八岁少女……</p>
+<p>9</p>
+<p>在二○一六年的世界，我的朋友左叶消失了。</p>
+<p>人们用了很多方法寻找他，我在实验室掘地三尺，依然没有他的踪迹，却意外发现了最新款的。宛如昨日”设备，无线WiFi自动连接到互联网，就能在云端找到存储空间，可随身携带到任何地方使用。想必是左叶刚研发出来的，这是送给我的礼物吗？</p>
+<p>我的表哥，众所周知的叶萧警官，开始介入调查，因为左叶似与一桩杀人案有关。我想，叶萧终将发现真相，尤其当他拥有了“宛如昨日”这样奇妙的工具。</p>
+<p>公安部计算机网络犯罪研究所的专家，破解了“宛如昨日”的后台，调出海量的数据——原来每个人体验“宛如昨日”的同时，脑中所想到的记忆画面，都会源源不断上传到服务器，生成一个个记忆库。包括我回忆过的往事，全部存储在其中一个文件包里。</p>
+<p>以上关于左叶的故事，包括他在虚拟记忆2.0里的杀人与逃亡，都是从这个记忆库发现的，唯独不知他本人现在何方。</p>
+<p>最新款的那套设备，已被我秘密地占为己有，随时随地体验宛如昨日。这是一面无穷无尽的镜子。我看到十多年前的自己。那年我还在上班，同一间办公室搭档的，是位退休的老干部，老到比我足足大了四十岁。他在部队里二十多年，看守过劳改农场。老人爱拉着年轻人聊天，必须听他讲一辈子的故事。老人操一口浓浓的绍兴乡音，说话像越剧道白。那些年的每个午后，我假装认真地聆听。一屋子慵懒阳光，档案袋的灰尘间，摇摇欲坠，恨不得悬梁刺股。老人的各种奇异经历中，有段监狱往事，让我从昏睡中惊醒，望而生畏。那座监狱，有个恐怖片式的名字——白茅岭。</p>
+<p>我已多年没再遇见那个老人。如果有一天能有幸再见，我想给他体验一回“宛如昨日”，清晰地看到在我们这一代人出生以前的记忆，还有老狱警、逃犯与狼的真实面目。</p>
+<p>至于我自己，仍想知道小枝更多的秘密——她的全名叫欧阳小枝，你懂的，从《病毒》开始到《生死河》，为什么我对这个名字如此迷恋？因为一九九九年八月十三日的海岛之夜。我、叶萧、左叶，还有欧阳小枝，以及无数你认识或不认识的人，将继续拼命划桨与奔跑。</p>
+<p>宛如昨日。</p>
+<p>你所看到的这篇故事，仅仅是一段轻快的弦乐前奏，后面才是钟鼓齐鸣的交响乐。而站在舞台上的指挥家，就是正在阅读的你，或者说，是你的记忆。</p>
+<p>在最漫长的那一夜，你走过孤悬于海上的小岛，坐落着古庙的黑色悬崖之巅，没来由地燃烧起冲天的火焰，令造访夜空的英仙座流星雨黯然失色。海浪不断吞噬着你的脚踝，有人在你耳边唱起一首歌Yesterday Once More-</p>
+<p>When I was young I'd listen to the radio</p>
+<p>Waiting for my favorite songs</p>
+<p>When they played I'd sing along</p>
+<p>It make me smile</p>
+<p>Those were such happy times and not so long ago</p>
+<p>How I wondered where they'd gone</p>
+<p>But they're back again just like a long lost friend</p>
+<p>All the songs I loVe so well</p>
+<p>Every shalala every wo'wo still shines</p>
+<p>Every shing-a-Ling-a-Ling that they're starting to sing so fine</p>
+<p>When they get to the part</p>
+<p>Where he's breaking her heart</p>
+<p>It can really make me cry</p>
+<p>Just like before</p>
+<p>It's yesterday once more</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

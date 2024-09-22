@@ -1,0 +1,1057 @@
+<!DOCTYPE html><html><head><title>27</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="26.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="28.html">下一章</a></p><hr><h1><center>第27夜 春运赶尸列车一夜</center></h1>
+<p>多年以后，坐在寂静无声的极速悬浮列车上，王小石将会回想起二○一五年春节回家的那个遥远的夜晚。那时的火车站宽阔而喧嚣，人头攒动，川流不息。不锈钢与玻璃立面的候车大厅沿着铁路线一字排开，星空被雾霾装饰成了水墨画，城市灯火耀眼得如同第二次世界大战的火光。那可是一个辉煌的大时代，地球上有五分之一的人口，一年到头奔波忙碌——在无数荒芜的土地上造起钢筋水泥的森林，在山岭中打通隧道，河上架起高桥，自古不通的地方转瞬连接在一块儿。还有几亿人不惜背井离乡，远离父母亲朋或抛下另一半。到了农历新年前夕，这些人就会踏上回家的路。如果按照人次统计，已超过这个国家总人口的三倍。这是人类史无前例的伟大迁徙，未来几万年也不可能重现。</p>
+<p>二○一五年二月十四日，王小石的情人节，是在医院的太平间和火车上度过的。</p>
+<p>凌晨，他偷偷溜了进来。这里躺着几十具尸体，有的尚且柔软，有的已经硬邦邦了。墙边角落，集中停放着十二个死人——昨晚刚被推进来的，等到天亮，就要送去殡仪馆火化了。</p>
+<p>哥哥。</p>
+<p>王小石找到哥哥的遗体。那是个高大的男人，身板比弟弟壮了两圈，看起来相貌堂堂，仿佛随时会跳起来打篮球。但从哥哥痛苦的表情来看，死前一定受了不少罪。</p>
+<p>小时候，爸爸妈妈常说，大石头和小石头，就跟他们的名字一样哎。</p>
+<p>果然，王小石长到二十二岁，身高还没超过一米七。每次跟在哥哥身后，总是自惭形秽得不敢说话。兄弟俩相差五岁，上学的时候，王大石壮得像头牛，每当弟弟在学校被人欺负，他就会冲过去将对方一顿胖揍。</p>
+<p>王小石第一次到大城市打工，是被做泥瓦匠的哥哥带出来的。那年他十七岁，包工头嫌他太过瘦小，在建筑工地干不了重活。不过，王小石写得一手好字，好歹读到了高二退学。包工头手下十来个民工，全是同村老乡，平常都听王大石的，看他的面子，正巧工地上缺个记账的，才收下了王小石。</p>
+<p>每年春节，大伙儿统一买火车票回家。半个月前，买票的任务落到王小石头上。他在火车站排了二十四小时的队，熬得双眼通红、四肢麻木，终于抢到十三张回家的票——最便宜的慢车硬座。</p>
+<p>二月十三日，回家前一天，王小石正在跟包工头盘账，突然发现外头浓烟滚滚。原来是临时工电焊操作失误，加上天干物燥，整栋楼腾起冲天烈焰。此时，哥哥正带着一群工人，在大楼地下室干活呢。王小石想要进去救人，幸亏被消防队员拦腰抱住，否则进去就得变成烤鸭。大火扑灭后，消防队在地下室发现十二具尸体——完好无损，连根毛发都没少，死因是吸人性窒息。因为是呛死的，死者一律表情痛苦而扭曲，面色发黑。在烧成废墟的工地边上，王小石抱着哥哥。尸体非但感觉不到冰凉，反而被大火烘烤得滚烫。</p>
+<p>王小石大哭一场，屁股兜里还插着十三张火车票。车票上印着名字的十二个人，被送进太平间躺了一夜。</p>
+<p>王小石住在临时安置点，一宿没有合眼。包工头已被关进了公安局，被追究重大安全事故责任。一纸单方签好的赔偿协议，塞在王小石的包里，只要拿回家去由家属签字同意，每个死者的家庭就能得到四十万赔偿。</p>
+<p>明晚，就要踏上回家过年的火车。哥哥死了，他该怎么跟老爸老妈说呢？还有那十一个同乡的民工，这些人，上有老下有小，咋就他一个人活着回家了呢？王小石摸出那十三张火车票，想起在售票窗口排了一昼夜的长队，他决定，十三个人一块儿回家。</p>
+<p>根据老家的风俗，出门远行死在外地的，必须运回家安葬。不过，尸体要凭票上火车是不可能的。春运期间，活人都来不及运，怎么会运死人呢？</p>
+<p>忽然，王小石想起十多年前的奇遇。在那冰天雪地的山村里，他是个病殃殃瘦巴巴的小不点儿，小学六年级了，还常被人问起读书了没有。他有梦游的毛病，经常半夜出去闲逛，有一次还差点被狼吃了。那天深夜，他鬼魂似的摸到村外的山路上。前头亮起一盏灯笼，照出几个蹦蹦跳跳的人影。霎时间，王小石被吓醒了，躲藏在乱坟岗后，只见那些家伙面色苍白，穿着不知哪个年代的寿衣，双手平举往前跳跃。队伍最后，有个晃晃悠悠的老头儿，头发掉光了，老得不知多少岁，蜷缩在破烂的羊皮袄里，寒风中冻得七荤八索。老头坐在地上不动了，只剩下喘气的力道。看起来像是死人的队伍，全都停顿下来。大半夜，那么冷的天，老头要是一直坐下去，十有八九要冻死。王小石想起在摇摇欲坠的乡村小学教室里，民办教师在黑板上画出雷锋的故事，他便摸到老头背后拍了拍。这猛一下子突袭，把老头吓得惨叫，面色跟死人一样惨白。再看是个小孩，老头掐了自己大腿一把，疼得叫唤起来，“喂，这回我没有赶童尸啊。”几番对话之后，老头才确认这孩子是活人，摸着心口说：“乖乖，人吓人，吓死人啊！”老头口干舌燥，越发虚弱，眼看就要冻死了，王小石让他稍等一会儿，便急忙跑回家生火烧了一壶开水，又急匆匆拎回来，倒在碗里给老头喝下。老头缓了过来，说：“小子啊，我活了九十来岁，这是最后一次赶尸，恐怕时日无多，待老夫死后，世上便再无赶尸人了。”王小石不懂什么叫赶尸，只听老头说：“滴水之恩，当涌泉相报。你如果愿意学，我就把这独门技艺传授于你，记得千万不可随意示人！否则，你不但会闯下大祸，还将天下大乱！”</p>
+<p>一个行将就木的老头，一个懵懵懂懂的少年，冰冷荒野中相遇的最漫长的那一夜，赶尸匠老头，将毕生绝技，毫无保留地秘传给了这个孩子……</p>
+<p>王小石至今没忘记那七七四十九道各不相同的口令。</p>
+<p>小时候，他将此视为绝密，不敢跟任何人提起，除了最亲密的哥哥。他害怕一旦告诉别人，自己就会变成石头，或那一长串行走的尸体中的一员。他更没对任何一具尸体念过口令。长大以后，他觉得那很扯，世上哪有什么赶尸秘技？全是鬼片里骗人的玩意儿，至于童年那晚的记忆，很可能是梦游时中邪了，甚至不过一场噩梦罢了。</p>
+<p>不过，在二○一五年二月十四日的凌晨，王小石决定必须要试一把——这是哥哥最后一次回家的机会。</p>
+<p>太平间。医院地下二层。</p>
+<p>十二具尸体面目狰狞——最小的十八岁，刚从农衬出来；最大的四十岁，女儿都出嫁了。</p>
+<p>回忆起十多年前那个寒冬的夜晚，老赶尸匠传到他耳中的口令，王小石默默念起…</p>
+<p>太平间里冰冷的空气有些凝固，六十秒，快要让他窒息的六十秒。</p>
+<p>哥哥睁开了眼睛。</p>
+<p>王小石的眼眶红了，但他来不及哭，赶快念起第二道口令。</p>
+<p>于是，尸体坐了起来。僵硬的躯干和四肢，就像个机器人。</p>
+<p>第三道口令。</p>
+<p>哥哥的双腿已经下地，整个人站在弟弟面前。</p>
+<p>另外十一个死去的民工，也都从僵硬中“复活”，面无表情地站在太平间里。</p>
+<p>惊喜只持续了几秒，王小石才发现不止同乡——整个太平间里的死人，全都齐刷刷起来了，大多是七八十岁的老头老太，也有死于车祸被削掉半个头的小伙子，还有因非法流产拖着个死胎的女孩……</p>
+<p>妈呀，出大事了。</p>
+<p>有些陌生的死人不听召唤，径直向王小石走过来，还有个刚死于心肌梗死的胖大妈向他抛来媚眼。</p>
+<p>王小石想起，当年老赶尸匠还教过他让死人复原的口令。他赶紧发令使哥哥和老乡们闪到自己身后，对着其他死人念起那道复原口令。果然，整个太平间近几十具尸体，又都倒下沉睡了。</p>
+<p>情人节的凌晨，他的背后全是冷汗。</p>
+<p>打开太平间的门，医院里寂静无声，王小石用口令引导着十二个死人，悄悄地穿过长长的楼道，坐进宽大的电梯。</p>
+<p>缓缓上升。</p>
+<p>才上了一层，电梯门打开了，有个值夜班的小护士，看到这些目光呆滞的家伙，不禁十分疑惑。</p>
+<p>情急之下，王小石搂着哥哥亲了亲，嘴上说：“嗨，情人节快乐！”接着去亲下一个死人。</p>
+<p>小护士厌恶得直起鸡皮疙瘩，以为这是一群gay的情人节聚会，狠狠地瞪了小石一眼，电梯门一开就赶快出了电梯。</p>
+<p>王小石引着尸队绕过保安，终于逃出医院。到了大街上，自然不能招摇过市。赶尸的行军口令有两种：一种是跳跃赶尸，就像香港鬼片里演的，双手平举往前跳，可以日行百里，半夜里赶尸匠都这么玩，还有一种是步行赶尸，速度比较慢，与常人无异，适合在白天伪装。</p>
+<p>终于，王小石和十二具尸体，回到废弃的工棚。他把每个人重新整理一番，分别换上新外套。再用在情人节的路边摊买的廉价化妆品，掩盖死人的肤色。最后，他用手工方式，将每个人临死前的痛苦表情，恢复成平常的神色。好啦，十二个死人站在面前，看起来跟活人差别不大。每个都背着厚厚的旅行包，装着给孩子的玩具、给老婆的劣质</p>
+<p>香水、给父母的保健品……</p>
+<p>下午，赶尸部队整装出发，踏上回家的路。</p>
+<p>王小石默念口令，指挥尸体们步行前往火车站。他们动作整齐划一，仿佛学校组织春游的学生，惹来许多人围观。但毕竟是死人，个个目光呆滞，凡是盯着他们看的人，都会感到不安，出于本能地躲远了。</p>
+<p>熙熙攘攘的火车站到了，已是黄昏。广场卖花的小姑娘们，还试图向过路的王小石兜售玫瑰。今晚的城市，灯火辉煌，处处霓虹，王小石暗暗祈祷，老天爷不要再闹出人命了啊！</p>
+<p>十三张火车票，分别印着各自姓名。一路上，王小石施以口令，让死人左手抓紧车票，右手抓紧身份证。他们的手指坚硬如铁，要是没有赶尸口令，除非刀砍枪击，否则绝不会让人拿走票。</p>
+<p>王小石心里怕得要命，万一被人发现，恐怕就没法回家过年了。他一路默念口令，遇到安检，死人们就会放下包。到了检粟口，口令越发娴熟，每个人松开手指，便于检票员检查车票。</p>
+<p>终于，汹涌喧嚣的人潮之中，十二个死人和一个活人挤上了春运的火车。</p>
+<p>王小石找到座位，十三张票连在一起，最便宜的硬座。口令指示大家对号人座，而他就坐在哥哥身边，一颗高悬的心总算落定。</p>
+<p>热闹狭窄的车厢里，挤满了人和行李，弥漫着灰尘，混杂着汗酸、头油、脚臭，还有老干妈、臭豆腐、腊肠和泡开的老坛酸菜方便面味……</p>
+<p>二月十四日，晚八点，这座城市的男女白领们享用大餐的同时，十二节的列车汽笛呜咽，碾轧过漫长无边的铁轨，满载疲惫不堪的男女民工们，回家了。</p>
+<p>这是一列慢车，山高路远，穿越大半个中国，要在铁道上颠簸三天三夜。准点到达的话，应是二月十七日中午，农历腊月二十九小年夜。</p>
+<p>王小石看着车窗外的世界，窗户冰冷得结满霜花，高楼大厦积木似的后退，渐渐远离城市的灯火。</p>
+<p>再见！城市…．</p>
+<p>列车内的灯光打在玻璃上，再也看不清外面的夜景，只剩下无数活人与死人的脸庞。而离他最近的，就是哥哥王大石。</p>
+<p>“王大石！”</p>
+<p>忽然，有人叫起了哥哥的名字。王小石刚想闭眼眯一会儿，吓得跳起三尺高，转头只见一个年轻女子，穿着白色滑雪衫站在过道里。她姿色中等，肤色天然黑，冻得一脸山炮红。乌黑长发里夹杂着挑染的黄发，看起来打理得还不错。</p>
+<p>他揉了揉眼睛，才认出这张脸，“张……张……小翠啊？”</p>
+<p>“嘿！小石头！”张小翠拍了拍他肩膀，亲切地叫出他的小名。</p>
+<p>王小石心里招呼了她妈一百遍，“小石头”也是你叫的吗？谁跟你这么熟啊？</p>
+<p>她是哥哥的前任。</p>
+<p>张小翠哪知道王大石已经死了，她兴奋地盯着前男友，却嗔怪他怎么不理不睬。</p>
+<p>他们在三年前相识。她是个理发师，每月能挣三千多块，晚上闲着没事，就上网吧打游戏。在某大游戏里头，她是见神杀神见魔杀魔的小龙女，有晚意外遇到尹志平，正当要失贞之际，杨过骑着大雕兄从天而降，在襄阳城外拯救了她，从此小龙女与杨过双宿双飞，亦把金庸的原著碎成了渣渣。连续几个月，小龙女跟过儿联手闯关，不但复兴了古墓派，灭了金轮法王全家，还捣了黑木崖的老窝，顺便扭转了东方不败的性取向，最后为阿朱复仇手刃了卫斯理。</p>
+<p>后来，“神雕侠侣”相约在网吧门口见面。“过儿”原来是个粗壮的汉子，“小龙女”虽然不是小笼包，但若送进“于妈”的剧组，能出演的角色只能是路人或女尸。王大石并未隐瞒职业，直截了当说是工地上搬砖的。张小翠说起自己是理发师，还颇有些优越感，并主动请王大石喝了一一杯香飘飘奶茶。她很意外对方竟是老乡，同在一个县，他是全真乡，她是终南镇，只隔着一条浅浅的河。那天晚上，王大石请她吃了麻辣烫，骑着自行车送她回理发店的宿舍。临别时，张小翠问，你不，上去坐坐吗？王大石居然脸红了，害羞地转身就逃跑了。</p>
+<p>那一年，房价还在“嗖嗖”地往上涨，建筑业依然如火如荼。王大石是个泥瓦匠，带着一群同乡的小工一起干，最风光的日子里，月收入超过大多数白领。但他不乱花钱，跟张小翠在一起的娱乐，除了打游戏以外，就是上电影院。有时候，他还会把弟弟带上，三个人一块儿逛街。虽然王小石最讨厌别人叫他小石头，但哥哥总改不了口。在王大石眼里，弟弟永远都是那个躲在他身后、衣服打补丁的鼻涕包。张小翠对王小石也不错，还给他介绍过女朋友，也是理发店里头的。刚刚认识的时候，王小石完全被对方迷住了，天天打电话发短信。结果没过两个月，那女孩子在公安局扫黄中被逮住了，原来她还兼职在QQ上视频交友。那可把王小石给伤了。王小石就从没见过这么清纯的姑娘，见面第二天就说要跟人家去领证。王大石也被搞得很愤怒，张小翠辩解说理发店里人来人往，自然混了些不三不四的，大概是她长相安全，没怎么被招惹过。张小翠哭哭啼啼向男朋友道歉，答应春节跟他回去见父母。</p>
+<p>王大石这才变高兴了，排队为她买了火车票。回乡那天，两人相隔城市两端，她提前拿好火车票，相约在候车室碰头。那一晚，也是此刻的这班慢车，同样朔风飒飒的冬夜，整座城市灯火通明。王大石和弟弟以及老乡们，都蹲在候车大厅里排队等她。张小翠却迟迟没有出现，打她手机也不通。火车要开了，才接到张小翠的电话。她哭着说，来火车站的公交车上，钱包和手机一起被人偷了，里面装着火车票。快停止检票了，老乡们都看着王大石。他摇摇头，在电话里安慰了女朋友几句，便跟大伙儿上了车。三天三夜后，回到老家过年。不到正月十五，他就提前回来了，却再也找不到张小翠了。</p>
+<p>张小翠还记得，她和王大石看过的最后一场电影是《泰囧》。她笑得肺都要跳出来了，王大石却自始至终面无表情，直到走出电影院以后，他才突然明白过来，在地上打滚狂笑了一番。这家伙就是这样，体型过于庞大，反射弧比较长，不像他弟弟那样敏感。</p>
+<p>孤独的火车行驶在黑夜。张小翠的座位也在同一节车厢，她问王小石能不能换个位子，她想坐在前男友身边。王小石不同意，她就抢过他的车票，将体重不到五十五公斤的王小石拽开，强行坐在王大石旁边。</p>
+<p>王小石本想叫来乘警，但想起自己赶着十二具尸体坐火车，万一暴露可就惨了。他只能忍耐着坐到对面，仔细观察着那个可恶的女人。</p>
+<p>张小翠对着前男友嘘寒问暧，可死人怎会开口？王小石只能默念口令，让王大石用点头摇头作答。他说哥哥前些天嗓子发炎，医生不准他说话，要休息一个月，才能重新开口，否则就会永远变成哑巴。</p>
+<p>张小翠只能闭嘴，却抓过王大石的手，挽住他粗壮的胳膊。幸好隔着厚厚的衣服，她还感受不到尸体的冰冷。</p>
+<p>她看着周围那些民工，同样也是面无表情、一动不动。她拿出几包瓜子，分给大家吃，“都是老乡，快点吃吧。”</p>
+<p>王小石傻了，死人怎么嗑瓜子呢？</p>
+<p>他悄悄下达口令，让大家集体摇头。十二个脑袋纷纷晃起来，就像是小学生在做眼保健操。</p>
+<p>王小石又插了一嘴，“这些家伙上车前刚吃完饭，每个人都排队好几天买票，都累得不得了。”说完，他又默念了口令，包括哥哥在内十二个老乡都闭上眼睛，就跟车厢里其他人一样，要缩在座位上将就一夜了。</p>
+<p>张小翠也是困了，便把头靠在前男友的肩膀上，迷迷糊糊地在火车上睡了，两人也算是共度了一个情人节之夜。</p>
+<p>春运赶尸列车上的第一晚，就这么在各种臭烘烘的气味中过去了。</p>
+<p>天刚蒙蒙亮，王小石就醒了，他急着清点人头，生怕丢失了哪怕一具尸体。</p>
+<p>好啊，十二个人，整整齐齐，也没有缺胳膊少腿，哥哥依然僵在座位上，张小翠正打着哈欠醒来。她看到王小石，立刻板下面孔，生怕被人看到一张隔夜脸，便去排队洗脸刷牙了。</p>
+<p>整个上午，车厢里弥散着方便面味。张小翠坐在王大石身边，又看着旁边那些民工，不解地问：“你们怎么不去上厕所呢？早饭也不吃吗？”</p>
+<p>王小石真想打开车窗，把这个女人扔出去。</p>
+<p>一会儿，张小翠倒了杯热水回来，想要往王大石嘴巴里灌。王小石坐不住了，默念口令，让哥哥“噌”的一下从座位上站起来。张小翠被吓了一跳，赶紧让了条道。在赶尸口令指导下，王大石的尸体吃力地迈动步伐，迈过在地上尿尿的小孩，与在车厢连接处打牌的少女擦身而过，又排了很长的队，终于躲进厕所。</p>
+<p>王小石松了口气，再看着张小翠，她一脸怪异表情。正常小便的时间到了，他再念口令让哥哥出来。然而，厕所里毫无反应，外面又排起长队。再等十分钟，王小石的脸憋得通红，额头冒出斗大的汗珠，心里已念了几百遍的口令完全不奏效。看着张小翠狐疑的神情，他只能说：“大哥这些天着凉了，总是拉肚子。”</p>
+<p>他才想起这口令是有距离要求的，超过十五米便失效了。王小石着急地要挤过去，但车厢里全是人，厕所前排队太长，他这小身板一挤就被弹飞了。而厕所门口的人们开始鼓噪，有人用脚踹门，有人去喊乘务员。</p>
+<p>乘务员过来用钥匙打开门，才发现里面躺着一具尸体。</p>
+<p>这下车厢里一片大乱，折腾了几十分钟，乘警才把局面控制下来。</p>
+<p>张小翠抢先冲到尸体跟前，拼命抽他耳光要把他弄醒。王小石在后面说：“我哥有心脏病，他还能抢救得过来。”</p>
+<p>说话之间，张小翠已经趴在王大石身上，嘴对嘴人工呼吸起来一王小石只得极力忍住恶心，幸亏她还被蒙在鼓里。</p>
+<p>同时，王小石默念起口令，王大石突然睁开眼睛，一骨碌从地上爬起来。</p>
+<p>乘警和周围人都被吓着了，没想到他断气那么久还能复活。旁边有人被张小翠感动，觉得这是爱情的力量，掏出手机拍下来发微信了。</p>
+<p>王大石像是没事了一样，依旧一言不发，大踏步回到座位上。乘务员也不敢多问，怕这家伙再晕过去就倒霉了。张小翠搂着他的脖子，脸贴着脸说：“大石头啊，你看是我救活了你的命。”</p>
+<p>说完，她就闭上眼睛，枕着他的肩膀，闻着他身上的气味。</p>
+<p>浓烈的大蒜味。</p>
+<p>是啊，王大石喜欢吃大蒜，永远都是这么一股味。她曾经为此嫌弃过他。于是，他戒掉了此生唯一的嗜好。自然，他们两个分手以后，王大石重新拾回了食蒜之癖。</p>
+<p>分手两年来，张小翠时常会想起他，想起这个以搬砖为业的“过儿”。那时候，王大石没多少谈资，总说老家的鬼故事，吓得她一愣一愣的。去电影院，他专买冷门的恐怖片票，张小翠自然免不了钻到他怀里。就这样，他们一起给我国的惊悚片事业做了不少贡献。后来，王大石虽然不在身边，她却彻底上瘾了，晚上从理发店下班，常跑去影城看夜场恐怖片。</p>
+<p>时光，像不断被剪落的头发，细细碎碎地掉了一地。眼看就要二十五岁了，在农村老家，这个年纪的女人大多已做了妈妈，有的都生了二胎。而这座偌大的城市，虽然总是彻夜明亮，却让她看不清楚未来。</p>
+<p>不如，回家吧。</p>
+<p>一个月前，妈妈打来了电话，说是为女儿找了个对象，镇政府的公务员，年龄相当，家里条件不错。她都三年没回家过年了，因为爸爸早死，妈妈改嫁，后爸总是打她，逼得她十六岁就出来打工。这些年，她的春节都是在理发店里过的，老板给她发了三倍工资。她买了许多焰火，半夜一个人去河边放，看到烟花绽开在半空，心里就会浮出那</p>
+<p>颗“大石头”。</p>
+<p>这年夏天，后爸又跟一个中年女人跑了，只剩下妈妈一个人，孤孤单单。张小翠决定回家过羊年春节。想着想着，又过一天。列车穿行了整个中国的北方。披星戴月，风雪连天。跨过结冰的黄河，穿越潼关的峡谷，轧着关中平原的黄土地，惊醒乾陵里的武媚娘和她的小鲜肉们。</p>
+<p>二月十六日，子夜时分，列车突然停下。</p>
+<p>王小石擦了擦车窗玻璃，发现铁轨两边全是厚厚的雪。列车长广播，前方大雪封山，必须等待救援人员清理完积雪才能前进。</p>
+<p>车厢里骂声一片，都是归心似箭，又在火车上憋了一天两夜。列车滞留在野外，距离除夕夜，只剩最后两天了。</p>
+<p>再等一宿，到了早上，依然没有开动迹象。张小翠吃了盒杯面，又问王小石：“喂，你这些兄弟们，已经两天没吃饭了啊。”</p>
+<p>糟了!总不见得再以吃饱了搪塞吧？他只能回答：“在我们工地上啊，全是军事化管理，严格得一塌糊涂，没有领导——也就是我哥的命令，任何人不准说一句话，也不准吃一顿饭！”</p>
+<p>“靠，你们也太残暴了吧？”张小翠一边说，一边撬开王大石紧紧的牙关，往里硬塞下去一包酸酸乳。王小石看着心惊肉跳，虽然这牛奶据说有防腐功能。</p>
+<p>他站起来，面对一群死人，装模作样地说：“喂，各位兄弟，我们去餐车撮一顿啊。”</p>
+<p>王小石嘴中念念有词，十二具尸体纷纷站起来。</p>
+<p>张小翠要跟过来，却被王小石拦住了，你已经不是我哥的女朋友了，给我哥暧身子可以，想要蹭我们的早餐可不行！</p>
+<p>王小石撇下了张小翠，带领十二个死人前往餐车。他只不过是要躲开张小翠的视线，在列车上转一圈之后，再回来说吃完了早餐就行。</p>
+<p>然而，最可怕的事发生了。</p>
+<p>要给每个人不断念口令，难免百密一疏、忙中出错，路过餐车之时，王小石不慎念错了一个字，把让死人行走念成了让死人复原。</p>
+<p>果然，一具尸体应声倒地。</p>
+<p>正好旁边有个乘警，如临大敌，命令所有人不得靠近。他已认出王小石兄弟，昨天早上就是这群家伙，差点在厕所里弄出入命。乘警把他们赶回原来的车厢，把尸体留在餐车。然后，乘警做了简单尸检，虽然没学过法医，但他自负读过阿加莎·克里斯蒂，大胆宣布受害人死于毒杀。</p>
+<p>乘警封闭了死者原本所在车厢，调查每一个乘客。四十多岁的乘警大叔，不断用手指摸着嘴唇上边。王小石看了半天才明白，他是在模拟《东方快车谋杀案》的波洛探长。</p>
+<p>只剩最后一站。被大雪封闭的火车，简直是铁皮包裹的移动杀场，乘警感觉热血沸腾。车厢里都是过年回家的民工，基本是同县同乡，可能有错综复杂的关系。他认为每个人都有杀人嫌疑。</p>
+<p>乘警依次调查过来，发现有十一个人就是不说话，各个表情僵硬，颇为古怪。轮到了王小石，干脆也装哑巴，半张嘴拖着口水。他正通过心头默念，悄然控制十一个人的行动。</p>
+<p>不过，王小石可是乘警心中的头号嫌疑犯！</p>
+<p>张小翠挽着王大石的手说：“他是我男朋友，这个流口水的是我小叔子。”</p>
+<p>“他怎么不说话了？”</p>
+<p>“哎呀，这些家伙啊，都是同一个村的，自古以来近亲结婚，彼此既是兄弟又是叔侄还有爷孙的，简直乱七八糟。所以啊，这些人从小都是弱智，只能在建筑工地上干体力活。”</p>
+<p>“姑娘，那你还找个弱智做男朋友？”</p>
+<p>“讨厌啊，你不晓得，男人越弱智，晚上就越厉害呢。”</p>
+<p>乘警不问了，悻悻离去，回餐车继续研究尸体。</p>
+<p>火车在大雪中停了整整一天，为了避免别人怀疑，王小石继续装傻。</p>
+<p>前头还在铲雪，全车人不再叫嚷，渐渐安静休息，回家的路，依旧那么漫长。</p>
+<p>忽然，张小翠哭了。</p>
+<p>王大石的鼻孔里，爬出几只蛆虫。几天前的大蒜味，再也盖不住尸体的腐烂味了。</p>
+<p>其实，她早已明白，身边的这个前男友，只是一具尸体。</p>
+<p>当王大石倒在厕所里，张小翠嘴对嘴给他做人工呼吸，脸贴着脸耳鬓厮磨之时，皮肤传来死人才有的冰凉，她的神色虽无丝毫异样，心头却已凉透了……</p>
+<p>没错，他早就没有了呼吸、心跳、脉搏，以及任何生命体征，只是一具僵硬的尸体，随着王小石嘴皮子的蠕动，动弹着四肢与躯干罢了。算上另外十一个沉默的民工，都不过是行尸走肉而已。</p>
+<p>最重要的是，从前，王大石跟她说过，他的弟弟很古怪，小时候遇到过赶尸匠。</p>
+<p>原来是真的？</p>
+<p>不能小看了这颗小石头啊，想起他们兄弟俩，张小翠的眼泪就忍不住流。</p>
+<p>可她为什么不害怕？还要搂着一具死尸，共同颠沛流离两天三夜？这特么就是旅行的意义吗？</p>
+<p>因为，张小翠有话要对前任说。</p>
+<p>两年前，春节前夕，她的手机、钱包和火车票，并没有在公交车上被偷走。</p>
+<p>她只是不愿意回家。她讨厌后爸。她讨厌那个鸟不拉屎的鬼地方，一辈子都不想再回去。在大城市里住了五六年，习惯了有WiFi和抽水马桶的世界，习惯了每天半夜跟一群杀马特理发师去吃消夜。而且，她也没有想好，是否真的要嫁给王大石。无数闺蜜对她说，亲啊，你要想清楚，那小子只是长得壮而已，建筑工地的泥瓦匠都那样啊！而她一直以为，自己未来的丈夫，即便不是个体面的城里人，至少也该有份不错的工作，比如房产中介啊、汽车销售啊、超市管理员啊，总比天天搬砖头有面子吧。</p>
+<p>那年春节后，她更换了手机号码和理发店，再也不让王大石找到她。</p>
+<p>她又谈过几次恋爱，对方都是上述那几种职业的，全都失败了。有时候，她还会悄悄去看王大石，远远躲在马路对面，看着他和弟弟两个在工地上，或干活，或吃饭。她确信，他没有谈新的女朋友。在她从前的手机号码里，每隔一段时间，就会收到王大石的短信。</p>
+<p>他依旧在等着她。</p>
+<p>有时候，张小翠真想回他一条短信：傻瓜！忘了我吧，快点找个姑娘娶了。</p>
+<p>当她在回家的火车上，意外地见到前男友——这个变得沉默寡言、面容呆滞的男人，却丝毫没有陌生感。不管他变成什么样子，他依旧是王大石，是张小翠喜欢过的那个他。她坐在他冰冷的身边，决定去见一次他的父母，以未过门的媳妇身份。</p>
+<p>二月十八日，凌晨时分，趁着王小石去上厕所，她咬着王大石的耳朵，悄悄说出以上秘密。</p>
+<p>窗外，静止在一片混沌里，仿佛另一个世界。</p>
+<p>等到她说完，给自己抹眼泪的同时，王大石也流下了泪水。</p>
+<p>刹那间，她感觉车窗外的黑夜，亮起一一道白光，宛如太阳即将照耀整片雪原。</p>
+<p>流泪的前男友。</p>
+<p>她将那滴眼泪，沾到自己的嘴巴里，却是酸的。</p>
+<p>忽然，张小翠再也无法确定，这是眼泪，还是腐烂过程中产生的尸液？</p>
+<p>王大石依旧毫无表情，怔怔地看着前方，身体冰冷而僵硬，就连眼泪也是冷的，似乎很快就要结冰了。</p>
+<p>但，她不在乎，抱得他更紧了。</p>
+<p>最漫长的那一夜…．</p>
+<p>火车在大雪中停了两天两夜，再过十多个钟头，就是中国人的除夕夜。</p>
+<p>马年的最后一天，清晨，列车重新启动。</p>
+<p>王小石醒了，闻到一阵刺鼻的气味——包括哥哥在内，身边十一具尸体陆续发臭了。</p>
+<p>已有其他乘客发现，恐惧地尖叫起来。涂在死人脸上的劣质化妆品，开始剥落褪色，露出原本的乌黑。</p>
+<p>再也装不下去了，王小石必须铤而走险，否则都得被一网打尽。这里离家不到几十公里，他可不想半路上被扔到雪地里走回家。他还要把餐车里那具尸体也带上，十二个死人，一个都不能少，“每个都必须回家”——这是自古以来赶尸匠们最重要的口令。</p>
+<p>他走到哥哥和张小翠身边，问她：“你愿意跟我们一起走吗？”</p>
+<p>“小石头啊，只要我的大石头去哪里，我张小翠就去哪里！”</p>
+<p>“谢啦，嫂子！”</p>
+<p>这还是王小石第一次管她叫嫂子。</p>
+<p>再也不用默念啦，他直接喊出赶尸匠的口令——“王侯将相，宁有种乎！”</p>
+<p>流传了几千年的咒语，激活了十一具尸体，包括最高大的王大石，如同一座僵尸大山，冲向列车中部的餐车。</p>
+<p>由于车厢狭长，不便使用车轮阵、鱼鳞阵或雁行阵，王小石排了个一字长蛇阵。死去的哥哥在最前面，张小翠骑在他背上，后面跟着十个僵尸民工。年轻的赶尸匠传人、法号小石头真人的王小石，则是全军殿后的指挥员。</p>
+<p>赶尸大作战。</p>
+<p>最后十公里，车轮在铁轨上飞驰，碾碎厚重的冰雪，想要补回被延误的时间。</p>
+<p>整个十二节车厢里头，一片兵荒马乱，简直是“马嵬坡前草青青”。而王小石与张小翠带领的丧尸兵团，无坚不摧地冲杀到餐车，救起那具早已发臭的尸体。王小石高喝一声口令，“石壕村里夫妻别，泪比长生殿上多”，顷刻之间，死人睁开眼睛，鲤鱼打挺而起。</p>
+<p>几乎同时，列车抵达了终点站。</p>
+<p>十二个死人，两个活人，敏捷地跳下火车，踩在故乡的土地上，莫名有些小幸福。</p>
+<p>然而，王小石和张小翠傻眼了。</p>
+<p>眼前有一大群白衣人，每个都拿着稀奇古怪的武器，既有灭火器，也有喷火器，有洒农药般的消毒喷头，也有对付恐怖分子的大铁叉。那些人都穿着白大褂，戴着塑料头盔，武装到牙齿，不像是警察叔叔……</p>
+<p>一小时前，列车长亲自检查了餐车里的尸体，判断这个人死亡超过三天，也就是说车上爆发了丧尸。他紧急向省疾控中心求助，说埃博拉病毒可能已传人中国。卫生厅如临大敌，派遣大队人马包围了火车站。</p>
+<p>为避免伤及无辜，王小石和他的赶尸军团，缴械投降。</p>
+<p>此事并未登上新闻。</p>
+<p>王小石终究没赶上回家过年，他在一个秘密基地里，被严密看守着度过了整个春节。</p>
+<p>十二具尸体，被确认没有危害和传染病后，在除夕夜发还给各自家属。</p>
+<p>张小翠亲手把王大石送回家，她弄了块白布缠腰，算是为“亡夫”守孝，还陪伴“公公婆婆”吃了顿新年饺子。</p>
+<p>村子里放烟火时，她在王大石的遗体边守岁，试着念了一遍口令，“石壕村里夫妻别，泪比长生殿上多。"</p>
+<p>死人依旧是死人。</p>
+<p>从王小石真人嘴里说出来才有效，老赶尸匠们都知道。</p>
+<p>她静静叹息一声，趴在大石头的胸口，睡着了。</p>
+<p>大年初二，张小翠回了娘家。年初三，她被妈妈拖去相亲。妈妈的眼光不错，那个公务员很适合做老公。过完年，还没到清明，便摆酒结婚了。这年底，张小翠生了个大胖儿子，居然长得有几分像王大石。至于王小石，他本以为会被判刑，却意外得到一个机会。他成了国家公务员，进入一家秘密的科研机构，然后干了一辈子。</p>
+<p>作为全世界可知的最后一个赶尸匠，他一度被认为是江湖骗子。但在全球最权威的科研机构里，他的技艺得到了完美的科学解释。王小石先是被送去中科大深造，不到五年，便读到博士后。最终，他荣膺了二○四六年的诺贝尔生物学奖，也为祖国在军事、医学、遗传学等领域取得重大突破，顺利实现伟大民族复兴的中国梦贡献了力量。</p>
+<p>但他终究无力改变未来。</p>
+<p>四十年后，王小石退休了。</p>
+<p>街上人流稀稀拉拉，当年热闹的商场、电影院、体育馆，全都坟墓般寂静。过去的十多年间，整个地球再没诞生过一个孩子。而城市里大多数建筑，都被改造成一家家僵尸养老院，所有被复活的死者，将在这里度过漫长的余生，直到世界末日。</p>
+<p>又是个中国农历的除夕之夜。</p>
+<p>火车站没有人，更不用检票，刷脸就能上车。城市之间，连接着的是真空管道，王小石置身于极速悬浮列车中，两千公里，只需半个钟头。早就没什么春运了，总共只有一节列车，他是唯一的乘客。没有孩子的年代，也就没有了父母，更不会有过年回家这件事儿。</p>
+<p>王小石本来就没有家。</p>
+<p>他看着车窗外的世界，想起五十多年前的冬夜，老赶尸匠最后的警告。雾霾早被消灭了，星空清澈得像是回到史前。真空管道外面，除了城市的废墟，就是漫无边际的森林和田野。</p>
+<p>唯一不变的是雪。</p>
+<p>大年夜，他打开凉了的饭盒，独自享用也许是这辈子最后一顿饺子。</p>
+<p>而在这列火车之后，跟着一群老头老太，沿着漫长的铁轨，排开绵延不绝的队列，仿佛天上的银河。每个人都半举双臂，以三干公里的时速，双腿飞跃着前进。</p>
+<p>在回家的路上。</p>
+<p>去什么地方呢？这么晚了，</p>
+<p>美丽的火车，孤独的火车？</p>
+<p>凄苦是你汽笛的声音，</p>
+<p>令人记起了很多事情。</p>
+<p>为什么我不该挥手舞手巾呢？</p>
+<p>乘客多少都跟我有亲。</p>
+<p>去吧，但愿你一路平安，</p>
+<p>桥都坚固，隧道都光明。</p>
+<p>（塔朗吉《火车》，译者：余光中）</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

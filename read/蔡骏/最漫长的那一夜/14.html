@@ -1,0 +1,1161 @@
+<!DOCTYPE html><html><head><title>14</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="13.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="15.html">下一章</a></p><hr><h1><center>第14夜 小夫妻搬进凶宅的那一夜</center></h1>
+<p>“我爱你，无论你，是人，是鬼，是畜，是妖。我爱你，爱你到死，爱到你死，爱到我死，爱到所有人死光光，我依然爱你。”</p>
+<p>“我爱你，无论你，是人，是鬼，是畜，是妖。我爱你，爱你到死，爱到你死，爱到我死，爱到所有人死光光，我依然爱你。”</p>
+<p>曾经在我的微博上，收到过这样一段文字。这不是脑残粉对我的表白，而是有对情侣粉丝，因为爱读我的书而认识结缘乃至结婚——这是他们在婚礼上说的誓言。</p>
+<p>去年，我也主持过一场婚礼，在废弃的曹家渡人民医院，那是费家洛的恐怖婚礼。</p>
+<p>费家洛就是新郎，也是我们悬疑世界的编辑。新娘叫苏青桐，在广告公司上班。他俩都是九零后，每个月的工资吃光用光。虽然，费家洛自称红花会总舵主陈家洛之后，但他爹在迪拜打黑工生死不明，老家在外地一分钱都没有。苏青桐家住上海南市老城厢，她妈坚决反对她嫁给YP，半毛钱也不会资助，还把女儿扫地出门了。</p>
+<p>洞房之夜，是在曹家渡人民医院的院长办公室。</p>
+<p>第二天，两人完好无损地出现在我们面前，发了昨晚没来得及发出的喜糖。有人剥开一闻，发出三十年前的霉烂味，好吧，僵尸们的喜糖，算是他俩的报复。</p>
+<p>小夫妻新婚后，住在曹杨新村的出租房，二十来个平方，房租每月两千，惨呢。</p>
+<p>费家洛主动提出买房。</p>
+<p>买房？你用冥币买房啊？苏青桐向来口没遮拦。亲哒哒，欧巴，我嫁给你，就是想好了裸婚，没指望过买房，等到十年后，我家老房子拆迁了，或者中了彩票，或者等你爸从阿拉伯挖了石油回来，再说吧。</p>
+<p>他说，已经向同事们每人借了一万，现在有十万块。</p>
+<p>十万块，在上海，刚够买个抽水马桶的面积。</p>
+<p>不是可以贷款吗？首付两成，就可以买五十万的房子。</p>
+<p>五十万？刚好买个阳台。</p>
+<p>就没有便宜点的吗？比如外环以外，松江、嘉定、青浦、崇明岛？</p>
+<p>怎么上班？你公司在大自鸣钟，我公司在人民广场，每天要坐两个钟头的公交车吗？</p>
+<p>虽然这么说，费家洛还是去找二手房中介了。</p>
+<p>当然，市区的房子，想都甭想。外环附近的嘛，均价两万五到三万，据说已是跌过一轮的谷底价。六十平的小户型，也得一百五十万起板，首付三十万。费家洛咬咬牙想，这么烂的房子都买不起吗？大不了再向同事借一轮。于是，他拉着苏青桐去看房。从春天一路看到盛夏，更换了十来家中介，看了不下一百套房啊一百套，最后还是三个字：买不起。</p>
+<p>苏青桐生日这天，他俩在KFC庆祝。有个中介小子给费家洛打电话，说突然有了新房源，绝对超划算，如果今晚不来看，明早就会被抢走。</p>
+<p>费家洛连夜带着苏青桐去看房，在外环线与共和新路交界处，属于外环内。小区是五年前的新房，各方面条件都不错，基本是小户型，住的多是小夫妻。房子是小高层的十三楼——对于举办过恐怖婚礼的费家洛与苏青桐而言，却是个大吉大利的数字。</p>
+<p>开门进去，苏青桐只感到一股阴冷之气。中介说这房子唯一的缺点，是窗户朝向西北，平常不易晒到太阳。这套一室一厅，设计倒还合理，建筑面积仅有五十平，但看起来不显小。关键是，房东开价竟只有五十万，合下来一万块一平米，刚够费家洛十万块首付的预算。</p>
+<p>苏青桐也吃了一惊，这房子咋这么便宜，有什么花样吗？房东精神病人欢乐多？要知道，这个小区的平均房价，也在三万元左右。</p>
+<p>中介说房东要急着移民出国，手头紧，必须把房子甩卖。</p>
+<p>费家洛再看这房子，虽然没有家具，装修倒是很新，可以直接搬进来住。</p>
+<p>必须今晚决定，否则……费家洛抓着新婚妻子的手说，青桐，生日快乐，这套房子，就是我给你的礼物！</p>
+<p>当晚，签订购房协议，一个月后，完成银行贷款的手续，在宝山区房产交易中心交易过户。</p>
+<p>搬家这天，寒月当空，据说是多年难遇的超级月亮。</p>
+<p>我们编辑部都去帮忙了，总共一张床，一个柜子，一张桌子，四把椅子，全是宜家买的。费家洛的所有家当，就是台工作用的笔记本电脑，还有一包破衣服的拉杆箱。而苏青桐原本一衣橱的衣服包包和高跟鞋，全留在了父母家里，几乎是光屁股嫁给费家洛的。现在嘛，尽是淘宝买的便宜货，不再需要衣橱了，春夏秋冬穿一身就是。</p>
+<p>忙碌了一整天，幸好没什么家具，否则摆在那么小的卧室，就显得太拥挤啦。现在，只有这张简单的床，两个人抱在一起，好幸福啊，体力似乎还够，啪啪啪……</p>
+<p>苏青桐忽然分心说，艾玛，今天是阴历七月十五呢！</p>
+<p>她看到了床头柜上的日历。</p>
+<p>中元节？没事，我们老家都是放河灯吃扁食的，好节气啊好节气，曹家渡的院长不是说嘛，这个日子适合生儿子呢，别停，继续。</p>
+<p>小夫妻搬进凶宅的第一夜。</p>
+<p>阴历七月十六，凌晨，四点。</p>
+<p>费家洛忽地醒了。</p>
+<p>因为，他总感觉，耳边有什么痒痒的，好像是谁的头发，毛茸茸的，纠缠他的脖子。</p>
+<p>睁开眼睛。</p>
+<p>月光透过新买的窗帘，洒在小夫妻的床头。</p>
+<p>果然，是长长的头发，浓黑的，带着湿气的，水蛇般的。</p>
+<p>费家洛忽然想起，苏青桐最近刚剪了个波波头，怎会有这种长发？</p>
+<p>心底一惊，再转头细看，身边并不是可爱的小娇妻，而是一张陌生女人的脸。</p>
+<p>哦？他开头没反应过来，以为自己是不是外遇了。不过脑子里细想，除了跟个别女读者有过小暧昧，可从没做出过对不起老婆的事啊。</p>
+<p>再看这个女人，年龄也不过二十来岁，留着长长的头发，穿着半透明的轻纱睡裙，曲线若隐若现，身材还有些火爆咧。</p>
+<p>但他不敢去摸她。</p>
+<p>因为，她突然睁开了眼睛。</p>
+<p>两行眼泪，从她的眼眶内滑落。</p>
+<p>费家洛尖叫起来，接着惊醒了身边的苏青桐。</p>
+<p>打开灯，那个女人已经消失了。</p>
+<p>他老实地告诉苏青桐，刚才亲眼目睹，有个女人，睡在他俩的中间。</p>
+<p>好啊，你是不是结婚后还在看A片？梦到那个什么萝拉了吧？</p>
+<p>泷泽萝拉……呸！呸！呸！不是啊，真的有个女人，不是混血的，是中国的，长头发的，就在刚才！</p>
+<p>苏青桐不屑地说，这套鬼把戏，还能吓着我？</p>
+<p>她翻过身，继续打呼。</p>
+<p>而费家洛，却再也睡不着了，他一个人，睁着眼睛，看着渐渐暗淡的月光。因为，他的耳边，依然残留着一根细细长长的头发。</p>
+<p>他把这根头发取下，藏在床头柜里，依稀能闻到腐烂的气味。</p>
+<p>第二天，费家洛不敢加班，早早坐地铁一号线回到家，跟苏青桐一块吃了顿泡面大餐，然后挤在笔记本电脑前看韩国惊悚片。</p>
+<p>没看一会儿，费家洛就去洗澡了，水龙头放开来，很久都没有热水。幸好他个子高大，从小身体就棒棒的，冷水也没什么可怕。只是在冲淋的同时，花洒里传来某种奇怪的声音。</p>
+<p>让人后背心发毛的声音。</p>
+<p>实在无法忍受，他把水龙头关了，把耳朵贴着淋浴喷头，从那无数细孔内，轻轻地飘出某种旋律……</p>
+<p>一个女人的歌声。</p>
+<p>如此轻微，却又如此有穿透力，像哭似的。</p>
+<p>费家洛吓得光着屁股逃出卫生间，苏青桐看他这副样子，却笑他是不是太猴急了。</p>
+<p>他抱着老婆说，这房子里，有不干净的东西。</p>
+<p>当然，他不敢把那根长头发拿出来说事，生怕苏青桐会怀疑是小三留下来的。</p>
+<p>深夜以后，费家洛不敢睡着，他强忍着憋到凌晨，果然又有了那种头发撩人的感觉。他大胆地转过头去，重新看到了那个女人——真真切切，睡在小夫妻中间的女人。</p>
+<p>女人睁开眼睛，看着他。</p>
+<p>费家洛拼命地掐自己，疼得几乎掉下眼泪，确认不是在做梦。</p>
+<p>他大着胆子问：你是谁？</p>
+<p>李元子。</p>
+<p>床上年轻的女人，用游丝般的气声回答，这声音，居然还很好听。</p>
+<p>你好，我叫费家洛。</p>
+<p>忽然，他感到有根手指，死人般冰冷的手指，又是女人般的纤细，划到了自己的手心，为他划出“李元子”三个字笔划。</p>
+<p>但这声音却惊醒了苏青桐，她迷迷糊糊地转身问道，谁啊？</p>
+<p>女人并没有消失，反而，嘴角露出似有似无的笑意，阴惨惨的苍白面孔上，竟然引来一只苍蝇。</p>
+<p>谁啊？</p>
+<p>苏青桐的脾气暴躁，又喊了声，索性睁开眼睛，这回，她也看到了床上的女人。</p>
+<p>啊……这是做梦……幻觉……国产恐怖片里常有的……我有精神病……我有精神病……我有精神病……</p>
+<p>就当她要重新睡着时，突然又跳起来说，册那，小娘我哪有精神病啊！</p>
+<p>哎呀，你个没良心的，费家洛，居然把小三带到我的床上来了，你真是狼心狗肺啊！打小三！打小三！打你个绿茶婊！打你个倒贴户头！</p>
+<p>当苏青桐一巴掌打到女人的脸上，这个“李元子”倒也不躲避，我只听到一记清脆的声响，然后她就从床上爬起来，熟门熟路地走到卧室门口。</p>
+<p>她那死人般的脸颊上，终于有五道血色，那是苏青桐赐给她的耳光印子。</p>
+<p>谢谢！</p>
+<p>“李元子”轻声细语地说了一句，传入费家洛与苏青桐的耳膜。</p>
+<p>同时，她的人头从脖子上滚落。</p>
+<p>十三楼的新房里，响彻费家洛与苏青桐的尖叫，根本停不下来……</p>
+<p>等到他俩醒过来，天已大亮，但是，他们都确信无疑，这不是做梦。</p>
+<p>因为，苏青桐的五根手指上，残留着阴冷腐烂的感觉，似乎触摸过尸体。</p>
+<p>这屋子里有鬼。</p>
+<p>怎么办？</p>
+<p>小夫妻开始了驱鬼行动。</p>
+<p>费家洛问下山的道士请了把桃木剑，又遵照指示从屠宰场买了把杀牛刀，据说砍死过八千多头牛，聚集了极其凶猛的煞气，俗称“鬼见愁”。</p>
+<p>苏青桐从淘宝上买来一堆地藏经与金刚经，还有山寨的泰国佛牌。当然，鬼娃娃古曼童之类的高档奢侈品，就像灵异界的爱玛仕，是女屌丝绝对买不起的。</p>
+<p>这天晚上，小夫妻的新房被布置成了寺庙，或者说更像殡仪馆。</p>
+<p>他们睡得很安稳，一夜无梦，所有灵物都奏效了，看来不干净的东西被赶走啦。</p>
+<p>然而，苏青桐早上在卫生间刷牙时，发现在整面镜子上，用她的唇膏写着一行字——</p>
+<p>“我叫李元子，欢迎来到我家”。</p>
+<p>操，这个李元子，还真是猛鬼啊！</p>
+<p>费家洛想起一部美国电影《见鬼实录》，说的是一家人闹鬼，就用摄像头记录下鬼的一切。于是，他问朋友借来各种设备，在家里各个角落，安装摄像头，联网在笔记本电脑上。</p>
+<p>晚上睡觉，小夫妻都吃了些安眠药，确保自己不会凌晨醒来遇到鬼。</p>
+<p>同时，苏青桐给费家洛穿了条贞操裤，以免老公被女鬼侵犯，真特么可怜的男人。</p>
+<p>早上醒来，费家洛打开电脑——上半夜平安无事，到了凌晨三点，阴气最重的时分，医院里最常见的死亡时刻，外国人称之为“witching hour”。</p>
+<p>在这对小夫妻的家里，卫生间的淋浴房，自动喷出红色液体。然后，马桶盖子缓缓打开，一个长发女子爬出来了。</p>
+<p>这幕看似熟悉的场景，让费家洛怀念起贞子她妹夫与贞子她妹。苏青桐也目瞪口呆，这是她最亲爱的小马桶啊。</p>
+<p>切换摄像头，从马桶里爬出来的女子，带着湿漉漉的水气，缓缓走进卧室，爬到小夫妻的床上，自然而然地睡在费家洛与苏青桐中间。</p>
+<p>三个人，不，是一男人一女人一女鬼，睡在同一张床上，好欢乐啊，乍看还像3P。</p>
+<p>月光洒在他们的脸上。</p>
+<p>忽然，费家洛觉得这个女人，自称“李元子”的女人，脸上写着某种悲哀的表情。</p>
+<p>大部分时间，她都是睁着眼睛，痴痴地看着天花板，似乎有些孤独寂寞。让苏青桐倍感欣慰的是，女鬼并没有去触摸费家洛，而是独自摸着自己嘴唇。</p>
+<p>她似乎在唱歌？</p>
+<p>怪不得，睡梦中，总有股若有若无的声音。</p>
+<p>但，这位马桶里爬出来的贞子在唱什么呢？</p>
+<p>至少，她没有伤害过费家洛或苏青桐，除了半夜睡在小夫妻中间，也没有做过出格的事，更没有像聊斋里的女鬼们那样，勾搭过现实中的书生或别人的老公。</p>
+<p>不幸中的万幸，这不是一个女鬼小三。</p>
+<p>不过，聊斋里的牛鬼蛇神们总也比正人君子们可爱得多。</p>
+<p>那么“李元子”，究竟是什么人呢？</p>
+<p>为了彻底解决女鬼问题，费家洛哭着鼻子来找我帮忙，希望调查清楚这个女鬼底细。</p>
+<p>自然，这种重口味的诡异事件，值得我的表哥叶萧警官出马，一天之内，真相水落石出。</p>
+<p>现在，费家洛与苏青桐住的房子，三年前，发生过一起残忍的凶杀案。</p>
+<p>那也是对小夫妻，八五后的，结婚还不满一年。年轻的丈夫，把更年轻的妻子杀了，然后用菜刀碎尸，大部分冲进了马桶，剩下实在冲不掉的部分，比如头骨与骨盆之类的，就藏在了淋浴房顶上的隔段里。</p>
+<p>杀人之后，丈夫谎称妻子离家出走，但引起警方及丈母娘和丈人的怀疑，因为出事前这对夫妻经常吵架。于是，警方对家里进行了搜索，这才发现残留的尸骨——已在卫生间里腐烂了三个星期。</p>
+<p>证据确凿，丈夫供认不讳，很快判了死刑，一年前被枪毙掉了。</p>
+<p>而被碎尸的年轻妻子，她的名字是——李元子。</p>
+<p>最后，我把死者生前的生活照交给了费家洛。</p>
+<p>那是个美丽的女子，看起来二十出头，长长的头发，围绕着白皙的面孔，一双乌幽幽的大眼睛，很像聊斋故事里的女主角。</p>
+<p>就是她！</p>
+<p>各种证据确凿无疑——小夫妻买入的是一套凶宅。</p>
+<p>费家洛与苏青桐找到中介，要求退还全款。毕竟，要不是这房子里发生过如此的凶案，也不可能那么便宜卖出来，而这些真相全被中介和房东隐瞒了，可以算是恶意的欺诈行为。</p>
+<p>但是，中介早就收完了钱，哪里有退钱的可能？</p>
+<p>在咨询过律师之后，费家洛把中介以及房东告上了法庭。但在中国打官司，你懂的，至少也得一年两年，而在此期间，他们根本无力买房，就连租房的钱都没了。</p>
+<p>虽说，夫妻本是同林鸟，大难临头各自飞，但费家洛咬咬牙，跟苏青桐商量好了，一边打官司，一边住在凶宅，哪怕与鬼同床，也要坚持下去。</p>
+<p>每天夜里，费家洛睡不着时，都会感到身边水蛇般柔软湿滑的长发，被分尸的李元子，美丽悲哀的女鬼，躺在他的枕头边，发出猫眼般幽幽的目光。</p>
+<p>而每当苏青桐洗澡的时候，就会听到花洒里响起神秘的歌声。直到一天，她坐在马桶上，无聊看着一本八卦杂志。忽然，从她的屁股后面，爬出了披着长发的李元子，但女鬼并不是来伤害她的，而是同样好奇地跟她一起看八卦杂志——对嘛，八卦是女人的天性，正好这一页是王力宏与李云迪的CP，李元子闺蜜似的与苏青桐看得起劲。</p>
+<p>就当苏青桐吓得瘫软在马桶上，却听到卫生间响起了熟悉的旋律——那是李元子的夜半歌声，清清扬扬，咿咿呀呀，子夜零点……</p>
+<p>“城里的月光把梦照亮/请温暖他心房/看透了人间聚散/能不能多点快乐片段/城里的月光把梦照亮/请守护它身旁/若有一天能重逢/让幸福撒满整个夜晚”</p>
+<p>刹那间，苏青桐想起了这首歌，不是《城里的月光》吗？</p>
+<p>唱这首歌的人，是新加坡歌手许美静，曾经得过精神病。她还记得许美静唱过的“阳光总在风雨后，乌云上有晴空”“是冰冻的时分，已过零时的夜晚，往事就像流星刹那划过心房”……</p>
+<p>忽然，苏青桐却不怎么害怕了，她从马桶上站起来，走到狭窄的客厅里，看着窗外的夜空，那是一轮城外的月光。</p>
+<p>她想起小时候，市中心的老房子，透过屋顶上的窗户，可以看到模糊的月光。那才是城里的月光，四周被高楼的灯光污染，却依然亲切，像外婆的手掌，像爷爷的臂弯。</p>
+<p>苏青桐回到床上，从背后抱着年轻的老公，心里想——他永远都不会明白城里的月光。</p>
+<p>她问他，家洛，为了这套房子，你也是蛮拼的了，可我做老婆的没有逼过你，又没有万恶的丈母娘来催你，干吗非要买房呢？</p>
+<p>费家洛只是嘿嘿两声，并不回答，转过头去，两行眼泪，缓缓滑落在床单，被城外的月光，照得分外明亮。</p>
+<p>他只是内心歉疚，觉得苏青桐的闺蜜们，要么嫁富二代，要么找公务员，要么随老外出国。唯独，她跟着屌丝吃苦，比守着寒窑十八载的王宝钏还惨喱。小爷我纵不是盖世英雄的征东薛平贵，起码也是堂堂正正反清复明的红花会陈家洛之后，如果，不能给老婆买套房子，哪怕只是个属于她的卫生间，哪怕只是个马桶和淋浴房，又怎有脸面做个直男儿呢？</p>
+<p>睡不着。</p>
+<p>不久，那几绺长发，再次被凌晨阴冷的风，吹过他的耳朵与鼻尖。</p>
+<p>他看到了李元子。</p>
+<p>忽然，几根温柔的手指，替他抹去了眼角的泪痕。</p>
+<p>费家洛摇摇头，轻声问，元子，请告诉我，究竟我要怎么做，你才能离去？</p>
+<p>美丽的女鬼点点头，回答——</p>
+<p>谢谢你，费家洛，请帮我找到一个人，就是我的丈夫，他叫余一通。</p>
+<p>那个杀了你，并且把你分尸的人？</p>
+<p>是。</p>
+<p>枪毙啦，你就安心地去吧，这混蛋正在十八层地狱里呢。</p>
+<p>我明了，但他的灵魂，依然飘荡在世上，请你把他带到我面前，我有话要对他说。亲爱的，如果你能帮我做到这件事，我就答应你——从此消失。</p>
+<p>费家洛明白了，这是被分尸的女人最后的遗愿，只要能见到杀害自己的丈夫一面，她就会心满意足，渡过亡川水，踏上奈何桥，喝下孟婆汤，忘了一切的苦难，投胎往生。</p>
+<p>可是，怎么才能帮她找到已经被枪毙的丈夫的鬼魂呢？</p>
+<p>费家洛又来请我帮忙，我只说了一句——谁把房子卖给你，谁就能找到那只死鬼。</p>
+<p>原来，把房子卖给费家洛与苏青桐的幕后房东，就是三年前住在这里的小夫妻的父母，也是四位白发送黑发的老人。</p>
+<p>虽然，余一通残忍杀害并碎尸了李元子，不能继承妻子的财产，但也不能剥夺他自己的财产份额。房产毕竟是夫妻公有财产，双方父母均有权各自继承子女的财产。</p>
+<p>李元子的爸爸妈妈，就这么一个宝贝女儿，出嫁不到一年就被分尸，自然对于女婿乃至女婿全家恨之入骨。</p>
+<p>余一通的父母，还是有些素质的人，虽然也重金雇了律师，希望挽回儿子的一条贱命，最终无奈被枪毙后，却向儿媳妇一家下跪道歉。</p>
+<p>但是，女儿都已作枉死鬼，更谈不上什么亲家之谊，只想离得越远越好。余一通与李元子的墓地是分开的，各自由双方父母操办入葬。</p>
+<p>唯独那套外环线的房子，成为两家人最后要纠缠的。如果女方贴点小钱，把房产全部过户倒也好办。但是，哪家都不想持有这套凶宅，留着也是伤心。除此以外，小夫妻生前没有其他财产，只有把房子尽快卖掉，才能分割清楚财产。</p>
+<p>但是，现在这房价太高，挂牌出去有价无市。两家人降低了价格，却又引起买家担心，仔细调查发现是凶宅，再也无人敢买。</p>
+<p>如此折腾了整整一年，挂牌价也从每平三万坐电梯直接下降到一万。</p>
+<p>最终，中介钓上了费家洛这个冤大头。</p>
+<p>我们先找到了被害人李元子的父母。</p>
+<p>这对可怜的老人，先向费家洛道歉隐瞒了凶案真相，但想退款的话——做梦。</p>
+<p>其实，我也不奢望能退款，只是希望老人们配合一下，能否提供关于他们女儿更多的线索，比如李元子跟余一通这对小夫妻的关系，凶案发生的真正原因。</p>
+<p>踌躇许久，李元子的爸爸，将我们引入女儿出嫁前的闺房，竟还保持原来的模样，无论她婚后还是死后，父母都没有动过。</p>
+<p>墙上挂着一张醒目的海报，那是许美静的照片，旁边印着一行字——城里的月光。</p>
+<p>爸爸说，这是女儿生前最爱听的一首歌。</p>
+<p>李元子从小住在市中心，十年前老房子拆迁，被赶到了遥远的浦东外高桥。李元子一直渴望能搬回去，但是父母没有能力，只能指望她等到结婚，找个好人家买套市中心的房子，也算是了却心愿。</p>
+<p>于是，李元子嫁给了余一通。</p>
+<p>余一通是张江it男，难得是个上海小伙子。他与李元子的相识，因为都爱看同一位作家的小说。可惜他没有自家房子，跟父母挤在老公房里。上班几年，也有了一些积蓄，本想在中环线附近买套房子，没想到正好碰上房价狂涨，仅仅因为看房耽误了一个月，手里的预算就完全不够用了。</p>
+<p>最后，有人介绍了外环线的这个一手房小区。</p>
+<p>虽然房子不大，但是房型很好，价格也不贵，每平方才一万五，总共七十五万就能搞定。</p>
+<p>他答应即将领证的女朋友，再过两年收入上去了，肯定会换套房子去市中心，那么结婚的新房就暂时这里过渡一下吧。</p>
+<p>李元子，虽然有些不开心，但现实如此，也无可奈何。</p>
+<p>何况，她是真心喜欢余一通的。</p>
+<p>结婚很顺利，新人很幸福，双方的父母，相处得也算融洽，毕竟是小夫妻单独居住，也不存在什么婆婆媳妇的矛盾。</p>
+<p>但是，新婚后的李元子，每晚都在渴望——城里的月光。</p>
+<p>她厌恶城外的月光，虽然交通也还方便，但是上海的地铁图，就像只巨大的蜘蛛。这座几千万人口的魔都里，许多买不起市中心房子的小夫妻，被迫要远离蜘蛛的心脏，搬到漫长的蜘蛛触角的最末端。每天清晨辛苦地上班，沿着蜘蛛网向市中心爬去，路上要经历各种拥挤，女生被痴汉骚扰，男生防备扒手摸皮夹子。下班后，又要告别市中心的繁华，落寞地回到几年前还是农田的新小区，听着清冷的郊外上空的风，仰望似乎并不怎么圆的月亮。</p>
+<p>许多人都相信，只有城里的月光，才能把梦照亮。</p>
+<p>听着听着，费家洛的眼圈发红，蓦地想起，苏青桐也有过差不多相同的抱怨。</p>
+<p>凶案的发生，就与此有关——小夫妻新婚后，李元子总是催促余一通在市中心置换一套房子，否则就坚决不要孩子，她不想让孩子生在这城外的小房子里。余一通也很努力地挣钱，到处看有没有合适的房源，但是他挣钱的速度，永远及不上房价的上涨。李元子却误会老公不够努力，或者说还不够爱她。于是，两个人总是吵架，搞得整栋楼鸡犬不宁。</p>
+<p>三年前，阴历七月半，中元鬼节的晚上。余一通坦白说，以他们目前的收入，要置换一套市中心的房子，不可能。他希望妻子忍耐几年，将来一定会有机会的。李元子觉得那是借口，又把丈夫骂得狗血喷头。几天前，她刚参观过新婚女同事的新房，静安区单价五万元的房子，那个羡慕嫉妒恨啊。女人的小心理，全都涌上心头，简直恨铁不成钢。</p>
+<p>余一通，毕竟也是男人，二十六七岁血气方刚，虽然平时上海男人好脾气，但日积月累的愤懑，终究没忍住。肾上腺素作用下，他狂吼起来，把妻子拽到卫生间，砸到冲淋房的玻璃上。</p>
+<p>没想到，整面山寨货的钢化玻璃破碎，划破李元子的颈动脉。</p>
+<p>一分钟内，他的新婚妻子死了。等到余一通清醒回来，鲜血如河流布满整个屋子。他追悔莫及，这完全是个意外，过失致人死亡。如果，当时他去公安局自首，或许就能逃过一死，判个死缓，甚至无期。</p>
+<p>但，他愚蠢地选择了分尸，一边还哼着妻子最喜欢的《城里的月光》。</p>
+<p>他觉得自己还年轻，不想就这么被毁掉，心存侥幸可以骗过警察。而且，他觉得碎尸了的话，他就可以永远和心爱的妻子生活在一起了。</p>
+<p>余一通并不是个太会说谎的人，很快怀疑焦点就到了他身上。经过搜查，水落石出，他全部认罪交代。</p>
+<p>因为，分尸的情节太过凶残，经过两年的审判与上诉，包括精神病鉴定，他还是被最高法院核准执行了死刑。</p>
+<p>而死刑犯被处决后，尸体要被立即火化，骨灰会转交给家属。</p>
+<p>我告诉费家洛，要召唤回余一通的鬼魂，唯一的办法，就是找到他的骨灰。</p>
+<p>不久，我们来到余一通的父母家里，祈求他们把被枪毙的儿子的骨灰借给我们用两天，作为费家洛不再跟他们打官司退款的条件。</p>
+<p>刚开始，我们被经历了丧子之痛的老两口赶出来了。</p>
+<p>但是，在费家洛真诚地说明了来意之后，他们同意了这个请求。</p>
+<p>在两位老人的陪同下，我们去了郊区的公墓，从地下挖出了余一通的骨灰盒。</p>
+<p>费家洛抱着自己房子的前任主人的骨灰，感觉分量很轻，大概是子弹掀飞了天灵盖的缘故。</p>
+<p>这天夜里，费家洛与苏青桐，紧张地蹲在卫生间。他们请出余一通的骨灰盒，放在淋浴房与马桶之间，这就是三年前发生凶案的位置。</p>
+<p>然后，小夫妻退到走廊，关紧卫生间的门，两人靠在墙上，互相拥抱，抵御满屋子的阴冷鬼气。</p>
+<p>等待许久，不知道枪毙鬼的灵魂回家了没有，更不知道碎尸鬼的愿望满足了吗。</p>
+<p>苏青桐突然想起什么，嘴里咿咿呀呀地唱道——</p>
+<p>“每颗心上某一个地方/总有个记忆挥不散/每个深夜某一个地方/总有着最深的思量/世间万千的变幻/爱把有情的人分两端/心若知道灵犀的方向/哪怕不能够朝夕相伴……”</p>
+<p>这歌声幽幽，伴窗外月光，穿透整个家。突然，费家洛有种可怕的错觉——亲爱的老婆是不是被灵魂附体了？</p>
+<p>卫生间的房门里面，响起一个男人的声音——</p>
+<p>元子，老婆啊，我是一通啊，你还认得我吗？</p>
+<p>鬼魂终于召来了！</p>
+<p>费家洛与苏青桐都哑口无言，藏在卫生间的房门外面，偷听里面那对鬼夫妻的重逢。</p>
+<p>门里响起李元子的声音：老公，你怎么变得——哎呀，脑门都没了，你受苦了。</p>
+<p>接着，响起一对男女的哭声。</p>
+<p>哎，没办法，枪毙嘛，子弹从这打进去的，这回不用化妆，就可以参加万圣节聚会了。</p>
+<p>李元子苦笑一声：老公，你过去，可没有这么幽默啊。</p>
+<p>对不起，元子，我错了，我也很想回来，跟你说一声，抱歉。</p>
+<p>哎呀，我的宝贝老公啊，三年来，我始终游荡在我们家里，无论如何都离不开这房子。我在想，其实，错的是我。我不该总是骂你，不该逼你去市中心买房子，什么城里的月光啊，其实，跟我的老公相比，又算得了什么？对我而言，世上最重要的，就是你了。</p>
+<p>余一通平心静气地回答：老婆，是我没有能力，没办法赚更多的钱，要是我能早些买好中意的房子，也不至于如此啊。当然，千错万错，我更不能打老婆。这三年来，我两年在监狱，一年在坟墓，总算是想透了——老婆啊，是要用来哄，用来疼的，就算是老婆骂你几句，就当是在夸你。因为，她是喜欢你的啊，否则干吗还要恨铁不成钢呢？</p>
+<p>然后，李元子似乎是号啕大哭了，想必是鬼夫妻拥抱在一起。个中滋味，难以言尽。</p>
+<p>鬼妻子还说了一桩秘密，三年前自己遇害前夕，她发现自己刚刚怀孕。但是，原本说好在搬回市中心前是不要孩子的，她暂时没有把这个消息告诉老公。但她已经决定，等到几天后老公的生日再行公布，给全家人一个惊喜……</p>
+<p>果然是惨啊，午夜分尸的时候，老公并不知道，老婆肚中还有他的骨肉。</p>
+<p>可是，李元子早已完全原谅了余一通——老公，我们简直比牛郎织女还苦啊，人家每年七夕还能鹊桥会，我们小夫妻三年才能见一面。</p>
+<p>好啊，老婆，现在我们重逢了，就永远都不要再分开！</p>
+<p>到这里，卫生间里的声音，渐渐平息了。</p>
+<p>这一晚，费家洛与苏青桐躺在床上，终于没有再感觉到鬼魂的气息，家里的摄像头显示，也没有一个女鬼睡在中间了。</p>
+<p>早上打开卫生间，费家洛取出骨灰盒，跪在地上千恩万谢。</p>
+<p>然后，他把骨灰盒送回余一通父母家里，并且撤回了打官司的诉讼，小夫妻将继续住在这套房子里。</p>
+<p>当天晚上，苏青桐幸福地纠缠着老公，热烈庆祝终于送走了女鬼，费家洛却有些心不在焉。</p>
+<p>后半夜，他又睡不着了。</p>
+<p>醒来以后，总觉得各种异样，重新打开电脑里的摄像头，却吓得他魂飞魄散——凌晨三点，从马桶里爬出来一男一女，赫然正是李元子与余一通，这对鬼夫妻拥抱着走进卧室，坦然地睡在费家洛与苏青桐中间，幸福地相拥而眠。</p>
+<p>我靠！三缺一终于补齐，床上的两对夫妻可以打麻将了！</p>
+<p>你们自己感受一下吧，但费家洛感觉快要窒息了。</p>
+<p>上班的时候，他又找来我分享他的苦难。</p>
+<p>我明白了，当死刑犯丈夫被召唤回家，夫妻团聚之后自然就不肯走了，那套房子本来就是他们的家啊，卖房子的又不是这对鬼夫妻，何必要被活人赶走呢？</p>
+<p>啊，难道应该被赶走的，就是我和苏青桐吗？</p>
+<p>倒也不是，其实啊，家洛，我并不觉得，人和鬼不能共处于一室——我说，世界上的鬼魂，其实从来不会害人，分尸的也好，奸杀的也好，连环变态杀人的也好，从来都是活人犯的案子，干鬼魂何事？</p>
+<p>而我，也想了起来，几年前，在我的微博上留言的那对读者情侣，似乎就叫余一通与李元子。</p>
+<p>我打开自己的微博搜索，果然找到那段留言——</p>
+<p>“我爱你，无论你，是人，是鬼，是畜，是妖。我爱你，爱你到死，爱到你死，爱到我死，爱到所有人死光光，我依然爱你。”</p>
+<p>丧心病狂的誓言啊！</p>
+<p>既如此，纵做鬼魂，亦断然不会分离。</p>
+<p>我留给费家洛的只有四个字：顺其自然。</p>
+<p>这天晚上，更糟糕的事情来了——苏青桐发现自己怀孕了。</p>
+<p>费家洛脑袋发晕，他从没想过做爸爸，以为生孩子还很遥远，尤其是在他俩裸婚，完全没有父母资助的时刻。</p>
+<p>当晚，余一通与李元子的鬼魂，依然睡在费家洛与苏青桐的中间。当他翻个身想要抱住老婆，摸到的却是枪毙鬼裸露的天灵盖。再翻个身又想要抱老婆，抓住的却是被分尸的李元子的十根手指头。</p>
+<p>没过几天，费家洛陪苏青桐去第一妇婴保健院做检查，确认了怀孕这件事，而且从时间上来分析，极有可能就是在阴历七月十五，也就是小夫妻搬进凶宅的那晚怀上的。</p>
+<p>苏青桐忽然想到——李元子的鬼魂不是说过，自己被杀的那晚前夕，曾经查出刚刚怀孕吗？也就是说，她是带着鬼胎一起死的。</p>
+<p>那么，这个鬼胎，是不是到了苏青桐的肚子里？</p>
+<p>她恐惧地扑在费家洛的怀里：我们要不要把孩子打掉呢？</p>
+<p>不，就算是鬼胎，但毕竟是自己的骨肉，又是头胎。老人们都说，头胎好啊，要是头胎被打掉，二胎恐怕也危险。</p>
+<p>对了，这个未出生的孩子，也是陈家洛的后代。他们家族是七代单传，怎能说打就打掉啊？这么做，对得起红花会的十四位大当家吗？对得起霍青桐与香香公主的痴情吗？对得起陈家洛亲兄弟乾隆皇帝吗？对得起内地与回疆的父老乡亲吗？</p>
+<p>回到家里，两人闷闷不乐，就算家里有一对鬼夫妻，也不能占据中心话题了。</p>
+<p>忽然，苏青桐的身后多出一只女鬼，李元子白衣飘飘而来道：青桐妹妹啊，你不必烦忧，你腹中的孩子，自是费家洛弟弟的骨肉。我这双鬼眼，胜似B超，早已看出，这是个如假包换的男孩。我并不是重男轻女，只是这男孩，将来必定会成就大事业，以我作为鬼魂修炼三年来看，不会有错的。</p>
+<p>苏青桐拍拍自己小腹，弱弱地说，切，难道要这孩子来复兴红花会吗？</p>
+<p>女鬼嫣然一笑，饶是风情万种：妹妹别怕，姐姐我生前，是在母婴用品网站上班的，知道一些怀孕与育儿知识，我会保你这孩子健康平安诞下。</p>
+<p>真的么？</p>
+<p>我们夫妻作证，岂能食言？李元子的身后，余一通也冒了出来。</p>
+<p>可是，你俩原本答应相会后就消失，可还是赖着不走。</p>
+<p>对不起，阴间不要我们这对夫妻，阳间也不肯让我们去投胎，说是我俩与活人沟通，泄露了天机，罪不可恕，责罚我们永世做孤魂野鬼啊。</p>
+<p>啊，看来，还是我们害了你俩？</p>
+<p>费家洛早已把这段对话听在耳中，他抓着苏青桐的手说，老婆，别害怕，我们就当养两只宠物，养两只猛鬼在家，不也很有乐趣吗？</p>
+<p>你是被蔡骏洗脑了吧？</p>
+<p>不，是这些日子以来，发生的一切，让我改变了想法，相信我，没错的。</p>
+<p>九个月后，今年春天，苏青桐顺利产下了一个男孩，费家洛给儿子取名为费复明，以纪念红花会的反清复明志士们。</p>
+<p>而他家里养的两只鬼，则承担起了月嫂的角色，帮着这对小夫妻来带孩子。要知道如今请个月嫂，起码也得几千块吧，一下子节省了大笔开销呢。当月嫂最辛苦就是晚上带孩子，几乎整夜不能睡觉，鬼魂恰在夜间活动，这个生物钟太适合带小孩了。再加上李元子的专业育儿知识，用科学方法加上灵异手段，双管齐下，如有神效啊。</p>
+<p>宝宝也是天资聪颖，根本就不怕鬼，反而被鬼哄得服服帖帖。定时喂奶，更换尿布，洗澡睡觉，安排得井井有条。宝宝在鬼夫妻的精心呵护下，茁壮成长，不出四个月，苏青桐已能放心地去上班了。</p>
+<p>有时候，费家洛与苏青桐去超市购物，大包小包提不动，余一通和李元子也会来帮忙。只要是在黑夜里活动，他们都不会有问题的。鬼魂的力道大得不可想象，手指头动动就把几百斤提回家了。</p>
+<p>家里有两只鬼，费家洛就能经常向它们讨教死后的世界。因此，他在悬疑世界杂志上撰写的灵异专栏，也得到了无数人的追看，多赚了不少稿费呢。</p>
+<p>苏青桐的广告公司经常加班，作为年轻妈妈，她有权早回家，但为了多赚些业绩，她还是会留到半夜。从地铁站到家的这条路上，晚上常有强盗出没，每逢此时，李元子就会飘出来接苏青桐回家。有一回，果然碰到强盗，还是个劫财劫色的大盗，看她独自一人就要撒野。这时李元子显形，变成被分尸的血肉，啪的一下砸在强盗脸上，吓得那家伙精神错乱地逃跑了。</p>
+<p>嘿嘿，费家洛与苏青桐的故事还在继续，只是从不邀请朋友去家里做客，大概是怕那两只鬼吓到别人。</p>
+<p>据我所知，这一家五口——三个活人，两只鬼，仍然住在同一屋檐下，每晚都像万圣节party，其乐融融，好有爱啊。</p>
+<p>中秋夜。</p>
+<p>明月几时有？把酒问青天。全家人吃完月饼，亡灵夫妇也品尝了气味。待到费家洛、苏青桐与宝宝睡下，李元子却是转朱阁，低绮户，照无眠，回想前生往事，倍感蛋蛋忧桑。窗边的她，垂下幽魂长发，仰望城外的月光，回忆城里的月光，这才明白，一样的月光。</p>
+<p>什么时候儿时玩伴都离我远去</p>
+<p>什么时候身旁的人已不再熟悉</p>
+<p>人潮的拥挤拉开了我们的距离</p>
+<p>沉寂的大地在静静的夜晚默默地哭泣</p>
+<p>谁能告诉我 谁能告诉我</p>
+<p>是我们改变了世界</p>
+<p>还是世界改变了我和你</p>
+<p>谁能告诉我 谁能告诉我</p>
+<p>是我们改变了世界</p>
+<p>还是世界改变了我和你</p>
+<p>一样的月光</p>
+<p>一样地照着新店溪</p>
+<p>一样的冬天</p>
+<p>一样地下着冰冷的雨</p>
+<p>一样的尘埃</p>
+<p>一样地在风中堆积</p>
+<p>一样的笑容</p>
+<p>一样的泪水</p>
+<p>一样的日子</p>
+<p>一样的我和你</p>
+<p>一样的笑容</p>
+<p>一样的泪水</p>
+<p>一样的日子</p>
+<p>一样的我和你</p>
+<p>什么时候蛙鸣蝉声都成了记忆</p>
+<p>什么时候家乡变得如此的拥挤</p>
+<p>高楼大厦 到处耸立 七彩霓虹</p>
+<p>把夜空染得如此的俗气</p>
+<p>谁能告诉我 谁能告诉我</p>
+<p>是我们改变了世界</p>
+<p>还是世界改变了我和你</p>
+<p>谁能告诉我 谁能告诉我</p>
+<p>是我们改变了世界</p>
+<p>还是世界改变了我和你</p>
+<p>——《一样的月光》</p>
+<p>吴念真、罗大佑/作词；李寿全/作曲</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

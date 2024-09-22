@@ -1,0 +1,1061 @@
+<!DOCTYPE html><html><head><title>31</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="30.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="32.html">下一章</a></p><hr><h1><center>第31夜 穿越雾霾的一夜</center></h1>
+<p>二○一四年十一月二十日。</p>
+<p>那一夜，发生了某件令人终身难忘的事，对于我、树下野狐和阿菩三人而言。</p>
+<p>正如我在《北京一夜）》故事开头所写——</p>
+<p>许多人都不喜欢那座充满雾霾与拥堵的城市。</p>
+<p>但偶尔，我还是会着迷那样的夜晚。春风沉醉兼沙尘呼啸的三月，后海盛开荷花的七月，秋月如镜锃亮的十月，白茫茫落得干净的腊月。</p>
+<p>那一夜，北京严重雾霾。</p>
+<p>下午，是中影集团的二○一五电影项目推介会，刘慈欣、南派三叔、树下野狐、阿菩、八月长安……这些家伙都来了，还有我。对了，这个会上介绍我的小说《天机》电影改编的情况。</p>
+<p>会后，中影集团喇总的晚宴上，八月长安、树下野狐分别问我要微信，我囧囧地回答——我还没用微信呢。</p>
+<p>他们问我是生活在哪个世纪的人，我说十九世纪吧。</p>
+<p>据说，当天会上几百号人，只有两个人没用微信，一个是刘慈欣，另一个是我。</p>
+<p>晚宴过后，闲来无事，我和八月长安、树下野狐、阿菩四人相约去了南锣鼓巷。我对那里略熟些，以前在巷子里的酒店住过。我们穿过热闹的人群，找了间酒吧聊天。</p>
+<p>我说我有个习惯，在不同的城市，喜欢独自夜行。我走过哈尔滨冰封的松花江面，走过传说中危险的喀什街头。我专走人迹罕至之处，不为漂亮姑娘，更不为欣赏美景，或者说单调枯燥的黑夜就是风景。今年四月，我路过北京，住长虹桥，零点时分，独自出门，打出租车，直奔百花深处胡同，寻找“有位老妇人，犹在痴痴地等”之处。午夜，百花深处胡同，安静，空无一人。我只拍了几张照片，对着空旷的巷子、老树、屋檐、门牌。一直往百花深处的更深处走去，后半夜里，独自走了一个钟头，只知道往东是后海荷花市场的方向。黑夜中穿过一条条胡同，有时撞上断头路，又只能寻找其他岔道。从最安静如坟墓的京城深处，渐渐听到远处的喧闹与歌声，直至豁然开朗的灯火，蓦地竟到了银锭桥。众里寻他千百度。</p>
+<p>好吧，他们表示不解，仿佛我是男神一一经病。</p>
+<p>晚上十点多，八月长安先回去了，剩下三个落寞的男人，便到南锣北口的新疆馆子吃烤串。二十串羊肉下肚，打道回府。这边打车似有困难，于是只得沿鼓楼东大街往东走去。我带着大伙往黑暗的胡同里转了转，最后又说兄弟们走回酒店吧。好啊，树下野狐和阿菩都赞同。我说从二环走到三环没问题吧。知道这段路不短，但在我的蛊惑下，他俩还是决定绿色环保低碳兼装逼靠两条腿走回去。</p>
+<p>深夜十一点。安定门内大街拐角，有人蹲在地上烧纸钱，还有几十个黑色圆圈，残存着烧剩的纸屑。</p>
+<p>这家刚死了人吧？不过，这也是人间烟火气，总比高楼大厦底下硬邦邦冷冰冰的好。</p>
+<p>我们三人折向正北，沿着安定门内大街往二环路走去。</p>
+<p>没有选择打车，不是因为打不着车，也不是因为害怕会再遇到那个像冯唐的司机，仅仅只是想要在最漫长的那一夜里行走。</p>
+<p>雾霾茫茫。三人边走边聊，不知不觉，已过了北二环的安定门。</p>
+<p>树下野狐回忆起当年在北大读书时追女仔的往事，阿菩也说起什么事，不过我忘了</p>
+<p>经过一个路口，发觉地上摆着两个酒瓶子，还有碗筷，盛着米饭与几盘荤素搭配的菜肴。</p>
+<p>这个……这个……不是给死人的供品吗？</p>
+<p>北京深夜。清冷路灯下，摆在人行道上冰冷的饭菜。让我想起小时候每逢小年夜，家里都要做一桌子饭菜，必有条青鱼或鲫鱼，还要在饭碗上插筷子……都是给死去的亲人享用的。</p>
+<p>别看了。我被他们拉走了。</p>
+<p>感觉到某种异样，仿佛周围空气里，弥漫一种淡淡的烟雾气——不是北京雾霾里那种惯常的肮脏感，而是火葬场的气味。</p>
+<p>Keep walking．</p>
+<p>又走了好久，时间仿佛失效。树下野狐说：“哎呀！我们是不是有些傻逼？大半夜的，又没有漂亮姑娘陪伴，三个大老爷们，没戴口罩，在北京有毒的雾霾里走了一个钟头！”</p>
+<p>“嗯，好像是的啊。"阿菩附和道。</p>
+<p>忘了是谁低头要打手机求助，却发现信号消失了。</p>
+<p>不会吧，这是帝都啊，二环与三环之间，雾霾还把手机信号给屏蔽了?</p>
+<p>三个人的手机不约而同都断了信号。而且，我身上有两台手机，一台移动的，一台联通的，都没信号。妈蛋，3G与4G的无线网络也断了。</p>
+<p>有点诡异了。</p>
+<p>我继续往前走了几步，看到一个公用电话亭便冲过去，这年头在大城市已不常见这玩意儿了。我拿起脏兮兮的电话筒，摸出从上海带来的硬币（这货在北京几乎不流通）塞进去，依然听不到任何声音。</p>
+<p>连特么固定电话都断了？</p>
+<p>我们面面相觑，再回头看四周大街。上穷碧落下黄泉，半个行人都不见。路边的高楼，还亮着星星点点的灯光，但在雾霾中朦胧而模糊。街上的车飞驰而过，这是帝都唯一不堵车的时节，却都打开远光灯，看来路灯都不管用了。</p>
+<p>怎么办？</p>
+<p>往后走？但要经过那个有死人供品的地方，树下野狐提醒我们不要被孤魂野鬼缠上。</p>
+<p>往左走？倒是有条幽深的小巷子，夹在两个小区之间，但恐怕进去就得迷路，而且半点灯光都没了，不如我们在大路上安全。</p>
+<p>往右走？隔着整条宽阔的马路，前头的路口不知还要走多久。</p>
+<p>往前走吧。</p>
+<p>北国的刺骨冰冷中，身体和腿越走越热，耳朵却被冻得硬邦邦。</p>
+<p>然而，我们还是没有看到北三环。</p>
+<p>仿佛永远回不去了。</p>
+<p>路灯越发昏暗，我却一把拉住树下野狐，否则他就一脚踩到地上的黑圈。</p>
+<p>又是烧过纸钱的痕迹。</p>
+<p>这条路上密密麻麻，一路上不下几十个圈圈，零星夹杂着盛满米饭和包子的破碗，还有装着白酒的一次性塑料杯子……</p>
+<p>感觉像到了公墓，清明节。</p>
+<p>寂静，无声。我能听到他俩骤然加快的心跳声，那可不是看鬼片才有的生理反应。</p>
+<p>路边有个电线杆，贴着张纸条，有些异样。我凑上去细看，那是……打开手机照明，看清一行隽秀的小字——</p>
+<p>当你下一次在黑夜里行走？</p>
+<p>我把纸条揭下，紧紧攥在手心。我没有看身边的树下野狐和阿菩，也不清楚他们是用怎样的目光看我。我只是闭上眼睛，深呼吸，哪怕雾霾严重甚至PM2.5已爆表。</p>
+<p>眼前是黑的，连透过眼皮射人瞳孔的半点光线都不剩。耳边也是空的，没有汽车的呼啸声，没有人的喧哗，什么都没有。</p>
+<p>我看到一条荒芜的道路。树影浓重，黑漆漆的，不像光秃秃的北京冬天。很冷很冷。下着雨。雨点冰冷。我穿着厚外套，撑着一把伞。独自走在雨中。但没有影子。因为，没有光，更没有路灯。往前走，左右都是一片空旷。树丛外，依稀是青葱农田，或是荒野。有条河流淌，经过水泥桥。一辆车开过，远光灯照出行道树。树冠相接，黑夜里聚拢车灯光束，像个白晃晃的山洞。看着似几百万年前，人类之初的某片原野。而我，始终在走。举着伞，雨声淅淅沥沥。我有些累，但又不感觉疲乏。车子驶过后的静寂，反而让我莫名兴奋。越走越快，脚步轻盈。只是，眼前这条荒凉的路，看起来也是越走越远，再也看不到尽头，或，通往世界尽头，但不会有冷酷仙境……</p>
+<p>有人拍了我一下，重新睁开眼睛，看到树下野狐的脸。</p>
+<p>“你在看什么呢？”</p>
+<p>哦，还是在北京的雾霾中，只是背景更加混沌。我把纸条给他们看，又问刚才过去多久。</p>
+<p>“你刚拿起这张纸啊！”</p>
+<p>“也就是一瞬间？”</p>
+<p>“一两秒钟吧！”</p>
+<p>晕，可是在我记忆中，似乎那条路已走了几个钟头，或是大半个夜晚。</p>
+<p>当他们听完我的讲述，再看完纸条上那行字，只有阿菩一本正经地说：“在有的星球上，一年相当于地球上的一分钟，说明你刚穿越到一个陌生的星球，度过了一整晚，回来才是这里的刹那。”</p>
+<p>“这里的刹那？”</p>
+<p>我若有所思地回头，街边再也不见一辆车了。手机依然毫无信号，不觉得奇怪吗？</p>
+<p>是啊，一个人，一辆车，就连半个鬼都见不着，只剩我们三个男人。</p>
+<p>雾霾茫茫。继续往前走，绕过地上的黑圈和供品。路边的建筑都看不清了，更别说窗户和灯光。能见度下降到不足十米，我们只能用手机照明，穿行在全部由迷雾组成的世界。</p>
+<p>好吧，现在胃里的烤串都被消化掉了，可以再来两根辣条了。</p>
+<p>小时候看过的一部日本电影《首都消失》，后来许多年再没记起来过，此刻却如此鲜明地跳在脑中，当东京被不明有毒气体包围……</p>
+<p>“你们相信世界上有外星文明吗？”</p>
+<p>说话的是阿菩，反正周围一切都看不到了，只剩下雾霾，宛如太空深处。</p>
+<p>我沉默。</p>
+<p>树下野狐说：“我信。"</p>
+<p>但我还是不想说话。</p>
+<p>突然，树下野狐大声向外呼喊：“喂，有人吗？有鬼吗？有外星人吗？”</p>
+<p>等待了数秒钟，遥远的空旷里传来回音，仅此而已。</p>
+<p>沉默……</p>
+<p>“这一夜，会不会全世界的人类都死光了？”</p>
+<p>“表（不要）吓我！”树下野狐瞪了我一眼。</p>
+<p>“怎么解释地上这么多烧掉的纸钱和供品？”</p>
+<p>阿菩开始跟我们分析判断：“在黑暗冰冷的环境之中，只有烧纸钱才能提供一些热量。一路边还有几堆黑圈，他蹲下用手靠近。“而这个热量就像红外线热成像，能够让人，或是其他某种生物，可以发现我们的存在，或者就是一个或一组坐标点。”</p>
+<p>“其他某种生物？你是说外星人？”</p>
+<p>“可能吧！”阿菩继续道，“这些黑圈就相当于移动通信的基站，向太空发射着信号，让外星人来接人类死去的灵魂。”</p>
+<p>“外星人给全人类在烧纸钱？”</p>
+<p>“可能，也包括我们自己。”</p>
+<p>“你说我们都死了？我不相信。”树下野狐掐了自己一把，疼痛在他脸上写出来。</p>
+<p>“不对，我们只是人类最后三个幸存者。因为，只有我们三个，毫无防护地暴露在雾霾中。其他人因为躲在各种地下掩体或戴着防毒面具，反而因此完蛋？”</p>
+<p>“不对吧，今晚的全世界，大部分地方并没有雾霾啊，走在街上的人也必然不止我们三个。”</p>
+<p>我想到了一个答案一</p>
+<p>“大数据，网络上留存着我们的购物信息、搜索记录、阅读记录……是会说谎的，但大数据不会，就像神的眼睛，在无数的电子神经元里看着你。”</p>
+<p>“这么说来，谷歌、百度，还有马云，都可以是这个‘神’了？”</p>
+<p>“不全是吧，他们可以看到，但未必能做到。”</p>
+<p>“只有某种高于人类的存在，或者平行于人类的存在，才可以做到这一切。但如果，没有人类自身所发展出的互联网和大数据，那么那种高于或平行于人类的存在，也无法做出准确的判断。”</p>
+<p>“如此而言，是我们自己给自己造了一个绞刑架？”</p>
+<p>“准确来说，是给自己造了一个能够踩上绞刑架的板凳。原本，我们根本就够不上绞刑套索的高度。现在，我们为了让自己站得更高看得更远，造了一个小板凳或者小沙发。终于，让我们的脖子够得上绞刑架了。”</p>
+<p>“No Zuo No Die．（不作死就不会死。）”</p>
+<p>树下野狐又总结了一句：“祭奠我们的互联网及各位大佬们。”</p>
+<p>“但，我们三个人为什么还活着？”</p>
+<p>“显然，外星人，不，这个表述不准确，应该说是某种高于或平行于人类的存在，通过大数据进行了精确的选择，决定让我们三个人活下来，或者，暂时再多活一会儿。”</p>
+<p>“这个选择的标准又是什么？”树下野狐不解地看着我们。</p>
+<p>是啊，我们并不觉得，自己的道德水准一定高于另外六十亿人，也不觉得只有我们三个人的精神境界与专业能力可以延续人类的文明——要是一男一女也就罢了，起码也算是上了挪亚方舟，三个男人怎么办呢？三男生子？某个电脑屏幕后面的高于或平行于人类的存在也是宅腐控吗？</p>
+<p>我搂着两个男人的肩膀说：“不管怎样，我们继续往前走吧。”</p>
+<p>就当作自己还活着的证明。</p>
+<p>穿越雾霾前行，莫名有几分悲壮。像是汉尼拔带着战象翻过阿尔卑斯山进军罗马，又仿佛是红军长征爬雪山过草地走向延安的窑洞，更如世界末日之前人类的飞船飞向木星附近的虫洞。</p>
+<p>哈利路亚。</p>
+<p>不知又行了几十里路，雾霾茫茫照旧，两边不见任何灯光与建筑。就在我们只为了行走而行走之时，眼前骤然出现一道光圈。</p>
+<p>得救了！</p>
+<p>就在一切都要烟消云散之时，那光圈里却出现一个孤零零的白衣女子。</p>
+<p>白色的斗篷底下是白色的大袄和长裙，乌黑的头发上插着白花，挽成了古装片里才有的发型。</p>
+<p>古代人？</p>
+<p>那身白衣，分明是重孝在身，再看装束和打扮，像来自明朝。</p>
+<p>女子看来不过二十上下，柳眉紧蹙，瞪大了丹风眼，掩面往后退去。</p>
+<p>妹子，我们不是坏人。</p>
+<p>三人紧紧迫去，管她是从哪个朝代里出来的。</p>
+<p>四周的雾霾里面，又冲出一人一骑。</p>
+<p>来人穿着黄色的甲胄，厚长的棉甲镶嵌着铆钉，盔上仿佛顶着个避雷针，那不是清朝八旗武将的装扮吗？还是正黄旗的吧？</p>
+<p>马上的清人看到我们也是一惊，勒紧了缰绳便打马转头离去，重又隐入雾霾深处。</p>
+<p>这是神马（什么）节奏？几个意思啊？</p>
+<p>“对啦，必定是清兵人关，头一回打进北京城，烧杀抢掠，弄得天下净是缟素，就如同这满地的烧纸钱与供品呢！”</p>
+<p>阿菩倒也是脑洞大开，不过说得有道理。而今这北京二环外三环内，恰是当年明清兴替，闯王进京，崇祯上吊，吴三桂冲冠一怒为红颜，结果清朝坐了天下的历史见证之地呢。</p>
+<p>我们再往前走吧。说不定就能像起点文里写的一样，穿越到了那个时代，总比留在世界末日的当下坐以待毙强一点吧。说着树下野狐也兴奋起来，“若是能在彼乱世称雄，以我们来自二十一世纪的知识与智慧，必能改变历史之车轮，别说是清朝八旗，就算是德川幕府、路易十四，彼得大帝，还不得乖乖地臣服于我辈？到时候裂土分疆，我占一块亚洲，你占一块欧洲，他再去美洲开发块新大陆，做一回华盛顿的祖宗，不亦乐乎？不过，就怕我们三人内讧，各自利欲熏心，兄弟反目，又搞了一出全球当代版的《三国演义》。”</p>
+<p>意淫嘴炮之顷刻，眼前冒出一片血红色。竟有无数人头攒动，全都穿着明朝服饰，拿着鸡蛋与烂菜叶，纷纷投向一个中年男人。那人早已被剁得浑身赤裸，在寒风中瑟瑟发抖。走近一点看，他被五花大绑着，脸上一道道血污，其边上正站着个彪形大汉，握三寸小刀，正在一点点割他胳膊一上的肉！</p>
+<p>这就是酷刑吗？杀千刀啊！</p>
+<p>那个刽子手，干得可是欢快，表情颇像AV男优。而台下那些围观的群众，纷纷表示情绪稳定，也仿佛正趴在快播前，投入地看着爱情动作视频。而惨遭酷刑的男人，真是条汉子，铮铮铁骨，一声不吭。他任由小刀割下自己的肉，鲜血四溅，雾霾的空气中也多了这血腥味。刽子手每割下一块肉，下面的人群便起哄一次。有人说我出一两白银，又有人说出二百两。最后，有个土豪大妈拍下十两银子，那可是当年一笔巨款。刽子手应声把人肉扔给了大妈。她欢天喜地塞进嘴里，硬生生，囫囵吞枣，嚼下去，嘴角流出两道鲜血——可惜受刑的男人不够年轻，否则便是小鲜肉啦……</p>
+<p>随后，大家争先恐后地竞买着台上的人肉。直到那千刀万剐杀尽，可怜的受刑人，只剩下一副骨架。当中有一颗心脏微微跳动，头骨上还有双眼睛，直勾勾看着下面的北京市民，摆开大排档吃着自己的肋条肉、内脏，还有人鞭……</p>
+<p>我以为我会看到古轩亭口，至少也是菜市口，但什么都没有了。</p>
+<p>又一片雾霾飘来，我们惶恐地向前逃去，不知转了几个方向。再回头，那一切都消失了。</p>
+<p>太真实了。</p>
+<p>不，我们到底是怎么了？</p>
+<p>难道，在这一晚，北京的北二环与北三环之间，出现了一个巨大的虫洞？</p>
+<p>空间并没有变过，变化的是时间，我们陷入时间的河流，通过扭曲或折叠，可以到达另一个年代？</p>
+<p>忽然，我们中的某一个男人，坐在地上哇哇地哭了起来。</p>
+<p>当我们为自己的命运而忧虑，为亲爱的家人而悲伤，因对他人的理解而同情，乃至于为全人类哀其不幸、怒其不争时，眼前的雾霾渐渐淡了。</p>
+<p>不知从哪儿来的一阵风，哪怕是从阴间来的，哪怕是从猎户座来的，也好。</p>
+<p>风吹雾去。</p>
+<p>我看到了，光。</p>
+<p>灯，路灯，路边大厦窗户里的灯，高架桥上的灯，街上飞驰而过的车灯。</p>
+<p>耳边重新响起呼啸的发动机声，城市里的各种喧闹而不夜的场景重新复活？！</p>
+<p>靠，这不就是北三环吗？</p>
+<p>再低头看时间，恰是凌晨三点，传说中鬼魂出没的时刻。</p>
+<p>我们在雾霾中步行了足足四个钟头。</p>
+<p>再看身后的这条路，原来是从一条小巷子里出来的，看来刚才只是迷路了而已。因为一度雾霾太重，我们看不清方向而误入歧途。我猜那条路，四周都是单位，因此晚上没有灯，也没有车经过，什么都看不清楚，除了地上烧的纸钱痕迹。也许，雾霾真的会干扰电子信号，或者，那个鬼地方是什么科研保密单位，存在强烈的信号干扰，导致我们无法使用手机。</p>
+<p>是啊，现在手机有信号了，我立即上网查了查今天是什么日子——二○一四年十一月二十日，甲午年乙亥月乙未日，阴历闰九月廿八。不，现在凌晨，已是十一月二十一日，阴历九月廿九。明天就是十月初一，日历表上标着“寒衣节”三个字。</p>
+<p>再查什么是寒衣节——</p>
+<p>十月初一，指农历十月第一天，又称“十月朝”“祭祖节”“冥阴节”。因这一天祭奠先亡之人，谓之送寒衣，又称为寒衣节，与春季的清明节、秋季的中元节，并称三大鬼节。民初，北京人大</p>
+<p>多沿袭旧俗，在十月初一以前就要到南纸店去买寒衣纸，它是用冥衣铺糊好烧活的彩色蜡花纸做的，也有用素色纸的。更为讲究的富人，则是请冥衣铺的裱糊匠糊一些皮袄、皮裤等高级冬装。不论什么样的寒衣，都以纸钱、纸锭为主，一并装在包裹内，供罢焚化。</p>
+<p>这是跟我们那儿的清明节、七月半，甚至冬至、小年夜一样的习俗。</p>
+<p>树下野狐和阿菩都有些晕了，那么刚才看到的古代人又是怎么回事？仿佛鼻孔里还残留着那种血腥味。</p>
+<p>这时，身后巷子里一阵喧哗。几十号人走了出来，都穿着古装。有的人边走边换成现代的衣服，有的人已套上羽绒服，还有那匹马也被牵出来，清人武将走在后面，嘴里叼着根烟，还不忘用手机玩自拍刷朋友圈呢。至于被千刀万剐的那位，正裹着厚厚的棉大衣，满脸鼻涕地喝着热腾腾的胖大海。</p>
+<p>最后，我看到了那个穿着重孝的白衣女子。</p>
+<p>刹那间，我明白了，这根本就是一个电影或电视剧组，故意觅个雾霾之夜，为了省掉许多布景费用。拍摄明朝将亡，大雾弥漫，皇太极奇袭北京，袁崇焕率关宁铁骑驰援，崇祯皇帝误中反间计，凌迟处死忠臣良将……忽然又想起我读小学时，看过一版陈家林导演的电视连续剧《袁崇焕》，最后一幕便是如此场景，一片血红之中，袁崇焕在京被千刀万剐，人民群众争相分而食之。</p>
+<p>虚惊一场？</p>
+<p>其实，我还不敢肯定。</p>
+<p>没过多久，我们三个就走到了酒店。</p>
+<p>终于没事了，但，此夜经历令人终身难忘，三人分别拥抱告辞，各自回房，洗洗睡了。</p>
+<p>两周以后，我又去参加了一个会，会上有《三体》电影启动拍摄的发布，会上也有我的小说电影改编的发布。会前，我跟刘慈欣闲聊，他跟我说过一句话：如果世界上没有外星人的话，那恐怕才是一件很意外的事。</p>
+<p>前几天，在上海，我接到宣传部会议通知。会议地点在青浦的最西面、古镇朱家角附近，一个叫“东方绿舟”的地方。那天冷得要命，据说会降温到零度，烟波浩渺的淀山湖畔，有个培训和会议中心，晚上我就住在那里。入夜，我跟几个兄弟提起下“四国大战”。但是没有棋。我决定去朱家角镇上的文具店买。</p>
+<p>冬雨，我借了一把伞，独自走出大门。</p>
+<p>黑夜，九点。门卫看到我独自一人，步行往外走去，惊诧地问我去哪里，他们说这附近非常荒凉，出去要走一个钟头才能打到车。</p>
+<p>没关系，我想了想。好在没有雾霾，雨中空气清新，就是冰冷了点。</p>
+<p>但，我喜欢独自在黑夜里行走。</p>
+<p>Keep walking．</p>
+<p>我看到一条荒芜的道路。树影浓重，黑漆漆的，不像光秃秃的北京冬火。很冷很冷。下着雨。雨点冰冷。我穿着厚外套，撑着一把伞。独自走在雨中。但没有影子。因为，没有光，更没有路灯。往前走，左右都是一片空旷。树丛外，依稀是青葱农田，或是荒野。有条河流淌，经过水泥桥。一辆车开过，远光灯照出行道树。树冠相接，黑夜里聚拢车灯光束，像个白晃晃的山洞。看着似几百万年前，人类之初的某片原野。而我，始终在走。举着伞，雨声淅淅沥沥。我有些累，但又不感觉疲乏。车子驶过后的静寂，反而让我莫名兴奋。越走越快，脚步轻盈。只是，眼前这条荒凉的路，看起来也是越走越远，再也看不到尽头，或，通往世界尽头，但不会有冷酷仙境……</p>
+<p>忽然，我想起自己的口袋里，还装着那张从北京带回来的纸条。当你下一次在黑夜里行走？</p>
+<p>为什么一直保留着没有丢掉？这几个字，是谁写的呢？又是写给谁的呢？是单纯的恶作剧，还是闲得蛋疼的行为艺术？还是……</p>
+<p>我再也不能想下去了，因为在黑暗的丛林与荒野深处——我看到一片耀眼的光芒，就像十万个太阳在爆炸，放射着让人永久失明的夺目光芒。</p>
+<p>既像世界尽头，又似冷酷仙境。</p>
+<p>我确信，在北京雾霾的深处，我们确实发现了某种高于或平行于人类的存在。</p>
+<p>因为——此时，此刻，此地，我真的，看到一艘巨大的外星飞船降临……</p>
+<p>人生是一次漫长的行走，我们有时候向左走，有时候向右走，多数时候向前走，偶尔转回头，往后走。但，时间，永远只是一条直线。想要遇见虫洞或折叠或扭曲，太过奢侈。那么，请跟我来。在最漫长的那一夜，继续行走！</p>
+<p>Do not go gentle into that good night,</p>
+<p>Old age should burn and rave at close of day;</p>
+<p>Rage, rage against the dying of the light.</p>
+<p>不要温和地走进那个良夜，</p>
+<p>老年应当在日暮时燃烧咆哮；</p>
+<p>怒斥，怒斥光明的消逝。</p>
+<p>Though wise men at their end know dark is right,</p>
+<p>Because their words had forked no lightning they</p>
+<p>Do not go gentle into that good night.</p>
+<p>虽然智慧的人临终时懂得黑暗有理，</p>
+<p>因为他们的话没有迸发出闪电，他们</p>
+<p>也并不温和地走进那个良夜。</p>
+<p>Good men, the last wave by, crying how bright</p>
+<p>Their frail deeds might have danced in a green bay,</p>
+<p>Rage, rage against the dying of the light.</p>
+<p>善良的人，当最后一浪过去，高呼他们脆弱的善行</p>
+<p>可能曾会多么光辉地在绿色的海湾里舞蹈，</p>
+<p>怒斥，怒斥光明的消逝。</p>
+<p>Wild men who caught and sang the sun in flight,</p>
+<p>and learn, too late, they grieved it on its way,</p>
+<p>Do not go gentle into that good night.</p>
+<p>狂暴的人抓住并歌唱过翱翔的太阳，</p>
+<p>懂得，但为时太晚，他们使太阳在途中悲伤，</p>
+<p>也并不温和地走进那个良夜。</p>
+<p>Grave men, near death, who see with blinding sight</p>
+<p>Blind eyes could blaze like meteors and be gay,</p>
+<p>Rage, rage against the dying of the light.</p>
+<p>严肃的人，接近死亡，用炫目的视觉看出</p>
+<p>失明的眼睛可以像流星一样闪耀欢欣，</p>
+<p>怒斥，怒斥光明的的消逝。</p>
+<p>And you, my father, there on the sad height,</p>
+<p>Curse, bless me now with your fierce tears, I pray. </p>
+<p>Do not go gentle into that good night.</p>
+<p>Rage, rage against the dying of the light.</p>
+<p>您啊，我的父亲，在那悲哀的高处。</p>
+<p>现在用您的热泪诅咒我，祝福我吧。我求您</p>
+<p>不要温和地走进那个良夜。</p>
+<p>怒斥，怒斥光明的消逝。</p>
+<p>Dylan Thomas.Do not go gentle into that good night</p>
+<p>（狄兰·托马斯《不要温和地走进那个良夜》，译者：巫宁坤）</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

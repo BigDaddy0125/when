@@ -1,0 +1,1224 @@
+<!DOCTYPE html><html><head><title>18</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="17.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="19.html">下一章</a></p><hr><h1><center>第18夜 人生就像打电话</center></h1>
+<p>人生就像打电话，不是你先挂就是我先挂。我们说好了一起挂，行吗？</p>
+<p>人生是什么？</p>
+<p>你MB！</p>
+<p>第一句话是半夜接到的骚扰电话，第二句话是你的回复。</p>
+<p>真正的标准答案是：我们生下来，然后又死掉。</p>
+<p>这年头，但凡有个手机，就算座机，谁没接到过广告推销的电话呢？是傻逼兮兮成了人家客户，还是一言不发直接挂断？在多如牛毛的推销或骚扰电话中（更多已被安全软件消灭），有一通最沁人心脾——</p>
+<p>“喂，请问是蔡先生吗？”</p>
+<p>“是。”</p>
+<p>“今天我告诉您的事情是古往今来没有一个人说过的。”</p>
+<p>“你是哪位？”</p>
+<p>“您的声音真的非常好听！”</p>
+<p>“究竟有什么事？”</p>
+<p>“猜猜看？这是一个小秘密！听您说话，就知道您是这方面的专家。”</p>
+<p>“你的秘密？”</p>
+<p>“好，请听清楚了，今天我要告诉您的秘密是——我是奥巴马与普京贵宾服务中心的，是您的客户专员，专门为您做理财服务。”</p>
+<p>没劲！我挂断电话，微微有些遗憾。</p>
+<p>从第一句话起，我就明白是电话推销，之所以迟迟不挂断，完全是因为她的声音。</p>
+<p>妈蛋，真好听。比初恋更甜蜜，比林志玲更平易近人，比波多野结衣更端庄，比朝鲜民主主义人民共和国中央电视台首席女播音员更柔软。</p>
+<p>今晚，这个故事，是关于她的。</p>
+<p>2014年，初春，她第一次来到这座大城市。妹子是去年的本科应届生，期望在金融中心找个专业对口的工作，比如财务经理啊，投资专员啊，最不济也是银行行长秘书。</p>
+<p>但，三个月里投了无数简历，没找到任何工作。有个HR告诉她——虽然她有国际金融专业的本科文凭，但盖着山东蓝翔大学的钢印，还是建议她去挖掘机行业发展。</p>
+<p>她难过，自觉在学校刻苦认真，钻研各种金融知识，只因开学典礼上校长一番话：我们的毕业生如果不踏踏实实学本事，那跟清华北大还有什么区别呢？</p>
+<p>终于，她从求职BBS里找到一份工作，名字听起来高端大气：奥巴马与普京贵宾服务中心，主要业务是个人理财与投资。老板跟某银行领导是亲戚，却是百分百私营企业，不过二十几号人，半数是做电话销售的。</p>
+<p>培训只进行了半天，她开始在坐席前打电话了。</p>
+<p>第一通电话，对方是个女的，她还没说上半句话，就被强行挂掉了。</p>
+<p>她给自己个笑脸，继续打第二个，这回是个男的，居然嗯嗯啊啊听下去。她努力介绍公司业务，把在大学里学过的各种投资理财知识，考试般地背了一遍。</p>
+<p>聊了半小时，最后对方说，我是声音控，美女，能跟你约炮吗？</p>
+<p>额头冒出冷汗。大学四年，她从未谈过男朋友。学校里男生虽多，但小鲜肉绝无仅有。至于她自己嘛，在男生眼里属恐龙级别。每次她觉得社会不公平，人人冷漠，只要自己照照镜子，就觉得也是人之常情了。</p>
+<p>她不想轻易拒绝客户，低声说，约炮不行的，但可以来我们公司看看。</p>
+<p>其实，她心里说，我是颜控，先把你自己的丑逼脸传张照片过来让老娘瞧瞧吧！</p>
+<p>“帮我用舌头舔舔电话吧？”</p>
+<p>她果断挂掉。</p>
+<p>毫无疑问，对面是个变态，而自己呢，好像刚被变态强奸了一百遍啊一百遍。</p>
+<p>她蒙着脸哭了一会儿，然后，继续打电话。</p>
+<p>第三天，在拨打了一百九十多通电话之后，她成功地在电话里卖出了第一份产品。</p>
+<p>她很高兴，回群租房的路上，奖励了自己一顿麻辣烫。</p>
+<p>上班两个月，进入盛夏时节。虽然工资很低，偶尔成功的几单生意，也不过几百块的提成，但她爱上了电话销售员这份职业。</p>
+<p>有天她拨出个号码，根据大数据，此人姓石，单身男性，此外一无所知。</p>
+<p>“喂，请问是石先生吗？”</p>
+<p>“是。”</p>
+<p>听声音是个年轻男子。</p>
+<p>“今天我告诉您的事情是古往今来没有一个人说过的。”</p>
+<p>“嗯？你谁啊？”</p>
+<p>通常百分之八十的接电话客户都会这样问。</p>
+<p>“您的声音真的非常好听！”</p>
+<p>“这辈子第一次有人这么跟我说。”</p>
+<p>好像不是讽刺，他是真心这么说的。</p>
+<p>“猜猜看？这是一个小秘密！听您说话，就知道您是这方面的专家。”</p>
+<p>“听着，这个世界上有许多秘密，数不清的悲剧，每天每分每秒都有人被谋杀，但关我屁事？”</p>
+<p>遇到这样的口气也是平常事，她继续和颜悦色：“好，请听清楚了，今天我要告诉您的秘密是——”</p>
+<p>“所有跟我通电话超过一分钟的女子，都在三个月内出意外死了！美女，这就是我告诉你的秘密！”</p>
+<p>她听得后背心竖起汗毛。但是，对方已在电话里耗费了这些时间，说明有可能攻克下来，绝不能半途而废：“我是奥巴马与普京贵宾服务中心的，是您的客户专员，专门为您做理财服务。”</p>
+<p>“等他俩正式结婚了再来给我打电话吧！”</p>
+<p>“这个，恐怕在我们的有生之年再也看不到了。”</p>
+<p>“你的有生之年会有多久？”</p>
+<p>终于，她既不想挂电话，也不想再接受对方的羞辱和诅咒了，却重新让自己冷静下来：“石先生，您可以不购买我们的产品，但请不要用这种说话方式，我们都是平等的。”</p>
+<p>“小姐，这个地球上从来没有平等两个字。”</p>
+<p>“对不起，别叫我小姐！如果您觉得这通电话是在浪费时间，那么我现在可以挂断。”</p>
+<p>“你的电话刚打过来，就显示有一千零九十五人标记是广告推销！但我想闲着也是闲着。”</p>
+<p>“石先生，我猜您的财务状况可能遇到了某些问题。”</p>
+<p>“破产了。”</p>
+<p>“我们公司为破产人士有专门解决方案——黄金套餐年费八千八百八十八，白银套餐季费三千八百八十八，青铜套餐月费一千五百八十八，单次服务最低价八十八元起！包你立竿见影改变人生！无效可退全款！包邮啊，亲！”</p>
+<p>“但我身上只有几十块现金，还欠银行十几万，你能不能先借我一点钱？”</p>
+<p>“如果您有时间，可以来我们公司咨询，并不是完全没有可能。”</p>
+<p>“小姐，你先当心一下自己吧，没事不要乱出门，小心三个月内没命。”</p>
+<p>“你怎么能说出这种话呢？”</p>
+<p>终于，她也发飙了。</p>
+<p>她面色煞白地站起来，强忍着没把电话机砸掉。她记下那个号码，在手机里给他起了个名字：“来自火葬场的你”。</p>
+<p>第二天，她去火车站买了一百张SIM卡，批发价每个五块，不需要登记身份证。</p>
+<p>她决定每天给那个王八蛋打骚扰电话。她在网上查找博大精深的汉语里各种骂人脏字，去了全国各地的方言论坛，每个地方的中国人都有最恶毒最下流的骂人话。还有文艺小清新的方法，比如凌晨一点钟问他“人生是什么”。被拉进黑名单或举报都没关系，反正一天换张SIM卡，打到他跪地求饶换手机号为止。</p>
+<p>深夜，她开始打电话：“您好，这里是火葬场。对于您家人的离世，感到很抱歉。我们能为您做点什么？”</p>
+<p>“我没有打过电话啊？好吧，你们现在来医院吧，地址是……”</p>
+<p>心里一慌，真的家里死人了？</p>
+<p>“啊，等一等，我记一下。”</p>
+<p>“是您的哪位家人？”</p>
+<p>“我妈，今天刚走。”</p>
+<p>“对不起。”</p>
+<p>“你要说什么对不起？”</p>
+<p>“哦，我们会赶快派殡葬车过来的。”</p>
+<p>“你是谁？”</p>
+<p>她赶快把电话挂了，会不会声音被认出来了？平常人不会开这种玩笑的。她给殡仪馆打了电话，通知他们派车去那家医院。</p>
+<p>憋了整整三天，每次玩手机都要看看通讯录里“来自火葬场的你”，仿佛那真是一座火葬场，不停地吞入尸体吐出骨灰，顺便给城市增加点PM2.5。</p>
+<p>她又拨通了那个电话号码：“你好，这里是火葬场，请问您对我们的服务满意吗？”</p>
+<p>“今日大殓，我很满意。”</p>
+<p>他的声音低沉，似乎背后就是遗像和骨灰盒。</p>
+<p>“如果是一百分，请问您给我们打几分呢？”</p>
+<p>“一百分，但我想投诉，有人冒充你们给我打电话。”</p>
+<p>“哦？”</p>
+<p>“小婊砸，我早听出声音不对了。我家在办丧事，你打骚扰电话过来，还是个人吗？”</p>
+<p>“对不起。”</p>
+<p>“下次进火葬场的就是你了！”</p>
+<p>挂断电话，她捏着手机，孤独地坐在群租房的角落里。薄薄的隔壁响起邻居做皮肉生意的叫声，这个深夜既有性命又有死亡。</p>
+<p>凌晨，睡梦中，她又听到了电话那头的声音，浮现起一张男人泪流满面的脸。</p>
+<p>两三个礼拜，越发魂不守舍，好多次打电话时都会走神。每次翻手机通讯录，看到“来自火葬场的你”就会心慌。她犹豫过无数次，要不要删除这个号码？但，手指总是按不下去，仿佛那个人就在背后，无影无形地抓着她手腕。</p>
+<p>深夜，十点，她无法抑制给他打电话的欲望。</p>
+<p>又一张新的SIM卡，拨通了“来自火葬场的你”，电话铃响了很久……</p>
+<p>“谁？”</p>
+<p>“是我呀。”</p>
+<p>“又是你？”</p>
+<p>显然，对方已牢记她的声音了。</p>
+<p>“先别挂电话，我想跟你说对不起。”</p>
+<p>“我不在乎！”</p>
+<p>“能跟你说说话吗？”</p>
+<p>等候良久，响起一个干哑的声音：“好。”</p>
+<p>“你好像出了什么状况？”</p>
+<p>“没事，我很好。”</p>
+<p>“上次我真的不知道你家在办丧事。如果，你是因此情绪不好骂了我，我可以原谅你，石先生——”</p>
+<p>“叫我石头。”</p>
+<p>根据电话推销法则，一旦有这种亲昵的称呼，比如小李，老张，大刘之类的，说明对方信任你和你的产品，成功可能性就大大提高了。</p>
+<p>“好啊，石头，你快要睡了吗？”</p>
+<p>“我要是告诉你，我很快就会长眠不醒，你信吗？”</p>
+<p>“听起来，你的情绪很消沉啊。”</p>
+<p>“哇，你到底是做什么的？”</p>
+<p>“我不是心理医生，也不是你的负能量垃圾筒，我是做个人理财与投资的。”</p>
+<p>“真他么敬业，我要是有一万块，肯定买你们的产品。可是，我有吗？”</p>
+<p>“我也没有。”</p>
+<p>“真的？”</p>
+<p>“嗯，我是个女屌丝。”</p>
+<p>“你是在安慰我，声音那么好听，美女吧。”</p>
+<p>“我很丑。”她第一次对男人说这样的话，好在是电话，当面反而不敢说，“声音好听的女孩子大多很丑，你不信吗？”</p>
+<p>“喂，丑女，你听过一首歌吗？赵传的《我很丑，可是我很温柔》，那首歌唱的就是我。”</p>
+<p>“你是搞音乐的？”</p>
+<p>“也算是吧。”</p>
+<p>“是在酒吧驻唱的吗？哪一家啊？有机会我能来听吗？给你献花？”</p>
+<p>“我在演出公司上班，给演唱会打杂，给工作人员送盒饭啦，开车啦，灯光设备啦，男明星唱累了后台休息，我给他按摩屁股解乏。”</p>
+<p>“那么女明星呢？”</p>
+<p>“我通常是给女明星擦鞋油的。”</p>
+<p>“石头，你的手机还有多少格电？”</p>
+<p>“一半。”</p>
+<p>“不早点睡吗？”</p>
+<p>“丑女，你要挂电话了吗？”</p>
+<p>“晚安。”</p>
+<p>“等一等！”</p>
+<p>他在电话里吼了一声。</p>
+<p>“怎么拉？”</p>
+<p>“没……没什么……”</p>
+<p>“你还想跟我继续聊天，是吗？”</p>
+<p>沉默中含糊的声音：“是。”</p>
+<p>“哇，你有多无聊啊？”</p>
+<p>“你想错了，我只是……只是……你的声音好好听啊。”</p>
+<p>“好吧，本姑娘陪你说话，超过半个小时要收费啊。”</p>
+<p>“我破产了。”</p>
+<p>“可以赊账，按揭，分期付款！我可是在蓝翔学金融的。”</p>
+<p>“你们公司有没有阴间的理财服务？”</p>
+<p>“阴间？”果然是“来自火葬场的你”啊，“我可以告诉老板，适当开发一下这个领域的服务。不过，到时候要往地下打电话推销，我可就惨啦，就怕天天被你这样的吊死鬼骂。”</p>
+<p>“丑女，有没有人告诉过你，其实，你挺可爱的。”</p>
+<p>“这辈子没人这样说过。”</p>
+<p>她没说谎，莫名有些小激动。</p>
+<p>“可惜了，以后不能陪你电话聊天，我快死了。”</p>
+<p>“这种骗人把戏太过时了，哼，说说你怎么死呢？”</p>
+<p>“从楼顶掉下来摔死。”</p>
+<p>“什么时候？”</p>
+<p>“一分钟后。”</p>
+<p>“你以为你有预知未来的超能力？”</p>
+<p>“不是，我正准备跳楼自杀。”</p>
+<p>“别开这种玩笑！”</p>
+<p>“没有啊，你听听风的声音！”</p>
+<p>他把手机举到远处，果然狂风呼啸，似在几十层楼顶。她从小就有恐高症，听到这声音再想象下都会腿软。</p>
+<p>“不要啊！”</p>
+<p>隔了好久，听到他剧烈喘息的声音：“喂，丑八怪，喊什么喊？我差点被你吓得掉下去！”</p>
+<p>“你也会怕死？你要死就死，关我什么事啊？”</p>
+<p>“那我真的去死了？”</p>
+<p>“石头，等一等！”</p>
+<p>“好，那我等一等再去死。”</p>
+<p>真想冲到他面前，抽他一顿耳光，再把他的舌头与鸡鸡都割了，假如他是骗人的话！</p>
+<p>“你怎么让我相信呢？”</p>
+<p>“亲爱的，我在楼顶上坐了两个钟头，正准备跳下去，手机响了——要不是你这个电话打进来，我已经是个死人，躺在底下的大街上，被无数围观的人们拍照了。”</p>
+<p>“如果是这样，我绝对不会让这个电话挂掉的。”</p>
+<p>“电话总得挂的，不是你先挂，就是我先挂。”</p>
+<p>“石头，你个傻瓜，请保持通话。告诉我，你在哪里？”</p>
+<p>“你打开微博或微信看一下。”</p>
+<p>她赶紧搜索“直播跳楼自杀”，都指向本市同一栋大楼。虽是深夜十一点，不少人还在街边仰头围观。有些混蛋起哄叫楼顶的快点跳，免得大家等太久错过好戏。</p>
+<p>真的是他吗？不断刷新，出现楼顶。她认得那栋大厦，四五十层。底下是有名的商场。有人拍到了楼顶的跳楼者，看不清脸，是个年轻男子，不停地拿着手机通话。不少人猜测是警方正在与其通话，谈判专家或心理医生劝阻他自杀。公安的微博表示，与自杀者通话的并非警察，而是某个不明来源的电话。</p>
+<p>不明来源的电话——就握在她的手心里。</p>
+<p>“你别死啊！”</p>
+<p>她对着手机大喊，而他回答：“靠，那么久不出声，我还以为你死了呢！”</p>
+<p>“今晚，谁都不会死的！”</p>
+<p>“我要跳下去了哦！”</p>
+<p>“别！”慌乱之间，她随口说，“我喜欢你！”</p>
+<p>“什么？”</p>
+<p>“哦，我说我喜欢你说话的声音，愿意跟你做朋友啊。”</p>
+<p>她掏出本小册子，进公司第一天的培训教材。翻到最后一页，每天上班前都会在心里默念一遍——</p>
+<p>我会成为电话营销的顶尖高手，电话是我终生朋友，我热爱电话。我所拨出的每通电话都是最重要的，对方都是我生命中的贵人，或我将成为他生命中的贵人。我喜欢打电话的对方，我喜欢我电话的声音。我打电话可以达到我想要的结果。我下一通电话比上一通电话都有进步。我充满热忱，我会自己感动，一个感动自己的人才能感动别人。没有人会拒绝我，所谓拒绝只是他不够了解，是我推介的角度不是最好。</p>
+<p>“知道吗？石头，你是我生命中的贵人！或者，我将成为你生命中的贵人！”</p>
+<p>“你已经是了！声音迷人的丑女。”</p>
+<p>“对了，你有女朋友吗？”</p>
+<p>“曾经谈过。”</p>
+<p>她故意用愉快的语气说：“那就是现在没有喽？”</p>
+<p>“嗯，但我猜你也肯定没有男朋友。”</p>
+<p>“是啊。”</p>
+<p>“可我没机会跟你谈恋爱了。”</p>
+<p>“只要你不死，从楼顶走下来，就有机会啊。”</p>
+<p>“当我决定走上楼顶，就绝对不会再走下来。”</p>
+<p>他听起来毅然决然，好像地下党员上刑场。</p>
+<p>“没出息的石头，为什么想死？”</p>
+<p>“活着没意思。”</p>
+<p>“跟你妈妈去世有关吗？”</p>
+<p>再度沉默，电话里全是刺耳的风声，楼下的汽车发动机声，还有远处警方的喇叭声。</p>
+<p>“我的爸妈，在我三岁的时候就离婚了。我跟我爸住在外地，我妈一个人住在这里。小时候，每个同学家里都有电话，但是我家穷，一直没有条件安装。”</p>
+<p>“差不多我家也是哦！”</p>
+<p>“我没在电话里听到过妈妈的声音。她也从没来看过我哪怕一眼。我恨她。初中那年，我爸有了一部手机。有天晚上，我偷用爸爸的手机，给妈妈打了通电话。是个男人接的电话，我只说我找妈妈。那个男的把电话掐断了。从此以后，我再没听到过妈妈的声音。几年前，我大学毕业过来打工。我没去找过我妈，电话都没打过半个。我换过各种工作，不停地搬家租房。没有出人头地的机会，从房产中介到保安到快递员到演出公司打杂的，我感觉像个蚂蚁，忙忙碌碌地给自己搬运面包屑，随时可能被街上的高跟鞋踩死。对了，我也做过电话推销员，立刻就能听出你是干吗的。”</p>
+<p>“哈，我们是同行，石头前辈。”</p>
+<p>“丑女，你真的很机灵啊，是块做电话销售的料。”</p>
+<p>“为什么不干了呢？”</p>
+<p>“我没办法克服内心的障碍，总害怕被人骂，被拒绝，甚至把电话放到口袋里，任凭我说了半天都没声音。对啊，你是怎么对付那些前台小姐的？”</p>
+<p>“打公司电话吗？那我得严厉多了——你跟陌生人讲电话都这样吗？你帮我转电话前，还想知道关于我什么事？不转这通电话，老板会失去许多赚钱机会，你敢冒这个险吗？既然你不愿听我说话，请告诉我你的名字，如果你们老总来问，我就能说跟谁谈过了呢！”</p>
+<p>“哈哈哈！”</p>
+<p>好担心他会不会笑得摔下去呢。</p>
+<p>“我很可笑吗？别再笑了，石头，我都脸红了！”</p>
+<p>“今年春天，我妈突然打我电话，说她生病住院，想见我。她得了癌症，晚期，病入膏肓。”他的语气突然沉重下来，“这些日子，我也失业了，欠了信用卡费一大堆，可以说是破产了。妈妈临死前，送给我一台iPhone6，用仅剩的积蓄买的。她说，我小时候，没能给我打过电话，非常内疚，不配做我的妈妈。她快死的时候，头发掉光了，不想让我看到她的样子，就把我赶出病房。妈妈让护士帮忙拿着手机，用最后的力气跟我通话，祈求我的原谅。我在电话里说，妈妈，我早就原谅了你啊。然后，电话那头再也没了声音。”</p>
+<p>“现在你跟我通话的这台手机，就是你妈妈送给你的？”</p>
+<p>“嗯，这是我从小大到，这辈子收到的第一件也是最后一件，妈妈的礼物。”</p>
+<p>她的眼眶有点红，深呼吸：“石头，你这混蛋，要是现在自杀，你妈妈会骂死你的！”</p>
+<p>“我早就想死了，从上中学的时候起，那时老师们就说，这孩子没救了。”</p>
+<p>“那些老师都胡说八道，你还信啊？”</p>
+<p>“再见吧，谢谢你，亲爱的丑女。”</p>
+<p>“别，我能问你一个问题吗？”</p>
+<p>电话那头在沉默，风声呼啸，如死神的呼吸。</p>
+<p>“你还在吗？石头？还在吗？”</p>
+<p>她声嘶力竭地喊起来。</p>
+<p>“说吧。”</p>
+<p>这是否算是再一次把他从鬼门关里拉回来？</p>
+<p>“如果世界末日来临，只能带一种动物上诺亚方舟——马，老虎，孔雀，羊，你会选择哪一种？”</p>
+<p>“什么问题啊？”</p>
+<p>“回答吧，你不就在世界末日吗？”</p>
+<p>“老虎。”</p>
+<p>“为什么？”</p>
+<p>“昨晚，我梦见了老虎。对了，你看过李安导演的《少年派的奇幻漂流》吗？丑女，如果是你，你选哪样动物呢？”</p>
+<p>“我……我……我选羊！”</p>
+<p>“羊？”</p>
+<p>“你属羊？”</p>
+<p>她扑哧一声笑了：“是啊。”</p>
+<p>“嗯，年龄暴露啦，我比你大三岁。”</p>
+<p>“石头哥，我能请你吃夜宵吗？你知道这附近有家路边摊的烤生蚝很正的耶！”</p>
+<p>“说得我都饿了啊。”</p>
+<p>“好啊，那我出门去接你。”</p>
+<p>“哎呀呀！”</p>
+<p>“咋啦？”</p>
+<p>“我看到这栋楼底下啊，街上刚出了车祸，就是几秒钟前，我们说话的时候，有个女孩被辆土方车压死了！好惨啊！半个身体都没了，马路都塞住了啊。”</p>
+<p>“你信不信，全世界人都死光了，你都不会死呢！”</p>
+<p>“不知道。”</p>
+<p>“你等着，别跳楼哦，我这就过来找你！”</p>
+<p>她穿上一件外套，踩着拖鞋就出门了。手机保持通话，挂上耳机方便行动。她飞快地冲到路边，打上一辆出租车，前往微博上直播的跳楼地址。</p>
+<p>“石头，我在赶来的路上，你可别往下跳哦！”</p>
+<p>“你真的要过来？”</p>
+<p>“谁骗你啦？我要是骗你的话，天打雷劈做小三！”</p>
+<p>“好吧，我等你！”</p>
+<p>十来分钟，出租车开到了楼下，果然周围人山人海。</p>
+<p>但她没看到所谓的车祸现场，大概已经被清理掉了吧。</p>
+<p>她仰天望着楼顶，灯光已经照亮那上面，果然坐着一个男人。他紧挨着天台边缘，两条腿悬挂在半空中，这让警方的救援极其困难，哪怕轻轻触碰半下，都可能让他摔下来。</p>
+<p>更高的半空中，有架直升机正在盘旋，似乎想要空中营救。</p>
+<p>太遥远了，无论如何看不清他的脸，只看到他正在通电话。</p>
+<p>“喂！我已经到楼下了，石头，你快下来吧！”</p>
+<p>“好啊。”</p>
+<p>“不！不！不是叫你跳下来，你回头坐电梯下来！”</p>
+<p>“可是，丑女，我们都回不去了。”</p>
+<p>“回得去！我们都来得及！”</p>
+<p>“凭什么？”</p>
+<p>“我嫁给你！”</p>
+<p>她脱口而出，围观的人群侧目。</p>
+<p>“你说什么？”</p>
+<p>“只要你不死，我就嫁给你。”</p>
+<p>“又在骗人，这可不是电话推销！”</p>
+<p>“石头，我是认真的！”</p>
+<p>“算了吧，我是个屌丝，除了一身债，啥都没有，你不会要我的。”</p>
+<p>“谁说你一无所有啊？你还有病呢！”</p>
+<p>“对啊。”他大笑着说，“你也有病啊？”</p>
+<p>“哈哈哈，石头，我们都有病，这个世界上的每个人，我们都病得不轻啊！”</p>
+<p>楼顶和楼下，一个男人和一个女人，异口同声笑起来，笑得那么天真，那么无邪。</p>
+<p>他左手抓着手机，右手往楼下招了招，引起下面一片惊呼，以为他真要跳下来了。</p>
+<p>她对着手机冷静地说：“人生就像打电话，不是你先挂就是我先挂，但在挂之前，你得先把电话费挣了。”</p>
+<p>“电话费？对啊，再不充话费，我就得停机了！”</p>
+<p>“你得下来自己充哦！”</p>
+<p>“问你个问题，你真的很丑吗？”</p>
+<p>“是啊，丑到你半夜吓醒！石头哥！”</p>
+<p>“那我太好奇了啊，真的得要下来了，看到你究竟有多丑，然后再去死。”</p>
+<p>“好啊，我就在这里等你！”</p>
+<p>然后，他真的站起来，从楼顶上消失了。</p>
+<p>底下的人群一片失望，还有人发出嘘声，大喊：“骗子！浪费了老子几个钟头！”更有网上开赌场的为此而损失惨重——半小时前跳楼的赔率还很高呢，全国已有好几万人下注了。</p>
+<p>五分钟后，他出现在了楼下。</p>
+<p>坐电梯下来的。</p>
+<p>一群警察簇拥着他，同时给他戴上手铐，威胁跳楼严重违法，可能要行政拘留。</p>
+<p>他向人群张望，期待能看到那个她，传说中最丑的女孩子。他不在乎她有多丑，更不在乎她是否真的会嫁给他。</p>
+<p>他只是想要看到她，靠近她，抱紧她，亲吻她。</p>
+<p>然后，被警察叔叔拖走。</p>
+<p>但她没有出现，周围只是骚动的人群，向他投来谩骂与唾沫星，丝毫没有她任何的影子。</p>
+<p>手机里的通话已经断了。</p>
+<p>她先挂了。</p>
+<p>好遗憾呢，他抬头看着城市，夜空被灯光污染无比灰暗，似有流星滑过。</p>
+<p>其实，她就藏在人群深处，在某道玻璃背后，从手机里取出SIM卡，扔进路边的垃圾箱。</p>
+<p>她看到了他。</p>
+<p>无法形容他的容貌，总之，她知道自己喜欢他。</p>
+<p>非常非常的喜欢他。</p>
+<p>刹那间，自动脑补了无数画面——他和她在大街上相遇，在无数人惊讶与错愕的目光下，两人紧紧相拥，最浪漫的法式亲吻，像失散多年的恋人。相爱，热恋，结婚……她会为他生一大堆孩子，去他妈的计生委。每个孩子长大后，都将是电话推销的高手。最后，他们就像一通电话，说好了，一起挂。</p>
+<p>但，这只是幻想，仅仅存在于一秒钟的大脑皮层。</p>
+<p>放下电话，他和她，终究只是陌生人。</p>
+<p>她转头离去，在午夜的街头，脚步越发轻盈，就像回到十岁那年，学校里跳舞的小姑娘。</p>
+<p>谁的眼泪在飞？</p>
+<p>走过一条又一条街，走过一座又一座桥，走过无数的路灯和大厦，走过正在打烊的KFC，走过二十四小时的钟点房旅馆，走过彻夜狂欢的老外酒吧，走过夜幕下流浪的野猫。</p>
+<p>忽然，她发现又回到了这里，回到四周喧嚣的人群，马路对面有栋高楼，直耸夜空云霄。手机依然在通话状态，</p>
+<p>“如果世界末日来临，只能带一种动物上诺亚方舟——马，老虎，孔雀，羊，你会选择哪一种？”</p>
+<p>“什么问题啊？”</p>
+<p>“回答吧，你不就在世界末日吗？”</p>
+<p>“老虎。”</p>
+<p>“为什么？”</p>
+<p>“昨晚，我梦见了老虎。对了，你看过李安导演的《少年派的奇幻漂流》吗？丑女，如果是你，你选哪样动物呢？”</p>
+<p>“我……我……我选羊！”</p>
+<p>当她一边在通电话，一边横穿过午夜的街道，想要到楼顶去接他下来，却丝毫不曾注意路上的车流——有辆土方车疾驶而来，根本来不及踩刹车。</p>
+<p>羊。</p>
+<p>她死了。</p>
+<p>至于，刚才发生的一切，不过是她死后的一场幻想而已，真实的世界是这样的——</p>
+<p>半个身子留在车轮底下，暗红的鲜血像团草莓浆，缓缓地浸染肮脏的路面，也染红了她那双Hello Kitty的拖鞋。</p>
+<p>七百块的山寨手机，摔到路边的排水沟里，依稀传来楼上男人的喊声：“艾玛！”</p>
+<p>而她感到自己飞了起来，失去了所有的重量，像片羽毛，像只蛾子，像个鬼魂。她越过围观的人们的头顶，就好像插上一双隐形的翅膀。</p>
+<p>她越飞越高，一直飘到上百米的高度，发现有个男人摔了下来。</p>
+<p>在十八层楼与十九层楼之间的半空中，她看到了他。</p>
+<p>但他没有看到她。</p>
+<p>高速坠落中的他，心里极度后悔——后悔为什么要爬到楼顶自杀，后悔为什么接起不速之客的电话，后悔为什么没有及时挂断而通话了两个钟头，后悔为什么低头看到楼下发生的车祸，后悔为什么始终抓紧手机而听到她的惨叫声，后悔为什么因此而心慌意乱脚底一滑，后悔为什么看上去像是要跳下去救她，她已经让我放弃自杀的念头了啊！妈蛋！</p>
+<p>总之，他下来了。</p>
+<p>而她已飘到楼顶，很遗憾再也看不到他了。</p>
+<p>最漫长的那一夜，楼下发生惨重车祸的二十秒后，又有一个男人坠落到地面。他摔在被压住半个身子的女孩身边。他俩的鲜血流淌在一起，头发互相纠缠，他的左手抓住了她的右手。因为跳楼的巨大冲击力，男人的一双眼球被挤出来，玻璃弹珠般滚落到她的脸边，似乎是要看清她有多丑。</p>
+<p>在更高的地方，整座城市的上空，接近星星和月亮的云层间，她不再有恐高症了，才想起刚才的答案——</p>
+<p>“马代表事业，老虎代表自尊，孔雀代表金钱，羊代表了爱情，你所选择的就是你内心最在乎的东西。”</p>
+<p>此时此刻，三万英尺下的地面，警察驱散围观人群，搬运这两具年轻的男女尸体，各自蒙住一块白布，送上及时赶到的殡葬车。在火葬场干了三十年的老司机，这辈子拉过成千上万具尸体，叼着一根红双喜说：“人生就像打电话，不是你先挂就是我先挂——但我只同意前半句。”</p>
+<p>No new years's day</p>
+<p>to celebrate</p>
+<p>no chocolate covered candy hearts</p>
+<p>to give away</p>
+<p>no first of spring</p>
+<p>no song to sing</p>
+<p>in fact here's just another ordinary day</p>
+<p>No April rain</p>
+<p>no flowers bloom</p>
+<p>no wedding saturday within the</p>
+<p>month of June</p>
+<p>But what it is</p>
+<p>Is something true</p>
+<p>Made up of these three words that</p>
+<p>I must say to you</p>
+<p>I just called to say I love you</p>
+<p>I just called to say how much I care</p>
+<p>I just called to say I love you</p>
+<p>And I mean it from the bottom</p>
+<p>of my heart</p>
+<p>No summer's high</p>
+<p>No warm July</p>
+<p>No harvest moon to light one tender August night</p>
+<p>No autumn breeze</p>
+<p>No falling leaves</p>
+<p>No even time for birds to fly</p>
+<p>to southern skies</p>
+<p>No libra sun</p>
+<p>No Halloween</p>
+<p>No giving thanks to all the</p>
+<p>Christmas joy you bring</p>
+<p>But what it is</p>
+<p>Though old so new</p>
+<p>To fill your heart like no three</p>
+<p>words Could ever do</p>
+<p>I just called to say I love you</p>
+<p>I just called to say I love you</p>
+<p>I just called to say how much I care</p>
+<p>I just called to say I love you</p>
+<p>And I mean it from the bottom</p>
+<p>of my heart</p>
+<p>I just called to say I love you</p>
+<p>I just called to say how much I care</p>
+<p>I just called to say I love you</p>
+<p>And I mean it from the bottom</p>
+<p>of my heart</p>
+<p>——Stevie Wonder I Just Called to Say I Love You</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

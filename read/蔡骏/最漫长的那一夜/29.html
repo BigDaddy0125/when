@@ -1,0 +1,979 @@
+<!DOCTYPE html><html><head><title>29</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="28.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="30.html">下一章</a></p><hr><h1><center>第29夜 朋友圈都是尸体的一夜</center></h1>
+<p>无论天空如何证明自己心胸辽阔，大地只需要坟墓就能容纳所有归宿。</p>
+<p>——题记</p>
+<p>有个充满恶意的故事——某人沉湎于刷朋友圈，每顿饭哪怕只吃个泡面都要发几张图片，每隔半分钟不刷新就会手指抽筋。忽然有天脑子开窍，觉得自己宝贵的人生啊，全被朋友圈里这些晒照片、转订阅号文章、发小广告的家伙毁掉了。于是，他非法购买了一把手枪，悄悄把八百多个微信好友挨个儿除掉。从此朋友圈尸横遍野，最后只剩自己一个活人。</p>
+<p>但我不需要这么做，因为我的朋友圈都是尸体。</p>
+<p>有的人，喜欢跟土豪交朋友，跟帅锅（哥）交朋友，跟美吕（女）交朋友，跟歪果仁（外国人）交朋友，跟作家交朋友。以上这些我都不感兴趣，我只喜欢跟尸体交朋友。</p>
+<p>我不是法医，也不在太平间工作，更不是殡仪馆的入殓师。我在上海一家互联网公司上班，普通的办公室职员，每月工资七千元，刚够付房租和一些吃用开销。所以嘛，我没有女朋友，也没有男朋友，只能一个人住，父母远在老家。</p>
+<p>对了，我是男的。至于年龄，你自己去猜。我是个闷葫芦，从不主动跟人说话。公司开会常忘记叫我，出去旅游走丢也没人会记得。我不用跑业务，也不跟同事们私下来往，没人问我扫二维码。我的朋友圈，每夜寂静如同坟墓。还有个小小的原因，我的微信名字叫“尸体的朋友”，微信号你自己搜一下：Dearbody。</p>
+<p>你会问——恋尸癖吧？你不懂，跟尸体交朋友，怎么能跟恋尸癖混为一谈？两桩完全不搭界的兴趣啊好不好？恋尸癖就是死变态！对尸体的玩弄和亵渎，是丧尽天良的犯罪，不是吗？而我跟尸体交朋友，则是一种包容和尊重，无论活人还是死人，不管男人或女人，只要曾经是个人，就值得用心对待，不带任何欺骗地交流。尸体并不可怕啊，许多人看到就躲得远远的，还趴在地上呕吐一这不是歧视又是什么？就像有的人歧视同性恋，有的人歧视农民工，有的人歧视残疾人，而绝大多数人都歧视尸体！哪怕死去的是自家亲人，恐怕都会有小辈嫌弃。</p>
+<p>两年前，有人打破了我朋友圈的寂静。那晚真特么（他妈）冷啊，对方的名字很普通，还附了一句话——你好，我是尸体。”</p>
+<p>刚开始我的反应与你相同，恶作剧吧？还是精神分裂的变态狂？但我决定接受“尸体”为好友，微信跳出一段文字——他说自己昨晚刚断气，正在医院太平间躺着，终年七十三岁，是个老头，死于心肌梗死。</p>
+<p>不能直接质疑他的身份，毕竟我叫“尸体的朋友”，岂可叶公好龙？查看他朋友圈图片，都是老年人养生订阅号，中央反腐消息、退休党员组织生活、《环球时报》社论、黄金周的老年摄影展。头像上的小女孩，是他读三级的孙女。他是有多喜欢小孩子啊，从家里玩耍到课外兴趣班的照片，还有学习钢琴和唱歌的小视频。但见不到儿子媳妇，也看不见老伴。</p>
+<p>老头在微信里说，自己死得突然，早上送完小孙女上学，在学校门口就不行了。心脏仿佛被闷了一拳，摔倒在大街上，失去知觉，送到医院医生宣告已死亡。</p>
+<p>“是不是很难过？”我问他。</p>
+<p>他说，全家人依次赶到医院，呼天抢地号哭，他真想坐起来呵斥一顿，还让不让人好好去死了？当他看到小孙女从学校赶来，趴在自己胸口哭得梨花带雨，尸体都忍不住要哭了，好想再抱一抱她，摸摸小羊角辫子，在脸蛋上亲吻个够，哪怕每次儿媳妇都会嫌弃老头子不干净。</p>
+<p>我认真地倾听，不时回他个笑脸或大拇指，有时也配合他的情绪，打上一串省略号或发个哭脸。老头还算积极乐观，说要是得了某种慢性病，在病床上折腾一年半载，消耗几十万医药费不说，还得让老婆和儿子辛苦守夜，被儿媳妇白眼，最后依然逃不了翘辫子的结局，还不如突发心脏病，顶多大小便失禁。唯独临死前没能多看小孙女一眼，留了个不大不小的遗憾。</p>
+<p>老头详细介绍了太平间一一第一次在这儿过夜，四周全是尸体。虽说这鬼地方温度很低，但能闻到一股淡淡的腐烂味。有人进入太平间，将他推出走廊。深更半夜，医院里有些恐怖，我问他有没有见到鬼，他先说没见到，接着说不对，自己就是鬼！他被抬进一辆黑色面包车，车皮外是殡葬车的标志。车轮颠簸，载着尸体来到殡仪馆。</p>
+<p>微信对话持续一整夜，第二天我双眼通红地去上班了。午后，几个同事对我指指点点，说我有病之类的，但我不在乎。我只担心尸体会烟消云散，着急地在微信上叫他：“你还在吗？”</p>
+<p>没等几秒钟，他就有回音了：“在啊，我在化妆呢。”</p>
+<p>殡仪馆的化妆室，有个中年妇女在为他敷面膜，这是家属花钱增加的一项服务，让老爷子走得面色好看些。他说过两天就要火化了，在这个世界上的最后两天。我说我非常荣幸，可以在微信上陪伴你度过。</p>
+<p>小时候，老人死后会在家布置灵堂，让尸体过一晚再送走。守灵夜，自然是最漫长的那一夜。大人们撑不住打了瞌睡，虽然被警告不准靠近尸体，但我会偷偷从床上爬下来，守在死去的爷爷或奶奶身边。老人活着的时候，并不怎么喜欢我，说我这孩子性格怪怪的，不讨人喜欢——没错，我不讨活人喜欢，直到现在都是。灵堂中一片寂静，我跟死去的老人说话，告诉他，我想再被他抱一抱。不骗你的，我能感觉到灵魂存在，他想回到人间，跟我一块儿玩，教我挑棒棒、下象棋。这时大人们突然醒来，看着我在跟死人说话，都觉得这孩子是不是有病。</p>
+<p>是啊，老人们的魂一定都还在啊，离不开这个世界，那时候如果有朋友圈，成为尸体的他们大概也很活跃吧。</p>
+<p>再回到我的微信，我问这唯一的好友：“你的老伴呢？”</p>
+<p>“我不喜欢她，一辈子都不喜欢！”</p>
+<p>他们经常吵架，从“文化大革命”吵到移动互联网的时代。老婆样样管他，不准藏私房钱，不准乱交朋友，就是对他不放心。快退休了，老婆经常突然袭击要抓奸，其实啥事都没有。六十岁那年，他提出离婚，其实已酝酿多年，离婚协议书都备好了。老伴当场哭了，看到她眼泪滴答，他缴械投降，继续老实过日子。有人算过命，她很长寿，至少能活九十岁。</p>
+<p>尸体的最后一天。</p>
+<p>我的朋友在微信上直播自己的葬礼。他穿着寿衣，躺在水晶棺材里。家属们哭声一片。原单位领导致辞，然后儿子致辞。儿子四十多岁，政府公务员，混得不错，葬礼不寒碜，收了不少白包。小孙女没太伤心，在没心没肺的年龄，爷爷不怪她。三鞠躬后，哀乐响起。当老伴趴在送去火葬场，老伴和儿子一路陪伴，儿媳妇带孙女回家，还要管宾客们豆腐羹饭。</p>
+<p>送君千里，终有一别。我的尸体朋友，被推进火化炉，发了毕生最后一条朋友圈——</p>
+<p>“二十年后，老子又是一条好汉！”</p>
+<p>自此后，我的微信忙个不停，每个礼拜都有人加我，无一例外自称尸体。大部分在刚死不久，等待葬礼和火化的阶段。年龄普遍在七十以上。有男有女，但老头子居多，因为男的寿命比女的短。我的这些尸体朋友啊，有的为丧命暗自悲伤，有的却有重获自由的快乐，更多的是合不得凡间亲人。他们对我很友善，在尸体的世界里，我是唯一能和他们说话交流和解闷的。就算是性情内向的死者，也会跟我滔滔不绝地聊天，为了排遣无边黑暗里的孤寂。</p>
+<p>我认识一个中年尸体，四十四岁，死于癌症。拖了三年，接受各种化疗与偏方续命，头发早就掉光，瘦得不成人形，不晓得吃了多少苦，为治病卖掉一套房子，老婆辞职在医院守夜。当他躺在殡仪馆，却说开心，终于解脱了。他在朋友圈发各种笑话和段子，尤其喜欢开死人玩笑，被烧掉前的几天，他成了我的开心果。</p>
+<p>还有个家伙，年龄跟前一位一样，也是四十四岁时得了癌症。他放弃治疗，取出存款，与老婆离婚，周游世界，吃喝嫖赌，也拖了三年。他的结局在大洋彼岸，金碧辉煌的赌场，昏迷在一个兔女郎的怀里，没送到医院就器官衰竭而死。成为尸体以后，他却说自己莫名的悲伤，人早已不管他了，骨灰将快递回中国。</p>
+<p>在我的朋友圈，每个人出没的时间都很有限，长则一两个星期，短则几个钟头就销声匿迹，但留下许多有意思的内容。有个阿森纳球迷，死后还在分析今晚的英超，为选手们加油鼓劲。休斯敦火箭的球迷，不断发九宫格照片，全是哈登的英姿。</p>
+<p>尸体在朋友圈发照片，是怎么做到的呢？显然不是手机。我看到一些奇怪的角度，从空中俯拍，从地面仰拍，更像鱼眼镜头。有人进火化炉的瞬间，拍了张火焰汹涌的照片。还有玩自拍的，真是不要命了（我好像说错了什么）!那是具如假包换的尸体，三十多岁的女人，死于车祸，脸部完好，皮肤底下泛出铁青色，看着有些恶心——灵魂以另一种角度看自己，生前必是个自拍爱好者，死后纵然没有自拍杆，也忍不住要发朋友圈。</p>
+<p>有个外国朋友，在非洲工作，撞上恐怖袭击被炸死。现在尸体还没被发现，孤零零地躺在乞力马扎罗山脚下。一群野狗正在啃噬尸体，同时激烈地撕咬缠斗，远处有头狮子虎视眈眈，让他想起伟大的海明威。而他即将通过野狗们的肠胃变成粪便。他在朋友圈最后发的那句英文，“AShes to ashes,and dust to dust”，我查了很久方明白——归尘，土归土。</p>
+<p>而在我的朋友圈里，那么多尸体好友，哪一个跟我保持的友谊最久呢？</p>
+<p>那是一个姑娘。</p>
+<p>跟其他尸体不同的是，她不是自然死亡，也不是自杀，而是他杀。</p>
+<p>她是个高三学生，还没有谈过男朋友。有几个男生追过她，但没被她看上过，因为她只喜欢TFBOYS。有天晚自习，放学后她独自回家，司机是个邪恶的中年男人，用迷药蒙住她的口鼻，几秒钟就让她昏迷了。</p>
+<p>在那个忧伤的春夜，细雨霏霏，晚风沉醉。她不知道车子开了多久，等到苏醒，在一个陌生的房间，发现自己被强奸了。之后，还没来得及痛哭，对方就用铁锤重击她的后脑勺，然后狠狠掐她的脖子，杀死了她。</p>
+<p>凶手是个变态狂，死亡前一瞬间，她第一次看清那张男人的脸。她还没来得及恨他，也没想到被强奸后怀孕之类的糗事，整个大脑只剩下恐惧，如果自己死了怎么办？真的很害怕变成一具尸体。</p>
+<p>她变成了一具尸体。</p>
+<p>死亡是什么感觉？的确有个隧道一样的东西，好像把一辈子的经历，变成电影在眼前回放，不仅有画面还有声音和气味，包括皮肤的触觉。出生时的啼哭，吃到第一口奶的滋味，少女时代的喜怒哀乐，暗恋上初中体育老师……哪怕最微弱的情绪，无病呻吟的叹息，都不会错过丝毫。</p>
+<p>隧道尽头，她回到自己身体，不再感到疼痛、窒息与绝望。丝毫不能动弹，也发不出任何声音，尽管很想尖叫，哪怕撕破嗓子。男人将她装入麻袋，刚死的身体还没僵硬，关节可以活动，体温残留在三十度。麻袋装入汽车后备厢，后半夜，不知开了多久，她记得自己被那家伙从地上拖过，冰冷冰冷的，害怕是到殡仪馆。后来才觉得，要是被拖到殡仪馆或火葬场，实在是件太走运的事了。</p>
+<p>她被塞进了一个冰柜。</p>
+<p>冷气很足，零下二十度，但在尸体界，这样的温度非常舒适。冰柜不大，长度不超过一米五，大概是冷藏雪糕的吧，横躺着放在地上，像口小小的棺材。她是个高挑瘦长的女孩，只能弯着膝盖塞进去，双手蜷缩胸前，臀部顶着冰柜内壁，额头靠在门内侧，脸上结了一层霜花。</p>
+<p>她告诉我，她没穿衣服，遇害时就一丝不挂。当她在微信上找到我时，恰逢自己的头七。她已习惯于光着身子，沉睡在冰冷的棺材里。但她保持着少女的矜持和尊严，对于自己身体的描述，仅限于此。</p>
+<p>每个夜晚，我无数次想象她在冰柜里的模样，一丝不挂的睡美人，肌肤如雪，发似乌木。身体微微隆起与曲折，还有婴儿般蜷缩的姿态，将隐私部位掩盖起来，没有丝毫肉欲之感。好像只要王子打开冰柜，一个轻轻的吻，就能唤醒她。复活和重获生机的她，仿佛枯萎的玫瑰再次绽开，干涸的溪流再次汹涌。</p>
+<p>我看了她的微信图片。她留过假小子的短发，在学校门口喝奶茶，逛小书店，买漫画杂志和盗版书。随着时间推移，姑娘越长越漂亮，头发渐从耳边长到肩膀，又慢慢垂到胸口。她学会了使用美拍软件，留下一张又一张朦朦胧胧的自拍照，不是噘嘴就是把镜头向下倾斜四十五度。</p>
+<p>可怜的姑娘，为什么会被死变态盯上？大概就因为这些微信里的照片吧。</p>
+<p>我问她叫什么名字，她给了我一串可爱的表情，只打了两个字：小倩。</p>
+<p>好贴切的名字啊，我问她在哪里，但她说不清楚，她在内陆的一个小城市，遇害以后被关在后备厢，不记得冰柜在什么地方，虽然能使用微信，但无法给自己定位。</p>
+<p>我要向警方报案，她却说案子已经破了——朋友圈分享的新闻《花季少女晚自习后失联，全网发动微博微信的力量寻找》。强奸和杀害她的那个变态狂，很快就被警察发现了。这个家伙持刀拒捕，被当场击毙。凶手没留下过多线索，但在他的床底下发现一个地下室，里面有四台冰柜，各藏着一具女孩的尸体。至于小倩，没人知道她在哪里，未必在她与凶手所在的城市，也许远在千里之外。公安局的记录中，她仍属于失踪人口，爸爸妈妈还在满世界张贴寻人启事。</p>
+<p>我想，只有办案的警察清楚——这姑娘十有八九已不在人世了。</p>
+<p>有一晚，她给我发了语音。</p>
+<p>短短十几秒钟的语音，我犹豫了大半夜，第一次感到害怕——我还没听到过尸体说话。熬到天快亮，我才在被窝里点开语音。</p>
+<p>一个少女的声音，带有南方口音，嗲嗲的，柔柔的，像正在烈日下融化的一枚糖果。</p>
+<p>“嗨！我是小倩，忽然很想你。我这里没有黑夜，冰柜里永远亮着灯。但我想，你现在在黑夜里。如果，我打扰你了，向你道歉。”</p>
+<p>这声音令人无法相信她只是一具尸体，赤身裸体，在零下二十度的冰柜里躺了无数个日夜。</p>
+<p>我不知道该如何回答她，手机拿起又放下，按下语音键又松开。我走到镜子跟前，小心翼翼地说话，仿佛对面不是自己，而是那具美丽的尸体。</p>
+<p>终于，我语音给她一段话：“小倩，感谢你！”</p>
+<p>笨嘴笨舌的我，原本想好的一肚子甜言蜜语，还用记号笔抄在手掌心里，一句都没说出口。</p>
+<p>半分钟后，收到她的回答：“很高兴听到你的声音！跟我想象中不太一样哦，你的声音很年轻，就像我喜欢过的男生的声音。对了，我问你啊，跟尸体交朋友是什么感觉？”</p>
+<p>这个问题嘛，令我一时语塞。跟尸体交朋友什么感觉？就像跟志同道合的同学交朋友，跟单位里说得上话的同事交朋友，跟公交车上偶遇的美丽女孩交朋友……不就应该是那种平凡而普通的感觉吗？虽然，我的生活里并没有出现过以上这些人，除了我亲爱的尸体朋友们。当这些人活着的时候，也不会多看我一眼吧？我们更不会发现彼此的优点，只是擦肩而过的路人，哪怕说过话也转眼即忘。直到现在他们才会看到我的闪光点，不仅仅因为我是世界上唯一可以跟尸体对话的人，也不仅仅因为我是冰冷的停尸房里唯一的倾诉对象，还因为我像小动物般敏感，以及玻璃纸般脆弱。</p>
+<p>我和她认识了一年半，共同度过了两个夏天和一个冬天。通过万能的朋友圈，我们愉快地玩耍着。我清晰地感受到她的存在，赤身裸体的少女，宛如刚出生的婴儿，蜷缩膝盖和双手，保持冰柜里的姿态，每个夜晚躺在我枕边。而我只是默默注视，与她保持五到十厘米的距离，绝不碰她一根毫毛。我的睡美人。</p>
+<p>今年夏末，她告诉我，她遇到一些麻烦——虽说还躺在冰柜里，但偶尔会停电。你知道的，家里冰箱停电的后果。她说断电时间不长，顶多一两个钟头，但会特别难受。气温从零下二十度，上升到零上二十度。她不知道冰柜外面是什么，如果是地下室或冷库还好些，要是普通民房，甚至街边的冷饮店，几乎紧挨灼人烈日，就惨了。每次停电，她都会浑身不舒服，尽管死人是不会感到疼痛的，也许是心理上的莫名恐惧。原本雪白的皮肤确实有些变暗，经过断电后的高温，肌肉从冰冻的僵硬，渐渐柔软，仿佛正在融化的雪糕。她还能感应到，冰柜外面有苍蝇在飞，骇人听闻的嗡嗡声，像飞临广岛上空的轰炸机。</p>
+<p>她很害怕，自己即将腐烂……</p>
+<p>整个秋天，手机里不断传来这些可怕的消息，让我在每个深夜与黎明心急如焚。</p>
+<p>老天哪，我不想失去这个最好的朋友——不得不承认了——我没有活人朋友，我的朋友全都是尸体，但其中对我最重要的，就是这个叫小倩的女孩。</p>
+<p>于是，我通过微信告诉她：“我可以说我爱你吗？”</p>
+<p>她回答：“我也爱你。”</p>
+<p>第一次听到女孩这么对我说。我感觉自己是世界上最幸福的男人。冬至前夜，她说冰柜断电了，超过十二个小时。她快要完蛋了，黑色彻底覆盖额头，像没有边界的夜。不知从什么缝隙里，钻进了一些肮脏的昆虫，苍蝇正在她的嘴唇上和鼻孔里产卵…</p>
+<p>她说出一个秘密，“对不起，亲爱的，我欺骗了你。”</p>
+<p>“冰柜没有断电吗？”</p>
+<p>“不是啊，冰柜已经断电了，但我知道自己在哪里……”</p>
+<p>我看到她打出了一长串地址，原来是一家生鲜食品加工厂，就在她所在的城市。</p>
+<p>她说，既然已经死了，对于世界也没有什么依恋，更不愿意被别人发现自己的尸体——如果离开冰柜的环境，肯定会很难看吧？爸爸妈妈看到她的尸体，无法想象他们痛苦的样子。</p>
+<p>“哎，我可不想看到我妈再为我哭了。”</p>
+<p>小倩接着说，她也不想在公安局做尸检。法医肯定会检查她有没有被强奸，那多羞耻啊，好像又被强奸了一遍。最后就是火化。她天生不怕冷不怕冰，却怕热怕火，虽然尸体不会感觉到疼痛，但是想想在烈焰中化为灰烬，实在是件令人恐惧的事啊！</p>
+<p>她觉得在冰柜里也挺好的。永远这样下去，每天看看自己，刷刷朋友圈，了解天下大事、娱乐八卦，谁跟谁劈腿啦，哪个小鲜肉又出道啦，某个明星又被扒出来整过容啦。最重要的是，有我这个深深爱着她的男人存在，让她一点儿都不会感到孤独，还有种热恋中的感觉，这样度过剩余的漫长人生，直到我渐渐变老死去，同样成为一具尸体，死了都要爱，不是许多人梦寐以求的超级浪漫的韩剧里才有的故事吗？</p>
+<p>我在微信里打出无数个感叹号，发誓飞过来帮小倩把冰柜的电源插上，并且保证不泄露她的秘密，不把她的尸体交给任何人！</p>
+<p>当晚，我乘坐红眼航班，千里迢迢来到她的城市，找到那家食品加工厂。凌晨时分，偌大的厂子里没有人，堆满了冷冻食品，每天早上要供应市场。厂子最后面的小院，有个废弃的房间，门口锁着粗大的铁链子。我用铁钳绞断链条，闯入埋葬我的小倩的“坟墓”。</p>
+<p>没错，我看到了那台冰柜，手电照射下发出阴惨的反光，横卧在地上如同棺材。</p>
+<p>而我心爱的睡美人，就躺在这具棺椁深处，静静地等待我的亲吻。</p>
+<p>打开冰柜之前，我发现电源线被拔了，插座上有台山寨手机在充电。我重新把冰柜电源插上——谢天谢地！冰柜没有损坏，很快重新运转，发出一如既往的噪音，宛如一支秋天安魂曲。</p>
+<p>希望尸体还没有腐烂，苍蝇的卵也没有那么快孵化成蛆虫。我的右手放在冰柜的门把手上，左手整理自己的头发，不要弄得像个屌丝似的，努力保持最帅的姿态。</p>
+<p>时间无比漫长，仿佛长过我们每个人的一辈子。虽然我没结过婚，却突然有种新婚前夜的恐惧与慌张。右手仿佛被凝固在白色的门把手上，我与她就这样合为一体。</p>
+<p>闭．上眼睛，打开冰柜。</p>
+<p>我还有一分钟的时间，用来停顿和想象，她蜷缩在冰柜里的模样——尽管是个裸体的少女，我却感受不到丝毫色情，而是像我们每个人，刚从妈妈的子宫来到这个世界一样，赤条条的纯洁无瑕。</p>
+<p>但我没有看到她。</p>
+<p>冰柜是空的，是空的是空的，是空的是空的是空的，是空的是空的是空的是空的……</p>
+<p>没有尸体，更没有活人或者动物的器官组织。就连苍蝇都不剩，只留下一层厚厚的污垢，像所有旧冰箱里的那种颜色，还有一股氟利昂泄漏的气味，不断刺激着我的鼻孔。</p>
+<p>我用了半个钟头，才慢慢接受这现实——我的美人，我的新娘，我最爱的人啊，她不见了！</p>
+<p>是她说的地点有误，还是在一夜之间，尸体意外被人发现，送到了别的地方，还是这一切从来没有发生过，包括作为尸体的她？</p>
+<p>也许她还活着？这大概是我能想到的最美好的结局。</p>
+<p>为了让自己不那么悲伤，我也躺进这个冰柜，蜷缩成她说过的那种姿态。重新关紧冰柜的门，让冷气环绕着四周。但我不是尸体，活人终究怕冷，就算穿着再厚的衣服，很快冻出鼻涕。冰柜的灯光照亮我，我带着一台手机，无数个充电宝，默默打开微信，用流量刷朋友圈，与新认识的尸体朋友们打招呼、聊天、点赞、评论、抢红包……</p>
+<p>亲爱的尸体朋友们啊，我很想拥抱你们每一个人，无论你们是冰冷还是炽热，我只想感受你们活着的时候所有的喜怒哀乐，与家人共度的每时每刻。在与这个世界离别的时刻，前往另一个世界的途中，有我这样的好朋友相伴，你一定不会孤单，也不会恐惧，而是面带微笑，还有幸福泪光，就像每一个春天的黎明。</p>
+<p>然而，我在冰柜里躲藏了不到两个钟头，就感觉电源插头被人拔了，机器噪音归于平静，代之以纷乱的脚步声，响起一个大妈的咒骂，冰柜门打开了。</p>
+<p>CNM的！哪儿来的精神病？买不起棺材啊？干吗拔我的充电器，还让不让人玩朋友圈了？</p>
+<p>大妈的双手孔武有力，准确地拧住我的耳朵，将我整个人拖出冰柜。</p>
+<p>对不起，我无法解释我的行为，总之被食品厂值班的大妈扔到了大街上。她警告我要是再敢来食品厂的话，就通知火葬场把我拉去烧了。</p>
+<p>凌晨三点，气温下降到零度，月光如同尸体的眼睛。我跟所有失恋的男孩们一样，躺在冰冷的街头，伸开双手，泪流满面。</p>
+<p>这天早上，巡逻的警察发现了我，将我带到派出所，想要确定我是不是精神病人，或者是流浪乞讨人员。</p>
+<p>最后，有个看起来像是警官的人，要求我说清楚一切的来龙去脉。因为我是在食品厂门口被发现的，警官调查了食品厂的值班大妈，确认我是从冰柜里被扔出来的。</p>
+<p>“你为什么躺在那个冰柜里？”</p>
+<p>面对严厉的警官，我不敢说，因为害怕一旦说出口，就真的会被关进精神病院。这倒没什么了不起的，但我的手机会被没收，就再也不能在我的尸体朋友圈里玩了。</p>
+<p>在派出所里被审问了一天多，我终于保住了自己的秘密，也成功地证明我与某桩凶杀案无关，至少我以前没来过这座城市，就消除了我是同案犯的可能。</p>
+<p>那是特大连环强奸杀人案，因犯罪嫌疑人拒捕被击毙而闻名。最后一个受害者，名字里有个“倩”，是个女高中生，晚自习路上被劫持，被强奸后头部遭到猛击。根据办案的警察判断，凶手误以为杀死了被害人，将她赤身裸体运走，藏在生鲜食品加工厂的冰柜里。昏迷了二十四小时，女高中生被食品厂的值班大妈发现，紧急送到医院，尚有微弱的生命体征。</p>
+<p>女孩还活着，医生说这是一个奇迹。</p>
+<p>但她再没醒来过。大脑受了致命伤，在冰柜里的二十四小时，严重伤害了中枢神经。这座小城市的医疗条件很烂，爸爸妈妈决心拯救女儿的生命，把她送到大城市的医院。</p>
+<p>她第一次来到上海，昏迷中转人全国闻名的脑外科病房。经过专家会诊，判断她的生命只能延续十来天，顶多一个月，算是烧高香了。几个月后，女孩不知从哪来的力量，熬过了最艰难的阶段。病房里常堆满鲜花，许多网友想来看她一眼，但被院方拒绝。除了父母家属，只有医学专家可以进入病房，但也提不出什么治疗方案，只能听天由命，看这姑娘的造化了。</p>
+<p>于是，名叫小倩的女孩，昏迷了一年半以上，经历两个夏天和一个冬天。漫长的五百六十多天，她全在上海的医院度过。</p>
+<p>对我来说，这是一次命中注定的相遇——那家脑外科医院，就在我家小区斜对面，距离不过一百米。每个深夜，我趴着窗台眺望外面的夜色，都能看见住院部的几排灯光，也许她就躺在其中一扇窗后。</p>
+<p>二○一五年十二月二十四日，这是她昏迷的第五百六十五天，我离开案发地的小城，坐了三小时的大巴，再换乘七百二十公里的高铁，回到上海虹桥高铁站，打了七十七块钱出租车，直奔我家门口的脑外科医院。这里有个大脑结构图的雕塑——制作这尊雕塑的艺术家，也是根据尸体标本做出来的吧，我的大脑下意识地在想。清晨七点，医院大厅立着一棵圣诞树，两个小护士戴着圣诞老人的红帽子。我走进医院的九楼，那间被鲜花包围的病房，来看她。</p>
+<p>她醒了。</p>
+<p>小倩，你穿着白色病号服，留着一头病人常有的短发，正在病床边沿站起来。护士搀扶着你的胳膊，帮助你艰难地保持平衡，还有个康复治疗的架子，让你缓缓迈动双腿，重新找到站立行走的感觉。昏迷了五百六十五天，你应该过了十九岁生日，容颜还像个女高中生，苍白到近乎透明的皮肤，需要更多的营养。乌溜溜的黑眼睛，盯着被晨雾笼罩的窗外——相隔一百米之外，恰好是我家的那扇窗户。</p>
+<p>昨天凌晨，大约三十个小时前，事先毫无征兆，她醒了。</p>
+<p>太突然了，她从漫长的植物人状态中醒来，医生和护士都已惊呆，没人能解释这件事。过去几个月间，她的病情非但没好转，反而几度恶化。最糟糕的那几天，病房里出现了苍蝇，各种手段都无法消灭。好多次危险时刻，她只有出气没有进气，心电图几乎变成直线，差点被医生拔了管子。爸爸妈妈跪着求医生再等一等，结果又自动恢复了呼吸。仿佛一场艰难的拉锯战，无数次走过黄泉路，渡过忘川水，走到奈何桥再转回头。</p>
+<p>当她醒来，睁开眼睛，说的第一一句话——“他打开冰柜了！”</p>
+<p>她不清楚自己为何在医院，更不晓得已远离家乡到了上海。她以为自己早就死了，被坏人强奸后杀害，变成一具赤裸的尸体，塞在食品厂的冰柜里，始终没被人发现，度过了一年半时光。但她并不孤独，因为一个神秘而遥远的朋友。那个人很有趣，也有男人魅力，经常跟她说起外面的世界，偶尔也说他自己的故事，陪伴她度过每一个漫漫长夜，晚安道别，早安问候……</p>
+<p>医生只能告诉她——“这是一一场漫长的噩梦，但你是个超级幸运的女孩，很高兴你能醒来。这又是一个足以写入医学史的奇迹。”</p>
+<p>此时，此刻，我最亲爱的朋友啊，第一次，不再是一具尸体——而是一个活生生的，会喘气会眨眼还有心跳的，嘴里的热气喷涌到你鼻尖，突然害羞到脸红的女孩子。</p>
+<p>她在我的面前，触手可及。而我的手里，捏着一枝饱满的玫瑰。</p>
+<p>“你好，圣诞快乐！”</p>
+<p>女孩凝视着我说话了，就像语音里听到过的声音，好像还在那个无边无际的梦里。她的双眼泛动情人般的泪光。我确信无疑，她认识我，虽然我无法回答这个问题。</p>
+<p>刹那间，我放下玫瑰，转身飞奔而去，从她的世界彻底消失。</p>
+<p>再见，朋友！</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

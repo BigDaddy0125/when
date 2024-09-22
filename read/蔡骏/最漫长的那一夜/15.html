@@ -1,0 +1,1137 @@
+<!DOCTYPE html><html><head><title>15</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="14.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="16.html">下一章</a></p><hr><h1><center>第15夜 一只萌萌哒的鬼的诞生</center></h1>
+<p>萌萌哒！</p>
+<p>今年，我学会了使用这个词。随之而来，是在我的微博里，经常有粉丝半夜发来灵异图片，长发掩面加剪刀手的贞子，躲在床底下扮小苹果的咒怨男孩，吃干拌面的美版行尸走肉……其中一只，似是真鬼。</p>
+<p>中秋夜，一伙朋友邀我参加个小型读书会。三层楼的老洋房，楼下是间餐厅，楼上却已空关多年。刚爬上楼梯，就隐隐感到某种不对，顶楼堆满杂物，不知何故被打扫出一块空地，墙角与地板上有许多奇怪标记。蒙着厚厚灰尘的天窗，只能看到一方模糊的圆月。小伙伴们百般催促下，我朗诵了小说里的一段话——</p>
+<p>1995年6月19日，我死了。</p>
+<p>词典里说死亡是相对于生命体存在的一种生命现象，即维持一个生物存活的所有生物学功能的永久终止。导致死亡的现象有：衰老、被捕食、营养不良、疾病、自杀、被杀以及意外事故，或者受伤。所有已知的生物都不可避免要经历死亡。</p>
+<p>人死以后的物质遗骸，通常被称为尸体。</p>
+<p>科学家说每个人在死亡瞬间，都可能有濒死体验，比如穿越一条散发着白光的隧道，感觉灵魂飘浮到天花板，俯瞰躺在床上自己的尸体，或者看到这辈子死去的亲人，以及生命中所有的细节一一回放。</p>
+<p>乃至见到基督、佛祖、大仙、哆啦A梦……</p>
+<p>至于——死后的世界是什么？</p>
+<p>电冰箱的冷藏室般冰冷？微波炉的高火般炽热？还是星球大战里的外星般荒凉？抑或阿凡提口中的天国花园？</p>
+<p>当我还住在地下室，向老爷爷要过一套白话本的《聊斋志异》，我对那些故事深信不疑——死后可转世投胎重新做人，大奸大恶之徒则要在十八层地狱中遭受各种酷刑，悲惨的冤魂不散就只能沦落为聂小倩了……上中学以后，政治课上学了马克思的辩证唯物主义，才让我确信所谓的转世轮回，全属鬼扯淡的无稽之谈。</p>
+<p>我们死后，就什么都没有了——真的是这样吗？</p>
+<p>十六岁，有次在操场上疯玩，一块玻璃从天而降，在我跟前砸得粉碎，几片碎玻璃扎进腿里。如果再快一秒钟，或者玻璃偏几厘米，就会在我脑袋上敲个大洞，要么当场一命呜呼，要么变成植物人。虽然只是轻微外伤，我却莫名其妙地上吐下泻，躺在医院里大病一场，每夜被各种噩梦惊醒，不是遭人用刀割断喉咙，就是过马路时被卡车撞飞，或是从楼顶失足坠落……</p>
+<p>我是多么惧怕死亡啊，你也是。</p>
+<p>1995年6月19日，星期一，深夜十点。</p>
+<p>我死于谋杀。</p>
+<p>当我念完，墙上的一口破钟掉下，紧接着灯全灭了。</p>
+<p>黑暗屋子里有人尖叫，还有女生大喊是谁摸了我的耳朵。有人说这栋楼是传说中的鬼宅，大家乱作一团，我被挤到楼下，仓皇结束此次中秋月圆读书会。</p>
+<p>这天深夜，打开微博，在未关注人私信这一栏，每天都有几十上百条，很抱歉我无法每条阅读与回复，其中有条这样写——“今晚，吓着你了吧？中秋快乐！萌萌哒！”</p>
+<p>下面跟着一张照片，竟是今晚的读书会，我朗诵自己小说的照片，非常模糊，角度特别，从斜上方拍下来，似乎隐蔽在房梁的角落里，那是蝙蝠或老鼠的视角吧？</p>
+<p>这个微博帐号叫“一只萌萌哒的鬼”，头像是海贼王的路飞，性别女，地区上海。</p>
+<p>她关注了我，是我的粉。不过，今晚是私人朋友聚会，她是怎么混进来的？又是怎么爬到屋顶上偷拍的呢？</p>
+<p>查看她的所有微博，最近一条更新，却是去年十月，只有一句话——</p>
+<p>“喜欢上一个人，怎么办？”</p>
+<p>上百条评论转发，大多点着蜡烛，“天堂一路走好”“同学们都很想念你”“天堂里没有变态来来往往”“逝者如斯夫”“警察叔叔请尽快找到凶杀吧！”……</p>
+<p>我的手一抖，这个，真的是死人吗？被谋杀的？</p>
+<p>其他微博，多是吃喝玩乐内容，飘满红油与各种货色的火锅照片，在卡拉OK里的几个少女背影，密室逃脱与鬼屋的大门口，我完全叫不出名字的韩国明星，福尔摩斯与华生的搞基漫画，转发火影忍者与海贼王的信息，还有转发评论我的新书上市。</p>
+<p>但我没看到她的照片。</p>
+<p>通过一个人的微博，看到她生活中的一部分，也是一种偷窥。</p>
+<p>但她也在偷窥着我？</p>
+<p>是我自己作死，我居然关注了她：一只萌萌哒的鬼。</p>
+<p>你们知道，我有个表哥叫叶萧，他是警官，并告诉我——确实有个少女，在本市读高中，在一年前遇害，至今凶手逍遥法外。</p>
+<p>案发地点，就是中秋读书会的老洋房。当时，一楼餐厅的客人投诉闻到异味，厨师上楼发现许多尸块（以下删去一百四十九字）。警方通过DNA鉴定，以及现场遗留的衣物，才确认了身份。更多的信息，叶萧不能再告诉我了，包括警方所掌握的破案线索。</p>
+<p>我决定重访凶杀现场。</p>
+<p>先去楼下餐厅打听。午休的服务员悄悄说，楼上确实闹鬼，而且是只很猛很猛的鬼。餐厅老板为了挽回生意，用尽各种方法，道士和尚联袂出击啊，塔罗女巫啊，泰国佛牌啊，仁波切弟子啊，甚至请了一个古曼童，结果全被这只猛鬼吓跑啦。</p>
+<p>听到手机微博的提醒，有好友发来私信：“谢谢你来看我”。</p>
+<p>私信来自“一只萌萌哒的鬼”。</p>
+<p>她在看着我？</p>
+<p>抬头看天花板，服务员趁我不备，脚底抹油，溜了。</p>
+<p>虽很恐惧，却装作愤怒，我回了条私信：“你是谁？盗取了死者的微博密码？你是她的同学吗？或者，你就是杀人凶手？”</p>
+<p>几秒钟后，收到回答：“如果我是凶手，就在楼上的凶宅，你来抓我吧！萌萌哒！”</p>
+<p>三楼，凶宅。</p>
+<p>地上那些标记。警方发现尸块的位置。墙上暗红色的污迹。我在想象一年前，凶手就是在这里用刀或锯子，把一个少女分解得支离破碎。</p>
+<p>“风吹雨成花，时间追不上白马，你年少掌心的梦话，依然紧握着吗？”</p>
+<p>突然，不知哪个角落，响起这段音乐。</p>
+<p>这个……这个……不是那个谁的电影主题曲吗？</p>
+<p>声音继续，我茫然地站在凶宅深处，不由自主闭上眼睛，想象小四会破壁而出。</p>
+<p>手机铃声？这间屋子里有一部手机？声音正在告诉我它的位置。左前方墙角，一堆垃圾底下，用力搬开，屏着呼吸，满屋尘埃。</p>
+<p>耳旁，铃声，不断，越近。</p>
+<p>“云翻涌成夏，眼泪被岁月蒸发，这条路上的你我她，有谁迷路了吗？”</p>
+<p>小四几乎扑面而出。</p>
+<p>摸到地板上一道缝隙，大约指甲盖宽度，刚好能塞入一台薄片手机。贴着缝隙往下看，似有手机屏光。</p>
+<p>“我们说好不分离，要一直一直在一起，就算与时间为敌，就算与全世界背离。”</p>
+<p>好吧，它在催促我下去不分离呢。</p>
+<p>我找来几样工具，艰难地撬开地板，在楼板下的隔层里，找到一台iPhone5。</p>
+<p>手机背面有Hello Kitty贴纸，手机串是两颗红色小珠子，淘宝上十块钱的货色。</p>
+<p>盗手机墓贼。</p>
+<p>iPhone5铃声停止，屏幕黑了几秒钟，转瞬又亮，不知何应用，自动发出某种声音，就像微信语音——</p>
+<p>小女子年方二八，上豆瓣，觅知音。</p>
+<p>可恨那，文艺狗，空愿君心似我心。</p>
+<p>身无彩凤双飞翼，幸有微信一点通。</p>
+<p>原本想，人生若只如初见，伴男神花前月下。</p>
+<p>谁曾料，万圣节，男神扒皮化禽兽，把我先奸再来杀。</p>
+<p>我本丹心向明月，无奈明月分我尸，自挂东南枝！</p>
+<p>感觉不再萌萌哒！</p>
+<p>少女的声音很萌，讲述的故事却毛骨悚然，尤其“无奈明月分我尸，自挂东南枝”，不动声色之间，却已惨不忍睹。</p>
+<p>我看着手机屏幕，背后阵阵冷汗，不知道该往哪个方向滑屏，径直对着手机说话——</p>
+<p>喂，你究竟是谁？</p>
+<p>一只萌萌哒的鬼。</p>
+<p>我不信。</p>
+<p>偶像，你可别扔下我哦，喵呜！</p>
+<p>她开始学猫叫了。</p>
+<p>仔细看看手机，虽有信号，但不在通话状态，并非有人在远方给我打电话。</p>
+<p>别告诉我——你就在手机里？</p>
+<p>恭喜你，答对了，满分，偶像到底是偶像啊！</p>
+<p>别跟我说iPhone里有鬼。</p>
+<p>偶像，你能给我买iPhone6吗？去年我被分尸的时候，5S才刚上市呢。</p>
+<p>妈淡，我还削肾客的求赎呢！</p>
+<p>iPhone5接着说，一年前，万圣节，我被一个男人骗到这里。他先把我强奸了，然后用绳子勒死我，再用刀子、斧子、钻子、锯子把我分尸。他背着个大旅行包，装满各种工具。我死的时候，手机掉进地板缝缝。后来，警察蜀黍发现了我的尸块，但没发现地板下的手机。</p>
+<p>你怎么说得一点都不害怕？听着像女孩子们闲聊，哪个男生长得帅，哪个老师闷骚之类。</p>
+<p>哪能不害怕？我被强奸的时候，那个疼啊，我才十六岁嘛，你们男人懂个屁啊，只会强奸女人，又没有被强奸过，哦，菊花的除外。</p>
+<p>这话说得让人菊花一冷。</p>
+<p>她接着说，我想要喊，但胶带封住了我的嘴。我拼命挣扎啊，但我只有一米五五，体重刚过八十斤，怎么推得开那个男人？我好难过啊……好难过啊……</p>
+<p>突然，iPhone5发出尖叫声，撕心裂肺，刺破耳膜，几乎爆裂心脏。</p>
+<p>手机被我摔在地上，顷刻间，屏幕花了。</p>
+<p>那凄惨的尖叫与痛哭声，震耳欲聋，似乎正在发生着强奸，而我只是被绑住了双手，无法动弹也无法呼喊。</p>
+<p>全怪我脑洞太大，眼前自动脑补出了一切……</p>
+<p>而我最受不了女孩子哭，十六岁的女孩子，哭得像兔子临死前的尖叫——你听到过吗？我听到过的，请祈祷你这辈子都不要听到。</p>
+<p>我重新抓起iPhone5，管它有没有被摔坏。我相信你了！别哭了！求求你！</p>
+<p>哭声渐渐平息，隔了好久，她嗔怪道，呜，你个怪蜀黍，把我的手机摔坏了，你要还我一个新的，呜……</p>
+<p>iPhone的屏也太脆弱了，还你个诺基亚的好吗？</p>
+<p>能砸死人的那种吗？</p>
+<p>我问你，既然，你已死了一年多，这个手机也藏在地板下面，怎还会有电？</p>
+<p>你不知道灵魂生物能吗？</p>
+<p>什么伪科学啊？</p>
+<p>总之你们活人不懂的啦，乔布斯在阴间发明的最新高科技，能用怨念给手机充电。</p>
+<p>这么说，贞子的录像带岂不就是一座核电站了？</p>
+<p>偶像，你真聪明，葱白你，所以日本这两年核泄露了。</p>
+<p>你是怎么用微博给我发私信的呢？</p>
+<p>这台手机可以连上各种应用，虽然我不在人世已近一年，但你们世界的一切我都知道！</p>
+<p>难道还有人帮你充话费和流量费？</p>
+<p>楼下的餐馆有WiFi，我破解了密码，就可以蹭网啦，有没有感觉萌萌哒？</p>
+<p>你还可以使用拍照功能？</p>
+<p>对啊，我还可以自拍呢，你想看到真正的我吗？</p>
+<p>究竟是自拍一团肉丁和肉丝呢，还是排骨汤呢？还是算了，不看。</p>
+<p>偶像，你能不能带我出去？除非把手机带走，否则我不能离开这栋房子。</p>
+<p>为什么想出去？</p>
+<p>报仇。</p>
+<p>冤冤相报何时了？</p>
+<p>我差点想要抽自己，只是为了摆脱这只萌萌哒的鬼的借口。</p>
+<p>可是，不抓住那个混蛋，还会有更多的女孩子遇害，不是吗？</p>
+<p>我无语了。</p>
+<p>iPhone5传出声音：我每天都在网上搜索新闻，我想警方还没有抓到他。</p>
+<p>如果，我不帮助你呢？</p>
+<p>那么你就一直在这里陪我吧。</p>
+<p>开什么玩笑。我扔下手机，就要出去，却怎么也打不开门，窗户也像被灌上了铅，整个房间变成密室。大声呼救，四周传来我的回音，没有人听得到。</p>
+<p>我被一只萌萌哒的鬼绑架了？</p>
+<p>对不起，我答应带你出去。</p>
+<p>太好啦！偶像撒花！让我去厕所冷静五分钟！哦，这里没有厕所，对啊，所以你一定要带我出去。</p>
+<p>快开门吧。</p>
+<p>等一等，你要先答应我一个条件。</p>
+<p>说。</p>
+<p>不要把这个秘密告诉任何人——关于这部手机的秘密，也不要交给任何人，哪怕是你的表哥叶萧警官。</p>
+<p>你咋什么都知道啊？</p>
+<p>听我说，如果你泄露了这个秘密，很可能这台手机就不再属于你了，而将被送入某个神秘的科研机构——我已经分尸过一次了，不想再被分尸一次。</p>
+<p>细思极恐，要是这台手机进了科研机构，岂不是要被大卸八块，再加上各种高能辐射检测，就算是鬼魂，大概也要被吓死的吧。</p>
+<p>好吧，我很同情她。</p>
+<p>当这台iPhone5发出尖叫声时，我就已经心软了。</p>
+<p>我答应了她。</p>
+<p>这天黄昏，我的口袋里揣着一只萌萌哒的鬼，离开杀人分尸的凶宅。</p>
+<p>我把她锁在我的办公室抽屉里。</p>
+<p>她很乖，再没发出过尖叫。有时候，她会学几声猫叫狗叫，然后让我放她出来，到窗口看看外面的景色。</p>
+<p>我问她，怎么才能找到凶手？</p>
+<p>微信，但对方微信早已停用，杀人后换了账号，甚至换了手机号码。至于我们认识的豆瓣，他删除了所有内容，账号也是假的。</p>
+<p>茫茫人海中，如何帮助她找到凶手呢？</p>
+<p>我不知道。</p>
+<p>萌萌哒的鬼时常跪求我，带她去楼下的长寿公园晒太阳。午后，我坐在公园长椅上，看着琴键上的音乐喷泉，看着长寿路上的车来车往，佯装成打电话玩手机，其实是在给她享受阳光，让她欣赏活人们的世界。她不像传说中的鬼魂碰到阳光灰飞烟灭。她说自从被杀以后，坠落阴暗鬼宅的地板缝隙，就立志要做一只阳光美少女的鬼，正能量的鬼，脱离了低级趣味的鬼，简称一只萌萌哒的鬼。</p>
+<p>公园里有老人带着孩子遛弯，女人拖着拉布拉多或金毛。三岁以下的幼儿看到我会哭，三岁以上的狗看到我会狂吠——都感受到了十六岁的萌萌哒的鬼的怨念。</p>
+<p>我问她，你死以后，怎么没有去投胎？</p>
+<p>偶像，你在书里不是写过吗——人死后都要经过鬼门关，走上黄泉路，在抵达冥府之前，还有一条分界的忘川水。经过河上的奈何桥，渡过这条忘川水，就可以去转世投胎了。奈何桥边坐着一个老太婆，她的名字叫孟婆，假若不喝下她碗里的汤，就过不得奈何桥，更渡不了忘川水，但只要喝下这碗孟婆汤，你就会忘记前世的一切记忆。</p>
+<p>忘川，孟婆，来生，真的会忘记一切吗？</p>
+<p>亲，你不知道投胎是门技术活吧？</p>
+<p>请指教，萌哒哒的鬼老师。</p>
+<p>知道六道轮回吗？厉害的人，直接去做神仙。造孽的人，要去地狱，或者投畜牲胎。普通人，投胎要填志愿。要晓得，这年头，每年出生的人，跟每年死亡的人，数量差不多。但是呢，每个人死后，都想投胎到好人家，也就是所谓的拼爹！第一等级，投胎到达官贵人，生出来即便不是子承父业，也是大老板的命，最差也是衣食无忧呢。第二等级嘛，自然是投胎做富二代富三代喽，像我这样貌美如花的姑娘啊，注意是貌美如花，不是如花，但也未必能变成白富美！第三等级，就是拼脸！父母出身或许平平，但若天生能有一副好相貌，未来不管是做明星做歌手做小三做大奶甚至做gay，也有先天优势的吧。第四等级，那就是屌丝，各种悲催惨啊，就不说啦。不过，这些都不算是最惨的，那就是投胎成功以后，又被计生委强制引产了，重新做了胎儿鬼，这下到哪都投不了胎，变成我这样的孤魂野鬼，哭！</p>
+<p>真是让人醉了。</p>
+<p>阴间的竞争比人间残酷多啦。当一个人死了，必须打败千千万万刚死去的鬼，大部分是老头老太太。最厉害的是中国大妈，往往是投胎中的健儿，欢快地跳着广场舞，挤开所有对手，成功投入女明星的肚子，投入大富翁老婆的肚子，投入优秀妇女干部的肚子，变成可爱的小公主重新来到人世。</p>
+<p>可以行贿吗？聊斋里常有的桥段。</p>
+<p>嗯，烧纸钱。不过嘛，这年头冥币越做越夸张，全是几亿几亿的美元、欧元、英镑，人民币都被淘汰了！可在我们阴间，所有货币都因此通货膨胀贬值了，就算把整个美国联邦储备委员会搬来，也只够买几卷卫生巾！阴间真正流行的还是硬通货，真金白银，以后给你爷爷奶奶烧纸的时候，记得烧锡箔元宝啥的，江浙沪包邮，还管埋，亲！</p>
+<p>好吧，一只萌萌哒的鬼，我只想知道，你想投胎到谁的肚子里？</p>
+<p>往年投胎秩序太混乱，导致大量无主孤魂，闹得阴间永无宁日，大量鬼魂把阎君的家给占了，是为占终。所以啊，去年下了一道红头文件，所有投胎都要填志愿，按照当年的全国高考试卷考试，以分数高低决定投胎。去年与今年，阴间高考状元，都是出车祸死亡的大学生啊，被室友毒死的高中生之类。他们投胎到第一等级，好羡慕啊，上辈子苦逼兮兮死于非命，下辈子终于享福了，小婊砸！对不起，我说脏话了。</p>
+<p>原谅你。</p>
+<p>偶像，你要知道我填写的投胎志愿是谁吗？你猜？</p>
+<p>文章和马伊俐的三胎？</p>
+<p>不是啦，我要投胎做王思聪的女儿。</p>
+<p>晕。</p>
+<p>哎呀，但这太难了，去年有十二万五千只鬼填了这个志愿，今年上升到二十八万九千只鬼了！简直千军万马过独木桥呢！何况人家王思聪现在还没讨老婆，啥时候生孩子都不知道，我这不还在排队吗？</p>
+<p>我默默给自己下了一个套，难道这个故事要等到王思聪生女儿才能结束吗？</p>
+<p>老王你造吗？</p>
+<p>我越发觉得她的可爱，便给她改了个名字——萌鬼。</p>
+<p>一只狠猛很萌的少女鬼。</p>
+<p>不久，我收到一件快递。</p>
+<p>好大好大，快递员用异样眼光看我，拆开是个充气娃娃。</p>
+<p>操。</p>
+<p>抱歉，这只是个语气助词，不是动词。</p>
+<p>充上气，娃娃很是精美。日本牌子，广东生产，模拟东方人少女，穿着一件学生服，栩栩如生。头发像真的一样，皮肤简直吹弹可破。美目流连，顾盼生姿。</p>
+<p>“北方有佳人，绝世而独立。一顾倾人城，再顾倾人国。”</p>
+<p>抽屉里响起萌鬼的歌声，还是李玉刚版本的！</p>
+<p>拿出碎了屏的iPhone5，她欢快地说，偶像，礼物收到了吗？</p>
+<p>充气娃娃？是你买的？</p>
+<p>对啊。</p>
+<p>我很愤怒，出离地愤怒，把我当作什么了呢？</p>
+<p>当我抱起娃娃，准备扔到垃圾桶，耳边响起：主人！主人！求求你！不要抛弃我！</p>
+<p>说话的不是手机，而是充气娃娃，但又是萌鬼的声音。</p>
+<p>这可不是日本原装的高科技，而是……我不敢想下去了！</p>
+<p>嗨！我就是萌鬼啊。</p>
+<p>充气娃娃如是说，眨了眨两只漫画里才有的大眼睛。</p>
+<p>你？你？占据了充气娃娃的身体？</p>
+<p>对不起，我以为你会喜欢的，偶像。</p>
+<p>我把充气娃娃放到沙发上，远远看着她说，这样会吓死人的呦！</p>
+<p>可是，我不想自己永远只是个手机。我更喜欢自己是个女孩。如果，我钻到某个人身上，就会侵占她的肉体，驱赶原来的灵魂，这不太道德吧？我还是要做一只有道德底线有正能量的鬼。因此，我只能使用一个没有灵魂的东西，想来想去嘛，还是充气娃娃比较可爱，至少，看上去很像真人哦！说实话，我在网上一眼就相中了她，因为她长得很像我哦——生前的我。</p>
+<p>你哪里来的钱？</p>
+<p>充气娃娃弱弱地说，我早就破解了你的支付宝密码。</p>
+<p>给跪了！谁让我把萌鬼的手机放在我电脑台底下的抽屉里。</p>
+<p>但还有疑问，你死亡的时候才十六岁，哪里知道充气娃娃？</p>
+<p>因为那是我爸的最爱。萌鬼充气娃娃表情忧伤，嘴角也耷拉下来说，我的爸爸妈妈啊，在我七岁那年就离婚了。我妈给我爸戴了绿帽子，重新嫁人，远走高飞，好多年没联系过了。我爸呢，一直没有再婚，充气娃娃代替了老婆。我家房子不大，却摆满了充气娃娃，各种年代各种品牌以及各种女优，简直是后宫粉黛三千人，可以办个充气娃娃博物馆了。多年下来，我爸也花费了几十万——却比讨个老婆便宜得多！想到一旦会有个后妈来虐待我，我就对充气娃娃充满了好感啊。</p>
+<p>你下辈子想做个充气娃娃？</p>
+<p>在成为王思聪的女儿之前，也只能如此了哦，亲。</p>
+<p>她又眨了眨眼睛说，偶像，如果你喜欢我的话，可以用我。</p>
+<p>我却想起聊斋中大量恋尸癖故事，有篇《爱奴》：男主爱上女鬼，刨开她坟墓发现“颜色如生，肤虽未朽，衣败若灭”，便将女尸带回家，“尸即自起，亭亭可爱。探其怀，则冷若冰雪”“乃构精舍，与共寝处。笑语一如常人；但不食不息”。有次男主喝醉，强把酒灌入她口中，结果她吐血倒地身体腐烂，男主“哀悔无及，厚葬之”。</p>
+<p>我不想让她变成爱奴。</p>
+<p>你是个好人，充气娃娃说。</p>
+<p>想问你个问题——你没有过吧？</p>
+<p>男朋友？</p>
+<p>我点了点头，避开充气娃娃直勾勾的眼神。</p>
+<p>没有，我的第一次是被强奸的，也是最后一次，然后就被杀掉分尸了。</p>
+<p>我会为你报仇的。</p>
+<p>不过嘛，我这个塑料组成的身体，有没有被人用过，就不知道了，你收到的包装还好吧？是你第一个开封的吗？</p>
+<p>住嘴！</p>
+<p>好吧，但，你能带着我去逛街吗？我是说，带着我！</p>
+<p>不是……哦……不是……要我带着充气娃娃去逛街？</p>
+<p>对啊，我有一种感觉，杀害我的变态，仍然在这座城市活动，我一定有机会再见到他的。</p>
+<p>犹豫三天，我把充气娃娃关在卫生间，最终决定开车带她出去转转。</p>
+<p>那一天，阳光灿烂的日子，秋阳耀眼，梧桐苍翠，歌颂祖国，繁荣昌盛。</p>
+<p>我把充气娃娃放在副驾驶座，给她绑好安全带。不管是路上行人，还是看摄像探头的警察，都会认为我载着个洛丽塔出行。车子开过大街小巷，萌鬼在座位上摆各种pose，放下车窗照着反光镜，欣赏自己动人的美貌。要是给她一部手机，简直就要剪刀手自拍了。</p>
+<p>带我回家吧。</p>
+<p>萌鬼如是说。</p>
+<p>好吧，我刚要掉头，她说不是回你办公室，是回我家。</p>
+<p>你家？</p>
+<p>她报出一个地址：这是我爸爸家。</p>
+<p>你要回去了？</p>
+<p>充气娃娃闭上嘴，不再发出声音，好像是个无生命的塑料。</p>
+<p>太突然了，我握着方向盘的手在犹豫，害怕一旦送她回去，就永远也见不到她了。也许，这次开车带她出来兜风，就是她计划好了要摆脱我？我哪里得罪她了？还是，她真的想家了？可是，她家里不是有许多充气娃娃吗？想到这里，感觉有些恶心，我想歪了。</p>
+<p>车子开进曹杨八村的一个小区，两边都是八十年代六层楼的老工房，晾衣架飘满了内衣内裤，阳光下丝毫都不违和。</p>
+<p>我抱着充气娃娃下车，几个晒太阳的老头看着我，让我浑身起鸡皮疙瘩，耳朵都烧得红起来。不过我听到他们却在说，喂，这个洋娃娃好漂亮啊，是给谁家的女孩子买的啊？真是庆幸这家充气娃娃的学生服够端庄够高大上啊。</p>
+<p>绕过楼梯里各种杂物，一楼楼到三楼全是麻将声，四楼与五楼是打DOTO声，只有六楼宁静如坟墓。</p>
+<p>我按响了门铃。</p>
+<p>一个中年男人开门，眼圈红红的，似乎没睡醒，身上有股浓浓的香烟味。他看到我手里的充气娃娃，立即关上门说，我早就不买了。</p>
+<p>我报出了他女儿的名字。</p>
+<p>他再开门，看着我。他说，我女儿，她死了。</p>
+<p>是这样，你女儿在一年前，给你订购了一个充气娃娃，因为迟迟没有付款，交易取消了。但最近，我们发现有人付款了，因此就把这个娃娃送过来了。</p>
+<p>我女儿送给我充气娃娃？对不起，自从我女儿被人强奸分尸以后，我就把所有的充气娃娃都烧了，我想这是我自己作孽，老天爷对我的报应吧。</p>
+<p>哦，那么，我就告辞了啊。</p>
+<p>正当我要转身，感到充气娃娃悄悄捏了我一把，她不同意我就这么走？</p>
+<p>于是，我回头说，能不能看看令爱生前的房间？在网上听说她的遭遇，我们老板也非常关心，希望能给予一些帮助。</p>
+<p>男人一声不响把我带进屋子。两居室，建筑面积五十平米左右，有个朝南小间，萌鬼生前的闺房。</p>
+<p>没想到，房间非常干净，床也铺得整整齐齐。墙上钉着海贼王、火影忍者、名侦探柯南的海报，书架摆满各种悬疑和耽美小说，有一排全是我的书。床头摆放几十个玩偶和手办，木头床架的小贴纸，最早从她幼儿园就贴上了。电脑台有许多照片，小婴儿的满月照，一周岁的限制级裸照，跟爷爷奶奶外公外婆爸爸妈妈的全家福，读托儿所穿小裙子，幼儿园参加万圣节活动扮女鬼，上小学戴上红领巾，小学毕业出落成美少女，到初中就是万人迷的节奏，直到她被杀前的一个月，站在学校操场上做了个剪刀手，还对准自己的脖子。一语成谶。</p>
+<p>显然，在她死后，将近整整一年，爸爸坚持每天打扫房间。他把女儿的闺房，保持跟她生前一模一样，仿佛哪天女儿回到家里，就能立刻躺到床上睡觉。看起来虽然轻松，但对于一个离婚多年，五大三粗，把自己搞得脏兮兮的男人来说，却是一件无比艰巨的事啊。</p>
+<p>对不起，我能单独在这房间里待一会儿吗？我掏出一把香和蜡烛，说要给他女儿点香。</p>
+<p>男人木然地点头，也不担心是否会意外把房子烧了，便退出去了。</p>
+<p>我真的点上一束香，放在充气娃娃面前，仿佛面对少女遗像。</p>
+<p>萌鬼幽幽地说，你知道，我为什么要回来吗？因为，人死以后，见到自己过去的一辈子，就可以了无遗憾，开开心心去投胎了。我也不用等待做王思聪的女儿，随便找个普通人家，哪怕做个矮挫穷的女屌丝，但只要爸爸妈妈疼爱，家里平平安安不折腾，长大过程中没有变态杀手，没有猥亵女生的男老师，到二十来岁顺顺利利嫁了，也就很幸福了吧。</p>
+<p>我不响，不得不又点头，有什么热热的液体，从我的眼里滑出，该死的。</p>
+<p>过去，我一直不喜欢爸爸，说他是个拿不出手的垃圾，喜欢充气娃娃的变态。但他上班很辛苦，白天做保安，晚上去夜总会看场子，每个月几千块收入，大部分都给我买衣服。他给了我许多零花钱，每次同学们派对，我能拿出最好的东西给大家分享。那台iPhone5，也是爸爸咬着牙给我买的。他那么喜欢充气娃娃，是为了不用讨老婆，可以省下许多钱，未来给我做嫁妆。要是我还活着，碰到现在iPhone6上市，就算让他割个肾给我去买，他也不是不会认真考虑的。我想，世界上最爱我的那个人，除了他，没有第二个。</p>
+<p>我继续不响。</p>
+<p>充气娃娃闭上眼睛。</p>
+<p>她的灵魂走了吗？顺利前往投胎？渡过忘川水，走过奈何桥，喝碗孟婆汤……她将在某家医院的产房呱呱坠地，十六年后又是一个萌妹子？她还会认得我吗？</p>
+<p>我也闭上眼睛，等待了十分钟，仿佛有什么气流，从我的脸颊边擦过。</p>
+<p>是她吗？还舍不得我？环绕着我，绕树三匝，无枝可依！</p>
+<p>不如归去！不如归去！</p>
+<p>我在口中默念，希望她离我远去。虽然，我会很想念她的。</p>
+<p>充气娃娃依旧在那里，再也不会动了，也不会眨眼睛，我用力捏了捏她，没有任何反应。</p>
+<p>她又变回了一堆塑料。</p>
+<p>至于一只萌萌哒的鬼，芳踪无觅，不知世间何处。</p>
+<p>永别了，萌鬼。</p>
+<p>使命终告完成，尽管大仇未报，但我会继续寻找变态凶手。</p>
+<p>而我也不想把充气娃娃扔在这里，倒不是担心她爸爸会使用这个娃娃，而是怕他像过去那样把她给烧掉了事。</p>
+<p>我扛着娃娃走出闺房，向男人告别，他蹲在地上抽烟，再没说过半句话。</p>
+<p>走下楼梯前，我回头说了一句：喂，你女儿让你少抽点烟！</p>
+<p>他怔怔地看着我，眉毛拧成一团，狠狠掐灭烟头。</p>
+<p>回到楼下，我把充气娃娃重新绑在副驾驶座上。</p>
+<p>开车重新上路，她安静地躺着，无忧无虑，与世无争，空空的躯壳，香香的皮囊。</p>
+<p>飞驰上内环高架，我把电台调到古典音乐的频率，正好响起古风的琵琶语。</p>
+<p>瞬间，万物安静如许。萌鬼垂首，琵琶丝丝，万叶千声。</p>
+<p>副驾驶座上的充气娃娃，蓦然睁开双眼，巧笑倩兮，美目盼兮，咬着我的耳朵说——</p>
+<p>沧海月明珠有泪，</p>
+<p>感觉自己萌萌哒。</p>
+<p>嫦娥应悔偷灵药，</p>
+<p>感觉自己萌萌哒。</p>
+<p>何当共剪西窗烛，</p>
+<p>感觉自己萌萌哒。</p>
+<p>昨夜星辰昨夜风，</p>
+<p>感觉自己萌萌哒。</p>
+<p>神女生涯原是梦，</p>
+<p>感觉自己萌萌哒。</p>
+<p>飒飒东风细雨来，</p>
+<p>感觉自己萌萌哒。</p>
+<p>可怜夜半虚前席，</p>
+<p>感觉自己萌萌哒。</p>
+<p>深知身在情长在，</p>
+<p>感觉自己萌萌哒。</p>
+<p>刘郎已恨蓬山远，</p>
+<p>感觉自己萌萌哒。</p>
+<p>恐是仙家好别离，</p>
+<p>感觉自己萌萌哒。</p>
+<p>来是空言去绝踪，</p>
+<p>感觉自己萌萌哒。</p>
+<p>二月二日江上行，</p>
+<p>感觉自己萌萌哒。</p>
+<p>总把春山扫眉黛，</p>
+<p>感觉自己萌萌哒。</p>
+<p>寻芳不觉醉流霞，</p>
+<p>感觉自己萌萌哒。</p>
+<p>马上琵琶行万里，</p>
+<p>感觉自己萌萌哒。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

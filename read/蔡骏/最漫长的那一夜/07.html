@@ -1,0 +1,1242 @@
+<!DOCTYPE html><html><head><title>07</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="06.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="08.html">下一章</a></p><hr><h1><center>第7夜 莫斯科不相信眼泪</center></h1>
+<p>假若我们知道什么是时间的话，那么，我相信，我们就会知道我们自己，因为我们是由时间做成的。造成我们的物质就是时间。</p>
+<p>——豪尔赫·路易斯·博尔赫斯</p>
+<p>第一次听到《当你老了》这首歌，是在2014年初秋，乌鲁木齐。</p>
+<p>新疆之行的最后一夜，晚上有纪律不能随意出门，我还是鼓动须兰与甫跃辉出去走走。离开八楼昆仑宾馆，三个人走在乌鲁木齐街头，北京时间已近子夜，晚风微凉。街边树着拒马，须兰担心安全问题。但我不怕。穿过一条地下通道，听到吉他与歌声，在罐头似的甬道共鸣。弹吉他的流浪歌手，是个健壮的汉族小伙子。我问他能不能弹唱一首歌。他说，那就唱首《当你老了》——我从没听说过这首歌。</p>
+<p>当他唱到“当你老了，头发白了，睡意昏沉。当你老了，走不动了，炉火旁群暖，回忆青春”，我脱口而出叶芝的名字。</p>
+<p>乌鲁木齐午夜的地下通道，流浪歌手年轻的声音，缓缓切碎回忆里的时间，像黑洞里泄露的阳光，照出成千上万飞舞的尘埃纤维，洒在十多年前我的脸上，还有她。</p>
+<p>那一年，我在上海市卢湾区的思南路邮局上班。</p>
+<p>我没读过正规的大学，曾被认为是件颇为遗憾、偶尔也觉得自卑的事。我学的是电报专业，一度能背出两千个中文电码，但没来得及发过一份电报，这个行业就被淘汰了。我被迫改行到邮政窗口，接收EMS快件和包裹，收银和填单。后来说起中石油中移动之类央企，才发现我也曾是央企员工，而且是垄断央企，当时却没人这么想。邮局三百六十五天开门，周末门可罗雀，我会在柜台底下，偷偷看本小说，或者发呆。</p>
+<p>一个冬天的周末，我遇见了她。看起来六十多岁，头发花白，烫成中年女人的波浪卷。脸上皱纹不多，白得像正在融化的雪。啤酒瓶底般的镜片下，有双令人印象深刻的大眼睛。她穿着件高领黑色大衣，裹着深紫色的羊毛围巾，化着淡淡妆容，这就与众不同了。她盯着我看了许久，我有些害怕地站起来，问她有什么需要。她说她想要投诉，为什么卖明信片的窗口没人？她的声音不像这把年纪。人民邮电不该让人民浪费时间等待！她的态度很严厉。虽然，人民邮电早就改称中国邮政了，我不敢纠正她的说法，自作主张跑到别人柜台，拿了张明信片卖给她。</p>
+<p>她在我的窗口前写明信片，居然是外语，又绝非英文。最后，地址下面写——</p>
+<p>Moscow Russia</p>
+<p>我能看懂这是莫斯科。老太太把明信片投进门外的邮筒。</p>
+<p>以后每个周末，她都会来到我的窗口前。我说我不是卖明信片的，但她指定要从我的手里买。我建议她一次多买几张，需要时投进邮筒就行了，但她不听。她的收件人地址，永远都是莫斯科，落款只写俄语。同事们说，这老太太是出了名的“刁民”，平常总因为小事情要投诉。每个人看到她都很头疼，恨不得装作上厕所逃走。我感觉自己是要倒霉了，怎么总是来找我呢？</p>
+<p>春日黄昏，她又来了，把去莫斯科的明信片投入邮筒，坐在台阶上不动了。老太太面色不好，一个人捂着心口站不起来。周末的淮海路，夜生活刚开始，她的面前人来人往，却没有一个敢靠近，大概是老太太讹人的事太多了。</p>
+<p>只有我蹲下来问她怎么了。</p>
+<p>她的手哆嗦着，指了指上衣口袋。我从里面掏出一瓶硝酸甘油片，知道这是心脏病的药，倒出一片塞到她嘴里。我祈祷老太太不要死在我怀里。</p>
+<p>几分钟，她的魂魄像是回来了，说了声谢谢。我刚好下班，问要不要送她回家。老太太将我推开，没走几步就摇摇晃晃，又被我搀扶住了。</p>
+<p>那天黄昏，星光早早挂上树梢，老太太挽着我的手，走过初春萌芽的梧桐树荫。她家在思南路，有许多深宅大院，不少名人故居。面对曾经或此刻住在这里的人们，我时常有些自卑。</p>
+<p>拐角花园里有栋三层洋楼，门口堆满杂物，底楼的厨房间，飘着炒菜的油烟味。老太太抱怨道，乌烟瘴气！踏上幽暗的楼道，二层住着许多户人家。直到顶楼，她掏出钥匙让我开门。</p>
+<p>进门有个宽敞的客厅，窗下是花园和树荫。三面墙上都是书柜，从地板排到天花板，各种厚厚的书脊对准我，好像无数细长的砖缝。房间弥漫温暖的腐烂味，好像小时候外婆家的棉被，长久没有晒过太阳，扑面而来，难以逃脱。我把老太太放进大沙发。你家里人呢？</p>
+<p>没有。</p>
+<p>一个人住这套房子，就有些奢侈了啊。目测客厅有三十多平方米，里面还有卧室和卫生间。</p>
+<p>要不要我关照一声楼下的邻居，让他们上来照应？我想这种老房子，街坊邻居的关系都很融洽的。</p>
+<p>不要啊，住在这里的人，都是些自以为是的戆卵，他们不知道速溶咖啡简直是马尿。她说话直接而刻薄，像在邮局里不停地投诉这个投诉那个。</p>
+<p>我要告辞时，老太太指着身后的书架说，你随便挑一本书带走，算作我答谢你的礼物。快，我看你会挑哪一本。</p>
+<p>那一年，我还没有在网上看书。常站在书店里半天，在书架前看完整本书，只有最最厚的那种，才会掏钱买回家，小心地翻看好几遍。</p>
+<p>这面书架上都是外国文学，八十年代没版权的老书，我的手指头哆嗦如偷书贼，拿了本卡夫卡的《诉讼》。</p>
+<p>春夜，我像出笼的小鸟，逃出神秘老太太的屋子，开始第一次阅读卡夫卡。</p>
+<p>又是个周日，快要下班，我坐在邮局的窗口后面。老太太出现，照旧买了张明信片。我感谢她上次送我的书，她问我看懂了吗。我是整个通宵看完的——约瑟夫·K，看完有些害怕。</p>
+<p>这么说来，你对自己的生活很不满意？</p>
+<p>没有啊。</p>
+<p>你在说谎。老太太拉下一张脸，别转屁股往外走，快要走出邮局门口时，我喊了一声，你说的没错。</p>
+<p>她回头，微微一笑。这是我第一次看到她的笑。她向我歪歪脖子，意思是让我跟着她走。我问她心脏没事了吧。</p>
+<p>信不信我能打死一头牛？听老太太这样说话，我憋着没笑出来。去我那里坐坐？她问。</p>
+<p>但我摇头。</p>
+<p>上次你到我家，我看得出你的眼神啊，很喜欢那几排书架，没说错吧？</p>
+<p>嗯……无法反驳。我第二次送她走过思南路，回到顶楼的房间。</p>
+<p>她让我在书架上随意挑选，但每次只准带走一本。她的藏书有些闻所未闻，我一本本拿出来，翻开几页又塞回去，直到《老人与海》——因为在老人的房间里吧。等我回头，桌上摆了几盘冷菜，还有一锅热腾腾的蛋炒饭。要请我吃晚饭吗？我往外走，又说还不饿呢。</p>
+<p>你这孩子又说谎了！老太太的声音异常严厉，都听到你肚子里的叫声了！</p>
+<p>好吧，肚肠是最诚实的，都怪我午饭在单位旁边的阿娘面馆吃得太少了。当我坐在餐桌前，她让我给家里打电话。你不回家吃饭的话，妈妈要担心的吧。</p>
+<p>想想也是，我用老太太的电话打回家里，说是单位同事临时请客吃饭。打完电话，我知道她又要说我了，抢先说声对不起，我没有说实话。</p>
+<p>好吧，可以原谅你，并且记得，这是我们之间的秘密，包括你最好的同事，也包括你的妈妈，别说你来过这里。</p>
+<p>那么神秘？</p>
+<p>别问为什么！总有一天你会知道的——假如一辈子都不知道也没关系，世界上总有许多事情，是不需要理由的。嗯，吃的味道如何？</p>
+<p>我总是呆呆地说，蛮好，蛮好。</p>
+<p>狗屁！难吃得要命！我自己做的炒饭能不清楚吗？做饭是我的弱项。好吃就是好吃，当你感觉味同嚼蜡，就说出来，哪怕摔碗也没关系。这是我半年来第一次下厨做饭，上次我把整个灶台都烧焦了。</p>
+<p>告别之前，我问了最后一个问题：我还不知道怎么称呼你？不能叫她阿婆或老奶奶，如果叫阿姨又太违心，我天生脸皮薄，肉麻的话说不出口。</p>
+<p>老太太看着我的眼睛，声音仿佛年轻了三十岁——叫我卡佳！</p>
+<p>卡佳？</p>
+<p>回到思南路上，我仰望梧桐树丛中她的窗户。有一盏昏黄的灯光，但看不出任何人影。月光悬挂在屋顶，让我想起书上看来的恐怖传说，会不会是吸血鬼老太婆呢？但我不在乎。</p>
+<p>周末，我经常跑来陪伴这个名叫“卡佳”的老妇人。她的脾气古怪，有各种各样的禁忌。她最讨厌撒谎，逼得我每次把心里话直截了当说出。从未见她有亲戚朋友，也不与邻居来往，门口撞见都不打招呼。我相信，除了我没人敲过她的门。她说现在的人都没礼貌，根本不值得相交。我也不敢问她，到底有没有家人。好像那是个雷区，一张嘴就会引爆。我甚至不知道她的真实姓名，也不知道她的年龄。我偷看过她的信箱，但没订阅报纸，也无任何来信——这意味着她寄往莫斯科的明信片，都是有去无回。</p>
+<p>卡佳（以后的余生里我习惯叫她这个名字）问过我许多问题，比如爸爸的职业。我不加掩饰地说我爸是电工。她说她很喜欢这个职业！我想她是在奖励我的诚实吧？但后来，我才明白其中缘由。</p>
+<p>轮到我问她了。卡佳，你以前是干什么的？</p>
+<p>她不响。</p>
+<p>作家？老师？教授？</p>
+<p>她无声地摇头，否决所有可能，最后说，我干了一辈子公交车售票员。</p>
+<p>开玩笑？</p>
+<p>她从抽屉里拿出一块买票的夹板，一股公交车上拥挤的汗臭味，从各个角落涌入鼻孔。</p>
+<p>卡佳常问我读过什么小说——金庸的几乎全部，还有三国演义、西游记，红楼梦我没读完，但水浒读过至少一百遍。世界名著嘛，从前家里有本《悲惨世界》，滑铁卢战役的那段，我读过十多遍。但我最喜欢的，是司汤达的《红与黑》，最后于连上了断头台，玛蒂尔德小姐抱着爱人的头颅去埋葬，成为我整个青少年时期印象最深刻的一幕。有时候，我觉得自己像于连，但又不像他那么聪明和世故，更没有他的好运气，可以遇到雷纳尔夫人和玛蒂尔德小姐这样可爱的女子。这些本该永远深藏在内心的话，我全倒出来告诉卡佳了。</p>
+<p>她没有任何评价，只是向我敞开她的书架。不到一年时光，我读了马尔克斯、卡尔维诺、博尔赫斯，还有叶芝的诗……她也会推荐一些给我看，比如托尔斯泰的《战争与和平》、陀思妥耶夫斯基的《白夜》、屠格涅夫的《猎人笔记》——为什么都是俄罗斯的？</p>
+<p>看过《莫斯科不相信眼泪》吗？</p>
+<p>很久以前在电视上看过。</p>
+<p>你能帮我把这部电影弄来吗？我还想再看一遍。</p>
+<p>卡佳的要求与众不同，但我总有办法为她实现愿望。那年秋天，我费了几番周折，在大自鸣钟盗版碟市场，买到了这张译制片经典。老太太家里没有VCD，她给了我两千块钱，我给她买了台超强纠错的国产VCD。</p>
+<p>思南路的梧桐树叶金黄，窗外枝丫萧瑟。我为她拉上窗帘，像黑暗的电影院播放《莫斯科不相信眼泪》。从前看这片子，觉得苏联完全是发达国家，不比美国差，比日本先进多了，至少房子宽敞，还有私家车。那是个文明的世界，到处是博士和院士，开口闭口您啊您啊，男女关系也更开放……我记得很清楚，女主角爱上的钳工果沙，他的生日与我相同。这片名在中国成了某些人的口头禅，总是用来安慰失意者：莫斯科不相信眼泪——我能从中听出几分残酷。</p>
+<p>电影开始于1958年的莫斯科。</p>
+<p>1958年，我也在莫斯科，卡佳说，那年我给自己起了个俄语名字——卡婕琳娜，昵称卡佳。</p>
+<p>你在莫斯科还有朋友对吗？所以，你每个周末买明信片，寄到莫斯科去？</p>
+<p>看电影吧！</p>
+<p>她不再回答，安静地缩在沙发里，整张脸陷落于阴影。</p>
+<p>VCD放完《莫斯科不相信眼泪》，二十岁的我没有流泪，只觉得故事有些意思，仅此而已。</p>
+<p>卡佳沉默了两个多钟头，没去过洗手间，也没说话。最后，片尾曲响起“亚历克桑德拉……亚历克桑德拉……”我蹲在她跟前，看着她低垂的眼皮。跟我说说莫斯科吧？</p>
+<p>都是过去的事了，你最好别知道，否则会后悔的。</p>
+<p>她的目光别向房间尽头，仿佛墙上晃动一扇无形的窗，推开就是那座冰雪覆盖的城市。</p>
+<p>莫斯科，五海之港、森林中的首都、千顶之城、无数次被烧毁又无数次重建的不死之城。而对我来说，莫斯科是一部电影——四十多年前，我被公派到莫斯科电影学院留学，学习电影导演与编剧。</p>
+<p>在拉紧窗帘幽暗静谧的顶楼房间里，从她嘴里说出的前尘往事，像胶片放映在霉烂开裂的天花板，纤尘不染的地板，迷宫般的书架上……</p>
+<p>1958年，在莫斯科，全世界第一所电影学院。我的梦想，是成为新中国第一个有名的女导演。</p>
+<p>学电影很有趣吧？</p>
+<p>看电影和拍电影完全是两回事，你知道安德烈·塔尔可夫斯基吗？对，你不会知道的，他的电影怎会在中国公映呢？安德烈是我的同班同学，也是个很奇怪的人。那时候，我就觉得他一定会拍出特立独行的电影，就像他本人那样。</p>
+<p>他的才华比你还多吗，卡佳？</p>
+<p>小东西，你说什么呢？把我和安德烈相提并论？别侮辱一个天才！听我说，很多人只有到老了的时候，才会清楚自己究竟有多少才华。当你还年轻，如果有幸发现，千万不要让它溜走。</p>
+<p>当你在莫斯科，卡佳，一定很漂亮吧？</p>
+<p>她没有像其他女人那样喜悦，而是蹙着眉头说，你越来越会说话讨好女人了——但我不喜欢这样的你，记住了吧，不要用这样的方式讨我开心！1958年，每个在莫斯科的中国留学生都知道我——电影学院乌黑长发的卡佳，不仅是中国人，还有朝鲜和越南的留学生，也经常到电影学院来找我。</p>
+<p>但你都瞧不起他们？</p>
+<p>你怎么知道？</p>
+<p>卡佳，你到现在也是这样啊，瞧不起任何人！你是个骄傲的人，不是吗？</p>
+<p>哈，你越来越了解我了？不错，但我并不讨厌他们，那时候的人都很简单，除了某些人。比如——阿廖沙，在莫斯科的中国留学生圈子里，他可是呼风唤雨的大人物，就像他的爸爸在延安时代就是很有名的革命家。他经常请我去莫斯科大剧院去看芭蕾舞。</p>
+<p>可是你不喜欢他？</p>
+<p>对，但我最爱看柴可夫斯基的天鹅湖啊！你是嫉妒了吗？我可不会让他碰我一根手指头的！</p>
+<p>嗯，这我就放心了——我不知不觉落入了她的小圈套。</p>
+<p>还有一个人，他叫米哈伊尔，但是苏联人，他有着浅黄色的头发，海水般的蓝眼睛，个子比我高整整一个头。</p>
+<p>他很帅吗？</p>
+<p>差不多，第一次见到还以为是电影演员，跟他聊了半天电影学院，才知道他是国际象棋运动员。他爸爸是有名的话剧导演，他妈妈是芭蕾舞艺术家。但我不喜欢他，虽然迷恋过他的脸。他在斯大林分配的别墅里长大，冬天暖气烧得火热，不知道莫斯科的冬天有多冷，以为全世界都跟自己家里一样美好。他太有教养了，说话彬彬有礼，每次在餐厅吃饭，他总纠结于每道菜的细节，克里米亚葡萄酒的年份。你知道我对做菜一窍不通，真想把一盆红菜汤扣在他头上！我可不希望你成为像他那样的人，记住了吗？</p>
+<p>嗯，卡佳。我故意把声音调粗一些。再说说那两个男人吧！阿廖沙？米哈伊尔？</p>
+<p>他们各自向我求过婚，但都被我一口拒绝了，我可不是那么容易被人追到手的。</p>
+<p>在莫斯科，就没有你真正喜欢的男人？</p>
+<p>卡佳又不说话了，陷在沙发中半晌，摇摇满头的白发说，有的。</p>
+<p>他是谁？</p>
+<p>出去吧，今天你问得太多了！而我说的也太多了！你知道吗？记忆就像是一杯水，当你不断地饮用这杯水，总有杯底朝天的时刻。</p>
+<p>莫斯科究竟长啥样？我想起看过的各种苏联电影，想起小时候妈妈单位对面的东正教堂，天蓝色的拜占庭式的圆顶。</p>
+<p>这天晚上，我梦见了莫斯科。</p>
+<p>那些年，我做着平凡的工作，每天上班下班简单重复。我很少跟同事们说话，没什么共同语言。也有个别年龄相仿的，能说些关于电脑和影视的话题，仅此而已。至于和我一样喜爱文学的只遇到过一个，年纪比我大了十几岁，因为我在单位的电脑里，发现了她打的古典诗词。于是，我也经常暗中打几段陆游和辛弃疾的词上去。</p>
+<p>我连文艺小青年都算不上，因为不会装逼。心情阴郁就会激发倾诉的欲望——自己是唯一的听众。从十八岁到二十岁，每星期悄悄写三首诗。最早记录在一本宝蓝色封面的笔记本上，后来整个本子都写满了，换了好几本黑面抄。</p>
+<p>认识卡佳老太太以前，我常去静安区图书馆，在报刊阅览室里坐上半天，看诗刊，看收获，看莫言的《三十年前的一次长跑比赛》。后来，思南路的顶层大屋就成了我的私人图书馆。</p>
+<p>我在为前途而彷徨，担心自己要困在一个平凡之地度过一个平凡人生。我害怕会像身边那些成年人那样，渐渐丧失腼腆，学会扑克牌和麻将，为了几百块钱或几包年货而争吵，在别人替你安排好的航道里随波逐流。</p>
+<p>亲爱的小东西，当你为这些而恐惧时，也许你还有机会，如果连恐惧都感觉不到，那才是完蛋！她这样回答我。</p>
+<p>于是，我给卡佳看了我所有的诗。</p>
+<p>那天阳光灿烂而刺眼。我拿着宝蓝色封面的笔记本，还有碎米饭粘着废纸上的文字，发出浓郁的霉烂气味，交到她温暖的手掌心里。我的后背心在冒冷汗，害怕她会批评我，就像她直率的性格。什么狗屁不通的玩意儿啊？少年不识愁滋味，为赋新词强说愁……</p>
+<p>果然，她淡淡地说，你没有写诗的天赋，可惜啊。1958年，在莫斯科的广场上，每天都有人在念诗，有人念普希金，有人念白银时代，更多地在念自己的诗。我经常独自藏身在人群里，听那些过分煽情的朗诵，偶尔也会遇到让人终生难忘的句子，就像遇到让你终生难忘的人。</p>
+<p>那个人是谁？</p>
+<p>卡佳面无表情地摇头，翻到小本子中的一页说，你看这首诗里有许多叙事，说明你有说故事的才能，你可以试着写小说。</p>
+<p>我们认识一年了。偶尔，我会陪伴她去淮海路上的国泰电影院看电影；去共青森林公园的草坪上野餐，就像《莫斯科不相信眼泪》里的苏联人那样。她的行动虽然迟缓，兴致却高得很，头发与衣服都特意打扮过。她拿出最好吃的罐头，国产的酸黄瓜，在春天柳絮飞扬的小河边，用俄语唱起我从未听过的歌。在邮局的营业大厅里，我常见到一个叫薛范的翻译家，《莫斯科郊外的晚上》《草帽歌》等好多歌曲，都是被他翻译成中文的。他是个拄着拐杖坐在轮椅上的小儿麻痹患者，我知道他是谁，却从未跟他搭讪过一句话。而我就是那样的人，腼腆到跟任何人说话都会脸红。</p>
+<p>但自从认识卡佳，我就变得开朗了些，至少敢与老太太开玩笑了。</p>
+<p>坐在野餐垫上，看着上海难得晴朗的天空，卡佳说，如果我有儿子的话，我就叫他格奥尔基；如果我有女儿的话，我就叫她亚历桑德拉。可惜，我既没有儿子，也没有女儿，更不会有孙辈……但我有回忆。</p>
+<p>终于，她说出了那个人的名字。</p>
+<p>1958年5月1日，国际劳动节游行。我在莫斯科电影学院的方阵，红场上人山人海，刚过瓦西里升天大教堂，队伍全散了。我独自坐地铁回学校。莫斯科的地铁很漂亮，但那天人很多，我在猎人商行站上车，挤在车厢里喘不过气。有人从背后拍了拍我，回头看见一张中国人的脸。他很年轻，大概二十来岁，穿着朴素而简单，就像个工人，手里却拿着本书。他想把座位让给我。这种事常发生，你知道，我不会假惺惺谦让的。我坐在他的位子上，列车继续在莫斯科地底飞驰。他站在我对面，左手拉扶手，右手依然捧着书。封面正对着我，别列亚耶夫的《陶威尔教授的头颅》，竟是本科幻小说。我还是第一次看到有中国人在看苏联的科幻小说。</p>
+<p>你主动问他了？</p>
+<p>嗯，这是莫斯科的地铁一号线，方向是列宁山和莫斯科大学，我问他是不是莫斯科大学的中国留学生，他摇头说，我在巴黎公社发动机厂。卡佳模仿年轻男人的口气惟妙惟肖。</p>
+<p>地铁很吵，他的话很少，像你一样内向。他说他不是大学生，是在发动机厂实习的电工，也是被国家公派过来的，他的俄语名字叫格奥尔基。我问他为什么看科幻小说，他却装聋作哑不回答。这让我很生气，要知道在莫斯科，每个男人都围在我身边献殷勤，要是我跟谁握了下手，他会半个月不舍得洗手。因为分心，我错过了站下车，直到莫斯科大学站。我跟着他下车，直到一所工厂的大门。外面有士兵站岗，看来是军事禁区。他一路对我视而不见，却突然说，你不能进去了，但可以把宿舍电话号码留给我。</p>
+<p>他喜欢你，对吗？</p>
+<p>当时不太确定，我等了整整一个月，才收到格奥尔基的电话，约我周末去列宁图书馆。我打扮得漂漂亮亮，从电影学院到图书馆一路上，不少苏联男人为看我而撞上电线杆。在大阅览室，我问他为什么不说话。他说，来图书馆不就是看书吗？他在看爱因斯坦的相对论，那年头在苏联也算是前沿科学了。他很着迷的样子，反复说起速度和引力，可以帮助人类实现时间旅行。在接近光速的飞行器上，一天相当于地球上的一年，当你一百天后回到地球，实际上已过去了一百年的孤独。但是，这样的旅行只能抵达未来，如何能够回到过去呢？我完全听不懂他在说什么，耐着性子等了两个钟头，看掉半本陀耶托夫斯基。眼看他要坐到天黑，我愤然离去。等我一个人走到大街上，他却追出来道歉，然后说，卡佳同志，我喜欢你。</p>
+<p>那么简单？</p>
+<p>这就够了！对啊，你们都不明白，世界本就该这样简单！我不喜欢拐弯抹角繁文缛节，我喜欢有一个男人当着我的面说——看到我第一眼就喜欢我，看到我第二眼就要告诉我。卡佳躺在春天的艳阳下，白发覆盖青青河边草说，我喜欢那样的男人，格奥尔基这样的中国男人。他的父母都是工人，他从技校毕业，在天津的一家国有工厂做电工。苏联需要中国工人，在西伯利亚还有很多。因为他自学了很多电气理论，被分配到巴黎公社发动机厂，这家厂里有全世界最好的工程师。每个周末，他都会去列宁图书馆，有些书跟他的专业有关，有些是最先进的科学理论，比如他手抄过整本爱因斯坦。在莫斯科，格奥尔基是个异类，因为他不喝酒。你知道，苏联男人都是些酒鬼。对了，你不喝酒吧？</p>
+<p>嗯，从不喝酒。</p>
+<p>希望你永远保持下去！十月革命节，全世界共产主义者的盛大节日。格奥尔基却带我去了公墓。我就是喜欢这样的与众不同，大晚上去墓地，不觉得很刺激吗？新处女公墓，埋葬着果戈理、契诃夫、奥斯特洛夫斯基、爱森斯坦，最新的墓碑属于自杀身亡的法捷耶夫。我给以上这些墓碑都献了花，尤其爱森斯坦，那可是我们学电影的老祖宗。从公墓出来，一路逛到莫斯科河边。那时已经很冷，水面结了厚厚的冰。忽然窜出七八条壮汉，喝得醉醺醺的，对我动手动脚。在这些人面前，格奥尔基的个头就像小孩子。他们看不起中国男人，说了些侮辱的话。格奥尔基啥都没说，抓住为首的一个，抱摔在莫斯科河的冰面上。打架开始了。后来我才听说，这些酒鬼都是冰球运动员，怪不得四肢发达。他们以多打少，我怕格奥尔基会被打死，到处尖叫着求救，终于找来两个警察。那个十月革命节，我们是在警察局里度过的。格奥尔基受了些外伤，我亲手给他包扎了伤口，不很严重，但看起来浑身是血——大半都是别人的。那几个冰球运动员却被他打惨了。你要记住，为保护女人而受伤的男人，会让女人记住一辈子。</p>
+<p>直到现在？</p>
+<p>是啊，此时此刻，在这里——卡佳指了指自己的心脏，从莫斯科的那一夜开始，我深深喜欢上了这个实习电工，但不知道前途如何。</p>
+<p>最后半句话，却说的我满怀忧伤，结束了这场野餐。</p>
+<p>这一年，我开始上网，也开始写小说。我尝试把最初的小说，贴到“榕树下”网站。我不太在意外面真实的生活，小说也多是内心写照，或是天马行空的想象，大多跟历史有关。几乎每篇小说，我都会事先拿给卡佳看一眼。她总是又快又认真地看完我的短篇小说，而我忐忑不安地等候在旁边，又为了掩饰自己的心情，随手拿出一本《远大前程》或《青年近卫军》。她有时候说很好，有时候拍案叫绝，有时又会大骂狗屁不通。</p>
+<p>她用红笔划出一个段落，告诉我要删掉其中的三分之二——虚词、副词、形容词全部删除！不会损害你要表达的意思，千万不要啰唆，不要追求语言上的华丽，那些都是女人的涂脂抹粉！我要你看到一张真正的脸，哪怕是个像我一样的老太婆，但这没关系！只要是真的就可以，简单，直接，该有力量的时候就爆发出来，一个字胜过千言万语！对了，你必须多读海明威。有朝一日，当你开始写长篇小说，就会明白更多。</p>
+<p>卡佳说这些话的时候，镜片底下的双眼，一下子变得很年轻。</p>
+<p>能给我看看你年轻时候的照片吗？</p>
+<p>我在莫斯科的照片，当然有不少，我还上过苏联的杂志封面呢，作为中苏友好的代表。不过回国以后，陆陆续续都被烧光了。</p>
+<p>为什么？</p>
+<p>因为，我有记忆啊——每道亮光，每片阴影，每个嘴角，每个眼神，每分钟每秒，全都在心里头清清楚楚，还需要照片吗？</p>
+<p>卡佳，你是什么时候回国的？</p>
+<p>1958年，最后一天，莫斯科大雪纷飞，我提前终止了学业，坐上从莫斯科到北京的国际列车。因为那年秋天，我的父母叛逃去了香港，发表了一些反动言论，我当然也受到了牵连。他们后来又去了美国，墓地还在旧金山呢，但我一次都没有去过。</p>
+<p>格奥尔基呢？</p>
+<p>我再没见过他，也没有音讯，不知道他现在还活着吗。1959年，我回到上海，大学没有毕业，又是叛徒的女儿，没有一家单位敢要我。还有些人风言风语，说我在莫斯科做了不要脸的事，是上海话所说的“拉三”，你懂的。</p>
+<p>所以，你被分配进了公交公司做售票员？</p>
+<p>卡佳浅浅一笑。你好聪明呢。我坐在十三路电车上，每天从曹家渡到提篮桥，卖了一辈子车票。至于这栋房子嘛，我就出生在这里，以前一楼是客厅、餐厅和厨房，二楼是我和父母卧室和书房，三楼是储藏室。六十年代，这套房子被许多人占据了，我一度被扫地出门，暂住在单位宿舍。后来国家落实政策，把最破的顶层还给了我。其余部分，永远不再属于我了。但我不在乎，反正一个人过，那么大房子也没有意义。</p>
+<p>你没有结过婚？</p>
+<p>嗯，这没啥了不起的。</p>
+<p>为了你的电工格奥尔基？</p>
+<p>闭嘴！</p>
+<p>那次谈话后，我写了个短篇小说《绑架》。给卡佳看过，她点头说还可以，你去投稿参加个文学比赛吧。可我不认识文学圈的任何人，听说那些比赛和奖项都是要有关系的，否则人家根本都不看你一眼。她说没关系，哪怕没人看过你一眼，但你以后不用为自己的胆怯而后悔。</p>
+<p>于是，我选了从报纸上看来的一个“贝塔斯曼人民文学新人奖”。几个月后，从十四万篇投稿中，我的《绑架》意外获奖了。我平生第一次去北京，参加了颁奖典礼，小说发表在那年的《当代》文学期刊上。终于，我认识了许多有名的作家，文学期刊的编辑，出版社的领导……</p>
+<p>我带着奖状回来给卡佳看，但她并没有祝贺我，而是冷冰冰地警告——喂，你快要完蛋了！</p>
+<p>怎么了？</p>
+<p>得奖啊什么的是不错，但请你从今天起忘记，所有的奖是给你的过去，不是给你的现在，更不是给将来。你明白吗？还有你见到的那些人，在你嘴里津津乐道，好像都是些很厉害的大人物，在北京在全国叫得出名字的……但最好离他们远一点，写好你自己的小说就够了！</p>
+<p>因为在莫斯科你都见过了，对不对？</p>
+<p>你读过《静静的顿河》吗？</p>
+<p>肖洛霍夫。</p>
+<p>他后来得过诺贝尔文学奖。我在莫斯科电影学院的老师，是他最亲密的朋友，常带我去参加他的文学沙龙。他已经获得了列宁勋章、社会主义劳动英雄称号，不再是那个穷乡僻壤的哥萨克了，伟大的肖洛霍夫，他再也写不出伟大的作品了！还有那些著名的作家、诗人、画家和各种艺术家，我们在国内读书的时候，都把他们当做偶像和明星，可一旦见到本人，不过都是些大腹便便的老家伙们，只会高谈阔论，彼此肉麻地吹捧。苏联政府给这些人提供了宽敞明亮的别墅，在莫斯科郊外的森林里，还有嘎斯轿车、司机与仆人。我打心眼里喜欢他们的作品，但又讨厌他们本人。</p>
+<p>这不矛盾吗？多年以后，才发觉提出这样的问题，我简直是个白痴。</p>
+<p>卡佳摸着我的后脑勺说，在写作这条道路上，你可能会很有成就。但要记得，绝不能轻视任何人，就像绝不能轻视你自己那样。有朝一日，我会不会也变成自己曾经讨厌过的那种人？也许会，也许不会，很遗憾，我们大多数人属于前者。但请你别忘了今天，别忘了你最初为了什么而写。不是什么改变命运的鬼话，而是你想要倾诉内心。</p>
+<p>那你讨厌现在的自己吗？</p>
+<p>她走到镜子前，摸着脖子上的皱纹。很讨厌，讨厌得要死！</p>
+<p>第二年，国际形势风云突变，中美军机在南海相撞；基地组织劫机撞了纽约世贸中心；我的第一个长篇小说《病毒》完工；更重要的一件事是，卡佳出了意外。</p>
+<p>深秋，在思南路与南昌路的拐角，她被一辆助动车撞倒了，后脑勺磕在水门汀上，在医院里昏迷了一个星期。</p>
+<p>我找不到她的亲属，只在抽屉里找到一张医保卡，这才知道她的真实姓名。我去过派出所与居委会，确认她没结过婚，亲戚全在香港和海外，但从不来往。二十年前，她从公交公司提前退休，闲着没事翻译俄国小说，稿费虽然微薄，总比光拿退休金的孤老太强些。我在医院代表亲属为她签字，当时很害怕她会不会将永远沉睡下去。</p>
+<p>卡佳醒来的那天，我正在她的病房里。当她突然睁开眼睛，我盯着她喊了几声卡佳。她的目光有了反应，说明她至少记得这个名字。我转身要去呼唤护士，她发出含混不清的声音，似乎是俄语某个单词，听着又有几分耳熟。午后的时光里，我在门口停下来，慢慢转身。枯黄落叶的窗外，射来白油漆般的光，在我的脸上反复涂抹。</p>
+<p>我听清楚了她的念叨：格奥尔基。</p>
+<p>最初的恍惚过后，我才想起这个名字属于谁——1958年在莫斯科的中国电工。</p>
+<p>你是在叫我吗？</p>
+<p>卡佳点点头，又叫唤了我一声格奥尔基。</p>
+<p>我想要摇头，脖子和颈椎却僵硬着不动，也许是昨晚落枕了，也许是其他什么原因。</p>
+<p>昏迷的七天里头，她的头发更白了，我不会给她保养皮肤，脸上的皱纹密集涌出，但没照镜子的她并未意识到这些。</p>
+<p>我找你找了多久啊？</p>
+<p>七天。</p>
+<p>我像个白痴似的回答。</p>
+<p>卡佳摇头，眼眶已经湿润。我找你找了多久啊？</p>
+<p>当我看到老太太的泪水，像涨潮的黄浦江汹涌在脸上，我的心头骤然悬空，一下子懂了她的问题——她找我找了多久？她找她的格奥尔基找了多久？</p>
+<p>但我不是格奥尔基，我只是每周跑到她家来看书的在邮局上班的后生，我能这样告诉她吗？</p>
+<p>把你的手交给我。卡佳向我恳求。</p>
+<p>我伸出手，在老妇人的手掌心里。她的手又柔软又暖和，就像我小时候的外婆，但有些老茧和很粗的纹理，看来干过不少体力活，包括冬天里手洗衣服。她的手像一层薄膜，将我紧紧包裹起来。</p>
+<p>Honey，格奥尔基是卡佳的糖纸头里的甜心。</p>
+<p>第二天，我给她办理了出院手续，医生说她并无大碍，也不会有后遗症，就是可能记忆出了些问题。</p>
+<p>我把卡佳送回思南路的顶层大屋，帮她洗去沙发和书架的灰尘，买了医生关照可以吃的东西。告别的时候，她在身后叫我。格奥尔基！记得来看我。</p>
+<p>我回头，看着她布满鱼尾纹的眼角，点头说好的。</p>
+<p>为什么我会承认自己是格奥尔基？欺骗一个记忆错乱的老太太并不是好玩的事儿。因为，在为卡佳整理房间的时候，我从床头柜里找到个相框，镶嵌着一张黑白照片——</p>
+<p>他看起来二十多岁，穿着灰色的工装服，背景似是1958年的莫斯科，那是卡佳常说起的克雷姆斯基大桥，横跨在莫斯科河上的悬索桥，许多人在桥上自杀而闻名。看到这张照片，我就不由自主要闭上眼睛，不敢再多看哪怕一秒。</p>
+<p>他很像我。</p>
+<p>不，是我很像他。</p>
+<p>虽然颜色是黑白的，但照片里的人，分明就是过去的我——也许是上辈子？也好像是我穿越过了，眼睛、鼻子、嘴唇、下巴……仿佛自己在照镜子。</p>
+<p>所以，我是格奥尔基。</p>
+<p>而在卡佳的眼中，我依然活在这张照片里，来自1958年的莫斯科。我无法反驳她，无法向她辩解，哪怕隐藏或烧掉照片，但格奥尔基的这张脸，就在她的心里头藏了四十多年——只要看到我的这张脸，格奥尔基就会生动而鲜明起来。</p>
+<p>一度我想不再去找卡佳了，免得让她对我产生更多的依赖，但隔了两个星期，我还是忍不住去了。她一直坐在沙发上等我回来，穿着颜色鲜艳的羊毛衫，花白的头发被染黑了，嘴唇上涂着淡淡的口红。</p>
+<p>祝贺你，格奥尔基同志，你终于成功了！</p>
+<p>她拿出两个搪瓷杯子，倒了些饮料要跟我碰杯庆祝。</p>
+<p>什么成功了？我不明白。</p>
+<p>时间！</p>
+<p>哦？你说什么？我懵懂地与她干杯，喝尽似乎是过期了的饮料。</p>
+<p>你不记得了吗？1958年，在莫斯科，十二月最冷的那天，你带着我坐地铁来到莫斯科郊外，一片被大雪覆盖的森林里。那里有个卫国战争以后废弃的兵工厂，方圆几公里内荒无人烟，废墟的最深处有个舱门，你用了很大力气才打开这个门，拉着我走进一条地道。</p>
+<p>你要说什么？</p>
+<p>当卡佳说到这些，我是有些害怕的，徘徊在她的沙发背后，随时准备逃出门外。</p>
+<p>我们手拉着手，走进地道最深处，却有个巨大的地下空间。那里有很多奇怪的东西，难以形容是什么，还有条深不见底的隧道，仿佛通往地球的心脏，我真有这么一种感觉，好像不断有阴冷的风从地底涌上来。你说这是地狱之洞，能带我们去任何地方，包括未来和过去。</p>
+<p>时间？</p>
+<p>对啊，格奥尔基，我问你这是什么地方？你回答说是基地。你说，在巴黎公社发动机厂，有个七十多岁的总工程师，原本是核物理学家，因为犯了政治错误，被开除出了军事部门，才分配来你们厂里。总工程师对于核武器不感兴趣，但他一直在秘密研究时空旅行，用了整整半辈子。但这是绝密，不能让任何人知道，因为到处都是克格勃密探，如果被发现的话，他一定会被抓起来流放到哈萨克共和国或北冰洋的小岛。总工程师只信任一个人，那就是你格奥尔基！因为你是中国人，人际关系最最简单，而且你单纯而可靠，有着忠诚和沉默的品质。而你也很聪明，非常善于学习。对啊，是你告诉我的，你自学了物理学和量子力学还有相对论。虽然，你只是个实习电工，但你的脑子里却装着所有最前沿最先进的科学知识。你还跟我说过黑洞和虫洞理论，就算我基本听不懂，但我相信你。</p>
+<p>很遗憾，我不是格奥尔基，很遗憾，我对这些东西一窍不通——我真的很想大声说出来，却压抑在喉咙口无法言说。最后，我却点着头说，是啊，相信我，我们就是时间的一部分。</p>
+<p>卡佳的身体蜷缩起来，仿佛躲藏在秘密基地的深处说，那个时候，我刚刚接到我父母在国内叛逃的消息，我真的很恐惧，将会因此而跟你分离。你应该记得啊，我突然问你，如果，我们中有一个会先死去怎么办？</p>
+<p>我会穿越时间，找到那个过去的你，或者是未来的你。</p>
+<p>刹那间，我的脑子像被一盘录音带灌录了，不知从哪里飞来一句话，来不及思考，便已脱口而出。</p>
+<p>没错，你记得很清楚啊，对我来说那是四十多年前的记忆了，对你来说也许只是昨天，或者是上个月，对吗？</p>
+<p>老天爷，我居然说对了？刚刚那真是1958年格奥尔基对卡佳说的话吗？我无言以对。</p>
+<p>1958年12月，在莫斯科郊外森林地下的秘密基地，格奥尔基，你告诉我时间是可以穿越的，但暂时还没有找到控制的方法。你无法决定是穿越到1900年还是2000年。但，只要能保存一根头发，里面藏有我的基因信息，就会引导你来到我所处的时空。</p>
+<p>所以，你拔了一根头发留给我。</p>
+<p>卡佳猛点头！抚摸着她特意染过的满头黑发。那根头发还在你手里，对吗？我二十多岁的头发，那时发质很好，又黑又亮，粗粗的也不分岔，苏联女同学们都很羡慕我。</p>
+<p>头发？我只能随便编了个理由。时空隧道里无法保留下那根头发，否则我就不可能出现在这里了，很遗憾。</p>
+<p>原来是这样啊，没关系，我能看到你，摸到你的脸，就很满足了。</p>
+<p>在她的手触摸到我之前，我退到门口说，卡佳，今天太晚了，你早点睡吧。</p>
+<p>你去哪里？</p>
+<p>1959年，莫斯科。我回答，新乐路东正教堂的地窖，那里连接着莫斯科森林里的隧道。我必须回去，总工程师还在等我。</p>
+<p>你还会回来吗？</p>
+<p>一定会的，但我每次穿越时间，到你身边不能超过十二个小时，否则我就会在时间中消失，这个理论很复杂，就好像我们不应改变历史一样。</p>
+<p>好的，下个星期，我等你！晚安，格奥尔基。</p>
+<p>转身离开卡佳，冲下黑暗的楼道，回到铺满落叶的思南路上，我竟直奔新乐路的东正教堂，仿佛要回到1959年的莫斯科。阴冷的上海黑夜，仰望天蓝色的拜占庭式圆顶，我决定成为格奥尔基。</p>
+<p>但他是一个电工，而我对此一无所知。好在我爸爸也是电工，我在家里重新学习了电工知识，还有爸爸书架上那些厚厚的工具书。我跟着爸爸爬上爬下使用各种工具，万用表、电笔、十字和一字螺丝刀、斜口钳……</p>
+<p>我恶补了许多科学资料，狭义与广义相对论、虫洞理论、阿西莫夫的基地系列。那一年，我在榕树下论坛，担任了科幻版的版主，第一次读到刘慈欣的《乡村教师》和《全频带阻塞干扰》。我还写了个短篇小说《夏娃的密码》，投稿给第一届倪匡科幻奖，虽然入围，但没得奖。</p>
+<p>冬天，我作为格奥尔基从莫斯科穿越而来，穿上以前爸爸厂里的工作服，带着所有工具。我告诉卡佳，她的这间顶层屋子，年久失修有电路危险。我装模作样帮她检查电线，还真的排除了两个隐患。她问我，这些电器都是在1959年以后发明的，我怎么会那么精通呢？</p>
+<p>卡佳，我还去过很多时代呢！1968年的越战春季攻势，1979年的伊朗革命，1991年的苏联解体……但这些秘密我都守口如瓶，要知道我是来自1959年的莫斯科，虽然没有人敢相信苏联会在三十年后不复存在，但克格勃还是会把我抓起来的。</p>
+<p>你回到过过去吗？</p>
+<p>嗯，回去过，比如1945年的柏林，1917年的阿芙乐尔号巡洋舰，1815年的滑铁卢。</p>
+<p>格奥尔基，你能回到1958年的上海吗？</p>
+<p>干什么？</p>
+<p>你知道的，我是怎么离开莫斯科的？</p>
+<p>因为你的爸爸妈妈？</p>
+<p>嗯，如果你能在1958年的秋天，在上海阻止我的爸爸妈妈叛逃去香港，让他们安心留在社会主义新中国，我就不会被迫离开莫斯科了。那样的话，我的命运，不，是我们两个人的命运，再也不用分离那么多年。我会嫁给你的，在1959年的莫斯科，我们将是一对红色夫妻，学成归国后参加社会主义建设。虽然我的爸爸妈妈，等到文化大革命还是会逃跑或自杀，或被抄家后一无所有。但我会跟你走的，格奥尔基，跟你去你的老家，去你们单位，哪怕放弃电影导演的梦想，哪怕只做个俄语教师。但我们会幸福的，我还会为你生一大堆孩子，可以吗？</p>
+<p>一个老太太这样对我说，我紧张地从沙发上摔下去，还得拼命掩饰慌张，后悔刚才的牛皮吹太大了。</p>
+<p>不……不可能的……</p>
+<p>你不愿意？</p>
+<p>不是，我愿意，但我做不到！我绞尽脑汁地和上次的谎言衔接上，免得有什么前后矛盾。对了，我不是说过吗，虽然，时间旅行可以实现，但无法选择准确的时间点。我不能设定具体哪一年哪一个地方。</p>
+<p>胡说，格奥尔基，那你是怎么来到这里的，每周一次雷打不动？</p>
+<p>她真的着急了，手舞足蹈的说话样子，很像苏联电影里的人物。</p>
+<p>因为，你的头发可以给我定位指路啊。说完我就想狠狠掐自己，因为我说过那根头发是不可能保存下来的，但我还得圆谎。哦，你留给我的那根头发，虽然消失在了时间隧道里，却给你留下了时空坐标，让我可以在茫茫人海中找到你。但我找不到你的父母，更去不了1958年的上海。</p>
+<p>格奥尔基，可你为什么现在才找到我？</p>
+<p>老太太说到这里，眼眶又红了一圈。是啊，为什么要等到红颜白发呢？为什么不在1960年？哪怕二十年前也好啊。</p>
+<p>对不起。我无法再编下去了，自己的泪腺也有些控制不住。</p>
+<p>别说对不起！我从来……从来没有抱怨过你。格奥尔基，这一切，全是我自己的选择，与你何干？</p>
+<p>得抓紧机会转移话题，我抛出第二个不可能的理由——卡佳，我可以穿越时间，但不可以改变历史。</p>
+<p>去他妈的历史，老太太淡淡地说了句脏话，最好全都给我改变了。</p>
+<p>要是如你所愿，你没有在1958年离开莫斯科，我们两个人在一起结婚的话，那么今天坐在这里的你，就一定会消失的！</p>
+<p>那就让我消失吧！你知道吗？我找你找了多久？就是为了等到这个机会。不然的话，三十年前，我就已经死在了苏州河里……你不懂，那时候自杀很容易的！</p>
+<p>我懂的。</p>
+<p>哎呀，我见不得女人哭，更见不得老妇人哭，我忍不住伸出手指，抹去她脸颊上的眼泪。</p>
+<p>你不懂！</p>
+<p>卡佳躲开了我的手，她把头埋在膝盖里，断断续续说着对不起……有个秘密，我一直藏了四十多年，始终在我脑子里转啊转啊，我想要是有朝一日，你真的出现在我面前，该不该把这个秘密告诉你。</p>
+<p>卡佳，你想说就说，不想说也没关系，就当我不知道。</p>
+<p>不，我必须要说，否则对你不公平。你看，我只是个老太婆，除了你以外，已经什么都没有了，也没必要继续藏下去，听我说——1958年，在莫斯科，你带我去过森林里的秘密基地以后，那天晚上，我又去了一个地方。那是莫斯科的一家酒店，只有苏联的高级干部才可以享用，有特供的葡萄酒和里海鲟鱼子酱，有从西方国家进口的奢侈品。你还记得阿廖沙吗？我跟你说过，也是我们中国留学生，他的爸爸当时位高权重，经常出现在人民日报上。是他邀请我去那家酒店，我们普通的留学生想都不敢想的地方。</p>
+<p>我明白了，我原谅你，卡佳。</p>
+<p>格奥尔基，你不能原谅我！你必须不原谅！绝对不能宽恕这种行为！绝对不能宽恕我！也绝对不能宽恕阿廖沙！如果，我还在你心里的话。</p>
+<p>嗯，我不原谅。</p>
+<p>阿廖沙请我吃了顿大餐，我们一起喝了些伏特加。你不知道，在莫斯科的时候，我的酒量能喝倒大多数苏联男人，在你面前我却滴酒不沾。阿廖沙说，上头已经决定了，让我从莫斯科电影学院退学，立刻送回国内。但只要我答应跟他在一起，他就可以通过他爸爸，解决所有的问题，就算不会宽恕我的父母，至少可以宽恕我本人——只要我写封公开信与父母断绝关系。这样我就可以继续留在莫斯科读书，还有机会成为新中国第一个伟大的女导演。前提是我成为他的情妇，搬到他在郊外的别墅。</p>
+<p>听起来挺诱人的。</p>
+<p>嗯，我同意了。</p>
+<p>卡佳已哭得泪水涟涟，像个丢失了糖果的小姑娘。看着她老去的容颜，冬日阳光底下银色发丝，我不知该说什么。</p>
+<p>对不起，格奥尔基，1958年，那个莫斯科的冬夜，在酒店的高级套房里，我陪伴阿廖沙度过了一夜——不，干吗那么文绉绉的？说大白话嘛，就是陪这个男人睡了一晚上……</p>
+<p>可是？</p>
+<p>我知道你的疑问，第二天，我改变了主意，我感觉身体很脏，打心底里厌恶自己。我对阿廖沙反悔了，拒绝做他的情妇。因为，就算这样留在莫斯科，我也不可能再见到你了。我会变成一只笼中之鸟，被他用完后再抛弃。如果是这样的我，你还会要吗？你先别说！不管你会怎么想，但我不能接受，怎么可以再把这个身体交给你？那是委屈你了啊，无辜的格奥尔基，你还不明白吗？</p>
+<p>我明白。</p>
+<p>你永远都不会明白的！那天晚上，是我的第一次。</p>
+<p>卡佳……卡佳……卡佳……</p>
+<p>我轻声呼唤她的名字，但她摇头说，我本来是要留给你的，可我却为了自己，为了能留在莫斯科，为了……</p>
+<p>别再说下去了。</p>
+<p>我真的，很想抱着她，安慰她，我的卡佳，我是电工格奥尔基。</p>
+<p>所以，我要和你说对不起，我该恨谁呢？阿廖沙？我的爸爸妈妈？我自己？还是……那瓶高烈度的伏特加？</p>
+<p>这也是你后来讨厌酒精的原因？</p>
+<p>她深呼吸了一口气。十多年前，我在电视上又看到了阿廖沙，他变成了一个老头子，头发都掉光了，是西北某省的一家大企业的总工程师，正在大会上畅谈思想政治工作……但不知为什么，我对他一点都恨不起来。</p>
+<p>虽然，我很担心卡佳的情绪，但我要回去了，1959年莫斯科森林里的秘密基地还在等我。</p>
+<p>等一等，格奥尔基，你还记得吗？我俩最后一次见面。</p>
+<p>当我沉默着不知如何回答，她抢先说，在列宁山上，莫斯科大学主楼门口，眼前是冰封的莫斯科河，可以看到大半个城市。我清楚地记得时间：1958年12月30日。几天前下过大雪，刚好到这天放晴。我们坐在台阶上，脚下白茫茫一片，远方是各种建筑物的天际线。接近傍晚，天边的晚霞很漂亮。</p>
+<p>是啊，我记得。</p>
+<p>那时候，我说等我回国以后，每个周末都会邮寄明信片来莫斯科给你的。</p>
+<p>卡佳，我一直都收到的。</p>
+<p>我还对你说，格奥尔基，我们永远不可能在一起了。</p>
+<p>等你老了，我还会来找你的。我想，如果我是格奥尔基，我会这样回答。</p>
+<p>卡佳点了点头。是啊，我很高兴，你也记得那么清楚——等我老了，你还会来找我的。现在，我已经老了，可你还年轻。格奥尔基，你不要再来找我了吧。我已经把秘密告诉了你，就算是我年轻的时候，我也配不上你，何况当我老了？记得下次穿越时间，可以去1950年的上海，那会儿我还是个拖着两根辫子的少女，我会喜欢上你这个电工的。</p>
+<p>好啊，我答应你。说着说着，我已退到门口。</p>
+<p>1958年，最后一天的早上，我踏上了离开莫斯科的火车。从此以后，我没有过你的消息。你可知道，格奥尔基，我去过你以前的单位，还去过你的家乡，见到了你的爸爸妈妈和兄弟姐妹。但没人知道你去了哪里。他们都说你被派遣到苏联实习电工，但不晓得什么时候才能回来。我想，你大概是消失在时间隧道里了吧？</p>
+<p>也许，你们的时间已经过了四十多年，而我的时间只过去了四个月。</p>
+<p>说到时间，已进入2002年。这年春天，我的第一本书出版了。我很想拿给卡佳看看，虽然首印只有五千本。但我想到在她面前，我是来自1959年的莫斯科的中国电工，而不是在二十一世纪初的喜欢写作的邮局职工。所以，我不能解释这本书是怎么回事，只能强忍着不告诉卡佳——如果她没有被助动车撞过，如果她的记忆没有混乱，她一定会为我而高兴的！说句题外话，这本书在几年后翻译成俄语在莫斯科出版了，得到了一个俄罗斯文学评论家的评点。我匿名地给她邮寄过一本，不知道她看过没有。</p>
+<p>从2001年冬天到2002年夏天，我一直在卡佳面前，扮演成时间旅行者格奥尔基。我的表演很成功，每个周末，我都会陪伴她两个小时，帮她阅读书架上她最爱的书，跟她说说我杜撰的世界新闻，比如美帝国主义行将崩溃，古巴和朝鲜人民过着社会主义的幸福生活。偶尔也带她到复兴公园里走走，让她回忆起莫斯科的公园和森林。</p>
+<p>有一天，还是在思南路的顶层大屋，当我为卡佳胡诌穿越到1789年法国大革命遇见丹东和路易十六时，听到了敲门声。</p>
+<p>平常除了我，不会有任何人来敲她的门。是我替她开门的，外面是个老头，估计有七十岁了。他报出了卡佳的真实姓名，问这是她家吗。</p>
+<p>是的。</p>
+<p>太好了，你妈妈在家吗？当他摘下眼镜，我才明白，他把我当做了卡佳的儿子。不过，我妈妈可比卡佳年轻二十岁呢。</p>
+<p>是谁啊？卡佳出现在了门后。</p>
+<p>他看着她，一句都没有说。</p>
+<p>她也看着他，皱起眉头，咬着嘴唇。</p>
+<p>卡佳？</p>
+<p>令人意外，他说出这个名字。</p>
+<p>你是谁？</p>
+<p>卡佳问他。老头的眼角抽动，强忍着不在我面前失态，轻声回答，格奥尔基。</p>
+<p>瞬间，我明白了什么，把门口的灯都打开，想看清楚老头的脸，发现他很像一个人——我。</p>
+<p>不，是我很像他，眼前的这个老头，仿佛四十年后的我。</p>
+<p>他就是格奥尔基？1958年，在莫斯科，卡佳深深喜欢过的男子，在巴黎公社发动机厂实习的中国电工。</p>
+<p>但我很紧张，慌张地躲藏到墙角，注视着卡佳的表情，她看出来了吗？</p>
+<p>卡佳依旧沉默不语，盯着老头的脸盘，反反复复，看了又看，就差拿出放大镜了。</p>
+<p>老头站在门口问，卡佳，你还好吗？</p>
+<p>卡佳不响。</p>
+<p>他接着说，1958年，你离开了莫斯科，我一直很想再见到你。</p>
+<p>两年后，中苏关系恶化，他才卷铺盖回国。那时候，我们国家紧缺技术工人，因为在苏联的发动机工厂工作过，他被调去了军工系统。在西北沙漠的深处，生产第一代弹道导弹。这是一项绝密工程，仅次于原子弹，所有人都不能与外界来往，家里也不知道他去了哪里，他也联系不到卡佳。后来他成了工程师，成为我国导弹事业的功臣。他在西北基地结婚，生了一对儿女，一直干到光荣退休。去年，他的妻子过世，儿女也结婚了，他自由了。于是，老头通过各种关系，找到了这里。</p>
+<p>他是格奥尔基，而我是格奥尔鬼，很抱歉。</p>
+<p>我怯生生地看着卡佳，准备悄悄溜号，让他们两个人独处，毕竟已互相寻找了四十多年。</p>
+<p>但，卡佳却摇头说，我不认识你。</p>
+<p>她说的那么冰冷而决绝，让人望而生畏无法抗拒。</p>
+<p>卡佳，不要这样对我，不要……</p>
+<p>老头才说了半句话，卡佳就赶他走了，大声叫喊起来：你是个冒牌货！真正的格奥尔基在这里——她用手指着我的鼻子。</p>
+<p>你说什么？这个年轻人是我？</p>
+<p>请不要再来骚扰我了，不然我打电话报警！</p>
+<p>话音未落，卡佳已强行关上了房门。</p>
+<p>而我不知道说什么，她一个人缩在沙发里，随意地翻着几本书，连眼镜都没戴上，想是一个字都没有读进去。我走到窗边，看到楼下的老头仍然徘徊，不断抬头仰望这扇窗户。</p>
+<p>第一次，我觉得卡佳不但刻薄，而且残忍。</p>
+<p>再见，我要回1959年的莫斯科去了。</p>
+<p>告别卡佳，我冲到思南路，看着那个四十多年后的我。我那架势像是要打人，但他并不害怕，挺直胸膛看着我。我羞涩地说，对不起，她的记忆出了些问题。</p>
+<p>你是谁？</p>
+<p>我是你。</p>
+<p>嗯，看到你很亲切，真的很像我年轻的时候。</p>
+<p>我是冒牌货，你才是正版，我向你道歉。</p>
+<p>老头从兜里掏出个信封，里面装着一根女人的头发丝，说这是在1958年的莫斯科，她最后送给他的东西。</p>
+<p>你要我拿上去再跟她说说吗？也许，她会想起来的。</p>
+<p>哎，不必啦，谢谢你。</p>
+<p>谢我什么？</p>
+<p>老头摇摇头，不声不响，离开了。</p>
+<p>我想他再也没有回来过。</p>
+<p>这年十二月，我的工作调动了，因为写作引起领导关注，我被调离基层的邮政局，来到四川北路的邮政总局，在机关里编写邮政史和企业年鉴。</p>
+<p>对于卡佳来说，来自1959年的莫斯科的格奥尔基，突然在时间隧道中消失了。</p>
+<p>也许，这对于老太太来说很残忍，但我不能再继续伪装下去了。</p>
+<p>隔了半年，进入盛夏时节，漫长的“非典”灾难消退，我才再去看望她。我会直截了当告诉她，我不是她的格奥尔基。</p>
+<p>但家里没有人。我到处找她都没有消息，邻居说她失踪三天了，许多老年人就是这样走失的。我有个表哥叫叶萧，是个很厉害的警官。通过他的帮忙，我查到卡佳的身份证被人使用过，购买了上海飞兰州的机票，刚入住当地一家宾馆。难道有人盗窃了她的身份证？还是更可怕的事？叶萧帮我询问兰州警方，确认入住宾馆的就是老太太本人。</p>
+<p>我打电话到宾馆房间，恰好她接起电话，告诉我，他死了。</p>
+<p>谁？</p>
+<p>格奥尔基。</p>
+<p>我的脑中掠过那张四十多年后自己的脸。</p>
+<p>原来，卡佳是去参加葬礼的。</p>
+<p>我去找她，也买了张飞机票去兰州。参加追悼会的有老头的子女，已是儿孙绕膝，还有军工企业的领导，多年的老同事们。但没有人认识卡佳，她独自穿着黑纱，站在一堆花圈外面。西北风吹湿了她的眼睛，遗体被推去火化时，卡佳远望着他窃窃细语——你知道吗，我找你找了多久，我找你找了多久。</p>
+<p>她又用俄语说了一遍。</p>
+<p>再见，格奥尔基。</p>
+<p>一年前，当七十岁的他，第一次出现在我们面前，卡佳就已明白，她的格奥尔基回来了。老头说的都没错。但，那个真正住在她心里头的，是在莫斯科河冰面上跟苏联人打架的年轻的中国人，而不是白发苍苍的老头子。二十多岁与六十多岁的格奥尔基，对她来说，是两个完全不同的人。此时此刻，怎及得上彼时彼刻？年华这东西，就像人死不得复活，满头白发不可能恢复三千青丝。她心里透亮得很，我们都回不去了，不如，还是让这老头子，别再折腾，好好过日子吧……</p>
+<p>所以，卡佳的记忆并没有错乱，精心伪装的人不是我，而是她！</p>
+<p>她只是为了让自己相信，格奥尔基当年所说的时间旅行，是真实发生过的，他一定会穿越时空来找她，索性将计就计演了一场戏。</p>
+<p>是我被她骗了，我才是个傻瓜呢。</p>
+<p>其实，当我假扮成格奥尔基的时候，她只要跟我说两句俄语，就必然会露出马脚……但她自始至终跟我说中国话，尽量避免任何俄语单词，哪怕是个地名和人名，除非达斯维达尼亚或达瓦里希。对啊，当我们说到往事，凡是我无法圆谎之时，她都会主动扯开话题，让我避免尴尬露馅。</p>
+<p>我护送卡佳飞回上海。在祖国的蓝天上，老太太向我承认，当她刚认识我，第一次在我面前发心脏病，让我给她拿药吃硝酸甘油片，竟然也是假装的。那也不是硝酸甘油片，而是糖片。</p>
+<p>她只是始终在等一个人，等头发乌黑的年轻电工，等他沉默时的眼角，等他最美的时光。他俩唯一共同拥有的，只有记忆。但我没有，或者说，我没有她最美的时光的记忆。</p>
+<p>我以为她会哭，但没有一滴眼泪。卡佳应该荣封奥斯卡影后，同时拿下最佳导演和最佳编剧奖，难怪是莫斯科电影学院的。</p>
+<p>说实话，我应该对她有所怨恨，被她玩弄于股掌之中，我却怨恨不起来。</p>
+<p>但我没有再去看过她。</p>
+<p>时间，却像翻书一样快啊，刷刷刷过去了十多年。我早就从邮政系统辞职，自己开了家文化公司。我依然保持每天都写小说的状态，虽然比不过网文大神们，但旺盛的写作欲望从未变过。而在我的书架上，还有当年卡佳送的书。</p>
+<p>唯一小小的遗憾是，我还没去过莫斯科，尽管我的书在那里翻译出版过。如果我有机会去莫斯科，我会去一个地址——卡佳的明信片里所写的，每个星期都要投递到那里，收件人的名字叫格奥尔基。</p>
+<p>2014年，初秋的一夜，乌鲁木齐的地下通道，听完流浪歌手的吉他弹唱。我忽然，很想给一个人打电话。</p>
+<p>但我没打通她家的电话，也许是搬家了，换号了，还是那栋老洋房被拆迁了？</p>
+<p>回到上海，我才听说——卡佳死了，在一个礼拜前，享年七十九岁。</p>
+<p>我回来晚了，没能送她最后一程，已被火葬场烧了。整理遗物过程中，我发现一个白色信封，上面写着我的名字。打开只有一根头发，银白色细细的长发——这是她最后的希望，如果我能还能找到1958年以前的她的话。</p>
+<p>信封底下压着一张VCD：《莫斯科不相信眼泪》，十多年前我从大自鸣钟盗版碟市场为她买的。人去楼空的顶层大屋，我独自陷落在卡佳的沙发中，打开VCD和电视机重新看了一遍。两个多小时后，电影临近尾声，女主角卡佳微笑着眼含泪水，对着昵称为果沙的格奥尔基，反复说了两遍“我找你找了多久啊”。</p>
+<p>我找你找了多久啊。亲爱的，卡佳。</p>
+<p>我闭上眼睛，仿佛回到二十岁。能在那个年纪，遇见卡佳，是我一生莫大的幸运。</p>
+<p>卡佳去世的一周年忌日，我回到思南路上，那栋洋楼的顶层早已换了主人。我把车停在路边，独自在梧桐树下漫步。阿娘面馆早已搬到对面，我常给卡佳买东西的烟纸店变成了房产中介，只有我上过班的邮局没变。如果她还活着的话，我想带她去国泰电影院，我的小说改编的电影又快公映了。</p>
+<p>忽然，从卡佳住过的小花园里，有个男人像风一样冲出来，正巧撞在我身上。</p>
+<p>他大概二十多岁的年纪，很客气地向我说对不起。我发现他长得跟我很像，简直像失散多年的同胞弟弟。他穿着土得掉渣的工装服，皮鞋也是那种土黄色的老货，发型像从博物馆里出来的。他小心地张望四周，向我问道，今年是哪一年？</p>
+<p>2015年，公元后，我很耐心地回答。</p>
+<p>他掐着手指算了算，嘴里念念有词。糟糕，时间又算错了，这么说来，她已经八十岁了？</p>
+<p>我问他，你找谁？</p>
+<p>请问你住在这里吗？是否认得一个女——是老太太，她叫……</p>
+<p>万事并非与生俱有</p>
+<p>莫斯科不是一天建成</p>
+<p>她被烧毁过很多次</p>
+<p>她在废墟中长大</p>
+<p>树木向天空伸展</p>
+<p>因为它们相信天空</p>
+<p>而天空相信热情</p>
+<p>相信这善意的大地</p>
+<p>阿列克桑德拉 阿列克桑德拉</p>
+<p>什么在我们面前飘动</p>
+<p>这是岑柳在马路边</p>
+<p>用华尔兹的舞姿播撒着种子</p>
+<p>岑柳用它树木的婆娑</p>
+<p>谱成动听的维也纳圆舞曲</p>
+<p>它们将破土而出 阿列克桑德拉</p>
+<p>呼吸莫斯科的空气</p>
+<p>花楸树装点着莫斯科</p>
+<p>橡树绅士般站立</p>
+<p>还有排排的岑柳茁壮地成长</p>
+<p>莫斯科期盼着被树荫覆盖</p>
+<p>莫斯科会让每棵小树</p>
+<p>都有生长的地方</p>
+<p>——电影《莫斯科不相信眼泪》</p>
+<p>主题曲《亚历山德拉》</p>
+<p>尤·维兹博夫/词；谢·尼基津/曲</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

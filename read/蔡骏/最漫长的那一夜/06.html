@@ -1,0 +1,1147 @@
+<!DOCTYPE html><html><head><title>06</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="05.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="07.html">下一章</a></p><hr><h1><center>第6夜 杀手李昂与玛蒂尔达</center></h1>
+<p>爱一个人并不是要跟她一辈子的。我喜欢花，难道我摘下来你让我闻闻；我喜欢风，难道你让风停下来；我喜欢云，难道你就让云罩着我；我喜欢海，难道我就去跳海？</p>
+<p>——《纵横四海》周润发台词</p>
+<p>小时候，看过一部吴宇森的港片，周润发、张国荣、钟楚红三角恋的神偷故事。我记住了“祝你们春梦了无痕”，也记住了巴黎的塞纳河与博物馆。我们那个年代，很多男孩子，都憧憬过冒险生涯，把职业大盗或杀手，当做一份有前途的事业，幻想在肮脏的俗世红尘，着一袭黑风衣，遗世独立，穿梭于枪林弹雨，双手握枪，左右开弓，取他人性命于温酒之间。</p>
+<p>时隔多年，渐渐忘了。</p>
+<p>我家楼下，有间小小的兰州拉面，老板和伙计都是青海撒拉族。从前，每周两次学习武术散打，深夜回家路上，会在店里吃一碗面。我知道这习惯不好，好久未曾去了。</p>
+<p>有一夜，我浑身臭汗，双脚踢沙袋有些疼，蓬头垢面，踏入店里。化计们用异样目光瞟我。刚要坐定，才见小店角落，坐着个外国少女。</p>
+<p>兰州拉面店极少来洋鬼子，倒是隔壁的酒吧、美发店、比萨店里，常见几个熬夜的老外，我怕她是走错了门？</p>
+<p>然而，她盯着我，又低头看手机，像是在核对照片。</p>
+<p>我对洛丽塔没兴趣。</p>
+<p>她坐到我对面，没有冲鼻的香水味，更无难闻的体味，却让人醉了。</p>
+<p>你是蔡骏吗？</p>
+<p>洋妞用中文问我，而我真傻，愣了一下，还“诶”等于承认。</p>
+<p>我叫Matilda。</p>
+<p>她怕我没听懂，拿出一张纸，写了四个歪歪扭扭的汉字——玛蒂尔达。</p>
+<p>好熟悉的名字啊，第一反应《红与黑》，带着于连的人头去埋葬的玛蒂尔德小姐。</p>
+<p>于是，我越发仔细看她的脸。</p>
+<p>玛蒂尔达有双灰眼睛，拉面店暗淡的灯光下，发出波斯猫似的绿色反光。她的头发是咖啡色，微微有些小卷，刚好及肩的中等长度，细碎的卷刘海，衬托着她一双直直的眉目。她的容貌不像北欧人那么硬，鼻子也不像南欧人那么钩，反而有些柔和。皮肤没有雀斑，只是单纯而干净的白，不像剥了皮的粉红老鼠般的日耳曼人种。</p>
+<p>虽然，外国人的年龄难以判断，但我想，她不超过十八岁。</p>
+<p>我找李昂。她说。</p>
+<p>Who？</p>
+<p>不是世界卫生组织的意思，虽然，我的英语蹩脚到只会那么一两个单词。</p>
+<p>李昂。</p>
+<p>你的初中同学。她补充了一句，这回普通话发音不标准了。</p>
+<p>记忆短路的几秒钟间，李昂的面孔，浮现在我的大脑里。</p>
+<p>对，就是这个同学，中学时代跟我挺要好的。他经常跑来我家，因为我家有台录像机，可以放各种录像带，吴宇森的《英雄本色》《喋血双雄》《纵横四海》《辣手神探》……都是我和他一起看的，有时还有我的另外几个同学，比如李毅大帝、变硬金刚、蒲松林。</p>
+<p>那时候，李昂说过，他梦想要做一个杀手。</p>
+<p>同学们私下说，就凭他那小身板，弱弱的样子还能做杀手？大概经常被人欺负，就幻想手里有把枪，把敲诈勒索的高年级学生都打死吧。听说他的父母早就离婚，爸爸在欧洲打黑工。后来，他果真出国了，再无消息。</p>
+<p>玛蒂尔达手机里翻出一张照片，背景是九十年代长风公园少先队广场，两个男孩戴着红领巾，一个是我，另一个是李昂。</p>
+<p>抬头看小萝莉的灰绿色眼珠，我问，你是怎么认识李昂的？</p>
+<p>这个深夜，苏州河边兰州拉面店里，玛蒂尔达娓娓道来。她的中文水平很有限，我无法直接还原，只能经过多重过滤，用自己的语言重新组织一遍……</p>
+<p>玛蒂尔达是法国人，住在大巴黎南郊。爸爸是个卡车司机，妈妈是家庭主妇。她十三岁那年，爸爸妈妈开车去蓝色海岸，在里昂出车祸死了。玛蒂尔达成了孤女，没有亲戚，独自住在父母遗下的老房子。她不是个好孩子，从不好好上课，常跟同学打架斗殴。她爱看功夫片，打起架来不要命，男生也会被她打哭。有个女老师早就看她不惯，每天把她揪起来当众羞辱，有一回顺便辱骂了她爸爸——玛蒂尔达的爸爸是法共党员，本地工会的积极分子，每年五一节都要唱着国际歌上街，女老师则是极右翼党员，从前发生过肢体冲突。</p>
+<p>第二天，玛蒂尔达没有再去学校。</p>
+<p>她背起旅行包，骑上自行车，从银行取出五万欧元现金，父母留下的全部存款。</p>
+<p>那个冬天，巴黎下了很大的雪，塞纳河的转角，结了薄薄的冰。</p>
+<p>玛蒂尔达十三岁的脸，冻得像透明的胡萝卜，她去找一个叫Léon的男人。</p>
+<p>出走前夜，她从网上转账了一百欧元，成为欧洲杀手俱乐部的VIP会员，在各个杀手的名单和介绍中，她选中了“Léon”。</p>
+<p>网站里没有照片和姓名，只有一组简单数据——2002年入行，共执行过六十三起任务，成功六十起，失败三起，欧洲排名第四，单次价格五万欧元。条件是只杀一人，仅收现金。</p>
+<p>他们约定在巴黎新桥见面。</p>
+<p>玛蒂尔达紧紧抓着背包，看着雪花落在塞纳河上，有种想要跳进去的感觉。</p>
+<p>一只手从背后搂住了她的腰。</p>
+<p>她回头，看到一个男人，中国男人。</p>
+<p>玛蒂尔达结结实实抽了他一个耳光，叫他滚。</p>
+<p>我是Léon。</p>
+<p>他担心她会跳塞纳河自杀。</p>
+<p>中国男人很瘦，大约三十岁，个头不超过一米七。乌黑的头发与眼睛，穿着就像中国超市的伙计，这样的中国人在巴黎随处可见，其中不乏非法移民。至于容貌吗？在欧洲人眼里，中国人都长一个样。</p>
+<p>你是杀手？</p>
+<p>Léon扭头就走，她拽住他的胳膊，请求他带自己去吃顿晚餐，随便什么都成。</p>
+<p>你身上不是有五万欧元吗？</p>
+<p>嘘！</p>
+<p>玛蒂尔达不敢拿出来，一路害怕被人抢了，饭都不敢吃，饿得心慌。她被带去中国城，吃了碗馄饨。</p>
+<p>然后，她把二万五千欧元交给了这个叫Léon的中国男人，事成之后再付一半。</p>
+<p>Léon说，你现在后悔还来得及，我立刻把钱还给你。</p>
+<p>玛蒂尔达摇摇头，我不再需要了。</p>
+<p>一周后，报纸登出中学女教师遭枪击身亡的消息，怀疑因为被害人的极右翼言论，遭到了北非移民团体报复。</p>
+<p>玛蒂尔达不敢回家，怕被警察逮捕，因为她对同学们说过想把老师杀了。她给Léon打电话，给了他剩余的二万五千欧元。中国男人带她去家小旅馆，开了个房间，先让她洗了热水澡，又陪她吃了顿馄饨。</p>
+<p>旅馆的镜子上，Léon用红笔写下自己的中文名字——李昂。</p>
+<p>随后，又在自己的名字前，加上“杀手”两个字，说这才是全名。</p>
+<p>杀手李昂。</p>
+<p>玛蒂尔达说，你教我中国话好吗？</p>
+<p>好，先教你第一句——晚安。</p>
+<p>李昂离开旅馆，留下女孩孤独地躺在床上，手指摩擦嘴唇，眼神空洞，仰望黑暗的天花板，一丝不着。</p>
+<p>第二天，恰是圣诞节，李昂来跟玛蒂尔达道别，说接了个新任务，要去德国刺杀一个商人。他买了个长毛绒圣诞老人作礼物，还留给女孩五千欧元，最后是一张新的法国护照，让她离开巴黎去南方。</p>
+<p>李昂跨上摩托车，身后响起小猫似的哭泣声，女孩说自己哪里也去不了。</p>
+<p>沉默，叹息，十秒后，他递给她一个摩托车头盔。</p>
+<p>玛蒂尔达破涕为笑，坐上摩托车后座，跟着李昂一骑绝尘，离开大雪纷飞的巴黎。</p>
+<p>那一夜，摩托车穿越法国到德国的公路，女孩脖子上缠着圣诞老人，紧搂着中国男人的腰，头贴在他坚硬的肩膀上，看着依稀寒冷的夜空。女孩包里只有一本书，昨天刚从巴黎旧书店买的，散发樟脑丸味道的老书，玛格丽特·杜拉斯的《来自中国北方的情人》。</p>
+<p>路上走了整个昼夜，经过比利时的布鲁塞尔，摩托车开到莱茵河畔的科隆。</p>
+<p>德国的冬夜，科隆大教堂的尖顶下，玛蒂尔德遥遥远望着北极星。</p>
+<p>她问李昂，你杀过多少人？</p>
+<p>不到一百个吧。</p>
+<p>明天，你就要杀了人吗？</p>
+<p>嗯。</p>
+<p>带着我去，我给你做帮手。</p>
+<p>不。</p>
+<p>如果你不答应，我就去报警，要么你就把我杀了。</p>
+<p>玛蒂尔达抓着他的胳膊，另一只手摸到他的腋下，果然有个硬邦邦的金属物。</p>
+<p>李昂闭上眼睛，口中呵出的白气，在德国的雪夜里融化，缓缓点头。</p>
+<p>晚上，他们住在一间汽车旅馆，只有一张床。玛蒂尔达裹紧了毯子，焦虑地等待着中国男人。然而，一直等到她睡着，始终没有感觉到李昂的存在。</p>
+<p>清晨醒来，玛蒂尔达怀中抱着的是长毛绒圣诞老人，她看到李昂正在给手枪上油。她冲进卫生间，检查身体，确信自己还是处女。</p>
+<p>雪开始融化。</p>
+<p>他们骑着摩托车，来到科隆郊外一间别墅，杀手李昂直接按了门铃。开门的是个大腹便便的德国男人，李昂用还算不错的德语说了几句。</p>
+<p>然后，德国人给他们泡了咖啡，坐在沙发上聊天。</p>
+<p>玛蒂尔达很紧张，也很兴奋。她很害怕，也很期待，期待李昂突然从腋下抽出手枪，瞬间打爆德国鬼子的脑袋。</p>
+<p>但这一幕始终未曾上演，李昂慢慢地跟对方说话，直到德国人的脸色变得僵硬。</p>
+<p>终于，李昂拔出枪，放到桌上。</p>
+<p>德国人退缩到墙角，抱着脑袋，痛哭流涕。玛蒂尔达看在眼里，不知从何升起一股快感，真想在后面踢他屁股几脚，爽！</p>
+<p>李昂打开手提包，掏出几十叠厚厚的欧元，果然是中国人啊，满口袋现金的土豪派头。</p>
+<p>德国人沉默了半个钟头，终于同意了什么约定。他把衣服脱下来，李昂对着衣服开了一枪，正好是心口的位置。德国人重新穿上这件衣服，瞪大眼睛躺在地板上。李昂从包里取出红色颜料，撒在他破了枪眼的胸口上，看起来像具浑身是血的死尸。</p>
+<p>玛蒂尔达明白了什么。李昂掏出手机，从各个角度拍了几张照片。然后，他把德国人从地上拖起来，把桌上的几叠钱塞到他手里，又给了他一张新护照。德国人迅速换了套衣服，戴上帽子和墨镜出门。他没开自己的车，而是叫了辆出租车远去。</p>
+<p>杀手李昂说，他不会再回来了。</p>
+<p>你让这家伙远走高飞，再跟客户说已经杀了他，就能得到剩余的钱？</p>
+<p>是，我不想杀人。</p>
+<p>你不是说你杀过一百个人？</p>
+<p>我骗你的，女孩。</p>
+<p>玛蒂尔达问，我的老师呢？她也没死吗？</p>
+<p>杀手李昂点头，我说要杀她的人，是巴黎北区的阿尔及利亚移民，如果她还想保命的话，最好去法属圭亚那或法属留尼汪岛。她在我的威胁下，拿钱走人。报上刊登的消息，是假的，只为了骗你。</p>
+<p>男人都是骗子吗？</p>
+<p>杀手李昂耸耸肩，跨上摩托车说，至少，现在我没骗你，如果你不信任我，不必上车，回你的法国去。</p>
+<p>玛蒂尔达没有任何犹豫，骑到中国男人后座，搂紧他的腰，脸贴他肩膀，闻他腋下枪口的火药味。</p>
+<p>摩托车穿过德国中部丘陵，途经上萨克森易北河谷，翻越厄尔士山，进入捷克境内。</p>
+<p>八百年的布拉格老城，伏尔塔瓦河上的查理大桥，玛蒂尔达让风吹乱头发，像回到塞纳河。杀手李昂看着桥下冰封的河流，跟周围的行人相比，他是那么不起眼，那么没有存在感，没人会记住他的脸。</p>
+<p>终于，他向玛蒂尔达承认，之所以成为欧洲排名第四的杀手——</p>
+<p>第一，大多数买凶杀人的客户，并非什么黑社会或犯罪集团，而是些可笑的笨蛋。而买凶杀人本身就是件很愚蠢的事，一定有比这个更有效更安全的解决办法。杀人原因通常分为几种：出轨的丈夫为离婚却不愿支付巨额成本，对他们来说最好的妻子就是死了的妻子，所以需要买凶杀妻；经常被上司虐待辱骂想要杀人泄愤或为提升自己职位；比较普通的是干掉生意对手，不过并非跨国公司，而是挣扎在生死线上的小公司，甚至夫妻老婆店的小业主，现在欧洲经济萧条，这种人比比皆是。还有嘛，就是各种千奇百怪的原因，比如嫌邻居开party太吵啊，小时候被同学打过一顿以致终身念念不忘，还有像玛蒂尔达这种杀老师的。</p>
+<p>第二，李昂是个中国人，在欧洲是最适合做杀手的。想要买凶杀人的这些客户，大多看着李小龙和成龙的电影长大，他们印象中的中国人，要么是排队买奢侈品的土豪，要么是个个身怀绝技的功夫高手。因此，李昂这种形象走到客户面前，加上冷酷无情的眼神，没有任何特点的脸，让人绝对难以记住。天哪，不做杀手就是暴殄天物，他必须从娘胎里就开始杀人如麻了。</p>
+<p>第三，李昂太聪明了。他事先调查好杀人对象，发现这些家伙本身确有问题。他会带着几样东西去找杀人对象谈判，一是枪，表明自己随时都可以爆你的头，甚至爆你的菊。二是钱，如果你跟我合作的话，那么对方买凶的预付款，可以分给你一半，作为你离开这个国家的补偿。三是一本全新的欧盟护照。此外，他的包里还有各种工具和颜料，可以伪造杀人现场。通常来说，大部分人都会妥协，拿上钱收拾细软远走高飞，总比留下来变成死尸，或者一无所有成了穷光蛋要好。</p>
+<p>只有三个人不愿意照办，杀手李昂并没有来硬的，只是笑笑离开了。这就是他的六十三次任务记录里，仅有的三次失败差评，其余的六十次都得到了用户好评。不过，那三个人比其余六十个都惨，一个被揭发了强奸幼女的罪行被判处了三十年监禁，还有个被曝光非法交易而倾家荡产最终跳楼自杀，最后一个因为睡了无数有夫之妇被戳穿而被别人老公阉了——背后这一切都是李昂干的，当然。</p>
+<p>玛蒂尔达说，让我做你的帮手，有我这样的女孩在旁边，可以让人感受到我们的善意。当然，我也可以随时变得邪恶，比如——她从口袋里掏出一支仿真枪。</p>
+<p>这一站，杀手李昂的任务对象，是布拉格三只青蛙咖啡馆的老板。</p>
+<p>老板是个七十多岁的白发老头，夜深人静，关了店门。看着不速之客手里的枪，老板并不慌张，只是问是谁要买自己的命。按照杀手行的规矩，李昂拒绝回答这个问题。</p>
+<p>咖啡馆老板摇头说，你知道我是谁吗？</p>
+<p>三十年前的捷克秘密警察头子，杀手李昂回答。</p>
+<p>我得罪过许多人，他们要来夺我性命，但我没想到会是一个中国人。</p>
+<p>老头说罢，又看了看旁边的玛蒂尔达，用流利的法语问，女孩，你多大啦？</p>
+<p>十三岁。</p>
+<p>回家去吧，这里不适合你。</p>
+<p>玛蒂尔达掏出枪，顶着他的脑门。</p>
+<p>杀手李昂说出交易条件，无非是给老头一笔钱，还有一本假护照，离开欧洲去随便哪里。</p>
+<p>老头答应了。</p>
+<p>不过，这次的客户条件比较苛刻，不仅要看到照片，而且是杀人的整个视频。</p>
+<p>按照事先分工，玛蒂尔达用手机拍摄，杀手李昂在镜头前杀人——这个并不算刻意，大部分职业杀手都是有助手的。</p>
+<p>老头干了几十年秘密警察，演戏也算是特长。玛蒂尔达买了一批电影道具，安装在老头的衣服里面。</p>
+<p>她的手机镜头里，三只青蛙咖啡馆，阴郁恐怖，月黑风高杀人夜。杀手李昂出场，他穿着黑色皮夹克，端着以假乱真的贝雷塔道具枪。老头惊慌失措后退几步，摆出各种企求的表情，从口袋里掏出许多钱，从抽屉里翻出值钱的古董，却都无法阻拦杀手完成任务。</p>
+<p>随着李昂枪响，玛蒂尔达按下开关，老头胸口爆开个血洞，痛苦倒地。冷酷的杀手又补了他两枪，咖啡馆的地板上血流成河，手机拍下全部过程，直到确认死亡。</p>
+<p>老头喘回一口气，玛蒂尔达把他拖起来。老头说，我能不能亲你一下？</p>
+<p>玛蒂尔达看了看杀手李昂，而李昂背过身去，点点头。</p>
+<p>老头亲吻了她的脸颊，低声说，你很像我的孙女。</p>
+<p>她在布拉格吗？</p>
+<p>不，三年前，她和她的爸爸妈妈，都被炸死了，那颗炸弹是来杀我的。谢谢你们！</p>
+<p>老头换好衣服，趁着夜色离开三只青蛙咖啡馆，也许他会去布宜诺斯艾利斯，再开家三个老兵咖啡馆，中国人懂的。</p>
+<p>这一晚，李昂与玛蒂尔达在咖啡馆度过，杀手躺在长椅上，女孩睡在柜台后面。</p>
+<p>用作道具的鲜血已被擦净，明早的布拉格，又多了起失踪案而已。</p>
+<p>杀手李昂顺利拿到酬金——剩余的二万五千欧元。他的卡里还有十五万欧元，足够在布拉格生活好一阵子了。</p>
+<p>他们在郊外租了个老房子，每天去深山间练习射击。玛蒂尔达总是跟着他，几乎寸步不离，害怕李昂会甩下她独自走了。</p>
+<p>如果，有警察来抓住他们，肯定会把李昂以诱拐少年儿童的罪名关进监狱的。</p>
+<p>玛蒂尔达问过一个问题——三只青蛙咖啡馆的老板，那个逃跑的老头，我查过他的资料，从1980年到1985年，他杀过许多无辜的人。这样的人，其实早该死了，你为什么不杀了他？</p>
+<p>1980年到1985年？泰坦尼克号字幕组的捷克斯洛伐克，跟我有根毛的关系？</p>
+<p>杀手李昂拿起枪，对准远远树梢上的一只鸟，说，亲爱的玛蒂尔达，你迟早会明白的，在这个世界上，没有谁对谁错，或者说，我们都是错的。</p>
+<p>他们去了欧洲许多地方，走遍挪威的北极峡湾，爱琴海上的小岛，西班牙的阿尔罕布拉宫，还有莫斯科不相信眼泪。每次都是执行杀人任务，当然无一例外都成了放人。</p>
+<p>风尘仆仆的一路上，玛蒂尔达跟着李昂学习中国话，从一二三四学起，直到学会“我和我的小伙伴们都惊呆了”“画面太美不敢看”“我只想安安静静地做个美男子”……</p>
+<p>李昂给她看从前照片，包括中学同学们的合影，其中有个家伙现在是作家。</p>
+<p>杀手李昂与玛蒂尔达是最佳拍档，与其说是杀人，不如说是拍微电影。因为大多数客户，都要求看完视频才给好评。杀手李昂是男一号，被“杀”对象则被迫演起男二或女一。玛蒂尔达更有编剧和导演天赋，兼灯光师、化妆师、道具师与剪辑师，为让每次杀人都有创意，尽量逼真写实，避免千篇一律引起客户怀疑，她精心编排了各种不同的杀人环境及流程——</p>
+<p>阳光下杀人，月光下杀人，浴缸与马桶上杀人，飞速行驶的汽车里杀人，波罗的海私人游艇上杀人，古罗马大斗兽场里杀人，欧冠决赛看台底下杀人，《天鹅湖》芭蕾舞剧中杀人，冯·拉斯提尔的片场里杀人，学习吴宇森电影在放鸽子中杀人，更为惨烈血腥的有昆汀塔伦蒂诺风格，最后升级为韩国导演奉俊昊的阴郁现实主义风。</p>
+<p>两年过去，玛蒂尔达，个子长高，胸部挺起，骨盆都变大了，不再像个小姑娘。</p>
+<p>不过，她还是处女。</p>
+<p>杀手李昂接到了新的任务，目的地是波黑首都——萨拉热窝。</p>
+<p>客户要暗杀的对象，住在1914年刺死奥匈帝国皇储斐迪南大公的那条街上。</p>
+<p>李昂自言自语了一句：瓦尔特保卫萨拉热窝。</p>
+<p>玛蒂尔达听不懂，她只是有种不祥预感，抓着杀手的胳膊，把头靠在他的肩上说，李昂，我们已经攒到很多钱了，什么时候洗手不干？</p>
+<p>我不知道，除了干这行，我还能干什么？</p>
+<p>开家小旅馆吧，情人旅馆，不错的主意吧。</p>
+<p>去哪里？</p>
+<p>我想去越南——她正在第三遍看玛格丽特·杜拉斯的《来自中国北方的情人》。</p>
+<p>杀手李昂不置可否地看着她的眼睛，埋头在她的长发里，猛烈呼吸着女孩体味，瞬间就要心软。</p>
+<p>但在他做决定前，先要完成今天的任务。</p>
+<p>敲开一户不起眼的人家，有个五十来岁的塞族男人，戴着一副老花眼镜，正在专心地阅读《哈扎尔辞典》。</p>
+<p>按照惯例，杀手李昂拿出枪，再拿出钱和护照，让对方做选择题。</p>
+<p>然而，那个家伙直接从书本里抽出一支枪，还没等玛蒂尔达反应过来，一颗子弹已打进了杀手李昂的胸口。</p>
+<p>不是道具枪！</p>
+<p>鲜血飞溅到玛蒂尔达的脸上以及嘴角，第一次尝到中国男人体液的滋味，有些咸，有些涩。</p>
+<p>在对方要开第二枪之前，玛蒂尔达把手机扔了过去，准确地砸中了老家伙的眼镜。</p>
+<p>他的手枪也掉落了，正在他满地找眼镜之时，玛蒂尔达拖着浑身是血的杀手李昂，艰难地逃出了这栋房子。</p>
+<p>她踩下摩托车的油门，杀手李昂靠在她的后背上，飞快地开过曾经引爆第一次世界大战的街道。</p>
+<p>萨拉热窝郊外的医院，玛蒂尔达将李昂送入手术室，拿出包里的两万欧元现金。</p>
+<p>三个小时后，子弹从肺里被取出了，李昂总算捡回一条命。</p>
+<p>但他们不敢在医院停留，害怕那些混蛋很快会追来。玛蒂尔达继续开摩托车，载着李昂飞驰过波黑的山区。第二天，到达克罗地亚的萨格勒布，这才放心地转入一家医院。李昂醒过来后，只在医院躺了一星期，他就要求出院离开。</p>
+<p>玛蒂尔达重新调查了萨拉热窝的杀人对象，才发现死里逃生是他们命大——那家伙是前波黑塞族军事首领。九十年代的波黑内战期间，此人亲自指挥了多场屠杀，至少有数百名穆族平民被杀害，包括许多不到十二岁的男孩，他说这些男孩长大了，就会拿起枪屠杀塞族人。后来，他逃过了海牙国际法庭的审判，隐居在萨拉热窝的老城区里。</p>
+<p>几天后，在匈牙利的一个汽车旅馆，玛蒂尔达在给杀手李昂的伤口换绷带，并用热水为他擦洗身体。他的肌肉明显不如欧洲人，却有一种中国人特有的肤色，至少皮肤摸上去很舒服。他的胡楂比较茂盛，虽然蓄不起大胡子。有时候的清晨，可以看到他身体的变化，显然他是个健康的男人，比大多数人更健康——但她不明白，为什么他还不要她？</p>
+<p>此刻，电视机里有条新闻，在伊斯坦布尔发现一具尸体，漂浮在博斯普鲁斯海峡上，土耳其警方已确认，此人正是八十年代捷克秘密警察头子。电视上有死者的照片，以及年轻时与几年前的近照。玛蒂尔达认出了这张脸，布拉格三只青蛙咖啡馆的老板。</p>
+<p>杀手李昂说，我们必须走了，客户已知道我在说谎，他们不会放过我的。</p>
+<p>这个客户很厉害吗？</p>
+<p>我不知道，但是，涉及到要杀政治人物的，恐怕都不是好鸟。</p>
+<p>等一等，我猜，雇你去萨拉热窝杀人的，跟雇你去布拉格杀人的，是同一个客户。</p>
+<p>没错。</p>
+<p>玛蒂尔达长大了，她发觉自己比这个傻傻的杀手李昂聪明多了。你还不明白吗？那个狗娘养的，发现你没有完成杀人任务，不但放走了猎物，还拍假视频欺骗了他。对方非常气愤，决定报复我们，让你去执行一桩危险的任务，是要假借萨拉热窝的混蛋之手，把我们都干掉！</p>
+<p>杀手李昂懂了，他们连夜逃离汽车旅馆。还是由玛蒂尔达开车，虚弱的李昂趴在后面，把头埋在咖啡色的长发间，像只落难的宠物狗。</p>
+<p>两昼夜后，经过维也纳和希特勒的故乡林茨，再次进入德国巴伐利亚境内。他们一路向北驶去，一直到荷兰的鹿特丹港。这是莱茵河的入海口，也是欧洲最大的集装箱港口。他们带着摩托车坐上滚装船，经过波涛翻滚的北海，抵达了英国伦敦。</p>
+<p>玛蒂尔达说她很想去一个地方——墓地。</p>
+<p>天色昏暗，来到伦敦郊外的海格特公墓，玛蒂尔达带着他兜兜转转，直至一座花岗岩纪念碑前。有个德国老头的雕像，刻着几行镏金大字，玛蒂尔达用结结巴巴的英语念出来——</p>
+<p>“全世界无产者联合起来”</p>
+<p>还有一句：“哲学家们只是用不同的方式解释世界，而问题在于改变世界。”</p>
+<p>马克思的墓。</p>
+<p>墓前的无数鲜花大多是中国公费旅行团献上的，现在空无一人。马蒂尔达也给墓碑献了一束花，她的爸爸妈妈都是法共党员，她小时候跟父母来过这里，记得爸爸还唱了首国际歌。</p>
+<p>杀手李昂说，我曾是中国共青团员，不知道现在退团了没有。</p>
+<p>我介绍你加入法国共产党吧，玛蒂尔达勾住他的脖子说。</p>
+<p>这时候，李昂不想开玩笑，他说，那个客户是个大人物，已下达了全球必杀令，对我的人头的悬赏额，可能高达数百万欧元。玛蒂尔达，你快点走吧，这是你能活下去的唯一办法。真正的职业杀手，随时都找到我们。</p>
+<p>你要我离开你？</p>
+<p>是，赶快走吧，要么我离开你？</p>
+<p>玛蒂尔达，忍着眼眶里的泪水说，好吧，我可以走，但有一个条件。</p>
+<p>说。</p>
+<p>你必须答应我。</p>
+<p>都快要死了，还有什么不能答应的？</p>
+<p>跟我做爱。</p>
+<p>这……</p>
+<p>我不管。</p>
+<p>玛蒂尔达用嘴唇封住他的口。</p>
+<p>杀手李昂挣脱道，玛蒂尔达，其实，我是想等你，等你长大。</p>
+<p>如果，我长不大了呢？如果我明天就死了呢？如果你明天就死了呢？马克思给我们的时间太短了。</p>
+<p>你一定要的话，什么时候？</p>
+<p>现在。</p>
+<p>什么地方？</p>
+<p>这里。</p>
+<p>玛蒂尔达如是说，杀手李昂困惑地抬头，这是公墓啊，节操呢？</p>
+<p>一不留神，他被她推倒在墓碑前的草地。</p>
+<p>在最漫长的那一夜，伦敦北郊近乎透明的星空，像散落的水晶珠链，弥漫着少女刘海间的气味。</p>
+<p>年轻的玛蒂尔达，用身体融化着杀手李昂。来自中国的男人。在伟大的马克思墓前，告别处女生涯，没有比这更庄严更伟大的誓言了。她想。</p>
+<p>清晨，马克思看着一览无遗的他们。</p>
+<p>玛蒂尔达抚摸杀手李昂的胸口，他却说，你要履行诺言，从今往后，我们，永不再见面。</p>
+<p>好，但我们要找个分手的好地方。</p>
+<p>在哪里？</p>
+<p>你还记得吗？我们第一次见面。</p>
+<p>巴黎，塞纳河，新桥。</p>
+<p>对，我们的最后一次见面，应该在伦敦，泰晤士河，滑铁卢桥。</p>
+<p>玛蒂尔达真会选地方，滑铁卢桥，既与法国有关，又是《魂断蓝桥》的那座桥。</p>
+<p>上午，十点，伦敦常见的细雨。</p>
+<p>杀手李昂与玛蒂尔达，来到滑铁卢桥上。这座泰晤士河弯曲处的桥，是伦敦风光最好的所在，西是威斯敏斯特与伦敦眼，东有伦敦城和金丝雀码头。</p>
+<p>男人三十二岁，女孩十五岁，车水马龙，熙熙攘攘，雨霁风光。</p>
+<p>送君千里，终须一别。</p>
+<p>吻别。</p>
+<p>雨水夹着泪水，冰冷夹着温热，好湿好湿的一个吻。</p>
+<p>同时，杀手李昂的视线，越过少女的头发与香肩，看到两个黑衣男子。再回头，桥的另一端，也有几个形迹可疑的男人，正向他冲来。</p>
+<p>作为一个职业杀手，他知道1978年9月7日，保加利亚叛逃作家乔治·马可夫，就是在这座滑铁卢桥上被克格勃特工用毒雨伞刺死的。</p>
+<p>杀手李昂推开玛蒂尔达，翻身跳下桥边栏杆。</p>
+<p>刹那间，玛蒂尔达想要抓住他，却只摸到他的衣袖，眼睁睁看他消失，没入细雨涟漪中的泰晤士河。</p>
+<p>黑衣男人们聚在桥边，有人跳下河去寻找，但无论如何找不着。伦敦警方打捞了三天，仍旧一无所获。</p>
+<p>至于玛蒂尔达，在滑铁卢桥趁乱逃跑，一路泪奔。</p>
+<p>她想，这辈子所有眼泪，在这半小时内流尽了吧。</p>
+<p>玛蒂尔达说到此处，苏州河畔兰州拉面店，幽暗灯光下，我看着她的双眼，泪光泛滥的灰绿色眼球，让我想起童年养过的一只叫小白的猫。</p>
+<p>我已吃完一碗拉面，也给她也点了一碗。十八岁的法国少女，不习惯这种味道，只尝几口就推到一边。</p>
+<p>玛蒂尔达说，自从伦敦滑铁卢桥上一别，再无杀手李昂的消息。</p>
+<p>三年来，她从未放弃寻找那个中国男人。</p>
+<p>走遍了整个欧洲，也去过北美与南美，包括法国人的后花园非洲。</p>
+<p>但他不见了，不知是死，是活？</p>
+<p>许多个夜晚，她梦回马克思墓前，泥土芬芳的草地，数尺下的骨头与幽灵，中国男人身上的淡淡气味，她深深嵌入他肌肉的手指……每次她都会用这根手指来自慰。</p>
+<p>在她十八岁生日这天，决定来到杀手李昂的故乡——中国，上海。</p>
+<p>李昂中学时代的旧照片，一直存在玛蒂尔达手机里，她也记得我的名字。她费尽心思，通过法国领事馆的关系，一路找到我家楼下。</p>
+<p>女孩只问我一句——你知道李昂在哪里吗？</p>
+<p>我闭上眼，摇摇头。</p>
+<p>耳边一阵哭泣声，玛蒂尔达哭得梨花带雨，直教人怜香惜玉，好想上去啃她一口。</p>
+<p>我开始嫉妒杀手李昂同学了。</p>
+<p>忽然，她抬起胳膊，伸出食指，翘起拇指，蜷缩其余三指，这是手枪的姿势，对准我眉心开了一枪。</p>
+<p>砰……</p>
+<p>感觉真有颗子弹打中了我。</p>
+<p>子夜零点，苏州河边的兰州拉面店，我差点从椅子上摔倒。</p>
+<p>我骗了玛蒂尔达。</p>
+<p>差不多，一年前，还是这个地方，这个时间，我的初中同学李昂突然出现，找到我一块吃了碗牛肉拉面。</p>
+<p>虽然，那么多年未见，但我有种感觉，李昂还是那个李昂，丝毫都没变过，就跟十几岁时那样。只是，从他的眼神里，偶尔露出某种东西，像藏在云朵间的月光，时而分明，时而晦暗，时而令人目眩。</p>
+<p>他说自己刚回国，没有职业，独自飘着。</p>
+<p>我问他住在哪里。他不肯回答。</p>
+<p>高中毕业，李昂卖掉老宅，攒钱去欧洲读书。他爸爸在巴黎开了家小中餐馆，常被当地黑社会骚扰，每次报警都没用。终有一天，爸爸忍无可忍，掏出一把枪来赶走流氓，结果有人一刀捅死了他。法国警方敷衍了事，明知那几个混混是凶手，却总以证据不足为由，将他们抓进警局又放掉。</p>
+<p>第二年，李昂用爸爸留下的那把手枪，亲手打死了那三个法国混混。</p>
+<p>他成了通缉犯，买了本假的欧盟护照，从此在欧洲流浪。他重看了所有的吴宇森电影，学会像周润发或张国荣那样举枪摆pose。他练得了一手好枪法，杀人干净利落，绝不留半点恻隐之心，捧起了职业杀手这门饭碗。将近十年间，他杀了六十多个人。但他藏不住钱，每次赚到几万欧元，很快莫名其妙地花光。他有过许多女人，各个种族与国籍，仅限一个晚上，从不见第二面。</p>
+<p>但他没有碰到过少女。</p>
+<p>他说，三年前，因为没能完成任务，惹怒了一个大人物，招致对方的全球追杀。而今他走投无路，只能逃回中国避难。</p>
+<p>李昂特别关照我，如果，遇到一个叫玛蒂尔达的法国女孩，就说没听到过他的消息，绝不能让她找到自己。</p>
+<p>因为，大人物派遣的杀手们，随时随地会上门，要是玛蒂尔达找到他的话，便会跟他一起死。</p>
+<p>那个深夜，李昂行色匆匆离去，没留下任何联系方式。</p>
+<p>但我记住了玛蒂尔达这个名字。</p>
+<p>一年后，同样地点，同样时间，她果然来了。</p>
+<p>对不起，我还是没有把这个秘密，泄露给玛蒂尔达。</p>
+<p>我不知道这是为了李昂，还是为了她，抑或为了我自己。</p>
+<p>玛蒂尔达一无所获，临别之时，我送她到桥上。十八岁的法国女孩，问我这条河叫什么。我说是苏州河，不是塞纳河。</p>
+<p>后半夜，河上晚风习习，静水深流。</p>
+<p>她说，在我眼里，都一样呢。</p>
+<p>笨猪。</p>
+<p>傻驴。</p>
+<p>我用我仅有知道的两个法语单词跟她道别。</p>
+<p>几天后，待到确认玛蒂尔达返回欧洲，我开始疯狂地寻找杀手李昂。</p>
+<p>通过我的表兄，叶萧警官的打听，很快有了下落。</p>
+<p>杀手李昂死了。</p>
+<p>他死了还不到一周，在玛蒂尔达找到我的那一夜，有两个外籍杀手，同时找到李昂，在上海郊外小岛上的出租屋。他没有反抗，立刻被枪杀了。</p>
+<p>不巧正有巡警路过，两名杀手在逃跑过程中，相继被捕。根据杀手的审问记录，以及国际刑警组织的材料，证实李昂确实是个杀手。在欧洲有充分证据表明，他至少杀死过六十个人。但自五年前起，他不再杀人了。</p>
+<p>可是，玛蒂尔达跟我说的那些，又是怎么回事？她说杀手李昂一个人都没杀过，一切都是他们两个人假扮的。究竟哪个才是真相？</p>
+<p>以下纯属我的猜测——</p>
+<p>我的初中同学李昂，因为经营中餐馆的父亲被杀，走上职业杀手这条路。在欧洲的十年间，他以冷酷无情而出名，夺去过许多人的生命，直到遇见一个叫玛蒂尔达的法国少女。</p>
+<p>杀手李昂告诉玛蒂尔达，所谓职业杀手都是假的，陪她玩起伪装杀人的游戏。</p>
+<p>他本有机会在布拉格，三只青蛙咖啡馆，杀死捷克前秘密警察头子。但他没有这么做，反而同玛蒂尔达一起，精心演出杀人视频，放走曾经作恶多端的猎物，犯下职业杀手的大忌。</p>
+<p>很难说他这么做的原因。也许，是厌倦了杀人？也许，只是为了玛蒂尔达？</p>
+<p>两年后东窗事发，某位大人物甚为震怒，派人杀死捷克老头同时，又雇佣杀手李昂去萨拉热窝执行任务，目的是借刀杀人。最后，李昂在无数杀手围捕下，跳入伦敦泰晤士河失踪。</p>
+<p>杀人令一旦发出永不撤销。</p>
+<p>我相信，最近三年来，玛蒂尔达一直被人跟踪，她自己浑然不觉。因为她来到中国，才引来两名杀手。通过特殊的渠道，杀手发现李昂藏身所在，杀了他。</p>
+<p>至今，玛蒂尔达还不清楚这些秘密，还是让她永远都不知道的好。</p>
+<p>她已拥有了新的身份，刚考入巴黎国际电影学院，学习导演专业。她说，她最擅长拍枪战片，吴宇森的风格。我相信。</p>
+<p>而她才十八岁，我想，再过两年，她会忘记的。</p>
+<p>那个叫杀手李昂的中国男人，不过是一个法国女人漫长而精彩的生命中的过客。</p>
+<p>在中国警方保管的死者遗物中，我看到杀手李昂的钱包，沾满遇害时的血迹。钱包夹层里，滑出一张淡淡的照片——</p>
+<p>照片里下着鹅毛大雪，似是巴黎，塞纳河上，十三岁少女，咖啡色长发，灰绿色眼睛。</p>
+<p>你站在桥上看风景，看风景的人在桥下看你。</p>
+<p>其实，她在等待一个叫Léon的杀手。</p>
+<p>女孩目光深处，泄露焦虑与恐慌，是否放弃杀人，还是回到学校？</p>
+<p>彼时彼刻，一个叫李昂的中国男人，站在桥下凝望并犹豫，要不要走到她面前？同时，他偷拍了这张照片。</p>
+<p>塞纳河新桥上的那个瞬间，杀手李昂爱上了玛蒂尔达。</p>
+<p>“你杀了人以后，一切都会变了。你的生活就从此改变了，你的余生都要提心吊胆地过活。”</p>
+<p>“我不管将来如何，Léon，我只需要爱，或者死。”</p>
+<p>——《这个杀手不太冷》</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

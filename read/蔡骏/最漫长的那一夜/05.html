@@ -1,0 +1,1050 @@
+<!DOCTYPE html><html><head><title>05</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="04.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="06.html">下一章</a></p><hr><h1><center>第5夜 我与李毅大帝在世界杯</center></h1>
+<p>足球是这样一种游戏，许多人随着一个球满场上跑来跑去，想尽一切办法把球踢进别人的大门里，也就是踢到对手的大门里。同时要把守住自己的大门。比赛双方是十一个人对十一个人。</p>
+<p>——《中锋在黎明前死去》奥古斯丁·库塞尼（Agustín Cuzzani）</p>
+<p>那一年，李毅大帝初中毕业。</p>
+<p>李毅是我的同学，“大帝”是他的外号。在上海市普陀区的五一中学，少男少女们都在长个子，唯独李毅瘦瘦小小，发育不良，远看像小学生，喉结很晚才突出。每逢提起他，人们会说：“哇，李毅大帝啊！”跟着各种吐槽，因为他的外号跟形象恰成反比。</p>
+<p>李毅大帝是知青子女，出生在安徽蚌埠。他学习成绩糟糕，有一年数学只考六分——我没有打错字，令人发指的一百分里的六分。</p>
+<p>我有一台任天堂红白机，专打1990坦克大战与魂斗罗。我常和李毅坐在一起，用双打模式加三十条命，一路打到最后一关。电脑还没普及，更没有VCD，但我家有日本牌子的录像机。我俩爱看英雄本色系列港片，还有尚格云顿的美国暴力片，偶尔有周星驰的赌片。</p>
+<p>而李毅既没有游戏机，也没有录像机，家里只有台黑白电视机，还常飘雪花。</p>
+<p>那一年，世界杯来了。</p>
+<p>据李毅大帝说，他七岁开始踢球，为什么没去少体校？他说，少体校的教练来看过他，但他太瘦小了，完全经不起别人一扛，就整个人滑翔出去。到现在，这个选材标准也没变过。</p>
+<p>但我想，与其跟少体校那帮流氓混在一起，李毅还不如跟我谈天说地，下四国大战军棋，互相传阅军事历史书，多么高端洋气上档次的娱乐方式啊。</p>
+<p>那年夏天，中考同时，世界杯开幕了。</p>
+<p>1994年，美国在地球另一端，为照顾欧洲观众，许多比赛放到中午与下午。对于中国人，就是子夜与凌晨。我一场直播都没赶上，只能在第二天打开电视看两眼。</p>
+<p>世界杯小组赛第二轮，漫长而残酷的中考结束了。</p>
+<p>我考砸了。</p>
+<p>等待考分公布的过程中，最后一个初中暑假开始，李毅大帝找到我说——新民晚报杯也开始了。</p>
+<p>新民晚报杯，就是上海市中学生七人制足球比赛。赛制跟世界杯差不多，但有两千多支球队，可以自由组队，先是小组赛，然后是不断的淘汰赛……</p>
+<p>那年头，拜中央电视台韩乔生老师所赐，意甲最为流行，又以AC米兰球迷为多。我看到各种亚平宁范的队名：AC上海、国际上海、A米国米联合FC、虹口那不勒斯、五角场罗马、桑普药水弄多利亚、静安佛罗伦萨寺、八仙桥比萨斜塔、曹杨八村贝鲁斯科尼，就差一支提篮桥基督山伯爵队了。</p>
+<p>给球队起名字的任务，自然落到我身上。憋了半天，想出一个霸气侧漏加文艺小清新加SM重口味的队名——</p>
+<p>“大自鸣钟索多玛一百二十天队”</p>
+<p>听起来拗口，但有帕索里尼代言。大自鸣钟是我们所在地标。至于那部电影，我还没看过，甚至不知道萨德侯爵，只听说有一部世界有名的禁片。凡是有人问起我这名字来历，我一律回答：意大利社会主义革命主旋律科教片。</p>
+<p>最麻烦的是队员，至少要凑满七人，可我们班愿意参赛的，只有我和李毅大帝两个。</p>
+<p>去哪里挖人呢？李毅大帝率先看中他的邻居。小伍，比大帝小一岁，还在读初中，个头已经一米八了，强壮的身体放到古代就是刽子手的料。他读书不用功，父母担心他不能初中毕业。小伍不在乎，整天往工人体育场去踢野球。</p>
+<p>我想到白哥，忧郁青年，肤色挺白，瘦瘦长长，许多女生喜欢他。有天下午，他突然从教室消失，我们才知道他辍学了。很意外，九十年代还会有这样的事。他家太穷，读书稀烂，索性早点出社会。他打工赚钱，穿得不错，兜里插着包双喜，很有香港仔的感觉。</p>
+<p>我们借了几张别人的学生证完成报名，分配到普陀区第十三小组。报名站有许多散兵游勇，想参赛却找不齐人组队。我们像团购抓来两个家伙，但都是胖纸。</p>
+<p>一个叫大胖，普陀中学的，跟我们一样刚完了中考。他有一米九的个头，行动倒也敏捷，被分配到了守门猿的位置。</p>
+<p>二胖是市一中学的，读书不错，戴着眼镜，摆明了将来要读大学。但他狂热地崇拜荷兰橙衣军团，尤其三剑客。当我们答应收他入队，他激动地流下了眼泪。</p>
+<p>我去体育用品商店，用零花钱买了一套球衣，一颗足球。</p>
+<p>训练第一天，在静安区工人体育场。四十度的烈日底下，我被晒成了煤炭。“长寿街道马拉多纳”李毅大帝演示盘带功夫，教我们热身、停球、传球、跑动、射门……</p>
+<p>场边有个社会青年，总是骑着助动车，叼着烟看我们踢球。看在他长得很像梁朝伟的份上，我把他拉进队伍，正好十八岁，符合参赛年龄。</p>
+<p>他叫阿飞。</p>
+<p>最终，是他毁了我们。</p>
+<p>李毅大帝、小伍、白哥、大胖、二胖、阿飞，还有我——大自鸣钟索多玛一百二十天队凑齐了七个人。</p>
+<p>后来，当我每天傍晚回家看《灌篮高手》，发现樱木花道、流川枫、三井寿们，倍感亲切。</p>
+<p>给我们的时间很短，不足十天。每个早晨，我穿好球衣，脚踩回力牌跑鞋，抱着足球赶到静安区工人体育场。因为不能换人，必须七个人打满全场六十分钟。我们跑圈锻炼体能。晚上，我在家里的楼道跑步，从一楼到六楼来回爬十遍，直到大汗淋漓地洗澡睡觉。</p>
+<p>世界杯小组赛结束，我成了阿根廷的铁杆球迷。那是迭戈·马拉多纳最后一次作为球员参加世界杯。阿根廷首战打希腊四比零，次战二比一拿下非洲雄鹰尼日利亚。但在最后一场小组赛前，马拉多纳被查出禁药而禁赛，阿根廷零比二败给保加利亚。</p>
+<p>而在我们的世界杯上，大自鸣钟索多玛一百二十天队，第一场比赛，开始了。</p>
+<p>下午两点，七个人顶着烈日，分别乘坐公交车、自行车、助动车以及步行，抵达小组赛的光新路体育场——后来早就拆掉了，约是现在中山北路乐购的位置。</p>
+<p>足球场被分成两块，同时两场比赛。边线各立一道球门，上下半场各三十分钟。没有边裁，只有一名主裁，没有越位球的限制。同组有八支球队，单循环比赛，前两名出线，竞争将是异常残酷。每天一轮的比赛密度，也堪称是魔鬼赛程。</p>
+<p>对手叫甘泉二村B52队，队长是位军事爱好者。他们普遍块头比我们大一圈，板凳上坐着三个替补队员。</p>
+<p>根据赛前布置，我们七人排成“二二二”攻击阵型——大胖守门，我踢左中卫，二胖右中卫，白哥与阿飞担任左右前卫，李毅大帝与小伍搭档锋线，形成一高一快组合。</p>
+<p>裁判员哨响，对方拿球进攻，一团乱战后，球落到我的脚下。有人过来逼抢，我紧张得浑身哆嗦，本可以轻松处理或传球，却直接一脚踢出边线。对方扔界外球，二胖脚底打滑摔倒，被对方射门得手。</p>
+<p>零比一。</p>
+<p>中场休息，有人埋怨了我几句，但李毅大帝说：没关系，继续踢。</p>
+<p>下半场，白哥第一个抽筋，接着是我。只有最瘦弱的李毅大帝，仍然不知疲倦地带球护球摆脱，完成了不下三次射门。</p>
+<p>但，没进球。</p>
+<p>第一场比赛，大自鸣钟索多玛一百二十天队输了。</p>
+<p>烈日被乌云取代，转眼下起大雨。我们没有带伞，全被淋得湿透，坐在体育场的看台下。七个男孩脱掉球衣，光着肌肉蓬勃的上身，彼此沉默地滴水，看着雨水汇成的透明的墙，阻挡在我们和足球场之间。</p>
+<p>李毅大帝拍了拍我的肩膀：没关系，明天再来！大不了，连输七场，再回家。</p>
+<p>第二天，雨停，积水。只要皮球没飘起来，比赛继续。</p>
+<p>这回对手比我们矮小，我带球过人的自信来了，一路杀到底线传中。李毅大帝小宇宙爆发，一个头球顶入对方球门左上角。</p>
+<p>沟……GOAL……</p>
+<p>大自鸣钟索多玛一百二十天队第一粒进球。</p>
+<p>也是我的第一个助攻。大家呆了片刻，直到裁判响哨，对手垂头丧气地捡球——没想好庆祝进球的动作，是叠罗汉呢，还是学贝贝托做摇篮状？抑或集体在草地上俯冲？考虑到这片球场一片泥泞，布满危险的碎石子，我们选择了最原始的拥抱。</p>
+<p>三分钟后，李毅大帝打进第二个球——抢球左脚推射，从守门员裆下入网。</p>
+<p>中场休息十分钟，我们信心爆棚，觉得下半场还能再进两到三个。</p>
+<p>下半场，阿飞回追时把对方踢倒。一声惨叫，裁判鸣哨，对方包括替补全都冲进场地，要找阿飞算账。眼看是要打架的节奏，我们这边小伍和白哥都已摩拳擦掌，阿飞满不在乎，指着鼻子问候对手的母亲。</p>
+<p>他被红牌罚下。</p>
+<p>形势即刻扭转，六打七，比十打十一吃亏多了。阿飞是中场关键位置，防守顾此失彼，很快被攻进两球，终场二比二。</p>
+<p>到手两分飞了。</p>
+<p>那一年，世界杯刚实行赢球三分制，新民晚报杯还是两分制，至此我们二战仅积一分。</p>
+<p>回去路上，阿飞向我们道歉。他从小在街头打打杀杀出来，断腿见血什么家常便饭。他保证，在球场上会管好自己，不再犯相同错误。</p>
+<p>当晚，世界杯八分之一决赛，阿根廷被罗马尼亚以三比二淘汰。</p>
+<p>没有马拉多纳的阿根廷，就像没有李毅大帝的大自鸣钟索多玛一百二十天。</p>
+<p>但是，白天还有我的世界杯。</p>
+<p>第三场，球场差不多干了，太阳下再度尘土飞扬。</p>
+<p>没有红黄牌记录，所以，阿飞照样上场。小伍率先进球，接着是李毅大帝，然后是白哥漂亮的远射，最后是阿飞将功补过。</p>
+<p>四比零，赢得特么爽了。</p>
+<p>晚上，白哥请客，在长寿路吃白玉兰小笼包。他们都喝了啤酒，白哥与阿飞不停地抽烟，只有我什么都没沾——这个习惯一直保持到今天。</p>
+<p>接着四场比赛，我们以一比零，二比一、三比二获胜。最后一场，惊人的十三比零，李毅大帝演了帽子戏法，我也打进了有生以来第一个比赛进球。</p>
+<p>小组赛，我队五胜一平一负，按两分制积十一分，以第一名出线，耶！</p>
+<p>不过，我们才打进普陀区三十二强。</p>
+<p>第二天，立刻进入淘汰赛，八分之一决赛、四分之一决赛、半决赛，过关斩将，对手已是正规的高中校队。</p>
+<p>普陀区的冠亚军决赛，刚开场我们连丢三球，包括二胖的乌龙。那届世界杯上，哥伦比亚队的后卫因为乌龙球，回国后被本国球迷枪杀了。</p>
+<p>下半场，李毅大帝爆发。他先进两球，最后一分钟，他远远吊门，像导弹飞进球网。</p>
+<p>三比三！</p>
+<p>淘汰赛没有加时，后面有人排队等着进场比赛，直接点球决胜。白哥、小伍、二胖，全部踢飞，而我直接踢给了守门员。只有李毅大帝和阿飞命中。然而，对方更糟糕，总共只踢进一个，我们以点球二比一获胜。</p>
+<p>大自鸣钟索多玛一百二十天队，赢得普陀区冠军，杀入上海市十六强。</p>
+<p>在美国世界杯四分之一决赛与半决赛的同时，作为唯一一支自由组团的队伍，我们连续击败徐汇区与虹口区的冠军，也是两支名牌高中的校队，最终晋级半决赛。</p>
+<p>李毅大帝在十四场比赛中，打进了三十六个球，如果在职业联赛，这是个惊人的数据。</p>
+<p>没有任何媒体关注到我们，场边也没有拉拉队，更没有踢大腿的美少女。即便这样的战绩，我没敢告诉爸爸妈妈，因为他们不许我踢球。</p>
+<p>此刻，地球另一端，世界杯进入冠亚军决赛。</p>
+<p>巴西VS意大利。</p>
+<p>也可以说——罗马尼奥VS巴乔。</p>
+<p>第二天，我们自己的半决赛。深夜，大家组团去大排档。贱岳七支枪，吮小螺蛳，吃烤串，啃鸡腿。有人把电视机搬出来，夏夜街头的树荫下，准备通宵看比赛。</p>
+<p>李毅大帝是意大利球迷，最崇拜罗伯特·巴乔。鉴于阿根廷有一半的移民来自意大利，我和他从未站在对立面过。</p>
+<p>子夜，我妈突然出现，硬把我拖回家睡觉了。当时我很不情愿，但要不是我妈的话，后来发生的事可能会毁了我。</p>
+<p>第二天，我早早起床，打开电视看重播，美国的世界杯冠亚军决赛，竟已到了加时……最终，巴西与意大利打成零比零。</p>
+<p>点球决赛。</p>
+<p>米兰老将巴雷西踢飞，巴西后卫桑托斯罚球被帕柳卡扑出。阿尔贝蒂尼果断射中，但罗马里奥也得手。意大利的艾瓦尼射中，布兰科同样没失手。马萨罗的点球却被塔法雷尔扑出，紧接着邓加射入。</p>
+<p>最后一球，罗伯特·巴乔，面色凝重，慢慢后退，助跑，右脚，取左上角。</p>
+<p>但，飞了。</p>
+<p>巴西人狂欢，第四次捧起世界杯，而我永远记得罗伯特·巴乔哭泣的样子。</p>
+<p>吃完午饭，来到静安区工人体育场，半决赛前的最后一次训练。</p>
+<p>大自鸣钟索多玛一百二十天队，却只剩下六个人。</p>
+<p>阿飞不见了。</p>
+<p>因为，他杀了人，昨晚。</p>
+<p>十多个小时前，世界杯决赛。我的队友们仍在大排档，比分迟迟零比零，陆续回家睡觉去了。直到点球决胜，只剩李毅大帝和阿飞两个人。</p>
+<p>巴乔点球踢飞的瞬间，李毅大帝愤愤地踢飞一个啤酒瓶，滚到某个家伙身边。那人恰好是李毅大帝的邻居，也是个街头混混，仗着人高马大，走到面前嘲笑：喂，这不是大帝吗？干吗火气这么大？</p>
+<p>从小到大，李毅因为生得瘦小，总是遭各种人欺负，他最恨别人这种语气，又加上意大利丢了冠军，便一拳揍倒了对方。</p>
+<p>不曾想，对方有三四个人，围拢过来对付他。阿飞上来帮忙，他习惯性地把啤酒瓶砸碎，举着锋利的碎玻璃冲过去。</p>
+<p>一阵厮打之后，欺负李毅的混混，胸口插着碎玻璃，倒在血泊之中，眼睛瞪大，死了。</p>
+<p>阿飞成了杀人犯，他第一个逃跑，然后是李毅大帝。阿飞不可能回来了，大概已流窜上火车，到了安徽或江西什么地方吧。</p>
+<p>今晚就是半决赛，无人替补。</p>
+<p>先把球踢完再说！这是李毅大帝唯一的话。</p>
+<p>傍晚，我们随便吃了些面包和热狗，穿上新买的统一颜色的球服，坐了一个半小时的公交车，横穿大半个上海，抵达传说中的五角场。</p>
+<p>七点半，江湾体育场。中国现存最古老的体育场，可容纳五万人，两边各有中国古典式的拱门，民国年代最有名的建筑之一。球场四角打出灯光，照亮绿油油的草地，好像在参加甲A联赛。</p>
+<p>与我们争夺决赛入场券的，是静安区的名校华东模范中学足球队，领队是他们的副校长。看台上有几百名拉拉队，统一穿着漂亮的校服，全是华东模范中学的，竟然大半都是美少女。我们这些屌丝望洋兴叹，艳羡不已。</p>
+<p>今晚，对于李毅大帝而言，是命运的分水岭——球场边出现了体育运动技术学院的教练，据说是专门来观察他的，可能破格选入青年队。</p>
+<p>裁判清点人头，发现我们少一人，便问要不要等替补队员。大帝说，没有替补，就这么踢吧。</p>
+<p>半决赛，从第一分钟开始，就是七个打六个。</p>
+<p>华东模范中学的实力超群，个头普遍比我们高大，脚法又像巴西人般灵活，随便趟球就能把我过掉。他们配合娴熟，何况我们人少，防守漏洞百出，接连丢了三个球。</p>
+<p>我不断听到美少女们的掌声与尖叫声。多年以后，当她们大多已为人妻人母，一定会怀念这个遥远的世界杯之夜。</p>
+<p>下半时开场，很不巧，人家又打进两个球。</p>
+<p>零比五。</p>
+<p>夜空下起倾盆大雨，穿透我们疲惫的身体。看台上，人们狼狈逃窜，只剩几个钉子户。</p>
+<p>再见，美少女。</p>
+<p>体院教练也失望地离去，再没机会看到最后那一幕。</p>
+<p>我仍然玩命地奔跑和抢截，直到小腿肚子剧痛，卧草，抽筋。</p>
+<p>你尝过抽筋的滋味吗？比赛暂停，二胖来帮我压腿。</p>
+<p>雨水模糊的视线里，依稀看到几个穿着绿衣服的男人。那年头，警服是草绿色的。</p>
+<p>他们跟裁判说话，我听到几句——昨天凌晨的斗殴事件，有人说李毅大帝也参与了杀人。反正阿飞已经逃跑，对方流氓也翘了辫子，谁都说不清楚。</p>
+<p>警察是来抓李毅大帝的。</p>
+<p>他扑通跪在地：我没杀人，是他们一起打我的，让我踢完这场比赛，我就跟你们走。</p>
+<p>警察压了压帽檐，掩饰着黑眼圈，想必昨晚熬夜看球，点头同意。</p>
+<p>比赛继续，我还在场上，总不见得只剩下五个人吧，勉强在场上步行。</p>
+<p>最后一分钟，李毅大帝独自带球疾进。泥泞大雨之中，双方均已筋疲力尽。大帝连过三人，抬脚远射。</p>
+<p>飞出横梁前，突然下坠，电梯球，迅雷不及掩耳盗铃儿响叮当之势……</p>
+<p>1994年新民晚报杯上最精彩一球。</p>
+<p>全场人呆若植物，任由大雨浇灌。裁判默默点头，吹响终场哨。</p>
+<p>一比五——大自鸣钟索多玛一百二十天队负于华东模范中学队，无缘决赛。</p>
+<p>我和李毅大帝倒在草地上，看着灯光尽头的夜空，密密麻麻的雨点，万箭穿心。</p>
+<p>警察将李毅大帝拽起来带出球场。</p>
+<p>我的眼睛湿润而模糊，看着他孤独的背影。忽然，江湾体育场四角的灯光熄灭，只剩下黑茫茫的雨夜。</p>
+<p>没有三四名决赛，我们也没有任何奖牌或奖金。</p>
+<p>那一年，华东模范中学拿下了总冠军。</p>
+<p>大家公认他们是巴西队，而我们大自鸣钟索多玛一百二十天，是屎样的中国队。</p>
+<p>新民晚报杯，至今仍在举办。二十年来，所有打入十六强的球队，都是各所名牌中学的校队——除了第一届的半决赛，有这样一支街头杂牌军乱入。我与李毅大帝创造的历史，或许将永远保持下去。</p>
+<p>当时，我最关心的是——李毅大帝会不会被判有罪？那时候，杀人罪如果成立，哪怕只有十六岁，也有可能被枪毙。</p>
+<p>七天后，警方调查结果出来，李毅大帝没有参与杀人，经过批评教育后释放。</p>
+<p>只有我在看守所门口等他。</p>
+<p>他默不作声，拒绝了我递给他的娃娃雪糕和光明牌冰砖。他走路的姿势奇怪，歪歪扭扭，两条腿夹得很紧，没走几步就趴下来，揉着自己的屁股。</p>
+<p>很多年后，当“捡肥皂”这个词流行，我才明白他的痛苦。</p>
+<p>过了一个星期，李毅大帝被上海南翔职校录取。但他买了张前往山东的火车票，去蓝翔足球学校报到了。</p>
+<p>他说，想代表中国队踢真正的世界杯，算了算自己的年龄，期望在2002年。</p>
+<p>那年暑假，我给自己准备了一个小本子，每天用笔倾诉郁闷的心情——很多年后，当我成为所谓作家，忽然意识到，这就是写作生涯的开端。</p>
+<p>初中毕业不久，我的母校五一中学被强拆了。原来的学校大门变成夜总会，现在叫“东方魅力”。当你从长寿路武宁南路口经过，会看到那巨大的招牌。</p>
+<p>第二年，我花三百块钱买了甲A联赛的全年套票。上海申花队获得第一个联赛冠军的赛季，我在虹口。</p>
+<p>1995年，深秋。最后一场比赛，拥挤的看台上，我想起大自鸣钟索多玛一百二十天队。但也只是想想，而已。</p>
+<p>他们都已离我远去。</p>
+<p>杀人潜逃的阿飞，成为公安局通缉令上的熟面孔，总是出现在街头的布告栏，四周紧挨着老军医的小广告。他在中华大地流窜了三年，最终在北方某县城落网，判处死刑，枪毙。</p>
+<p>小伍，一度也想去踢球，但被足球学校拒之门外，后来成了待业青年。我最近一次见到他，大约是2000年，他在逐门逐户地推销保险。</p>
+<p>白哥自己做生意。没想到越做越火，在黄河路开了家海鲜店，在吴江路开了家小吃店，在寿宁路开了家小龙虾店，不到二十五岁，买了四套房子。但他不慎沉迷于赌球，输得身无分文，被高利贷切断两根手指，而今不知身在何处。</p>
+<p>大胖进了国有单位，成当一名卡车司机，几年后时来运转，被提拔为小车队长。他通过成人自考，拿到了本科学历。如今，他是一名中层干部公务员，体重超过三百斤，开口闭口都是官腔，新闻联播版的。</p>
+<p>二胖是个好孩子，高考拿到七百多分，进了复旦大学新闻系。他成了一名出色的调查记者。几年前，他去某省调查征地拆迁血案，深夜莫名死在所住酒店楼下，当地警方定性为跳楼自杀。所有人都相信他是被自杀。</p>
+<p>至于，李毅大帝，我再没有过他的消息。</p>
+<p>1997年，老榕的大连金州不相信眼泪以后，我有很长一段时间不看中国足球了。</p>
+<p>有时候，我会梦见1994年的夏天，美国世界杯冠亚军决赛上，巴乔踢飞点球后的第二天，在上海江湾体育场的灯光下，大自鸣钟索多玛一百二十天队，还有李毅大帝离开球场的雨中背影。</p>
+<p>后来，我听说甲A联赛里有个球员叫李毅，是个很会进球的前锋，护球啊盘带啊射门啊都老牛逼了。我上网看了照片——跟我的初中同学李毅有几分像，年龄也差不多，出生地是安徽蚌埠。虽然，身高差距太大，不过男生在二十岁后才窜个子的先例也不是没有。</p>
+<p>2002年，中国男足第一次打进世界杯决赛圈，就在我们的近邻韩国和日本比赛。</p>
+<p>我想，李毅的梦想实现了吗，代表中国队参加世界杯？很遗憾，我在中国队的大名单里没有看到我的同学。</p>
+<p>零比二输给哥斯达黎加，零比四输给巴西，最后一场对土耳其，有人说赢球可能出现，结果零比三。</p>
+<p>再见，中国队。</p>
+<p>我本以为，四年后的德国世界杯，能再看到他们，但没有。</p>
+<p>这些年里，网上流传起李毅的各种名言：“天亮了”“恶有恶报”、“我的护球很像亨利”“球迷骂我是因为我有威胁谁让我踢得好呢”“我从来就不会耍什么大牌”“此球让我铭记一生”“我喜欢巴萨，但是我却想去拉科和瓦伦西亚。皇马？他们的锋线很强，不过后防却不好”……</p>
+<p>我才发现，百度贴吧里最有名的李毅大帝并不是我的初中同学。</p>
+<p>但自那时，我开始四处寻找我的初中同学李毅。我去过山东蓝翔足校，现已并入蓝翔高级技工学校。在整个蓝翔技校的花名录里，我找到三百六十九个李毅，再仔细筛选他们的年龄和籍贯，终于发现了我的初中同学。</p>
+<p>他十八岁那年，代表一支业余队参加乙级联赛。预赛阶段的球场上，他的左腿被人踢断。因为医生的疏忽，最终断腿没有接好，左腿比右腿短了十厘米，一辈子都需要拐杖为伴。</p>
+<p>李毅再无可能踢球，只领到三千块赔偿，消失了。</p>
+<p>我没有放弃寻找他。</p>
+<p>又过四年，南非世界杯，我还是没看到中国队。那一年，中超联赛的李毅大帝快退役了，全年出场一次，进球为零。</p>
+<p>2014年，六月，巴西世界杯。</p>
+<p>傍晚，我开车经过西康路，靠近长寿公园。从前，这个路口叫做大自鸣钟。堵车风景时刻，无意看了一眼窗外，好像有什么混了进来……</p>
+<p>今晚有百度贴吧的活动？不，是块招牌，在一家街边小店，布满油腻和污垢——</p>
+<p>李毅大帝包子铺。</p>
+<p>我在路边停车，冒着被罚两百块的危险，来到这间微不足道的包子铺门口。几屉包子冒着热气，收钱的是个女人，三十岁上下，一看就是外地农村来的。我猜她是产后发胖，脚边跟着个五六岁的男孩，拖着鼻涕问妈妈要包子吃。</p>
+<p>然后，我看到了他。</p>
+<p>包子铺内间，有个男人坐着擀面皮。刚做完的包子，正要放入蒸笼。</p>
+<p>他的背后有一副拐杖。</p>
+<p>虽然，相隔整整二十年，五届世界杯——期间，巴西拿了两次冠军，法国一次，意大利一次，西班牙一次，阿根廷一次都没有，不知道这次轮到谁？可我依然认得他。</p>
+<p>上海市五一中学，初三（2）班，他叫李毅，外号大帝。</p>
+<p>小男孩回头管他叫爸爸。他从裤兜里掏出一粒糖，不耐烦地说：一边玩去！</p>
+<p>我走到他面前，看着他的眼睛问：兄弟，包子怎么卖法？</p>
+<p>两块钱一个。</p>
+<p>我掏出十块钱，说买五个。</p>
+<p>但他努了努嘴，指着门口的胖女人说：钱交给我老婆。</p>
+<p>我交了钱，还想说些什么，喉咙却堵塞了。他依旧低头做包子，把我当做路人甲或死尸乙。闷热得像火化炉，只有台小小的风扇。他的汗水滴落，混入面粉将被我们吃掉。</p>
+<p>后面有人排队，我退回路边，镜片上的蒸汽，却不曾褪去，带着咸味……</p>
+<p>一个礼拜后，凌晨时分，我独自出门透气，一路走到大自鸣钟。</p>
+<p>李毅大帝包子铺，那道窄门开着，露出诡异白光。有台破旧的小彩电，正直播世界杯小组赛——意大利VS哥斯达黎加。</p>
+<p>幽暗的屋子深处，女人抱着孩子睡觉。还有个男人，默默地看比赛。他打着赤膊，后脑勺堆起肥肉，汗滴纵横在后背。</p>
+<p>忽然，他看到了我，艰难地撑起拐杖，傻笑着露出发黄的门牙……</p>
+<p>最亲爱的朋友，我想跟你拥抱，你却说：早上六点才有包子！</p>
+<p>再见，李毅大帝。</p>
+<p>有人说，时间夺去了我们轻狂的眼神，却给了我们嘴角上扬的资本。</p>
+<p>对不起，我只同意前半句。</p>
+<p>我说，人这辈子，仿佛一次漫长的足球比赛。而我们大多数人，就像我的同学李毅大帝那样，只能看着别人成为梅西。但在那一夜，你有没有问过自己：我真的输了吗？</p>
+<p>比赛，才刚刚开始！</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

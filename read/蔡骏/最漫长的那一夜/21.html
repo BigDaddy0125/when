@@ -1,0 +1,1111 @@
+<!DOCTYPE html><html><head><title>21</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="20.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="22.html">下一章</a></p><hr><h1><center>第21夜 黄浦江上的白雪公主一夜</center></h1>
+<p>告诉你一个秘密——黄浦江底下埋着一个藏宝箱，换算到今天可以值一个王思聪。</p>
+<p>二十年前，我的初中同学肖皑，他的身高与鲁迅先生相同，在学校图书馆的屋檐下，放学后黄昏的星光里，街边音像店里飘散着张学友的《吻别》，他一本正经又神秘兮兮地跟我说——</p>
+<p>“喂，蔡骏，你知道吗？一百多年前，有个英国船长，其实是个海盗。他的帆船环游过世界，最后停靠在上海。在他被逮捕并公开绞死之前，他把一个沉重的铁皮箱子，悄悄扔进了黄浦江。那个箱子里头，装满了海盗的不义之财，有墨西哥黄金、南非钻石、西班牙银器……”</p>
+<p>肖皑说这是他爷爷临死前泄露的秘密。他爷爷年轻时是潜水员，日本鬼子曾命令他下水打捞藏宝箱。总共十几个潜水员在黄浦江里搜索。那天撞邪了，他们要么被水草困住，要么双脚抽筋，或是遇到凶恶的大鱼，最离奇的是被淹死鬼逮住了。他爷爷是唯一的幸存者，几乎潜到黑暗的江底，在一堆沉船的废铜烂铁间，似乎有个发光的箱子。箱盖打开道缝隙，露出一截长长的头发——女人乌黑光泽的发丝，海藻般野蛮生长着。要不是迅速上浮，双腿就要被缠住，侥幸捡回一条命。但他爷爷到死都没说清楚藏宝箱在哪个位置。</p>
+<p>那个傍晚，我完全被他唬住了，相信真有这笔财宝存在，只要天天下黄浦江潜水，运气好就能捞起来——就像我们最爱的一部苏联电影《意大利人在俄罗斯的奇遇》里那样大发横财。随便想想，都馋得吐口水哒哒滴啊。如果我有了这笔财宝，就会买个walkman听音乐，外加一个正版变形金刚。肖皑的要求更奢侈些，想买台刚上市的日本</p>
+<p>进口世嘉土星的游戏机。那时候，我们就只有这点出息了，买房啊，豪车啊，移民啊，把妹啥的，那都是《终结者1》里的未来时代呢。</p>
+<p>初中毕业，我就把这个传说忘了，去他妈的黄浦江底的藏宝箱，反正轮也轮不到我。</p>
+<p>但，肖皑一辈子都没忘记过这个秘密。</p>
+<p>他告诉我，二十年来，几乎每个星期，他都会到黄浦江边转一圈。或者，他乘坐渡轮好几个来回，从十六铺到陆家嘴，从董家渡到南码头。他研究过黄浦江两岸码头的历史，去档案馆查找租界时期的英文资料，又去海事部门托人调查。所有进出港的船只都有记录，如果查到那个被绞死的英国船长停泊在哪个位置，就可以按图索骥去找了。</p>
+<p>光有这些还不够，硬功夫是要下黄浦江把藏宝箱捞上来。肖皑去泰国学过专业潜水，每年要飞去两次，已达到Special Courses这个层次，再升一级就可以当教练带学生了。</p>
+<p>今年七夕，他带潜水装置下水——但刚下到江水里头，末班渡轮就从对岸开过来，他差点被螺旋桨大卸八块。整套昂贵的潜水装备完蛋了，他落汤鸡似的爬上来，失魂落魄地走过外滩，看着无数成双成对的男女。有个卖玫瑰的小女孩缠着他，肖皑扯下她头发上的垃圾和菜叶，买了一枝十块钱的玫瑰。</p>
+<p>他把玫瑰抛进了黄浦江。</p>
+<p>深秋，肖皑约我在黄浦江边吃饭。夜色朦胧，对面是陆家嘴的无数栋高楼，金茂大厦和环球金融中心，在六百三十多米的上海中心面前，都成了侏儒。</p>
+<p>我们二十年不曾见过，自然有了许多变化。但唯独不变的是，天哪，他还是那么矮！</p>
+<p>中学时按身高排座位，肖皑永远坐在第一排，早上做广播体操也是第一个，体育课队列训练也在最前面。除了个别几个女生，他是班里最矮的那个，经常被误当作小学生。现在，根据我的目测，肖皑不超过一米六，当然他没有穿内增高鞋。</p>
+<p>他在一家旅行社工作，开拓海外新的旅游线路，总有便利去泰国玩潜水。他说在书店里看到我的许多书，想起黄浦江底的财宝。</p>
+<p>肖皑说：“我有种预感，就是今年，我会找到藏宝箱。"</p>
+<p>他不在意我的目光，仍然畅谈那个秘密计划，怎样从黄浦江的淤泥中获得价值连城的财宝，如何把财宝兑换成现金，有地下黑市是专门干这个的。他估计可以到手十几个亿，至少买几套房子吧．市中心买套高层公寓，郊区再弄个独栋别墅，还要买辆迈巴赫的轿车，雇一个司机和两个保镖。他制定了周游世界的路线，不是驴友的穷游，而是一掷千金的豪华游，让迪拜的土豪也甘拜下风。最后，就是女人了，但他对AV女优或国内明星都没兴趣。</p>
+<p>突然，我打断了他的黄粱美梦，除非把黄浦江抽干，否则是找不到这个藏宝箱的。</p>
+<p>假如有一天，黄浦江干涸了。从浦西外滩到浦东陆家嘴，不再是波涛汹涌的水面，而是一摊宽阔的壕沟——底部铺满烂泥和垃圾，百多年来的沉船、殖民者们生锈的武器、某个法国小姐从巴黎带来的梳妆台、“二战”逃难犹太人的钢琴、日本鬼子的军刀、“大跃进”后废弃的钢铁、一九六六年抄家时扔下的金条、码头拆除时的建筑废墟、</p>
+<p>二十多年前某个孩子丢失的红白机……还有不计其数的骸骨、几百台iPhone、上千台诺基亚（洗干净还能用）、不计其数的高跟鞋。爬下外滩防汛堤，走上江底泥浆，充满沼气的臭味。曾经江水浩荡，在头顶浊浪翻滚，浪奔浪流而今不复，只剩鱼儿与尸体齐飞，重金属污染淤泥共天空雾霾一色。忽然脚底轰鸣震颤，那是越江隧道和地铁二号线。</p>
+<p>肖皑两只眼睛怔怔的，他是被我的想象感动了吗？但，他的目光焦点并不在我，而是我的背后。于是，我转头往后看，却见到了她。</p>
+<p>她。</p>
+<p>好像什么刺痛了我的眼睛。</p>
+<p>那是个女孩子，看起来十六七岁，脑后扎着马尾，被风吹得有些调皮。她站在餐厅的窗外，斜倚着栏杆，看黄浦江对岸的灯火。</p>
+<p>肖皑从座位上跳起来，几乎撞破那块玻璃。我指了指大门方向，他跌跌撞撞冲出餐厅。我在餐桌上甩下几张钞票，跟在他身后追出去。来到江边的防汛墙边，刚才的女孩已不见了。</p>
+<p>他失望地看着四周，对着天空吼了一声，又低声说，她可不是鬼魂。</p>
+<p>一个月后，我脑筋搭错，忽然想学滑冰，便去滑冰俱乐部报名。那是在一个大商场顶楼，有块小小的冰场，教练在带一批学员。他们穿着锋利的冰刀，从冰面上滑来滑去。要是骤然平视他们，看不到脚下的冰面，还以为是一群鬼魂飘来飘去。</p>
+<p>我买了一个教程，在收银台付钱的时候，看到了她。</p>
+<p>天气越发冷了，加上冰面的寒气，小姑娘雪白的脸颊，冻出了两块“红苹果”。</p>
+<p>刷完卡，开好发票，我却赖着不走，反正也没有旁人，滑冰俱乐部快要下班了。</p>
+<p>“你叫什么名字？”</p>
+<p>她瞥了我一眼，目光有几分敌意，但还是回答了：“玄春子。，</p>
+<p>“啥？”</p>
+<p>我没听明白，才想起收银条上有收银员的名字，真为自己的智商捉急（着急）。</p>
+<p>“玄春子。”</p>
+<p>就是这三个字。</p>
+<p>“晕，怎么像是修仙小说里的人物？难道你还在起点中文网业余写网文？”</p>
+<p>女孩回答：“我是朝鲜族思密达。”</p>
+<p>怪不得，有个韩星不是叫玄彬吗？我明白了。</p>
+<p>她的普通话很标准，不过带着一些东北味。我继续跟她聊了儿句，她才十七岁，今年高中肄业，刚到上海三个月。</p>
+<p>聊天到此为止，她不肯留电话号码或QQ，只能留微信，这是老板规定的。但我两手一摊，说我没用微信，她像看外星人一样看着我。</p>
+<p>而我看着她的眼睛、她的面容、她的头发、她的一切……都跟白雪好像啊，当然，仅仅是我们记忆中的那个白雪。</p>
+<p>小时候有部电视剧《十六岁的花季》，我们班几乎每个都看过，有人说拍到了女生洗澡，也是电视上第一次出现早恋。但我记忆更深的，是每次片头都会提到席慕蓉的诗，片尾会有一段旁白，加上各种名人格言。二○○七年，我第一次参加台北书展。在101大厦的书店里，偶遇了女诗人本人。我认识她，但她不认识我。我只是，安安静静地看她侃侃而谈。至今还记得她的诗。</p>
+<p>电视上播完《十六岁的花季》，就被湖南台与台湾皇冠接连不断的琼瑶剧占领了，从《婉君》到《雪珂》再到《青青河边草》的六个梦，直到《梅花三弄》咆哮的马景涛同学——也就是那年，开学的九月，白雪来到了我们班。</p>
+<p>她叫白雪。</p>
+<p>《十六岁的花季》里的女一号也叫“白雪”，演员叫吉雪萍，声优却是袁鸣。不过，我们全体男生都觉得，那年秋天来到初二(2)班的白雪，要比电视上的“白雪”好看得多。</p>
+<p>她的个头很高，至少有一米七，细细长长的，穿着条白裙子，乌黑的马尾晃在脑后，扫着男生们的心门。还有那皮肤啊，真像雪一样白，近乎透明的颜色，可见青色的皮下血管，盯着看还有些恐怖的感觉。</p>
+<p>白雪很快有了一个外号：白雪公主。</p>
+<p>那时的中学里有许多回沪知青子女，她也是其中一分子。有的人从小就在上海，她却刚从黑龙江转学过来。她妈是东北人，在阴雨绵绵的上海话世界里，她的东北话就像晴朗的太阳。她父母还在北大荒的农场，送她独自一人回上海读书，寄居在姑姑和姑父家里，准备在上海报户口和考大学，这样总比在黑龙江强多了。</p>
+<p>可惜，白雪的学习成绩很差，功课完全跟不上。大概是转学的缘故，也可能本就不是读书的料。每次考试她都是最后一名，数学简直白痴，最离谱的是有次交了白卷，气得老师命令她在走廊站了半个钟头。所有老师都不喜欢她，说她必须留级多读一年，否则会把学校的平均升学率拉低——而这一可能性，也成了悬在所有男生头顶的达摩克利斯之剑。</p>
+<p>虽然，男生们都爱向女神献殷勤，更别说是白雪公主了，但白雪有些难以接近，用今天的话来说就是冷艳高贵，似乎谁都看不上眼。在这座城市，她没什么朋友。如果说勉强算有的话，那就是我和肖皑两个人。</p>
+<p>我告诉她，在《格林童话》最初的版本里，白雪公主没有后妈，迫害她的人是亲生母亲。白雪说不相信，她妈妈待她很好，只是她不想再待在那个地方了。但是姑姑嘛……她不说了。我问她有什么爱好，比如读书啊，看录像带啊，读漫画啊，甚至打游戏之类的，她的回答很酷：滑冰。</p>
+<p>那年上海已有了旱冰馆，也算是时髦的运动。但是，溜真冰的还绝无仅有。</p>
+<p>白雪说在东北的松花江上，每到十一月，就会结上一层厚厚的冰。整个学校里的孩子，个个脚踩最简单的冰刀，跑到江面上去滑冰。她的滑冰技术是最好的，能够连续在冰上转好多圈。曾经有个体育老师，看中了她这双长腿，推荐去哈尔滨的体校练过几个月，后来受伤才放弃了。</p>
+<p>在我们身边，白雪只待了不到半年，在初二的上半学期。从秋天到冬天，她迫切地期待最冷的时节。她说等到十二月底，黄浦江就会结冰，那时候就能上去滑冰了。我和肖皑都在笑她，说打我们生出来开始，无论苏州河还是黄浦江都没结过冰。但她顽固地不相信，觉得我俩是在诓她。因为，这是白雪爸爸告诉她的。在来上海的行李里头，她特意藏了一双冰刀鞋，等结冰以后就可以在黄浦江上滑冰了。她把冰刀鞋带来过学校，穿在脚上给我们看过，刀口寒光闪闪，真是杀人利器啊。正好被老师发现，将她的冰刀鞋没收，说这个家伙太危险了，万一切掉学生的几根手指头，学校可负不起责任。我想除了安全原因，也是老师对于白雪这种差生的惩罚。</p>
+<p>冰刀鞋被没收那天，从没掉过眼泪的白雪，一路哭着回家，雨打梨花般惹人怜爱。我和肖皑，谁都不敢去安慰她。因为她个子高，力气大，脾气暴躁，有时会揍男生。这双冰刀鞋陪伴了她五年，是她爸爸送的生日礼物。</p>
+<p>一个月后，短暂的寒假开始。</p>
+<p>她原本要回东北过年，却在回家前几天消失了。</p>
+<p>人们最后一次看到白雪，是上海最冷的一天。在黄浦江边，金陵东路轮渡码头附近，有几个轮渡公司的职工，还记得这个高高的姑娘。</p>
+<p>我们的白雪公主，再没出现过。公安局记录了她的失踪时间，三年后，户口被注销，算作法律死亡。</p>
+<p>那是二十年前的事了。</p>
+<p>还有一个秘密——肖皑暗恋着白雪，他只告诉过我，因为身高的差距，不敢让别人知道。</p>
+<p>虽然，身高不到一米六，肖皑却很有自信。男生发育本来就比女生晚嘛。女生长个头的时候，男生还都是小不点呢。他总觉得，再过几年，自己就会比白雪高半个头了。谁都无法预测未来，如果他知道自己长到现在，贴着墙量身高还是一米五九的话，大概就不会那么想了吧。</p>
+<p>我们从小就知道白雪公主与七个小矮人的故事。但对肖皑而言，如果，有一个小矮人和七个白雪公主该多好啊！如果，是我们的白雪同学，一个也就够了。</p>
+<p>他的白雪公主，此刻在何方呢？</p>
+<p>那晚在黄浦江边的餐厅，肖皑看到窗外凭栏独立的女孩子，也是这副白雪般的容颜，甚至差不多的个头。</p>
+<p>而此刻，在我眼前的滑冰俱乐部收银员，她叫玄春子，不叫白雪，还是个朝鲜族思密达，让我如何转告呢？</p>
+<p>于是，我决定，不告诉肖皑。</p>
+<p>彻底忘记白雪吧，这样对他最好了，我确信。</p>
+<p>二○一五年，冬至夜，又是北半球白昼最短黑夜最长的一天。</p>
+<p>在最漫长的那一夜，寒潮自西伯利亚来袭，席卷过整个北中国，跨越长江，拥抱上海。温度往下跌落到零下十多度，据说是解放后从未有过的。</p>
+<p>凌晨两点，听着窗外呼啸的北风，大雪齐刷刷地飘落着。开着空调，我也瑟瑟发抖，每寸空气都是冰冷的。入睡之前，我最后看了眼微博，却跳出一条消息扎了眼睛：黄浦江结冰了！</p>
+<p>真的吗？</p>
+<p>网上发了许多张图片，不少人正在黄浦江边围观呢。这时，我收到一条短信，居然是肖皑发来的，他说他已经赶到黄浦江边，江面千真万确地封冻了。</p>
+<p>冬至这天我去上过坟，老人们说今晚不应该出门，是鬼魂出没的节日。</p>
+<p>半小时后，我和肖皑在外滩观光平台碰头了。</p>
+<p>没错，漫天凛冽的风雪中，黄浦江已凝结成一条水晶般的玉带。我们瞪大双眼，不是做梦，也不是精神错乱。结冰的江面像半透明的镜子，完全凝固在今晚的某个瞬间，再也没有波涛汹涌，没有泥土味的水汽，没有潮汐的起伏。江面上残留各种吨位的船只，有从太平洋另一端来的艨艟巨轮，有从苏州河来的小小驳船，全像被点穴或定格，被冰层封锁在江心或岸边。对岸陆家嘴钢铁森林的灯火，在冰面上发出五颜六色的反光。</p>
+<p>跟我们同样闻讯赶来的，是刚从夜场里出来闲得蛋疼的年轻人，像大叔的都是摄影发烧友，举着各种长枪短炮狂拍一通。</p>
+<p>趴在栏杆上的肖皑说：“那么多年来，我拼了命找寻的，并不是黄浦江底下的藏宝箱，而是我们的白雪公主。”</p>
+<p>失踪的白雪？</p>
+<p>“嗯，二十年了啊！我读大学的时候，专门去过黑龙江，找到白雪家里。她的父母也多年没见过女儿了。但我相信，无论她在天涯海角哪个角落，一定会再出现的——而且，就是在这里！她失踪的当天，在黄浦江边看到她的，肯定不止轮渡公司那几个人。我想，只要每天在黄浦江边上寻访，就可以找到其他目击者，不管她是死是活还是怎样，总有水落石出的一天。”</p>
+<p>黄浦江，漫天风雪的凌晨，看着他有些发红的眼眶，我唯有沉默。</p>
+<p>我莫名地想起松花江。几年前，我去哈尔滨签售《谋杀似水年华》。恰是十一月，松花江已经封冻。我住在兆麟公园边上，子夜时分，独自去江边溜达。我大胆地走到冰面上，脚底下还算结实，滑溜溜的很有趣。我从没滑过冰，小时候一度流行的旱冰鞋都没穿过。冬夜，我在松花江上走了半小时，还脚底打滑摔了一跤。我丝毫没感觉冷，反</p>
+<p>而心里头热腾腾的。第二天，我去了几十公里外的呼兰，渡过传说中的呼兰河，拜访萧红故居。在萧红童年住过的屋子前，有尊她的雕像，汉白玉的，雪一样白。那个民国女子，坐在一块大石头上，手里拿着一本书，肚子里不知怀着谁的种，就像黑白照片里的那张脸，我站在她的面前，却有种异样的感觉，似乎她正在幽幽地看着我，雕像里那双眼神。对视的刹那，她活了似的，让我有些恐惧。</p>
+<p>那里头有她的灵魂。我相信。</p>
+<p>回到冰封的黄浦江边，肖皑呵着白气说他最后一次见到白雪，是在她失踪前一天。</p>
+<p>那天是她的生日。</p>
+<p>白雪在东北读书晚，比我和肖皑早出生一年。她看上去也更成熟，胸啊屁股啊都发育得很好，不知道的人以为她快要高中毕业了呢。当她和肖皑一起走在街上，即便不是白雪公主和一个小矮人，至少也是大姐姐带小弟弟的节奏。</p>
+<p>那一夜，肖皑请她看了场电影，陈凯歌的《霸王别姬》。他是冲着张国荣去的，最后看得眼泪汪汪，而白雪看到一半就睡着打呼了。</p>
+<p>电影散场，她收到了神秘包装的生日礼物，是一双崭新的冰刀鞋。</p>
+<p>白雪兴奋地跳起来，真的很漂亮啊，女款的，粉红色，不锈钢刀刃，像古龙的第八种武器。</p>
+<p>上海买不到这种东西，肖皑有个远房亲戚在东北，就这么托人邮寄包裹来的。这双冰刀鞋，用掉了他一个月的零花钱，还差几十块钱是问我借的。</p>
+<p>白雪把冰刀鞋放在脚上比画几下，果然英姿飒爽。最近她牢牢盯着气象预报，冷空气南下，接连几场小雪，气温在零下三度左右。她在等待黄浦江结冰，坚信会有那么一天。</p>
+<p>二十年来，肖皑始终没有忘记那一夜。</p>
+<p>那是白雪公主的生日，也是他们的最后一面。</p>
+<p>“蔡骏，现在你看到了吧？白雪说得没错啊，黄浦江真的会结冰耶！当初，是我们这些人孤陋寡闻。你不会相信的，白雪失踪以后，我查过许多史籍资料，黄浦江确实有过冰封的记录！</p>
+<p>“最严重的一次在明朝正德元年，黄浦江足足冰封了一个月。那冰层厚得不但可以走人，还能跑马推车，人们正好省却舟楫横渡之苦，直接从冰上往来穿行。有户人家办喜事迎娶新娘，踏冰而行走到一半，冰层突然断裂崩塌，一百多号人敲锣打鼓乐极生悲而全灭——而今新娘的骸骨依然埋葬在江心吧。其次是清朝咸丰十一年，那年冬天太</p>
+<p>平军猛攻上海，突然遭遇剧烈的风雪，黄浦江冰封直至次年正月十四日才融化。寒冬拯救了盘踞上海的洋鬼子，无数太平军战士变成冰雕冻死在郊外，否则上海早就被忠王李秀成攻克了。最近的一次是光绪十八年，十二月初二，上海的最低气温零下十二摄氏度，徐家汇枳雪深达三十厘米，黄浦江苏州河全部结冰，‘累日不开，经旬不解’，这件事距今已有一百二十多年了……”</p>
+<p>肖皑给我看他抄录在手机里的资料。</p>
+<p>他把半个身子探出栏杆，最大限度接近黄浦江冰面，大声说：“所以啊，我和白雪一样固执，一辈子都在等待今晚的降临。”</p>
+<p>“白雪！”</p>
+<p>肖皑突然尖叫，不是内心呼唤，也不是低温下的幻觉——而是在黄浦江对面，浦东陆家嘴那边，距离江岸不过十来米，雪白如镜的冰面上，有个姑娘正在滑冰。</p>
+<p>真——的——是——白——雪——啊——</p>
+<p>就像二十年前，上海市普陀区五一中学，初二(2)班的白雪公主。依然高挑与苗条，两条细长有力的腿，裹着白色的滑雪衫，脚上穿着冰刀鞋。</p>
+<p>冰刀鞋。</p>
+<p>黄浦江上的白雪公主。</p>
+<p>她在冰封的江面上随心所欲，西岸外滩的古老建筑，东岸陆家嘴的摩天大厦，变成钢铁与水泥的白色山谷。风雪吹乱她的头发，江两岸无数的观众，正在欣赏她的冰刀鞋。</p>
+<p>我的初中同学肖皑，为最漫长的这一夜，已足足等待了二十年。</p>
+<p>他不想只做观众。</p>
+<p>白雪公主近在眼前，小矮人Come on baby!</p>
+<p>肖皑挣脱我的阻拦，整个人翻越栏杆，纵身一跃，跳下黄浦江。</p>
+<p>我惶恐地把头探下江面，他并未摔死或淹死，而是双脚打滑地站在冰面上，向我挥舞胜利的手势，灯光照亮小小的个头。</p>
+<p>“快回来啊！”四周响起警察的高音喇叭，呵斥在黄浦江冰面上的人立刻回来。</p>
+<p>但他不在乎，从外滩向陆家嘴跑去，踩着几小时前还是滔滔江水，而今却是晶莹剔透的冰面。白雪就在对面，脚踩锋利的冰刀鞋，冰面上划出两道清晰的印子，穿花绕步出一组神秘图形。</p>
+<p>白雪公主和她的一个小矮人。</p>
+<p>空旷的黄浦江上，除了被困住的船只，就只剩下他俩了。这一夜，冰面上的世界很大很大，又仿佛小得微不足道，如果她是白雪的话。</p>
+<p>肖皑接连摔了好几个跟头，额头在坚硬的冰面上磕出了血。除了鲜红的血，还有眼泪在飞。</p>
+<p>凌晨四点，身后的海关大厦钟楼敲响。亚洲第一大钟，响起《东方红》旋律，几十年来从未晚点，小半个上海都能听到。而我亲爱的同学，已经冲到黄浦江江心，正对着苏州河口最宽阔的那方冰面。</p>
+<p>还差几十米，就要触摸到记忆中的白雪了。</p>
+<p>黄浦江上的玄春子，嘴里欢快地哼着——</p>
+<p>这就是我要的冰刀鞋，一步两步，一步两步，一步一步似爪牙，似魔鬼的步伐，摩擦摩擦，摩擦摩擦，在这光滑的地上，摩擦摩擦，摩擦摩擦……</p>
+<p>女孩才意识到背后有人，冰刀九十度垂直，站定在冰面上回头。</p>
+<p>她看到了他，依稀，似曾，相识……</p>
+<p>突然，他脚下的冰面撕开一道细细的裂缝。</p>
+<p>玄春子惊恐地尖叫，在东北长大的她，清楚这意味着出大事了！</p>
+<p>肖皑也感到危险，但不知怎么办。转眼间，裂缝变成无数道细纹，化作一张密密的“蛛网”。</p>
+<p>一片大大的雪花，坠落到眼底。他并不管脚下变化，继续向白雪走去。玄春子继续尖叫，撒开一双冰刀，往陆家嘴岸上逃命般滑去。</p>
+<p>似魔鬼的步伐，摩擦摩擦，摩擦摩擦……</p>
+<p>男人的两条腿，自然追不上女孩的两只冰刀。</p>
+<p>黄浦江两岸，成千上万围观的人，一齐发出尖叫、咆哮，或祈祷。</p>
+<p>四分之一秒后，肖皑脚下的冰面碎了。</p>
+<p>等到我重新睁开眼睛，冰封的黄浦江上只剩个大窟窿，翻腾着水汽。</p>
+<p>再见，我的同学肖皑。</p>
+<p>黄浦江底，平日混浊的泥水，在冰冷中清澈了许多，他竟能看清水下的一切——在一团古老的淤泥间，闪过某种微亮的光，那是女孩飘扬的发丝，乌黑丝绸般鲜艳夺目，栩栩如生，好看得很…</p>
+<p>你好，白雪公主。</p>
+<p>你好，小矮人。</p>
+<p>白雪在水底微笑着，还是穿着那件白色的滑雪衫，脑后扎着俏皮的马尾，一条深蓝色的运动裤。她的胸口，挂着昨天刚收到的生日礼物，漂亮的粉红色女款冰刀鞋。“谢谢你啊，可爱的肖同学。”初二那年冬天，真的很冷很冷。虽然，她是在黑龙江出生的，但那儿即便零下几十度，仍然大多天气晴朗，夜晚缩在火炕上很暖和。无法忍受上海的冬天，那种每个毛孔都是冰冷阴湿的感觉，像剪刀慢慢绞碎你的血管和神经。她寄居在姑姑和姑父家里，住在最小的阁楼顶上，只有个屋顶上的老虎窗为伴。那张自己搭出来的小木床啊，都不够她伸直双腿的。冬天里没有任何取暖设施，家里总共只有一个热水袋，却是要留给表妹用的。她总是半夜里冻醒，满脸鼻涕还有眼泪，仿佛快要熬不过去。短暂的寒假开始了，她却不想回东北去过年，虽然很怀念在松花江上滑冰的日子。她曾经发誓再也不回去了。她总是看着气象预报，不时跑到黄浦江边。上海的冬天越来越冷，根据在东北长大的经验，按照这样的体感温度，早就应该结冰了。而黄浦江与松花江差不多宽，她相信再等不了几天。</p>
+<p>于是，生日过后的第二天，也是那年上海最冷的一天，她来到黄浦江边，静静等待江面结冰的刹那。</p>
+<p>只不过，她和他等待了足足二十年。</p>
+<p>冬至第二天，狂暴的风雪停了。</p>
+<p>上海的早晨，太阳照常升起。</p>
+<p>昨晚黄浦江的结冰封冻，距离上回过去了一百二十多年，但只持续了七个钟头，冰面就差不多全部融化，如此短暂。</p>
+<p>冰面开裂的过程，整个上海已万人空巷，几千万人挤满黄浦江两岸，个个高举自拍神器，顺便刷刷朋友圈。固体流冰只漂浮了半个上午，便被奔流的江水吞噬，正午之后就再无影踪。</p>
+<p>如昙花一现。</p>
+<p>黄浦江上无数海鸥飞来，成群结队，你追我逐，像是举行什么仪式。不少停在冰冷的水面上，大概一夜冰冻过后，江底的鱼儿都活跃了吧。</p>
+<p>公安局的船只忙着打捞，几个蛙人正在下水——肖皑坠落冰窟的位置，恰是黄浦江江心最深处。古时候，泥沙冲刷出了陆家嘴，形成锐角三角形的大转弯，而锐角正对准苏州河口。几百年来，河水与江水互相撞击，在中心掏出无底洞似的漩涡，竟有二十九米之深。</p>
+<p>不止是在外滩，整个黄浦江的上下游，许多警察和城管出动，到处打捞搜索尸体——还活着的可能性微乎其微，肖皑可能随波逐流被冲到了吴淞口，进入长江的泥沙深处，也可能被潮汐带到上游的松江、泖港，乃至淀山湖……</p>
+<p>作为落水者的朋友，也是出事时的第一目击证人，我来到水上公安分局。</p>
+<p>码头边浮动的小房子里，我见到了玄春子。</p>
+<p>她还认得我。</p>
+<p>在警方的反复询问下，她的脸色都发白了。</p>
+<p>第一个问题，为什么要跑到黄浦江上滑冰？</p>
+<p>玄春子说她刚过来几个月，在上海没什么朋友，早就憋坏了。她从小就会滑冰，又在滑冰俱乐部工作，昨晚听说黄浦江结冰了，她就带了冰刀鞋出门。她住在浦东一边，到了陆家嘴的江滨绿地。那里有亲水平台，她天生胆大，试着检验一下，根据这个温度，感觉冰面很结实，就跳下去滑冰了。</p>
+<p>听起来，无懈可击。</p>
+<p>第二个问题，掉进冰窟窿里的人跟她是什么关系？</p>
+<p>玄春子两手一摊，表示完全不认识，从小到大都没见过那张脸。她也搞不清楚，对方为何突然冲过来，并叫她一个陌生的名字。</p>
+<p>什么名字？</p>
+<p>白？雪？好像是吧。</p>
+<p>警察叔叔问白雪是谁？</p>
+<p>我不知道。玄春子当然也没看过《十六岁的花季》。</p>
+<p>她说，凌晨四点，当那个人冲到黄浦江的中心，几乎要抓到她的瞬间，只觉得这家伙好奇怪啊——个小个子，却是个怪蜀黍（叔叔），看起来很激动，一边乱叫还一边飙眼泪。</p>
+<p>警察叔叔，那个小个子，是不是个变态狂啊？玄春子最后问了一句，思密达。</p>
+<p>她不是白雪。我想。</p>
+<p>天黑时分，肖皑重新出现在我面前。</p>
+<p>他躺在公安局的验尸房里，已被冰凉的江水泡肿了，灌满水的肚子鼓鼓囊囊。</p>
+<p>蛙人是在黄浦江的正中心，陆家嘴与苏州河口的交汇点，昨晚肖皑坠落冰窟的位置，也是江底最深的漩涡里，捞出了他的尸体。</p>
+<p>随着肖皑一起出水的，还有一个锈迹斑驳的铁皮箱子。箱盖开着一道缝隙，尸体的左腿脚踝，正好嵌在半开的箱子里，所以他始终没有浮出水面…．．</p>
+<p>尸体的怀里还抱着某样奇怪的东西。</p>
+<p>像是鞋子，又像是刀子，上面依稀可辨是粉红色的。</p>
+<p>在冰水里溺亡的肖皑，死去的双手钢铁般坚硬，死死抱紧了这个物体。法医和警察费了好大的力气，差点让尸体的胳膊骨折，才把它取了出来。</p>
+<p>忽然，我明白了这是什么。</p>
+<p>冰刀鞋！</p>
+<p>用清水冲刷了一遍，剔去各种污垢与垃圾，或许还有肖皑的人体组织，一双冰刀鞋出现在了停尸房里。</p>
+<p>粉红色的女款，两只鞋子用鞋带连接着，可以挂在人的脖子上。从鞋帮的形状来看，似乎从来都没有被人穿过，不锈钢的冰刀，匕首般锋利，刀光夺目……</p>
+<p>鞋子侧面有两个字：黑龙。</p>
+<p>我的表哥叶萧警官也赶过来了，他让玄春子过来辨认这双冰刀鞋。小姑娘点点头说，黑龙牌啊!国产的名牌呢，齐齐哈尔冰刀厂生产的，如果不是山寨的话，起码值好几百呢！</p>
+<p>而她并不知道这双冰刀鞋二十年前就躺在黄浦江底了。</p>
+<p>冰刀鞋被警方收起来时，我真想大声说——当年为了买这双鞋子，我还贡献过四十块零花钱呢！</p>
+<p>然后，就是夹住肖皑左脚的铁皮箱子。</p>
+<p>箱子看起来又大又沉，表面爬满各种贝壳和水生植物，依稀可辨几个高浮雕的洋文，还有阿拉伯数字“1848”，似是十九世纪的英国货。</p>
+<p>就是它？肖皑跟我念念叨叨了二十年，传说中黄浦江底的藏宝箱？</p>
+<p>文物局工作人员到场后，才敢打开这个铁皮箱，却没发现任何金银财宝，连枚硬币都没看见，只有一个小小的骨架。</p>
+<p>人的骨架。</p>
+<p>但看起来太小了，可能是个小孩子。</p>
+<p>不过，法医又仔细看了看骨架，感觉不同于常人，从牙齿和骨缝来看，起码有二十岁了。</p>
+<p>一周以后，叶萧警官告诉了我结论：黄浦江底打捞上来的铁皮箱子里，装着一个成年男性侏儒的骨架，并且属于高加索人种，也就是白种人。</p>
+<p>虽然没有什么金银财宝，历史学家还是仔细研究了这个铁箱。根据铁壳上的英文雕刻，以及箱子里残留的衣物，结合海关档案，终于找到了线索。</p>
+<p>铁皮箱属于一个英国船长，常年航行在世界各个港口，表面上是从事贸易，其实是在贩卖人口——也就是奴隶贩子。船上有两个奴隶从未被卖掉过，因为是船长最心爱的私人宠物：一个是白雪公主，另一个是小矮人。他俩都是切尔克斯人——最昂贵的白人奴隶。一八九二年，清朝光绪十八年，这艘船来到上海，准备贩卖契约华工去南美洲。</p>
+<p>那年冬天严寒，黄浦江结了厚厚的冰层，所有船只都被困住开不动了。有天深夜，白雪公主和小矮人，想要趁着结冰的机会逃跑，跳船私奔。很不幸-他们在冰面上被船长逮住了。一周后黄浦江解冻，小矮人被关在铁皮箱子里，抛进陆家嘴转角外的江心。同一天，船长被租界工部局逮捕，不久以贩卖人口的罪名，当众吊死在跑马场。白雪公主却不知所终，或许终老于中国的某个角落。</p>
+<p>肖皑断七那天，我又去了外滩，趴在栏杆边吹风。有艘渡轮经过，宽阔的肚子里藏着不少人。十岁以前，我住在外滩背后，能看到海关的钟楼。那时有亲戚住浦东，我常坐渡轮过黄浦江。对于小孩子来说，坐渡轮过江可是很愉快的经历呢。现在，我很想再坐一次渡轮，让薄薄的水雾将我包裹，带着泥土味的江风拂过脸颊，耳边是此起彼伏海</p>
+<p>轮的汽笛声——这是做梦的时候，周围一切人和物不复存在，只剩我独自一人，站在黄浦江水中央，身后是座巨大的城市……</p>
+<p>这一天，玄春子回到了东北老家。</p>
+<p>从哈尔滨过松花江，坐车不到一个钟头，就到了大雪冰封的呼兰河。</p>
+<p>河边有个居民小区，洗剪吹店里放着“Let it go!Let it go!”的音乐。</p>
+<p>十七岁的玄春子，拖着大包行李回到家里。妈妈已经包好饺子，等着她回家过年呢。她爸爸腿脚不太好，窝在沙发里看没有字幕的韩剧。</p>
+<p>妈妈是汉族人，看来还年轻，简直就是少妇，只是身体有些发胖。女儿完全继承了她的这张脸，她要是抹掉眼角鱼尾纹，再减肥个二十斤，母女俩走在大街上，简直是孪生姐妹的感觉。</p>
+<p>她把饺子端到女儿面前说，过完年别再去了啊，上海有什么好啊？</p>
+<p>“妈，你去过上海吗？”</p>
+<p>“去过啊，在二十年前。”</p>
+<p>玄春子的妈妈说完这句，便退回卧室。她看着镜子里的自己，双手托着下巴，做出个少女的姿态。</p>
+<p>她想起了上海。</p>
+<p>二十年前，在上海市普陀区五一中学，她度过了初二上半学期。</p>
+<p>那年冬天，上海冷得异常，冷到让她以为黄浦江一定会结冰。</p>
+<p>生日过后的第二天，她带着刚收到的生日礼物，前往黄浦江边，期待看见冰封的时刻。</p>
+<p>她还在等一个人——身高比自己矮了大半个头的发育不良的男生。</p>
+<p>昨晚，她说她要离家出走，去遥远的南方闯荡，那里有更多的机会，也许还能去香港发展。她觉得凭借自己的身材和长相，最差也能混个超级名模。</p>
+<p>“谢谢你的生日礼物，但你愿意跟我一起远走高飞吗？”她这样问肖皑。</p>
+<p>当时，男生毫不犹豫地答应了。</p>
+<p>他俩约定在黄浦江边，金陵东路轮渡码头会面。</p>
+<p>但是，她从早上苦等到黄昏，肖皑都没有出现。</p>
+<p>她已下定了决心，但他不够这个胆量，终究还是个还没发育好的小屁孩。</p>
+<p>天，已经很冷，黄浦江依然没有结冰。</p>
+<p>她的脖子和高挺的胸前，挂着肖皑送给她的黑龙牌冰刀鞋，痴痴凝望翻滚的江水。</p>
+<p>然后，她向轮渡公司的人们打听，黄浦江有没有结过冰？但那些阿姨叔叔都摇头说：“小姑娘，你开什么玩笑啊，黄浦江会结冰？我们在这儿工作了三十年，每天要来回渡过几十次，别说是这辈子，前生和来世都不可能呢！”</p>
+<p>冬天的黄浦江会结冰——完全是爸爸骗她的鬼话！因为，她最爱滑冰了，要是听说去上海就不能再滑冰，她一定会伤心的。真傻啊，每个爸爸都这样骗过天真的小女儿的嘛。</p>
+<p>这时渡轮靠岸，她掏出两毛钱买票，想去对岸浦东看看。几条通道连接着码头，网格状的铁条缝隙间，江水拍打着堤岸。走在铁网格上，发出轰轰回声，交织着浪涛难以分辨。船舱拥挤喧闹，一点也不浪漫啊。都是从浦西下班回浦东的人们，大多推着自行车，没有座位的空间。渡轮呜咽几声，解开缆绳，船舷率先与码头分离，浑浪汹涌。黄昏的外滩亮起了灯，有名的情人墙背后，又会挤满偷偷亲嘴的恋人。一排排巨大的黑灰色古老建筑，随着波涛颠簸一上一下后退。水雾中朦朦胧胧，人在船上如云中漫步。她挤到渡轮最前头，那边风景独好，也有人讨厌船头，江风呼啸睁不开眼。看对岸的陆家嘴，自然没有今天风光，只有暗暗的堤坝、码头和大吊车。东方明珠已造好了，其他几栋楼还在施工。一艘万吨远洋巨轮驶来，在微不足道的渡轮身边，从容擦肩而过。不知哪个国家来的，硕大船体里藏着隐秘气息。无数汽笛响起，像合奏一场音乐会，勃拉姆斯或巴赫。船头浪大，溅到脸上，充满土腥味，冰冷冰冷的刺激。外滩的海关大钟响起，傍晚六点整。天色已完全昏黑，两岸闪烁无尽灯火，好像昨晚的梦啊。</p>
+<p>渡轮开到黄埔江心，在她眼里如此宽阔。不巧的是，有个大叔的自行车撞了她一下，让她的身体失去平衡。幸好双手抓牢栏杆，但挂在脖子上的冰刀鞋，却整个掉进了滔滔江水。</p>
+<p>糟糕，昨天刚收到的生日礼物啊！齐齐哈尔冰刀厂的黑龙牌啊！限量版的粉红色女款啊！</p>
+<p>金属的冰刀很重，在黄浦江江心立马沉底。她手脚并用爬出栏杆，准备跳下水去捞这双冰刀鞋——有双手从背后抱住她，将她硬生生又拽了回来。</p>
+<p>是肖皑吗？</p>
+<p>不，这双手挺大的，手指关节细长有力，很迷人的男人的手。</p>
+<p>她回过头，看到一张陌生的脸。</p>
+<p>男人的长发在寒风中凌乱，很像郑伊健的发型。他的眼睛细长，却很好看。消瘦苍白的脸庞，嘴角却有两撇小胡子，穿着时髦的棕色皮夹克，腰带上别着个BP机。他比她高了大半个头，至少有一米八三。</p>
+<p>“喂，你想要自杀吗？”男人的声音又年轻又有磁性。</p>
+<p>她茫然摇头，但又立刻点头。</p>
+<p>“好吧，算我救了你的命，小妹妹。”</p>
+<p>“我不小了0”她回头看着黄浦江，还在心疼她的生日礼物，低声说，“谢谢你。”</p>
+<p>渡轮抵达对岸的浦东，稳稳地以船舷靠上码头，轻微的撞击感。铁栏打开，人流涌出，黄浦江堤坝上一道小小的决口…</p>
+<p>年轻男人带她去吃涮羊肉火锅。她喝了半瓶白酒，感觉很暖和，很快忘了那双沉到黄浦江底的冰刀鞋。</p>
+<p>那天晚上，她是在男人的家里度过的。似魔鬼的步伐，摩擦摩擦，摩擦摩擦。</p>
+<p>果然，她没有再回黑龙江，也没回学校读书，更不可能再去姑姑家的小阁楼。</p>
+<p>她跟着这个外号叫“长脚”的长发男子，一起去了向往已久的南方。</p>
+<p>南方很温暖，看不到雪，冬天里也有炽热的阳光。真好啊，好到让她不再怀念松花江上滑冰的日子了。</p>
+<p>他们在广州、深圳、海口漂泊了三年。直到有天早上，当她在出租屋的床上，赤身裸体地独自醒来，发现那个男人彻底消失了。</p>
+<p>这是她在医院查出怀孕的第二天。</p>
+<p>只剩下自己一个人，不知道该怎么去做人工流产。她继续在许多个城市漂来溧去，越漂越往北方，不知不觉就过了长江，又过了黄河，结果出了山海关。回到东北，她依然不敢回家，因为肚子已经七个月大了。</p>
+<p>最后，她落在了哈尔滨边上的呼兰县，孤身在医院生下个女儿。</p>
+<p>这里有几百户朝鲜族，有个光棍姓玄，在医院做护工，是个瘸子，四十岁还讨不到老婆，就收留了她们母女。</p>
+<p>于是，她的女儿也成了朝鲜族，起了个好听的名字——玄春子。</p>
+<p>从此以后，她在呼兰县改名易姓，安心陪伴瘸子度日，并把女儿养到了十七岁。</p>
+<p>但没人知道白雪是谁。</p>
+<p>窗外，噼噼啪啪响起炮仗声，明天就是除夕夜了，呼兰河上铺着坚硬的冰。</p>
+<p>“春子啊，咱娘俩去河上滑冰吧。”</p>
+<p>女儿欢天喜地，带着冰刀鞋出门，在呼兰河上滑出老远。</p>
+<p>妈妈也用力摆动双腿与胳膊，冰刀划出两道漫长的轨迹，弯道超过年轻体健的女儿，看来蛮像是专业运动员。零下二十度的风雪里，她剧烈地喘气，径直朝向东南，呼兰河的下游，松花江方向滑去。似魔鬼的步伐，摩擦摩擦，摩擦摩擦。</p>
+<p>十七岁的女儿跟在后面滑，吃力地大声喊：“妈妈啊，你吃错药啦？干吗滑得这样拼命？”</p>
+<p>“我看到前面有白雪公主，正追着她滑呢！”</p>
+<p>“哇，你没骗我吗？”</p>
+<p>“没有啊。”</p>
+<p>“那么世界上有小矮人吗？”</p>
+<p>“也是有的。”</p>
+<p>“嗯，妈妈，我在黄浦江的冰面上看到过小矮人。”</p>
+<p>“黄浦江会结冰？”她停下步伐，额头滑下汗珠。</p>
+<p>女儿猛点头，说：“是啊，上个月，我还在黄浦江上滑冰呢，可刺激啦。”</p>
+<p>“我可不信呢！”她像个少女般笑了，“别说是这辈子，前生和来世都不可能呢！”</p>
+<p>大雪弥漫之际，她踩着冰刀站在呼兰河的冰面上，仿佛回到黄浦江里的渡轮上。</p>
+<p>她想起，白雪离开上海的那一天，刚过完十六岁生日。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

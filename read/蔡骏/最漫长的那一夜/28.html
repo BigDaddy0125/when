@@ -1,0 +1,1079 @@
+<!DOCTYPE html><html><head><title>28</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="27.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="29.html">下一章</a></p><hr><h1><center>第28夜 哭坟人的一夜</center></h1>
+<p>十二月底的日子里，西方人开始欢度他们的圣诞节，东方人的节日则是冬至。当然，严格地说冬至算不得节日，即便是，也不是人间的，而是另一个世界，也就是中国人所谓鬼魂的节日。科学的角度，在北半球，冬至是夜晚最长，白昼最短的一天。如果把一年比作一天，冬至就等于子夜。所以，冬至前夜是名副其实的漫漫长夜，天黑得特别早，也特别冷，太阳总是若有若无地挣扎着要提前下班，仿佛患了黑暗恐惧症一般急急地躲到地平线以下去。才六点，我站在窗前，望着远方的乌黑天空，心中忽然有了种奇怪的感觉。</p>
+<p>以上这段文字，是我这辈子第一本书《病毒》的开头。</p>
+<p>此刻，不用看窗外，天早已全黑了。电脑屏幕还亮着，是我的淘宝店“魔女区”。首页下方的友情链接里，有家店铺“哭坟人”，今天这日子，他们家的生意应该火到爆了吧。</p>
+<p>一年前，客服妹子问我，有家“哭坟人”想跟我们互换链接。不晓得他家是卖什么的，单单这名字就让人醉了，可以直接拿来当小说标题。</p>
+<p>这家店的装修诡异，全黑的哥特风，点缀着佛教符号，还有最炫民族风的万朵菊花与青松，这样混搭的风格，竟然毫无违和感。“哭坟人”店名下面，有串签名“男人哭吧哭吧不是罪”，刘德华留着小胡子披麻戴孝的头像，显然是美图秀秀做出来的效果。再看上架的宝贝，只有四样——</p>
+<p>青铜套餐：488元（提供哭坟服务，附送哭坟照片及音频）；</p>
+<p>白银套餐：988元（提供哭坟服务，代送鲜花，代烧冥钞一亿美元及锡箔千两白银，附送哭坟照片及视频）；</p>
+<p>黄金套餐：1988元（提供哭坟服务，代送鲜花，代烧冥钞一亿美元及锡箔千两白银，代烧纸人纸马纸车纸房纸老婆纸老公纸宠物，代家属捎话，附送哭坟照片及视频）；</p>
+<p>超铂金套餐：3888元（提供哭坟服务，代送鲜花，代烧冥钞一亿美元及锡箔千两白银，代烧纸人纸马纸车纸房纸老婆纸老公纸宠物纸充气娃娃，代家属捎话，代拟坟前哀悼语，附送哭坟照片及视频，并可提供一切特殊服务）。</p>
+<p>店主友情提示：哭坟地点，根据路途远近会酌情增加费用，但不超过来回硬座火车票价格，江浙沪包邮哦，亲。</p>
+<p>魂淡（浑蛋）啊！我对店主的景仰，犹如长江之水滔滔不绝，如黄河泛滥一发不可收拾!由衷赞叹而今的互联网电子商务创业精神。以前是听说过农村有职业哭坟人，但发展到淘宝做全网生意太赞了啊有木（没）有？我要是有闲钱做VC、天使，就投他个一两百万的，说不定将来哭坟会成为一个巨大产业，乃至于像马云的阿里去美国IPO吸金几千亿亦未可知啊！么么哒，亲。</p>
+<p>“魔女区”果断地跟“哭坟人”互换了友情链接。</p>
+<p>一年来，哭坟人经营得不错。碰到中国人的好时节，成交记录车水马龙。清明节一天，就完成了十三单，全是五星好评，无须差评公关。</p>
+<p>不过，那个3888元的超铂金套餐，直至今日才等到第一单。</p>
+<p>冬至。</p>
+<p>今早凌晨一点下单的，3888元——提供哭坟服务，代送鲜花，代烧冥钞一亿美元及锡箔千两白银，代烧纸人纸马纸车纸房纸老婆纸老公纸宠物纸充气娃娃，代家属捎话，代拟坟前哀悼语，附送哭坟照片及视频，并可提供一切特殊服务。</p>
+<p>最后一句亮了，能为死人提供什么特殊服务呢？许多人会想起配阴婚之类，听起来就很邪恶。</p>
+<p>我来给你们讲述今晚哭坟人的故事。</p>
+<p>凌晨，一点十三分，阿里旺旺闪烁起来。</p>
+<p>“哭坟人”背后的店主，是个二十七八岁的年轻男子，飞快地键盘输入——</p>
+<p>哭坟人：亲，我是哭坟人，有什么需求尽管说吧。</p>
+<p>未亡人：你是店主本人吗？</p>
+<p>哭坟人：小店就我一人，请问需要哪种服务？为你推荐白银和黄金套餐，988和1988，自己选吧。明天冬至，哭坟单子接了很多，麻烦抓紧时间。</p>
+<p>未亡人：超铂金套餐。</p>
+<p>哭坟人：哦？亲，你是土豪啊，真有眼光，握爪。</p>
+<p>未亡人：12月22日，冬至，晚上10点，爱泉路，爱泉公墓，1919号墓碑。</p>
+<p>哭坟人：等一等，小店不提供夜间服务，亲。</p>
+<p>未亡人：那就算了吧，淘宝不止你一家哭坟店。</p>
+<p>哭坟人：好吧，我接。</p>
+<p>未亡人：嗯，她是在晚上10点走的，那个时间去比较好一些。</p>
+<p>哭坟人：周年忌日啊，冬至晚上走的，有个性。对不起，没说错话吧？</p>
+<p>未亡人：没关系。</p>
+<p>哭坟人：还要什么特别服务？纸人纸马纸车纸房纸老婆纸老公纸宠物纸充气娃娃要吗？现在还有纸LV和纸Hermes。</p>
+<p>未亡人：我只要你捎一封信，在坟墓前拆开念一遍——切记，不要早一分钟，也不要迟一分钟，念完在墓前烧给对方，哭一遍，就行了。</p>
+<p>哭坟人：好酷的祭奠！信怎么给我？</p>
+<p>未亡人：在你楼下信箱。</p>
+<p>哭坟人：表吓我!我可没给任何人留过地址，你以前购买过本店的服务?打听过快递公司？</p>
+<p>未亡人：宁小军，我下单付款了，等你的哭坟视频。</p>
+<p>后面跟着一个邮箱地址。</p>
+<p>宁小军，他的名字，从未告诉过任何买家，快递单上也只写“哭坟人”三个字。对方是怎么知道的呢？还有住址？随便想一想，宁小军后背就拔凉拔凉了。</p>
+<p>这位神秘买家下线了，确实已下单付款，3888元的超铂金套餐，网店开张两年来的第一笔。</p>
+<p>宁小军冲出狭窄的房间，跑下堆满自行车和垃圾的楼道，在生锈的信箱里取出个牛皮纸信封，上面写着一行奇怪的字——</p>
+<p>致：爱泉公墓1919号</p>
+<p>落款“未亡人”。</p>
+<p>神马（什么）玩意儿？恶作剧？信封上没有邮票也没邮戳。他刚想把信封拆了，看看里面装着什么秘密，却看到信封开口一行小字：“写给另一个世界的信，时候未到，你敢拆吗？”</p>
+<p>犹豫片刻，宁小军把信揣进怀里。就算不为了哭坟人的职业道德，也为了地底下的收信人吧，如果他（她）真的存在过的话。</p>
+<p>这天晚上，他做了个奇怪的梦。</p>
+<p>他梦见了她。</p>
+<p>早上起来，浑身酸痛，盗汗淋漓。</p>
+<p>冬至，全年仅次于清明的黄金旺季，简直是哭坟界的“双十一”。他接了九笔生意，还推掉了四笔外地的。清晨七点，天还全黑，他按照各个买家的个性化要求，分门别类，十几个大包小包，像浑身挂满炸弹的兰博和小马哥，丁零当啷地爬下楼梯。半个月前，为了准备迎接冬至哭坟旺季，宁小军买了辆二手的奇瑞QQ，配上外地牌照，总共不到一万块钱。</p>
+<p>天蒙蒙亮，开车上路，到处是扫墓车队，一路堵到郊外。他利索地做完第一单哭坟，买家是农村出身的暴发户，在外地做生意赶不回来，附加了个传统要求，就是哭坟人必须披麻戴孝。宁小军这身行头齐全，参考了《周礼》和《朱子家训》，基本就是制服。他跪倒在客户的双亲坟前，酝酿了半分钟情绪，开始号啕大哭，鼻涕与眼泪齐飞，纸钱共锡箔一色。他惊到附近许多扫墓的人家，纷纷投来赞扬和同情的目光，将他当作孝子贤孙。哭坟的整个过程，都被一台微型摄像机记录下来，包括哭坟人与墓碑的合影及周边环境，确保视频真实有效。</p>
+<p>宁小军折腾了一整天，午饭都来不及吃，多数时间堵在路上，但也圆满完成了八次哭坟服务。每次他都上传到云端，以免出什么差错，也为了让买家尽快确认收货给好评。</p>
+<p>傍晚五点，白昼早早逝去，冬至夜像个锅盖，或者说像块棺材板，牢牢封死了整个北半球的大地。传说鬼魂出没的时间，大家都早早回家了，许多饭店也提前打烊。</p>
+<p>经过八次专业的哭坟，宁小军双眼肿得像对小笼包。他就着冰冷的矿泉水，随便啃了两个包子，开车驶向冬至的最后一单，超铂金套餐的目的地。</p>
+<p>手机导航显示，这个爱泉路在靠近海边的郊外。做职业哭坟人两年来，他跑遍了全城的所有基地，包括土葬、塔葬、树葬，乃至海葬的，周边许多城市的公墓也如数家珍。不过，今晚要去的爱泉公墓，宁小军却是闻所未闻。</p>
+<p>晚上七点，他开着里程超过十万公里的奇瑞QQ，喷着黑烟来到寒风呼啸的海边。这个时间地点，南极般荒凉。四周萧瑟的树木，海边滩涂枯黄的芦苇丛，小时惊起迁徙的候鸟。</p>
+<p>明明已到了爱泉路，地图显示这条路不到两公里，但他开车转了两个钟头，就是没找到爱泉公墓。</p>
+<p>鬼打墙？</p>
+<p>宁小军不信邪，否则，怎有胆量从事哭坟这门职业？他想是否要回去，就说找不到公墓，大不了退款就是。可这笔超铂金套餐的单子，会不会被打差评呢？真是头痛!何况那个神秘买家，他可是知道宁小军的名字和地址的，要是找上门来的话肿（怎）么办？</p>
+<p>晚上九点，远光灯照亮的路边，突然出现一道大门。</p>
+<p>宁小军急刹车，看到“爱泉公墓”。</p>
+<p>终十找到了啊，看起来很后现代嘛，极简主义风格，跟本地流行的公墓完全不同。冬至夜，最后一单。他背着微型摄像机，往大门内张望，不用指望有人开门。晚上公墓都是闭门谢客，值班员要么睡觉，要么看电视打麻将。</p>
+<p>他先在爱泉公墓门口自拍一张，显示准时到达。他找到旁边一棵枯树，好不容易爬上去，翻过了并不高的围墙。好在这个公墓没有养狗，否则被发现就惨了。他拿着手电往里照去，密密麻麻全是墓碑，这个规模和密度，可以在全中国名列前茅，怎会从没听说过呢？</p>
+<p>宁小军走进墓碑群中，根据编号寻找1919号墓。这像到了茫茫坟海，冬至深夜，寒冷彻骨，手电照出一个个金属质感的墓碑。奇怪，这里的墓碑没有一块是石头的，全由不锈钢做成，那得花多少钱啊。看来葬的都是土豪。只是墓地的空间都很小，每个墓碑前只能容纳一个活人的站位。不过，这年头都是独生子女，不像过去扫墓一大家子，再过些年恐怕也就只有一两个人来了。</p>
+<p>又找了不知多久，感觉快要被这些不锈钢坟墓吞没，他才在一个不起眼的角落，发现墓碑背面的号码：1919。</p>
+<p>哈，终于到了。</p>
+<p>他在冰冷的空气中喘出一口热气，证明自己不是死人。转到墓碑正面，手电光圈习惯性对准照片，椭圆形相框，一张年轻女子的脸。</p>
+<p>宁小军怔住了。</p>
+<p>他坐在坟墓前，有些褪色的彩照，死去女子的眼晴，有种特别的魔力……</p>
+<p>不对，他认得她。</p>
+<p>再看墓碑下面的文字，大部分被灰尘覆盖，依稀可见“聂青青”三字。</p>
+<p>她的坟墓？她死了？怎么会呢？</p>
+<p>检查墓碑后面的号码，没错。宁小军想不通，有人购买了冬至夜的超铂金套餐哭坟服务，却让他来为聂青青哭坟，这是——复仇？</p>
+<p>她恨过我吗？</p>
+<p>没有答案。</p>
+<p>墓碑上的照片，妹纸（子）的脸，早已化为枯骨与幽灵——“十年生死两茫茫，不思量，自难忘……”而这首苏轼的词，是他和她在高中最爱的。</p>
+<p>宁小军从小的梦想，是成为一个伟大的电影演员。注意，是演员，但不是明星。他可没有一张明星脸。而他最擅长的表演项目，既是最简单的，也是最难的——哭。</p>
+<p>记忆中第一次哭，是在爸爸的葬礼上。年轻的妈妈抱着他哭，周围亲戚都说这母子太苦了，尤其小孩子。四岁的宁小军，哭得惊天地泣鬼神。孤儿寡母，带孩子的妈妈，脾气自然不太好，没事总是打孩子出气。哭，成了他的家常便饭，似乎每天不哭一场，就不好意思面对人民群众。考进初中的那年，多次相亲失败后的妈妈，终于如愿找到“真命天子”，正兴冲冲要再嫁，人家还承诺会给宁小军做个合格的继父。结果那男的是个骗子，把妈妈多年积蓄席卷一空。她说到了地狱变成恶鬼也不会放过那个人。妈妈真的去了地狱，吞了几百片安眠药自杀了，是否在地下复仇成功就不知道了。宁小军又痛痛快快地哭了一场。从爸爸的葬礼到妈妈的火化，之后每个清明、冬至、七月半、爸爸的忌日、妈妈的忌日，每年雷打不动的五次上坟……他一次都没错过，可以说，别人的童年是学校到家的两点一线，而宁小军是学校到家到墓地的三点三线。</p>
+<p>到了高中，他开始研读斯坦尼斯拉夫斯基的《演员的自我修养》，坚信自己会成为一一个伟大的演员，一个不需要靠脸而依靠眼泪出类拔萃的演员。随时随地，他都能动情哭泣，哪怕为了某个女生不慎踩死一只“小强”，为了谁家小孩不小心撒尿淹死一朵小花。他时常在教室、在操场为同学们表演许多大家喜欢的经典段落，比如《大话西游》里周星驰的那一段——</p>
+<p>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此……如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。如果非要在这份爱上加一个期限，我希望是……一万年！</p>
+<p>当宁小军演到情不自禁、热泪纵横，周围的同学们却捧腹大笑，都把那部电影当作了喜剧，这段更是笑料中的笑料。</p>
+<p>但，唯独有一个同学，她没有笑。她也没有哭。</p>
+<p>这个女生穿着一身白色运动服，脑后扎着长长的马尾，抱着个篮球站在沙坑边，怔怔地看着哭泣的宁小军。</p>
+<p>众人散去，宁小军仍然沉浸在人物情境中难以自拔，泪水如注，如同水龙头坏掉的自来水管，无法停止。她走到他的面前，递来一张皱巴巴的纸巾，提醒他先把鼻涕擦干净。</p>
+<p>擦完鼻涕，他由衷地感谢道：“谢谢你，把我从戏里救出来了。"</p>
+<p>“你真会哭！”</p>
+<p>“对不起，你是隔壁三班的吧，我叫宁小军。”</p>
+<p>“我叫聂青青。”</p>
+<p>面对落落大方的女同学，宁小军露出笨拙的屌丝本色，抹了把眼泪问：“能留个QQ号吗？”</p>
+<p>聂青青毫不扭捏地抄给他一个QQ号，他俩这就算认识了。他才注意到她的袖管上别着黑袖章——家里刚死过人的标志。</p>
+<p>虽然同在一所学校和一个年级，班级又在隔壁，宁小军和聂青青说话机会并不多。聂青青说她很羡慕宁小军，任何时间任何地点都可以放声痛哭。</p>
+<p>“这有啥好羡慕的？”</p>
+<p>她说自己这辈子还没哭过，更没掉过一滴眼泪。</p>
+<p>宁小军不相信。</p>
+<p>上个月，聂青青的妈妈因乳腺癌病故。作为唯一的也是妈妈最爱的女儿，她自然伤心欲绝，葬礼上却没有哭。亲戚们很愤怒，说这小姑娘太没良心，老妈死了也无动于衷。其实，只有她爸心里清楚，女儿比任何人都悲伤，只是哭不出来。她从小就这样，哪怕天大的委屈，脸上都很平静，顶了天就是皱皱眉头、拉拉嘴角。其实，不哭的孩子最痛苦，所有难过和激动憋在心里。爸爸带她去医院检查，经过多位专家会诊，确定她是脑垂体的问题……就是不会哭，不会流泪，哪怕眼睛进了沙子，进了辣椒水，泪腺都毫无反应。她想过做手术，医生说太危险，弄不好会伤到脑干，死在手术台上。这个毛病不影响日常生活，也不太会引发抑郁症，忍忍也就过去了……</p>
+<p>这一忍，就是一辈子。</p>
+<p>十八岁那年，宁小军和聂青青，每晚悄悄用QQ聊天。都没了妈妈，两个人同病相怜。他们还有共同喜欢的诗词，就连爱看的电影都差不多。偶尔一起放学回家，他会给她表演电影里的哭，比如《这个杀手不太冷）》里的小女孩玛蒂尔达，《（人鬼情未了》里的黛米·摩尔，《乱世佳人》里的费雯·丽……他演女人的哭戏也惟妙惟肖。</p>
+<p>其实，他是想通过自己的表演，每一次真诚的哭泣，让她也被感动到流泪，哪怕只有半滴!然而，她说她每次都能感到悲伤，郁积在心头越来越堵，却无法化作泪水。她从不阻止他的表演，哪怕看得她难过得要命，仿佛被一块大石头压扁。</p>
+<p>那年冬至，宁小军去给父母扫墓，聂青青跟着爸爸去给妈妈扫墓。两家人的公墓，居然比邻而居。</p>
+<p>他俩在公墓外的荒野相遇，宁小军兜里没什么钱，只摸出几个钢镚，向路边的农民买了两个烤红薯。聂青青让爸爸等她十分钟。他们坐在环绕墓地的小河边，看着枯黄的桔梗和老树，迎着北风啃热乎乎的红薯。聂青青说每到冬至，那寒冷的黑夜啊，仿佛永远没有尽头。这时候，她就想要哭，可无论如何哭不出来，干巴巴的眼底，心里无法言说的难受。宁小军摇头说：“冬至可是个好日子啊，老人们都说‘冬至大如年’，二十四节气里头，冬至是最早产生的，也是最最重要的一个哦。我们南方是扫墓祭祖吃汤圆，北方却是吃饺子的好时节呢。”</p>
+<p>“真的吗？”聂青青冷得几乎要靠在他肩膀上，却被她爸过来一把拖走了。</p>
+<p>剩下宁小军一个人坐在墓地边，远看聂青青离去的背影，仿佛一个触不可及的肥皂泡，只能飘到空中，却无法捧在手心。</p>
+<p>高考来临，他填报的志愿是北京电影学院表演系，刚通过初试，就要去北京面试。</p>
+<p>聂青青说他考不中的，不如报考她要去的大学。</p>
+<p>他不听。</p>
+<p>终于，宁小军踏上北去的列车，走进北京电影学院。经过漫长的排队，轮到他进去，考题太棒了，只有两个字——坟墓。</p>
+<p>这辈子他最常去的地方就是坟墓，而他最擅长的表演就是哭坟！</p>
+<p>天哪，那次表演超级完美——他想起自己的爸爸，又想起自杀的妈妈，顺便还想起注定终身无法流泪的聂青青。他幻想自己站在聂青青的墓碑前，看着她年轻的照片，仿佛与空气接吻。</p>
+<p>宁小军表演到最后，面试的考官老师终于被彻底感动，似乎想起自己半辈子的忧伤，冲上去抱住他放声痛哭。</p>
+<p>这一幕惊呆了前后许多考生，未来他们中间出了至少三个中国家喻户晓的大明星，他们恐怕到死都不会忘记这段人生插曲。</p>
+<p>他以为自己征服了考官，铁板钉钉考上北京电影学院，没想到最终名落孙山。</p>
+<p>聂青青一语成谶。</p>
+<p>女孩子总比男孩子更成熟些，她知道这是个看脸的社会，也是个看爹看妈的社会，像宁小军这种既没脸又没爸还没妈的孩子，无论如何都无法竞争过别人。</p>
+<p>聂青青考上了她心仪的大学，外地的一所名牌大学。</p>
+<p>宁小军决定复读一年。</p>
+<p>离别的那天，下着小雨。</p>
+<p>站台上，聂青青的爸爸送女儿去大学报到。她一直东张西望，爸爸问她看什么，她低头不语，直到上了火车，才发现站台角落里，宁小军孤独的人影。</p>
+<p>她向他挥手，她以为，他会哭。</p>
+<p>但他没有。</p>
+<p>宁小军目送她的列车远去，他想，这辈子再也不会见到聂青青了吧。</p>
+<p>第二年，他继续填报表演专业的志愿，这次换了中央戏剧学院，结果跟去年相同。</p>
+<p>最后，他读了个高等职业学院。</p>
+<p>又隔三年，宁小军刚毕业就失业。他没找到过任何像样的工作，也从此没了聂青青的消息，更没正经谈过恋爱，直到成为淘宝店主，做起了哭坟的生意。</p>
+<p>想到这儿，恰是冬至深夜，十点钟，神秘买家指定的时间降临。</p>
+<p>聂青青，你怎么了？红颜薄命？自然死亡还是他杀，还是难以忍受不能哭泣的悲伤而自绝？眼前的坟墓里，埋葬的真是你吗？</p>
+<p>那么问题来了，挖掘机技术哪家强?宁小军抽了自己一耳光。</p>
+<p>从小习惯于面对坟墓的他，做过两年职业哭坟人，却头一回在墓地感到了恐惧。</p>
+<p>忽然，他想起了那封信，昨晚投递在他家信箱的神秘来信，买家指定他要念给亡灵听，并烧给另一个世界的信。</p>
+<p>宁小军从怀里取出信札，小心拆开，里面只有几张纸，写满密密麻麻的字，粗看笔迹却有些熟悉。</p>
+<p>时间到，他开始念给坟墓里的聂青青听——</p>
+<p>聂青青：</p>
+<p>见字如晤，别来无恙？</p>
+<p>我是一个职业哭坟人。</p>
+<p>二○一二年，我找到了这份很有前途的工作，在淘宝上开了这家店铺。我想，这样既能发挥自己的特长，还能进行互联网创新，也是许多人不敢做，而对我来说却是易如反掌之事。好吧，总比无业游民混在社会上好，何况我还没有老可以啃。嗨，我发觉这</p>
+<p>个市场真的很大，坟墓对于中国人来说真的太重要了，既是我们一切情感的终点和起点，也是每个人与大地唯一的连接点。那年头，大多数人离乡背井工作，北漂，海漂，远离祖先和亲人的坟冢，就连过年回家都那么难。有些人碰到清明假期还得趁机出去旅游，扫墓只能交给我们这些职业哭坟人。通过淘宝和支付宝，有需求的人可以立即找到我，又能根据需求放心付款。我设计了四档套餐，因为我是看《圣斗士星矢》长大的。许多购买过我服务的客户，并不觉得贵，毕竟我替他们节省了更多的金钱——比钱更重要的是时间。我在坟墓前哭泣的效果，远不是这些人所能达到的。别以为我只是表演，我的每次哭坟都是真诚的，都要调动起足够的情绪。买家都会告诉我，墓主人跟他的关系。而我自然而然，就会代入他们之间的情感，把坟墓里的人当作自己挚爱的亲人。通常是儿女怀念父母，也有妻子怀念亡夫，丈夫怀念亡妻，甚至白发人送黑发人的。有一回，墓中的亡者是个年轻姑娘，从学校回家路上失联，遇到坏人被害了。我一边为女孩哭坟，一边却莫名地想起了你——不会哭的青青。</p>
+<p>其实，我从没告诉过你，你是我的初恋。</p>
+<p>而我是你的什么呢？</p>
+<p>那时候，我一直以为，你是不会记得我的。</p>
+<p>二○一四年的冬至前夕，我接了一单生意，1988元的黄金套餐，代替女儿为爸爸的一周年忌日哭坟。</p>
+<p>那个买家，就是你。</p>
+<p>但你是匿名的，当时，我不知道你就是聂青青。你作为买家跟我联系，说看了哭坟的视频，你被我的眼泪完全感动了，对我的服务非常满意，你的爸爸在九泉之下也不会有遗憾。为了表示感谢，你希望跟我单独见面，请我吃顿饭。</p>
+<p>一开始，我拒绝了。</p>
+<p>我说我从不见客户的，不是装逼，而是我不想在工作之外，再牵扯其他说不清的事。当然，我更不想跟买家约炮。我只卖哭，不卖别的。</p>
+<p>不知为什么，隔了几天，我又回心转意，打电话给买家说可以一起吃饭，就约在平安夜。等到见面才发现，你就是我的高中同学聂青青。</p>
+<p>你夸我变得成熟了。</p>
+<p>而我问，你还不会哭吗？你说是的，一年前，你最亲爱的爸爸去世了。追悼会和下葬之时，你未曾流过任何泪水。虽然，你心里真的非常难过。你觉得很遗憾，这辈子没为父母的死而哭过。于是，你才决定找个人来代替自己，掏心挖肺地大哭一场。</p>
+<p>而你也万万没想到，淘宝上著名的职业哭坟人，就是我，宁小军。</p>
+<p>当你看完我为你爸哭坟的视频，仿佛你已被我替换，我才是你爸爸的女儿，带着二十多年的情分，在坟墓前哭泣和追忆父女之情。</p>
+<p>同时，聂青青，你也一眼就把我认了出来。而你那么多年来，始终没忘记过我，始终，始终……</p>
+<p>你还对我说：“宁小军，你成功了！你真的成了一个伟大的演员，而不是明星。”</p>
+<p>真的，我很感动，从没人对我这么说过。</p>
+<p>后面发生的都如此自然，我们就像所有谈恋爱的男女一样，吃饭，看电影，逛街，在平安夜。</p>
+<p>谢谢你，成了我的女朋友。</p>
+<p>谢谢你，没有嫌弃我这份职业，大方地把我带给你的朋友们，并介绍说，这是我的男朋友，他叫宁小军，也叫哭坟人，他是中国最伟大的演员。</p>
+<p>一年后，我们结婚。</p>
+<p>在我俩的婚礼上，我因为感动而哭得稀里哗啦。而你依旧冷静，虽然，我知道你心里比我更激动。</p>
+<p>哭坟的生意越做越火，清明一天就能有几万块收入，每年净利润大几十万。你说我有着满满的正能量，哭坟既满足了中国人的爱，也能养活自己和家庭。意外的是，你决定辞职陪我共同创业，一起经营“哭坟人”这家网店。每次我哭坟，都是你在旁边摄像记录。每天有成百上千的买家来询问，你就成了无敌客服，帮我处理好多份订单。我们的“哭坟人”夫妻店日新月异，蒸蒸日上，公司也注册成立，雇用了一大批职业哭坟人，最终发展到上百名员工。二○三○年，在中国的高等职业教育序列里，出现了“哭坟”这门专业，每年有几万人报考，为了抢一个名额而打破头。而我成了首位哭坟专业的导师。在我们夫妻的共同奋斗下，哭坟，成为二十一世纪全球最受人尊敬的职业。我们为儿女情长的家庭服务，为中国人的灵魂服务。同时，我们也把中国的扫墓文化和哭坟艺术，传播到了全世界每个角落。而今，无论纽约还是巴黎，清明、冬至与中元节，已全面取代了圣诞节和情人节。美国人最流行的娱乐方式，就是奏着交响乐或爵士乐，去给爷爷奶奶哭坟。</p>
+<p>亲爱的，我们结婚三年后有了儿子。</p>
+<p>他很聪敏，也很懂事，你说要让他子承父业，我说算了吧。我哭了一辈子，可不想让孩子也哭一辈子。</p>
+<p>当儿子慢慢长大成人，我们渐渐变老。儿子也结婚了，为我们生了孙子和孙女。他现在是个科学家，最近刚发明了时空穿越的互联网技术。</p>
+<p>今年，公元二○六五年，我们结婚五十周年。</p>
+<p>我们从没想过离婚，也从没想过分开，除了死亡。</p>
+<p>作为哭坟界的“教父”，我获得了联合国颁发的终身成就奖。而我这一生，最大的遗憾，就是自从长大以后，再也没有为自己哭过，从来都是为别人而流泪。</p>
+<p>对了，还有一个遗憾——我从没听过你的哭声。</p>
+<p>聂青青，还记得我对你说过的吗？老太婆啊，我要努力锻炼身体，活得比你久，否则，要是我先死了，留下你还活着，送我的骨灰下葬，你却一滴眼泪都哭不出来，那不是更难过吗？</p>
+<p>你说，好的啊，老头子，不过，通常女人比男人更长命，要是你先死了，我就去做脑垂体切除手术，让自己这辈子能真正哭一次，在最爱的人的坟墓前……</p>
+<p>好吧，我赢了。</p>
+<p>三个月前，你在病床上走完了没有眼泪的一生。</p>
+<p>当你的心脏停止跳动，我发现你的眼角落下亮亮的液体。我用舌尖品尝，咸的。</p>
+<p>恭喜你，聂青青，你终于会哭了。</p>
+<p>我想，那一刻，当你与世永别的那一刻，你的心里一定很开心吧，这辈子不用再憋屈了。</p>
+<p>亲爱的，我也为你而高兴！</p>
+<p>当你死后，我抱着你很久很久。任何人都无法把你我分开，无论护士、医生，还是儿子、儿媳、孙子、孙女……他们哪能知道我们的故事。医院的病床上，我抱了你三天三夜，直到发出异味。有人说，我是恋尸癖。其实，他们都错了。因为，在这个世界上，总有那么一个人，是你永远也搂不够，怎么拥抱都嫌少，值得为之撕心裂肺地痛哭的人。</p>
+<p>聂青青，我的妻子，当你被烧成骨灰，我把你安葬在海边，在这座爱泉公墓的1919号墓地。</p>
+<p>我在看着你五十年前的照片。</p>
+<p>那么我自己呢？</p>
+<p>二十八岁？</p>
+<p>七十八岁？</p>
+<p>就像现在，纵使相逢应不识，尘满面，鬓如霜。</p>
+<p>可惜，我再也不会哭了。</p>
+<p>你死以后，我抱着你的三天三夜，哪怕我的心跟着你的身体一起冰凉，却无法哭出一声来。</p>
+<p>似乎，你最后流出的那滴眼泪，刚好带走了我余生所有的泪水。</p>
+<p>亲爱的，我终于切身体会到，你七十多年来一直在承受的痛苦。</p>
+<p>没有眼泪，没有哭泣，作为一个哭坟人，我out了。</p>
+<p>而作为一个丈夫，陪伴你五十年的丈夫，在妻子的坟墓前，居然欲哭无泪，越发悲伤，郁积于心，伤之于魂。</p>
+<p>现在，我只剩下最后一个念头——如果回到五十年前，我就可以代替现在的自己，为死去的妻子再哭一次!</p>
+<p>死生契阔，与子成说。执子之手，与子偕老。</p>
+<p>宁小军啊，我最喜欢的那个自己，请你哭吧。</p>
+<p>宁小军</p>
+<p>2065年12月22日</p>
+<p>这封信，到此终了。</p>
+<p>他认得，这是自己的笔迹。</p>
+<p>宁小军的手指哆嗦着，掏出纸巾，擦拭墓碑，抹去尘埃，才看清几行字——</p>
+<p>亡妻聂青青之墓</p>
+<p>底下刻着“夫君哭坟人宁小军泣立公元二○六五年九月”。</p>
+<p>手电照亮旁边的墓碑，却是空着的，但刻着宁小军的名字，尚未涂颜色，等待他死后与妻同穴长眠。</p>
+<p>冬至，已近子夜，气温接近冰点。</p>
+<p>宁小军明白了，那个神秘的买家“未亡人”，其实，就是未来的自己——五十年后刚刚丧妻的宁小军。</p>
+<p>而帮助他来传递信息的科学家，恐怕就是宁小军和聂青青的儿子。</p>
+<p>此时，此地，亦是，彼时，彼地。</p>
+<p>他再看这墓碑上聂青青的照片，无须酝酿情绪，今晚是为自己而哭泣。</p>
+<p>号啕大哭。烧信。自拍。</p>
+<p>这里的无线信号强大到难以想象，他用手机上传视频给买家“未亡人”的邮箱，几十兆的视频瞬间发出——最后的愿望完成了。</p>
+<p>然后，他想起了她。</p>
+<p>如信中所说，不久前，他做完一单黄金套餐的哭坟服务。买家是个女孩子，宁小军代替她给爸爸的一周年忌日上坟。事后，那个女买家说很感激他，希望单独约他出来吃饭。不过，他当时就拒绝了，说不跟买家见面是他的原则。</p>
+<p>她就是聂青青？</p>
+<p>看着墓碑上的照片，宁小军找出了女买家的电话号码。</p>
+<p>手机显示没错，时间还是在二○一四年十二月二十二日。</p>
+<p>电话响了许久，那头传来一个女声，“喂？你是？”</p>
+<p>“是哭坟人。”</p>
+<p>“冬至啊，你有什么事？”</p>
+<p>宁小军的嘴唇在颤抖，他听出来了，那是她的声音，墓碑上名叫聂青青的女子。</p>
+<p>“再过两天，平安夜，你有安排吗？”</p>
+<p>其实，他心里在说：你约不约？约还是不约？</p>
+<p>“我没有安排啊。"</p>
+<p>宁小军心花怒放，已得到答案：约。</p>
+<p>“好啊，你喜欢吃什么……”</p>
+<p>二○一五年，冬至过后，宁小军和聂青青快要结婚了。</p>
+<p>去年冬至夜的秘密，他水远不会告诉她的。</p>
+<p>淘宝店经营得很好，他为自己买了一辆新车，后窗大大方方地贴了三个字“哭坟人”，下面留了一串电话号码。</p>
+<p>这一天，宁小军开着车，带着他的新娘，去海边拍婚纱照。</p>
+<p>回去的路上，他忽然停车，原来是看到“爱泉路”的路牌。四周一片荒凉，站到高处就能看到海边的滩涂。根本就不存在什么爱泉公墓——那是几十年后才有的，未来石材紧张，墓碑一律变成了不锈钢。</p>
+<p>只有在北半球的冬至，最漫长的那一夜，宁小军才有可能穿越时空，进入未来的墓地，也是自己这辈子最后的，不可逃脱的葬身之地。</p>
+<p>他才想起来，五十年后聂青青墓碑上的那张照片，正是今天拍的婚纱照中最满意的一张。</p>
+<p>未婚妻捏了捏他的大腿，问他干吗在路边发呆。忽然，他流下眼泪，却又笑了笑，亲吻她的额头。</p>
+<p>这辈一子，我陪你过，我陪你哭。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

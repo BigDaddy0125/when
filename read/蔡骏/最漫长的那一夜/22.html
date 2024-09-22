@@ -1,0 +1,1196 @@
+<!DOCTYPE html><html><head><title>22</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="21.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="23.html">下一章</a></p><hr><h1><center>第22夜 老闺蜜的秘密一夜</center></h1>
+<p>我们拼命划桨．奋力与波浪抗争，最终却被冲回到我们的往昔。</p>
+<p>一菲茨杰拉德《了不起的盖茨比》</p>
+<p>一个月前，我去过一趟精神病院。</p>
+<p>我没病。当然。</p>
+<p>那天下午，天色昏暗，层层乌黑的瓦楞云朵，怕是要塌了。车子开出地库，妈妈催我快点开车。她坐在副驾驶座，低头发着微信。经过中山公园门口，停车捎上一个阿姨。我认识她，从小就认识，一直管她叫青青阿姨。她烫着短发，体形微胖，短袖的花色衬衫，并无过多装饰，与多数跳广场舞的大妈无二。她第一次坐我的车，先是称赞这车的后排好生宽敞，后来又酸酸地嫌自家女婿没用，女儿结婚五年至今连辆车都没买。我妈前几年退休了，青青阿姨退得更早。对于她俩的聊天内容，我的耳朵自动屏蔽。</p>
+<p>开上青浦境内的高速，闷雷接二连三，却无半滴雨点。车载电台放着柴可夫斯基的《第六交响曲》，我妈和青青阿姨沉默下来，不知在听音乐，还是在看天色。车转入一条小路，两边是江南乡村景象，道路破烂而泥泞，我小心放慢车速，以免伤了底盘。</p>
+<p>车子停在一座灰暗的建筑门口。还有辆黑色奥迪等在旷野上，车门打开，是小东阿姨。灰突突的天空下，她穿一件浅色风衣，白皙的面孔略施粉黛，脸颊绯红，冷艳高贵。小时候，我觉得她像《东京爱情故事》里的赤名莉香。后来，看了中年铃木保奈美的照片，更觉贴合小东阿姨的气质。现在，就数她保养得最好，拎着Burberry的包包，很有贵妇的样子。</p>
+<p>她微笑着向我们招手，说我几年不见，居然留满了胡子，又夸我是听话的孩子，愿意给妈妈做司机。</p>
+<p>有歌曲唱过，“风吹雨成花，时间追不上白马”。青青阿姨、小东阿姨，还有我妈，她们三个做闺蜜已超过五十年了。</p>
+<p>我妈让我早点回家，晚上她坐小东阿姨的车回去，那是辆机关单位公车，有专职司机。</p>
+<p>但我说也想进去，实际好奇她们到底是来看谁的。</p>
+<p>在精神病院的门口，三个人一声不响。</p>
+<p>还是小东阿姨出声道：“没关系，就让骏骏陪我们进去吧，这种地方，还真需要小伙子陪同呢。"</p>
+<p>随后，她让司机开车回去了，准备回程搭我的车。</p>
+<p>在我有限的童年记忆里，小东阿姨是个大气的女子，常给我带各种珍贵的礼物。青青阿姨嘛，就喜欢带着我跟她女儿一起玩，至于礼物，就很少拿得出手了。</p>
+<p>精神病院门外是片荒野，唯有小餐馆一间，不时传出麻将声。</p>
+<p>我们跟门卫做好登记，便步入医院大楼。</p>
+<p>这是我第一次进入精神病院。没见到强壮的护工，没有凄惨的尖叫，没有墙上的血手印。有些人穿着病号服，在楼道间自由活动，行为神情均与常人无异，更无想象中的汉尼拔博士。</p>
+<p>小护士面无表情，把我们引到一间会客室。在这里我才闻到一股药水味，很多人记忆中恐惧的气味。</p>
+<p>狭长的窗玻璃上，密集的雨点不断落下，光线透过铁栏杆，洒在一个女人脸上。我不太认识。</p>
+<p>她的年龄想必跟我妈她们差不多，但在这种鬼地方自然更显得老些。她留着长发，夹杂许多白丝，却打理得干干净净。又干又瘦的脸上有许多灰斑，没有化妆，白得吓人。眼窝深深的，反衬出幽幽的眼神。</p>
+<p>依稀觉得，她年轻的时候，或许很迷人。</p>
+<p>从她穿的衣服上的编号，可以看出她是个精神病人，并且是那种比较严重的，必须要限制人身自由。</p>
+<p>她应该认得我妈她们三个，点了点头。我妈并不害怕，坐在她的面前，从包里抽出些营养品．小东阿姨拿出个袋子，里面装着许多衣服，包括女士内衣。只有青青阿姨两手空空，只是笑着问她：“哎呀，我们又来看你啦，身体怎么样啊？这里伙食还好吧？听说你的病好多了啊！真是啊，我们想你的哦！”</p>
+<p>虽然那么一长溜话，银铃般串着，用上海话说来，却分外悦耳动听。</p>
+<p>但在我看来，像在哄小孩子。</p>
+<p>她——我不知道该怎么称呼她，不知道她的名字，只有胸口上的编号：01977。</p>
+<p>不过，我也得叫她阿姨吧，什么阿姨？精神病阿姨吗？</p>
+<p>她不声不响，目光虚焦着，不晓得在看谁，起码不在我们身上，甚至不在这间屋里。</p>
+<p>我妈又跟护士聊了几句，大体还是问她的身体状况，护士不耐烦地回答。01977一切都好！不要担心。</p>
+<p>说完，小东阿姨塞给护士一个信封，我猜里面是购物卡之类的。</p>
+<p>护士立马给了笑脸，又给病人削了个苹果。</p>
+<p>01977阿姨从未说过半个字，只是拿起苹果，慢慢地啃起来。</p>
+<p>一个苹果，她吃得异常认真。</p>
+<p>我们都默默地看着她，不敢发出丝毫的声响。</p>
+<p>这间小小的屋子，除了她的牙齿与苹果肉的摩擦声，还有雨点砸在窗玻璃上的回响，就像直接落到我们的耳膜上。</p>
+<p>安静到震耳欲聋。</p>
+<p>等到她吃完苹果，几乎连苹果核也被吞下去了，我妈闭上了眼睛，小东阿姨眼眶有些湿润，青青阿姨几乎要夺门而出。</p>
+<p>忽然，她说话了——天潼路799弄59号。</p>
+<p>没承想，她的口齿清晰，声音不响不轻，竟还像小姑娘般细腻，颇有穿透力，回荡在窗户与墙角之间。</p>
+<p>妈妈抓紧了我的手。</p>
+<p>我的手有些痛。</p>
+<p>小东阿姨拽了拽我妈衣角，又对精神病人说：“你好好休息吧，我们走了，明年这时候，再来看你！”</p>
+<p>对方闭上眼睛。</p>
+<p>我们四个走出精神病院。世界却黑了。电闪雷鸣，豪雨倾缸。荒野。雨点冰冷，刺痛脸颊。而我背后的建筑，如沉没中的幻觉。</p>
+<p>傍晚五点，感觉已近深夜。我把车往前开了数百米，道路一片汪洋，强行通过非常危险。小东阿姨又提醒，这一带是低洼地，出过水淹事故，有人活活淹死在驾驶室内。</p>
+<p>开回到精神病院门口，青青阿姨厌恶地看了一眼，说：“要死快了，等在这种鬼地方，要出人命的啊！”</p>
+<p>小东阿姨倒是镇定，指着医院门口的小餐馆，说：“不如进去坐坐。”</p>
+<p>餐馆简陋，七八张台子，只有一个客人，坐在墙角吃着葱油拌面，浓郁的葱油味，勾我食欲。</p>
+<p>坐下不点什么也不好，小东阿姨自作主张，点了几样炒菜，至少回家不用饿肚子。</p>
+<p>我低声问妈妈，“你们去看的那个人，是谁？”</p>
+<p>“你忘了吗？抗美阿姨，你小时候，她经常带儿子来我们家玩的，你跟她儿子还一起打过游戏机。”</p>
+<p>“嗯，我依稀记得吧，那个男生叫啥名字？”我挠了挠头。</p>
+<p>青青阿姨在旁跟了一句，“我们做小姑娘的时候，四个人是顶顶要好的，你妈妈、我、小东，还有抗美。"</p>
+<p>哦，才明白，四闺蜜。</p>
+<p>我妈妈是“老三届”。那代人吃过许多苦。唯独我妈比较幸运，因是独生女，未如别人那样上山下乡，插队落户，而是早早进到单位做了工人。我妈工作优异，早早入了党，特别喜欢文字，常给单位写稿，被保送到华东师范大学读书。</p>
+<p>她们中的其余三个，命也不箅太差。当年，许多人去了新疆、云南、黑龙江，小东阿姨、青青阿姨，还有抗美阿姨，因为是最早的那批，被分配去了崇明岛的农场。</p>
+<p>虽说与上海市区仅一江之隔，如今过大桥隧道仅个把钟头，但那时去一趟崇明岛，可比去苏州、杭州还麻烦。有时大雾天渡轮停航，就真正变成孤岛一座。不过，她们被关在农场里头，本身就跟蹲监狱没啥区别，除非有特别的事请假，否则每月才能回家一次。好在我妈在市区工作，没有兄弟姐妹，房子也算宽敞。她们就把我家当作据点，又延续了十年闺蜜之情。</p>
+<p>再说回抗美阿姨，在四个女人里头，她是最为命运多舛的一个。</p>
+<p>“文革”结束后不久，小东和青青都顺利离开农场回城，只有抗美孤独地留在崇明岛上。因为她家里兄弟姐妹太多，都不欢迎她回家，自觉无望，便嫁给了当地的农民。那座岛号称中国第三大，却是上海乃至江南最穷的地方，就连江北许多县都比它富庶。抗美在农场里吃了太多苦头，她那农民丈夫是个酒鬼，动不动就打老婆，就连她生完</p>
+<p>儿子坐月子期间，都不能幸免。苦熬到九十年代，抗美终于跟那农民离婚，把户口从农场迁回市区。但家里照旧容不得她，只能在外租房住，每天起早贪黑卖包子，有时还得靠三个闺蜜接济。</p>
+<p>她儿子读书不错，虽比我小两岁，却是出了名的高才生。抗美给儿子定下目标，必须考上一流大学，没想到后来反而酿下了大祸。十多年前，最要紧的高考关头，抗美倾尽毕生积蓄，给儿子报了辅导班，还租下考场附近的酒店客房，只为儿子能考上第一志愿北大经济系。然而，高考过后，噩耗袭来：抗美的儿子偷偷买了张去崇明岛的船票，渡轮行至长江中流，他翻越栏杆，纵身一跃，被浑黄之水吞没。打捞三天三夜，才在崇明岛边的芦苇滩上，发现了少年的尸体，已被鱼虾咬得面目全非。警方调查死因，确定是孩子高考失利，自觉无法考上心仪的大学，无脸面再见妈妈，心郁气结，方才踏上绝路。后来想想，也是做妈的逼得太紧，一心一意要让孩子考取功名，也为补偿自己这辈子的不幸。</p>
+<p>想来，这世上的悲欢离合，不是你妈逼的，就是我妈逼的，莫不如是。</p>
+<p>儿子死后，抗美有足足三个月不曾说话，尝试自杀过几十次……不是割腕昏迷后发现伤口结痂了，就是跳楼被六层到二层的无数晾衣杆救了性命，跑回农场喝老鼠药竟碰上山寨货，最后一次是开煤气，结果自己非但没有中毒而亡，反而搞得整层楼都被炸光，隔壁邻居三死四伤。</p>
+<p>于是，她被送入精神病院，至今已逾十年。</p>
+<p>说到此处，我看着她们淡然的表情，再想想精神病院里的女子，想想她那幽深的目光。窗外仍是瓢泼大雨，阵阵闷雷声滚过，不禁使人毛骨悚然。</p>
+<p>最后，小东阿姨做了总结性发言，“骏骏，你不知道，这一天，是我们四人初次相识的日子。其实，推算起来也不困难，就是那一年的小学入学日。每年今日，我们都会相约来这里看望抗美。”</p>
+<p>话音未落，一阵风吹开了窗户，我被打了一脸的雨。</p>
+<p>有个男人帮我们关紧了窗，就是一直在角落里吃葱油拌面的那个。</p>
+<p>“谢谢啊。”</p>
+<p>但他默不作声，径直坐到我们的桌子边。他看上去三十多岁，穿着笔挺的衬衫，胸口别着医生常用的钢笔，头发梳理得整整齐齐，伸出一只骨节细长的手，伴着雨点有节奏地敲打桌面。</p>
+<p>“晚上好，我是这家医院的医生，你们刚才所说的抗美，是我负责主治的病人。“</p>
+<p>男人用极快的语速说话，就像大多数医生那样。他冰冷的目光扫视桌上的每个人，仿佛我们个个都有严重的精神疾病。大家不约而同地低头，只有我迎着他的目光。</p>
+<p>我懂了，晚餐，才刚刚开始。</p>
+<p>小餐馆里沉默无声许久，还是青青阿姨先开口，“医生啊，真是太巧了，请问啊，我们抗美什么时候能医好呢？”</p>
+<p>“告诉你一个好消息和一个坏消息，你要先听哪一个？”</p>
+<p>晕，这个医生很有九十年代港剧的风格，小东阿姨算是见多识广，浅浅笑道：“请先说坏消息吧，医生，我们一把年纪了，有心理承受能力的。”</p>
+<p>“坏消息就是抗美的精神分裂症一辈子都治不好了。”</p>
+<p>“唉，真是可怜啊。”青青阿姨掏出面巾纸，擦了擦眼角。</p>
+<p>“好消息呢?”我妈问。</p>
+<p>“也是抗美的精神分裂症一辈子都治不好了。”</p>
+<p>这种回答让人愤怒，青青阿姨瞪了瞪眼睛，“这算什么好消息？拜托哦，你是医生哎，怎么能说这种没良心的话？”</p>
+<p>“抱歉，但对你们来说，这就是好消息。”</p>
+<p>医生看着我妈、青青阿姨和小东阿姨，唯独跳过了我的眼睛。</p>
+<p>“你想说什么？有话就请直说。”还是小东阿姨镇得住场面。</p>
+<p>医生点点头，坐到我们中间，左边是我们母子，右边是青青阿姨和小东阿姨。灯光照在他的头顶，乌黑的头发泛出几点油光。耳边全是风雨呼啸，屋顶像被冰雹砸得砰砰作响，随时可能被掀飞掉。</p>
+<p>他先看着我妈，还是保持礼貌地说：“除了这位阿姨以外，我想请问另外两位阿姨，你们都和抗美参加过一九七七年恢复的第一届高考吧。“</p>
+<p>她们三人不约而同地点头。</p>
+<p>我只知道，我妈没有参加过正式高考，至于她的三个闺蜜，我则是一无所知。毕竟，一九七七年啊，世界上还没有我呢，哪怕连个胚胎都不是。</p>
+<p>医生继续说下去：“小东、青青，当时，你们两个都和抗美一起在崇明岛上插队落户，因为农场经常收不到信，而农场领导强烈反对知青参加高考，担心你们万一被录取的话，会搞得大家人心涣散。所以，录取通知书极有可能被农场扣压，因此在高考报名填写地址时，你们都填了在市区的地址——而且，是同一个地址。”</p>
+<p>他掏出口袋里的小记事本，翻到其中写满字的一页，轻声念出：“天潼路799弄59号。”</p>
+<p>我记得，这是今天在精神病院，抗美说过的仅有的一一句话。</p>
+<p>我还记得，这是我外公外婆家的地址，小时候我曾住过好几年。</p>
+<p>妈妈点头承认，“是，那是我家的地址。”</p>
+<p>小东阿姨接着说：“抗美家里兄弟姐妹多，他们的关系素来不和，以前邮件和包裹寄到家里，凡是写她名字的，大部分都会遗失，或者干脆被别人拿走，为此她不知跟家里吵过多少回。”</p>
+<p>“其实，我家里也有过这种情况，那年头很普遍的。”青青阿姨也插了一句。</p>
+<p>医生双手托腮看着大家，说：“完全可以理解，小东、青青，你们和抗美填写的都是天潼路799弄59号。因为，那是你们最亲密的朋友的地址，而她恰好没有参加这次高考．而她家只有她一个女儿，绝对不会出现邮件遗失的情况。”</p>
+<p>“你怎么知道那么多？”</p>
+<p>妈妈虽然没说出口，眼神却是充满疑问，我也很想把医生逼到墙角问一问。</p>
+<p>“让我来说吧，”小东阿姨打破了这个尴尬，她拍了拍我的肩膀说，“大家都很信任你妈妈，你妈妈的家啊，有前后两间，还有小阁楼。加上你外公外婆，总共只有三口人。在当时的上海，算是居住条件不错的了。而我和青青、抗美三个呢，家里兄弟姐妹一大堆，光我就有五个妹妹，上面还有哥哥嫂嫂．他们又生了三个孩子，全都挤在一个房间里。当我去崇明岛插队落户时，家里真是松了口气呢。骏骏，你可不知道，那时候，我们每次回市区啊，家里别说是床了，就连地铺都没地方打呢。”</p>
+<p>“想想都要掉眼泪了，”青青阿姨补充道，“真是谢谢你妈妈，还有你的外公外婆，那些日子啊，我们经常挤到你家，轮流跟你妈妈睡同一张床。要是我们三个都来了，那就一个跟你妈妈睡床，另外两个打地铺，也不会影响你的外公外婆。”</p>
+<p>医生面无表情地说：“一九七七年十二月十日和十一日，第一次恢复高考的考试时间，青青、小东、抗美都走进了考场。一个月后，如果谁有幸考上大学，录取通知书会通过邮局发到报名时填的那个地址。那个冬天，上海分外寒冷，抗美因此得了伤寒，躺在农场里动弹不得。然而，小东和青青你们两个，却以各种理由，从农场请假回了市区。</p>
+<p>但你们并没有回家，因为，录取通知书的投递地址，填写的是天潼路。因此，你们都寄居在闺蜜家里，日日夜夜盼望好消息到来。”</p>
+<p>三十多年后，三个老闺蜜都无话可说，示意医生继续说下去。</p>
+<p>“一个多月后，小东收到了大学的录取通知书，而青青与抗美都没有收到。有些人会去查分数线，但更多的人没有去查。因为第一次恢复高考，集中了‘文革’十年无法考大学的所有知青，全国有五百七十万考生，总共只录取二十七万人，意味着只有极少数人可以考上。”</p>
+<p>小东阿姨终于开口，“没错，我觉得我很幸运。”</p>
+<p>“本来我就没指望考上大学，中学毕业就完全荒废了学业，纯粹只是试试而已。”青青阿姨说，看来并不怎么在乎。</p>
+<p>“但是，抗美并不是这么想的。”医生的话锋一转。</p>
+<p>青青阿姨抢话道：“最好的朋友怎么想的，我们还不知道吗？”</p>
+<p>“也许，有人知道，但不愿说出口罢了。”</p>
+<p>窗外打了个响雷，我们都不说话。医生停顿片刻，继续独白，“如果，你没有及早回城，而是在岛上的农村又住了十几年，嫁给一个天天醉酒打你的农民，好不容易离婚回到市区，却连房子都没得住，辛辛苦苦把儿子养到十八岁，本指望他考上好大学出入头地，没想到高考过后他自杀身亡，白发人送黑发人，落得个白茫茫真干净，一无所有，这样的悲惨你们有过吗？”</p>
+<p>谁都不吭气了。</p>
+<p>“所以，任何人在这时候都会想一件事——为什么命运对自己这么不公平？如果，在一九七七年恢复高考，拿到录取通知书的人是抗美，而不是别的什么人，那么她又会是怎样的命运呢？至少，她会立即离开那个穷得鸟不拉屎的岛，进人大学校园学习和生活，她会遇到自己心仪的男子．像那个年代所有大学生一样顺利地恋爱结婚。要知道，那个年代的大学生，无论到哪里都被当作宝贝，毕业后肯定是国家包分配，进入令人羡慕的企事业机关，说不定还能很快得到提拔重用……不用我多说了吧……那么今天坐在这里，来探望精神病人的人，可能不是你！也不是你！更不是你！”</p>
+<p>他依次指了指小东阿姨、青青阿姨和我妈妈。</p>
+<p>耳边只有大雨的哗哗声，桌上的几个炒菜全都凉了，只有我动筷吃了些炒蛋。</p>
+<p>小东阿姨说：“嗯，医生，你是说抗美她，感觉心理不平衡，才会想要自杀，最后精神分裂？这个，我想，也是符合逻辑的吧。”</p>
+<p>“不止是心理不平衡。一年前，我在治疗抗美的过程中，她向我彻底敞开了心扉，说出了她全部的故事，还有内心的痛苦。而我呢，自然非常同情她。于是，我就利用自己的社会关系，费了九牛二虎之力啊，终于查到了一九七七年的高考档案。”</p>
+<p>青青阿姨惊讶地说：“这你也能查到？查到我的分数了吗？”</p>
+<p>精神病医生拍了拍桌子，让人心头一震——“你们听我说完，我查到了抗美的名字，她考得还算不错，超过了最低分数线。她被本地一所大学录取了，还是本科，中文系。但是，很遗憾，她没有去大学报到，这个名额被调剂给了别的考生。”</p>
+<p>我特意瞥了瞥我妈、小东阿姨和青青阿姨，她们都低着头，不晓得在想些什么。</p>
+<p>“唯一的可能性就是——你们中间有人在说谎！三十多年前，你们中的一个，拿到了抗美的大学录取通知书，却出于某种卑鄙的目的，把通知书藏起来或是销毁了！”</p>
+<p>医生努力压抑着，没让音量超过风雨声。而我的脑袋有些晕，似乎无数雨点射入血管。我想象那张薄薄的纸片，在一九七七年与一九七八年相交的冬天，对于那时无数的年轻人而言，对于我的父母那辈人来说，那是值得拿一切来交换的。</p>
+<p>又一记雷声响起，我妈、小东阿姨和青青阿姨，三个人分别抬头，面色煞白。</p>
+<p>“现在，你们三个都在这里，到底是谁做了那件事？”</p>
+<p>这位医生说到这里，虚脱般地长出一口气，松开领子猛喘几下，额头已满是汗珠。</p>
+<p>沉默了那么久，还是小东阿姨有胆识，站起来问：“你究竟是什么人？”</p>
+<p>医生嘴角微扬，仿佛就此圆满，可随时去火葬场报到。他起身离开桌子，打开小餐馆的门，狂风暴雨呼啸而至，犹如盗墓贼侵入地官。他没有带伞，浑身淋湿，隐入茫茫雨夜。</p>
+<p>我们的头发都被吹乱，还是我冲上去把门重新关牢，抹去一脸的雨水，回头看着包括我妈在内的三个女人。</p>
+<p>那么，现在问题来了：不是那个什么，而是…．</p>
+<p>一九七七年到一九七八年间的冬天，笫一届恢复高考的大学录取通知书，小东、青青和抗美，她们报名时填写的收件地址都是天潼路799弄59号，也就是我妈家里。</p>
+<p>不敢想下去了，我妈才是最大的嫌疑人？</p>
+<p>但是，小东阿姨和青青阿姨的嫌疑也很大，她们当时都暂住在那里，三个人都有可能接触到抗美阿姨的录取通知书。</p>
+<p>我妈低着头，躲避我的目光。小东阿姨依旧正襟危坐，风衣内裹着不老的身体。青青阿姨长吁短叹着，桌上的筷子丝毫未动过。</p>
+<p>晚上十点。</p>
+<p>没有人要离开。事实上谁也走不了。雷雨轰隆隆不知停歇，精神病院外的荒野，照旧水乡泽国一片。</p>
+<p>虽说，这是适合玩杀人游戏的好天气，但我可不想做什么警察或法官。一句话都不想多说，拿起手机想刷刷微博，发现信号都中断了，妈蛋（妈的）。</p>
+<p>“回家吧。”我妈却说话了，突然地。</p>
+<p>小东阿姨冷冷地回答：“回不去了。”</p>
+<p>这个女人还是那么酷啊，就像我小时候记忆中的那样。而青青阿姨仰望着仿佛随时都会被雨砸塌的天花板。</p>
+<p>“回不去了。”</p>
+<p>我妈不再说话，而我绕到她的背后，想要看到她的秘密。过去，她曾经断断续续地跟我说过点点滴滴。而我，也只能一丝一线地在脑中缝合……比如，她为什么没有参加第一届恢复高考？因为，那时所有人都觉得，我妈已经拥有大学学历了。</p>
+<p>上个世纪七十年代的工农兵大学生嘛——后来被吐槽过很多次的，我妈却是正儿八经地，在华东师范大学的校园里住读了两年，读的是政教系，却在数年后被一笔勾销，好像那段大学校园的时光，只是一场小孩过家家的游戏。</p>
+<p>于是，她错过了一九七七年与一九七八年的两届高考，再等到一九七九年，便永远失去了资格。</p>
+<p>一九八二年，恰逢首届成人高等教育自学考试，我妈对于大学学历被取消，实在是心有不甘，她依旧选择了华东师范大学攻读她最喜欢的中文专业。</p>
+<p>上个世纪八十年代，要通过大学自考并不容易，许多人都没有勇气报考，也有不少人考试没通过而未拿到文凭。他们没有机会接受全日制高等教育，读书或者文学是仅有的几种爱好之一。自考并不脱产，平时都在各自单位上班，也无须每次都去上课，大多在家读书复习。在我妈的那个班级里，还有个来自金山农村的男同学，他的名字叫韩</p>
+<p>仁均，彼此却完全不相识。很多年后，我才知道，我妈的这位同班同学，有个叫韩寒的儿子。</p>
+<p>一九八五年，我妈拿到了华东师范大学中文专业自考专科文凭。那些年，大部分人只有初中学历，拥有一张大专文凭是件值得炫耀的事，许多人因此而改变了命运。果然，我妈被调到了局里。</p>
+<p>此后两年，我妈继续攻读华东师范大学中文本科专业。我还是小学生，不太记得她白天上班晚上读书复习的艰难。小时候，家里堆着许多书，从小学四年级开始，我就半懂非懂地翻阅我妈读中文系本科的教科书了，比如什么《古代汉语》《中国文学史》《中外比较文学》，还有《政治经济学》。</p>
+<p>一九八七年，我妈获得了华东师苑大学中文本科专业的文凭。虽是自考，但也足够风光，在他们那个几万人的单位中，她是唯一拥有大学本科学历的女性。后来，她成为改制后的大型国企的纪委副书记，直到几年前退休。</p>
+<p>至于，三十多年前的那个冬天，三个女孩挤在狭窄的过街楼屋子里，等待她们的大学录取通知书的岁月，妈妈却从未跟我讲过……仿佛在我出生以前，这个世界不曾存在。</p>
+<p>“回不去了。”</p>
+<p>小东阿姨又重复了一遍，令我的视线从妈妈身上挪开。</p>
+<p>“骏骏，你生下来刚满月，我就抱过你呢。”小东阿姨看着我的眼睛，仿佛我仍然身处襁褓之中，被她柔软的双手环抱，额头枕在她的胸口。</p>
+<p>她接着说：“那时我还在读大学呢，你妈妈很羡慕我呢，不是吗？”她把手放在我妈的手腕上。同时，她又拉着青青阿姨的手，说：“其实呢，我倒是更愿意像你那样。”</p>
+<p>小东阿姨背对着我们说：“骏骏，拜你外公外婆家的福气，我还记得，一九七七年的最后一天，在天潼路799弄59号的过街楼下，我收到了我的大学录取通知书。四年后，我成为优秀毕业生，公派留学去了美国。我在加州大学拿到了硕士文凭，一度也想过在美国定居，却在一九九二年回国了。呵呵，那时候，每个人都想着往外跑，我们那批在美国的留学生，大部分都拿到了绿卡，我是唯一的例外。很多人想不通，问我为什么回来，其实，我只是想家了。”</p>
+<p>在我的记忆中，小东阿姨第一次出现时，我正在读小学。以后每年春节，她都会到我们家来拜年，带着各种各样的礼物，比如正版的变形金刚、美国巧克力，还有给妈妈的化妆品。那时，我知道她在美国，每年春节回一次上海。她每次都是独自一人。从未听她说起老公，好像也没有孩子。或许，也因为这个缘故，她会待我特别的好。等到她</p>
+<p>正式回国，被一所大学聘为教授，我已经念中学了。</p>
+<p>那时候，我才知道，小东阿姨一直没有结婚。</p>
+<p>回国以后，她跟我家的来往更密切了。她总是关心我的学习，偶尔教我几句美式英语，可惜我并不如她所愿。</p>
+<p>虽说在美国留学多年，小东阿姨却很懂得人情世故，没过几年就成为学校行政领导。她出过两本书，做过很多讲座，俨然已是文化名流。最后，她升至大学副校长，从厅局级位置上退休。现在，她又被政府单位返聘，还配有专车与司机。</p>
+<p>小东阿姨转回头来，捋起额前的短发，目光柔软下来，“这些年来，我总是惦记着抗美，这家精神病医院是上海条件最好的，就是我给她安排的。”</p>
+<p>原来，是小东阿姨把抗美关进这里的——不知为何，我想到另一面去了。</p>
+<p>“小东啊，三十多年前，你不是喜欢过农场里一个男生吗？”</p>
+<p>说话的是青青阿姨，她的脸色有些异样，嘴唇不住地哆嗦着。刚才我就观察到了，好像她想要说什么，却硬憋着欲言又止。这下终于迸发出来，差点让自己也爆了。</p>
+<p>暴雨的屋顶之下，所有人沉默片刻。我看向我妈的眼睛，她自动躲到房间角落。</p>
+<p>“是啊，”小东阿姨的脸色已恢复正常，故作轻松地说，“骏骏，让你听到这些，真是不好意思呢。”</p>
+<p>青青阿姨索性豁出去了，说：“我记得那个男生，跟我们差不多年纪吧，他好像叫什么来着？”</p>
+<p>“志南。”小东阿姨说。</p>
+<p>“对，他的长相真的蛮好啊，农场里许多女生都喜欢他。”青青阿姨想想说得不对，立即补充了一句，“当然我例外。因为，他有什么政治问题，家里是资本家，他的哥哥是个叛徒，‘文化大革命’时被枪毙的，所以不能参加高考。”</p>
+<p>小东阿姨点头说：“志南是最爱读书的，那时候农场里头，除了毛选和样板戏，几乎什么都看不到。我偶尔会从废品回收站里，淘来一些旧书偷偷地看。骏骏，我还会向你妈妈借书看，比如《红楼梦》啊、《家》啊，但大多数的小说，却是从志南的嘴里听来的，他的记性真是好，跟我整本整本地讲解《悲惨世界》《战争与和平》《安娜·卡列尼娜》《牛虻》……而我印象最深的是《红与黑》，他能从头到尾说上三天三夜，从于连做市长的家庭教师，到他去神学院苦读，再到巴黎的花花世界，遇上玛蒂尔德小姐，直到被处决，玛蒂尔德小姐抱着他的人头去埋葬。”</p>
+<p>忽然，我想起十七岁时，小东阿姨送给我一样生日礼物，就是司汤达的《红与黑》，傅雷翻译的版本，这大概也是她最爱的书吧。书中的许多细节，我至今还记忆犹新，有的后来用到过我的小说里，比如玛蒂尔德每年会穿戴一次黑衣孝服，纪念她的祖先德·拉莫尔，也就是亨利四世的王后玛格丽特的情人。</p>
+<p>青青阿姨猛喘了几口气，说：“那个志南啊，抗美也很喜欢他的——这个秘密，是抗美亲口跟我说过的，他们还……”</p>
+<p>“住嘴!”</p>
+<p>小东阿姨第一次失态了，她冲到青青阿姨面前，几乎要扇她的耳光。</p>
+<p>一个闷雷滚过，我妈想要挡在她俩中间，小东阿姨却静默不动了，雕塑般顿了几秒钟，终于瘫坐在椅子上。</p>
+<p>青青阿姨擦了擦额头的汗，躲到屋子的另一头，继续说下去，“小东，你考上了大学，真是走运啊，而我和抗美留在了崇明岛上，可……”</p>
+<p>“你们想知道秘密吗？”</p>
+<p>小东阿姨打断了她的话，当然，所有人都想知道秘密。</p>
+<p>“志南，他是我的第一个男朋友，他想要跟我结婚，而我答应他了。”</p>
+<p>这回轮到我妈惊愕了，“小东啊，这是真的吗？是什么时候？你怎么没跟我说起过？”</p>
+<p>“就在一九七七年，我跟他说，我参加完高考，就嫁给他。”小东阿姨苦笑两下，“虽然，我是真的喜欢志南，但，我对他说谎了。第二年，我上了大学，而他留在岛上。我很清楚，我和他之间，隔着一江水。记得离开农场的那天，青青、抗美还有志南都到码头来送我。但我唯独没有抬头看他。坐上回上海的轮船，我趴在栏杆上，大哭一场。那是一九七八年的春天，很冷，长江口，无边无际的。风冷冷地卷来，脸上刀割般的疼。而我看着自己的眼泪，一滴滴落到江水里，连个泡沫都不会再有，就算我整个人跳进去，也不过是多个漩涡，转眼谁都不会再看到，谁都不会再记得。”</p>
+<p>这话才说到一半，屋子另一头隐隐传来抽泣声，我知道那是青青阿姨。而我妈走到小东阿姨背后，搂着她的肩膀，却不知道还能说些什么。</p>
+<p>“别哭了，青青。”</p>
+<p>小东阿姨主动走到她身边，拍了拍她的后背，说：“直到现在，有时候，我还会梦见志南，梦见他打着赤膊在稻田里劳作，梦见他穿着海魂衫的夜里，举着蜡烛跟我说《巴黎圣母院》里的卡西莫多。至于，志南跟抗美是什么关系？我真的不知道，其实想想，这也不重要吧。离开岛上的农场，我不再跟志南联系了。而他呢，每个礼拜都给我写信，寄到我的大学宿舍里。他在信里说农场的生活，说他可以弄到外面的书了，说青青天天吵着要回城，说谁跟谁又打架了，但从未提起过抗美。他还说，想要到大学来找我，但是农场领导不准请假。他问我暑假有空再回岛上吗？他给我的这些信呢，当时我都保存得很好，但我一封都没有回过。直到，一九七九年的夏天，我终于给他回了一封信，信里只有三个字——我等你。”</p>
+<p>“你真的想要嫁给他了？”青青阿姨问，然后自言自语，“那一年，我还在岛上呢。”</p>
+<p>“谁能想到呢，那年夏天，志南出车祸死了。”</p>
+<p>青青阿姨点头，“是啊，我记得，在岛上，从农场到码头的公路，他骑自行车，被一辆卡车撞死了，好惨呢，我们都去看热闹，脑袋都被车轮轧没了，只剩个身体，血肉模糊的。”</p>
+<p>“别说了！”</p>
+<p>我妈堵住青青阿姨的嘴巴，以前她也经常这样阻止她，在青青阿姨滔滔不绝口无遮拦之时。</p>
+<p>“其实，只有我心里明白：他为什么骑自行车去码头？是因为收到了我的那封信——‘我等你’，三个字，他要乘渡轮过江来找我。”小东阿姨说着说着，眼眶早已经湿润，过去我从未见过她落泪，现在是破天荒头一回，发现她的脸颊上，正悬着儿滴泪珠。她说：“都是我的错，要是我早知道，他命里注定不能离开那座岛，不能渡过那条江，我就不会给他写那封信了。”</p>
+<p>我妈给她递了面巾纸，小东阿姨任由泪水淌落，似窗外屋檐下的雨水不绝。</p>
+<p>“要是志南不死的话，也许，他现在还在岛上，娶了抗美为妻，生了一对儿女，又生了孙子外孙，天伦之乐，日子不错吧？”小东阿姨闭上眼睛，“至少，比我强多了。”</p>
+<p>“小东，你一辈子没结婚，就是为了这个男人？”</p>
+<p>“不知道。”</p>
+<p>看着小东阿姨的双眼，我晓得她还有很多秘密，比如在美国，后来回国以后，她走过很多的路，遇见过无数的人，撞到过数不清的事，心却终究留在了那座岛上。</p>
+<p>终于，她抹去泪水，回头直勾勾看着青青阿姨，却对着我妈说：“你还记得吗？那个冬天，我和青青住在你家。早晚青青都守在信箱前，每次邮递员来送信和电报，他们都会聊好久。”</p>
+<p>“你在说什么啊？”青青阿姨扑到小东阿姨面前，还是被我妈阻拦开了。</p>
+<p>“青青，从一开始，你就知道自己肯定考不上，因此也没有认真复习，你从心底里希望别人也考不上，对吗？”</p>
+<p>面对小东阿姨的问话，青青阿姨摇头回答道：“但我不会做缺德事！至于，每天都来送信和送电报的邮递员，你们又不是不认识他！小东，你的大学录取通知书，就是他骑着自行车送来的，我替你签字拿下后转交给你的。我说要感谢他，买了几个油墩子请他吃，让他大冬天的骑车送信暧暧身子。每一天，我都问他还有没有新的录取通知书，最后我和抗美的都没有收到过。但是，这小子经常下班来找我玩，他只比我大了两岁，虽说家里条件很差，但那时候在邮政局上班，也算是铁饭碗，总比我们农场好多了啊。”</p>
+<p>“嗯，后来，你就嫁给了他。”</p>
+<p>我妈总算说了一句话。我这才想起，原来说的就是青青阿姨的老公啊。我见过那个男人的，从小记忆里就有，从他三十多岁够年轻，到四十来岁半秃了脑门，直到快退休了畏畏缩缩。从前，每年他都会给我带集邮的定位册。离上次见到似乎已很久很久了。</p>
+<p>“嗯，那时候，他就说，他喜欢我。”青青阿姨似已忽略我的存在，仅把这晚的谈话，当作闺蜜间的私语，“老实说，我有些嫌弃他，长相普通，家里一穷二白，跟我没半点共同爱好。我只是想，他工作还不错，跟他结婚的话，说不定会被调离农场，两年后，我和邮递员结婚了，就是你们都认识的那个人。我提前离开农场，回到日思夜想的上海。”</p>
+<p>“如果，没有你在我家的那些天，没有在信箱前等候录取通知书，你也不会嫁给他，是吗？”竹问话的是我妈，但我想她早就知道答案了。</p>
+<p>“对，否则，我这辈子都不会认识他！”</p>
+<p>“可是．过去你一直夸你老公，说他虽然没钱，但是工作稳定，没什么不良嗜好，关键是对老婆女儿非常好。”</p>
+<p>“我骗你们的，对不起。”</p>
+<p>“其实，我早就看出来了。”小东阿姨说。她的眼睛，果然尖利呢。</p>
+<p>“有时候我会想——三十多年前，那个选择对还是不对？要是我没有暂住在天潼路799弄的过街楼，没有天天守着信箱认识了现在的老公，那么我会不会一直留在岛上？我会嫁给怎样的男人？也许，就是像抗美那样，跟崇明岛的农民结婚。或许，我会生个儿子，长大后就像许多崇明岛男人那样，到上海来当出租车司机。要是这样，还真的算我走运了。只是抗美不走运吧，最后一个人孤苦伶仃，被你们送进这座精神病院!”</p>
+<p>“青青!”</p>
+<p>“呵！想到这里，我就觉得，我好走运呢!虽然，我从没喜欢过我的老公，从结婚的第二年开始，从我们有了女儿开始，我就想要跟他分开来过。但我不敢，一个女人家带着孩子，能有什么好下场呢？你们不会相信的，这些年来，你们所看到的，都是我和他装出来的，只有我女儿知道真相，但她也从来不会跟任何人说。有时候，想想女儿，她也蛮可怜的。好吧，就告诉你们，我和他，冷战了三十年……耶稣啊!三十年!”</p>
+<p>青青阿姨家里是信基督的，虽她本人不太信，但耶稣已成了口头禅。</p>
+<p>我记得，在我妈的几个闺蜜里，青青算是混得比较差的。我读中学的时候，青青阿姨就曾哭哭啼啼来借过钱，说是为了房子装修，而她从厂里下岗了每月只有几百块。直到几年前，她办理了退休手续。走运的是，原来家里的老房子拆迁，她也分到了一笔钱。女儿大学毕业进了外资企业，没过几年就结婚嫁人了。虽然，女婿也没太大出息，但总比别人家有个令父母操碎心的剩女强吧。</p>
+<p>停顿片刻，青青阿姨又说：“今晚，索性就不回家了，反正我家老公也不会等我的。这大雨下得啊，让我这嘴巴，也像水龙头，再也关不住啦。让我再说个秘密，你们都不晓得吧——我女儿小青，读高中的时候，跟抗美的儿子学文谈过恋爱。”</p>
+<p>“还有这种事？你肯定反对的吧。”小东阿姨冷冷地问。</p>
+<p>“咳，他们两个啊……对了，骏骏你不记得了吗？以前，我们三家人，一块儿去西郊公园看动物，你、小青、学文，三个孩子都去玩了。”</p>
+<p>这话说得我害羞，好像是有这么回事，是读小学五年级还是预备班？记不清了。总之，我的年纪最大，他们比我小两三岁。那时动物园是小孩最愿意去玩的地方，看熊猫，看大象，看北极熊，最有趣的是猴山。对了，学文好像很安静，看起来乖乖的样子，特别怕他的妈妈。而小青呢，是个爱哭的女孩，被打扮得挺漂亮的，要不是比我小几岁，大概会特别注意她的吧。</p>
+<p>青青阿姨接着说：“小青和学文，是同一年的。学文的功课特别好，小青这孩子读书不灵，特别是数学差到了一定地步。所以，我经常请学文到家里来，帮着小青补习数学。那时候，抗美已经离婚回了市区，一个人带着孩子，租了套小房子，住得离我家很近。小青和学文读不同的高中，但只隔了几条马路。他们经常一起放学回家，在街心花园写作业。渐渐的，我有些不放心了。我发现女儿越来越爱打扮，每天早上出门要反复照镜子。半夜听电台的流行歌，居然还会默默流泪。虽说女孩子青春期都这样，但她这一切似乎只是为了学文。有两次，我悄悄跟着小青，才发现她跟学文一块儿去看电影了，好像是那个……就是那个……一男一女抱着在船头的……”</p>
+<p>“《泰坦尼克号》。”小东阿姨冷冷地补充道。</p>
+<p>“对，就是那个号，我这脑子啊，快要老糊涂了！当我发现小青和学文谈恋爱，刚开始自然是反对，强迫他们两个分开。我又是要面子的人，只跟抗美一个人说了，都没跟你们两个说过。可是，孩子大了，管不住啊，那年小青在读高二，十七岁，最讨厌听妈妈的话。后来，我想通了，也就不再约束女儿了。看看我自己吧，当年为了早点离开农场，嫁给了一个我不喜欢的男人——仅仅因为他给我的闺蜜亲手送来了大学录取通知书，最惨的是我自己还没有份！我为什么不去找个自己喜欢的男人呢？就像小青这样，那么单纯，只是喜欢一个男孩，多好啊！对不起，骏骏，这些话实在不该对你说。但要是能重来一一遍啊，我也想找个斯斯文文的、读书好的男孩子，就像学文！”</p>
+<p>“后来怎么样了？”小东阿姨和我妈都被挑起了听下去的兴趣。</p>
+<p>女人，果然都是天生八卦，无论十六岁还是六十岁，尤其是对于谁跟谁好上了这件事。</p>
+<p>“后来……我女儿——你们知道的——终归是个听话的孩子，虽说大哭了一场，还是跟学文断了。其实，我给小青留了个后门，答应等她和学文考进大学以后，就不再干涉了，随便他俩怎么谈恋爱。谁又能想到呢？学文刚高考完就走上了绝路。”</p>
+<p>原本针锋相对的小东阿姨，倒也同情地搂着青青阿姨的胳膊，安慰说：“小青现在不是也挺好的吗？”</p>
+<p>“好什么啊？你们才不知道我的苦呢，学文死后的那个暑期，小青像变了个人似的，木木的，也不出去玩，就算大学考上了第一志愿，也没见得有任何高兴。但她也不哭，整天在床上挺尸，那些天啊，我和她爸都担心死了，怕她也会跟学文一样。再后来呢，小青似乎对什么都没兴趣，大学毕业以后谈了两个男朋友，都是草草了事。直到遇上我现在这个女婿，虽说也没见他们有多要好。只是对方家里有房子，父母都是公务员，结婚条件嘛也只是中等。我原本以为，小青心里还一直念着死去的学文，没想到她爽快地答应了求婚。我就这样稀里糊涂地把女儿嫁出去了。这就是命呢。”</p>
+<p>看着青青阿姨的颓丧，我完全想起了她女儿小青，有双乌黑乌黑的眼睛，头发在阳光底下宛如墨色。眼前昏暗的世界，狂风暴雨，天花板下霎时明亮鲜澄起来，回到十多年前的清晨。还有学文，我想起打红白机的情景，虽然他是优等生，但玩游戏也是高手，我俩一起用上、上、下、下、左、右、左、右、B、A、B、A调出《魂斗罗》的三十条命，如此一路打到通关为止。他不太说话，嘴上有圈绒毛，留着刘德华式的中分发型，嘴里偶尔会哼起“给我一杯忘情水，换我一生不伤悲”。</p>
+<p>最后，等三个女人都不出声了，我把目光对准了我妈。</p>
+<p>根本不用说话，疑问已呼之欲出——妈妈，你有什么秘密？</p>
+<p>天潼路799弄59号——“一九七七年恢复高考大学录取通知书灵异事件”（我给今晚发现的秘密所起的代号）的案发地，也是我外公外婆的家，我从出生到十岁，差不多有一大半的童年时光，是在这栋过街楼上度过的。</p>
+<p>我记忆中的第一天，应该是八十年代初的某个下午，天潼路799弄59号过街楼上，我看到窗外刺眼的亮光，还看到墙上挂着的相框，好像是妈妈抱着婴儿的我，背景好像是在苏州的天平山上。那个瞬间，我就有一个疑问——我是谁？这不是在装逼，而是我的记忆里，真的存有这么一段，因为是人生的第一段，反倒记得格外清晰。</p>
+<p>从那天开始，我的记忆就是在爸爸妈妈的小家与外公外婆的老宅之间切换。大概在我两岁那年，妈妈搬出了天潼路的老房子。单位给她分配了一套房子，在黄浦区的江西中路。那是上世纪三十年代的老建筑，就连电梯都是那时的旧物。一家三口住很小，但有个突出在楼房外立面的阳台，雕花的铁栏杆两边，还有真正的巴洛克风格的罗马柱，就像站在古城堡的塔楼上——只有三楼，我却已感到在很高的地方，抬头眺望对面大楼的屋顶之上，隐约可见外滩海关大厦的钟楼。那时我想到一个说法，这里是“外滩的屁股”。杂乱无章的天际线一上，我经常看着那里发呆，依稀记得某个凌晨，我就这么趴在阳台上，看着天</p>
+<p>空从黑变紫直到泛出鱼肚白。</p>
+<p>但是，我爸我妈都要上班，像我们这种双职工的孩子，通常都交给老人来带。因此，我的大多数童年时光，都是跟外公外婆住在一起，恰好我也是他们唯一的外孙。许多个傍晚，爸爸将我放在自行车午后座上，骑过苏州河边，穿过老闸桥，从一条小巷子进入天潼路799弄。那条弄堂地下铺着石板，小时候丝毫不觉得狭窄逼仄，因为小孩眼里一切都是大的。外公外婆就住在59号的过街楼上，穿过一道陡峭狭窄的木头楼梯，就到了时常散发着白兰花香气的房间。透过地板下的缝隙，可以看到底下的门洞。我特别喜欢爬上小阁楼，趴在屋顶突出的“老虎窗”边，原来那块狭窄的长方形的蓝色天空，一下子变得如此辽阔。眼底是大片的黑色瓦楞，偶尔长着青色野草，再远望仍是层层叠叠的瓦片，头顶不时飞过邻家养的大队鸽子……那时最爱看《聪明的一休》，那个挂在屋檐下布扎的小白人，现在的孩子都不知道了。我常在黄梅天的雨季，趴在阁楼的老虎窗边，看着密集的雨点落在窗上，看着阴</p>
+<p>沉的天空乌云密布，幻想屋檐下也有个小白人随风飘舞，全世界都在风雨中寒冷发抖——后来特别喜欢宫崎骏的《千与千寻》，不仅因为大师与我同名，更因为电影里那个城堡式的亭台楼阁的世界，那些高悬于墙面的窗户都像极了我的小阁楼。</p>
+<p>而我就读过的第一个小学，也在天潼路799弄的尽头，几乎紧挨着苏州河，是闸北区北苏州路小学。那个校舍可是个老洋房，我妈给我报了个美术班，也在这所小学，叫菲菲艺术学校，可惜我不能再把我的学校和我的阁楼画出来了。</p>
+<p>我一直在想，那栋老房子里，究竟还发生过哪些秘密？一定会有的吧，就算不是在我家，隔壁邻居的楼上楼下，总有些不为人知的往事。</p>
+<p>今晚，这个秘密就在眼前，就像一只被加热的瓶子，再调大些火候，就会彻底爆裂。</p>
+<p>小东阿姨、青青阿姨，还有我妈，她们三个人里，至少有一个在说谎。不过，也有一种可能，就是——她们三个全都说谎了。</p>
+<p>但，我又不可能指望她们自己说出来。</p>
+<p>忽然，我清了清嗓子，第一次高声说：“我去档案局调高考的考卷——一九七七年你们的考卷，好吗？”</p>
+<p>沉默。比打在屋顶上的暴风雨更沉默，沉默得震耳欲聋。</p>
+<p>子夜，零点。</p>
+<p>不知是谁要脱口而出之际，身后的精神病院却响起刺耳的声音。警报声！</p>
+<p>听得撕心裂肺的，我忍不住打开窗户，风雨小了些，荒野里亮起几束光，从精神病院方向，变成几个人影，推开这间餐馆的门。</p>
+<p>几个不速之客，分别穿着白色外套，两个强壮的男护工，还有个人似是医生模样，却并非刚才那个男人。</p>
+<p>“对不起，你们是什么人？”这些家伙就像审问似的，仿佛我们是逃跑的病人。</p>
+<p>“我们是今天来探望病人的。”</p>
+<p>“哦，我记得。”医生眼里布满血丝。</p>
+<p>“前面的公路被水淹了，我们在这里躲雨。”我这样跟他解释。</p>
+<p>“今晚有没有见到其他人？”</p>
+<p>说话同时，两个护工在小餐馆里转悠，包括厨房和厕所也没放过。</p>
+<p>“是有精神病人脱逃了吗？”说话的是小东阿姨，看到对方点头，她已猜到几分，回头问：“是他吗？”</p>
+<p>“你们看到他了？”</p>
+<p>“是不是个三十来岁的男人，看起来斯斯文文的？”医生说着拿出一张精神病院的表格，写着病人的名字，还有张大头照，赫然就是几小时前，出现在这里的神秘男人。</p>
+<p>“他是病人？”青青阿姨快要晕过去了，我妈扶了她一把。</p>
+<p>我保持镇定道：“他说是精神病院的医生。”</p>
+<p>“嗯，这就是他最显著的症状，妄想自己是资深的精神学科医生，这样就能解释他为何一直住在精神病院了。”</p>
+<p>说话的才是真正的医生，为了让我们确信他不是精神病人，他掏出医生胸牌给我们看了一遍。</p>
+<p>“你们才发现？”</p>
+<p>“晚上点名时发现人不见了，调出的监控录像显示，下午他就逃出去了。”</p>
+<p>“嗯，我们是见到他了，在这儿吃了碗葱油拌面，还跟我们聊了一会儿天，将近十点钟离开的。”</p>
+<p>“册那，这疯子够胆大的，明明逃出了精神病院，还在门口坐了那么久！”一个护工往地上吐了口唾沫。</p>
+<p>“现在雨小了，路应该通了，你们有车就快回去吧，留在这里很危险，两年前，有个性变态的病人逃跑，躲在附近一间农合，杀了那全家。虽然今晚逃走的病人没有暴力倾向，但还是要小心点。”</p>
+<p>其实，早知道那个王八蛋是精神病，就算外面下冰雹，也得快点回去了。</p>
+<p>我重新发动车子，妈妈坐在我身边，小东阿姨和青青阿姨坐在后排。</p>
+<p>午夜，雨刷刮开风挡玻璃上的雨点，瀑布般流淌下来，远光灯前的郊外小道，不知哪里潜伏着精神病人。今晚，犹如蒲松龄的世界，妖异而模糊。</p>
+<p>谁都没说话，但我能感到她们的出气声，不约而同地松了口气，仿佛各自庆幸——精神病人的鬼话，谁信啊！</p>
+<p>小心地开了不到十分钟，道路上的积水果然退了，车速加快。</p>
+<p>忽然，灯光中蹿过一道黑影，几乎紧贴地面飞过。</p>
+<p>我无法躲闪，急刹车也来不及，若是猛打方向盘，很可能冲进路边水沟，只能闭上眼睛碾压过去。</p>
+<p>再停车。</p>
+<p>刚才微微一颠，车轮下好像碾过了什么。其他人也感受到了，小东阿姨回头看着，青青阿姨却催促我快点往前开。</p>
+<p>我手心里都是汗珠，窗外的雨越来越小，车里却仿佛暴雨一场。</p>
+<p>但我犹豫片刻，还是选择踩下了油门。</p>
+<p>不知道轧着了什么。</p>
+<p>命运吧，我想。</p>
+<p>继续往前开去，很快摆脱了乡间公路，上了回市区的高速。车里的三个女人，依然寂静一片。虽然她们都很疲倦，但我想一个都不会睡着。我重新打开电台，深夜的古典音乐频道，响起拉赫玛尼诺夫的《帕格尼尼主题狂想曲》。</p>
+<p>那一晚，在送我妈和她的闺蜜们回家的路上，不知为何，我的脑中去口浮现起那个穿着海魂衫的男子。他叫志南，死的时候，应当比我年轻，死在车轮底下，死在一座孤岛上。</p>
+<p>一个月后。</p>
+<p>我托了许多层关系，包括档案局的领导，依旧无法调出一九七七年的高考试卷。</p>
+<p>但我查出了抗美的高考成绩单。</p>
+<p>结果却让人惊诧，她的总分不高，远远低于最低分数线，主要的原因在于，其中有一门课考了零分——语文。</p>
+<p>语文零分？</p>
+<p>这怎么可能？若说数学零分，倒也情有可原，语文从来没有零分的，就算作文打了零分，其他也不可能全错，除非交白卷。</p>
+<p>但我没有看错。</p>
+<p>档案馆的灯光下，明亮却不刺眼。我看着这份成绩单，眼前成排的台子宛如课桌，紧闭的大门有管理员守着，宛如三十多年前的监考老师。而我就是小东，或者青青，或者抗美，坐在决定命运的椅子上，看着想象中的试卷……</p>
+<p>深深地吸了一口气，仿佛闻到白兰花的香味，外公外婆的小阁楼里的气味啊。</p>
+<p>离开档案馆，我直接开车去了精神病院，独自一人。</p>
+<p>回到那栋灰暗的建筑前。门口的小餐馆已经关闭了，取而代之的是送盒饭的快递员，大概还是有医生和护士不满意伙食。</p>
+<p>但我没有看到抗美阿姨。医生说一个月前，我们去探望过抗美以后，她的情绪就极不稳定，现在必须隔离，什么人都不能见。</p>
+<p>那个医生，就是子夜时分带着护工出来追捕逃跑的精神病人的习位。</p>
+<p>他说，那个把自己想象成精神病医生的病人，到现在也没有被抓到。因为没有暴力犯罪的前科，公安局没有下达通缉令或协查通告之类的。好在那个人没什么家属，从小就父母双亡，否则家属们要被烦死了。不过，院长还是为此写了好几页检查。</p>
+<p>“逃跑的精神病人，跟抗美阿姨的关系好吗？”</p>
+<p>“他们几乎是彼此唯一的朋友……事实上，抗美把他当作自己的儿子，经常管他叫学文。”</p>
+<p>“学文早就死了十多年了。”</p>
+<p>“我知道。”</p>
+<p>“医生，这么说来，抗美把自己的一辈子，全都倾诉给了那个病友？而那个人，就在抗美的面前伪装成医生？”</p>
+<p>“嗯，他最喜欢给人做逻辑分析，除了假装给人看病，还经常给人分析各种疑问，许多秘密真的被他说准了——说实话，如果没有精神病的话，他会是一个非常出色的警官，或是推理小说家。”</p>
+<p>说到这里，我才发现医生的办公室里，摆着一排日本与欧美的推理小说。</p>
+<p>我问不到更多的答案了，也不想再去打扰抗美阿姨，更没告诉妈妈在内的任何人，关于我的第二次精神病院之行。</p>
+<p>返回市区的路上，我开车格外小心，以免再轧到什么奇怪的东西。车载音响里是肖斯塔科维奇的《C小调第八交响曲》，缓慢碾过荒野泥泞的道路，也许还包括某些尸体残骸。</p>
+<p>我已经有了答案，或许也是我的妄想——抗美在精神病院的十年来，她宁愿相信一切都是别人的错误，而所有的错误的起点，在于一九七七年到一九七八年的冬天，自己未能住在天潼路799弄59号——最要好的闺蜜家里，导致她的大学录取通知书，被别人冒领或藏匿或销毁。</p>
+<p>正好有个冒充医生的精神病人，被抗美误认作早已死去的儿子学文，便把一腔的愤懑都倾诉给他听。</p>
+<p>至于他的越狱，或者说飞越疯人院，并非是什么巧合，而是早有预谋的——事实上，这所精神病院的管理漏洞百出，只要他想逃跑，任何时间都可以，甚至大摇大摆装作医生从大门出去。但他之所以不愿意走，完全是为了把他当作儿子的抗美——因为他从小是个孤儿，在他眼里抗美就是最亲密的人，就像妈妈，亦同病相怜。</p>
+<p>他决定为抗美复仇。</p>
+<p>终于，等到了这一天，三个老闺蜜又来探望病人，唯一出现在意料外的，是我。</p>
+<p>趁着探视的空当，他伪装成医生逃出精神病院，等候在门外的小餐馆里。如果按照原定计划，他或许会在我们出来以后，上前搭讪再说起抗美的病情，最终诱导我们陷入当年的往事。然而，天有不测风云，狂风暴雨之中，前头道路必然中断，我们暂时无法离开。这倒给了他更多的时间与空间，当然风险也相应增加——精神病院随时会发现他不见了。</p>
+<p>于是，他吃了一碗葱油拌面，果然等到了我们。</p>
+<p>接下来，就是他酝酿了多年的报复，代替抗美的复仇——也可以说就是抗美本人的复仇，是她的儿子死后灵魂附体的复仇，对自己当年的情敌小东，对学文生前怨恨过的小青的妈妈。还有对于我和我妈，如果不是出于最原始的嫉妒与恶意，那么就是我妈深埋的某个秘密吧？</p>
+<p>心底想着想着，车子已开进市区。傍晚时分，我妈让我回家吃饭，我说等一等。我从延安路高架转南北高架，从北京东路匝道下来右拐，一路往东开去。</p>
+<p>到北京东路福建中路路口，车子停在旁边的科技京城前。眼前是座跨越苏州河的桥，小时候叫老闸桥，坐在爸爸的自行车后座上，总觉得这座桥好长好大，桥下的苏州河水面宽阔，河边泊着许多船只，不少竖起高高的桅杆。那时我最爱的，就是趴在桥栏杆上，看一艘拖船带着后面十几条船，一节节列车似的从桥洞下穿过。船上载着煤炭与沙石。发动机的轰鸣声，丝毫不觉得是噪音。船头雪白的浪花，煞是好看。</p>
+<p>可惜，原来的老桥在二○○，一年拆了。现在这座桥，二○○七年才竣工通车。所以，这已不是我童年时的那座桥了。</p>
+<p>而今的苏州河，却是分外宁静，很少再见旧时的内河货船。秋日夕阳，洒上清波涟涟的水面，金灿灿的反光。一艘旅游观光的小艇经过，玻璃钢的艇壳，从我脚下的桥洞穿过，眼睛像进了沙子。</p>
+<p>驶过这座桥，就是福建北路，也是我读过的第一所小学——北苏州路小学的旧址，几年前被夷为平地。</p>
+<p>至于我的外公外婆家，也是“一九七七年恢复高考大学录取通知书灵异事件”的案发地——天潼路799弄59号，同样也已沦为拆迁队挖掘机下的瓦砾。</p>
+<p>天快黑了，四周布满高楼，这里的建筑工地，却像精神病院外的荒郊野外。或许等到明年，才会变成四五万一平方米的豪宅楼盘。</p>
+<p>从这一头，走到那一头，大概不过一两百米。小时候却觉得这条弄堂好长好长啊。靠近天潼路这头有条支弄，住着我最要好的小伙伴，我的同班同学，如今不知人在何方。尽头紧挨两条路口，已是一片空地。天潼路799弄的正门，曾有个玉茗楼书场，常有老人在那儿听苏州评弹，晚上会放录像，我记得最早看过的录像带，当属琼瑶片《梦的衣裳》。马路另一边的老弄堂尚幸存，里头藏着个老园子。清末光绪二十二年夏天，放过西洋影戏，这是中国第一次放映电影，距离一九八九五年十二月二十八日卢米埃尔兄弟在巴黎放映十二部短片——世界公认的电影诞生日仅隔半年。</p>
+<p>我再也找不到59号的过街楼了，就连废墟上的遗址也寻觅不见，不晓得在哪片角落……</p>
+<p>小学三年级，我常爬上阁楼。有个小柜子，最底下那格抽屉，一本厚厚的《钢铁是怎样炼成的》底下，压着一张黑白照片。小阁楼里本来幽暗，老虎窗却投来清亮的光，无数灰尘在光束中飞舞，仿佛夏夜乡间无尽的萤火虫，照亮相片里的四个女生。她们都留着乌黑的辫子，手挽着手，穿着厚厚的棉袄，背景似乎就是我家的弄堂，隐隐还有屋顶上的积雪。她们笑得多么欢快，不晓得命运将会往哪一个方向去。而为她们拍照片的那个人，又是谁呢？</p>
+<p>那一年，深秋的清晨，外婆给我做好早饭，送我去学校读书以后，就再没有醒来过。不久，外婆因为脑溢血辞世。我第一次接触到亲人的死亡，在追悼会上看着水晶棺材里的外婆，绝不相信再也见不到她了，总觉得哪天外婆还会回来。那年冬天，外婆很多次出现在梦中，那么清晰而真实。</p>
+<p>而我对于天潼路799弄59号最后的印象，停留在办丧事的家里挂满的挽联和被棉子（丝绸被套）上。</p>
+<p>同一年，我妈单位分配了一套新房子，她也被提拔去了厂局机关上班，那张华东师范大学中文本科（自考）的文凭，无疑起到了很大作用。</p>
+<p>于是，我家搬到了西区的曹家渡，六层楼的工房的底楼，我们拥有了独立的卫生间和厨房，再也不用木头马桶和痰盂罐了。我们一家三口与外公同住，但没几年他就过世了，大概是孤独的老人难熬过岁月吧。</p>
+<p>以后搬过很多次家，但从未离开过苏州河。现在推开我的窗户，仍能看到那一线河水，只是由从前的墨黑稍微变清了些。如果往河里放一艘纸船，必然能漂到童年那座桥下。</p>
+<p>中考那年，我依然梦想当画家，便提出要考上海美专，结果失败，也没有考上高中。于是，从北苏州路小学妈妈送我读画画班那天起的梦想，就此永远破灭了。当然，往后我也再无缘就读全日制的大学，就跟三十多年前妈妈的命运相同，尽管原因截然不同。</p>
+<p>那一年，妈妈常常觉得在同事们面前抬不起头来，因为免不了和别的孩子比较，比如学习成绩很好的抗美阿姨家的学文，还有青青阿姨家的小青，还好小东阿姨没有孩子。苦闷叛逆中的我，在一本小笔记簿上开始了最早的写作，不过是些倾诉罢了，我忘了有没有写过天潼路799弄的记忆。</p>
+<p>但我也在读书，只是学校很远，在当时的工厂区旁边。过去是广东人的联义山庄，也就是公墓，阮玲玉的香冢就在我们学校隔壁。多年以后，我给那地方起了个名字：魔女区。</p>
+<p>后来，我进入上海邮政局工作，先在思南路上班，后调至四川北路的邮政总局，依然在苏州河边，距离天潼路老宅数步之遥。不知何故，我从未回去看过，只是在文章里不断回忆。</p>
+<p>再后来，二○○○年开始，我在榕树下网站发表小说，再到两年后出版自己的第一本书。因为各种机缘巧合，我觉得自己是个超级幸运的人，渐渐变成了你们所知道的那个人。</p>
+<p>当然，我还是我，也从来没人真正了解过我。</p>
+<p>二○○七年，我妈妈从单位退休，我从上海邮政局辞职，开了家文化公司，以我的小说为主要产业。</p>
+<p>今年，我开始写一连串的短篇小说，成为“最漫长的那一夜”系列，大多来自于我记忆中的人和事。</p>
+<p>但我从未敢写过妈妈和她的闺蜜们的故事。</p>
+<p>我的妈妈，或许，也有她的秘密？</p>
+<p>但我宁愿，一无所知。</p>
+<p>对了，我也相信，我妈、青青阿姨、小东阿姨，她们三个人，余生里，再也不会有任何来往和联络了。</p>
+<p>天，黑了。我想，我该回家吃饭了。</p>
+<p>从废墟前转回头，却看到身后站着一个男人。</p>
+<p>看不清他的脸，只感觉他穿着件白色大褂，再看胸口的钢笔，很像是医生的派头。</p>
+<p>他也在看着眼前这堆瓦砾，似乎跟我-一样，在寻找那栋过街楼上的老宅子。</p>
+<p>我见过他，在精神病院。</p>
+<p>好吧，我就当他是个医生，反正在这个世界里，究竟谁是医生，谁是病人，鬼才知道！</p>
+<p>但有一点，他自由了。</p>
+<p>开车回家的路上，照例堵得一塌糊涂。我手握着方向盘，心里却浮起一个人的脸——抗美阿姨的儿子学文，因为刚才那个人吗？学文差不多是二○○○年自杀死的，到现在有十四五年。要是他还活着，说不定是个社会精英，混得比我好吧。对啊，他的学习成绩可棒了，语文、数学、英语无懈可击，大家都觉得他能考上北大、清华。那一年，高考前夕，学文到我家来做客，他悄悄告诉我——他妈反复叮嘱，走进考场，拿到试卷的第一件事，千万记得要把名字填在装订线里面，不要直接写在考卷上，否则要算零分的啊……学文困惑地说：“哎，谁会犯这种低级错误呢？妈妈说到这啊，还会掉下眼泪呢！”</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

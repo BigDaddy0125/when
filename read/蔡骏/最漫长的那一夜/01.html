@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>01</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  ">
+            <div id="top"></div>
+            <p><a href="00.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="02.html">下一章</a></p>
+            <hr>
+            <h1>
+                  <center>第1夜 北京一夜</center>
+            </h1>
+            <p>“花开了，然后会凋零，星星是璀璨的，可那光芒也会消失。这个地球，太阳，整个银河系，甚至宇宙，也会有死亡的时候。人的一生，和这些东西相比，简直就是刹那间的事情。在这样一个瞬间，人降生了，笑着，哭着，战斗，伤害，喜悦，悲伤，憎恨，爱，一切都只是刹那间的邂逅，而最后都要归入死的永眠中。”
+            </p>
+            <p>——沙加（圣域第六宫处女座黄金圣斗士）</p>
+            <p>这是一个真实的故事。</p>
+            <p>许多人都不喜欢那座充满雾霾与拥堵的城市。</p>
+            <p>但偶尔，我还是会着迷那样的夜晚。春风沉醉兼沙尘呼啸的三月，后海盛开荷花的七月，秋月如镜锃亮的十月，白茫茫落得干净的腊月。</p>
+            <p>那年初秋，我在工体附近跟友人晚餐。忘了谈啥事。我独自离去，沿着工人体育场北路散步。恰是酒吧、餐厅、夜场、三里屯SOHO……人山人海，挤不出去，挂着红灯的黑车，猫步般跟在身后按喇叭，或干脆问你去哪儿。避之唯恐不及。打车这个技术活上，我是菜鸟一枚，从前木有买车时，我常看着别人上车，自己被迫步行数百米才能抓到一辆。
+            </p>
+            <p>霓虹下，随波逐流，形单影只。我看野眼，堵车风景，成群结队。东三环，长虹桥边，终有几辆空车，被人捷足先登，更多呼啸而过不停。我想，要么去坐地铁，要么一直站在这里，等到夜色褪尽，再跟满嘴酒气而来不及卸妆的女孩子们抢出租车吗？
+            </p>
+            <p>一辆空车过来。</p>
+            <p>并不指望能拦下，前头还有三拨人伸出胳膊。红色的现代索纳塔，却无视所有人，只在经过我面前时，急刹车。</p>
+            <p>我还没招手，出租车右前车窗摇下，露出一张男人的脸。满世界的噪音里，他沉郁的声音：“喂！上来吗？”</p>
+            <p>白痴般，我愣了。几个家伙冲上来抢，我才拉开红色车门，坐进前排副驾驶座。司机一言不发，稳健起步，甩下后面一群骂娘的文艺青年。</p>
+            <p>晚八点半，开上东三环主路，我意识到还没说目的地。</p>
+            <p>“师傅，我去……地安门。”</p>
+            <p>沿着工体北路、东四十条、地安门西大街，是条直线，但要经过帝都最堵的几个点，何况在反方向。不晓得是领导微服私访，还是出了什么事故，东三环已成巨大的停车场，车尾此起彼伏的制动灯，渲染得如同红灯下的东莞。</p>
+            <p>出租车司机，三十多岁，不似印象中的北京的哥。更像三国里说的，目似朗星，鼻若悬胆，下颌丰满，居然有几分像那个谁……冯唐？</p>
+            <p>冯唐的亲兄弟或堂兄弟还是表兄弟？不对，就是冯唐吧？</p>
+            <p>“你相信，人有前世吗？”</p>
+            <p>他问我，声音很有磁性。</p>
+            <p>副驾驶座的挡风玻璃后，我的脸和眼睛，藏在光亮与阴影间，渐渐变形，想必。</p>
+            <p>我不答。</p>
+            <p>车子往前开了两步，“冯唐”转了转方向盘，淡定说：“对不起，打扰你了。”</p>
+            <p>窗户关紧，车封闭性不错，几乎听不到外面噪音，我望着三环上灯光污染的夜空，终于对司机开口：“能问你个问题吗？刚才，那么多人招手，你却停在我面前，为什么？”</p>
+            <p>“远远看你，觉得有缘分。”</p>
+            <p>这话说得我脸红心跳。莫非，是我遗世独立而不扬手，惺惺然有上古名士之风？去你妈，扯什么蛋？</p>
+            <p>不敢正眼看“冯唐”，眼角余光瞥去，怕他是个男同志，开着出租车寻找同性猎物，难道我看起来像弯的？需要在额上贴“直男”标签吗？</p>
+            <p>我开始注意车内的一切，比通常出租车干净。眼前就是驾驶员卡片，印着某张男人的照片，再看现在开车的“冯唐”，两张脸，天壤之别。</p>
+            <p>黑车？心底叫苦不迭，坐他身旁岂有完卵？</p>
+            <p>他打开车载音响，北京人民广播电台的小说连播……</p>
+            <p>“黑夜给了我黑色的眼睛，我却用它寻找光明。”</p>
+            <p>马达睁大着黑色的眼睛，驾着他的出租车，在笼罩着黑色的马路上飞驰着。此刻，他正静静地听着电台里的播音，这是一首顾城的诗。</p>
+            <p>这几天，他的脑子里全都是那双黑色的眼睛，那个叫周子全的男人，死在他面前时的眼睛。</p>
+            <p>神在看着你。</p>
+            <p>他的嘴里默默地念着这句话，却始终都无法理解这句话里所包含的意义，难道真的有一个无所不在的神灵，高高在上地监视着他吗？不，这句话里一定隐藏着什么东西，或者，这是一句没有说完的话，还有很多话永远藏在了死者的心里。
+            </p>
+            <p>晚上九点，马达开到了他曾经度过两个夜晚的那栋小楼旁。</p>
+            <p>她到底是谁？</p>
+            <p>“这个小说写得很一般。”</p>
+            <p>开车的“冯唐”把电台关了。</p>
+            <p>我的脸颊一阵发热，因为那是我的小说，很多年前写的，主人公叫马达，是个出租车司机。</p>
+            <p>“兄弟，你是做什么的？”</p>
+            <p>我给自己编造了一个职业：“推销员。”</p>
+            <p>“推销员？很辛苦吧。”</p>
+            <p>“当然。”</p>
+            <p>“您不是北京的吧？”</p>
+            <p>“嗯，不是啊，来出差的，推销员嘛，全国到处跑。”</p>
+            <p>“去地安门干吗？”</p>
+            <p>这他妈是公安局的反恐规定吗？每个乘客必须说出去哪儿的理由司机才能拉？</p>
+            <p>见我没有反应，“冯唐”顿了顿说：“我是在地安门长大的。”</p>
+            <p>“难得。”</p>
+            <p>有些累了，我耷拉眼皮，靠在座椅上，惜字如金。</p>
+            <p>“我们家有座独立的小四合院。有我，爸爸妈妈，还有奶奶，一家四口。北房三间，东西厢房。院子里有棵老槐树，夏天我常爬上去掏鸟窝，冬天从屋顶上扫下雪来，堆个小人不成问题。我爸爱养鸽子，大大小小几十只，每天早上起来放飞，天黑前准保全都回来。”
+            </p>
+            <p>“房子还在吗？”</p>
+            <p>“奥运会那年拆了。”</p>
+            <p>“拆迁补偿款应该不少吧？”</p>
+            <p>“呵呵，初中毕业那年，我们家把房子卖了，搬到城外的回龙观。”</p>
+            <p>看看他的年龄，那应是九十年代，卖不出什么价钱：“太可惜了。”</p>
+            <p>“说来……话长。”</p>
+            <p>“听听？”</p>
+            <p>“算了吧，很无聊的故事。”不知不觉，出租车已转过东三环，进了朝阳北路，“冯唐”沉默着，没有表情的脸，简直几分可怕。</p>
+            <p>静谧的十来分钟，我仓皇地看着车窗外，有跳车逃生的念头。</p>
+            <p>“小时候，我是北京市三好学生，优秀少先队员，初一那年还上过新闻联播，中央首长来我们学校视察，我作为学生代表跟那位爷爷合影。”</p>
+            <p>像一夜里冒出的粉刺，“冯唐”突如其来地说话。我头靠车窗，尽量距离他远些。</p>
+            <p>“羡慕。”</p>
+            <p>不是客套话，想起我小时候，既不是差生，也不是优等生。我没让老师头疼过，也没被人夸过，除了作文还算凑合，就是最容易被忽略的那种孩子。</p>
+            <p>“我爷爷是老革命地下党员。新中国成立后，分配了一间四合院——从前住着个前清老太监，伺候过慈禧太后。1954年，地安门被拆了，老太监在自家院里上吊死了。文革头一年，爷爷也在同一棵槐树上自杀。改革开放，落实政策，才把四合院还给我家。我爸在中央部委工作，我妈是协和医院的妇产科医生，只有奶奶是家庭妇女。小时候，我常能吃到别人家孩子吃不到的东西。你懂的。”
+            </p>
+            <p>“嗯，我稍微懂一点。”</p>
+            <p>“小学三年级，我写过一篇命题作文，关于自己长大后做什么职业。我写了三种，一是考古学家，二是文学家，三是北京市长。”</p>
+            <p>“你也想当作家？”</p>
+            <p>说实话，在我念小学的时候，从未有过此般梦想。</p>
+            <p>“我爸爱藏书，家里有个大书房，书柜从地面排到天花板。除了四大古典名著、《马克思恩格斯选集》《鲁迅全集》《红与黑》《悲惨世界》《安娜·卡列妮娜》《罪与罚》《亨利四世》……还有《福尔摩斯探案全集》跟《东方快车谋杀案》。但我最喜欢苏俄小说，《钢铁是怎样炼成的》读过至少五十遍。”
+            </p>
+            <p>“保尔·柯察金，奥斯特洛夫斯基。”</p>
+            <p>“记得冬妮娅吗？”</p>
+            <p>虽然，书中情节大半模糊，但我记得：“保尔的初恋？”</p>
+            <p>“最喜欢她在水边初遇保尔，蓝白色的水兵服，浅灰色的短裙，带花边的短袜，栗色的大辫子……都是十七八岁，没有冬妮娅，就不会有保尔，你说呢？”</p>
+            <p>“嗯。”</p>
+            <p>“人，最宝贵的是生命。生命对每个人只有一次！这仅有的一次生命，应当怎样度过呢？每当回忆往事的时候，能够不为虚度年华而悔恨，不因碌碌无为而羞耻。在临死的时候，他能够说——我的整个生命和全部经历都已经献给了世界上最壮丽的事业，为人类解放而进行的斗争！”
+            </p>
+            <p>北京，晚九点半，朝阳门外大街，出租车司机为我背诵这段名言，保尔·柯察金将要举枪自杀时想到的话。</p>
+            <p>“不过，我想在那个时候，他心底所念的人，一定是冬妮娅吧。”他按了按喇叭，让前头的实习车闪开，“你想过自杀吗？”</p>
+            <p>我不响。</p>
+            <p>“冯唐”转移了话题：“你知道我家为何要从地安门搬走？”</p>
+            <p>这个我感兴趣。</p>
+            <p>“初三，我十六岁，我们学校的教学楼有五层。那时男生都爱圣斗士星矢，有人喜欢紫龙，有人喜欢阿瞬，我们几个男生，各自扮演喜欢的圣斗士，从一楼玩闹到五楼，是不是很傻？而我最爱沙加，当我高喊‘天上天下，唯我独尊’，却不小心胳膊碰到窗玻璃——那块该死的玻璃，整个掉了下去，往外掉。”
+            </p>
+            <p>“五楼？”</p>
+            <p>路口，红灯前，他放空挡，拉手刹：“嗯，周围的那些人，全逃光了。五楼的窗户底下，就是大操场，课间休息，有许多人。”</p>
+            <p>“但愿没事。”</p>
+            <p>“我不敢把头伸出窗户。当我跑到楼下，看到操场上围了许多人。有个穿着连衣裙的女生，横躺在水泥地上，鲜血流了一地，浸红无数片碎玻璃，慢慢淌到我鞋边。”</p>
+            <p>“哦……”</p>
+            <p>“后面的事，我记不清了，脑子发热，耳边全是尖叫，眼前数不清的人头，像在菜市口滚动。那晚，爸爸将我接回家，妈妈却在医院留了一整夜。第二天，我才知道那个女生受了重伤，颅骨被玻璃击穿，抢救十个小时，终于保下一条命，但深度昏迷。我向学校承认，是自己不小心碰到了玻璃，愿意接受处分。”
+            </p>
+            <p>“你傻啊，为什么不说是玻璃自己掉下去的呢？”</p>
+            <p>“嗯，很多年后，我也有过后悔，为什么要承认？不过，几个男生都看到了，我可以让他们保守秘密，但能保密多久？总有人会泄露出去的。被玻璃砸到的女生，是隔壁班级的，我不认识她——我是北京市三好学生，学校里没有不认识我的，这也是我不敢撒谎的原因。”
+            </p>
+            <p>车后响起连绵不断的喇叭声，路口早已变成绿灯，“冯唐”才重新开动。</p>
+            <p>“后来，那个女生怎么样了？”</p>
+            <p>“植物人。”</p>
+            <p>“你家赔钱了吗？”</p>
+            <p>“女生家里开出五十万的条件——二十年前，一笔巨款。虽说，那年头医药费不贵，但对方计算了未来五十年的治疗与护理费，还有整个人生被毁了，无论如何，我接受。”</p>
+            <p>“你父母呢？”</p>
+            <p>“九十年代，我爸的中央部委是清水衙门，我妈在医院还没流行拿红包，实在凑不出五十万，最后咬牙卖掉四合院，全家搬去回龙观。搬家前一晚，七十岁的奶奶死了。医生说是脑出血。爸爸却说见到了吊在大槐树下的爷爷，奶奶是舍不得离开地安门呢。”
+            </p>
+            <p>人说地安门里面，有位老妇人，犹在痴痴等。</p>
+            <p>“冯唐”继续平静地说：“快要中考了，学校只有一个保送名额，原本留给我的，直升北京最重点的高中。出了这样的事，名额自然给了别人。而我嘛，志愿没填高中，怕是将来读大学家里负担不起。我进了西城区的商业职校。至于，被保送去重点高中的那家伙，而今已是个大人物了，常在中央一套的两会新闻见到他。”
+            </p>
+            <p>“你是说，假如没有那块坠落的玻璃，今天那个大人物，就是你啊？”</p>
+            <p>“我一直，梦见那块玻璃，依然在教学楼的五层，完好无损地嵌在窗框。夕阳照射在玻璃表面，映出十六岁那年的脸。”</p>
+            <p>我不太会说安慰人的话，默默看着车窗，北京街头绽射的灯光，映出自己的眼睛，忽然觉得好年轻。</p>
+            <p>“离开地安门，不到一年，我爸就出事了。”他像说一桩无关紧要的事，如此平静，“他每天骑自行车上班，以前十分钟就能到，但从回龙观进城，就得一两个钟头。有天早上，记得是清明节，他被一辆土方车带倒，整个人卷到车轮底下，被碾成了肉燥子，你肯定吃过吧？”
+            </p>
+            <p>车轮底下华丽丽的肉燥子，又联想到爆肚黄喉之类，我有种呕吐的感觉，摇下车窗，让风吹乱我的长发。</p>
+            <p>“爸爸死后，妈妈得了抑郁症，再没心思做医生了，提前病退回家。没过两年，她查出了乳癌。晚期。我十八岁那年，她死了。”出租车已开上东二环，“还想听下去吗？”</p>
+            <p>“想。”</p>
+            <p>“我妈刚下葬没几天，我从商业职校毕业，国营单位包分配，进了西单百货做营业员。不久，商场效益不好，三分之一员工下岗。我在家闲了一年多，花光所有积蓄，才重新出来找活干。呵呵，我干过各种工作，运货员、维修工、值班员、推销员。可是，每一样都不长久，最后凑了些钱，开起了出租车，那是五年前的事。”
+            </p>
+            <p>“说说你遇到过的有意思的事？或者——令人难忘的事？”</p>
+            <p>我怎么说得像个小学作文老师？抑或电视节目上的梦想观察员之类的装逼犯？</p>
+            <p>也许，我是在羡慕他。所谓作家，时常被迫地需要去寻找生活，而出租车司机们，每天就在生活之中。</p>
+            <p>“不值一提。”</p>
+            <p>其实，他是欲言又止，区区四字，千言万语。</p>
+            <p>“平常你也喜欢像这样跟乘客聊天吗？”</p>
+            <p>“不，我从不跟乘客聊天，差不多一句话都不说，除非有人主动提问。”</p>
+            <p>对不起，别再说什么缘分，后背心要起鸡皮疙瘩了。</p>
+            <p>“冯唐”似乎听到了我的心里话，说：“今夜，对我来说，非常，重要。”</p>
+            <p>“怎么了？”</p>
+            <p>“与你无关。”</p>
+            <p>他让我吃了颗软钉子，好吧，这确实不是出租车司机的服务范围。职业习惯，我随口提了另一个问题：“那你现在爱读什么书？”</p>
+            <p>“《凡人修仙传》《斗破苍穹》《庆余年》……你不是推销员吧？”</p>
+            <p>“哦。”</p>
+            <p>“你是哪的人？”</p>
+            <p>“猜？”</p>
+            <p>我没有逗出租车司机玩的恶习惯。但，这哥们太令我着迷了。</p>
+            <p>“南方？但又不是很南，也许，靠东一些。”</p>
+            <p>“上海。”</p>
+            <p>“好地方啊。”</p>
+            <p>“印象如何？”</p>
+            <p>“呵呵，我还从没去过呢。小时候，去过几次天津，跟爸爸出去开会，爬过一回泰山，还有，对了，北戴河，然后……就没有然后了。”</p>
+            <p>“这几年没出去玩过？”</p>
+            <p>“除了拉活去天津河北，每次只能隔着车窗，远远看着光秃秃的野地，还有高速上成排的卡车，交通事故中烧焦了的车壳子，还有尸体。”</p>
+            <p>“你最喜欢去哪儿？”</p>
+            <p>“五年前，我刚开上出租车那会儿，有一次路过百花深处胡同，想起当年被玻璃砸伤，变成植物人的女同学就住那儿，便进去看了看。”</p>
+            <p>“还在吗？”</p>
+            <p>“百花深处胡同十九号丙，早成了大杂院，搭满违章建筑，住的大半是北漂。她家还在西厢房。十几年前，拿到我家的赔偿款后，她的父母离婚搬走了，听说是分别再婚，却把女儿留在这里。”</p>
+            <p>“那么多年，你都没去看过她吗？”</p>
+            <p>“我——害怕。”</p>
+            <p>不知道，该怎么说。但，我明白他的恐惧，真的。</p>
+            <p>“为什么，突然又不怕了？”</p>
+            <p>“那天是我的三十岁生日。”</p>
+            <p>“我懂了。”</p>
+            <p>“小时候，每个生日，爸爸妈妈都会给我买奶油蛋糕，那是我最喜欢吃的东西了。而自从他们死后，我已经十多年没过过生日了。我只是，想要给自己找一个生日礼物，哪怕只回头看一眼。”</p>
+            <p>“说……说……说……下……去……”</p>
+            <p>我有些结巴了，我想。</p>
+            <p>“老宅，只剩下她的叔叔，我不敢自报家门，谎称是初中同学，代表同学会过来探望。”</p>
+            <p>“他让你看了？”</p>
+            <p>“嗯，这家伙把侄女当做累赘，恨不得早死早超生，多出间空房还能租出去。她始终昏迷在床，脑子里残留几块当年的碎玻璃。”</p>
+            <p>“她会变成什么样子呢？”</p>
+            <p>“当时，我连续开了十来个小时出租车，许多天没刮脸，长满胡楂子，还有几根白头发，简直就像个大叔。走进那扇狭窄的门，我看到躺在床上的她，竟还像十六岁的中学生。她的头发很长，几乎拖到腰上，感觉从没剪过。长年不见阳光的皮肤，白得几乎透明。她的鼻梁很高，下巴圆润，额头高高的，像冬妮娅。”
+            </p>
+            <p>“《钢铁是怎样炼成的》？”</p>
+            <p>“只是一种感觉，谁都没见过冬妮娅，不是吗？可惜，屋里很臭，她叔叔把她当作了一具腐尸。到处是灰尘和蜘蛛网，比牲口棚还糟糕。床脚下摆满尿盆，墙上挂着成人尿布啥的。他们家每月出八百元，请个外地保姆来照顾她，每天两个小时——我猜，当年我家赔偿的五十万，早被哪个家伙花光了吧？”
+            </p>
+            <p>对面有车开着远光灯过来，照亮“冯唐”的脸，有些发红。</p>
+            <p>他也打了远光灯：“谁能想到呢？虽然，是个植物人，但除了轻微的褥疮，就连例假都是准时的。”</p>
+            <p>“哦？”</p>
+            <p>“每个星期，我都会去百花深处胡同。虽然，我自己家乱得像个狗窝，除了爸爸留下来的藏书，就是几十个移动硬盘，你懂的。但在她的小屋，我卖力地打扫，清除多年尘土，把每块玻璃都擦干净。我从淘宝上买了许多东西，专找少女喜欢的网店，比如泰迪熊的窗帘啊，Hello
+                  Kitty的发卡啊，还有挂在她床头的SD娃娃。我买了几盆花放到窗边，关照保姆每天浇水。”</p>
+            <p>眼前浮起这幕奇怪的景象，一个像大叔的出租车司机，每周去百花深处的四合院里，照顾植物人的萝莉，虽然他们两个年龄相同。</p>
+            <p>“她怎么吃饭呢？”</p>
+            <p>“通过鼻子——我自学了护理，把鸡和鱼肉调成糊，加上新鲜水果和牛奶，兑成营养流质，灌进一根管子，再通过她的鼻孔塞进胃里。听起来很恶心吧？时间久了，自然习惯。”</p>
+            <p>“你帮她擦身吗？”</p>
+            <p>“这个……”问到了要害，他沉默片刻点头，“一开始不敢，但后来我发现保姆偷懒，也就亲手帮冬妮娅翻身和按摩了。”</p>
+            <p>“冬妮娅？”</p>
+            <p>“嗯，我喜欢叫她冬妮娅，再也改不了口，抱歉。”</p>
+            <p>“你没感觉不好意思吗？毕竟男女有别。”</p>
+            <p>“当然，很不好意思。但后来，就没有这种感觉了。就算我给她换尿布，也没有丝毫的……没有生理反应，别想歪了。”</p>
+            <p>“是你还是她？”</p>
+            <p>“我。”</p>
+            <p>“他叔叔不管吗？毕竟，你是以男同学的身份，又不是男朋友。”</p>
+            <p>“我想做她的男朋友。”</p>
+            <p>不曾想，“冯唐”如此直接地说出答案，令我无言许久。</p>
+            <p>“赎罪？”</p>
+            <p>“有一点，但不是全部，更重要的是——我喜欢冬妮娅。是啊，我是不是疯了？对方要是正常人家，我根本没这种机会，但她的叔叔，根本不管她，给他塞了两条香烟，就把房门钥匙给我了，却连我的名字都不问。”</p>
+            <p>“冬妮娅，我也这么叫吧。年复一年，她始终昏睡吗？一点反应都没有？”</p>
+            <p>“一年前的今天，她醒了。”</p>
+            <p>我几乎从副驾驶座上弹起来，把脸贴着挡风玻璃看他的双眼。</p>
+            <p>出租车转入东四十条，他慢悠悠地说：“那天之前，昏迷中的冬妮娅，连续发了七天高烧。我开车把她送去协和医院，庸医说她脑中的碎玻璃作祟，导致大脑内出血，建议准备后事。我把她拉回百花深处胡同，就算死也要在自己的屋子里。”
+            </p>
+            <p>“你救活了她？”</p>
+            <p>“不知道。我给她换上白色衣裙，为她化妆，第一次擦上腮红和粉饼，我的手居然没有抖。虽已浑身冰凉，摸不到什么呼吸，我仍然跟每天一样为她擦身，认真按摩她的大腿肌肉，尽管已僵硬。”</p>
+            <p>“别吓我！”</p>
+            <p>“那天午后，我刚为她擦完身体，给窗台上的花浇水，忽然听到床上有动静，回头一看——她睁开了眼睛。”</p>
+            <p>忽地，我想起很多聊斋故事里，穷书生进京赶考，夜宿古寺，偶遇女鬼。金风玉露一相逢，便胜却人间无数。他不可自拔，以至于掘开坟墓，发现女尸竟完好如生，便把她带回老家，放在自己床上，每天喂些稀粥，渐渐僵尸变得柔软，直到还魂复生。待到女郎休养康复，即与书生拜堂成亲。次年，她竟生了个大胖儿子，足不出户，相夫教子，侍奉公婆。多年后，儿子寒窗苦读，金榜题名，光宗耀祖，给父母养老送终，后人还是蒲松龄的隔壁邻居，异史氏曰……
+            </p>
+            <p>司机的面色略微有些苍白，笑着说：“真好啊，她苏醒的那一刻，我哭了。接着三天，我始终陪在她身边，直到她慢慢自己吞咽，可以用嘴来喝水进食，虽然大小便仍不能自理。第七天，她说话了。”</p>
+            <p>“她问你是谁？”</p>
+            <p>“嗯，我骗了冬妮娅，说我是她的老师。因为，她的记忆停留在1995年，还以为自己是个初中生，很快要面临该死的中考，还让我拿几本教辅书来给她复习。”</p>
+            <p>“有时候，这样也挺好的，除了梦见还在考试。”</p>
+            <p>“冬妮娅很单纯，她管我叫大叔。而我不敢告诉她现在是2013年，更不敢说是因为我，因为那块玻璃，才让她变成这个样子的。我害怕她无法接受这个事实——她已昏迷了十八年，不再是十六岁少女，而是个三十四岁的女人。我继续骗她，说她因为一场车祸，在床上躺了六个月，错过了1995年的中考。现在，她必须做好康复训练，才有机会到明年考高中。她问起爸爸妈妈，我说他们出国工作去了，隔很久才会回来看她——那是南美洲，火地岛上的乌斯怀亚，地球上最远的城市，平常通不了电话。”
+            </p>
+            <p>“她叔叔不戳穿你吗？”</p>
+            <p>“我跟那家伙说好了，帮着我一起演戏，只是冬妮娅没想到，叔叔在半年里老了那么多。我解释，自从她受伤昏迷以来，叔叔为她操碎了心，结果一夜头发就白了。她又问我：老师，为什么从没见过你？我只能说，我是最近新调过来的，学校派来照顾你，因为校长觉得，你的车祸是学校的责任。她问我是教什么的。我说是教语文的，她还让我给她读课文，教她补习文言文和作文——恰好是我当年读书时的强项，重新温习一遍，居然还装得挺像。”
+            </p>
+            <p>“很有意思的故事。”</p>
+            <p>干咳两声，“冯唐”皱着眉头：“其实，我心里紧张死了，就怕被看出破绽。我换上九十年代流行的衣着，每次去见她都不带手机。虽然，大杂院里住了不少人，但从没人关心这间屋子，违章搭建的墙，阻挡了窗外视线。躺在床上的她，只能看到屋顶瓦片，狭窄的灰蒙蒙天空。我从旧书店买了些二手书，作为课外阅读送给她。除了《钢铁是怎样炼成的》，还有《红与黑》《基督山伯爵》《牛虻》……但她能动的只有眼睛、嘴唇、脸部肌肉，胳膊与大腿都没知觉，根本无法康复训练，更别说看书。”
+            </p>
+            <p>“只能念给她听？”</p>
+            <p>“嗯，我从秋天念到春天，从陀思妥耶夫斯基念到卡夫卡。《悲惨世界》念了两遍。原来，我是一个星期看她一次，后来隔三差五就往百花深处胡同跑，最后变成每天都去，大多在午后的两个钟头，出租车最闲的时间段。她问我怎么不去给学生上课。我说现在教育改革，必须给中学生减负，下午都是体育课和自习。”
+            </p>
+            <p>“这个改革到现在还没实现吧。”</p>
+            <p>“冬妮娅说想要看电视。虽然，搬电视机过去分分秒秒，但谎言就会马上穿帮。为了让她相信还在1996年，我说这个房子太老，有线电视断了。我从旧货商店淘了一台旧彩电，收不到任何信号，配最老的步步高影碟机，上淘宝买了《梅花三弄》《一百零一次求婚》《东京爱情故事》《大时代》的VCD刻录碟，全是1995年以前的老剧。”
+            </p>
+            <p>“能把这些弄全，费了不少心思吧？”</p>
+            <p>“我还自己刻了不少碟呢。冬妮娅的手不能动，连遥控器都按不了，只能我陪在身边，为她打开电视机，放碟与换碟。有一天，北京城下起大雪，我和她看着飘到窗上的雪花，电视机里放着《梅花烙》的大结局，皓祯捧着死去的白吟霜，策马消失在北京的荒野，她第一次流下了眼泪——我很高兴，她的泪腺功能已经恢复了。”
+            </p>
+            <p>“我记得这个结尾。”</p>
+            <p>说实话，对于那部剧我印象更深的是马景涛的咆哮。</p>
+            <p>“为了给冬妮娅排遣寂寞，我又买了台CD机，还有张雨生和孟庭苇的CD唱片，为她戴上耳机。她每次都舍不得我走，直到在我渐渐调低的音量中睡去，我才能放心离开。”</p>
+            <p>“还有个问题，你继续给她翻身和擦背，还有换尿布吗？”</p>
+            <p>“冯唐”脸色尴尬：“我原本也很害羞，当她刚醒来时，不敢碰她的身体。但是，冬妮娅说没关系，她说自己还是孩子，而我是老师，是她的长辈，就像爸爸和叔叔那样。在她的言语安慰下，我还是准时为她按摩，用热水擦拭她的身体。她说，她喜欢薄荷味。我为她在窗台上种了几盆薄荷，还找来早已停产的薄荷洗发水，为她清洗每一根长发……”
+            </p>
+            <p>“碰到过胸部吗？”我也有些脸红，“对不起，问得太直接了吧？”</p>
+            <p>“当然，不可避免，但我没故意占过她便宜。对于她的身体，就像自己的一部分，你要明白，没有任何色情的成分——虽然，她从脖子以下都没什么知觉，就算摸了她也不知道。”</p>
+            <p>“真不容易。”</p>
+            <p>其实，我不信。</p>
+            <p>“今年春天，有柳絮飞到窗上，冬妮娅提出了一件请求——躺在床上那么多年了，想要看一看外面的世界。”</p>
+            <p>“完蛋了。”</p>
+            <p>“我犹豫了一分钟，还是答应了。为此，我做了一个星期的准备。我给她买了新衣裳，剪短她的头发，为她用香皂洗脸，擦上大宝脸霜。那是个清晨，大杂院里没人在意过我们，我抱着她走出百花深处胡同，放进我的出租车里，绑上安全带，就在你坐的这个位置。”
+            </p>
+            <p>听到这里，我背后凉飕飕的，仿佛冬妮娅正趴在我的肩头。</p>
+            <p>“你怎么解释你是个司机？”</p>
+            <p>“我说，这辆车是我的兄弟的，我刚考出驾照，借出来练车用的。十九年来，她第一次走出四合院，晒到北京的阳光。我骗她说，这一年来，北京的建设突飞猛进，差不多相当于过去的十几年。当然，我只在二环里头转，不敢带她去东边和北边，怕她被奇形怪状的大裤衩或鸟巢吓着。堵车时，经过一个商场门口，大屏幕上放着五月天演唱会，她感到既陌生又疑惑，等到刘德华出来向粉丝们招手，冬妮娅彻底糊涂了——她问，刘德华怎么都成大叔了？我只能干咳两声说，明星太辛苦了。”
+            </p>
+            <p>“对啊，她都不知道张国荣已经死了十年吧。”</p>
+            <p>“冬妮娅说，她想听听电台广播。我装模作样地打开电台，其实是预先准备好的音频——我找到了1996年的中央人民广播电台的录音，那期节目在谈第二年的香港回归，接着是艾敬的《我的1997》。”</p>
+            <p>那首歌，当年很红，我记得其中几句——1997快些到吧八百伴究竟是什么样？1997快些到吧我就可以去Hong Kong。1997快些到吧让我站在红勘体育馆。1997快些到吧和他去看午夜场。</p>
+            <p>“那一天，我带着她在北京城里转悠，从清晨直到日暮。路过包子铺，我下车给她买了稀饭和豆浆。她说想吃爆肚，我又去清真老馆子给她买来，但她吃了半个就想吐。她不知道自己吃了十九年的流质，很难再适应普通食物了。”</p>
+            <p>“我要是她，得感动得要死掉了！”</p>
+            <p>“晚上，我把车停在后海边上，冬妮娅不明白，为什么有这么多酒吧。难得没有尘土与雾霾，那一晚月亮很美。我从水边给她摘了几片柳叶，放到她嘴里咂了几下，她说好喜欢这种味道。看着她的脸，眼睛，还有嘴唇，我很想……真的很想……”
+            </p>
+            <p>“吻她？”</p>
+            <p>“我犹豫好久，几乎要把手心揉碎。帮她把柳叶从嘴边拿走时，我的嘴唇离她只有一厘米。她闭上眼睛，等着我去亲她。我却拉下手刹，开车送她回家。”</p>
+            <p>“哎。”</p>
+            <p>天人交战，我能理解。</p>
+            <p>“当我抱着她，走进百花深处胡同十九号丙的院子，警察正在等着我。冬妮娅的叔叔脸色发白，跟居委会大妈一起，从我手里抢过瘫痪的女孩。然后，我被警察戴上手铐。冬妮娅不想让我走，叫着让我回来，我什么声音都不敢发出，被警察压低着脑袋，在众人的指指点点中，押上警车送进派出所。”
+            </p>
+            <p>“怎么回事？”</p>
+            <p>“就在我开车带着冬妮娅外出的白天，她的爸爸从外地回来了。冬妮娅的叔叔知道他欠了许多债，根本不希望他回来惹麻烦，因此也没有把冬妮娅苏醒的消息告诉他。叔叔无法解释昏迷十九年的侄女为何不见了，只能把我供了出来。冬妮娅的爸爸勃然大怒，担心我会把他女儿拐卖到农村去。他打110报警，查出了我的真实身份——我就是当年闯祸的男生，让他的女儿变成了植物人。在我被警方抓住以后，他希望公安局严肃处理，说我犯了流氓罪，甚至怀疑我强奸过冬妮娅。”
+            </p>
+            <p>“好像，早就没有流氓罪了吧？”</p>
+            <p>“我被治安拘留了十五天。并且，我再也不能见到冬妮娅了。”</p>
+            <p>听着心里越发难受，我又想到什么，叹气说：“但比这个更糟糕的，应是她已知道了所有的秘密。”</p>
+            <p>“没错，见不到冬妮娅的日子，不知道是怎么活过来的。经常跑到她家门口，就会有人报警，把我赶出去。忽然，有天她叔叔找到了我，说冬妮娅开始绝食，要是见不到我的话，就要把自己饿死在床上。”</p>
+            <p>“你又见到她了？”</p>
+            <p>“是，三个月前，夏天。我发觉她成熟了，不再是个十六岁少女，更像女大学生。她的真实年龄已经三十五岁，我很害怕再过一两年，她就已青春不再，甚至老得比常人更快。”</p>
+            <p>“她也知道你是谁了？”</p>
+            <p>“冬妮娅告诉我，其实，她早就发现了——在她苏醒以后不久，她知道我在说谎，知道我根本不是什么老师，现在也不是1995年。她本以为过去了三年，最多五年，却没想到是十九年。但是，她很享受这样的谎言，愿意每个星期都看到我，听我说那些虚构的故事，我们的国家越来越强大，建设社会主义小康社会，大街上到处是活雷锋。很快香港就要回归，转眼就会轮到台湾。每个人都相信勤劳致富，自己的明天会更好，好像时光从未流逝。”
+            </p>
+            <p>“别再煽情，我受不了。”</p>
+            <p>我摇下车窗，只想透透气，透透气。</p>
+            <p>“冬妮娅的爸爸只陪她住了一周，给她换了台新彩电，可以声控的遥控器。这台电视机还可以上互联网，她很聪明，只学几天就会了。但是，等到她重新见着我，就再也不看电视了。我跟她说起真实的世界，为她念手机上的新闻，微信里的消息，但她统统不感兴趣。最后，她说，她想要死。”
+            </p>
+            <p>“为什么？”</p>
+            <p>“在冬妮娅刚苏醒的那几天，发现自己瘫痪在床上，连大小便都要别人伺候，就有了这样的想法。何况，她的脑子里还残留有玻璃，肉体上的痛苦也难以忍受，只是她从不让我知道。但，因为我的存在，为她养花浇水读小说，说起外面幻想中的世界，她才能努力克服想死的念头。她说，为了我，她才活到今天。”
+            </p>
+            <p>“你怎么劝她？”</p>
+            <p>“苦口婆心——总之，用尽了一切办法，却无法打消她的念头，反而让她更执着。最后，我答应她，娶她为妻。”他踩了脚急刹车，几乎跟前面追尾，“但她拒绝了。”</p>
+            <p>这个答案让我始料未及，原本以为是美好结局的伦理片，却突然被编剧推入了绝境。</p>
+            <p>“那她把你叫来干吗？”</p>
+            <p>“还不明白吗？她知道，自己只是个累赘，如果答应我的求婚，我将一辈子服侍个瘫痪在床的废人。虽有夫妻名分，却什么都做不了，更不能有性生活，白白耽误到老死的那天。她是怕，我的人生，因为她而毁了。可她要明白——是我先毁了她的人生。”
+            </p>
+            <p>“但那是个意外。”</p>
+            <p>“要不是那块坠落的玻璃，如今我也不至于如此吧？到底谁欠谁的？你能说清楚吗？”</p>
+            <p>“抱歉。”</p>
+            <p>“整个夏天，她一直在赶我走，但我赖着不走。我这出租车的生意，也是三天打鱼两天晒网，很快连车队的钱都交不出了。她说——如果，我真的喜欢她，就请帮助她自杀。”</p>
+            <p>“她想要安乐死？”</p>
+            <p>“这几个月，我始终想一个问题，这样下去的话，对她对我来说，究竟算是什么？当她知道了所有秘密，当她明白已过去了十九年，当她发现外面世界真实的模样？”</p>
+            <p>“你被她说服了？”</p>
+            <p>“是的。”</p>
+            <p>“我想，她也是为了给你解脱。”</p>
+            <p>“好多次，我从她的屋子离开，走出百花深处胡同，溜达半个钟头，穿过无数迷宫般的巷子，到后海边上，看着一池绿水，就想要跳下去。可，我又想，要是我也死了，冬妮娅怎么活下去？”</p>
+            <p>“你做出了选择？”</p>
+            <p>“她说，想去海边看看。今天，早上，我用薄荷味的香波，为她洗干净长发，穿上蓝白色水兵服，浅灰色短裙，带花边短袜，还笨手笨脚帮她梳了大辫子。避开大杂院里的耳目，我把她抱上车——抱歉，还是你现在坐的位置。我带她出北京，沿着高速开到秦皇岛北戴河。我把出租车停在海边，搂着她，坐在岩石上，让海风吹湿她的眼睛。她说，长这么大，还从没看到过海，如果现在死了的话，会很满足。”
+            </p>
+            <p>“别！”</p>
+            <p>几乎要抓破自己的大腿，我真想把耳朵捂起来，他却自顾自地说下去：“我的双手哆嗦，掏出一瓶安眠药，冬妮娅全部吃了下去。昏睡之前，她对着我的耳朵说——土豪，下辈子，我们再做朋友吧。我点点头，很想说声对不起，但，我沉默着，给了她一个微笑，看着她熟睡的脸，渐渐变得苍白……”
+            </p>
+            <p>面对这样的情节，我无法验明真伪。紧握门把，身体僵直地向前倾，看着开出租车的杀人犯。</p>
+            <p>“听我说——我掏出第二瓶安眠药，仰起脖子，倒入喉中。我抱着冬妮娅，听着她的心跳，还有温暖而小巧的胸口。我也睡着了。”</p>
+            <p>我刚想脱口而出“殉情”二字，但看着身边这个男人，心底微凉——如果，他已殉情自杀而死，那么眼前的他又是谁？</p>
+            <p>“冯唐”转头看我，幽灵般说：“然而，当我醒来，已是傍晚，夕阳从背后照着大海，我发现自己依然活着。地上满是我的呕吐物，胃里难受得要死——我恨自己为什没死。”</p>
+            <p>“她呢？冬妮娅？”</p>
+            <p>车速随之减慢，他说：“她——没有呼吸，没有心跳，身体还是微热，软绵绵的，似乎轻了几两，也许刚死去。”</p>
+            <p>明白了，这是两个人相约自杀，而女的死了，男的却意外幸存。据说很多殉情都是这种结果。</p>
+            <p>“对不起，我不知道自己为什么没有死。为什么让我一个人活下来？但是，她只想要自己死，希望我正常地活下去。这一切全怨我，是我瞒着冬妮娅，准备跟她共赴黄泉。”</p>
+            <p>这些话，他说得异常平静，却让听的人毛骨悚然，我强迫自己故作镇定：“你怎么处理尸体的？”</p>
+            <p>“我对自己还活着而很内疚。但是，我没有尝试再死第二次，因为我想在此之前，先把冬妮娅带回北京。当我进了三环，发现各处堵车，在工体北路掉头，恰好到长虹桥边，就遇见了你。”</p>
+            <p>“停车！”</p>
+            <p>不敢再想下去了，如果，这是真的。</p>
+            <p>“冯唐”丝毫没有减速的意思，却问了个不搭界的问题：“朋友，你看过《红与黑》吗？”</p>
+            <p>“问这干吗？看过。”</p>
+            <p>“还记得结尾吗？”</p>
+            <p>“结尾？于连不是死了吗？”</p>
+            <p>“嗯，他死在断头台上。而在这个世界上，唯一爱他的人，是玛蒂尔德小姐，她抱走了于连的人头，来到他指定的山洞里埋了。”</p>
+            <p>“不要再说了，求求你！”</p>
+            <p>我没有幽闭恐惧症，但此刻，对于这个出租车的封闭空间，却是如此害怕。</p>
+            <p>你也能猜到——冬妮娅，严格来说，是她的尸体，就在这辆车的后备箱里。</p>
+            <p>“地安门到了。”</p>
+            <p>出租车开过十字路口，停在路北侧的一家风筝店前。</p>
+            <p>已近午夜。</p>
+            <p>计价器显示金额五十九元，“冯唐”摆手道：“今天，我不做生意的，不收你钱，再见。”</p>
+            <p>我刚要打开车门，准备子弹般逃出去，却死死抓着门把，不舍地回头看他。车内灯，照亮司机的脸，依稀有两道泪痕。</p>
+            <p>刹那间，我改变了主意。</p>
+            <p>“对不起，我不想找那老妇人了，请继续往前走吧。”</p>
+            <p>“再去哪儿？”</p>
+            <p>“去夜里……”</p>
+            <p>出租车司机点头，再也不必言语，带着我沿地安门西大街开去。</p>
+            <p>我把头伸出窗外，看到皎洁的秋月，径直照入内心秘密——</p>
+            <p>很多年前，在上海，普陀区，我在五一中学读书。初三那年，我跟同学们在五楼白相，不当心碰下一块玻璃。当时，我也吓戆了，不晓得会不会闯祸。最后，我很幸运，玻璃砸碎在操场上，没有伤到任何人。直到今朝，许多夜里，我仍然想象，要是那块玻璃砸到了啥人的头上，那么我将……
+            </p>
+            <p>从地安门西大街，经过后海荷花市场门口，出租车缓慢开去，似是让我挑选下车地点。</p>
+            <p>但我不响。</p>
+            <p>沉默中，看着车窗外的老城，在白莲花般的云间穿行的月亮。我已明白，“冯唐”之所以把我带上车，只是想要找个人，安静地听他倾诉这个故事。</p>
+            <p>但这个故事还没有结束，或者说，正在进行时。而我，不巧参与了进来，成为故事中的一个配角。</p>
+            <p>开到新街口南大街右拐，他没由来地右拐。我没问他去哪儿，就当是散心，送后备箱里的美人，最后一程。</p>
+            <p>我转头对着背后的座位，鼻子深深埋入靠垫，想要嗅到冬妮娅的气味——至少，有她头发里的香波味。</p>
+            <p>然而，什么都没有。</p>
+            <p>只有纤维与海绵深处的细小颗粒，如同尘霾般钻入肺叶，我拼命压抑没打喷嚏。</p>
+            <p>但，在我连续咳嗽同时，脑中闪过另一个念头，像发光的玻璃片，陨石坠落般，从天而降，在学校操场的水泥地上，粉身碎骨……</p>
+            <p>“等一等！”我似乎抓住了什么，抢在自己被淹死之前，“你刚才说，今天早上，你们出门前，你用薄荷味的香波为冬妮娅洗头？而她，就坐在我现在坐的这个位置？”</p>
+            <p>“嗯。”</p>
+            <p>“可我没有闻到这种气味。如果，她真的在这里坐过的话，她头发上的气味，肯定会残留在纤维上。请相信，我的嗅觉还不错，尤其对薄荷敏感。”</p>
+            <p>“想说什么？”他淡定的表情，让我简直抓狂，“朋友。”</p>
+            <p>“你在说谎——我早就该发现了。当你说到一年前，在她奇迹般的苏醒之际，曾经大病一场，送去医院都没救了，医生建议准备后事。你把她带回百花深处胡同，给她穿上白衣裙，竟还为她擦腮红与粉饼！这说明——冬妮娅，当天已经死亡，因为脑中残留的碎玻璃。而你，不过是在为死人化妆，就像入殓师。今天，或许是她的一周年忌日？”
+            </p>
+            <p>说到此，我的恐惧，转眼，消失。</p>
+            <p>对啊，现在谁还用安眠药自杀？真死得了吗？推理小说也不会这么写嘛，明显的BUG！</p>
+            <p>而冬妮娅醒来后发生的一切，但愿，只是他心底最为渴望的剧情，却永远未曾发生。</p>
+            <p>午夜已过，路边行者寥寥，出租车停在一个胡同口。</p>
+            <p>“朋友，可以下车了。”</p>
+            <p>他的嘴角微微一撇，不晓得算什么表情。我点头道：“谢谢！”</p>
+            <p>下车时，我没有给钱，不是我小气，而是怕他生气。</p>
+            <p>当我在胡同口转身，出租车已开走了，我不想记下车牌号，印象中只有它红色的背影，还有看起来沉甸甸的后备箱。</p>
+            <p>再见，冬妮娅。</p>
+            <p>秋风卷过我的长发，抬头意外地看到门牌，似有几个熟悉字眼，打开手机照亮，赫然“百花深处胡同”。</p>
+            <p>白糊糊的月光底下，我失魂落魄地往里走。胡同比想象中狭窄许多，两边破旧院墙，寂寂空无一人，只有路灯下的树影摇曳。不见四百年前如锦繁花，更难觅七十年前鲜艳面孔。</p>
+            <p>百花深处胡同十九号丙。门脸早已衰败不堪，屋檐上生着厚厚的野草，我轻轻推开虚掩的木门，进到大杂院里头。绕过两堵新砌的砖墙，还有满地垃圾，凭感觉摸到西厢房。</p>
+            <p>一股淡淡的薄荷味，她的气味。</p>
+            <p>于是，我看到窗台外的薄荷，郁郁葱葱的绿叶子，像被什么浇灌过。</p>
+            <p>想不到，屋里还亮着灯。</p>
+            <p>难道，冬妮娅已经回来了？还是……</p>
+            <p>（写到此处，恰是四月五日，清明节。突然黑屏，电路跳闸数次。电源恢复，幸只遗失两行字，我打字补回，似是冬妮娅在背后看我。）</p>
+            <p>仓皇徘徊几步，我砸响房门，或许能救人一命？</p>
+            <p>等半分钟，犹如十年。</p>
+            <p>门开了，六十岁左右男人，睡眼惺忪冒出一长串京骂，最后问：“找谁啊？”</p>
+            <p>“请问这有个姑娘，一直卧床不起，是吗？”</p>
+            <p>“你是问董妮儿？”</p>
+            <p>“哦？对啊，是这个名字。”</p>
+            <p>“她死了。”</p>
+            <p>“什么时候？”</p>
+            <p>“人都死掉一年了！今早，她爸回来给她烧过纸钱呢。她是我侄女，你又是什么人？半夜三更的。”</p>
+            <p>“那么……那么……”</p>
+            <p>我还想问起“冯唐”，但不晓得他的真名，更不知从何问起。</p>
+            <p>忽然，掠过老男人的肩头，我看到屋里昏暗的角落，依稀有面黑白照片，一周年忌日才摆出来的吧。那是她的十六岁，遭遇意外前夕，我想。</p>
+            <p>遗像里的她，梳着辫子，穿着水手服，高挺的鼻梁，大而明亮的双目。</p>
+            <p>真的，很像冬妮娅。</p>
+            <p>一分钟后，我被赶出了四合院，回到百花深处胡同，深处。</p>
+            <p>最漫长的那一夜，月光终于清冽。古老门廊下，破败瓷盆里，水面如镜，格格不入地生着一支莲花，孤独到乍看竟以为是假的。静静地开放，默默地死去。</p>
+            <hr>
+            <p><a href="#top">返回顶部</a></p>
+      </div>
+</body>
+
+</html>

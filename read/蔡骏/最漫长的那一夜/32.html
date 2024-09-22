@@ -1,0 +1,1003 @@
+<!DOCTYPE html><html><head><title>32</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="31.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="33.html">下一章</a></p><hr><h1><center>第32夜 埃米莉逃亡一夜</center></h1>
+<p>1</p>
+<p>我叫埃米莉。</p>
+<p>法国与意大利交界处，西欧最高的勃朗峰就在头顶，双眼几乎被耀眼的冰雪刺瞎。从阿尔卑斯的夏日阳光下，驶入黑暗的穿山隧道，就像突然遭遇日食，又像重新回到母腹。这是一辆路虎越野车，我蜷缩在后排座位上，闻着妈妈头发里的香味，许久才适应没有尽头的隧道——脑中闪过某种熟悉的情景，宛如很久很久以前，当我还是个瘦弱不堪的小胎儿，痛苦地被挤压着通过流血的产道，第一次探头来到世上。</p>
+<p>嗨！你们好，这是我出生后的第八个年头。</p>
+<p>在漆黑的世界中，车窗成为一面镜子，照出我苍白的脸，大而无神的眼睛，头发披散在肩上，脖子消瘦，像只小猫，几乎一把就能捏死——曾经有人说我像个小吸血鬼。</p>
+<p>这次自驾车之旅从维也纳开始，途中要经过五个国家，第一站是萨尔茨堡，然后是阿尔卑斯山谷中的因斯布鲁克，接着进入德国境内的贝希特斯加登，再经过博登湖来到瑞士。爸爸开车直奔少女峰，带着妈妈和我第一次滑雪，虽然玩得很开心，我却有一种不安的预感。我们去了日内瓦，从那里开车到法国，按照原定的旅行计划，终点站是地中海蓝色海岸的摩纳哥，妈妈却临时改变了主意，想要去意大利的都灵与米兰。爸爸是个听话的男人，便从上萨瓦省的公路，径直开到了勃朗峰隧道。</p>
+<p>忽然，前头闪过一个白点，越来越亮，宛如凌晨在雪山上的日出，那是隧道的出口。</p>
+<p>我们已到了意大利，高耸人云的勃朗峰被甩在身后。车子猛烈摇晃了一下，我撞到了前排座椅后面。爸爸慌张地打着方向盘，靠在路边的草地上。我浑身疼痛地爬起来，回头隔着车后窗玻璃，看到一辆黑色卡车紧紧逼着我们，刚才就是被它撞了。</p>
+<p>爸爸刚下车，卡车里也出来一个男人，穿着白色风衣，戴着白色帽子，从怀里掏出一把手枪。</p>
+<p>枪口闪过一丝火星，爸爸捂着胸口，闷闷地倒在地上。</p>
+<p>白色风衣的男人向我走来，妈妈尖叫着打开车门，抱着我逃跑。对方紧迫不合，他是来杀我们全家的吧？阿尔卑斯的山坡上，妈妈疯狂地逃跑，我的眼前天旋地转，耳边全是她的喘息声。我们紧挨着滚滚车流，所有人都只顾着往前飞驰，并未注意到有危险。</p>
+<p>终于，那个男人追了上来，向我举起了枪。</p>
+<p>妈妈将我紧紧抱着，把后背暴露给那个男人。我从她发丝间的缝隙，看清了那个男人的脸——他有一双紫色的眼睛。</p>
+<p>他只问了一句话：“姑娘，你不愿意吗？’</p>
+<p>“我愿意．”</p>
+<p>然后，枪口的火光闪烁，这一声枪响震动了山谷。</p>
+<p>妈妈倒下，鲜血从她的嘴里涌出，眼睛眨了几下，渐渐变得灰暗，玻璃体僵硬地凝固，倒映出我哭泣的小脸。</p>
+<p>她死了。</p>
+<p>而我感到胸口一阵潮湿，好像被某种温热的液体浸泡，同时又像火柴燃烧起来，闻到一股焦糊糊的气味，如同妈妈烤煳了的牛排。</p>
+<p>哎，妈妈，你又把事情搞砸了。</p>
+<p>子弹带着阿尔卑斯山独有的空气，从妈妈的后背射人，穿透前胸而出，同时打碎了我的心脏。</p>
+<p>而我弱小的身体，通过一粒圆圆的弹孔，灌满了妈妈的鲜血。</p>
+<p>那双紫色的眼睛。</p>
+<p>2</p>
+<p>我叫埃米莉，我已经不是小女孩了，我想爸爸应该明白这一点。</p>
+<p>爸爸还活着，胸口多了一道难看的伤疤，每逢阴雨天就会疼得直冒汗。他走在长满椰树的沙滩上，不时有波利尼西亚少女经过，晒着耀眼的古铜色皮肤，似乎每一个都在诱惑爸爸。他的目光里有几分邪恶，盯着少女们的胸口，让我怀疑他时常半夜出门，就是去找其中一个或几个幽会。</p>
+<p>我在厌恶他的同时，也会想念妈妈。</p>
+<p>五年前，我们全家在阿尔卑斯山旅行，遭遇了神秘的袭击，有个紫色眼睛的杀手，开枪杀害了我的妈妈。要不是警察及时赶到，我早已躺在棺材中了。</p>
+<p>爸爸奇迹般地活了下来。他的工作漂泊不定，几乎每年要换一个地方，不是非洲的沙漠，就是南美洲的丛林，抑或印度南方的小镇，直到这座南太平洋上的小岛。</p>
+<p>爸爸要带我出海钓鱼，租了一艘波利尼西亚人的独木舟，带有独特的三角帆，左侧伸出两根长长的木杆．支架起与船身平行浮起的木杆，像羽翼一般。</p>
+<p>出海的那天，晴空万里，几个有着乌黑秀发与惹火身材的少女，裸露着胸口向我们挥手告别。而我低头看着清澈海水下的珊瑚，只盼着尽快摆脱她们。</p>
+<p>我在想，爸爸是不是要杀了我？</p>
+<p>几小时后，当我们远离海岛，茫茫的太平洋上，骤然袭来一阵疾风。幸亏是波利尼西亚独木舟，数米高的巨浪也难以打翻它，爸爸将我绑在船舱里，这样至少不会被掀出去。我喝了许多口海水，呛得死去活来，把胃里吐空了。等到暴风雨消退，船上的设备都已坏了，无论海事卫星电话还是三角帆，我们像孤儿般漂流在海上……</p>
+<p>三夭后，船上的一切食物几乎都吃完了。爸爸将最后一根香蕉留给了我，随后准备了瓶瓶罐罐，迎接南太平洋上丰沛的雨水。</p>
+<p>赤道上的太阳晒着我的脸，让我苍白的脸略微发红，嘴唇也裂开几道口子。十三岁的我，穿着湿透的内衣与短裤，皮肤竟也焕发出波利尼西亚少女般的光泽，爸爸无力地看着我说：“埃米莉，你会像你妈妈一样漂亮的。”</p>
+<p>“那个人为什么要来杀我们？”</p>
+<p>就算淹死饿死渴死在太平洋上，我也不会忘记白色风衣的男子，还有那双紫色的眼睛。</p>
+<p>“不知道，警方已经调查了五年，却没有任何线索。”</p>
+<p>“每当我睡不着，就会看到妈妈死去的双眼。”</p>
+<p>“我也是。”</p>
+<p>“爸爸，你是怎么跟妈妈认识的？”</p>
+<p>他的面色有些古怪，等待许久才说：“那时候我们都没有钱，可她深深地迷住了我，只认识了几个星期，我就送给她一个Dior的包包。”</p>
+<p>“你好大方啊。”</p>
+<p>“不久，你妈妈的肚子里就有了你——真像一场梦啊，所有人都说我们疯了，两个人都那么年轻，恐怕连自己都养不活，怎么能把孩子养好？你不知道，我们吃了多少苦，你妈妈又流了多少眼泪，终于把你生了下来，这时候才刚刚登记结婚，等你会走路了才补办婚礼。”</p>
+<p>“可你很快就实现了自己的梦想。”</p>
+<p>“是啊，谁会想到自从你来到这个世上，我的一切就变得那么顺利，你们母女从此衣食无忧，跟着我周游世界……埃米莉，我爱你们。”</p>
+<p>“杀手是你雇来的吧？”</p>
+<p>这句话让爸爸一愣，面色冷峻下来，“为什么会这么想？”</p>
+<p>“你厌倦了妈妈，想要把她除掉，为了不让警察怀疑你，先让杀手往你身上开一枪，却在并非要害的部位，假装要杀我们一家三口，其实只是为了杀害妻子。”</p>
+<p>“埃米莉，你长大后适合做个小说家。”</p>
+<p>“这不是在幻想！”</p>
+<p>说话之间，船舷外的鱼钩晃了一下，我钓起了一条小个的鲣鱼。我熟练地用刀子剖开鱼腹，做成生鱼片跟爸爸分享了。</p>
+<p>“其实，这个世界，并不是你想象的样子。”</p>
+<p>耀眼的阳光下，我把头靠在他宽阔裸露的胸膛上，“爸爸，你有没有想过死亡？”</p>
+<p>“没有。”</p>
+<p>“可我每天都会想到死，仿佛随时随地会遭遇意外，比如遇到那个杀手。”</p>
+<p>“不要再想这些了。人死以后，一切就都没有了。”</p>
+<p>我的耳朵能听到他的心跳声，又贴着他下巴上的胡茬说：“请对我说实话，假如我死以后，还会有人记得我吗？”</p>
+<p>“我—一不知道。”</p>
+<p>“爸爸，你也会忘记我的，是吗？”</p>
+<p>他没有回答，冷漠地把我推开了。</p>
+<p>让人意想不到，整整七天过去，南太平洋上连一滴雨都没下过，只能依靠生鱼片果腹。</p>
+<p>爸爸快要渴死了。他总是用身体为我阻挡阳光，把更多的生鱼片让给我，他的脸上长满了泡泡，整个人晒得像块木炭。</p>
+<p>忽然，他指了指船底的隔板，我虚弱地将它打开，意外地发现了最后一小瓶水。</p>
+<p>他把这瓶水留给了我，然后，他死了。</p>
+<p>爸爸的尸体暴晒在烈日底下，很快发出了臭味。我拧开水瓶，抿了一小口，我想这样可以多活几天。</p>
+<p>然后，我把爸爸推到了海里。</p>
+<p>清澈而深不见底的海水，漫游着密密麻麻的金枪鱼群，爸爸像块蛋糕沉没到鱼群中，很快会成为它们的午餐。</p>
+<p>我躺在独木舟中，抱着爸爸留下来的那瓶水，等待随时来临的死亡。</p>
+<p>三天后，当我喝完最后一滴水，一艘集装箱货轮发现了我。</p>
+<p>船员们都是些大胡子的拉丁美洲人。他们给我吃了面包和牛奶，裹上温暖而满是跳蚤的船员毛毯，让出最好的一间舱室，让我洗了个</p>
+<p>舒服的热水澡。</p>
+<p>然后，他们轮奸了我。</p>
+<p>当我血流不止地诅咒他们都将死于暴风雨时，船长出现了。看到这张脸，我就沉默了。因为，我认识他。还有，他的白色风衣、白色帽子，紫色双眼。</p>
+<p>他拎着一把斧子，无声无息地朝我劈了下来。</p>
+<p>我的尸体，被扔进南太平洋，距离复活节岛一千四百九十海里。我看着幽暗无边的海底，一群柠檬鲨循着血迹游了过来。</p>
+<p>我叫埃米莉，十八岁，我长大了，人们都管我叫美少女。</p>
+<p>透过飞机舷窗，看到机翼下的撒哈拉沙漠，红色与金色的岩石和沙丘，宛如南太平洋般无边无际。五年前，爸爸葬身鱼腹之后，我早已习惯于独自一人旅行。我曾路过世界各大机场，俯瞰过地球上的许多个角落。我也认识了各种朋友，有男孩也有女孩，我跟着他们学会了十二种语言，而他们总是羡慕我能周游列国。</p>
+<p>其实，我是在想——如果，我不停地在不同的地方飞来飞去，那个杀手就不容易找到我了吧。</p>
+<p>但我唯独没有去过中国，这一点连我自己都难以理解。</p>
+<p>走神的一刹那间，我看到机翼下的引擎着火了。机舱中响起刺耳的警报声，头顶的氧气面罩落下来，前后都是女人们的尖叫，漂亮的空姐们也花容失色，手忙脚乱地教乘客们自救的方法。</p>
+<p>机长决定在沙漠中迫降。</p>
+<p>十分钟后，随着一声巨大的冲击，飞机一头栽倒在沙丘中。有人打开舱门，大家争先恐后地爬出去。当我也狂奔到炽热的沙漠上，身后的飞机才剧烈爆炸，至少有一半的乘客化作了碎片。</p>
+<p>有一块热乎乎的头盖骨被甩到我的后脖子上。</p>
+<p>夜幕降临，还剩下一百多名幸存者，不少人在逃出舱门时，因为互相踩踏而受伤了。这是撒哈拉沙漠的中心地带，没有任何通信信号，也没有水源，连游牧的柏柏尔人都没有。</p>
+<p>我想要离他们远一点。</p>
+<p>果然，没有任何外来救援的迹象，大家忍受着饥饿与干渴，每天不断有人死去。尸体堆积在沙漠上，我想再过很多年就会变成木乃伊。</p>
+<p>但我早就对死人麻木了，自从爸爸妈妈相继离世，我的生活中就充满了危险，几乎每天都会见到各种各样的死亡。比如在海啸与核泄漏的日本，在耶路撒冷老城，在龙卷风下的美国中部，在暴风雪中的西伯利亚。</p>
+<p>在三个不同的国家和地区，我读过五所中学，其中有四所发生过校园枪击案。我目睹一个高二男生，开枪打爆了我的物理老师的脑袋——前一天晚上我还跟这男生约会过。</p>
+<p>剩下最后一所高中，被强飓风夷为了平地，有三百个学生死于非命。</p>
+<p>我在废墟底下埋了七天七夜，最终被国际救援队挖了出来，结果还只是轻微伤。</p>
+<p>因此，对于这次空难，我没有丝毫慌张与恐惧，只是惊讶灾难竟然来得那么晚。在我的第九十九次飞行中才发生。</p>
+<p>沙漠的夜晚很冷。</p>
+<p>我找到了一个山洞，似乎有古人生活的痕迹，我弄来火种照亮岩壁，眼前跳出鲜艳的图案，画着原始人狩猎与放牧的情景，简直美得惊心动魄。这是人类刚诞生时的样子吧，老师说所有的现代人类，都是走出非洲的智人的后代——我也是其中之一。</p>
+<p>在祖先的岩洞里过了一夜，醒来后才发现在荒凉的沙漠上，到处都是血肉模糊的尸体。我冷静地回到死人们中间，发现几个奄奄一息的人，他们用最后一口气告诉我，昨晚发生了极其可怕的事——有人实在饿昏了，便开始到处杀人，最后发展到煮人肉充饥。有的人为了保命，有的人为了填饱肚子，总之是自相残杀。短短的几个小时，没有人能逃过劫难。</p>
+<p>最后，剩下的伤员也死了。</p>
+<p>就当我跪在被血染红的沙砾上等死时，头顶却响起了直升机螺旋桨的轰鸣声……</p>
+<p>机翼掀起巨大的风沙，我虚弱地被吹倒在地，只能挥舞双手求救。直升机悬停在半空之中，放下一截蛇形的软梯，有个男人从梯子上爬下来，却穿着夸张的白色风衣，衣摆几乎要被卷到螺旋桨里，一顶白色帽子从头上坠落，我在担心他会不慎摔死的同时，隐隐感到某种恐惧。</p>
+<p>终于，男人在沙漠上着陆，露出一双紫色眼睛，被风沙吹得通红，一脸悲伤地看着我，就差伸出手来拥抱。就像在阿尔卑斯山，在南太平洋。我还惊讶他从未变老过。</p>
+<p>“去死吧！”</p>
+<p>我转身要逃跑，但无力地跌倒在沙子里，他将我拽回来，用绳子绑住我的腰，将我拉上了直升机。</p>
+<p>男人的身体很热，将我包裹在他的腋下。当我们上升到大约一千米的高度，我看到底下海浪般起伏的沙丘，那架巨大的飞机残骸，如同被小孩子抛弃的玩具。</p>
+<p>于是，紫色双眼的男人，将我推出直升机舱门，而我并不感到意外。</p>
+<p>我不会飞，我想。</p>
+<p>4</p>
+<p>我叫埃米莉，刚从哈佛大学毕业，并有了自己的第一个Dior包包，这是男朋友提前送给我的生日礼物。</p>
+<p>今天，是我的二十三岁生日，但我依然选择独自一人旅行。</p>
+<p>这是我第一次来到中国，也是第一百九十九次飞行，很幸运，安全抵达终点。五年前，在我的第九十九次飞行中，发生了一些小意外，整架飞机有二百六十七个人，只有我一个人还活着。</p>
+<p>我的手边有一本书，作者的名字叫埃米莉——爸爸说得对，我长大后适合写小说。去年我出版了自己的第一部长篇小说，批评家们说我会成为一位出色的女性作家，这本书也即将被翻译为中文，中国的版权经纪人会到机场来迎接我。</p>
+<p>但我还是期待独自旅行的快乐，下飞机后入住四季酒店，我还没有倒回时差，便突然甩开了版权经纪人，溜到午后的街头闲逛。</p>
+<p>每个中国人都似乎长一个样，酒店门口停着几辆法拉利与兰博基尼，玻璃幕墙上有巨幅的奢侈品广告，走到哪里都是人山人海。我从万宝龙的橱窗里，看到自己雪白的面孔，还有烫卷了的头发，高高的个子加上十厘米的高跟鞋，不断有人回头来看我。</p>
+<p>忽然，橱窗里还多了一张脸。那个男人，十五年前勃朗峰隧道口外的杀手，十年前南太平洋货轮的船长，五年前的撒哈拉沙漠搜救直升机的机长。还有这张从未改变过的脸。</p>
+<p>紫色的眼睛，白色的风衣，口袋里鼓鼓囊囊的，幽灵般地向我靠近。</p>
+<p>他杀了我的妈妈，又一次一次地杀死了我，我永远记得这张脸。</p>
+<p>“Help!”</p>
+<p>我开始尖叫，却没有人来救我，杀手向我跑了过来。我刚向前逃了几步，就被高跟鞋绊倒在地。我只能蹬掉鞋子，光着脚在马路上飞奔。</p>
+<p>风，撒哈拉沙漠般的热风，从我的双耳边呼啸而过，几乎能听到子弹飞行的声音。</p>
+<p>他就快要追上我了吗？</p>
+<p>拐过几个路口，我看到了一所医院，有无数人进进出出，许多老人提着小凳排着长队。医院门口的公交车站，滚动着路虎越野车的灯箱广告。我本想冲上一辆正靠站的公车，却意外地看到一个男人。</p>
+<p>爸爸？</p>
+<p>奇怪啊，他怎么会在这里？难道也被人从南太平洋里捞了上来？他看上去年轻了许多，就像二十多岁的小伙子，穿着再普通不过的廉价T恤，神情紧张地猛吸香烟。他坐在医院门口的台阶上，屁股底下垫着一张废报纸，整版广告都是白雪皑皑的少女峰，打着一行中文“欧洲阿尔卑斯五国十日豪华游”。</p>
+<p>我摇了摇他的肩膀，爸爸却完全不认识我，反而害怕地向后倒退。看来他是不会帮我了，我颤抖着回过头来，那张杀手的脸更近了，正要把什么东西从口袋里掏出来。</p>
+<p>我慌不择路地冲向医院，推开排着长龙的人群，手脚并用地爬上四楼。到处都是消毒水的气味，白衣服的年轻护士们，推出满是装着带绒毛样鲜血的瓶子的推车，匆忙拿到水槽中冲洗。</p>
+<p>然而，护士们也不来救我，身后响起杀手的脚步声。</p>
+<p>我只能随手推开一扇房门，没想到是间小小的手术室，几个穿着白大褂、只露出眼睛的人，冷冷地瞪着我说：“你终于来了。”</p>
+<p>“救救我！”</p>
+<p>我这才想起自己会说一些中文的。</p>
+<p>“放心吧，这里很专业，不会痛的！”</p>
+<p>于是，我被他们推到手术台上。他们将我的腿挂在两个架子上，强行褪下我的裙子与内裤。</p>
+<p>我开始尖叫，挣扎，流泪，却无济于事。</p>
+<p>“姑娘，你不愿意吗？”</p>
+<p>一个中年护士问我，而我停顿了片刻，却出乎意料地摇摇头，冷静地吐出三个字——</p>
+<p>“我愿意。”</p>
+<p>头顶的无影灯打开，我看到医生露出一双紫色的眼睛。</p>
+<p>医生低头凑近我，他的眼球表面，镜子般倒映出我的脸——</p>
+<p>妈妈。</p>
+<p>5</p>
+<p>我叫埃米莉。</p>
+<p>今年夏天，我还没有出生，我的年龄是负数，正蜷缩在妈妈的子宫深处。</p>
+<p>我想我现在只有青蛙这么大，全身浸泡在温暖黑暗的羊水中，就像在浩瀚的南太平洋底，或是大海般的撒哈拉沙漠，这样的环境很适合做梦哦。</p>
+<p>虽然，我的眼睛还是闭着的，却通过一条脐带与妈妈相连，从而感受到外面的世界。</p>
+<p>我知道妈妈在浑身颤抖，虽然刚打完麻药，据说这是“无痛的人流”。</p>
+<p>突然间，我什么都知道了，妈妈只有二十三岁，爸爸也同样年轻，正焦虑地站在医院门外。</p>
+<p>他们还没有结婚，也许再也不会见面了。</p>
+<p>她的眼角正溢出泪水，我渐渐看清了整个手术室，医生趴在她的双腿之间，手里握着某个恐怖的东西。</p>
+<p>妈妈痛苦地把脸别过去，目光对准手术室的角落，那儿挂着一个Dior包包，这是爸爸送给妈妈的第一件礼物，在他们认识后的第三个星期。虽说是淘宝上买来的A货，498元的VIP特惠价，但她仍然喜</p>
+<p>欢地每天背着它。</p>
+<p>这时，一个钩子伸进子官，妈妈几乎没有什么感觉，而我真的好疼，好疼，好疼……</p>
+<p>在最漫长的那一夜，空气中飘过半腐烂的夜来香气味。我被吸出妈妈的身体，随着充满泡沫的血液，倒入一个玻璃瓶子，被小护士推出手术室，送人水槽冲洗干净，永远消失在下水道深处。</p>
+<p>我叫埃米莉，我还没有出生，就已经死了。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

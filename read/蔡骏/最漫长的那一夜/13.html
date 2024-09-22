@@ -1,0 +1,1008 @@
+<!DOCTYPE html><html><head><title>13</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="12.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="14.html">下一章</a></p><hr><h1><center>第13夜 费家洛的恐怖婚礼</center></h1>
+<p>看过一部叫“肖申克的救赎”的电影吗？DVD外壳是个男人敞开衣服，平伸双手站在针点般密集的夜雨中……如果，给她一把小小的工具，无论铲子、凿子还是钻子。</p>
+<p>——《偷窥一百二十天》</p>
+<p>两年前，《悬疑世界》招聘编辑，来了个男生面试。他是我的脑残粉，九零年的，家在外地，身高接近一米九，头发淡淡的软软的，看起来有些像电影里的安迪。</p>
+<p>他的名字叫费家洛。</p>
+<p>想起《费加罗的婚礼》，显然，他的爸爸是个古典音乐爱好者，我很快让他来上班了。</p>
+<p>但，我错了。</p>
+<p>为什么叫费家洛？他爸姓费自不待言，酷爱金庸小说，尤其痴迷于《书剑恩仇录》，超级崇拜红花会总舵主陈家洛，因此给儿子起名费家洛——但我不可能就这样把人赶走。</p>
+<p>半年过去，费家洛成为我们的优秀编辑。</p>
+<p>有一回，碰上我的签售会，一个女读者要求我给她写名字——</p>
+<p>To：苏青桐</p>
+<p>正好费家洛在帮我翻书，先是看到她的名字，然后抬头看到她的脸。</p>
+<p>一分钟后，费家洛要到了苏青桐的微信号。</p>
+<p>一天后，费家洛单独请苏青桐去赵小姐不等位排队吃了顿盐烤。</p>
+<p>一周后，费家洛不经意间拉起了苏青桐的手，幸好没有被啪啪。</p>
+<p>一月后，费家洛先是被苏青桐啪啪，然后啪啪啪。</p>
+<p>一年后，费家洛和苏青桐领证了。</p>
+<p>苏青桐问费家洛，你为什么一眼就喜欢上了我？</p>
+<p>你看过《书剑恩仇录》吗？</p>
+<p>嗯，霍青桐。</p>
+<p>谁都知道，陈家洛的真爱，是英姿飒爽的霍青桐，至于小萝莉香香公主，无非是个小三罢了。</p>
+<p>同理可证，费家洛和苏青桐，是绝配。</p>
+<p>但，这年头要追女仔，用名字天生一对这种老土办法，可是万万行不通的。</p>
+<p>自打第一顿饭起，费家洛告诉苏青桐，自己是陈家洛的后代，当年香香死后，陈家洛害怕乾隆皇帝的追杀，陈姓改为费姓，在深山间隐居了两百年。到了费家洛他爸这一代，这才出山经商，因为与西域和香香公主这层关系，他爸获得去迪拜发展的机会，成为迪拜王室的大内总管，如今家财万贯，在迪拜的七星饭店里拥有一间套房，还有十九辆法拉利。现在，他在国内做编辑这份差事，就像至尊宝做山贼这份有前途的职业，不过是为了增加社会经验罢了。</p>
+<p>当然，我们都知道剧情是——费家洛身份证上是汉族，他的老爸确在迪拜发展，干的是厕所清洁工。虽然每月能挣两千美元，但要付五百美元给中介，五百美元作生活费，剩下一千美元寄回家，给卧床不起的家洛他奶奶治病。而费家洛的妈妈，早几年就去世了。</p>
+<p>不错，费家洛是个彻头彻尾的三代贫下中农。</p>
+<p>至于苏青桐，她与费家洛同龄，工作刚满一年的上海姑娘，自称大资本家大地主后代，属于解放后要押去龙华公判枪毙的那种。真实情况嘛，经我调查，她住在南市老城厢最后一片老房子里，二十年前就说要拆迁分房子，等到现在还没拆掉。</p>
+<p>其实，苏青桐一直知道费家洛在骗她，只是故意不戳穿罢了。凡是智商不低于九十的人，都知道他全是鬼扯淡。但费家洛还是一本正经地圆谎，那样认真的表情太可爱了，不如让他继续说下去多欢乐啊。</p>
+<p>去年情人节，费家洛跪地求婚。他坦率地告诉苏青桐，他远在迪拜的老爸，最近连厕所清洁工的差使都丢了，现在兼职给迪拜的阿哥贝勒们清洗蛋蛋。他说，如果苏青桐现在立即说分手，他绝对不会怨恨，反而还要为自己的谎言道歉。</p>
+<p>苏青桐却接受了他递来的水晶戒指，虽然是江浙沪包邮的货色。</p>
+<p>两个人进入结婚流程。</p>
+<p>自然，男方父母指望不上。费家洛他爹欠了中介的钱，连回国的机票都买不起。他奶奶躺在老家的病床上不省人事，其他亲戚都躲得远远的，无非是怕他伸手借钱。</p>
+<p>女方父母嘛，挑明了要跟女儿断绝关系，反对她嫁给硬盘。原本指望苏青桐能嫁个富二代或官二代，最起码也得是有房有车的本地小伙子，最后却让光屁股来的外地屌丝抱走了，这二十来年不是白养了？莫说不会给一分钱，就连婚礼也绝不会来。</p>
+<p>怎么办？</p>
+<p>以他俩的收入，如果没有父母资助，如今在上海买房，那是做梦。</p>
+<p>好吧，那就裸婚，可是，就连办场婚礼的费用，两人也是捉襟见肘。</p>
+<p>苏青桐是月光妹，还欠着银行的信用卡。费家洛减去房租和生活费，每月能存下两千来块，再扣掉这一年来谈恋爱开销，又去七浦路拍了套婚纱照，剩下的钱刚够吃一顿KFC全家桶，还必须是团购券。</p>
+<p>不知是谁插了一句——不如办场恐怖婚礼吧。</p>
+<p>费家洛的恐怖婚礼。</p>
+<p>好主意，这是费家洛的职业习惯，绝不忌讳。至于新娘嘛，苏青桐要不是酷爱各种惊悚悬疑推理小说与电影，把德州电锯下水道人鱼啥的看了一二百遍，怎会喜欢上费家洛这样重口味的呢？</p>
+<p>什么地方适合办恐怖婚礼？在剔除了一大堆密室鬼屋迷宫后，我忽然想到了！</p>
+<p>从小学三年级到初一，我住在普陀、静安、长宁三区交界的曹家渡。在我幼小的心灵里，苏州河三官塘桥（现在叫江苏路桥）旁边，有间医院的建筑，但永远铁门紧闭，玻璃蒙着厚厚的灰尘，似乎从未打开过，也看不到里面关着什么。后来百度才知道那是曹家渡人民医院，已被关闭了差不多三十年。</p>
+<p>当晚，我们组团前往离公司不远的曹家渡。</p>
+<p>谢天谢地，童年记忆中的黑暗建筑还没被拆掉，孤零零地矗立在苏州河边。前头被一座新造的哥特式天主教堂挡着，因此在马路上是看不到的。</p>
+<p>好不容易打开铁门，升腾起重重黑雾，三十年来的灰尘。幸好我等早有准备，戴着口罩和护目镜，检查医院大部分房间。这里还保留八十年代风貌，墙上挂着当时的口号和标语，各种文件和通知，只是字迹模糊不清。急诊室里还有担架，各种抢救的工具，当然没有病人与小护士。有人好奇地打开妇科治疗室，扫了一遍并未发现AV里的器具。还有黑漆漆的手术室，锋利的手术刀散落在地板上。</p>
+<p>好吧，这是天赐的恐怖婚礼现场，空旷的一层候诊大厅，很容易改造成教堂的效果。</p>
+<p>我们公司的强强，弄来个小型发电机组，在不用空调冰箱等电器前提下，可连续发电十二个钟头。我们自己动手打扫——除了太平间没人敢进去。</p>
+<p>我有个朋友，很有名的导演，在拍一部婚礼题材的电影，许多道具刚好用完，我便向他借了过来，布置在废弃医院的候诊大厅……</p>
+<p>三天后，医院成了教堂，挂号间贴满鲜花，药房间糊上婚纱海报，急诊通道铺好红地毯，原本写满医院各项规定的墙，被装修成教堂祭坛，顶上挂了大大的十字架。最后，四楼的院长办公室，被我们改造成新郎新娘的花瓣洞房。</p>
+<p>婚礼时间，定在四月一日深夜。</p>
+<p>要说男方亲友就算了吧，除了我们这些编辑部同人，还会有人来给屌丝送红包吗？而新娘子苏青桐，发出去一百张请柬，盘算着能收进几万块红包，就能去巴厘岛蜜月旅行了。不曾想婚礼当晚过了九点钟，居然一个人都没出现！原来，她平常是出了名的嘴贱，得罪了不少朋友和同事，再加上这婚礼地址——曹家渡人民医院，网上一查关门了三十年，谁还敢来送死呢？就连原本说好的伴娘，也突然借口大姨妈来了，临阵脱逃。</p>
+<p>于是，这场婚礼算上新郎新娘，总共只有十三个人参加（这数字好吉利）。</p>
+<p>以上嘉宾全部来自悬疑世界——我、强强、哥舒意、潘尼、方舟（前面五个是帅哥）、楚瓷、潘潘、林妹妹、LINA、ELLY、婷婷（后面六位是美女）。</p>
+<p>人手不足，必须每个人都扮演一个角色。具有婚庆从业经验的强强，自然担当起司仪重任。而我披上一件黑袍，扮演教堂里的告解神父，具有聆听忏悔的功能。单身未婚的哥舒意充当伴郎，楚瓷顶替了伴娘。潘尼摄像，方舟摄影。潘潘撒花瓣，林妹妹拉白裙，LINA打彩弹，ELLY放鸽子（受到吴宇森电影的影响），婷婷播放PPT……</p>
+<p>没有观众。</p>
+<p>晚上十点，婚礼开始，通过小型发电机，三十年前的医院候诊大厅，变成教堂灯火通明，婚礼进行曲响起。</p>
+<p>司仪引导声中，新郎新娘穿过红地毯，满头花瓣彩带，来到扮演成神父的我面前。</p>
+<p>在交换戒指与宣誓之前，身着洁白婚纱的苏青桐，愣愣地看着我的眼睛，忽而把视线抬高，瞳孔中放射能吓出翔来的恐惧。</p>
+<p>她看到了什么？还是想起某个极度恐怖的罪恶？难道曾把前男友分尸却谎称分手？</p>
+<p>接着，伴娘楚瓷也开始尖叫，然后是伴郎哥舒意和司仪强强，以及在场的所有人，一群鸽子提前飞出来，最后是新郎费家洛，晕倒在婚礼的祭坛前。</p>
+<p>我疑惑地回头，发现二楼走廊里，站着一个全身白裙的长发女人。</p>
+<p>这个女人看起来挺年轻，白裙上落着许多灰尘，像是刚从棺材里爬出来，身上还沾着猩红的血迹。唯独皮肤超乎常人的苍白，乌黑长发披肩，眼神令人勾魂，嘴角微微撇起，很像日本友人山村贞子她妹。</p>
+<p>她妹，鬼啊！</p>
+<p>等一等……今天是什么日子？</p>
+<p>愚人节！</p>
+<p>册那，你们真是丧（gan）心（de）病（piao）狂（liang）！</p>
+<p>我指了指哥舒意，又指了指强强，最后拍了拍新郎新娘的肩膀，用这一招来吓唬神父？是不是太幼稚了一点？当我们都是厦大毕业的啊？接下来，大概就是《变脸》和《喜剧之王》的桥段吧，一枪打死神父？上面那位cosplay的萌妹子，你是新娘的亲友吧？快下来扫扫微信二维码。</p>
+<p>可是，其他人的目光依然极度惶恐，潘潘与LINA都已躲藏到了长椅底下。</p>
+<p>当我回头再看楼上的美女，发现她的两只眼眶流血，左眼珠子竟掉了出来，径直坠落到我手中的《圣经》封面上，你们自己感受一下。</p>
+<p>这货，不是道具。</p>
+<p>贞子她妹，真的是鬼！</p>
+<p>我们纷纷想要逃命，医院大门却被紧紧锁住，无论如何都无法打开。天哪，整个医院只有这么一道门。砸玻璃也没用，因为医院所有窗户，都被铁栏杆封死，成为巨大的棺材。</p>
+<p>这下好了，密室杀人开始，还带灵异的。</p>
+<p>贞子她妹从二楼下来了。</p>
+<p>我们慌不择路分头逃跑，有人钻进内科门诊，有人逃进化验室，有人冲入X光放射科，还有直接进了手术间。</p>
+<p>而我拉着今晚的新郎新娘，反方向跑上二楼走廊。</p>
+<p>再看底楼教堂，贞子她妹找到地上的《圣经》，捡起自己掉落的眼珠子，用手绢擦擦干净，重新安回眼眶里。</p>
+<p>在费家洛再次吓晕之前，我把他拉进专家门诊，关紧门锁的刹那，才发现屋里还有人。</p>
+<p>那是个穿着白大褂的老医生，头发花白，戴着眼镜，正在埋头写着病例卡，从眼花缭乱的医生字体来看，起码有三十年的从医经验。</p>
+<p>我刚想问哪里还能出去。</p>
+<p>老医生抬起头来，脸上的肉都已腐烂，一块块掉下来，露出骷髅的骨头，同时发出阴惨惨的声音——看病先挂号懂不懂啊宗教界的同志！</p>
+<p>晕，我不是宗教界的，更不是同志，后悔自己装扮成神父，为什么不事先准备好大蒜和十字架？</p>
+<p>我们逃回了走廊，这下轮到苏青桐尖叫了——有只小手抓住她的脚。在满地婚纱底下，藏着一个浑身白色的小男孩，乍看挺眼熟的，不就是《咒怨》里的那张脸吗？</p>
+<p>妈呀，整座医院咋都是僵尸了呢？</p>
+<p>新娘挣脱了高跟鞋，拖着昏迷的新郎爬上三楼，我在后面提着婚纱裙摆，以免她绊倒摔死。</p>
+<p>刚爬上三楼，就碰到太平间大门敞开，冲出来个小护士，倒不是制服诱惑，而是过去那种保守的护士服，从头到脚裹得很紧，脸上冒着血，半条舌头伸在外面。后面还跟着几个家伙，有的穿着蓝白相间的睡袍，乍看像阿根廷球衣，其实是八十年代病号服。有的中年妇女，穿着灰色护工服。还有人穿着黑制服，像是背尸体的。地上爬着一个小婴儿——看起来还没足月，奇形怪状像外星人，明白啦，是被“无痛的人流”引产掉的胎儿，爹妈造孽捏！</p>
+<p>此刻，整座废弃医院此起彼伏着尖叫声。</p>
+<p>这特么是愚人节还是万圣节还是七月半呢？</p>
+<p>我们继续逃上四楼，意外地跟伴郎伴娘汇合，这才确认楼上楼下，有百十来个僵尸，四处横行，不清楚有没有活人受到攻击。</p>
+<p>强强、潘尼、方舟、潘潘、林妹妹、LINA、ELLY、婷婷，你们还活着吗？或者，身体还完整吗？或者，没有变成僵尸吧？</p>
+<p>拨打110求救，却没信号——真是自作孽不可活，是我们为了强化恐怖婚礼的效果，设了信号干扰装置，确保大家与世隔绝。而这个装置就在“教堂”的祭坛下面，我们往底下一看，几具大妈级的僵尸正在那跳广场舞呢。</p>
+<p>这到底是怎么回事？</p>
+<p>三十年前，这座曹家渡人民医院，为毛会突然关闭？这栋建筑怎么一直没被拆掉，或者被改造成其他什么用途？为毛医生护士和病人们都藏在太平间，时隔多年变成僵尸？</p>
+<p>忽然，我想起很小的时候，听大人们说，差不多在1984年（好年份啊好年份托乔治·奥威尔的福），上海曾经有过一次病毒泄漏事故，造成严重的人员伤亡。后来军队把事件平息，却没有在任何文字记载中留过痕迹。</p>
+<p>我们真傻啊，当年的病毒泄露，显然就是这栋医院！而当时，所有的医生护士和病人们，都成了牺牲品，最后被封闭在太平间。曹家渡人民医院自然就被废弃，并且禁止任何人进入，直到现在……我们这群SB，却进来搞什么恐怖婚礼！</p>
+<p>NO ZUO NO DIE WHY YOU TRY！</p>
+<p>当我意识到这一点，几个穿着白大褂的僵尸冲上来，新郎照旧再次吓晕，新娘却被僵尸抓住。我本想跟它们搏斗，但不知道用什么工具，最后还是逃进了一个小房间。</p>
+<p>我把门紧紧锁住，确保外面的怪物不会进来。通过一个小窗口，我发现僵尸们并未伤害新郎新娘，而是围在他们身边，用听诊器听两个人的心跳，还用手电筒照他们的眼球。更有甚者，拿一块恶心的口腔板，伸入新娘的喉咙以观察，最后还有人写病例卡——小时候看医生的痛苦经历全都涌到眼前，刹那间又亲切又悲伤，让人泪牛满面。</p>
+<p>走投无路啦，这个小房间全是灰尘，却有一台老式的唱片机，原来是医院的广播间。在唱片机的转盘上，恰好放着一张黑胶唱片，再看封套竟是《费加罗的婚礼》。</p>
+<p>嗯，底楼的小型发电机还在运转，我按下开关转了起来。</p>
+<p>深深吸了口气，擦去唱片上的灰尘，便放下了细细的唱针……</p>
+<p>世界安静了。</p>
+<p>只剩下，两个意大利女人的声音，通过医院各个角落的喇叭，悠扬地穿梭在每条走廊、楼梯、诊室、病房、药房、太平间、残肢的火化炉……</p>
+<p>想起很多年前，我第一次看到《肖申克的救赎》，当时DVD外壳上印着《刺激1995》。给我留下印象最深刻的一段，并非安迪爬出下水道获得自由的雨夜，而是他在典狱长的办公室，突然用唱片机播放《费加罗的婚礼》，通过扩音器传到监狱的每个角落，所有的犯人都侧耳倾听。</p>
+<p>忽然，我感到了一刻的自由。</p>
+<p>此时此刻，医院中的僵尸们，全都停止行动，在《费加罗的婚礼》声中忧郁沉静。行尸走肉的病人和医生，只想做个安安静静的美男子；浑身腐烂的小护士们，也都变回了萌妹子。</p>
+<p>《费加罗的婚礼》是十八世纪的歌剧，作曲的是大名鼎鼎的莫扎特。而在唱片封套底下，还有医生体手写着一行字，我费了好久才看懂——“婚礼第二首”。</p>
+<p>播音间的墙上，贴着几张泛黄照片，其中就有最早出现的贞子她妹，旁边站着个小帅哥。还有许多医生护士跟病人们的合影。再拉开抽屉，一叠厚厚的医院日志，我赶紧翻到最后几页，匆忙抓紧要点看着，忽地泪水涌出……</p>
+<p>终于，全都明白了。</p>
+<p>三十年前，曹家渡人民医院里，有位年轻的女病人，得白血病快要死了。她有个男朋友，痴情汉子，决定在她死前，跟她在医院里办场婚礼。整个医院被感动，所有医生、护士、病人都作为嘉宾参加婚礼。他们将候诊大厅布置成婚礼现场。新郎新娘都是古典音乐爱好者，他们特意找了《费加罗的婚礼》唱片。就在婚礼进入高潮，古典音乐的歌声响彻医院。与此同时，某个刚死去的病人身上，恐怖的病毒爆发。短短几分钟内，参加婚礼的人们，全被病毒感染，瞬间变成僵尸。军队包围医院，施放僵尸催眠气体，从而使它们在太平间里沉睡，直到今晚……</p>
+<p>至于，它们复活的原因，是我们刚才播放婚礼进行曲，一下子唤醒沉睡的僵尸，以为三十年前的婚礼还在继续。</p>
+<p>可，今晚，我们的费家洛的婚礼怎么办？</p>
+<p>我瞬间想出了主意。</p>
+<p>冲出播音间，《费加罗的婚礼》就让它循环播放吧，反正僵尸们都变成了音乐爱好者。我救出新郎新娘和伴郎伴娘，回到底楼的“教堂”。</p>
+<p>我从一堆僵尸里头，找到当年得白血病的新娘，还有死心塌地的新郎，他们两个依然含情脉脉地依偎着。</p>
+<p>他们虔诚地看着我，尤其贞子她妹，居然跪下来亲吻我的黑袍。</p>
+<p>这才想起来，我扮演的是神父嘛，纵然僵尸，也是神的子民，也要找我来忏悔。</p>
+<p>于是，我对他们说——今晚，我要替你们完成三十年前被中断的婚礼！</p>
+<p>我们剩下的活人们，迅速召集齐了，果然一个都没死，连根毛都没掉过。倒是几个可怜的医生僵尸，因为活人们的暴力反抗，从而缺胳膊少腿支离破碎。</p>
+<p>经过简短的准备，婚礼重新开始，同时有两对新人——</p>
+<p>一是我们的费家洛与苏青桐——费家洛已昏迷过去好几次，现在被苏青桐掐醒了。</p>
+<p>二是沉睡了三十年的僵尸新郎与新娘，我们用白床单为他们做了婚纱，司仪强强把自己的西装脱下来，穿在腐烂到只剩肋骨的新郎身上。</p>
+<p>好吧，我们依然是原来的分工，各司其职——强强司仪，哥舒意伴郎，楚瓷伴娘，潘尼摄像，方舟摄影，潘潘撒花瓣，林妹妹拉白裙，LINA打彩弹，ELLY放鸽子（全被僵尸们抓回来了），婷婷播放PPT。</p>
+<p>婚礼重新开始，时光倒流三十年，不算太晚！</p>
+<p>费加罗的婚礼，意大利女人的歌声悠扬。尤其，是对这所监狱般的医院里，被囚禁了三十年的医生护士和病人们而言。它们全安静地坐在下面，要么托着腐烂的腮，要么维修着掉落的眼珠，要么托着自己断掉的脑袋。</p>
+<p>费家洛的恐怖婚礼，其实，一点也不恐怖，我们还活着的人们，都感觉到了幸福。</p>
+<p>而在“教堂”之上，我穿着神父的黑袍，倍感庄严激动，眼含热泪，面对眼前的两对新人——九零后的费加洛与苏青桐，还有六零后的僵尸新郎与新娘。</p>
+<p>我的脑子突然短路，心想要是三十年前，他俩没有变成僵尸的话，现在小孩都到结婚年龄了吧。</p>
+<p>“你愿意娶这个女人吗？爱她，忠于她，无论她贫困、患病或者残疾，直至死亡。Do you？”</p>
+<p>作为神父，我严肃地询问眼前的两个新郎。</p>
+<p>费家洛回答：我愿意。</p>
+<p>僵尸新郎回答：我愿意。</p>
+<p>下面不知哪位腐女插了一句，干脆你俩进洞房得了，在一起！</p>
+<p>我板了板面孔，底下恢复安静，再对两位新娘说——</p>
+<p>“你愿意嫁给这个男人吗？爱他，忠于他，无论他贫困、患病或者残疾，直至死亡。Do you？”</p>
+<p>苏青桐回答：我愿意。</p>
+<p>僵尸新娘回答：我愿意。</p>
+<p>我看着美丽的活人新娘，再看同样妩媚的僵尸新娘，也就是贞子她妹。</p>
+<p>天哪，画面太美，我不敢想！</p>
+<p>这时候，僵尸新娘的头发掉了，露出光秃秃的头盖骨。原来，在三十年前的新婚夜，护士们买来长长的假发，掩盖她白血病化疗导致的光头。</p>
+<p>但没关系，新郎新娘交换戒指。</p>
+<p>三十年前生锈的戒指，戴在两根细长的指骨上，只能攥紧关节，才能不让它滑落。</p>
+<p>然后，费家洛亲吻苏青桐，贞子她妹夫亲吻贞子她妹。</p>
+<p>司仪强强长吁出一口气：婚礼成功，礼毕！</p>
+<p>盛大的婚礼过后，僵尸新郎新娘带着医生、护士和病人们，一起回到了太平间，他们将继续沉睡下去，直到下一次婚礼，直到世界末日。</p>
+<p>祝早生鬼子。</p>
+<p>而我们这些活人啊，还不能那么早离开，因为新人还没洞房呢。</p>
+<p>于是，费家洛与苏青桐，被送进了医院的四楼——院长办公室改造的新房。</p>
+<p>闹洞房这种low习，我们就不搞了，留下新郎新娘，关紧洞房大门，大家赶紧撤退。</p>
+<p>当我们冲出曹家渡人民医院，跑到旁边的江苏路桥上，靠着苏州河边的栏杆，眺望这栋鬼楼四层窗户的亮光，忽然，有些想念那些僵尸朋友们了。</p>
+<p>不过，又有谁提醒了一句，根据医院的日志，瘟疫爆发的当晚，院长好像还在办公室里值班……</p>
+<p>好吧，今晚有人代替我们闹洞房了。</p>
+<p>根据资料显示，这位院长是知名男科专家——洞房花烛夜，人生四大喜事之首，正需要高人指导新郎呢，或许会让这对新人受益终生，弄出个生儿子的秘方？</p>
+<p>晚安，祝你们白头到老！永结同心！</p>
+<p>苏州河畔，月光丝绸般柔软，带着泥土味的风里，依稀仿佛，飘着两个意大利女人的歌声。我还记得电影《肖申克的救赎》，当安迪在典狱长的办公室，让《费加罗的婚礼》响彻监狱，摩根·弗里曼演的老黑人独自旁白——</p>
+<p>“我到今天始终不明白，这两个意大利女人在唱什么。事实上，我也不想去明白，有些东西不说更好，我想那是非笔墨可形容的美景，但会令你的心伤。那声音飞扬，更高，更远，超过任何在灰色地带的人所梦想的，如一只美丽的小鸟，飞进了这灰色的鸟笼，让这些围墙消失了，令铁窗中的所有犯人，感到一刻的自由。”</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

@@ -1,0 +1,971 @@
+<!DOCTYPE html><html><head><title>11</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="10.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="12.html">下一章</a></p><hr><h1><center>第11夜 小时代杀人事件</center></h1>
+<p>金钱永不眠，上海老不睡。平凡的小街上，百姓们靠着啤酒冰凉的泡沫打发着梅雨季节难以入眠的闷热夜晚。而有的人，从出生开始就生活在寸土寸金的顶级地段，他们的生活，仿佛玫瑰花蜜般甜美而又奢侈。他们的双脚远离世俗的灰尘，他们是活在云端的命运宠儿。有的人呢，则正泡在浓郁的热巧克力里，分不清杯中的滋味是苦涩，还是香醇。那些金字塔顶端的有钱人，他们的每一天都像是精心调配好的营养剂，每一种营养成分都按照严格精确的配比，他们的身体因此保持着最好的状态。璀璨夺目的生命，永远，熠熠生辉。他们占据着上海最美的地段，最美好的光线，享受众人羡慕的目光。同时，也享受着高处不胜寒的孤独。有的人每天都在品尝着绝望和希望的味道，就像用药片兑水化开的冲剂，甜蜜鲜艳的糖衣褪去之后，就只剩下不为人知的苦涩。</p>
+<p>——《小时代2：青木时代》</p>
+<p>去年，八月，上海书展。</p>
+<p>上海展览中心东一馆，我在签售新书。很抱歉，我无暇抬头看清排队的人们的脸。除非，偶尔遇到美女，我会记得，也有可能忘记。</p>
+<p>但我记住了她。</p>
+<p>许多时候，我会问读者：要不要写上你的名字？</p>
+<p>嗯，我是你的脑残粉，你就写顾里吧。</p>
+<p>怎么写？</p>
+<p>你没看过《小时代》吗？</p>
+<p>没有。</p>
+<p>天哪，你没看过《小时代》？</p>
+<p>但我知道顾里，于是，我先签名，再写一行钢笔字——</p>
+<p>To：顾里</p>
+<p>其实，她不叫顾里。</p>
+<p>一年后，当我再度见到这个女孩，我还是不知道她叫什么。</p>
+<p>2014年7月17日，有个互联网的兄弟，就职于BAT三巨头中的一家，从北京飞到上海，说要请我喝酒。我说我从不喝酒，他说那就喝茶。我说我每晚都要写小说，喝茶也没空。他说写小说也要有素材，我跟你说个故事，一定对你有帮助！</p>
+<p>于是，我答应了。</p>
+<p>辗转到了约定地点，却是一间有名的夜场，外观金碧辉煌，像是用LV镶钻做的软装。</p>
+<p>我问他有什么故事。他只说，唱歌唱歌。点了几瓶红酒，标价都是几千块的。我懂了，这家伙的工作就是吃喝玩乐，业务招待费太多，不用也是浪费，借着招待我的名义，假公济私，满足酒色之欲。</p>
+<p>包房里自然还有姑娘，在他身边坐了四个。我拘束地要离去，却听到一首张雨生的歌——“我是一棵秋天的树，枯瘦的枝干少有人来停驻，曾有对恋人在我胸膛刻字，我弯不下腰无法看清楚”。</p>
+<p>这哥们酷爱唱歌，跟我一样也爱老歌，让我不由自主地坐定下来。同时打量那边的姑娘，开头三个，都像是@留几手打分的对象，从一分到零分到负分滚粗不等，看来我这兄弟是性情中人。</p>
+<p>最后一个，躲在阴暗角落，穿着白色无袖短裙，中分的披肩长发，脖子上挂着串项链，远看略像郭碧婷。</p>
+<p>我不记得她了，但她记得我。</p>
+<p>等到我兄弟一曲唱罢，她坐到我身边，向我敬酒。</p>
+<p>她说，去年，上海书展，我来过你的签售会，还请你写过我的名字。</p>
+<p>你是——我想不起那个名字了。</p>
+<p>顾里。</p>
+<p>哦，看着她的脸，依稀有些印象。</p>
+<p>她说，我还问你，没看过《小时代》吗？</p>
+<p>咳！咳！最近，刚在网上看过了。你，真的叫顾里吗？</p>
+<p>不是啦，骗你的。</p>
+<p>然后，她问我抽烟吗。我摇头，她掏出一根细长的ESSE女士烟，轻轻点燃，吐出薄荷味的烟雾。她的眼眶，依稀有些发红，微微能察觉出颤抖。跟一年前来到我的签售桌前的女孩相比，这是同一个人吗？</p>
+<p>她将烟夹在食指与拇指间，目光迷离……</p>
+<p>2013年6月27日，她，刚到上海。</p>
+<p>出了虹桥机场，按照网上的攻略，坐上地铁二号线，不用换乘，直达人民广场。出站，过马路，就是和平影都。已有成百上千的人排队，她背着沉甸甸的旅行包，看起来像匹不堪重负的骆驼。</p>
+<p>这一年，她刚大学毕业，向父母借了四千块钱，为了讨个小四的口彩，从四川老家飞到上海来找工作。</p>
+<p>她预定了《小时代1》的首映电影票，传说郭敬明将会出现。当她排了两个小时的队，终究没有看到他。</p>
+<p>盯着电影院的屏幕，纸醉金迷过后，最后那场走秀，响起《友谊地久天长》，她哭了。</p>
+<p>傍晚，华灯初上，南京西路，人潮汹涌，淹没头顶，闭上双眼，一切就在身旁，就在手指尖上。</p>
+<p>几天后，当她住在浦东昌里路的六层楼的出租房，却觉得上海，好像并没有电影里拍的那么美好。</p>
+<p>她开始投简历，想要找到一份主编助理的工作。几次面试都令人失望，办公地点在又破又烂的写字楼，或是陈旧的国有单位建筑，主编多是中年妇女和秃头老汉，好不容易面到一个gay主编，却是形象猥琐的大叔。</p>
+<p>最后，她去了一家民营的出版公司做编辑。</p>
+<p>《小时代2青木时代》公映没多久，上海书展开幕。她跟主编说去考察市场，其实，是想参加郭敬明的签售会。在过去的中苏友好大厦，俄罗斯风格的建筑里，她惊讶地发现，这不正是顾里她们破坏顾源的订婚仪式的拍摄现场吗？只是，看起来跟电影的差距好大啊。</p>
+<p>电影结尾出现的那片台阶，曾经被白雪覆盖着，而今在四十度的烈日底下，总有从俄罗斯穿越到非洲的感觉。</p>
+<p>很遗憾，她没能挤进郭敬明的签售会，就来到了我的签售台前。</p>
+<p>她嫌自己的真名太土，就让我给她写了“To：顾里”。</p>
+<p>走出书展的签售会，上海展览中心后门，就是南京西路。烈日的下午，她穿过横道线，经过波特曼，踱过恒隆广场，看过中信泰富，摸过爱玛仕与宝诗龙的广告牌，一直走到地铁二号线——她直接回到公司，递交了辞职报告。</p>
+<p>因为，她忽然明白：作为一个图书编辑，哪怕再努力一辈子，哪怕编辑的图书就是能卖几百万册的《小时代》，她都不可能过上顾里那样的生活。</p>
+<p>不知道再该去哪里。回老家吗？虽然，时常怀念起四川，怀念小城总是愁云惨雾的时光，怀念妈妈的麻将声与爸爸的吵架声，但她永远不想再回去了。</p>
+<p>她第一次去了夜场。</p>
+<p>在许多丝袜包裹的大腿、高跟鞋与皮靴之间，她落寞地坐在角落，端过侍者送来的鸡尾酒。有个喝多了的少女，看起来很小，让人怀疑是否高中毕业，晃悠着坐到她身边。当她要起身离开，却被少女抓着胳膊说：你看我这个镯子好看吗？</p>
+<p>那是卡地亚铂金手镯，年轻的脸蛋光彩照人，简直有韩星的感觉。女孩说在香港买的，十二万港币。而她羞愧地缩回手腕，掩饰自己从淘宝买来的便宜货。</p>
+<p>第二夜，有个中年男人盯上了她，说她长得很像自己的初恋，那还是二十年前的事了。</p>
+<p>半推半就之后，她收下对方的礼物：卡地亚的铂金手镯。</p>
+<p>但她依然不是顾里。</p>
+<p>最后，她给我唱了一首歌。</p>
+<p>KTV的大屏幕上，依次跳出杨幂、郭采洁、郭碧婷，还有Hold住姐……</p>
+<p>风吹雨成花</p>
+<p>时间追不上白马</p>
+<p>你年少掌心的梦话</p>
+<p>依然紧握着吗</p>
+<p>云翻涌成夏</p>
+<p>眼泪被岁月蒸发</p>
+<p>这条路上的你我她</p>
+<p>有谁迷路了吗</p>
+<p>……</p>
+<p>今夕何夕</p>
+<p>青草离离</p>
+<p>明月夜送君千里</p>
+<p>等来年 秋风起</p>
+<p>时间煮雨，不是原唱哦，却胜似原唱。</p>
+<p>当时我就震惊了。</p>
+<p>包括，我的互联网兄弟，还有夜场里的其他姑娘，她们默默坐下，要么抱着酒杯，要么托着下巴，要么躲入角落，要么……</p>
+<p>一曲终了，有人鼓掌，有个短发的姑娘，非常认真地说，哎呀，这个歌词写得太好啦，是不是莫言老师写的啊？毕竟是得了诺贝尔和平奖的作家啊。</p>
+<p>而唱歌的“顾里”，放下话筒，又坐到我身边。她的身上，有股奇怪的味道。虽然，被浓浓的香水味掩盖，却让人隐隐不安。</p>
+<p>原来，我的那位互联网哥们，每次到上海都会来这个玩，她从他的嘴里听到我的名字，这才请求他把我叫出来的。</p>
+<p>这个时代，并不那么小。</p>
+<p>她说，对不起，打扰你写作了，今晚，我只是想告诉你，谢谢你。</p>
+<p>谢我什么？</p>
+<p>To：顾里。</p>
+<p>她往地上弹着烟灰，反问我道，在上海，你的梦想是什么？</p>
+<p>我回答，小时候，我的梦想是做考古学家，后来是想成为作家，现在差不多还没变。</p>
+<p>她说，你知道吗，我刚买了一辆跑车。现在，我的梦想是——三年内，在上海的静安区买栋别墅。</p>
+<p>我摇摇头，我在静安区住了二十年，还不知道除了老洋房，静安区哪里还有别墅？</p>
+<p>没有人可以成为顾里，我说。</p>
+<p>也许吧。</p>
+<p>我站起来，向我的哥们告辞，还得继续回去写小说呢。</p>
+<p>终于，摆脱了夜店的酒精和烟草味，回到上海的夜空下，我拼命地深呼吸着，“顾里”却在后面跟了出来。</p>
+<p>回去吧，不要跟着我。</p>
+<p>只是想送你离开。</p>
+<p>谢谢。</p>
+<p>忽然，她的眼角渗出泪珠，嘴里依稀哼着刚才的歌——</p>
+<p>“明月夜送君千里，等来年，秋风起……”</p>
+<p>但，我没有跟“顾里”交换电话、微信或QQ号。</p>
+<p>当我打开车门，跟她招手作别时，突然冲出几个男人扭住她的胳膊。</p>
+<p>有人向我出示了警官证，说这个女子涉嫌故意杀人，将被带回公安局审讯。</p>
+<p>今夕何夕？</p>
+<p>第二天，我的表哥，叶萧警官告诉我——她已全部招供。</p>
+<p>几个月前，她认识了一个富商，那家伙有老婆孩子，却给她租了一套高级别墅，在静安区。最近，老婆发现了他们的秘密，威胁让他净身出户。她提出分手费，要五百万。虽然，这对富商来说并非什么数字，去一趟澳门就能花光。但是，他厌倦了她，说只愿意给她五十万。于是，他们发生了口角。</p>
+<p>当那个男人叫嚷：去你妈的，bitch！你以为这真是你的别墅？你以为你真是顾里？</p>
+<p>大脑空白的几秒钟里，她用施华洛士奇水晶花瓶砸碎了男人的脑袋。</p>
+<p>杀人。</p>
+<p>她很害怕，不知怎么处理现场，慌不择路，逃到最常去的夜店。</p>
+<p>然后，我来了。</p>
+<p>而我闻到她身上的气味，大概就是杀人后的血腥味。</p>
+<p>今年，我在书展的签售，她不会再来了吧。</p>
+<p>我不认识她，也不需要协助调查，只是想让这个故事，有个完结。</p>
+<p>好吧，我这才知道，在静安区，真的还有别墅。</p>
+<p>叶萧警官还告诉我，在凶杀案现场的别墅里，发现了一本我的签名书，差不多快被翻烂了。打开扉页，我的名字上面，还有着相同的笔迹——</p>
+<p>To：顾里</p>
+<p>小小姑娘清早起床</p>
+<p>提着花篮上市场</p>
+<p>走过大街穿过小巷</p>
+<p>卖花卖花声声唱</p>
+<p>花儿虽好花儿虽香</p>
+<p>无人来买怎么办</p>
+<p>满满花篮空空钱囊</p>
+<p>怎么回去见爹娘</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

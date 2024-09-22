@@ -1,0 +1,976 @@
+<!DOCTYPE html><html><head><title>25</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="24.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="26.html">下一章</a></p><hr><h1><center>第25夜 黄片审查员萨德侯爵的一夜</center></h1>
+<p>浪子与六翼天使一般神圣！疯人与我的灵魂一般神圣！</p>
+<p>——艾伦·金斯堡《嚎叫》</p>
+<p>一七八九年七月十四日，这是改变人类历史的日子。清晨，巴黎群众聚集在巴士底狱门口，面对封建王权专制的象征，关押着成千上万革命者的坚固堡垒。铁窗内有个男人叫喊：“他们在里面杀被关的人！”愤怒的民众攻占了巴士底狱，发现监狱里只有七个囚犯——两个精神病，四个伪造犯，还有一个淫荡犯——当拿迪安·阿尔风斯·法兰高斯·迪。萨德(Donatien Alphonse Francois，Marquis de Sade)，俗称萨德侯爵。据说因为他的叫喊，才导致巴士底狱陷落，也可以说是萨德侯爵改变了历史。</p>
+<p>一七四○年六月二日，萨德侯爵出生于巴黎：二○一五年七月十四日，当代黄片审查员“萨德侯爵”死于上海。</p>
+<p>本故事的主人公，我称他为“萨德侯爵”。而他第一次知道萨德侯爵，是在三年前的夏夜。那一年，他大学刚毕业，计算机专业技术宅，没谈过女朋友——如果快播和硬盘里的不能算的话。他有过喜欢的女生，比如中文系系花小芳，可对方只记得有个猥琐男时常等候在她最爱的桂林米粉店门口。她也不知道有许多个孤寂的夜晚，自己的头颅已与波多野结衣或苍井空老师的身体无缝对接——当然是在“萨德侯爵”深深的脑海里，他的梦里，他的心里，他的歌声里。</p>
+<p>往前追溯五年，他还在老家的寄宿制高中。那年李安的《色·戒》公映，班里每个同学都在传梁朝伟与汤唯的高难度姿势照片，紧接着又是冠希哥的“人体摄影艺术展”。虽是个小城市，但早恋蔚然成风，众星捧月的班花、爱吃零食的胖妹，都依次跟着男生去了电影院或快捷酒店。老师和家长也没空管，只要不耽误功课和高考，别闹到“无痛人流”就行了。学校有三百零五个男生，二百四十九个女生，总共只有一间狭窄的公共浴室。晚上六点到八点开放给女生，八点到十点开放给男生。每晚八点，早就候在门口的男生们都抢着早点进去，好能闻到更衣室和莲蓬头底下女生们的气味，发现藏在瓷砖缝的水滴里的秘密。“萨德侯爵”总是最后一个，因为他身材瘦弱，抢不过其他男生，有时还会挨揍。但他有一颗敏感的心和一双敏锐的眼睛。在更衣室的木头缝隙里，他总能发现一两根女生的长头发。当女生们都走光以后，或者男生们都走光以前，他把耳朵紧贴着墙，似乎能偷听到两个钟头</p>
+<p>前女生们洗澡时的莺声燕语。男生们用恶心的目光看着他。校园里渐渐流传开他是个变态的说法，以至于所有女生看到他都绕道而行，仿佛接近他一米之内就会感染某种疾病。</p>
+<p>“萨德侯爵”回忆起十四岁——人生里程碑的一年，第一次进入某位男同学的电脑，路径如下-C:\Windows\党员学习资料\高中数学\政治思想先进性教育、国外电影\抗日战争、张纪中版笑傲江湖\第13集。</p>
+<p>他不期而遇了第一位女神，从此领悟——“平生不识武藤兰，看遍A片也枉然。”硬盘里的韩国裔日本人，手把手教会了他什么是人生，那是“兰兰”在中国最辉煌的年代。</p>
+<p>当“萨德侯爵”惶恐地收拾干净地板上的纸巾，自然而然想起小学二年级，跟妈妈在家看《泰坦尼克号》盗版碟的情景。当Rose对Jack深情呼唤“捷克斯洛伐克”时，妈妈用双手挡住祖国花骨朵的眼睛，但男孩仍然通过妈妈的指缝偷看到了，让八岁的他回忆起吃奶的日子——一九九○年冬天，“萨德侯爵二世”降临东方人间，罗大佑为他款款歌唱：</p>
+<p>乌溜溜的黑眼珠和你的笑脸，怎么也难忘记你容颜的转变，轻飘飘的旧时光就这么溜走，转头回去看看时已匆匆数年……或许明日太阳西下倦鸟已归时，你将已经路上旧时的归途，人生难得再次寻觅相知的伴侣，生命终究难舍蓝蓝的白云天……</p>
+<p>二○一二年，“萨德侯爵”踌躇满志，发誓三年内要在这座大都市买套一百平方米的房子。经过半年求职，方才觅得一个房产中介的职位，每天在马路上散发新楼盘和二手房的广告。吃了三个月的业绩零蛋之后，做成了第一笔生意，帮助一个刚在夜总会工作的女孩租了套公寓。为了千辛万苦的开单，他放弃了个人提成，几乎免收了中介费。那天深夜，东北姑娘双手缠绕“萨德侯爵”的脖子，说要用自己来感谢他的帮助。除了老妈，他第一次如此接近一个女人的嘴唇，脑中一万个泷泽萝拉呻吟着“雅美蝶”呼啸而过。忽然，响起大煞风景的敲门声，原来这公寓住满了特殊从业人员，经常被公安局临时抽检，“萨德侯爵”吓得落荒而逃。</p>
+<p>他后悔了三年，换了无数工作，别说是一套一百平方米的房子，就连个马桶大小的面积都买不起。无数次蜷缩在群租房的隔板背后，看着惨白惨白的日光灯，听着笔记本电脑里的“东京热”，“萨德侯爵”虚度过最漫长的那一夜。仅此而言，这是个最失败的萨德侯爵。</p>
+<p>二○一五年，春天的故事。</p>
+<p>互联网上冒出一则招聘启事，有个“霸气侧漏”的岗位——</p>
+<p>首席淫秽色情内容鉴定官</p>
+<p>待遇：</p>
+<p>年薪20万。</p>
+<p>岗位职责：</p>
+<p>快速准确识别色情淫秽内容。</p>
+<p>任职要求：</p>
+<p>1．熟悉世界各国对淫秽色情信息的认定标准；</p>
+<p>2．熟悉中国法律对淫秽色情信息的认定标准、明文规定；</p>
+<p>3．熟悉中国互联网，各大运营商使用过的对淫秽色情信息的鉴定；</p>
+<p>4．本科及以上学历，性别不限，要求年龄在20～35岁之间；</p>
+<p>5．有良好的团队合作精神、责任感强。</p>
+<p>福利：</p>
+<p>1．国家标准五险一金及午餐补助、交通补助、通信补助；</p>
+<p>2．随时报销图书购买费用，每天额外供应水果、酸奶；</p>
+<p>3．每年一次的员工关怀体检，生日、结婚、生育贺礼。</p>
+<p>三天后，这家互联网视频公司的门口，人山人海，排起长队。最大的六十岁，最小的十六岁，有猥琐大叔，也有广场舞大妈，甚至夹杂一堆自掏腰包买飞机票而来的老外。不计其数的求职者，从静安寺山门口一直排到龙华殡仪馆十三号厅。漫长的队伍里，还有年轻的“萨德侯爵”。他晓得这队伍没两天排不完，自带了小板凳、竹席、棉被，还有存满了片子的手机。</p>
+<p>最后一天，最后一小时，“萨德侯爵”已饿得前胸贴后背，严重低血糖，摇摇晃晃走进某著名视频网站。面试官是个四十多岁的中年男人，不断打着哈欠，半秃的脑门冒着汗，桌上一堆面巾纸，看来是车轮大战过了。他扔出来一张卷子——</p>
+<p>面试题</p>
+<p>1．肤色鉴别题：（略）。</p>
+<p>2．颜色判断题：（略）。</p>
+<p>3．分析题：央视为什么给大卫雕塑打马赛克？</p>
+<p>4．文字题：这句话总共有多少淫秽色情词汇？</p>
+<p>5．外语题：（略）。</p>
+<p>6．数学题：在机器学习领域对色情内容进行鉴定时，常涉及哪些数学原理及公式？请详述。</p>
+<p>7．法律题：详述日、美、欧对色情淫秽的分级体系及优缺点。</p>
+<p>8．影视题：（略）。</p>
+<p>“萨德侯爵”在彻底饿昏之前，用最后一丁点儿力气，以及长年累月的审美经验，完成了这张卷子。</p>
+<p>两周后，他接到录取通知，总共有三万人应聘，结果只招收七个人（就像在一七八九年七月十四日的巴士底狱中关押的七个囚犯）。“萨德侯爵”是测验中唯一拿到满分的天才。</p>
+<p>七个幸运儿入职当天，半秃头的总监叼着香烟，看着“萨德侯爵”乌黑的眼圈说：“小伙子，我看好你哦！‘三百六十行，行行出状元。’别辜负了黄片审查员这份有前途的职业。再过三十年，你会成为这个行业最顶尖的大师。”</p>
+<p>黄片审查大师？简直要得诺贝尔奖的节奏，“萨德侯爵”有了生理反应。</p>
+<p>每个人有一个独立的小工作间，拉紧窗帘，戴好耳机，就像克格勃或盖世太保。七个人三班倒，最忙碌是在后半夜，许多用户会趁着管理员下班，上传各种淫秽与血腥暴力的视频。“萨德侯爵”被分配的工作时间是晚上十一点到清晨六点。</p>
+<p>具体工作是：A级露性器官的，封号；B级露胸的，删视频，ID禁发布二十四小时；C级过分暴露或带来不良影响的，删视频。</p>
+<p>当你在网上看到“视频审核未通过，暂时无法观看”或者“您想看的视频已删除”，就是“萨德侯爵”的工作成果……</p>
+<p>网站视频主要来自用户分享，每天要审查几十万个新内容，必须一刻不停地点击和滑动鼠标。虽有延时审核，但不能让人等太久，“萨德侯爵”的浏览器往往同时开几十个窗口，直到电脑崩溃死机为止。往往一个夜班做下来，就算不得“鼠标手”，至少也是麻木了。到了凌晨三四点，没有不泪流满面的，一般用掉一大包面巾纸。下班后天就亮了，食欲也提不起来，半个月就掉了几斤肉。“萨德侯爵”桌上放着本《关于认定淫秽及色情出版物的暂行规定》，没过几天便倒背如流。他可以轻松分辨哪些是淫秽色情信息，哪些是性知识科学普及，哪些又是打着淫秽色情的外衣，实际上内容无公害，就是骗人进去赚点击量的，例如网页游戏的视频——这在“萨德侯爵”看来才是真正的伤风败俗，丧尽天良！</p>
+<p>话说如今世道，对于黄片审查员这个职业有两种评价：一是功在当代，利在千秋；二是后半辈子等着遭报应吧。至于我们的“萨德侯爵”嘛，自觉罪孽深重，后半辈子多数要死于飞来横祸，下到地狱还得从油锅里滚过。</p>
+<p>每天晚上，他乘坐末班地铁去上班，下班已是黎明鸡叫，正好赶上首班地铁。黄片审查员的福利之一，就是享受末班地铁的清净，从从容容占据座位，还有空间跷起二郎腿，冷眼旁观对面车窗外闪过的美女广告。从前每到盛夏，地铁拥挤的人流中，色狼们此起彼伏地袭击那些穿着清凉的女孩，女孩们有的奋起反击打色狼耳光，有的则是忍气吞声，更多是已被挤得麻木——只要不怀孕就好。“萨德侯爵”却是标准的正人君子，牢牢控制着自己的双手和躯体，尽量抓牢扶手不触碰别人的身体，即便有反应也要努力控制，不管前面是穿超短裙的辣妹还是知性套装的绿茶婊。</p>
+<p>全城最后一班地铁，在公司楼下那一站下车，“萨德侯爵”都会遇见一个地铁乘务员。</p>
+<p>她。</p>
+<p>隧道深处袭来的风，宛如处男的食指、中指与无名指，毫无经验地撩起她的长发，甩起到空气中。一点笨拙，几分可爱。在最漫长的那一夜，距离地球表面十九米的地下世界，“萨德侯爵”只匆匆看了她一眼，便让自己成了心甘情愿的俘虏，哪怕被绳索捆绑着被SM着送到萨罗共和国……</p>
+<p>“萨德侯爵”是制服控，看到她那身地铁公司制服，自然而然地想起妈妈——火车站检票员，那个肮脏不堪灌风漏雨充满大蒜头气味的地方，相比之下，地铁站台简直就是克林顿与莱温斯基的办公室。</p>
+<p>走进午夜空空荡荡的地铁车厢，侧目望向荒无人烟的站台，同样孤单地准备下班的她，他从不敢上去说一句话，哪怕咳嗽一下或假装摔倒或掉下轨道……他总是这样看她七秒钟，不多眨一眼，也不少一微秒。她也看到了他，经过许多个这样末班地铁的深夜，她应该能记住他的样子，并在心中画上个大大的红叉，底下标注两个字母：一个S，一个B。</p>
+<p>“萨德侯爵”告别站台上的美人，冲出地铁进公司打卡，想起那个密封的小办公室，即将目睹和删除不计其数的肉体，脑中冒出不知从哪看来的某位美国诗人的句子——“他们将自己拴在地铁上，就着安非他命从巴特里到布隆克斯基地，做没有穷尽的旅行，直到车轮和孩子的声音唤醒他们，浑身发抖嘴唇破裂，在灯光凄惨的动物园磨去了光辉的大脑，憔悴而凄凉……”</p>
+<p>十分钟后，他坐在公司电脑前，屏幕上闪起一行大字——</p>
+<p>Salo o le 120 giornate di Sodoma</p>
+<p>直译过来就是“萨罗的索多玛120天”。</p>
+<p>大学毕业那年，他独自躲在宿合里下过这部片子，但只看了不到半个钟头，就差点呕吐了，然后干脆删除了文件。也是因为这个片子，他第一次知道了意大利导演皮埃尔·保罗·帕索里尼，也第一次知道了还有原著小说，还有那位SM中的“S”——萨德侯爵。</p>
+<p>顺便说一句，萨德侯爵是在巴士底狱的铁窗中完成了《索多玛120天》第一部，然后藏在监狱的角落里。如果没有法国大革命的解放，恐怕这本书就将跟随作者永远埋藏在地狱。</p>
+<p>三年后，当他作为黄片审查员，在视频网站的后台，检查这部网友刚刚上传的禁片，却莫名地兴奋起来，尽管仍然有各种生理与心理的不适，却饶有兴趣地看了下去，尽管根据规定他应该立即删除这部片子。</p>
+<p>但是，他决定把《索多玛120天》全部看完再删……漫长的两个钟头后，他彻底克服了所有的恶心感，甚至从中读出某种触摸人心的感动，就像在云端俯瞰这座城市黑夜里的每个角落，宛如地铁车轮无情地碾压过隧道深处的铁轨，还有那个穿着地铁制服的女郎完美无瑕的一切……</p>
+<p>于是，帕索里尼与萨德侯爵一块儿成了心目中至高无上的偶像。</p>
+<p>这天下班以后，黎明扫过长夜，他独自走出公司大楼，呼吸着整座城市清新的空气，宛如重新从母亲的子宫中分娩了一遍。</p>
+<p>乘坐头班地铁回家的路上，他开了一个微信订阅号，名叫“黄片审查员萨德侯爵”。</p>
+<p>他在网上化名为“萨德侯爵’，上一个萨德侯爵的转世投胎——一八一四年十二月二日死于巴黎附近，七十四岁在那个年代可算长寿。他的幽灵飘荡在欧洲大陆，随着被禁止的文字一度遭人遗忘，又随着二十世纪的两次大战而借尸还魂，更被移花接木到萨罗共和国，或遗臭万年，或流芳百世。而今，萨德侯爵的时代一去不复返，唯独“黄片审查员萨德侯爵”才是艺术家们最后的避难所。</p>
+<p>他的微信号里第一篇文章是《从萨德侯爵到墨索里尼的120年与到帕索里尼的120天》。</p>
+<p>文中阐述了萨德侯爵在小说原著中的精华思想，以及整个欧洲社会的文化变迁，自十九世纪的古典主义启蒙运动到两次工业革命，然后是恐怖的第一次世界大战，彻底摧毁三个皇冠与延续千年的贵族文明，再到法西斯与共产主义的歌利亚巨人间的搏斗，直到残酷无情的第二次世界大战。从萨德侯爵死后的一百二十年间，到墨索里尼执政以及萨罗共和国最后的疯狂，人类历史的变化远远超越了过去的一千二百年。最后，帕索里尼以萨德侯爵之名，拍摄了一部惊世骇俗的电影，进行了有史以来最深入骨髓的反省。</p>
+<p>他有一个礼拜没有去看微信，等到重新打开一看，居然有几百次转发。评论各种各样，大多是赞赏和崇拜，说“萨德侯爵”从黄片里看出了艺术家的审美。</p>
+<p>于是，他发现了自己存活在这个世界上除了“打飞机”还有更重要的意义。</p>
+<p>“萨德侯爵”开始违反公司规定，每当发现一部具有艺术价值的色情电影，就会一秒不漏地看完，吸取其中全部精华，再依依不舍地删除。比如三个多钟头的《罗马帝国荒淫史》，为了防范随时会闯入检查工作的总监，他只能开—个小窗口，同时旁边有几十个窗口作为掩护。罗马帝国的狂欢与灭亡之后，晨曦已照耀在窗外，“萨德侯爵”登录自己的微信号，又发出一篇撼人心魄的影评《罗马不是一天建立的，却是在一夜之间倒掉的》。他从母狼给两兄弟哺乳建立罗马城谈起，到斗兽场与角斗士斯巴达克斯，再到恺撒大帝和埃及艳后克里奥帕特拉，最后是匈奴人帕提拉的铁蹄。果然，这篇文章的影响力更为巨大，几天后转到了某位好莱坞著名华裔大导演的微信号里，又被译成英文转载到了Facebook。</p>
+<p>“萨德侯爵”再接再厉，发现几个经常被封号的马甲，虽然上传的都是黄片，但有不同的偏好和风格。比如有人是法语电影的忠实粉丝，在一堆烂片里夹杂了Baise-moi（这个法语片名太直接了，不好意思翻译出来）。作为法国人的转世投胎，“萨德侯爵”冷峻地看完后删除，发了一篇揭露和批判资本主义社会的左翼雄文。</p>
+<p>有人专发日本鬼子的cult片，“萨德侯爵”一边吃泡面一边啃鸭脖着完了《下水道的美人鱼》。这个算是比较极端的，也有阳春白雪的高雅艺术，像大岛渚执导的《感官世界》。然后“萨德侯爵”用了八千字的长篇大论，分析当年的“阿部定事件”，再演化到渡边淳一的《失乐园》。</p>
+<p>还有后来居上的韩国电影，“萨德侯爵”重点推荐了金基德执导的《漂流欲室》和《坏小子》。至于泰国片、越南片、菲律宾片，还有拉美片、东欧片，各种小众情色经典，都没有被“萨德侯爵”错过。尤其是《一部塞尔维亚的电影》，确如该片介绍所云“一部让世界十大禁片全是浮云的cult极品”。暴力、肢解、杀戮、乱伦、手足相残、同室操戈、自杀，连中国驻南联盟大使馆都让美国人炸了……不正是近二十年来塞尔维亚给世界的印象吗？最后的台词“这就是一个真实的塞尔维亚家庭”，在历尽内外战争、民族分裂，道德沦丧后，《一部塞尔维亚的电影》恰如其分地成为这个国家的代名词，这是一部严肃的政治电影——“萨德侯爵”如此评论道。</p>
+<p>于是，我也成了“萨德侯爵”的粉丝，每个周五的深夜，等待“萨德侯爵”的推送消息。无数资深影评人倾情转发推荐，引来更多的黄片爱好者和文艺青年们聚众围观。</p>
+<p>大家自发地为他建了一个微信群，兴致勃勃地讨论“萨德侯爵”究竟是怎样一个神秘的人物。有人说他是一个中年男子，在电影资料馆上班，因此能看到无数珍贵的色情片资料，放到二十年前就是揭露资本主义腐朽阴暗面的“内部资料片”。也有人说他是个风流种子，必然是御女无数，一生征服过成千上万的女子，却能做到万花丛中过，片叶不沾身。更有人说他其实是个女的，十多年前非常有名的“用身体写作”的美女作家，作品被查禁之后销声匿迹多年，而今在微信上以点评黄片的名义梅开二度。最离谱的一种说法：他是个变态杀人狂，就像十九世纪伦敦的开膛手杰克，因为他曾用莎士比亚般诗意的文字歌颂过《香水）》的主人公格雷诺耶。</p>
+<p>当然，没有一个人相信“萨德侯爵”真的是黄片审查员。</p>
+<p>盛夏来临，工作了几个月后，其他几位黄片审查员都出现烦躁、呕吐、脱发等反应，每张脸都像是纵欲过度，人不像人，鬼不像鬼。有两人主动辞职，还有一个被关进了精神病院。唯独我们的“萨德侯爵”，虽然每晚熬通宵看黄片，早上还要发微信写影评，气色却越来越好，整个人愈发有文艺范儿。有人说他像当年一张照片上的徐志摩，真是个人间四月天！</p>
+<p>他还是每晚乘坐末班地铁上班，在空无一人的大理石站台下车，望向地铁制服美人。她困倦地靠在《小时代4》的广告牌上，让人不免猜想起白天的工作场景——奔波在站台上维持秩序，遇到人潮汹涌的时刻，还要强推最后几个乘客的屁股，硬塞进车门不至于晚点。</p>
+<p>忽然，整个地铁站台都剧烈摇晃起来，最后一班地铁开出后剧烈爆炸，隧道里飘满呛人的黑色烟雾。天花板全部坠落，玻璃灯罩在地面上摔得粉碎，广告灯箱里的顾里和林萧各自哀号，自动贩卖机里的罐头饮料撒了一地。</p>
+<p>她也摔倒在地，额头划出一道细细的血痕，抹过嘴角上最艳的唇膏。萨德侯爵”奋不顾身扑过去，将她从一块摇摇欲坠的墙面旁拖开。整个地面竖了起来，像即将沉没的泰坦尼克号。又有一辆地铁列车飞来，被地心引力拉拽着冲向站台。他俩只能双手扶着台阶，一格格往上爬去。然而，整个地铁站全部塌陷了，地面恐怕已是世界末日。“萨德侯爵”与暗恋的女神，被围困在这狭窄的地狱深处。</p>
+<p>“谢谢你救了我，你叫什么？”</p>
+<p>“萨德侯爵。”</p>
+<p>“到这时候你还开玩笑？”</p>
+<p>女孩嗔怪着他，但已不能离开他了，否则就会一个人孤零零地死去。</p>
+<p>“我喜欢你。”</p>
+<p>“可我们就要死了吗？”</p>
+<p>“也许是的。”</p>
+<p>她将头埋进“萨德侯爵”怀里，他好想做些什么，但又制止了邪恶的念头。要是乘人之危，就算侥幸得手，又跟畜生有何区别？两人在黑暗中拥抱了一个钟头，此外什么都没做过，直到一块钢筋混凝土落下来，“萨德侯爵”用身体保护着她，人被砸成了肉酱……</p>
+<p>忽然，他从电脑前爬起来，原来是个可怕的疆梦啊！</p>
+<p>凌晨四点，刚才梦中的场景，不过是他无数次幻想过的世界末日，也只有这样才有机会跟女神说上话吧？不过，这个代价也稍微大了些，不仅是对自己，还对她，以及对另外六十亿人类，至少对这座城市的两千万人来说太残忍了。</p>
+<p>突然，工作间的房门被推开，总监气势汹汹地站在他背后。“萨德侯爵”的显示屏上正在播放杜拉斯的《情人》。一九三○年潮湿闷热的印度支那，西贡街边，中国富二代正在与法国少女共赴巫山，梁家辉健美的屁股，恰好对准了总监错愕震惊进而迷醉的脸——影片已近尾声，这是他们的最后一次。</p>
+<p>虽然，总监暴露了他是个深柜同志的秘密，遭到同事告密的“萨德侯爵”还是因为违反公司规定而被开除。</p>
+<p>天明时分，他丢掉了黄片审查员的工作，独自收拾东西离开。</p>
+<p>他在家里睡了三天三夜，没有去找工作，也没有发微信继续他的黄片影评。当他睡醒了起来，已是深夜十点。似乎忘了已经失业，他仍像往常一样，收拾干净了去上班。</p>
+<p>他走下末班地铁，空旷的站台上，看到了制服女神。世界末日并未如约而来，“萨德侯爵”打开微信，甩开手拼命地摇，连地面上的大妈以及红包都摇出来了，但对面的她无动于衷。终于，这辈子最大胆的一次，他走到女神跟前，展示手机里的“黄片审查员萨德侯爵”的二维码说：“你好，以前我每天都能见到你，但从明天起就见不到了，我们能加个微信吗？”</p>
+<p>制服美女后退了两步，往还没开走的地铁列车叫了一声。驾驶室里下来个健壮的年轻男人，冲到“萨德侯爵”面前冷冷地说：“你想干吗？”</p>
+<p>“萨德侯爵”并没有害怕，他越过对方高大的个头，看着美女的脸庞说：“我喜欢你。”</p>
+<p>于是，他的眼镜连带整张脸都被打飞了。</p>
+<p>末班地铁的站台上再也没有出现过制服女神，因为开地铁的男朋友让她不用再每天来等他下班了，免得被社会上的变态狂骚扰。</p>
+<p>这天晚上，“黄片审查员萨德侯爵”的微信订阅号，因被朝阳群众举报传播色情内容，遭到了永久性封号的处罚。微信上成千上万的“萨德侯爵”粉丝，四处寻找他的下落，但再未见到过类似的马甲号重出江湖。即便有人假冒他的名义写文章，但老读者们一眼就能分辨出真伪。漫长的夏天过去后，“萨德侯爵”的真实姓名和身份才被网友扒出来，原来他真的做过黄片审查员。</p>
+<p>但他已经死了。</p>
+<p>二○一五年七月十四日，攻占巴士底狱二百二十六周年，“萨德侯爵”从刚开除他的视频网站公司楼顶一跃而下。</p>
+<p>警方没有公布详情，关于他自杀的原因众说纷纭。除了失业的缘故以外，有人说他死于中国股市，在牛市中炒股使用杠杆，亏光了本金又被强制平仓，只能走上了绝路。</p>
+<p>还有一种说法——“萨德侯爵”自杀那晚，楼下几位外国游客路过，摸了摸光光的头顶，落下几滴温热的白色汁液，有个老外正好饿了，以为是新鲜牛奶便用手指蘸了放到嘴里吮吸一番……</p>
+<p>与此同时，“萨德侯爵”站在高高的楼顶天台，赤身裸体，犹如六翼天使，俯瞰大半个城市。深深的黑夜里，无论天上地下，一片星光灿烂。他想象在此时此刻，无数或明或暗的窗户背后，有几百万人相拥而眠或不眠。人们彼此相爱或者彼此不爱，彼此憎恨或者彼此欺骗，或者等价或者不等价地交换。人们小心翼翼地或尽情放纵地磨砺着享受着消耗着彼此的肉体、精神以及尊严，又有绝大多数的生命被谋杀在避孕工具和对未来的内心恐惧里。也有几百万人，全然孤独地面对长夜，将自己奉献给天空与地板——就像此刻的“萨德侯爵”，在天国门口，发射出马克沁重机枪般疯狂的子弹，宛如狂风暴雨扫过最漫长的那一夜，将世界摧枯拉朽地打成筛子，同时也耗尽自己最后一滴精魄。</p>
+<p>我的表哥叶萧警官私下告诉我，根据法医的验尸报告，“萨德侯爵”在坠地之前就已死亡。</p>
+<p>断七那天，有人为“萨德侯爵”建了一个网上灵堂，点了二百二十六根蜡烛，并且引用了萨德侯爵在一八一四年死去后的墓志铭——</p>
+<p>墓前经过的人，</p>
+<p>请您双膝跪地，</p>
+<p>为这位世上最不幸的人祈祷。</p>
+<p>他生于上世纪，</p>
+<p>在我们生活的时代命赴阴曹。</p>
+<p>可恶的专制统治，</p>
+<p>时时对他进行迫害。</p>
+<p>恶魔国王多么可耻，</p>
+<p>欺压了他一生一世。</p>
+<p>恐怖笼罩时期，</p>
+<p>它把萨德推到悬崖边缘。</p>
+<p>议会恢复时期，</p>
+<p>萨德还得含冤。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

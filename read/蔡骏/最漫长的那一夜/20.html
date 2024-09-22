@@ -1,0 +1,1203 @@
+<!DOCTYPE html><html><head><title>20</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="19.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="21.html">下一章</a></p><hr><h1><center>第20夜 白茅岭之狼一夜</center></h1>
+<p>那座监狱，远在苏浙皖三省交界的深山，有个恐怖片式的名字——白茅岭。</p>
+<p>白茅岭是上海管理的农场，是教化劳改犯重新做人的地方，有许多说沪语的干警。上海人管被释放的劳改犯叫“山上下来的”，说的就是这座山。从前我一直以为那叫“白毛岭”，听起来更阴森更有想象力，仿佛跟白毛女存在某种联系。</p>
+<p>那年冬天，每逢日落，就是白茅岭最漫长的一夜。东边和北边，连绵不绝的白茅岭，早已降下白霜。西边和南边，是宽阔的无量河。四面无处可逃，天然的大监狱。刚过十二月，无量河蜿蜒的水面，结了一层薄冰，多年未见此景。监房、宿舍，兵营还有农舍，均无暖气，只能烧山上的干柴。囚犯们盖着薄薄的被子，互相搂抱取暖。值班的干警最难熬过长夜，唯有痛饮劣质白酒。清晨，隔着铁窗向外望去，是屋檐底下长长的冰，开春的油菜花地和茶园，盛夏的稻田和果树，秋天郁郁葱葱的山岭，远看都像涂抹过一层白石灰，仿佛整个白茅岭被移植到了西伯利亚。屋里屋外，每寸空气，潮湿刺骨，钻进毛细血管，七情六欲。</p>
+<p>比冬天更可怕的是狼。七十年代的白茅岭，有什么会同时出现在所有人的噩梦中？便是狼这种动物。狼会吃人。除了农家牛羊，狼最爱吃小孩。白茅岭有所学校，家长多是干警与农场职工，枫林染红的时节，有个一年级的小学生，在放学路上被狼吃了，只剩残缺的骸骨。传说中的大灰狼，并不只是大人们用来吓唬小孩的。农场职工决意复仇，向部队借了自动步枪，在深山掏到狼窝，掳获七只小狼崽。刚出生的小狼，满嘴奶味，像一窝毛茸茸的小狗。它们被剥皮处死，血淋淋地吊在农场门口。当晚，整个白茅岭的囚犯、干警、职工还有士兵，都听到荒野里的狼嚎，从午夜持续到天亮。让人心里潮湿得发霉，生出密集的狼毛来。</p>
+<p>次日早上，挂在农场门口被剥了皮的七只狼崽，消失不见了。</p>
+<p>不久，一个职工晚上出门解手，迟迟未归。老婆拖着众人去找，发现在茅坑边的尸体——喉咙被咬断，差不多放光了血。大家都闻出了狼的气味。隔了一日，午后的太阳下，有个职工独自在茶园干活，突发惨叫。等别人赶到，发现他已被咬得面目全非，鲜血染红了茶树枝干。整条大腿都不见了，连着命根子咬断，被狼拖到林子里作了午餐。自此以后，大白天没人敢落单。下地干活必须三人一组，随身携带猎枪，最起码得有镰刀之类的防身。猎狼队使用部队的56式自动步枪（56式至今仍是一种致命武器，威力颇猛），在方圆几里内严密搜捕。</p>
+<p>白茅岭有对夫妇，夏天有了第一个孩子。怀孕时就被看准是男孩，生下来足有八斤四两。十月初一，寒衣节深夜，夫妻俩被某种声音惊醒，发现襁褓里的孩子没了。窗户被顶开一道缝隙，残留几绺灰色狼毛。女人疯狂尖叫，左邻右合提着猎抢赶来，搜索到鸡叫天明，有人在山林边缘，找到两块染血的襁褓碎片。年轻的妈妈哭晕过去，大伙却不敢进山捕狼。最近一个月，有十个男人命丧狼腹。几具残缺的尸体旁边，自动步枪未曾放过一弹。白茅岭的狼动作极其迅速，目标还没反应过来，已被咬断了脖子。</p>
+<p>一头寻仇的母狼？！</p>
+<p>一九七六年年末，白茅岭农场发回上海的报告，将之形容为“狼灾”。</p>
+<p>冬至，纷纷扬扬的大雪降下。每逢这种年景，狼群出没最为频繁，人与家畜也更易成为狼的猎物。狼嚎如常光临白茅岭。监狱岗亭打开探照灯，瞄准风中声音的方向。小土丘上，发现那头狼的身影，狼毛蓬松垂落，像个披头散发的女人，斜眼放着绿光。</p>
+<p>清晨，大墙内的某间牢房，十几个犯人陆续醒来，发现他们中的一个，平日里健壮的大块头，已成血肉模糊的一团。喉咙被咬断了。监房里弥漫着血腥味，还有狼身上特有的臊气。铁栏杆上有几撮灰色狼毛。这意味着昨晚，那头狼秘密潜入监狱，成功躲过各种防范，没发出任何声音，杀死了熟睡中的囚犯。它不是来吃人的，死者虽然肥壮，但没缺多少肉，只有浑身狼爪的伤痕。</p>
+<p>白头发的老狱警，接连抽掉半包大前门。案发现场烟雾腾腾．幸存的犯人们挤在角落，贪婪地吸鼻子，吞下充满烟味的空气。躺在中间铺位上的死人，是白茅岭唯一的胖子，却像具被吸干了的僵尸。老狱警操着一口黄酒瓮味的南汇话，令人颇感费解。相比警察后生们，他就是个乡下土鳖。他的真本事，只有两个最老的犯人知道，只有蹲了大半辈子监狱的人，才能从他后半夜巡逻慢悠悠的脚步声中，听出那个名侦探的节奏……</p>
+<p>三十乡年前，提篮桥监狱幽长的甬道两边的铁栏杆里，人满为患，喧嚣骚动，散发出死尸与粪便的恶臭。彼时，他还不是狱警，更不老．他专办各种杀人大案，登上过《申报》，被百乐门的小姐们献过花，他常到监狱提审犯人，穿着灰色风衣，笔挺的皮裤，锃亮的靴子，偶尔戴上昵质礼帽，嘴里叼根烟斗。他很容易被认出来，有人向他吐口水，笑声邪恶。他穿过甬道，仿佛经过动物园，他把杀人犯看作野狗，绑票团伙当成黑鱼，扒手大王视为猴子，但他没看到过狼，也没有看到过狮子样的罪犯。一九四九年，许多警官去了台湾，唯独他留在上海市警察局，完成与解放军的交接。他为什么不走？因为是那福州路啊，有他喜欢的书店和姑娘。几年后，这条路上的商务印书馆和中华书局，都搬去了北京。而作为前名侦探，他走出福州路185号，踏上去白茅岭的卡车，带领五百名少年犯，从此二十年如一日，再没回家。</p>
+<p>老狱警又踩灭一根烟头，看着监房床铺上的死尸。为子复仇的母狼，或许只是示威——它能轻易杀死任何人，在任何地点、任何时间。</p>
+<p>但他仍有疑惑，在狼杀人的同时，这间牢房里还有十二个人，难道都没有任何察觉？</p>
+<p>一个年轻囚犯说：“我看到了。”这小子戴着眼镜，不像其他凶恶的惯犯。他的铺位就在死者旁边。后半夜，他被身边某种动静惊醒，闻到一股刺鼻气味。恐惧充盈了心底。睁开眼睛，月光穿过铁窗照亮监房。有团巨大的黑影，趴在旁边的大块头身上——难道有人半夜来鸡奸？为何没有反抗？不对啊，旁边那家伙可是个狠角色，平常在监狱里横行霸道，都是他干别人的，怎么可能被别人干？不，那个……好像……不是人类。不错，它刚咬断了大块头的咽喉，满嘴都是人血。它也看到了他。</p>
+<p>狼的目光。他说这辈子都不会忘记，在凌晨时分的白茅岭，监狱的床上看到一头刚杀过人的狼。狼的鼻子距离他的鼻子，不会超过半尺。狼嘴里喷出的热气，带着死人的血腥气，灌进他的嘴巴。狼狠狠地瞪着他，几乎透过他恐惧的眼球，看穿他悲催的前半生。他不敢叫喊，没有发出声音。狼在警告他，要是把其他人吵醒，立刻咬断他的脖子。他直视狼眼几秒钟。幽暗的、绿色的却又像宝石般的狼的目光。德国纳粹的，意大利法西斯的、日本鬼子的、美帝国主义的、地球上一切的邪恶与残忍的目光，都不如昨晚那双目光。</p>
+<p>在脖子被咬断之前，他闭起眼睛，强迫自己趴下装睡。他能感到那头狼从床上起身，脚步像猫似的，静悄悄地离开监房，从铁栏杆间钻出去。他躺在尸体旁边，自己也像尸体一动不动。直到天亮，囚犯们陆续醒来，才响起男人们的尖叫。</p>
+<p>狱友们都不责怪他，毕竟当他发现时，旁边的人已经死了．假如他发出叫喊，非但自己白白送命，周围那些囚犯惊醒，恐怕也会被这头野兽咬死。所以，他的沉默，反而救了一屋子人的性命。</p>
+<p>老狱警记住了这张年轻的面孔，也记住了他的囚犯编号：19077。</p>
+<p>大雪一连下了十天。从白茅岭农场建立的那天起，就未曾下过这么大的雪。自狼在监狱里吃人那晚以后，白茅岭人人自危，为了避免在睡梦中葬身狼口，他们轮流说鬼故事吓唬自己。狼的体形虽大，骨头却很纤细，传说有缩骨之术，能钻进很小的洞或缝隙。毫无疑问，又是那头复仇的母狼。</p>
+<p>唯独老狱警，照旧抽着大前门，蜷缩在宿合火炉边，迎来一九七六年的最后一天。默算日子，等到过完年，还有四十九天，就能熬到退休回上海了。</p>
+<p>这天黄昏，劳改犯点名时，发现少了一个人。</p>
+<p>干警们搜索了整个监狱，包括白天活动过的荒野。</p>
+<p>冬天出来劳作的犯人不多，岗亭外放哨的士兵，偶尔也会走神，尤其当风雪弥漫，模糊了视线之时。那年头的白茅岭，越狱并非难事。别说是人，连狼也能翻墙。某年夏天发洪水，砖砌的监狱全被冲垮，有几个囚犯和干警一起被淹死。水田和茶园紧挨着山林，夏天下地劳动的时候，趁着别人稍不注意，囚犯就能轻易逃跑。</p>
+<p>越狱者的结局，无外乎几种——被执勤的哨兵开枪击毙．被军警搜捕抓回来枪毙．逃到山上被狼吃了。还有更惨的，九死一生逃回上海，家里人却不敢收留，身无分文还没有粮票，露宿街头，饥寒交迫，为了能吃上口饭，索性再奔回白茅岭报到。</p>
+<p>若在平时，早就全员出动搜捕了。不过，今晚零下十五度，在这样的雪夜上山，等于自杀。越狱的犯人也是昏了头，就算侥幸没被冻死，也会成为饥饿狼群的晚餐。监狱决定，等到明天清晨再行动。但到那时候，要搜捕的就不是逃犯，而是逃犯的尸体了。</p>
+<p>白头发的老狱警，蹲在监狱门口，给自己点上最后一支烟，努力回忆逃犯的脸，想着想着，却串到了别的什么面孔上。不同的脸像烙蛋饼似的，金黄的压着土黄的，从焦香四溢到冰冷僵硬。</p>
+<p>雪，下得稀稀落落。月亮快从浓云间露出头了。白茫茫的山上点缀着黑色的毛竹与桔树。站在监狱前向东望去，山头轮廓分明，右边露出一道陡峭悬崖，突出的侧面很像狮脸。那片山崖，又名狮子口，相传曾是宋朝岳家军抗金的古战场。</p>
+<p>平常这个时候，老狱警就要回去值班了。那几个来自提篮桥、在白茅岭监狱相伴了三十年的老囚犯，只有听到他夜巡的脚步声，才能睡得安稳。他清点兜里的烟，剩下一包半，刚够应付七八个钟头。而这一夜，还漫长着呢。</p>
+<p>明天早上，太阳照常升起，但不是每个人都能看到。</p>
+<p>莫名其妙地，老狱警想到这句话，很想找个人说说，回头只见雪夜里自己的影子。</p>
+<p>他摸了摸腰间的枪套——54式手枪的，上个月才配发给每个狱警。这种枪威力巨大，可以近距离击穿薄钢板和砖墙，通常供军队使用，所以，这不是用来看管犯人的，而是为了防范狼的偷袭。弹匣容量八发子弹，但他只上了七发，因为最后一发容易卡壳。</p>
+<p>枪套里是空的．枪已不翼而飞。</p>
+<p>几个钟头前，他在负责看管放风的犯人。那时候，风雪正好停了，太阳难得从乌云里露头。虽是零下十五度的凌寒，他坐在阳光下的雪地里，仿佛做梦回到了三月的春天。但人到底是老了，他坐在一块榆木桩子上，背靠着光秃秃的篱笆墙，慢悠悠地点了一根大前门。午饭刚吃完食堂的红烧肉，饭后一根烟，赛过活神仙。几个囚犯都是些后生，最小的十七岁，嘴上的毛还没长齐，年长的也不过三十，他们正在堆一个硕大的雪人，不断用雪块垒上去，几乎有两米多高。还有个下流坯子，用根粗木头插在雪人的胯下，一副要对着白茅岭所有女人耍流氓的屌样。</p>
+<p>老狱警并没有阻止这些家伙，而是继续享用他的大前门。冬天的太阳下，风懒惰得静止不动，烟烧得尤其缓慢，在食指与中指之间忽明忽暗。</p>
+<p>他做了一个梦。又一次梦见提篮桥监狱，梦见福州路上的小书店和姑娘们，最后居然梦见了动物园，铁笼子里趴着一头睡觉的狮子。</p>
+<p>十分钟后，他被一阵风吹醒。烟头早把手指烧起泡，他却没任何感觉，坐在榆木桩子上，双眼瞪巴瞪巴，扫过几个囚犯年轻的面孔，他们却诧异惊恐地甚至带有某种怜悯地看着他。</p>
+<p>就刚才坐着抽烟的工夫，竟然不知不觉睡着了，他怀疑自己是活着，还是被这些囚犯用绳子勒死，用石头砸死，或者用狱警的配枪毙了。</p>
+<p>枪。</p>
+<p>下意识摸了摸枪套，空的。</p>
+<p>来不及吼叫，就发觉办犯少了一个——他记得那张年轻的脸，戴着眼镜的斯文样，在令人眩晕的冬至后的清晨，狼吃人的监牢里头。</p>
+<p>编号：19077。</p>
+<p>这挨千刀的小子，趁着老子睡着的空隙，偷走枪套里的手枪，逃跑了！</p>
+<p>几个正在玩雪人的囚犯，都被190177号的举动吓坏了。大家来不及警告19077偷枪会被枪毙，他就已带着手枪消失在白茅岭上。</p>
+<p>老狱警手里没枪，何况山上有狼，必须先把剩余的囚犯押解回监狱。</p>
+<p>他没再点烟，不明白自己怎么会睡着——一辈子从未犯过这样的错误。虽然已五十九岁了，但除了头发已白，他并不像同龄人那样衰老，反而发根茂盛，身体还强壮着呢。盛夏农忙，他也和囚犯们一起，光着膀子在烈日下收割水稻，身手敏捷不亚于小伙子。</p>
+<p>监狱门口，懒洋洋的老狗在喘气。原子弹试验那年，他看着这条狗出生，活蹦乱跳了十年。秋天，它还让农场里的两条母狗同时生了两窝小崽子。可就在几天前，这条狗没来由地颓了，先掉两颗牙，后来是一瘸一拐，再后来尾巴都竖不起来，撒尿没法跷起腿，就等着进棺材了。这是命。</p>
+<p>晚上八点，部队发现失踪了一支56式自动步枪，弹匣里有三十发实弹，还有把56式三棱刺刀也不见了。</p>
+<p>偷走枪和刺刀的人，正在上山途中。</p>
+<p>白茅草占满整片山坡，据说这正是“白茅岭”的来历。锯齿状的草叶，山羊都不吃，割在脸上辣辣地刺痛。自动步枪挂在胸口，刺刀别在腰间。</p>
+<p>雪停了。月光皎洁。老狱警决定亲手把活人抓回来，而不是带回一具冻僵的尸体，或是被狼吃剩下的几分之一。就在今晚。</p>
+<p>环顾四周，只有光秃秃的树干，看不到监狱和农场。军用手电筒光束耀眼。头顶划过一片凄厉，像钹声击穿耳膜。很高的树枝间，悬着被吊死的猫，惶恐哀鸣的，想必是猫头鹰。黑夜里遇到这家伙，必非吉兆，恐怕有人要殒命。他套着厚厚的军棉袄，帽子挡不住寒风，头皮一阵阵发冷。脚下的解放鞋，在雪地里遭殃。他像条狼狗弓腰观察地面。雪如起伏的棉花糖点缀着枯草与树干。山上积雪尤甚，几乎没过脚踝，雪地上留下深深脚印。前头还有脚印，幸好雪停了，否则很快便被淹没。四周落得孤寂，呵出白气，热腾腾的一瞬即逝。</p>
+<p>但他嗅出人的气味——逃犯还活着。</p>
+<p>另一行脚印，浅浅打在雪上，一个个小圆点，彼此间距很近，像两个小孩子追逐奔跑，说明是四条腿。空气中有野兽的气味，淡淡的臊热，恶心的腥臭。他取下56式自动步枪，打开机匣右后方的保险，连发模式。单发虽精准，但万一没射中，或击中了没打死，恐怕在射出第二发前，自己的喉咙已被咬断。枪口对准雪夜下的阴影，任何动静都要扣下扳机，管他是狼是人！往往这种时刻，枪在新兵手中很危险，只要哪个环节稍微出错，就会误伤战友，甚至可能打爆自己的脑袋。</p>
+<p>每逢新兵入伍，白茅岭的老兵们都会反复告诫——晚上小心狼！一个人站岗时，绝不能思想开小差。有个东北来的新兵，十八岁，个头一米九几，体重一百八十斤，可谓白茅岭的巨人。他家在长白山下，半汉半鲜的村子，祖传的猎户，年年要打死上百头狼。他想，过了长江还会有狼？一定是老兵用来吓唬人的。第二天早上，战友们发现此人不见了，岗哨上有团血肉模糊的骨头，残破的军装，散落一地的灰色狼毛。掉在地上的自动步枪，尚未打开过保险呢。在白茅岭，老狱警亲眼看见过被狼吃掉的新兵蛋子至少有四个。</p>
+<p>胸口有些冒汗，他解开风纪扣，一股寒风卷入领口。为了抵挡南方冬天的湿冷，他习惯于穿着厚厚的军棉袄，并牢牢系紧领口。他突然听到某种声音。隔着一片树丛，在手电筒的光束最末端，有黑影晃动。老狱警关掉手电筒，借助月光往前摸去。那影子行动缓慢，估计已耗尽体力。只差数步之遥，影子越发清晰，破烂的囚服在雪地中分外醒目。白天越狱的逃犯，能活到现在，也算走运了。必须要抓活的，不能开枪，要无声无息，像从背后偷袭的狼。老头趴在荒草丛里，半个身子没在雪中。</p>
+<p>19077号囚犯，刚满二十八虚岁。青皮光头上发根茂盛，已近板寸长度。不像其他劳改犯，他的皮肤白净，嘴上有圈胡茬。最与众不同的是，鼻子上架着一副眼镜。大冬天口中呵出的白气，反复模糊镜片，目光也像盖着一副帘子，朦朦胧胧。乍看略像《南海风云》里的年轻舰长。去年夏天，南京军区的电影放映队，来到白茅岭放过一场露天电影。所有的囚犯、干警、职工，包括军人，一起坐在星空下，盘着腿，喂蚊子。</p>
+<p>把这小白脸扑倒，干翻，捆住，不是轻而易举吗？</p>
+<p>雪地里飞起团灰色，巨大的尾巴，月下龇牙咧嘴，牙齿白骨般反光。</p>
+<p>“狼！”</p>
+<p>该死的，那本该是他的猎物。但老狱警的一声“狼”，意外救了逃犯的命。狼的第一击，擦着逃犯的咽喉而过。狼爪将他扑倒在雪地。逃犯发出含混不清的吼叫，垂死挣扎，四肢乱蹬，抵挡狼的攻击，像被壮汉强奸的弱少女。</p>
+<p>狼不明白，为何没有一击命中？自觉奇耻大辱，启动第二击。</p>
+<p>四颗尖利的恶齿，再度逼近逃犯的脖子，眼看要噬血夺命。</p>
+<p>枪声响起。56式自动步枪，三颗子弹，冒着火星，冲出枪管，响彻了整个白茅岭。逃犯本能地在雪地里打了两个滚。从狼爪底下脱身，摸了摸脖子，确信还跟脑袋连在一起。</p>
+<p>他活着，狼也活着，均毫发无损。子弹射向黑漆漆的夜空，击向挂在中天的月亮。并非老狱警射术不精，而是狼与逃犯生死搏斗的瞬间，纠缠翻滚在一起，根本无法瞄准。56式自动步枪的杀伤力超强。就算打准了狼，子弹也很可能穿透狼的身体，击中下面的逃犯。还有一点，连发会产生强大的后坐力，导致第二发与第三发子弹往往不准。对于在白茅岭“关”了二十年的老狱警来说，狼不是陌生的动物。他能辨认出每头狼不同的细节，无论公母。这头成年母狼，体形比同类大些——白茅岭上的这群狼，大多魁梧雄壮。为消灭这头凶残的母</p>
+<p>狼，农场上下折腾了两个月，不仅一无所获，反而丢掉不少人命。刚</p>
+<p>才那几秒钟，是千载难逢的杀狼机会，也是将越狱者当场击毙的好时机。</p>
+<p>但他的目的不是杀人，而是把活人带回监狱。</p>
+<p>狼这种畜生挺小心的，知道自动步枪不是木棍，转身窜到雪地深处，消失了。</p>
+<p>逃犯看到了老狱警，也看到了自动步枪。他知道是来抓自己的，要么被当场击毙，要么被抓回去枪毙，对于一个倒霉的越狱者来说，不可能有第三种结局。无论结局如何，总比被狼吃掉好些吧。逃犯选择了向政府投降。</p>
+<p>囚服早被抓烂，苍白的脸上多了道血痕。眼镜顽强地挂在鼻梁上，只是有一块镜片已破碎，宛如布满裂缝的玻璃窗，将左眼的目光隐藏得更深。老狱警啐了口唾沫，用枪口用力捅他后背，“跪下！双手抱后脑勺！”</p>
+<p>越狱犯闭上眼睛，老狱警从他的囚服里，搜出一把54式手枪，弹匣里七发子弹，一发不少。他将手枪塞回枪套。再不能被偷走了，他想。</p>
+<p>“同志，我听说，对准心脏开枪，是最没有痛苦的死法，对吗？”</p>
+<p>“完全说错了！打中心脏是最疼的！白痴！”</p>
+<p>老狱警掏出麻绳，将逃犯双手别到后腰，打了个死结捆住．逃犯站起来，比他高了半头。劳改犯要从事强体力劳动，但他的胳膊并未锻炼出肌肉，体形依然像黄豆芽。脸颊的血滴滴答答。老狱警抓了把雪，擦了擦逃犯的脸，以免血腥气引来更多的狼。他系紧风纪扣，用枪顶着逃犯后背，押解他往回走。白雪和月光彼此交映，四周全是黑压压的森林，监狱和农场还很遥远。</p>
+<p>余光瞟到逃犯的眼镜快滑下鼻梁了，老狱警为他扶正眼镜，准确说出他的编——“19077，干吗要逃跑？”</p>
+<p>“因为你睡了。”老狱警很想现在就毙了他，“逃就逃了，竟敢偷枪！”</p>
+<p>“山上有狼，要是有一把枪在身上，还可以防个身什么的。”</p>
+<p>“会用吗？”</p>
+<p>“不知道。但只要我手里有枪，就算你醒了，也不一定敢追上来。”</p>
+<p>“要是今天我没睡着，你也想逃跑吗？”</p>
+<p>年轻的逃犯点了点头，说：“我怕狼。”</p>
+<p>老狱警眯起双眼，布满皱纹的眼皮底下，两道目光如炬。他直勾勾地盯着逃犯，像回到冬至第二天早上的命案现场。</p>
+<p>“那天晚上，在监牢里，大家都睡着的时候，亲眼看到狼吃人的，就是我。”</p>
+<p>眼前年轻的逃犯，编号19077的越狱者，是那桩案子唯一的目击证人。他害怕晚上睡在监狱里，会不知不觉被狼吃了。</p>
+<p>“逃到山上就不会被狼吃掉吗？”</p>
+<p>“我宁愿醒着的时候死，也不愿睡着以后，死得不明不白。”</p>
+<p>“这里没有死得不明不白的人！”老狱警用枪口顶了顶他后脑勺。</p>
+<p>两人一前一后走了好久，迟迟不见监狱与农场的灯火。老狱警计算路程和时间，从潜出营房到上山再到逮住逃犯，花了不到一个钟头。下山又耗去差不多一样长的时间，但眼前景物却截然不同，干枯的树丛越发密集。他们本能地顺着山坡往下走，到底了却又得上坡，周而复始，永无止境。</p>
+<p>“同志，我们是不是迷路了？”</p>
+<p>老狱警环视一圈，将手电筒照得更远些，那是另一片无比陌生的山岭。没错，他们迷路了。唯一能确定的是仍在白茅岭。</p>
+<p>耳膜突然被什么震了一下，死寂的雪地深处，狼嚎四起。三个月来，每晚都会响起的狼嚎，仿佛来自另一个世界的幽灵在彼此述说震耳欲聋的悄悄话。这声音的刺耳程度，完全超出人类听觉所能承受的极限，只有身临其境，才能理解何谓“鬼哭狼嚎”。</p>
+<p>他命令逃犯原地别动，再将麻绳放长绑在自己腰上，两人拴在一起。手电扫过四周每一寸空间，跳出一对幽幽的绿灯——母狼的眼睛。灰色身体，渐从雪地露出。它从未走远，跟在身后，无声无息，耐心等候咬断两个男人喉咙的机会。</p>
+<p>虽然穿着厚棉袄，臃肿得像团绿色毛球，但老狱警还是眨眼间打开自动步枪保险，对准暗绿色目光，扣下扳机，三颗子弹连发。枪声压倒了狼嚎。</p>
+<p>狼消失了。前头还是雪地。黑夜里，白茫茫，远方山峦剪影模糊不清，荡起三段枪声的回音……间隔愈来愈长，更像打了三次单发。子弹继续飞。</p>
+<p>手电所到之处，没有血迹，连根狼毛都没落下。难道是幻觉？</p>
+<p>他问逃犯：“喂，你看到狼了吗？”</p>
+<p>“看到了，但你没打中。”</p>
+<p>在雪夜丛林，面对狼这种幽灵般的动物，失手也并非绝无可能。看不到那双绿色的眼睛，但能感觉到它，也许已绕到背后？老狱警不敢多想，喘着粗气，转了几个圈，绑在腰间的麻绳，缠绕好几圈，像流出来的肚肠。逃犯跟着他转圈，雪里连跌两个跟头，差点也把老头带倒。</p>
+<p>“王八蛋，坐稳了！”</p>
+<p>逃犯应声坐在雪地上。这也是喊给母狼听的，让它一样乖乖坐下，不要轻举妄动。但他看不到狼，狼看得到他。毕竟，人的视力有限，尤其在黑夜，怎比得过野兽的眼睛？</p>
+<p>两个人行走，一个人被反手捆着，另一个身上系着绳子，还得防范对方随时会逃跑，甚至反过来攻击他。在这种情况下，要预防狼的突袭，简直太困难了。何况又迷路了，可能离山下监狱越走越远。假如朝天鸣枪，山下能否听到？无法判断，算了吧，还是节省点子弹要紧。老狱警暗自思忖。</p>
+<p>这么坐在雪地里，恐怕到不了后半夜，就得活活冻死。还好四周有枯枝和干草，兜里还有盒火柴。他清理积雪，点燃几绺白茅草。火种，像难产的婴儿，总算亮起来了。太冷了，又潮湿，眼看火苗又要熄灭。他命令囚犯用身体挡风，同时往柴堆里吹气。火苗点着枯枝。星星之火，可以燎原，但为了活命，哪怕烧掉整座白茅岭也在所不惜。逃犯跪着凑近取暖，死人般的脸，稍微有了血色。在火光映衬下，脸颊的伤痕更为鲜艳，竟生出一种俊俏来。</p>
+<p>篝火让野兽不敢靠近，人类才有幸在远古生存下来。地下的雪水渐渐融化，后背心都被烤热了。老狱警又起身去收集树枝，以免燃料殆尽，但跟逃犯一块儿绑着麻绳，活动范围仅是个半径两米的圆圈。</p>
+<p>“犯了什么进来的？”</p>
+<p>“我没犯罪。”</p>
+<p>老狱警一脚踢开他，却因麻绳连着他俩，自己也被顺势带倒，趔趄几下，仍端起枪。</p>
+<p>逃犯把头埋入膝盖，反捆在背后的双手，如临刑前的死囚。火堆噼啪作响，不断有枯枝烧裂。</p>
+<p>“他们说我是强奸犯，但我不是。”年轻的脸庞在火光中抬起。</p>
+<p>“19077，我在医务室见过你，你以前做过大夫吧？给人看病，还是给牲口看病？”</p>
+<p>“给人看病——女人。”</p>
+<p>“妇科？你就每天坐在医院的小房间里看女人的下面？”</p>
+<p>老头用衣角擦拭对方满脸的鼻涕。逃犯猛烈甩头，避开他的手。</p>
+<p>“判了多少年?”</p>
+<p>“十年。”</p>
+<p>“来几年了？”</p>
+<p>“四年一个月零九天。”</p>
+<p>老狱警是明知故问，关于19077的一切，他清清楚楚——包括为什么会来到白茅岭。干了一辈子的警察，从旧社会到新中国，哪样奇怪的故事没见过？各种各样的冤枉官司多了去了，而因妇产科医生的</p>
+<p>职业无端引来强奸的罪名，也不是第一次听说。</p>
+<p>作为强奸犯来到监狱，地位还不如贼骨头和杀人犯。倒粪便洗厕所这类脏活，通常是留给他的。何况，他长得文弱秀气，洗干净了像个小白脸……</p>
+<p>一九七六年过去了，白茅岭上升起一九七七年的月亮。白雪映着熊熊火堆。逃犯的脸颊越发绯红，那道渗血的伤痕更加刺目。干枯的嘴唇也湿润起来。</p>
+<p>火苗眼看要熄灭。老头命令逃犯在原地不动，他去再捡些干枯的树枝。逃犯说：“要是你去捡树枝，那头狼下来了怎么办？还是我去捡吧，能不能帮我把绳子解开？反正你手里有枪，不管是我还是狼，一旦轻举妄动，你都可以开枪。”这是合理的建议。否则，两人势必一块儿被狼吃了。老狱警为他松开双手，但没有解开腰上的绳子。逃犯活动活动手腕，猫下腰去捡树枝。</p>
+<p>来不及了。</p>
+<p>月光透过张牙舞爪的枝丫，照亮一头硕大的动物，居高临下站在大石头上。狼眼斜斜地上翘，仿佛从蒙古归来。冬天的灰毛尤其厚长，从胸口拖到四条腿肚子上，而在宽阔的胸膛之下，还荡着一堆臃肿的奶头。它像发作时的哮喘病人，或像多年的痨病鬼，喉咙里发出低沉的咕噜声，带着血腥味和热烘烘的狼臊气。虽说狗也是这样吓唬人，但狼那尖细开裂的嘴巴，一对三角形的耳朵，垂于地面的扫帚尾，提醒生人勿近。</p>
+<p>白茅岭的雪，还没融化。狱警与逃犯生的火，刚好熄灭。最后一粒火星，似夏日的萤火虫，冻死在突如其来的寒流中。</p>
+<p>狼，暴露獠牙，呼之欲出。</p>
+<p>哒……哒……哒……没听到子弹的穿透声或狼的哀嚎声，却有一阵腥风扑面而来。老狱警顺势往后跌倒，第二次扣下扳机。子弹射出瞬间，有双爪子不可抗拒地扑到肩上。超过十个成年男人的力量，将他踩倒在熄灭的火堆里，几乎要压碎他的骨骼和内脏。眼前一团黑灰，自动步枪飞了出去。浓浓的腥臭味再次袭来，冰冷的狼牙刚好擦过脖子。哪怕多停顿一刹那，就会被咬断喉咙。老头转过身，把狼压在身下，狂吼着，同样龇牙咧嘴，像要去咬狼的脖子。人的力气到底不比野兽。母狼瞪出凶狠的绿光，又挣脱转身，踩上他的后背。冰凉的异物，侵入他左后肩膀，深深嵌进肌肉。他被狼咬了。第二口，即将咬断他的后脖子。某个冰凉的金属，突然插进母狼的右前腿与胸口的连接处。</p>
+<p>那把56式三棱刺刀。他脸朝下俯卧在地，被狼咬到肩膀的同时，反手抽出左腰间下的刺刀，举至头顶，手心向内侧一转，擦着自己脖子右侧边缘猛向上戳。母狼的血，似滚烫的开水，溅满半边脸。刺刀还在左手。这是真正的杀人利器，可毫不费力地刺透两个男人的胸膛。即便不能当场致命，三棱形的军刺也能通过血槽将空气引入，在血管内形成泡沫。只要刺入八厘米，就可让人痛苦而缓慢地死去。刀身加热时掺入过砷元素，仅仅擦伤皮肤也能导致砷中毒。</p>
+<p>老头晃晃悠悠站起，缓缓贴近地上的母狼，决定送出最后一刀，仁慈地解决它的痛苦。</p>
+<p>狼却一个急挺身，亡命地钻入边上的树丛，被绵延如大肠般的黑夜消化。好厉害的对手，虽然是母的！他找回手电筒，庆幸没被拌坏，这才想起逃犯。</p>
+<p>又不见了。</p>
+<p>老狱警的腰间还捆着绳子，却在数米开外中断——56式自动步枪也失踪了。</p>
+<p>19077号犯人第二次偷走了老狱警的枪，也是老头这辈子第二次被人偷枪。</p>
+<p>不远处的雪地上，有行深深浅浅的脚印。他走不远的。老狱警忍住肩膀和背后的剧痛，抓紧手电和刺刀，跌跌撞撞往前冲去。枪套里的54式手枪还在。但真正厉害的武器，既可以杀人也足够杀狼的，在逃犯手里。</p>
+<p>一九七七年一月一日，凌晨一两点，老狱警一路往山上走。山上的雪越发坚硬。好像有白色雪花飞过，随手一抓，非但不融化，反而有些暖和，原来是身上的棉絮。这同样拜母狼所赐，只是可惜了这身好棉袄。尚未凝固的血，从十多处不同的伤口渗透。</p>
+<p>一盏清亮的白光，从斜上方投射下来。一只老鼠，窸窸窣窣钻出雪堆，宛如一条毛笔的墨迹，从白色信纸上画过，转眼被水稀释。这家伙那么小，却非等闲之辈，窝里藏着不少过冬的口粮。猫头鹰从天而降，把老鼠逮到了树上。它自老鼠窝里生出来，到被这只猫头鹰吃掉，也许只有几个月。而与之同窝的兄弟姐妹们，恐怕寿命更短暂。想想自己能活到这把年纪，老头就感觉走了狗屎运。大约四十年前，跟他一同考进旧上海警察局的同龄人们，要么死于凶恶罪犯之手，要么作为阶级敌人被镇压枪毙，要么早早病亡在床上，而今健在于世的寥寥无几。</p>
+<p>循着逃犯的脚印，雪地里有坨黑色的东西，冒着热气。他认得是</p>
+<p>狼粪。新鲜出炉的，小笼包般的狼粪。要是晒干了，用火柴点燃，会冒出浓烈而腥臭的黑烟。古人就是这样用狼烟传递军情的。只不过要葬送很多收集狼粪的士兵性命吧。狼不像老虎或豹子在领地范围潜伏袭击。它们的狩猎方式是长途奔袭，因此具有超乎其他猛兽的耐力。但奇怪的是，为何只有这一头母狼？狼群去哪里了？</p>
+<p>他在此地二十年，从未深入过这些角落。严寒时节，狼群会席卷整个农场，把大家准备过年的牛羊拖走，或就地啃得只剩骨架。监狱还没养狼狗，顶多是有农家院里的草狗，学名中华田园犬，冬天还会吊死做狗肉煲。</p>
+<p>雪中脚印，越发凌乱，也越发新鲜。手电射向正前方，依稀可辨一个人影。</p>
+<p>“站住！”任何人只要回头，看见这么一个浑身鲜血，半人半兽的怪物，都会不由自主停下。虚弱的逃犯正在喘气，瞪大眼睛足足十秒，才确认来者是何人。</p>
+<p>老狱警连手枪都没掏，握着带有狼血的刺刀靠近，逃犯本能地举起56式自动步枪，“不要啊！你再走一步，我就开枪了!"</p>
+<p>“白痴，保险都没打开呢！”</p>
+<p>逃犯忙乱地检查自动步枪，扳弄各个部位。当他把枪口对准自己，老头及时提醒了一句：“喂，危险!小心走火，把自家脑袋给崩了！”“哦？”</p>
+<p>枪口放平，他继续扳弄保险，整张脸由苍白憋到通红，额头流下豆大的汗珠。</p>
+<p>老狱警根本不相信他会开枪，大摇大摆走到逃犯面前。</p>
+<p>枪响了。</p>
+<p>连续三发子弹，从56式自动步枪的枪口射出，擦着耳边飞过。距离太近，根本无从躲闪，他本能地向后摔倒。在他倒地同时，身后闪过一个黑色的影子。</p>
+<p>后面有狼的绿光，逃犯只能抓紧时间开枪。还是那头母狼？胸口中了一刺刀，居然还没流血而死？趁着逃犯分心，老头翻身抓住枪口。刺刀本可轻松地出手，瞬间捅进逃犯心窝。就算仅刺中肚子，也会令其在数分钟后丧命。终究，他不想只带回一具尸体，于是冒着逃犯开枪或走火的危险，将逃犯死死压在雪里。他右手像个铁扳手，禁锢住逃犯抖动的手指，阻止他扣下扳机。</p>
+<p>与其作为越狱犯耻辱地受死，不如在这狼嚎的雪夜里，被一颗子弹或一把刺刀送命更痛快些。逃犯比老狱警高了大半个头，垂死挣扎，并不比母狼更容易对付。额头被逃犯的指甲抓破，老头热热的人血混着狼血，溅到逃犯碎了一块的镜片上。老头关上枪的保险，重重一拳砸中对方鼻梁。逃犯再无力反抗，像妇产科的女病人，绵软地躺在雪地上，双腿分开。满脸流血的老头，骑在他身上，劈头盖脸，一顿胖揍。</p>
+<p>残留着火药味的枪口，顶住逃犯脑门，冰凉的皮肤立刻灼热起来。调整到单发模式，不要浪费子弹，一颗就足够了。从额头进去，后脑勺飞出来。干净利落，不会有太多痛苦。无非是死相难看点，自动步枪的威力巨大，那么近距离开枪，很可能掀掉大半个天灵盖。</p>
+<p>“干吗要逃跑？”</p>
+<p>“同志，我不是故意的，我以为你被那头狼吃掉了！如果，我不快点弄断绳子逃跑，也会被狼咬死的。我必须拿走你的枪，万一那头狼追上来，还可以靠这支枪自卫。你也不想看到，今晚我们两个都被狼吃掉吧？”</p>
+<p>这番话貌似有些道理，但也可以往更险恶的方向揣测，老狱警犹豫着把枪收回。</p>
+<p>逃犯说：“你还在流血呢！”</p>
+<p>“你以为你是医生？”老头忘了，他真是医生。</p>
+<p>“伤口很深，没做任何包扎处理，还能一路追到这里……”逃犯摇头说，“快把衣服脱下来。”</p>
+<p>“冷。”</p>
+<p>“快点脱，听医生话！”</p>
+<p>当他这么说的时候，就像在关照女病人：快脱裤子，在医生面前别不好意思。老头脱掉衣服。血肉和棉毛衫连在一块儿，冻得硬邦邦，几乎撕下几块皮。但他咬着牙，死都不肯叫一声。</p>
+<p>手电照出后背数条伤痕，全是狼爪留下的，最深有一二厘米。左后肩膀，两个深深的洞眼，狼牙的标记。还好右肩膀没受伤，否则连枪的扳机都扣不动。老狱警个头不高，体重不超过一百二十斤，但有精壮紧密的肌肉。前妇产科医生现逃犯，撕碎老家伙的衬衣，反复缠绕包扎背后被狼咬伤的部分，一包上去就渗出鲜血。不一会儿，赤裸的后背，已包成了木乃伊。逃犯帮他穿好衣服，但后背的无数破口处，不断钻入寒风。</p>
+<p>没有止痛药，但低温令人头脑清醒，不断刺激分泌肾上腺素，获取并透支能量。包扎穿衣的整个过程，他始终牢牢握着枪，不肯腾出双手，以至于系纽扣这种事，也得逃犯一粒粒帮他系上，从最底下到脖子上的风纪扣。逃犯抓起几把雪，擦拭老头黑乎乎的脸。冰凉刺骨的雪团，好似冬天没拧干的毛巾，擦掉厚厚的泥土与污垢，在皮肤上融化，变成水，带走人与狼的血。</p>
+<p>老头的脸露出原色，不深不浅的肤色，眉毛与眼睛还算端正，如果戴上眼镜，穿上中山装，很像处级干部或小学教员，也像被打倒的知识分子。但他只看到雪月下自己的影子，模糊得像一团动物内脏。</p>
+<p>“谢谢。”他第一次向劳改犯道谢。</p>
+<p>整夜没有喝过水的喉咙，像燃烧的煤球炉，简直可以喷火取暖。上山之前，他本想带上行军水壶，但怕累赘，加上水壶的铝质外壳很容易跟自动步枪碰撞，怕半夜里动静太大，惊动了逃犯或狼。他半蹲下来，清理出一团干净的雪，捧在手心。眼睛一闭，吞入嘴中。</p>
+<p>前医生现逃犯提醒，冰冷的雪水不能直接下到肠胃。提防一边在雪里拉稀，一边被母狼咬掉屁股。</p>
+<p>老狱警不蠢。他没有马上咽下去，而是先含在口腔。两边腮帮鼓着，等冰水变成温水，才缓缓吞下，这口水经过咽喉、食道，胃……虽缀然牙齿连同舌头冻得麻木，身体却像一盆快要枯死的花，哪怕撒泡尿浇了都能活命。</p>
+<p>他又抓了一大把雪，塞到逃犯手里。逃犯往后缩了几下，硬着头皮吞下一口雪。</p>
+<p>“小子，别说你想要逃走，刚来白茅岭那几年，我有好几个同事，解放前就在一块儿的老警察兄弟，都被冬天的狼吃了，连我想要逃走都不敢，何况你？”</p>
+<p>逃犯斜眼看他，不回答，怕被这老家伙套话。</p>
+<p>一九五三年，前名侦探来到白茅岭，自此遥望整片荒芜的山头，听黑夜此起彼伏的狼嚎。他住在漏风的茅草房子里，腰眼里别着手枪，监督犯人们修造监狱和农场。有时候，他想，自己还不如那些只判了几年的，要么三年劳教结束就能回城的犯人。从上海被放逐来的干警们，白茅岭就是终老与葬身之地。包括安置来的无业游民，大家都要为农场生儿育女，以便一代代人就地扎根，永远繁衍生息。像他这种一辈子没结婚，被批准退休后还能回上海养老的，真是风毛麟角。</p>
+<p>“但是，狼窜到监狱里来吃人的事情，我却是一辈子都没遇见过。”老头说。</p>
+<p>白茅岭，下半夜。冷月下的雪地，两个男人踩出四行近乎笔直的脚印。逃犯的眼泪，扑簌扑簌，滚烫的，顺着眼角，砸入雪地，像烧开的水，融化微小的，一片白。</p>
+<p>“同志，你说，我们要是回到监狱，我还有可能活吗？”逃犯无力地倒在雪中。</p>
+<p>老狱警无法说出真相——越狱犯通常会被加判为死刑。除非是自首回来的，才可能捡回一条命。他说：“不晓得，得看人民法院怎么判了。"</p>
+<p>他用脚尖踢逃犯。睡在雪上多舒服啊，但睡着就死定了。他硬生生拖起逃犯，互相搀扶前行。地图上都找不到的白茅岭，无边无际，一夜间变大了十倍，需要走一辈子，像最漫长的徒刑。</p>
+<p>不知不觉到了一个阴气逼人的小山坳。周围是枯死多年的树木，脚下积雪和泥土松软。两个男人，冻到满脸鼻涕，接二连三打喷嚏。走在前面的逃犯，脚底被什么绊倒了。被拽起来前，右手摸到一样奇怪的东西，竟是个乌黑的骷髅头！才发现脚下积雪里，散落着无数骨头。有的明显是人的大腿骨，也有牛的肩胛骨。有块山羊的颅骨，两个醒目的圆孔，是狼牙咬穿的。蓝印花土布碎片，像旧时农村老太太的。最后有一根像是清朝人的发辫——男人粗大的辫子，干枯褪色，散落</p>
+<p>在破碎的头盖骨旁边。</p>
+<p>狼群的墓地。不，是它们猎物的墓地。更准确地说，是狼族厨房的垃圾桶，存放它们吃剩下的骨头。许多年代，不断积累下来的．到底存在了一百年？八百年?远在还没有人类的史前时代就有了吗？狼是比人更古老的动物，那时候，它们才是整个地球的主人。现在，它们只能在白茅岭做主人。而人类是客人。</p>
+<p>哭声。两人彼此对视，都没有掉眼泪。</p>
+<p>逃犯趴在雪里，耳朵贴着地面，寻找哭声来源。地下的哭声。仿佛许多年前被狼吃掉的婴儿，阴魂不散，在自己的坟墓中哭泣。</p>
+<p>婴儿继续哭，富有节奏，中气十足，是那种吵得全家人彻夜难眠的孩子。</p>
+<p>老头举着手电筒，一瘸一拐，照见山坡上一个土堆。半人多高的侧面，最不起眼的位置，几株白茅草遮蔽下，有个黑漆漆的洞穴，只能容纳一个人爬进爬出，他钻进去，里面看起来深不可测，四壁凹凸不平，充满腥臭。老狱警有些后怕，自动步枪和刺刀，全都留在洞穴外面，逃犯可以轻而易举地杀了他，就算挖些泥土封住洞口，也足以让他葬身狼穴。</p>
+<p>温暖的狼穴，与外面冰天雪地相比，简直像三月的春天。他用两个手肘支撑起身体，几乎倒吊在洞的底部，仅剩下双脚还在狼穴外。他感到有双手抓住自己脚踝，无疑就是逃犯，以免他被卡住了出不来，或坠人更深的地狱。</p>
+<p>老狱警变成了瞎子，只能依靠听觉，抓住某个挣扎的活物。摸到一只小小的耳朵，不是毛茸茸，而是光滑细嫩的皮肤。有个小鼻子，然后是迷你的嘴，紧紧咬住他的手指，有力地吮吸，传说中吃奶的劲儿。</p>
+<p>人类的婴儿。</p>
+<p>逃犯像拔萝卜，从狼穴中拖出老头的身体。土块与碎屑，不断从脸颊边擦落。他双手护着婴儿，紧贴自己下巴，不让这孩子受一点点伤。</p>
+<p>男孩。哭声狼嚎般刺耳。小小的身躯底下，包着几块碎布，襁褓的残片，印着“白茅岭农场”的字样。逃犯将孩子搂在怀中，像抱着亲生儿子，反复亲那红扑扑的脸蛋，毫不顾忌孩子身上的腥臭之气，沾上满嘴狼毛。</p>
+<p>没错，这是一个多月前失踪的男婴。所有人都以为这孩子被狼吃了，他却活在狼穴深处，看起来也没什么营养不良，就跟普通人家的婴儿一样，大腿与胳膊反而更粗壮有力。</p>
+<p>这孩子到了逃犯手里，立刻停止了哭泣，睁开眼睛，看着雪夜里逃犯的脸，反而嘻嘻地笑了。</p>
+<p>“认得他？”</p>
+<p>“是，我亲手把他接生出来的。”</p>
+<p>“说什么呢？你在监狱里给女人接生孩子？”</p>
+<p>19077号犯人把头埋到婴儿屁股上，边清理残留的粪便边说：“我到这里四年，总共只接生过这一个孩子。”</p>
+<p>医生在白茅岭弥足珍贵。许多有一技之长的囚犯，都被委派到重要岗位。他也不例外。除了跟别人一样劳动改造，他还在医务室工作，为老狱医打下手，给犯人配药更是家常便饭。妇科只在县城的医院才有，害了妇科病的农场女职工，懒得大老远跑县城，就会到监狱医务室来找他。女人们争相前来看病，这个上海来的医生，有个外号“小唐国强”。中年的女职工们，大大方方地宽衣解带，让他戴着眼镜仔细检查。有个三十来岁的寡妇，男人几年前被狼吃了，像只饥肠辘辘的母狼，每次到医务室，总要捏“医生”的脸蛋和屁股，像品尝一块新鲜出锅的肉，还整个人贴上来，扯开他的裤腰带。年轻医生想起自己是怎么被抓进来的，吓得灵魂出窍，飞快地逃回监牢里蹲着。但他不敢向干警报告，号子里的狱友们，都说这小子艳福不浅，要是换作他们，早就排着队去干这差事了。可是，在白茅岭的日子里，他最厌恶的，就是看到女人的身体。</p>
+<p>五个月前，凌晨，有人把他从睡梦中拎起。这种时候来提人，往往意味着枪毙。被惊醒的犯人们，同情地看着他被带走。他浑身发抖，高声主张权利，说明明判了十年，怎又私下处决，他要再看一眼老娘，又问干警能不能吃顿红烧肉，后者轻蔑地摇头。传说中丰盛的断头宴，原来全他妈是骗人的！押出监狱大墙，是去刑场吧，干吗要深更半夜呢？艳阳高照之下，吃枪子不是更好？他可不想做孤魂野鬼。想起革命电影里的镜头，他像所有地下党员革命烈士，大声唱了一首《国际歌》。荒山野岭的月下，苍凉壮阔，竟引得监狱里一片高歌和鸣。但他发现，前后只有两个干警，看起来疏于防范。他刚想要逃跑，干警却说：“喂，你真给女人接生过孩子？”</p>
+<p>原来，农场里有个孕妇半夜突然临盆，来不及去县城医院。这孕妇在监狱医务室找他开过药，就急着派人去监狱求助。孕妇的羊水已经破了，非常危险。他没有任何工具，只能简单做了消毒。他不断地跟年轻的孕妇说话，以减轻她的痛苦，生怕万一出什么差错，就会被拉出去枪毙。折腾到鸡叫天亮，孩子才呱呱坠地。是个男孩，分量不轻，哭声响亮，健康极了。这天是八一建军节，一九七六年白茅岭诞生的第一个孩子。他给孩子清洗完毕，关照了产后注意事项，便被干警押解回牢房。囚服上沾满血，变成鲜红的圆圈，像白茅岭上初升的太阳。孩子爸爸曾经也是囚犯，刑满释放回上海，早没了自己的窝，兄弟姐妹又赶他出门，索性一辈子就留在了白茅岭。他为孩子取名建军，又给农场领导打报告，请求给接生孩子的医生囚犯减刑，还托人送厂一篮子红蛋，却被同间牢房的人分光了。</p>
+<p>白茅岭，雪夜。逃犯亲手接生出来的男孩，竟然野蛮生长成这么大了，掂在手里足有十七八斤。一个月前，他正下地劳动，听说这孩子被狼吃了，晴天霹雳，当场趴地上哭了。如今男婴身上多了浓郁的狼味，指甲许久未剪，积满狼穴里的污垢，锋利得能轻易划破逃犯的手背。当这孩子睁开眼睛时，射出近乎绿色的光，不太像人类。</p>
+<p>背后响起狼嚎。</p>
+<p>回窝的母狼。浑身的灰色长毛，如同中年妇女的长发，雪地里一路滴着暗红。斜长的双眼，放射的不再是绿光，而是近于红色的凶光。四条腿蹒跚，尾巴沉重地拖在地上。当它看到男婴被抱在逃犯手里，发出这辈子最凄厉的咆哮。看他们不为所动，狼嚎的音调变得细腻，绝不悦耳，反更揪心。像发疯了的女高音，又似敌台的长波频率，简直要让听众七窍流血而亡。最后，母狼发出狗才有的吱吱声。</p>
+<p>人有人言，狼有狼语。老狱警和逃犯都明白了，母狼在对他们喊话，甚至哀求——请你们把孩子放下，离开此地吧。</p>
+<p>两个人摇头。被抢了孩子的母狼瞬间发起了攻击。</p>
+<p>老狱警打开自动步枪保险，扣下扳机，连续发射数颗子弹。狼贴着地面，子弹全从它的头顶划过。他不敢胡乱扫射，担心流弹伤及逃犯和男婴。</p>
+<p>母狼的攻击对象并不是他，而是抱着孩子的逃犯。逃犯被一口咬中左大腿，惨叫着倒下，孩子从怀里滚落。老狱警抢在母狼之前，夺过哭泣的男婴。</p>
+<p>狼，用尽最后的力气，再次扑到他身上。完蛋了。老狱警双手抱着孩子，完全没有反抗的可能，就连抽出刺刀的时间都没有。狼牙逼近脖子，只有闭上眼睛等死。</p>
+<p>腥臭的味道，却停留在半空，狼骤然衰竭而倒下，像被砍倒的大树。老狱警睁开眼睛，脸颊依然贴着雪地，视线正好与那头狼平行。它也倒在雪中，同样的姿势，同样的目光，看着他。人的右脸，狼的左脸，贴着同一块地面。</p>
+<p>母狼本可咬断他的喉咙，但功亏一篑，几小时前那记三棱刺刀，让它刚好流尽了血液。老狱警爬起来，拔出刺刀，蹲在母狼面前，按住它无力的脑袋。军刺对准喉咙，只需微微一抹，就能了结生命。它将死得毫无痛苦。他觉得自己足够仁慈，若是把它交给山下的人们的话……</p>
+<p>垂死的野兽，不甘地看着他。从喉咙最深处，发出微弱而尖厉的哀鸣，宛如女人临死前的抽泣。百转千回，愁肠寸断，留恋人问，抑或狼间？男人的五根手指，连同56式刺刀，头一回剧烈抖动，像手术失败的实习外科医生，一毫米一毫米地自残。</p>
+<p>狼的眼角，分泌出某种液体——在雪地里，冒着滋滋的热气。老头从未见过，几百年来，也未曾听说过的，狼的眼泪。军刺的锋刃，闪着蓝色暗光，在母狼的喉咙口停下。</p>
+<p>“等一等！别杀它！”逃犯正从雪地爬过来，左大腿血流如注，两个眼镜片彻底碎了，面色如死人般苍白。</p>
+<p>母狼的身躯抽搐，肚子鼓胀，撒出一大摊尿。“它快要了！”逃犯提醒了一句，他是妇产科医生啊，虽然不是兽医，但类似情况他见多了。</p>
+<p>怪不得这头狼几次失手，本该轻松杀死他俩，因为怀孕在身的缘故，并且接近分娩，行动迟缓，无法像平时动如雷霆地捕猎。</p>
+<p>孩子四肢矫健，不畏寒冷在雪地中爬行，居然挤到母狼肚子底下，张嘴咬住狼的乳头！</p>
+<p>他是在一个多月前被母狼叼走的，如果不是每天吃狼奶的话，早已死了。反而因此，这孩子才会长得如此壮硕，远比一般的婴儿更为结实，生命力旺盛得一塌糊涂。</p>
+<p>老狱警抚摸着母狼的肚子，先让孩子好好饱餐一顿狼奶吧，反正是这辈子最后一次了。刚才在狼穴，孩子大概就是饿哭的。</p>
+<p>也许，在最近的几个月里疯狂攻击人类的，未必是这头母狼。当它的七个幼崽，被人们剥皮吊在农场大门口，决定复仇的，是另外几头狼。野兽吃人，人也吃野兽，彼此彼此。</p>
+<p>很多年前，有人在狼窝找到个七八岁的孩子。带回农场里不会走路，每天像狼一样爬行，极度凶狠，智力相当于婴儿，不吃熟肉只吃生肉，半夜发出狼嚎。有经验的猎人说，狼崽死后，确有极少数母狼，会收养人类婴儿，喂养狼奶，当作自己的幼崽来抚养。</p>
+<p>而这头即将分娩的母狼，之所以要杀死他俩，完全是为了保护狼穴里的孩子——它以为是人类再度来杀害它的孩子。</p>
+<p>“喂，同志，怎么办？”逃犯端详母狼下身，“产道打开啦！”</p>
+<p>“你不是妇产科医生吗？愣着干吗？快给它接生！”</p>
+<p>第一只小狼崽，带着胎盘和脐带来到世上。浑身血污，湿漉漉的，热气腾腾，捧在他俩的手心。还有第二只、第三只……逃犯连双胞胎都没接生过，这会儿片刻间，接连带出了七只小狼崽！</p>
+<p>老头贴着母狼脖子，对着它的耳朵说：“喂，你的孩子都出生了，我会保护好它们的，对了，还有这一个。”他抱起吃狼奶的男婴。母狼的胸口和下身都在流血，黏糊糊的胎盘也出来了。没有任何工具，逃犯弄断狼崽们的脐带，把七只小狼崽抱到母狼面前。</p>
+<p>母狼伸出血红的舌头，依次舔舐七只小狼崽，既给孩子们消毒，去除娘胎里带出的血污，也在品尝自己羊水和胎胞的滋味。</p>
+<p>狼血流尽之前，它最后祈求般地，看着老狱警的眼睛，又看看他怀里人类的孩子。</p>
+<p>逃犯摇摇头，“别！”</p>
+<p>老头一辈子没结过婚也没有过孩子，却一把推开他，将婴儿塞到母狼嘴边。狼的舌头，把这人类的孩子舔了个遍。相比刚出生的七只小狼崽，这个男婴，才是它身边还活着的长子。然后，母狼的眼球渐渐浑浊，再也没有任何光亮了。</p>
+<p>男婴又哭了。五个月大的孩子，似乎感知到自己失去了妈妈。老狱警脱下满是窟窿的外衣，裹住冰天雪地中的婴儿。</p>
+<p>逃犯自行包扎了大腿伤口，却无法阻止流血，整条裤管浸泡成暗红色。他的双手和胸口，沾满母狼子宫流出的血。他紧咬着牙关，依次抱起七只小狼崽。</p>
+<p>头一只生出来的小狼崽，体格最为结实，死死咬住母狼乳头。妈妈死了，乳汁还是热的，继续哺育孩子。这只执着的小狼崽，不像兄弟姐妹般一身灰毛，左耳朵上，有块雪花状的白斑，煞是醒目。</p>
+<p>逃犯抱着其余六只狼崽，哼哼唧口即地说：“同志，你把这七个小畜生带回农场吧，也许吃羊奶可以活下来。”</p>
+<p>“错，如果它们到了农场，碰上那些与狼有血海深仇的人，肯定会被剥皮抽筋滚油锅的。”</p>
+<p>“让狼崽在雪里冻死吗？”逃犯说。</p>
+<p>老狱警看了一眼狼穴，“此种野兽与人类相同，都是群居动物。母狼死后，狼群会照顾幸存的小狼。也只有这样，狼群才能在残酷的自然中，不断繁衍了几十万年。”他把男婴交换到逃犯手中，强行抱过狼崽们，拽起叼着母狼乳头的白耳朵小狼——最后一滴母乳被吸干了。</p>
+<p>七只丧母的小狼崽都在怀中。他趴到雪地里，重新钻入漆黑的狼窝，把小狼崽放回去——它们就像回归母狼的子官，安全、温暖，潮湿。运气好的话，它们会被狼群发现并活下来．运气不好的话，狼穴也很像墓穴。但他只跟逃犯说了前半句话。</p>
+<p>等到他满脸土灰地爬出来，却发现逃犯手里抓着56式自动步枪，枪口对准自己的胸膛。而他的54式手枪，还插在枪套里，能瞬间拔出来反击的只是电影里的情节。</p>
+<p>“再过一两个钟头，太阳就会升起。上海在白茅岭正东方向，面朝太阳就能走回去。虽然，我身上没钱，但还有两条腿啊。渴了就喝河塘里的水，饿了从农民家里偷只鸡，再不济也有蛋吧。如果运气好，扒节火车或卡车，哪怕拖拉机。四年前，坐卡车被押解来白茅岭，经过的每个地方，我都在心里默默记住了。往东南过广德县城，沿着公路，从安徽走到浙江。长兴到湖州，左手边是太湖。两天能到江苏境内，穿过吴江平望，就是淀山湖。从朱家角老镇到青浦县城，从虹桥机场到中山公园。再往下是曹家渡。如果有下辈子，我还要做个妇产科医生！天照样下雨，女人照样生孩子，草木照样生长，鱼照样在河里游。报纸上不是说，世界上还有三分之二的人民生活在水深火热之中吗？我会帮助那三分之二的妇女接生孩子，你说那有多伟大啊！想想就让人激动！最亲爱的同志，请不要为我担心，我在社会主义明灯！第八个是铜像！（编注：指阿尔巴尼亚的情况。）”</p>
+<p>越说越亢奋的19077号犯人，仿佛已踏上恩维尔·霍查同志的地界，老狱警却残忍地打断了这美好的妄想——“你的左腿，还在流血，等到天亮，会失血过多而死。”</p>
+<p>自动步枪保险打开，单发模式。老头用左侧胸膛顶着枪口，心脏的位置。颤抖的金属枪口，清晰有力的心跳，丝毫不像快六十的人，更似颗快要破壳的鸡蛋。</p>
+<p>“开枪！”</p>
+<p>逃犯的眉目与眼睛扭成一团，扣在扳机上的手指，冻僵似的无法启动。</p>
+<p>“开枪！”</p>
+<p>老头说了第二遍，面无任何表情。</p>
+<p>“同志，你自己下山逃命吧，带着地上的孩子，别逼我!”</p>
+<p>“开枪！”</p>
+<p>第三遍，像军官给士兵下达命令，行刑队面对死囚，验明正身，立即执行。</p>
+<p>逃犯无法抗拒，手指直接听命于对方嘴巴，就像老狱警自己在动手。</p>
+<p>扣下扳机。寂静，无声，雕塑般站立的男人。他还活着，他也活</p>
+<p>着，还有地上小小的他。温暖的狼穴里的七个它，包括死掉的雌性动物，都没有听到任何枪响声。突然，逃犯瘫软在雪地上，才明白开枪之前，无论枪膛还是弹匣，已经没有一发子弹了！</p>
+<p>老头微笑着蹲下来。他一直在计算弹匣里的子弹，连发的话，每扣一次扳机，射出三颗子弹，加上几次单发，正好用尽了三十颗子弹。</p>
+<p>别了，阿尔巴尼亚。别了，全世界三分之二生活在水深火热中的妇女同志们。</p>
+<p>夜空上的白月，渐渐暗淡，偏向西天。凌晨，氕点。不年轻的狱警，背着年轻的逃犯。前妇产科医生，左腿的裤脚管，像生孩子或得了妇科病的女人，不断被暗红色鲜血浸湿，半条裤子冻得硬邦邦。老头右肩挂着自动步枪，却没子弹。能用来自卫的，是别在腰上的三棱刺刀，还有枪套里的54式手枪。右手臂弯，怀抱男婴。孩子正在梦中吃狼奶。军棉袄成了襁褓，老狱警上半身剩一件被血污弄脏的棉毛衫，裸露着数条破口，是衬衣撕成的绷带。左手抓着一条毛茸茸的大家伙，死去母狼的尾巴，令人生畏的灰色身体，狼头倒挂在地上，碾压出深深的轨迹。他必须把狼的尸体带回去，告诉整个白茅岭农场，这头野兽已被他杀了，噩梦般的狼灾已消除。囚犯、干警、职工和兵们，大伙都能放心过年了！</p>
+<p>二十八岁的垂死男人，五个月的健康男婴，大概是五六岁的母狼的尸体，制造于一九六九年的自动步枪，全被压在快要六十岁的老狱警身上。而这些活人、伤员、死尸，以及钢铁的重量，刚好超过他自身体重的两倍。唯一能照亮前路的，是一支手电。他可叮没有第三只手。手电简握在逃犯手中，末端顶着老狱警的脖子。</p>
+<p>喉咙被顶得难受，老头却一路唠叨解放前的名侦探生涯。他办过的最古怪的案子，是在提篮桥监狱的一起谋杀案。牢房里关押着十几个重刑犯，其中一个突然被杀了，但没人知道谁是凶手。他也怀疑过，是否大家集体密谋杀人，全部串通好了攻守同盟。隔了好多年后，这批犯人要么被放出去，要么死在了牢里，他才突然悟出了真相。</p>
+<p>“小子，你想知道是谁干的吗？”</p>
+<p>趴在背上的19077号犯人，却表示毫无兴趣，反问老头一句：“你没结过婚，那有喜欢过的女人吗？”</p>
+<p>老狱警停顿了一下，想起年轻的时候，曾有仰慕过他的女学生，听说后来去了香港嫁给富豪。还有纠缠过他的小寡妇，一九六六年跳了苏州河。在百乐门，在大世界，在跑马场，还有提篮桥，处处留下他的传说，结局却在白茅岭。</p>
+<p>“你有吗？”</p>
+<p>“嗯，有。”</p>
+<p>明白了。对啊，等到过完年，还有四十九天，就能回家了。老头想想就傻笑起来，冰冷的风钻进喉咙，肺叶被刺激，咳嗽起来。</p>
+<p>其实，他只是想不断说话，好让逃犯保持清醒，避免躺在背上睡着。否则在如此冷的雪夜，睡梦意味着死亡——襁褓里充满热量的孩子除外。他把这婴儿当作汤婆子，牢牢揣在怀里取暖呢。而压在他背上的那个男人，却像一床受潮了的棉被。</p>
+<p>手电熄灭，像油尽灯枯，人之将亡。</p>
+<p>撒手。</p>
+<p>手电坠落到雪地。东边的天空已从漆黑变成深紫，很快就会泛出宝蓝色，再是鱼肚皮的白色。老狱警右小腿抽筋了。大半条腿不再属于自己，像被无数条钢丝捆绑，收缩到极点又飞快放开再收紧。周而复始的酷刑，使他不能再往前一步。双腿跪在雪中。一旦坐下，绝无可能背着逃犯抱着婴儿并拖着一头死狼站起来。老头的腿啊，覆盖着厚厚的汗毛，各种伤疤和瘀青，乍看像死去的狼皮。盐分正在离开身体，流失到死神身边。跪着的双腿弯曲，脚弓反方向顶着，靠近小腿胫骨正面，这是缓解抽筋的简单方法，但很疼。老狱警咬破嘴唇，膝盖深陷人积雪，顶到坚硬的石头，仿佛被刀子切割，棉裤磨出两个洞眼。</p>
+<p>老狱警命令逃犯的右手下垂。那细长的胳膊与手指，曾用来检查女人和接生孩子，尚保留着力量和灵敏。拇指与食指，在老头的裤兜里摸出一个火柴盒。最后一根火柴，擦过侧面的红磷。火苗，星星一样，燃烧在两个人的鼻子跟前。微小的光和热，熄灭在风雪里！。</p>
+<p>睁眼，闭眼，再睁眼。抽筋停止了。</p>
+<p>深呼吸，再深呼吸，肺叶充满冰冷。脸憋成紫红色，全身肌肉战栗，腿随时会再抽筋，而且是两条腿。膝盖离开坚硬的石头。脚踝、小腿、膝盖、大腿，以及腹部，形成一条直线。</p>
+<p>老头想要小便了。在山上追捕了一夜，膀胱早已憋坏了，一分钟都等不了，再等就会爆炸，鲜血和尿液四溅到脸上。怀里五个月大的婴儿，说不定已在他的棉袄里拉了坨屎。至于背上的逃犯，早不知道撒过几回尿了。</p>
+<p>他甩了一下肩膀，让逃犯左边胳膊冉垂下来，手刚好够到他的小肚子。</p>
+<p>“我要撒尿。”</p>
+<p>年轻的逃犯已丧失思考能力，机械地动着手指，抓住老狱警的裤腰带往下拉。牛撒尿一样漫长。滚烫的尿液，融化一大片白雪，变成小型山洪暴发，汹涌在绿布胶底的解放鞋四周。</p>
+<p>接着走。单薄的棉毛衫，棉袄裹着那孩子，老头不仅冻得哆嗦，鼻涕也已干涸，似乎冬天被最后那根火柴燃烧掉了。左后肩膀，被狼咬伤的两个洞眼，撕裂般疼了整个后半夜，又像突然打了止痛针，舒舒服服地麻醉了。</p>
+<p>天，快亮了。向东二百五十公里的上海，应早亮十来分钟。一九七七年的第一轮太阳，刚好穿过黄浦江。海鸥修长的白色翅膀，驾着咸潮的风，飞过铁网般的外白渡桥，落到四川路桥的邮政总局。从不结冰的苏州河，在晨曦中波光粼粼。一长串早起的拖船，挂桨发动机的轰鸣，像桥下菜市场的喧闹，打破五百五十万人的好梦。</p>
+<p>老狱警穿过毛竹林，磨掉大半的胶鞋底，已踩着白茅岭下的荒野。白雪皑皑间，坟冢星星点点，像一座座孤岛。两山之间的平地，头一回感觉无边无际。原本的稻田和茶园，被层层叠叠覆盖，宛如铺上一层厚厚的白棉被，管他睡在被窝里的人是谁。</p>
+<p>一眨眼，大片飞雪飘过，像密密麻麻的纸钱，撒满回家的路。背上的逃犯再无声息。右手臂弯里的孩子，红扑扑的小脸蛋，保护得很好，一片雪都落不着。左手倒拖着的母狼，浸没在雪中越发沉重。一夜间，老头的嘴唇边和下巴，又冒出不计其数的胡茬，刀子般坚硬，宛如不死的野草，挂满白白的雪子和冰。</p>
+<p>最后一里地，前方亮起一群绿色的眼睛。幽绿的，略微暗淡，更像早上未灭的路灯，雪雾下忽闪忽现。锐角三角形的耳朵，龇牙咧嘴，凶相毕露，粗壮的脖子与胸膛，灰色皮毛上沾着血迹。大扫帚般的尾巴，拖在雪地上，各自扫起一片白色尘埃。</p>
+<p>狼群。</p>
+<p>天光朦胧，白与灰，令人眼晃。并非一宿未眠后的幻觉，也不是大雪里的海市蜃楼。一目了然，至少二十头灰狼，缓缓靠近，有的猫腰，有的昂头，有的磨爪子。大部分公狼全是成年的。看起来吃得很饱，肚子鼓胀。有的狼嘴里，叼着一只老母鸡，或半条牛腿，或动物内脏。</p>
+<p>昨晚，山上实在太冷，狼群都无法忍受，除了怀孕的母狼，全部冲下了白茅岭。正当老狱警独自上山搜捕逃犯，整个最漫长的那一夜，狼群在山下洗劫了农场，大肆屠杀享用棚里的牲口。或许，还有小孩和女人。</p>
+<p>狼群包围了他。背上有个重伤的男人，右手怀抱婴儿，左手拖着母狼的尸体。无路可逃。二十多头凶恶的狼，眨眼之间，就能把他们撕成碎片，连粒渣渣都不会剩下!他的膝盖笔直，瞪大了双眼，盯着为首那头公狼。</p>
+<p>这头狼体形最为硕大，简直是死去的母狼的两倍——狼王。</p>
+<p>每群狼都有一个头领，控制和领导着整个族群。它就是那七只小狼崽的父亲。狼行成双。在食肉界，狼几乎是唯一的例外——狼夫妻长久相伴，双宿双栖，共同抚育儿女。怀孕的母狼难以长途捕猎，必须留守狼穴，依靠公狼外出打猎，将猎物带回窝供它食用。狼王嘴里叼着一只活羊羔，咩咩地叫着狼肚子里的妈妈。本该以羊羔作为早餐</p>
+<p>的母狼，已变成僵硬的尸体，被倒拽着尾巴拖过雪地。</p>
+<p>可以想象的狂怒，狼王必须为妻儿们复仇。它会率先咬断老头的喉咙，剖开他的下腹部，用狼爪拉出大肠。他想，自己的肠子会有多长呢？是从白茅岭监狱大门口，一直拖到深山中的狼穴，供那七只小狼崽享用吗？</p>
+<p>半梦半醒间的逃犯，在他肩头说：“放下我吧，那些狼，会先盯着我吃，说不定为争夺我的肉，互相打架，你还有机会逃生……”</p>
+<p>腰间还有把54式手枪，老狱警放下母狼的尸体，将婴儿换到左手，右手从容地掏出手枪。居然没有一头狼敢袭击他，哪怕是从背后，包括狼王。</p>
+<p>子弹已上膛，打开保险，射出第一发。</p>
+<p>一头公狼惨叫倒地。54式强大的后坐力，晃了一下老头的右手，但没妨碍射出第二发，有头母狼的脑袋被打爆了。第三发，打断一头老狼的腿。第四发，擦着狼王的耳朵飞过。第五发和第六发，一发击中雪地，一发意外打伤另一头狼。第七发，彻底打飞，击中路过的一只乌鸦，黑羽鲜血坠落。</p>
+<p>十五秒，他打光了所有子弹。杀死了两头狼，另外两头挂彩。但还有一大群灰色的家伙，毫毛未损，包括狼王。</p>
+<p>老头把嘴张到最大，咬住54式手枪，牙齿间充满火药味，烫伤了口腔黏膜。他背上逃犯，搂紧臂弯里的孩子，又拖起狼王之妻的遗体，低头，弓腰，拗了脊椎，一瘸一拐，步履蹒跚，往监狱的方向走去。</p>
+<p>二十多头狼，四面包围，八面埋伏，最后注视着他离开。狼群猛烈呼吸，一对对湿润的鼻孔，向雪空喷着热气，嗅着并记住他的气味。他继续走，它们一动不动，连对峙都算不上。</p>
+<p>终于，狼群发出恐惧的嚎叫。真正凄惨的鬼哭狼嚎，仿佛看到一个魔鬼，天生下来屠狼的金刚。</p>
+<p>一九七七年，元旦，清晨六点十三分，龙年还没过去。</p>
+<p>狼，雪中的狼，围猎返巢的狼群。在背着逃犯抱着婴儿拖着母狼的老头面前，有七头狼趴在地上，八头干脆坐下，还有九头摇尾乞怜，就像看家护院的狗。还有两具狼的尸体，两个哀号的重伤员。</p>
+<p>就连狼王，也放下嘴里的活羊羔，微微低垂头颅，一条前腿弯曲跪地，标准西洋礼仪。</p>
+<p>地球上所有的狗，都来自同一对祖先—一东亚的灰狼，大约一万五千年前，它们走出非洲，经历漫长旅程，抵达这片大陆。但如果，没有比狼更勇敢的男人，也不可能有狗这个物种。世界上第一个将狼驯化为狗的人，据说是第一个定居在东亚荒野上的中国人，也长着老狱警的这张脸，同样的体格和心脏，还有眼神。</p>
+<p>此刻，白茅岭的狼，像一群热烈欢送国际友人的少先队员，戴着红领巾，捧着鲜花，唱起歌，跳起舞，排列成整齐的左右两队，让出一条金光大道。</p>
+<p>他从二十多头狼中间穿过。热烘烘的狼味，几头年轻的狼被吓得失禁的尿骚味。背后的逃犯闭着眼睛，臂弯里的男婴还在熟睡，被他倒拖过雪地的母狼一动不动，不远处的狼王眼泪汪汪，与妻惺惺永别。</p>
+<p>一粒雪子，落人老头眼底。朔风飒飒，呼啸不止。</p>
+<p>狼群，远远留在身后的雪野，集体呜咽号哭。在它们后半生的记忆里，烙印下的将不是这三个活人与一具狼尸，而是整个巨无霸的双头怪物，有着四条腿和四只胳膊，右侧腋下藏着个小脑袋，肩膀上生出一根铁棍，左侧身后拖着狼形的巨尾。那是它们的老祖先才见到过的，在与猛犸象和剑齿虎共存的同一个时代，灭亡在人类与狼群互相猎杀</p>
+<p>的时代。难道是在地下冰封了十万年，终于在大雪的召唤下出土，满血复活？这种令狼战栗的“史前怪兽”，从漠北草原到黄土高坡再到江南丘陵，通过一代又一代狼王的描述，种植在每一头狼的大脑皮层深处。</p>
+<p>清晨，七点。</p>
+<p>老狱警带着狼、逃犯、婴儿，走到白茅岭监狱的门口。岗亭站着两个新兵，都没认出来，惊慌失措之中，不晓得是哪一个，拉开自动步枪保险，往天上打了一梭子弹。</p>
+<p>五分钟后，凡是活着的人都出动了……下夜班和上白班的干警，早起干活的农场职工，营房里的士兵们，就连上早操的几百号劳改犯，也都涌到监狱大门口往外看。他们的眼睛都布满血丝，因为彻夜难眠，不断被山上的枪声惊醒，还有此起彼伏的狼嚎。没人敢出门，连窗户都不敢开一道缝。昨晚九点起，狼群洗劫了农场，四下都是牛羊的哀</p>
+<p>嚎与惨叫。包括连长在内的所有人，毫无疑问地确信——老狱警与年轻逃犯，都已消化在狼的肠胃中，天亮又变成一坨坨狼粪。等到开春，这两个倒霉的男人，会是庄稼地里上等的肥料，供应玉米或稻谷生长，回归白茅岭的居民们腹中。也算是他俩死得其所，对得起生养他们的人民群众。到时候，不会再有人认得这两张脸。想想就有些可惜，也有些悲壮。</p>
+<p>如今，这两个男人还活着，加上臂弯里的小男人。</p>
+<p>白发覆头的老狱警，来到白茅岭二十年，经他手送葬的囚犯与警察，亦不少于百人，但他从未像此刻般坚硬如铁。逃犯，似已粘在他身上。尤其脸颊与耳朵部位，冰雪把两个人的皮肤冻在一起，像是打一个娘胎里出来的连体儿。好些人上来帮忙，费劲地把他们分开。</p>
+<p>老头依然站立着。</p>
+<p>广大人民群众，还有被剥夺了人民群众权利的囚犯们，把老头和母狼的尸体圈在当中，一场喧嚣而热闹的围观。这只庞大的野兽，似乎随时都有可能复活，一跃而起，依次咬断大伙儿的喉咙。老头松开左手，母狼的尾巴垂落。</p>
+<p>他已完全证明自己。手心里全是狼毛，还有腻腻的汗和掌心开裂的血。</p>
+<p>五个月大的男孩，仍旧在他的臂弯里熟睡着，鼻子里呼出狼奶的气息。</p>
+<p>“建军！”</p>
+<p>女人尖厉的声音，喊出婴儿的名字。他们夫妻本以为永远失去了孩子，正在每晚努力，想再生个娃娃。她和她男人重重撞到老狱警身上，却像顶到一堵墙。一个多月不见，男孩竟结实壮大了一圈，充满狼穴的气味。但妈妈毕竟认得儿子。</p>
+<p>老头并不是不想动，而是半边身体麻木了，仿佛被巨蛇吞噬着胳膊。当孩子从他手里被抱走，从热乎乎变得冰凉的几秒钟，好像躯干的一部分断裂。几个年轻的干警，帮老头卸下56式自动步枪和三棱刺刀。</p>
+<p>逃犯快死了。最后一滴血，像经过输液针头似的，汩汩输入雪地。红的血，白的雪，混在一起，变成另一种暖眯的颜色，难以准确地在光谱中描述，就像孕妇分娩后的床单。两片破碎的镜片底下，逃犯瞪大双眼，看着他。</p>
+<p>老头弯腰在他耳边说了什么，周围人都没听清，除了将死之人。</p>
+<p>他眨了眨眼睛，断气了。</p>
+<p>冬至那晚，死在监狱床上的大块头，原本是个抢劫犯。因为欺负其他犯人，加过两年刑期。所谓欺负，就是强奸。当年在提篮桥，有人告诉过名侦探，男人被强奸是怎样的感觉——仿佛变成一块肉，被切碎了，油炸了，红焖了，生煎了……19077号犯人，紧挨大块头的铺位，刚进去不敢反抗，以为这是白茅岭的老规矩。第一年苦熬过去，以为</p>
+<p>到头了，大块头竟变本加厉，其他人却一个个装睡。他才明白，大块头是看中了自己——上海来的妇产科医生，细皮嫩肉，容易推倒，难以反抗，强奸起来特别舒服。</p>
+<p>狼灾肆虐的冬天，白天出去干活时，他在茶园发现一大撮灰色狼毛。地上有堆带血的骨头，像獐子之类的小动物。他藏起狼毛，压在床铺底下。还有，作为前妇产科医生，他有在监狱医务室工作的便利，私藏了一些药物，比如乙醚——无色透明液体，会让人暂时昏迷，只要剂量适当，又不致人死命。狼毛与乙醚都准备好，耐心等候时机。那</p>
+<p>一夜，狼嚎特别清晰，就在监狱院墙下。后半夜，监房里鼾声此起彼伏。他把乙醚洒在手帕上，依次蒙住大家口鼻。没一会儿，全都睡得死沉死沉，怎么折腾都不可能醒来——包括边上的大块头。</p>
+<p>19077号囚犯，把自己想象成复仇的母狼，用牙齿一点点咬破大块头脖子上的皮肤、血管和气管。其他人都昏迷了，听不到大块头临死前的蹬腿声，就像每次大家都在装睡。大块头死了。喉管暴露在空气中，鲜血溅满床铺，还有19077号的口腔。他吸了一点血，就一点点。人血的滋味，苦咸苦咸的，不好喝。</p>
+<p>伪装现场。他撕裂死尸的伤口，手指插得更深，模拟锋利的狼牙，几乎摸到脊椎骨。他用事先准备好的细树枝，在尸体上划出一道道伤疤，像狼爪挠过的痕迹。他把狼毛弄在床铺上、监狱的地上，特别是铁栏杆上。狼用缩骨术进出时，必定留下这种痕迹。他为自己清理一番，咽下嘴里的血，看起来跟别人没两样。就算身上有血迹，睡在死者身边也属正常。到了早上，所有人按时醒来，受乙醚麻醉的影响头晕恶心，就算嗅到某种特别的气味，但当看到大块头的尸体，再加上满地狼毛，肯定会产生强烈的心理作用——那就是狼的气味。监狱的调查草草了事，哪有什么法医来做尸体解剖。大伙随便看下尸体，伤口像这么回事，自然而然断定，凶手必是那头母狼。</p>
+<p>直到昨晚，老狱警也被他骗过了，相信那套狼闯入监狱吃人的鬼话。若是早点怀疑，绝不可能在放风时睡着，还让杀人嫌疑犯夺枪逃跑。不晓得这算是走运还是不走运，这些秘密，已被19077号带给死神。</p>
+<p>他的眼睛睁着，明亮，无瑕，不似死人的浑浊，更像六角形雪花，坠落在扩散的瞳孔底下，融化成一汪清淡的泪水…</p>
+<p>逃犯死在老狱警的怀中，享年二十八岁。活到六十岁的前名侦探，将他放在白茫茫的雪地上，反正不会弄脏了死者。再过四个月，等到清明，埋葬年轻逃犯的荒野，就会开满金灿灿的油菜花。</p>
+<p>左边是母狼的尸体，右边是死去的逃犯，他在中间，活着。</p>
+<p>有人给老狱警点上一支烟，上海卷烟厂的牡丹牌。第一根火柴，晃了半天没点上，被风雪吹灭了。有个高大的干警，用身体和手掌阻挡着风，又擦了好几根火柴，差点烧着眉毛才点上。老头略微驼背，但纹丝不动。他将烟吞入肺中，又经鼻孔喷出，蓝色氤氲在雪中蒸发，仿佛清明、冬至上坟的烟。</p>
+<p>无量河边有人骑自行车而来。车轮碾压过皑皑白雪，骑车人穿着墨绿色制服。囚犯和职工们，给自行车让出一条通道，抵达人群的圆心。白茅岭每个人都认识他——邮电所投递员，每隔三天，他会为囚犯和干警们捎来远方的家书。邮递员从包里掏出个牛皮纸信封，是挂号信，上海寄来的公函。在场所有干警中，白头发的老狱警级别最高，他代表领导签收了这封信。</p>
+<p>老狱警的手还在抖，一不小心，信封掉到死去的逃犯脸上。从死者睁着的眼睛上，拾起这封突如其来的信，他决定打开看看。再过一个月，就要退休回上海去了，他也不怕犯什么错误，难道还能不准回去吗？当着几个年轻干警的面，拆开牛皮纸信封，果然盖着上级革委会的公章。</p>
+<p>公函里头说，党中央拨乱反正，妇产科医生被宣布平反，“恢复名誉，立即无罪释放”。有意无意的，老狱警大声念出每个字。方圆数十米内的所有人，都听得清清楚楚。</p>
+<p>头顶青灰色的天空，一朵下着雪的云。行将告老还乡的狱警，看着躺在雪地里的19077号犯人，啧啧地说：“哎，回上海的长途车上，又少了一个搭伴。”看热闹的人群渐渐散去。名叫建军的男婴，早被父母哭喊着抱回家去。那头母狼，眨眼之间，已被庖丁解牛，当场只剩一堆狼毛和碎骨头。人民群众有的是为亲人复仇，有的则是口水滴滴</p>
+<p>答答，有的是看中了这张上好的狼皮。干警重新收拢囚犯们，清点人数押回监舍。农场职工也打道回府，收拾昨晚被狼群肆虐的牲口棚，看看还能否抢回一只鸭子或半只羊。</p>
+<p>一九七七年一月一日，上午八点。雪停。太阳升起来了。</p>
+<p>积雪反射着阳光，刺入老狱警眼里，令他想起昨晚，无人可说的那句话。</p>
+<p>一个多月后，大年初三，老头独自离开白茅岭。回上海的长途车上，乘客稀稀落落，多是探监返程的犯人亲属。车窗推开一道缝隙，他吐出大前门燃烧的烟雾。满满一整车人，只有退休的老狱警拥有这种特权。烟头不停晃动，弄得身上全是烟灰。不是车子颠簸，而是他的手在抖。往昔从未有过的毛病。从元旦那天至今，每一时，每一秒，右手都在抖，估计到死都治不好了。</p>
+<p>七个月后，中元节的那天，退休后的老狱警死了。在上海。这个老烟枪啊，光棍一条，天天跟一群老太太打麻将。他熬了个通宵，倒在麻将台上不省人事，还叼着根牡丹烟。送到医院说是突发脑溢血。在火葬场，没有亲属来接收骨灰，便被老同事们送回了白茅岭。</p>
+<p>二○一五年一月三十一日，周六，我坐上从上海开往白茅岭的长途汽车。经过沪青平高速，大约四个小时，短短二百多公里，却途径苏浙皖三省。从吴江到湖州，穿越浙皖交界处低矮的分水岭，进入广德县城。转入颠簸的公路，两边是农舍与茶园。日暮时分，长途车开过一座大桥，停在几间破落的平房前。对面大门上有行字：上海市白茅岭学校。</p>
+<p>小镇东面是连绵群山。远远望见一道断崖，像头狮子趴着，传说中的狮子口。今年暧冬，山大半还是绿的。只在白茅岭正南，最高的那片山顶上，残留着几天前的积雪。校园里有座水塔，似是本地最高建筑。小镇上总共只有一条大路，路边有派出所、供应站、招待所，还有麻辣烫、兰州拉面、盗版碟店、美容美发、上海华联超市。街头所见无非几种人：武警官兵、公安干警、说上海话的老头儿们、说安徽话的当地人。警察都是上海来的，每几年轮换。冬天早早擦黑。街边响起惊天动地的音乐声——凤凰传奇的《最炫民族风》，大妈们跳着广场舞。</p>
+<p>夜宿白茅岭招待所。</p>
+<p>次日，上午，我沿监狱外墙走了一圈。天空有白色颗粒飘落。我伸出手，是雪子。走在山脚下的高处，荒芜泥泞的小道上．监狱中不断响起富有节奏的操练声。我能看到围墙里头，有组囚犯在做队列训练。岗楼上的武警带着枪，警戒地看着不速之客。</p>
+<p>转角岗亭下，狼犬向我狂吠。有个迷你的亭子山水库，正对狮子口，不知如何上去。两条农家的黑狗蹿出来，不让我靠近半步。</p>
+<p>这座山，曾有过许多狼。而今，别说是白茅岭，就是整个皖南山区，恐怕连一头狼都不见了。这一物种，早已在上海方圆五百里范围内绝迹。</p>
+<p>一头狼死了，一头狼又来了，而狼脚下的大地，会比这个物种更漫长地存在。</p>
+<p>一九八八年，白茅岭最后一头狼，在偷袭监狱的冬夜，被四条德国黑背狼狗杀死。那是一头成年而健壮的公狼，体形硕大，左耳朵上有块雪花状的白斑。至今，农场陈列馆里还能看到这张具有纪念意义的狼皮，人们管它叫“白耳”。</p>
+<p>我买了中午的长途车票回上海。发车前，我在仅有一间门面的“车站”隔壁吃了碗面。店主是个高大魁梧的男人，看起来比我大几岁，宽阔精壮的骨骼，几乎要爆开冬天的厚外套。当他端来一碗牛肉面，与我目光交接的瞬间，感觉很像某种凶猛的动物。小店里兼卖香烟和酒，有个老头进来，用老派的上海话对店主说：“基军，帮吾闹包牡丹。"</p>
+<p>他叫建军。</p>
+<p>离开白茅岭的长途车上，我遥望正前方山头的积雪，车窗外阴郁的天空，稀稀落落的雪粒子，穿过并不如想象中辽阔的无量河。</p>
+<p>明天早上，太阳照常升起，但不是每个人都能看到。</p>
+<p>我想。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html><html><head><title>26</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="25.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="27.html">下一章</a></p><hr><h1><center>第26夜 蜡像馆的一夜</center></h1>
+<p>蜡像是很恐怖的东西，将无生命的物质塑为人形，将灵魂禁锢在死亡的眼中，将无尽赞美与终身荣耀幻化为木乃伊般的存在。</p>
+<p>所以，我不太敢去蜡像馆之类的地方。</p>
+<p>其中给我留下巨大心理阴影的蜡像馆，在南方某个旅游城市。在郊外的公路边，尘土飞扬，据说要造高尔夫球场。孤零零两层小楼，深红色油漆外墙，几乎没一扇窗，楼顶广告牌满是明星照片，衬托出一行大字，模仿某位国家领导人字体——杜莎姑娘蜡像馆。</p>
+<p>门票标价一百，有物价局和旅游局公章。检票处立着一具蜡像，是个中国老头，又高又瘦，像晾衣架。短袖白衬衫，极不合身的宽大，像罩在骷髅外边，随时会从衬衫纽扣里，迸出一两根白骨森森的肋排。头发全掉光了，眉毛稀稀拉拉，胡子倒是干净，肤色小深小浅，光溜溜的，蜡黄蜡黄，让人想起大太监李莲英。</p>
+<p>突然，蜡像动手打了自己一耳光。</p>
+<p>竟有只苍蝇叮上鼻子，把它当作僵尸产卵生蛆。原来他不是蜡像，只是这肤色，这形态，还有一动不动的僵硬……唯独眼睛很亮，像深井里的清水，不像其他老人的无精打采与浑浊。盯着你剪门票时，让人不由自主想避开，好像多看一眼就会被吸尽精气。</p>
+<p>进入蜡像馆门厅，竖着杜莎夫人的介绍。这个法国女人生于十八世纪，第一尊蜡像作品就是伏尔泰，以后还有卢梭和富兰克林。法国大革命，断头台下尸山血海，她从中寻找人头，制作头部模具和蜡像。路易十六和玛丽皇后被斩首后，杜莎夫人做过他们的死亡面具。战争期间，杜莎夫人移居伦敦。一八三五年，她在贝克街建立蜡像馆，原来福尔摩斯是隔壁邻居。</p>
+<p>至于杜莎姑娘——杜莎夫人排行老八的闺女，女承母业，颇有成就。杜莎姑娘蜡像馆，作为杜莎夫人蜡像馆的子品牌，专注于再现青少年喜爱的大众明星，拥有上千万忠实观众，本馆就是杜莎姑娘蜡像馆在全球的第十九家分馆。</p>
+<p>首先，看到古天乐版的杨过与李若彤版的小龙女，但这分明是《乡村爱情》的刘能，以及困于绝情谷底十几年的裘千尺，还有一只酷似老母鸡的神雕。虽然如此，旅行团的小伙伴们，还是纷纷愉快地拿起自拍杆。</p>
+<p>同一展厅，张国荣版的程蝶衣与张丰毅版的段小楼，周星驰版的至尊宝与朱茵版的紫霞仙子，《流星花园》的F4，《泰囧》的徐峥、王宝强与黄渤，《甄嬛传》的孙俪，《倩女幽魂》的王祖贤。最有范儿的，自然是未剪胸版的武媚娘。无论男女都争相与她合影，或者说与胸合影。最年轻的蜡像，是刚搬进来的小鲜肉，赤裸上阵，只剩一块遮羞布，他叫宁泽涛。</p>
+<p>天杀的蜡像馆还有二楼，迎画开来一艘泰坦尼克号，莱昂纳多·迪卡普里奥扮演的Jack与凯特·温斯莱特扮演的Rose，相拥在《加勒比海盗》的背景前，好像这部电影的男一号是约翰尼·德普。这层全是老外，玛丽莲·梦露，裙摆被一一根大头钉固定在了大腿上，为了避免游客骚扰裙下。</p>
+<p>一大拨欧美明星后，是一农带水的日韩邻邦。高仓健扮演的杜丘与中野良子扮演的真由美，金秀贤扮演的都敏俊与全智贤扮演的千颂伊，居然还有泰国的马里奥。最后是盛大阵容的AKB48，日本妹子摆成各种姿势。总而言之，这些蜡像都丑哭了。除了有几分神似的，大多属于整容前，卸妆后，连续四十八小时熬夜的水准，个别已被泼了硫酸。简直毁童年。</p>
+<p>一楼出口的拐角，一尊孤零零的蜡像——她穿着云南彝族服饰，青葱如玉的兰花指，放在右耳的翡翠耳环旁，好像刚给自己戴上，可惜没看到阿黑哥。</p>
+<p>阿诗玛。</p>
+<p>她是整个蜡像馆里最漂亮的一具蜡像，与电影里的形象分毫不差，真实到让人以为是工作人员假扮的。有人憋不住摸了一下，指尖触及美人脸庞，绝对死人般冰冷。</p>
+<p>“别碰她！”</p>
+<p>一个低沉的吼声，晾衣架似的管理员老头，仿佛从大门口瞬间飘移而来。“可以拍照片，但不能碰。”——老头的气管里好像有什么东西，听起来古怪。</p>
+<p>这个旅行团都是三十岁以下的，没有五六十岁的大妈，也没人认识阿诗玛，更无人上来合影。</p>
+<p>蜡像馆还有个题词壁，整整一面墙，供游客涂鸦题字，为了避免在蜡像脸上和胸上刻字，比如“某某到此一游”“情比金坚”等等。题词壁五花八门，有人抄了首宋江在浔阳楼上的诗：“心在山东身在吴，飘蓬江海谩嗟吁。他时若遂凌云志，敢笑黄巢不丈夫！”</p>
+<p>能宽容这样的反诗，老头管理员也不容易了，假如他明白这意思的话。</p>
+<p>最后，游客们向导游投诉——什么垃圾蜡像馆，简直是殡仪馆!质问导游拿了多少回扣，要求退还一百元门票钱。导游当然不肯，一路扯皮回了酒店。人们回头看“杜莎姑娘蜡像馆”——荒无人烟的公路边，只剩管理员老头挥手告别，莫名一股恐怖片气氛。</p>
+<p>当晚，所有游客躺在酒店床上，梦到了蜡像馆，还梦到了紫霞仙子。有人从她手里抽出一把宝剑，看起来惨遭毁容的她，淡然回答：“我猜中了前头，可是我猜不着这结局……”</p>
+<p>此时此刻，杜莎姑娘蜡像馆里，一楼的第二展厅，两盏昏暗的灯。紫霞仙子手握紫青宝剑，凝视穿着书生服饰、仿佛唱戏归来的至尊宝。</p>
+<p>一只手，布满皱纹，骨节粗大，树干般的右手，将宝剑抽出剑鞘。另一只手用干抹布擦净宝剑。这是一把开过刃的剑，十步杀一人的利器。宝剑塞回剑鞘，手又拿起一把鸡毛掸子，拂去紫霞仙子身上灰尘。她那干枯的头发，也被某种药水喷了一遍，重现光泽——这蓬假发本来就是活人头发做的。</p>
+<p>深夜，这双手，属于蜡像馆的管理员老头。</p>
+<p>六点钟闭馆，通常满地狼藉，到处是垃圾、痰迹、小孩的大小便。每天要接待两到三个旅行团，有一百多号人的老年团，也有七八个人的老外团。周末有散客，多是城里的中学生。男生把蜡像馆当作泡妞圣地，借用丑逼蜡像吓唬女孩，颇易得手，搂搂抱抱亲嘴，带去城郊开钟点房。</p>
+<p>蜡像很容易结蜘蛛网，至于被游客破坏的，他会简单地修修补补。范冰冰扮演的武媚娘，那个著名的胸啊，早被人摸黑了。每隔一个礼拜，就要给武媚娘宽衣解带，把抹胸干干净净地洗一遍。可怜的是，武媚良的胸每天都会变小，但只要涂上一层装修用的胶，立马恢复成骄傲向D罩杯。</p>
+<p>接近子夜，老头才忙完。</p>
+<p>他不回家，每月工资一千五百块，包吃包住，就睡在蜡像馆底楼的值班室。房间不到八平方米，堆满了蜡像修补材料，有张臭烘烘的小床铺，这里冬天必须要生炉子，夏天则是蚊子的天堂。老头的枕头里散发出一股蜡像味，与人的气味有些像。他的气管不太好，有哮喘的老毛病，随身带着哮喘喷剂。后半夜，他常发出震耳欲聋的鼾声。</p>
+<p>隔着两堵墙，蜡像馆亮着微弱的灯，用来防贼和吓唬小鬼。几十个蜡像怔怔地站着，好像集体表演哑剧，又像被武林高手点了穴。</p>
+<p>骤然之间，周星驰版的至尊宝，从朱茵版的紫霞仙子手里，再一次抽出紫青宝剑。虽是蜡像，嘴唇却动了，发出人类的声音——“我靠，这老头把你的剑擦得真干净！”</p>
+<p>其实，这也不是周星驰的声音，而是他的御用国语配音石班瑜。</p>
+<p>至尊宝往前迈了两步，手中的紫青宝剑重重掷向黑暗的角落，发出“吱”的一声惨叫。他兴高采烈地跑过去，剑锋上穿着一只灰老鼠，挣扎几秒便气绝身亡。</p>
+<p>这时他背后的紫霞幽幽说道：“哎呀，杀千刀的至尊宝。你又残害小动物了，把我的宝剑弄得血污遍体，让我怎么佩带在身上啊。”</p>
+<p>至尊宝将死老鼠摔在地上，用衣角擦了擦宝剑，送回紫霞的剑鞘，松松垮垮地答道：“没事啊，老头还会给你擦一遍的。你忘了上个月的后半夜，老鼠蹿到你的裙子里，你吓得乱叫，把整个蜡像馆的房客们都惊醒了。”</p>
+<p>“不错啊，我最喜欢灭鼠害的至尊宝了！”</p>
+<p>他俩的旁边，是穿着旗袍的张曼玉，在王家卫《花样年华》中的扮相。一箭之遥，梁朝伟正对着吴哥窟的树洞哭诉，忽而转头，无语凝噎。他再看隔壁桌，却响起了热闹的麻将牌声。</p>
+<p>《英雄本色》里周润发扮演的小马哥与狄龙扮演的老大，正在一张桌子上摆开阵势。梁朝伟转忧为喜，拉着穿旗袍的张曼玉，坐到麻将跟前凑成了一桌。李连杰扮演的黄飞鸿，刘青云扮演的方展博，津津有味地跟在后面飞苍蝇。打了两圈之后，狄龙叹息道：“阿Sir，我没做大哥很久了！”</p>
+<p>狄龙和了。跟后面的黄飞鸿赚了一大票，方展博则摇头，“我还是回去做股票吧，顺便筹备蜡像馆证券交易所。”</p>
+<p>小马哥淡定地咬着牙签说：“这里到底不是自己的地方。有人千方百计想要离开自己的家，有的人想回去，有的人连落脚的地方都没有。还是自己的地方好。”</p>
+<p>“此言差矣！这个蜡像馆啊，就是我等落草为寇的水泊梁山啊。”央视版《水浒传》里的李雪健，穿着宋朝服装，跑到题词壁前，从宽大的袖管里掏出笔墨砚台。那首浔阳楼头“敢笑黄巢不丈夫”的反诗，自然是宋公明的手笔。他在墙上挥毫泼墨，竟是宋徽宗的瘦金体——“我家住在蜡像馆，人人都要爱护它！”</p>
+<p>在朋友圈一一片点赞声中，又一只老鼠从女儿国国王裙摆下穿过。蜡像馆亦非世外桃源，即便安静的漫长一夜，也常有鼠辈猖獗。蜡像皮肤娇嫩，有的蜡质还是老鼠喜欢的美餐。有一回，成龙的大鼻子，就被一只硕大的母老鼠咬掉了。所以啊，大家都很惧怕老鼠，灭除鼠害就是蜡像们的第一要务。</p>
+<p>唯独一楼最后的拐角，杨丽坤版阿诗玛蜡像的周围，闭馆后就会布满老鼠药和捕鼠夹，每晚都有一两只可怜的小东西，在她面前命丧黄泉。老头最爱阿诗玛。他在她的面前最久，围绕这尊蜡像兜兜转转。</p>
+<p>有一夜，哮喘的老毛病发作，老头难受得挖心挖肺，倒在地上摸出哮喘喷剂，这才‘发现已经用完了。老头快昏迷的时候，阿诗玛大叫起来，招呼蜡像们来帮忙。</p>
+<p>整个蜡像馆动员起来，楼上楼下聚集了一百来个。二楼《白色巨塔》的唐泽寿明，正好穿着医生行头，给老头做了一番检查，结论是必须用喷剂才能救他的命。</p>
+<p>至尊宝冲到蜡像馆的值班室，拨打120急救电话。他发出石班瑜的声音，还带着电影里的腔调，接电话的小妞回答：“你耍我啊，神经病！”以为有人模仿周星驰说话搞恶作剧。</p>
+<p>大伙儿想要背老头去医院，但蜡像的密度和重量都低于人类，实在没办法把他搬出去。何况，凡是进人蜡像馆的它们，都对人间有莫名恐惧。白天面对游客，已让它们备受折磨，谁想要跑到外面的世界？那就好像宇航员脱掉太空服，被直接扔在银河系。</p>
+<p>忽然，《精武门》中的李小龙版陈真自告奋勇，“我们不能眼睁睁看着爷爷死啊！”</p>
+<p>李小龙赤裸着上身，在全体蜡像的祝福声中，冲出黑夜中的蜡像馆。自打从蜡像工厂诞生，他头一回独自走上公路。路灯稀稀拉拉，不时有卡车呼啸而过，路边野狗对他狂吠，夜行动物一眼能看出他不是人类，而是个行走着的人形怪物。蜡像比不得活人的血肉之躯，不能磕着碰着，稍不留神就会缺胳膊断腿，甚至撞得粉身碎骨，截拳道踢两下就自己散架了。他心急如焚地走了半个钟头，赶到城里的二十四小时药店。值夜班的药店大妈，没认出他是李小龙，更没发觉他的肤色与表情异于常人，整张脸和脖子以及关节都是僵硬的。唯独他打着赤膊，让大妈以为撞上了流氓。</p>
+<p>还好，大妈见过的裸男多了，从容地取出哮喘喷剂，李小龙才悲催地发现——没带钱！</p>
+<p>豁出去了，他抓着哮喘喷剂狂奔而逃。药店大妈大喊抓贼，提了一把扫帚追赶。这年头，半夜里喊抓贼的，没人敢出来帮忙。但蜡像跑不快，每一步都像慢镜头，大妈在后面挥了一扫帚，正好打中李小龙的腰眼。</p>
+<p>扫帚如杨志杀牛二的宝刀，竟将蜡像整个拦腰截断，上半身飞进绿化带，下半身还在人行道。</p>
+<p>药店大妈傻了，以为杀了人，又觉得不对劲，会不会撞到邪鬼？还是湘西赶尸？《鬼吹灯》的胡八一？《盗墓笔记》的小哥张起灵？</p>
+<p>大妈哭喊着逃回药店，晚年注定将在极度恐惧与各种烧香拜佛中</p>
+<p>度过。</p>
+<p>蜡像是宁为玉碎，不为瓦全。李小龙的下半身完蛋了，上半身还能动弹，他把哮喘喷剂衔在嘴里，依靠两只手往前爬行。</p>
+<p>只要天没亮，他还有机会回到蜡像馆。一路爬出城区，回到荒凉的公路上。有个残疾的乞丐，也是只剩了上半身的，躲在桥洞底下睡觉，蓦地被爬行的蜡像惊醒，同情地给了李小龙一杯水，浇灌在他的嘴里。</p>
+<p>妈的，还是开水！</p>
+<p>蜡像的嘴巴要被融化了，李小龙干脆把哮喘喷剂吞进肚子。继续在公路上艰难爬行，两只野猫过来，在背后狂抓一番，叼走了他的两只耳朵。坚硬的柏油路面上，蜡像的十根手指全部断光，最后只剩下光秃秃的手腕，在凌晨五点回到了蜡像馆。</p>
+<p>老头还活着，命悬一线。</p>
+<p>《精武门》的李小龙版陈真却已面目全非，无法辨认，他只剩下不到二十斤重。火伙儿从他的身体里，取出了救命的哮喘喷剂，往老头的口腔里喷。</p>
+<p>天亮了。</p>
+<p>老头苏醒，所有蜡像恢复原位，唯独不见李小龙，两侧的狄龙与梁小龙，面露悲伤之色。</p>
+<p>他发现有堆破碎的蜡像材料，早已不成人形，像是被汉尼拔分尸的残骸。哎呀，看到全新的哮喘喷剂，老头终于明白了，不禁大哭一场，在后院埋葬了破碎的蜡像。</p>
+<p>蜡像馆的悲伤事件却由此接踵而来。</p>
+<p>有辆小货车开到蜡像馆门口，放下来几个壮汉，将紫霞仙子蜡像扛在肩上带回了城区。蜡像馆老板也在现场，穿着一身伪唐装，看起来很像《百家讲坛》的某名流。城里有个开煤矿的土豪，是老板的好朋友，心血来潮参观蜡像馆，正好撞见紫霞仙子。他是《大话西游》的超级粉丝、朱茵的忠实崇拜者。在紫霞身边驻足流连，哈喇子都掉下来了，便花了十万元买下蜡像。</p>
+<p>蜡像馆老板心中窃喜，这鬼地方开业七年，若非地方政府给他送地皮，早就要关门大吉了。而他的这些个蜡像啊，全是最低价收来的次品，个个丑逼，居然有人不嫌弃，岂不快哉？</p>
+<p>管理员老头哆嗦着嘴唇，看着紫霞仙子被抬上车，好像自家闺女出嫁到窑子窝。老板塞给他一个红包，里面装着两百块啊两百块，作为卖掉蜡像赚钱的奖励。</p>
+<p>深夜，紫霞住进新家，市里最贵的别墅小院。土豪为她在三楼设了个洞房，按照古代的样子布置齐全，亲手将她扛到床上，戴上红盖头，紫青宝剑挂在床头。</p>
+<p>土豪开始还有绅士风度，没有对紫霞动手动脚，而是心满意足地回到二楼睡觉。</p>
+<p>原来，他是想要等到黄道吉日，再行亵玩之美事。</p>
+<p>七天后，“吃唐僧肉”的好日子到了。土豪灌了三瓶五十多度的白酒，来到洞房，扯了卡拉OK的线和麦，怒唱一首《最炫民族风》。他剥去紫霞的衣裙，从上到下抚摸，很有东京电车痴汉的味道。但蜡像比不得充气娃娃。他给紫霞换上一身女仆装，戴了护士帽，穿上空姐的丝袜，齐活儿了。</p>
+<p>土豪玩得起劲，紫霞眼里流下泪水，喃喃自语：“我的意中人是一个大英雄，有一天他会驾着七彩祥云来娶我。”</p>
+<p>说罢，房里出现了第二尊蜡像——不知是谁为至尊宝改换了装扮，这回他变成了《大话西游》里的孙悟空，手里还抄着一根拖把改造的木棍。</p>
+<p>两个钟头前，蜡像馆的小伙伴们，给至尊宝开了饯行宴，为他换上木箱子里的旧戏服。他说每晚梦到紫霞在哭，确信她遭受虐待，必须把她从火坑中救出来。至尊宝变身为孙悟空走出蜡像馆，陈凯歌《荆轲刺秦王》中的张丰毅版荆轲，唱起了“风萧萧兮易水寒，壮士一去兮不复还”。</p>
+<p>子夜，他长途跋涉到城里。至尊宝怎能忘记紫霞的气味？他凭借嗅觉找到这间别墅，闯入三楼的洞房。</p>
+<p>又来了个蜡像，按计划土豪本该当场吓晕。不想这家伙早已喝高，把自己当作了牛魔王，随手抓起陶瓷台灯，重重砸在至尊宝头顶。</p>
+<p>蜡像啊蜡像，如何经得起这一台灯猛砸？</p>
+<p>至尊宝也好，孙悟空也罢，化为几百个蜡块，撒落在紫霞洞房花烛夜。</p>
+<p>土豪看着满满一地板的周星驰，对着床上的紫霞说：“他好像一条狗耶！”</p>
+<p>一秒钟后，紫青宝剑刺人土豪心脏。</p>
+<p>土豪至死都没想明白——这把剑居然是真的？</p>
+<p>第二天，人们发现土豪的尸体，胸口插着紫青宝剑。房间里碎了一地蜡像，还有套丑陋的戏服。紫霞仙子完好无损，穿戴着原本的衣裙，地上散落着女仆装，护士帽和丝袜。</p>
+<p>土豪之死，在公安局仍是个谜。土豪开煤矿出过多次矿难，手里死过上百人，难免有人上门寻仇结案。</p>
+<p>紫霞仙子的蜡像嘛，被认定不吉利，最终给土豪陪葬，跟着纸人纸马纸豪车纸别墅纸大奶纸小三同时烧了…一</p>
+<p>只有蜡像馆的老头，悄悄去给至尊宝收尸，从土豪家的垃圾箱里，扫出几十斤的蜡块，拖着平板车回去埋葬了。</p>
+<p>老头哭了，像死了个闺女，又死了个儿子。</p>
+<p>蜡像们心有戚戚焉。那么多年，老头呵护着每一个蜡像，不管有多丑，全当作自家孩子——唯独阿诗玛例外。</p>
+<p>老头第一次遇见她，还是一九六九年，过完冬至的深夜。二十岁，像现在一样嘴上没胡子，头发却茂盛得像七月杂草。他是“老三届”，知识青年，上山下乡，插队落户。那一晚，他裹着军大衣，挤在贫下中农里头，天上飘着细碎的雪花，看了场露天电影《五朵金花》。罕见的彩色片，副社长金花，字幕里看到杨丽坤的名字。他主动申请编入电影放映队，常年流动在穷乡僻壤，十来部电影翻来覆去放映，总算找到机会，弄到“大毒草”《阿诗玛》的拷贝——女一号还是杨丽坤。</p>
+<p>一九七○年，他开始给杨丽坤写信，寄往云南省歌舞团，次次石沉大海。三年后，他偶然得知，杨丽坤早被下放到地方劳动改造，最终关进了糟神病院，远在湖南郴州。过年他没回家，坐了三天三夜的绿皮火车，赶到郴州精神病院。这家医院闻名全国，《人民日报》上有篇《靠毛泽东思想治好精神病》说的就是此处。精神病院里的杨丽坤，目光呆滞，满头乱发，仿佛三四十岁的老女人。有人告诉他，杨丽坤今年刚结婚，死心吧。他献上路边采来的山茶花，悄然告别。</p>
+<p>“文革”结束，他被分配到电影院，担任电影放映员的工作。而他的女神杨丽坤啊，也从精神病院出来，与老公孩子一起去上海电影制片厂度过余生，此生却再没碰过电影。</p>
+<p>而他一辈子没结婚，打光棍到老，至今还是个老老实实的处男呢。</p>
+<p>电影院的老伙计们开玩笑说，你算是讨了电影里的女明星做老婆了。但是呢，无论山口百惠还是波姬·小丝，抑或林青霞，有哪一个比得上阿诗玛杨丽坤呢？</p>
+<p>当然，他也不会忘记那些片名，什么《人性的证明》《砂之器》《瓦尔特保卫萨拉热窝》《（黑郁金香》《这里的黎明静悄悄》《莫斯科不相信眼泪》……就连童自荣配音的佐罗的台词，他都能背得滚瓜烂熟，因为他真的亲手放映过一百遍啊一百遍。</p>
+<p>告别小清新的八十年代，毫无防备地被扔进九十年代。先是流行录像带，后来是VCD和DVD。电影院经营惨淡，经常只有一个观众，还是来借空调睡午觉的。最后，电影院关门大吉，整个拆掉盖起洗浴中心，老员工们都下岗了。</p>
+<p>洗浴中心的大老板，是他外甥女的婆婆的干儿子的拜把兄弟。电影放映员，就此改行给人搓澡为生。</p>
+<p>二○○○年七月二十一日，杨丽坤在上海去世。五十八岁的短短一生，流星般辉煌过后，大半淹没在沉寂的海底。老头就快要成老头了，专程赶到上海，在龙华殡仪馆，看了她最后一眼。他献了一个大花圈，包了个一千块的白包，这在那年已是很高的标准。</p>
+<p>七年前，洗浴中心老板出国去伦敦参观了杜莎夫人蜡像馆，看得那是津津有味。回国适逢本地开发旅游，便向政府拿了块地皮开发，建起了山寨的杜莎姑娘蜡像馆。</p>
+<p>蜡像馆刚开业那个月，生意火爆得不行，全省人民纷至沓来。到了第二个月，蜡像馆就闹鬼了。管理员都是二三十岁阳气十足的小伙子，却被吓得屁滚尿流。以后啊，蜡像馆出再高的薪水都没人敢去。</p>
+<p>唯独洗浴中心搓澡工老头、前电影放映员，听说蜡像馆里能看到无数电影明星，就自告奋勇应聘去当管理员，只要一千五百块的工资。</p>
+<p>偌大的蜡像馆，只有老头一个人。每逢傍晚，出纳会来收现金。老板则每周来视察一次，多半是陪同领导参观，或者带个小秘书来亲嘴。</p>
+<p>老头搬进来没两天，就发现真的闹鬼。他也想过办法驱鬼，但毫无用处。他发觉那些蜡像半夜里就会活了，也有喜怒哀乐爱恨情仇，各自说话聊天吵架撕逼。他对于蜡像并不恐惧，无论它们有多丑。老头装作不知道，每晚打扫完毕，还能呼呼睡大觉，哪怕蜡像们开万圣节的联欢晚会，在他床边打德州扑克赌钱。</p>
+<p>而他终于相信——任何物质一旦塑成人形，就能拥有与本体相近的灵魂。</p>
+<p>自从成为蜡像馆的管理员，老头心里最大的愿望啊，就是能看到阿诗玛杨丽坤的蜡像。</p>
+<p>他好多次向老板提出这建议。老板回答：“阿诗玛啊？五朵金花啊？现在的年轻人谁晓得？孤零零的蜡像放在那里，没有一个人来合影，你让人家阿诗玛在阴曹地府里不害臊吗？”</p>
+<p>“如果我自己花钱呢？”老头固执地问。</p>
+<p>“就算是那些丑逼蜡像，最最便宜的工厂里做的，每个至少也得两万块钱，你买得起吗？”</p>
+<p>于是，老头决定自已攒钱做个蜡像。</p>
+<p>他悉心学习了蜡像制作，自费几千块买原材料，用三年时间，终于造出一个阿诗玛——毕竟是半路出家的三脚猫，手艺不精，蜡像丑陋到极点，简直就是容嬷嬷。不巧恰逢盛夏，三十八度的桑拿天，作坊里没有空调和风扇，劣质的蜡像很快就熔化了，先掉下来两个眼珠子，接下来是阿诗玛的胸，然后是整个脑袋，“啪”的一下在地上摊成大饼。</p>
+<p>老头抱着被斩首的阿诗玛大哭一场。</p>
+<p>他想到城里的老房子。反正他一直住在蜡像馆，老屋只有二十平方米，借给一对摆夜排档的农村夫妇，每月收三百块租金。他咬咬牙，老房子以两千块一平方米卖了出去，换来四万块钱。有了这笔钱，他请假去了趟广东，在全世界最大的蜡像工厂，定做了一尊极品。</p>
+<p>三个月后，杨丽坤版的阿诗玛，被运送到蜡像馆。老头拆开包装一看，惊为天人，几乎兴奋得犯了哮喘病。</p>
+<p>没错，在整个蜡像馆，并在有史以来的蜡像界，这是最漂亮的一个，无与伦比，没有之一。</p>
+<p>阿诗玛身上的衣服，都是老头亲自去云南石林买来的，最正宗的彝族撒尼人装扮。耳环是真翡翠，腾冲淘来的，虽说品质不高，但也花了七千块。他并不担心翡翠耳环失窃，因为戴在蜡像的耳朵上，没人会觉得那是真货，就像没人相信紫青宝剑可以杀人。</p>
+<p>老头每天只睡不到六个钟头，死人般沉静，无梦。黎明，冬天还是黑漆漆的，夏天已亮了鱼肚皮。无须闹钟，脑子里某个器官，定点在五点三刻唤醒。老头在被窝里蜷缩五分钟，不少一秒，亦不多一秒。值班室里有电饭煲，他给自己煮锅粥，只要天别太热，可以连吃两日。偶尔，他会去城里买几个包子，吃碗牛肉粉。他不看报纸，不听广播，没有电视机，连手机都不用，值班室有台座机就够了，平常接导游们的电话。除了出纳与老板，他无需跟任何人联络。吃完早饭，他到蜡像馆里检查一遍，看看有没有梁上君子光顾，老鼠家族又做了什么恶事。整个上午，客人不多，更不会有散客，他开始修补残损和弄脏的蜡像。午饭还是喝粥吃馒头，然后就去和阿诗玛说话。他有一副老花眼镜，平常很少戴，却是精心呵护阿诗玛的工具。老头用商场买来的化妆盒，不时为她化上淡妆，永远保持银幕上的容貌。没有客人的时候，他就给自己洗衣服。无论盛夏寒冬，他都用冷水擦身。在洗浴中心做搓澡工的那几年，让他对于泡澡这件事深恶痛绝。日落之后，游客退散，蜡像馆重新成为他的私人领地，他开始漫长的清理和检查，特别保护阿诗玛不被老鼠骚扰。老头知道其他蜡像很嫉妒，他对蜡像馆每个居民都做了警告——谁要是敢欺负她，就会被扫地出门，被野狗叼走，被农民打烂，被污水腐蚀……</p>
+<p>可惜，他从未见过阿诗玛的蜡像动过一丝一毫，也没听过她的歌声，哪怕只是一句低声而客套的“你好”“谢谢”之类。</p>
+<p>好像她才是整个蜡像馆里唯一没有灵魂的物体。这是老头这些年来唯一的焦虑。</p>
+<p>虽说野百合也有春天，纵然是蜡像的世外桃源，终究逃不过千万劫中的一次。</p>
+<p>有人给旅游局写了封投诉信，说无良黑导游强制购物，把游客带去世界上最丑的蜡像馆，讹诈了每位游客一百元。信里还说，进入这样的蜡像馆，见到如此尊容的电影“明星”，造成的心理阴影面积该有多大呢？</p>
+<p>这封投诉信被转载到了网上，在微博上转发了两万次，在微信上阅读了十万次以上，旅游局和市政府顶不住压力，下达一道红头文件，为恢复本地在全国人民心目中的美好形象，限令在一个月内拆除蜡像馆。</p>
+<p>老板拿到几十万补偿金，拆掉也不可惜。何况政府答应在城北再给他批块地开鬼屋乐园。他接到管理员老头的电话，问能不能在另一个地方重建蜡像馆，把所有蜡像完好无损地搬过去。老板拒绝了，没有地皮可用，就算有地也得多花上百万。这还不是关键，据说有位风水师，是给建造市政府大厦出了不少主意的世外高人，他说现任书记之所以长期得不到升迁，源自本地有一群妖孽。风水师夜观天象，昼算八卦，确定这些妖孽就是邪恶的蜡像。经过媒体报道，全国人民都知道这里有丑逼蜡像，很有可能引来明星们的投诉和官司，只有灭其存在，才能保一方太平，护父母官的仕途，并且永绝后患。</p>
+<p>蜡像馆的死刑判决，挑了中元节的“好”日子，化身为一纸拆迁通知书下达下来。拆迁队只携带简易工具，准备先把房子洗劫一空，凡是能用的东西，窗户啊木梁啊，全部运走卖钱。再来一个总破坏，用最原始的方法，就像传说中项羽火烧阿房官，古罗马人毁灭迦太基，成吉思汗夷平花剌子模。风水师特别关照，最好在废墟撒上盐，确保来年寸草不生，让蜡像中的邪灵永无葬身之地，才能让百姓安居乐业，子子孙孙永享富贵。</p>
+<p>十二壮士，起个绝早，气宇轩昂，怀着保卫家乡的崇高使命，刚撞开蜡像馆大门，就落入深沟陷阱。老头手持一把冲锋枪，就是在《第一滴血》里史泰龙版兰博的武器，身上披挂子弹带，高声呵斥入侵者们，胆敢再踏进蜡像馆一步，就要扮演电影里的尸体了，一辈子！</p>
+<p>老头手里的家伙只是道具，但起码能吓唬后生们。掉进坑里的拆迁队员们，庆幸自己死里逃生。</p>
+<p>蜡像馆安全度过一个星期。大门早被堵死，围墙后面布满陷阱和壕沟，灌满粪便这种“生化武器”，以至于成为苍蝇的集中营，远近二十公里臭气熏天。拆迁公司掐断了水电，老头自行开挖水井，在值班室储存了两个月的面粉和干粮，还有手电筒、蜡烛、汽油等守城物资。</p>
+<p>深夜，拆迁队以鬼子进村的方式，爬上梯子越过围墙，好几个掉进了粪坑。但他们早有预案，用木板搭桥越过陷阱，闯入蜡像馆一楼。他们带好手电筒，各自提着榔头与锤子，面对一个个丑陋不堪的蜡像，好像进了人肉屠宰场。虽然害怕，却必须执行命令。第一个要被砸碎的是周杰伦的蜡像。有人刚抡起家伙，周董就唱起饶舌的《本草纲目》，孙俪穿着甄嫘的清官盛装，平举双手一跳一跳过来。女儿国国王唱起了“女儿美不美"，武媚娘挺着酥胸在拆迁队员背后吹气。楼上的吃人博士汉尼拔，舔着牙齿走下楼梯。《碟中谍》的阿汤哥版亨特特工飞檐走壁，眼看要将入侵者全歼。</p>
+<p>妈呀，邪灵真的出现了，拆迁队的小伙子们，魂飞魄散，丢盔卸甲，越过粪坑和跳板，救出挣扎的同伴们，越墙而逃。</p>
+<p>蜡像馆保卫战的第二次胜利。老头从角落出来，与他的蜡像伙伴们击掌庆贺。</p>
+<p>这一晚过后，倒是验证了风水师的预言，蜡像馆煞气重重，布满凶险的恶灵，若不祛除，必定后患无穷。</p>
+<p>现在难题来了，谁都不敢再接近此地。附近的地价都跌了许多，高尔夫球场也宣告停工。领导挠头之时，只能派遣蜡像馆老板出面，毕竟还是他的产业。</p>
+<p>老板选择在阳光灿烂的正午，离蜡像馆五十米开外，举着大号喇叭和广场舞级别的扩音器，以震耳欲聋之势喊话。还是那套陈词滥调，先是表扬老头的忠诚，说他是史上第一敬业的管理员．也是公司最勤恳的老员工。再上“胡萝卜”，只要老头投降，交出蜡像馆，立即给他发放三千五百块年终奖——他没说这是工资个人所得税的起征点。边</p>
+<p>上的领导实在看不下去，咳嗽两声，老板心领神会地提高了奖励额度，从三千五升到五千五，最后在领导的手势下，报出一万八的不二价。等了个把钟头，原本期待的白旗并未看到，老板便从“胡萝卜”转到“大棒”，依次祭出城管、协警、公安、特种兵、法院、监狱，直到注射死刑等等法宝，但最厉害的是精神病院。</p>
+<p>蜡像馆中的老头，听到“精神病院”这四个字，想起一九七三年在湖南郴州，初次与杨丽坤相逢的情景。他怒不可遏地推出《鸦片战争》林则徐的大炮，灌满粪便往门外来了一发，正好击中老板口沫四溅的嘴巴。</p>
+<p>最后的“侵略”，定在中秋节，月圆之夜。</p>
+<p>晚上八点，拆迁总指挥下达总攻令。大疆无人机，先行盘旋侦察一圈，确认没有重型武器。八盏探照灯打开，将蜡像馆照得如同白昼。九十九台挖掘机由蓝翔毕业的高才生驾驶，宛如库尔斯克原野上的坦克大战……后面跟着一支重金聘请来的专业驱魔队伍——和尚、道士、仁波切、古曼童齐出马，联合成为“蜡像馆终结者”。</p>
+<p>轰隆巨响之后，第一道墙被推倒。紧接着是土方车，倾倒大量碎石填平粪坑和陷阱。接着是蜡像馆本身的墙体，抵抗了不到两分钟，就在无数推土机的强暴下化成渣渣。几个蜡像还试图反抗，李连杰版黄飞鸿和《警察故事》中成龙版陈家驹，他俩还来不及亮出绝招，便“出师未捷身先死了”。老头躲在蜡像馆房顶，被埋入瓦砾堆的刹那，看到阿诗玛也被绞进了挖掘机的履带下。</p>
+<p>他凄惨地呼唤心爱的人儿名字，却意外地听到她的回答，阿诗玛的绝唱——</p>
+<p>马铃儿响来哟玉鸟儿唱，我跟阿黑哥回家乡。远远离开热布巴拉家，从此妈妈不忧伤，不忧伤嗨啰嗨啰不忧伤。蜜蜂儿不落哟刺蓬棵，蜜蜂落在哟鲜花上，笛子吹来哟口呀口弦响，你织布来我放羊，我织布来嗨啰嗨啰你放羊……</p>
+<p>一生中最后一次的中秋之夜，老头第一次听到身为蜡像的杨丽坤的歌声。她的嘴唇在动，口型饱满，表情像电影里一样欢快。他终于相信，她也是有灵魂的，从未离开过他，自蜡像塑成装上眼睛的那一刻起。只是她始终保持沉默，哪怕手指都不移动分毫，只为绝不泄露这秘密。</p>
+<p>但她一定知道，他是有多么爱她啊。</p>
+<p>八月十五，城外的月光好美，像个圆规画出来的银盘，照着每一个魂。无论人，或蜡像，老头想。</p>
+<p>清晨，蜡像馆变成废墟，停着几十辆挖掘机与推土机，似刚被苏军攻克的柏林。</p>
+<p>杨过与小龙女．Jack与Rose，唐僧与女儿国国王，贾宝玉和林黛玉，永尾完治跟赤名莉香，都敏俊与千颂伊，全都埋葬在残垣断壁下，粉身碎骨，各自变成泥土，再也无法分开…．</p>
+<p>抗拒拆迁的管理员老头，被认定在当晚失踪。无人发现他的尸体，这也是事实。</p>
+<p>而在这个世界上，只有我知道以下的秘密——老头的血肉之躯，跟蜡像们混合在一起，距离他的DNA残渣最近的，是阿诗玛的翡翠耳环。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

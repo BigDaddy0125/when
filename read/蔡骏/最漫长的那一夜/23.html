@@ -1,0 +1,1136 @@
+<!DOCTYPE html><html><head><title>23</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="22.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="24.html">下一章</a></p><hr><h1><center>第23夜 长寿公园的凡·高和卡门一夜</center></h1>
+<p>西班牙人说，一个女人要称得上漂亮，必须符合三十个条件，或者换句话说，必须用十个形容词，每个形容词都能适用到她身体的三个部分。比方说，她必须有三黑：眼睛黑，眼睑黑，眉毛黑；三纤巧：手指、嘴唇、头发……</p>
+<p>——梅里美《卡门》</p>
+<p>1</p>
+<p>长寿公园在长寿路之北，陕西北路之西，西康路之东，光明城市之南，与大自鸣钟广场为伴。</p>
+<p>大自鸣钟，十年前文艺青年与盗版碟圣地。过去真有幢巨大的钟楼，日本鬼子盖的。背后几条街上都是日本人的纺织厂和公寓，共产党员顾正红就是在这边被杀的。当年的草鞋浜，据说一派田园风光，后来被填平造起房子，紧挨上海最大的贫民窟药水弄。</p>
+<p>从曹家渡到大自鸣钟，横贯一条长寿路，我自打小学三年级起就在这条街上了。</p>
+<p>毕业以后，我的小学关门了，我的中学被拆，变成全城门面最大的夜总会“东方魅力“。大自鸣钟广场附近竖起无数幢五六万一平方米的高楼，唯独原来的草鞋浜改造成了绿地，叫作长寿公园。</p>
+<p>六年前，我把公司搬到俯瞰长寿公园的高楼顶层。假如折一架纸飞机扔出去，可以乘风环绕上空一周。我有轻微的恐高症，站在二十一楼边缘，看着底下巨大钢琴键盘形状的喷泉平台，就会不可抑</p>
+<p>制地眩晕，像希区柯克的电影。对面曾是烂尾楼，被潘石屹收购后，外墙常年挂着一百三十五万起的广告。斜对面是“巴黎春天”，相隔宽阔但不笔直的长寿路，每当硕大的屏幕亮起招聘网站信息，周边的辞职率就会升高。</p>
+<p>我们顶楼有个露台，经常开会讨论各种杀人故事和电影剧本，仿佛就发生在楼下某个阳光下的角落，或者黑夜中的街头。</p>
+<p>几天前，公园附近发生了一桩杀人案。</p>
+<p>被害人是女性，二十五岁，在对面大楼上班。警方给我看了照片，我还记得这张脸。</p>
+<p>去年，夏日黄昏。我没开车，在长寿公园门口的车站。相隔一步之遥，她穿着白裙子，风吹起裙裾，小腿光滑而耀眼。我稍微侧身，瞥见一双乌黑眼珠，眉毛浓密黛黑，连眼睑也是黑的，应是化妆的效果。胳膊裸露在袖子外，纤细手指拎着包带。她的头发漆黑粗亮，被风吹得不是一根根而是一蓬蓬扬起，如同母乌鸦的翅膀。当她蓦然回头，看我的讶异眼神，像要对我说话。不知是有自行车穿过，还是其他什么见了鬼的缘故，她突然背过身去。公交车来了，我随着人群上车，回头已不见人影。</p>
+<p>第二次见到她是三个月前，我在阳台俯瞰长寿公园，看到有个年轻男人，手捧画架，像是在素描。他对着一个红裙女子，雕塑似的，坐在榆树下的小板凳上。第一次看到有人在长寿公园画人像，我抽出望远镜，在取景框里找到他们。</p>
+<p>没错，我还记得她的面孔，乌黑的眼睛，乌鸦翅膀般的头发。</p>
+<p>端着望远镜看了五分钟，她几乎保持同一姿势，嘴里说着些什么。画画的男人没停过，一会儿观察他的模特儿，一会儿用笔勾勒出她的轮廓。</p>
+<p>从此以后，我都会拿出望远镜，注意长寿公园那个角落。每逢午后或黄昏，就会看到画画的男人。你在旅游景点一定看到过那种人，摆着刘德华或王菲或谢霆锋的素描肖像招揽生意，你要是扔一百块钱坐在他面前，画出来的往往连你自己都不认识。</p>
+<p>大多数时候，他无人问津，要么自己在画架上涂抹颜料，要么仰天发呆——不知道有什么好看的。站在长寿公园眺望的天空，被四周高楼切成碎片，像困在井底的青蛙抬头所见。</p>
+<p>昨天，警察告诉我，就是他杀了她。</p>
+<p>2</p>
+<p>凶手叫高凡。</p>
+<p>他今年二十五岁，南方人，出生在福建的一座小城市。</p>
+<p>那地方离海不远，也就十来公里，但隔着两座山。高凡长到十八岁，除了在电视和电影中，连大海的影子都没见着过。小城是阴冷的，常年飘着乌云，全年晒太阳的日子屈指可数。雨季潮湿得让人心里发霉长毛，被子、衣服许多天也晾不干，就算不尿床，晚上缩在被窝里都能挤出一床水来。小城也是混乱的，飘满燕饺鱼蛋和云吞气味的街上，荷尔蒙过剩的少年们，除了打《魔兽世界》和谈恋爱，还会拿着板砖或小刀追来逐去。县城一中每学期都会闹出人命，再开启下一学期复仇模式。</p>
+<p>死者是凶手的中学同学，她叫阚萌，但高凡只管她叫卡门。</p>
+<p>卡门外表早熟，十四岁就被人误以为大姑娘，穿着高跟鞋走在街上了。她妈是开发廊的，门口亮着暖昧的灯。卡门最后一次见到爸爸，还是七岁那年。他们那个地方，是全国有名的偷渡之乡。她爸被蛇头带去欧洲，每个月寄些钱回来，仅此而已。有种说法是他爸在维也纳，欠了地下赌场的钱，打了很多年黑工。也有人说他跟一个吉卜赛女人同居，生了一堆混血孩子，改行占星算命，再也不会回来了。</p>
+<p>初中入学的那天，只一眼，高凡就迷上了卡门。</p>
+<p>卡门是那样一种女孩子，不管穿什么样的衣服，无论晚礼服、睡衣、情趣内衣，哪怕土得掉渣的中学校服，都不会改变身上独有的那种说不清楚的味道。她总是独自坐在某个高处的风口，让头发翅膀般扬起，似乎随时会带着自己乘风而去直上云霄。她的眼神让人无法接近，黑得像一汪幽暗的潭水，隐藏于岩石缝隙，只有最不要命的“小野兽”才敢下去饮水，而后被淹死在深不见底的漩涡里。</p>
+<p>但高凡不在乎。</p>
+<p>卡门虽然不爱跟同学们交流，却是班里的神婆，最早暗地里传播星座与塔罗牌。也是从她的口中，高凡才知道自己太阳星座是白羊，月亮星座在射手。她经常拿张纸算来算去，根据黄道十二官，说谁谁谁要撞桃花运，谁谁谁是双鱼座又要犯不靠谱的毛病了。</p>
+<p>有天晚自习，人们问她能不能算未来的命运，包括每个人的寿命。她说不但能算出你们哪年哪月挂掉，还能算出何时结婚生子，命中几次婚姻，命中又有几子。</p>
+<p>忽然，高凡挤到她面前，说：“能算一算我会活多久吗？”</p>
+<p>教室里一片沉默，卡门皱起眉头，凛冽的眼神迎着高凡的目光，乌黑的眼睛透着不可捉摸的光芒。她把别人都赶走了，夜晚的自习教室里，只剩下高凡和卡门两个人。</p>
+<p>卡门根据高凡的生日，还有他的面相加手相，算了足足半个钟头，额头上沁出一串汗珠，脸色更加苍白，摇头说：“你走吧，我不想告诉结果。”</p>
+<p>“没关系，说吧，反正我也不信的。”</p>
+<p>“不后悔？”</p>
+<p>“不后悔。”</p>
+<p>卡门摊开一张纸条，只有两个阿拉伯数字：2和6。</p>
+<p>“我活不过二十六岁吗？”</p>
+<p>十六岁的卡门不再回答。</p>
+<p>“那你算过自己的命吗？”</p>
+<p>“没有，自己的命运是不可以自己算的。"</p>
+<p>那一年，卡门和高凡都考进了县城的高中。人们都说高凡有希望考上一本院校。至于卡门嘛，虽然星座塔罗牌算得很溜，但数学从没及格过，高中能毕业就不错了。</p>
+<p>高三，上半学期，秋天。</p>
+<p>犹豫和酝酿了两个月后，高凡第一次邀请卡门出去玩。当他结结巴巴说出口，等待冷言拒绝或是一个耳光，卡门却大大方方地回答：“好啊，去哪里玩？星期天吗？”</p>
+<p>星期天，清晨七点，他骑着一辆黑色捷安特自行车，来到卡门家开的发廊门口。</p>
+<p>洗头的四川小妹招呼他进去，他腼腆地躲进旁边的巷子。等了三个钟头，卡门才起床，洗完脸，梳好头，换上一身运动装，长发束在脑后，坐上自行车后座。</p>
+<p>高凡用力蹬着自行车，并不觉得卡门有多少分量。她双手揽住高凡的腰，侧脸贴着他的后背。幸福来得太突然，毫无防备，他整个身体都在颤抖。在此之前，他们连小纸条都没传过，更别说逛大街看电影吃消夜还有开房之类的了。他后悔以前要是胆子再大一点，说不定早就成真了呢。</p>
+<p>骑车出了县城，到了田野间的公路上，他才回头大声说：“卡门，我带你去看麦田。”</p>
+<p>“好啊！”卡门抬头对着秋日的天空回答。</p>
+<p>他努力地蹬着脚踏板，继续吼道：“我还要带你去看向日葵！”</p>
+<p>“太好了！我这辈子还没见过向日葵呢。"</p>
+<p>整整一天，高凡骑遍了全县的七个镇五个乡，包括隔壁县的两个乡，翻过了十几座桥，转了好多次盘山路，除了还没收割的水稻田和山坡上的玉米地，没看到过一片麦田，更不用提向日葵了。</p>
+<p>“你为什么要去看麦田和向日葵呢？”</p>
+<p>“嗯，我想要画麦田或者向日葵。”</p>
+<p>“真的想要考美术学院？”</p>
+<p>“是啊。”</p>
+<p>“可是，你不知道我们这里根本就不种麦子吗？”</p>
+<p>“我……不知道……对啊，你为什么不提醒我？”</p>
+<p>“傻瓜！”</p>
+<p>直到高中毕业，高凡才明白自己太蠢了，卡门不过是想有一个出去玩的理由罢了，就算提议去看火葬场，她也会答应的。</p>
+<p>那天下午，当他骑着自行车直到山的那边，第一次看到乱石堆积的黑色滩涂，两条腿就抽筋了。卡门让他下来坐到后座上，换她到前面骑。这女孩的双腿真有劲儿啊，骑得比男生快多了，必须赶在天黑前回到县城。高凡当然不能搂着她的腰，只能抓紧自行车后座的铁杆，鼻子与她的后颈项保持五厘米，使劲闻着她发间的气息，难免有几根发丝沾上嘴唇。古人说的香汗是真的啊，高凡心想。</p>
+<p>晚上七点，他俩到了发廊门口，卡门告别时说：“以后有机会啊，我真的想去看看麦田和向日葵。”</p>
+<p>虽然高凡已筋疲力尽，后来是推着自行车回家的，但他记住了卡门的这句话。</p>
+<p>这是整个中学时代，高凡与卡门最亲密的一次接触，仅此而已。</p>
+<p>高三下半学期，高凡十八岁，那年发生了三桩大事：</p>
+<p>第一件事，卡门家的发廊发生了火灾，她妈连同三个发廊小妹和两个客人，全部葬身火海，卡门是唯一的幸存者。</p>
+<p>第二件事，高凡没有被美术学院录取。</p>
+<p>第三件事，卡门与高中美术老师私奔了。</p>
+<p>我是在两个月前认识高凡的。</p>
+<p>那是个春天的下午，风和日丽，梧桐树叶肆意生长，像发情期的野猫。长寿路与陕西北路的拐角，有人抱着吉他唱《我的未来不是梦》——是我最爱的张雨生哎，听了心情大佳，我往流浪歌手的托盘里扔了二十块钱。公园门口有许多地摊，有个旧书摊似乎还顺便卖黄碟。我随便扫了一一眼，有本八十年代翻译出版的苏联科幻小说，封面上有“上海第三石油机械厂工会图书馆”的公章。真亲切啊，我爸在这家厂干了三十年，就在背后的澳门路，早被拆掉造起丫楼盘。</p>
+<p>独自走进长寿公园，在一组城市雕塑底下，我看到了那个画画的男人。</p>
+<p>他长得有些异相。首先是很瘦，皮包骨头似的。肤色发红发紫，头发乱乱的，胡子好久没有刮过了，很明显地围着下巴爬了一圈，有些络腮胡的味道。我没想到他才二十五岁。</p>
+<p>他完全无视我的存在，目光和焦点没有丝毫变化，像个瞎子。</p>
+<p>画架底下挂着个牌子：素描人像，每幅一百元。</p>
+<p>“能为我画一幅吗？”我问。</p>
+<p>男人像从梦中醒来，堆出生硬的笑容，“好啊，请坐。”</p>
+<p>他拿出一个小板凳，让我坐在面前。远近恰当，不用太费力气，就能听清彼此说话。</p>
+<p>我仰起头，眺望长寿公园东侧，公寓楼顶层二十一楼的阳台。当我举着望远镜偷看他画画的时候，他抬头一定也能看到我。当我摆出正襟危坐的姿势，好像在摄影师面前拍新书宣传照，他说自然一些就行了，随便怎么坐，只要别乱动。</p>
+<p>他的音色倒是不错，只是普通话不太标准，有南方口音。</p>
+<p>坐下一分钟就后悔了——我像个白痴！四周有人围观了，在民工与大妈们异样的目光下，我的额头冒出冷汗，仿佛一条被主人展示的宠物。该死的！但我不好意思拂袖而去，咬着牙关硬撑下来。屁股底下的小塑料板凳，让我浑身发痒如坐针毡。</p>
+<p>“抱歉，我不是个好模特儿。”</p>
+<p>五分钟过去，周围的人们看着没劲，渐渐散去。而他只是看着我，用画笔量了量我的脸部轮廓，却始终没在画架上动笔。</p>
+<p>为了掩饰慌张，我必须跟他说话，否则我真会逃跑的，反正也不是第一次了。</p>
+<p>我看着他在画架背后的眼睛说：“其实，我也学过画画。”</p>
+<p>“真的吗？”</p>
+<p>“当我读小学时就开始学画丫，但是很简单的素描和水彩，当中间断过几年。初一，我在学校图书馆借了《希特勒秘史））和《第三帝国的兴亡》——青年希特勒漂在奥匈帝国首都维也纳，基本就是个农民工，理想是当画家，考过维也纳美术学院，学院说他的画虽然准确，但缺乏艺术性，更适合报考建筑学院。如果维也纳美术学院招收了这个孤苦伶仃的年轻人，还会有第二次世界大战吗？而我向往的是上海美专，刘海粟开创的学校，中国最早画人体模特的地方——某种程度上也是向往这个。我买了许多教科书和素描铅笔，从HB到12B。我爸帮我买了个石膏像回家——那是个长发飘扬的外国老头，《马赛曲》，法国雕塑家吕德一八三六年完成的作品，原作是在巴黎凯旋门上的高浮雕。我画了一个学期，差不多每天画一幅，没有任何老师指导。我每次都有进步，最后画到以假乱真，就是你们看到过的那种素描，乍看还以为是黑白照片。我去美术学院报了名，专业考试那天却不敢出门——我害怕失败，自己只是个三脚猫，人家都是拜师学艺了多少年，根本比不过啊。于是，我连尝试一下的勇气都没有，就放弃了我的画家梦。”</p>
+<p>当我感慨到要落泪时，他已经趁我说话间在纸上画出了我的轮廓。</p>
+<p>“后来，我一直在想啊，如果那天，真的去参加丫考试，结果会怎样。老实说，切实地想了想，以我的基本功，几乎肯定是要被刷掉的。可至少，这样能让我彻底死心，不用为了自己的怯懦而后悔。就像你，也有过后悔一辈子的经历吧？“</p>
+<p>“当然，有过。”画画的人回答。</p>
+<p>我仰头看着天空，尽力让眼眶再干涩些，“所以啊，梦想这东西一定是要有的，即便注定不能实现。”</p>
+<p>奇怪，平时闷葫芦的我，怎么在这个陌生人面前这么多话？是我面对画家都有种亲切感吗？</p>
+<p>他始终沉默着，“沙沙”地画画，让我想起中学时候画石膏像的感觉。</p>
+<p>忽然，我问他：“你叫什么名字？”</p>
+<p>“高凡。”</p>
+<p>“你是怎么开始学画的呢？”</p>
+<p>4</p>
+<p>两个月后，高凡在公安局的审讯室里是这样交代的——</p>
+<p>高中美术老师姓白，那年不到三十岁，体形瘦长，身高差不多有一米八。他的皮肤白净，眼镜隐藏目光，很像那时流行的裴勇俊。他不是本地人，师范大学美术系毕业后，被分配到这个终年愁云惨雾的小城。</p>
+<p>除了文森特·凡·高，白老师是高凡唯一崇拜过的男人。而文森特·凡·高也是白老师唯一崇拜过的男人。</p>
+<p>高一那年的美术课，老师抛开课本，单独讲了半个钟头凡·高，幻灯片依次放出《吃土豆的人》《夜晚咖啡馆》《十五朵向日葵》《星空》《割耳朵后的自画像》《麦田群鸦》。</p>
+<p>两个月后，美术课交作业，白老师收到一幅临摹凡·高的《开花的杏树》。天蓝色背景，灰绿色枝丫，扭曲伸展，配着无数杏黄色的花朵…虽然临摹的质量低劣，大多数花朵都是模糊的，相较原作，比例也有很大问题，不过，白老师喜欢，尽管是幅水彩画，乍一看竟有中国画的感觉。作业没有留名字，美术老师好久才找到临摹者——二班最不起眼的高凡。</p>
+<p>那个周末，白老师邀请高凡去他的画室里玩。</p>
+<p>所谓“画室”，其实就是单身教师的宿舍，散发着浓重的颜料气味，堆满了各种画画的工具，还有未完工的半成品，好多幅都是临摹凡·高的向日葵与麦田。</p>
+<p>高凡说他的画是自学的，就是把别的男牛用来打游戏和泡妞的时间，用在了素描和水彩上。白老师夸赞他有画画的天分，送给他一套全新的颜料，并给他恶补了一些基本功。</p>
+<p>“凡·高是二十七岁以后才开始画画的，你才十六岁，真的不算晚哦。”白老师这样对高凡说。</p>
+<p>从此，高凡常来教师宿舍，跟白老师学素描与水彩画，隔一年就进阶到了油画。年轻白净的美术老师与男学生往来过密，自然引起风言风语——特别是暗恋他又宅腐的女老师们。</p>
+<p>到了高三，大伙儿都忙着高考，早把美术老师忘得一干二净，除了决定报考美术学院的高凡。</p>
+<p>因为，高凡从卡门嘴里打听到，自己竟跟凡·高有相同的太阳星座与月亮星座，这让他激动得几天睡不着觉。</p>
+<p>当别人在晚自习和请家教补课，他却在白老师的画室里拼命画石膏像，补齐素描基本功。</p>
+<p>“世界那么大，我想去看看。”有天晚上，白老师含着一根烟，看着窗外屋檐下淋漓的春雨。</p>
+<p>白老师的家乡在新疆，父母是生产建设兵团的，偶尔会说起天山脚下的麦田，准噶尔盆地的向日葵，太阳底下大片大片的金黄，像无数蛋饼煎得焦黄，鲜艳得要刺瞎眼睛。但他没来得及告诉高凡，因为在这里的气候带是见不着的。</p>
+<p>“去哪里？”高凡放下8B的铅笔，走到老师身前，细长的脬子上有颗尖尖的核桃，雨滴落到嘴边茂密的绒毛上。</p>
+<p>“不知道，这个鬼地方，总是要离开的吧。”白老师有些感冒着凉，鼻子塞着，声音嗡嗡的，像是从地底发出的。</p>
+<p>三个月后，高考结束，白老师真的消失了，再没回来过，顺便带走了高三女生卡门。</p>
+<p>至于高凡嘛，早早被美术学院拒之门外。幸好他父母准备好了后路，给他填报了一个本省的大专志愿，还是装修设计专业的，也能用到画画才能。</p>
+<p>高凡依旧在阴雨绵绵飘满榕树根须的青苔校园里。他常给同学们画像，运气好的话能赚些零用钱。暑期，他会独自去省内的旅游景点，看到有人支着画架给游客画像，大多数拙劣到不堪人目，但依旧有傻瓜愿意掏腰包。</p>
+<p>毕业后，他没找过工作，而是拿起画笔，在街头给人画画挣钱。他先去武夷山，画了两个月，赚的钱，除了填饱肚子，还不够买颜料的。等到赚够了火车票的钱，他终于冲出福建省去了三清山，然后是庐山、衡山、黄山、莫干山……</p>
+<p>广东汕头海边的旷野中，他画过堆积如山的电子垃圾，如同凡·高旋转的麦田和橄榄树。他有时住在桥洞底下，民工就成了模特儿，不仅收不到一分钱，还被人骂有病。他被煤矿的保安打过，打到胃穿孔躺在医院里，兜里没钱被扫地出门。数九寒天的时候，他想要上华山“论剑”，半道几乎被冻死，跟几十个流浪汉挤在一块，靠烧垃圾取暖才活下来。</p>
+<p>高凡的父母嘛，只知道儿子去了北京，在装修公司做设计师，每月收入八千元，但要付掉五千元的房租。</p>
+<p>今年春节，高凡决定到这个国家最繁华的城市来试试运气。</p>
+<p>他用了两个星期，走遍了上海的大街小巷，也去过外滩之类的旅游景点画像，每次都被人赶走，直到来到长寿公园——在路门的拐角，有个捧着吉他的流浪歌于，唱Beyond的《光辉岁月》，然后是《喜欢你》，直到《海阔天空》。他站在歌手对面，白痴般地看了一下午。夜幕降临，歌手背着吉他包退场，广场舞的大妈上台，在钢琴键盘喷泉平台俯冲轰炸《最炫民族风》。有人支起简易卡拉OK，五首歌收费十块钱，附近的保安、民工、大妈、闲得蛋疼或喝醉了的白领，都趋之若鹜地排队唱歌，从走调天王到水房歌神，整条路都在开演唱会。</p>
+<p>在长寿公园的一个角落，高凡在纸上涂抹颜色，有对面的两栋高楼，有傍晚时分的树影，有奇形怪状的雕塑，还有慢慢爬上天空的新月。</p>
+<p>他找了附近的群租房，有个六平方米的小格子间，是卫生间改造出来的，有个狭窄的气窗，只能打开三分之一，可以瞥见楼下长寿公园的一角。</p>
+<p>每天午后，他都会搬两个小板凳，坐在公园的雕塑前面，立块“素描人像，每幅一百元”的牌子。第一天没有任何人来；第二天他做了第一笔生意，画了个中年大妈；第三天是周末，连续画了五个：两个月没开单的房产中介小伙子、对面“外婆家”午休的厨师、被爷爷奶奶带出来轮滑的小朋友，还有一对早恋的初中生。</p>
+<p>高凡慢慢认识了几个朋友，同样在长寿公园讨生活：卖体育彩票的、地摊卖黄碟的、摊大饼的、收破烂的……要是他一天赚到了几百块钱，就会留出二十块钱请大伙儿吃烤串。</p>
+<p>三个月前，还是长寿公园的午后，高凡默默在画架上涂抹颜料，有只涂着粉色指甲的手指，伸到了他的眼前。顺着纤细的手指，骨节微微突出的手腕，光滑白皙的胳膊，接着是一双乌黑的眼睛。春风席卷北方的沙尘阴霾而来，扬起乌鸦翅膀似的长发，而她一身红裙宛如突发的火灾。</p>
+<p>卡门。</p>
+<p>就算分尸剁碎了，烧成灰冲进抽水马桶，再分解成各种基本元素，高凡还是能一眼认出她来。</p>
+<p>“没想到还能在这里看到你！”卡门说，“多年不见，别来无恙？</p>
+<p>能为我画像吗？”</p>
+<p>“嗯。”</p>
+<p>“给你一百块要不要？”</p>
+<p>“不要。”</p>
+<p>这个午后，无比漫长。高凡的手臂有些僵硬，素描笔不断地在纸上刷着，勾画卡门的双眼。浅一点，再深一点，再细一点，又粗一点，换了从2B到12B的铅笔，直到这眼睛栩栩如生，乌黑得宛如刚出过事故的煤矿，不忍直视。</p>
+<p>天黑了，但没有她的眼珠黑。为了感谢高凡的画像，卡门请他吃十三香小龙虾。喝了七瓶啤酒，高凡没说这些年的经历，只有卡门滔滔不绝。她说高中毕业后，先去深圳，又去了杭州，做过办公室前台和房地产销售，还推销过山寨红酒，两年前到了上海。</p>
+<p>她从小是个神婆，现在亚新广场开了家塔罗牌算命馆。七楼很小的门面，卡门穿成波希米亚风格，每天做五六单生意。客人大多是九○后女生，主要解决的也是恋爱问题。最小的是个初中生，意外怀孕两个月了，来算命咨询要不要跟着小男朋友私奔把孩子生下来。她用塔罗牌算了一卦，结果是打掉，小姑娘哭哭啼啼走了，留下两百块算命费。</p>
+<p>算命馆只有一扇窗户，恰巧对准长寿公园，自然也能看到画画的高凡。开始她完全没认出他来，高中分别才七年，他却像老了十多岁。</p>
+<p>她只是好奇，什么样的入会天天在那儿画画？又是什么样的白痴愿意花一百块给他画呢?观察了十来天，她突然发现这入有些像高凡。</p>
+<p>高凡说：“我还以为，一辈子都见不到你了，就算见到，你也会立刻逃跑的。”</p>
+<p>“嗯，我也这么以为。”“为什么？”</p>
+<p>“别问为什么。我从来不问这个。”</p>
+<p>酒后微醺，春风迷醉，红裙在黑夜里鲜艳夺目。高凡架着她的胳膊，穿过夜总会门口的马路，去了他的出租房。</p>
+<p>在六平方米的小屋里，高凡与卡门度过了最漫长的那一夜。</p>
+<p>每次看凡·高的《麦田）》，总有种看大海的感觉。风吹麦浪，波涛汹涌，如海洋与天空无边无际，云朵就像桅杆上的群帆，点点麦穗就像飞鱼跃出海面。凡·高是荷兰人，从大海手中争夺土地的民族。他的许多早期作品都画过大海与海岸线。凡·高出生的故乡津德尔特距离大海不远，而自杀的地点是巴黎附近奥维尔的麦田。因为麦田就是大海的延伸。尘归尘，土归土……</p>
+<p>凡·高有个亲弟弟叫提奥，是巴黎的艺术品商人。提奥鼓励凡·高开始画画，并且支付凡·高所有的画画和生活开销。凡·高活着的时候，几乎只有一个粉丝，那就是提奥。至于高更那些人嘛，与其说是嫉妒凡·高，不如说是怜悯。</p>
+<p>没有提奥，就没有凡·高。</p>
+<p>凡·高给提奥写过很多书信，其中有一封是这样写的——当我画一个太阳，我希望人们感觉到它在以惊人的速度旋转，正在发出骇人的光热巨浪。</p>
+<p>当我画一片麦田，我希望人们感觉到麦子正朝着它们最后的成熟和绽放努力。</p>
+<p>当我画一棵苹果树，我希望人们能感觉到苹果里面的果汁正把苹果皮撑开，果核中的种子正在为结出果实奋进。</p>
+<p>当我画一个男人，我就要画出他滔滔的一生。</p>
+<p>凡·高这辈子画过男人也画过女人，显然他更擅长画男人，而他画过的无数男人里，最擅长的是画他自己。</p>
+<p>自从认识了画画的高凡，我就经常能在长寿公园见到卡门了。</p>
+<p>不能说卡门打扮时髦，事实上，她妆很淡，或者基本不化妆，衣服看起来也比较普通，只是颜色比较鲜艳而已。这条长寿路上有十几家夜总会，每当夜色降临之际，无数衣着暴露的女孩就姗姗前来上班了——卡门不是，显而易见。</p>
+<p>但有一天，我在长寿路与西康路口吃拉面，意外见到了卡门。她站在天桥下，风吹过她乌鸦般的黑色长发，连同脚边的裙摆，仿佛随时可以飞到上海的天空。</p>
+<p>一辆黑色奔驰停在跟前，开车的男人下来，戴着墨镜，很有王家卫的味道。</p>
+<p>卡门上了车，男人摘下墨镜，而我诧异地发现——这张脸跟我长得很像。</p>
+<p>幸好那家伙没有看见我，卡门也没有，奔驰车绝尘而去，车牌号码最后四位全是“7”。</p>
+<p>忽然，我可能知道那个人是谁了。</p>
+<p>有一次我去长寿公园附近的“大桶大”，洗脚小弟抱着热气腾腾的水桶上来，只瞥了我一眼，就投来顶礼膜拜的目光。这是碰上粉丝了吗？但他仔细端详了我半天，突然问：“您是七哥吗？”</p>
+<p>“七哥是谁？”对于这样的问题，我分外失望地摇头，真想反问他一句，“你是朝阳群众吗？”</p>
+<p>“您肯定是！我见过您！真的，上次您在我们店里，还摘下了墨镜。”</p>
+<p>“你认错人了，我不是。”</p>
+<p>“谁都知道，七哥最低调了，平常总是戴着墨镜，不让小弟们认出来。”</p>
+<p>我很自然地想起杜琪峰的黑帮片中与大佬对峙的画面，如果我故意插一插裤腰带，或许对方的小弟真的以为我会掏出一把枪来。</p>
+<p>七哥是谁？</p>
+<p>6</p>
+<p>自打与卡门重逢，高凡度过了这辈子最美好的一段时光，在长寿公园。</p>
+<p>每个周末，卡门会来到他的房间，做免费模特儿，顺便度过一夜。等到高凡醒来，小屋里只剩他孤独一人，唯枕边残留有气味，还有一两根12B铅笔般浓重乌黑足够绞死人的发丝。</p>
+<p>他前些年在四处漂泊，总是用暗黑阴沉，接近于版画的色调去描绘民工、煤矿与火车站，线条也是粗犷和冰冷的，也可能跟他买不起颜料有关。现在，是卡门让他的颜色变得明艳，总是用大块的金色与橙色，表现阳光照射到她的头发与皮肤上的反光。只有她的双眼仍然是乌黑的，但也闪烁着幽灵般的光。</p>
+<p>不但是卡门，高凡笔下的长寿公园，也与众不同起来。无数高楼和灯火环抱中，整个公园照理是生机勃勃，但他没有画出一个人——只有空旷的广场、孤独的小径、荒无人烟的街道，尽管书报亭和地摊都还在，街头的广告依然耀眼，全城却空无一人。但是，画面里依旧充满各种色彩，所有的树木、雕塑、建筑和流水，乃至天空，全都生机勃勃，耀眼夺目，似乎代替了所有人类的活动。并且，这一切都是在不断旋转之中，如同波浪与漩涡，如同卡门黑洞般深不可测的瞳孔，如同吉卜赛女人卷曲的黑发……</p>
+<p>“你是个天才！”卡门这样评价高凡，除了白老师，没人这么说过他。</p>
+<p>她说认识一些画廊老板，在莫干山路M50创意园，以前找她占星算命认识的。她可以把高凡的几幅画送过去，试试运气看能不能卖掉。高凡想都没想，挑选出了十幅画送过去，都是最近在长寿公园和对面的小屋里画的。</p>
+<p>一个月后，其中有幅画卖掉了，七万块钱，据说买家是个很有品位的海归艺术品收藏家。</p>
+<p>这是高凡卖掉的第一幅超过五百块的画。</p>
+<p>当卡门将现金送到高凡手里，七沓用银行封条包起来的钱，他看着卡门乌黑的眼睛说：“有了这笔钱，我们出去旅游一次吧？”</p>
+<p>“去哪里呢？”</p>
+<p>“西藏？青海？云南？”高凡想想自己还没去流浪过的地方。</p>
+<p>“不要嘛，我要去巴厘岛，或者日本？要么新西兰？对了，马尔代夫！用不了七万块，我们两个人加在一起，五分之一就够了。”</p>
+<p>“好啊，不过，我想先去北方看看麦田。”</p>
+<p>“嗯……”卡门噘起了嘴，但笑笑说，“如果不超过一星期的话，我可以陪你去！”</p>
+<p>“有了你，我比文森特幸福多了。”</p>
+<p>没错，文森特·凡·高活着的时候，生活上是个彻底的失败者，一辈子只卖出过一幅画。他没有老婆，更无子女，只能跟从街上捡来的妓女同居。而这个比他大了许多岁的老妓女，肚子里正怀着别人的孩子，他还喜当爹地照顾他们母子，直到妓女指责凡·高吃软饭，与她在一起只是为了免费画她那年老色衰赘肉横生的裸体——有幅叫《哀伤》的黑白画作描绘了她的身体，传世至今。至于凡·高为了高更割掉的那个耳朵，最后也是被他送给了一个法国妓女。</p>
+<p>“文森特是谁？”卡门躺在高凡的怀里问，燕语呢哺，像团融化中的黑巧克力，缠绕着他的脖子与心口。</p>
+<p>“是我过去的英文名字。”</p>
+<p>“嗯，我懂了，现在你比过去幸福，是这意思吗？”</p>
+<p>高凡抚摸她，撩起两蓬茂密的头发，“你真像一只乌鸦。”</p>
+<p>“为什么？”</p>
+<p>就连卡门问话的目光，都变得如同等待尸体体腐烂后大快朵颐的黑鸟。</p>
+<p>他想起凡·高画过一幅《麦田群鸦》，不用画笔，而是刮片直接上色，颜料堆积得如同雕塑。片阴云底下的麦田，三条小径穿过原野，但没有一条有尽头，像博尔赫斯的《小径分岔的花园》。麦浪在暴风雨前翻滚，粗壮的蓝色线条，遮挡着模糊的金色太阳或月亮。山雨欲来，不计其数的乌鸦，从遥远天际降落麦田，死神插着翅膀跳舞——</p>
+<p>不久就出事了。</p>
+<p>一如高凡担心和怀疑的那样，卡门在清晨离开他的小屋，楼下有个小伙子等着她。两人坐火车去杭州玩了一天，然后在情人旅馆里啪啪啪了一宿。</p>
+<p>第二天，卡门回到上海，照常在亚新广场的算命馆为女中学生指点人生。晚上她去了酒吧，只用五分钟，喝杯鸡尾酒，就搭上了一个长发帅哥，上半夜聊天和算命，下半夜就去酒店开了房。</p>
+<p>第三天，她在大自鸣钟广场的天桥下，坐进一辆黑色奔驰，车牌号码有四个“7”。</p>
+<p>当卡门再次出现在他面前，高凡只问了一句：“你还有多少个男人？”</p>
+<p>短暂的诧异之后，她恢复了平静，掐着手指头算了算——“今年加过微信的有十四个，没留下联系方式的那就记不清了，我都跟他们上过床。”</p>
+<p>“啪！”</p>
+<p>高凡狠狠抽了卡门一记耳光，她脸上立时鲜血梅花。读中学的时候，卡门还兼给人看手相，她说高凡的掌纹是通贯手，打人特别厉害。</p>
+<p>卡门没有逃跑，也没捂脸，继续站在他面前说：“你以为还在十八岁？”</p>
+<p>她扬着头离去，没有掉一滴眼泪。</p>
+<p>忽然，高凡有些后悔，他想卡门脸上的手指印子，恐怕三五天都褪不了。他没给卡门打电话，也许永远见不到这个女人了。</p>
+<p>有一天，他没去长寿公园画画，站在只能通自行车的西康路桥上，看着静水流深的苏州河。</p>
+<p>几个男人冲出来，高凡来不及反抗，被拖到一条小巷子。这是长寿公园背后，仅剩的几排老房子。阴暗墙角底下，雨点般的拳脚落到脑袋和后背。他鼻青脸肿地趴在地上，鲜血顺着脖子流出去好远，引来无花果树下的一大群蚂蚁。</p>
+<p>高凡的双眼被血模糊，依稀看到一个戴着墨镜的男人，被众人簇拥着站在他面前，并用皮鞋跟踩着他的后脑勺。</p>
+<p>所有人都管他叫七哥。</p>
+<p>男人靠近高凡，啐了口唾沫，摘下墨镜，露出一张似曾相识的脸。这家伙对高凡说：“虽然卡门不肯透露脸上的伤痕是怎么回事，但任何事都逃不过七哥我的法眼，特么（他妈）敢打我的女人？”</p>
+<p>高凡的脑袋疼得天旋地转，突然想起这张脸，好像给他画过像，那个什么……</p>
+<p>“妈的，原来是他!</p>
+<p>7</p>
+<p>第七节，当然，是要留给七哥的。</p>
+<p>我是在普陀区看守所看到七哥的，在一个小房间，他穿着橘红色囚衣，没戴手铐，目光平静。</p>
+<p>在我说话前，他抢先开口了，“我俩是失散多年的兄弟吗？”</p>
+<p>我摇摇头，“不是，但确实长得很像。”</p>
+<p>七哥，是长寿公园边上最大的夜总会老板。当然，他并不是排行老七，而是生在七夕之夜，大概上辈子爹是牛郎，娘是织女，从小被人唤作阿七。后来混了江湖，赤条条来去，腥风血雨，便以“七哥”扬名立万。</p>
+<p>“你不介意把对警察说过的话再对我说一遍吧？”</p>
+<p>“看到你就想抱抱你，兄弟，以后遇到什么事，报上七哥的名号，自会一路顺风。”</p>
+<p>随后，七哥说起了卡门。</p>
+<p>一年前，七夕夜，恰是七哥的阴历生日。那天晚上，全上海的男女都各自发情出动，唯独七哥形单影只。若说他没有女人，那是扯淡。大自鸣钟夜总会，六官粉黛，三千佳丽，个个等着他翻牌子。但在过生日的那天，七哥习惯于独处，平常成群结队的马仔小弟，都被他打发干净，一个人在西康路上吃了碗苏州藏书羊肉面，扔下二十块钱不用找零，自有古时侠者风范。吃饱喝足，华灯初上，七哥独自走过长寿公园，偶有男女民工搂搂抱抱，广场舞大妈们也各自寻找姘头，连特么（他妈）流浪猫都发出交配的惨叫声，真是气煞人也！</p>
+<p>就在此时，他看到了卡门。</p>
+<p>风照旧吹起乌鸦翅膀般的黑发，同样黑色的裙子波浪撩人，有个男人拽住她胳膊不放，言语间骂她绿茶婊。女人没怎么说话，只是愤愤地盯着对方，好像要把那男的脸上看出个洞来。</p>
+<p>虽说不是光天化日，而是月黑风高，但在七哥地盘上，哪能容得下“高衙内”之流当街侮辱良家妇女？是可忍孰不可忍，他勃然大怒，</p>
+<p>而起，“放开她，换我来！”七哥一把揪住那小子衣领，替他鼻子开了个大染坊和彩缎铺，又给他脑袋开了瓢。</p>
+<p>男人挂彩落荒而逃，嘴里还在骂绿茶婊。七哥却像中世纪的骑士，不碰女子半根手指，只问她是否受到了惊吓。</p>
+<p>卡门顺势倒在英雄怀里，令英雄虎躯一震。七哥低头看她双眼，再遥望长寿公园的七夕之月，魂魄当即被勾走一半。卡门泪眼低垂，感激不尽，遇上无赖登徒子纠缠，幸亏壮士出手援助，小女子自当以身相许报答。英雄美人盘踞公园长椅，谈谈情，说说爱，直到那渣男引110警察赶到，将七哥与卡门一块儿逮进派出所。</p>
+<p>七哥因伤人被治安拘留，在局子里安然度过十五天。但外面有人传言——他在七月半被枪毙了，等到获释那天，竟无人前来迎接。唯独一个女子，站在派出所对面的桥头，黑裙乌发，遗世独立，倾城倾国。七哥眼眶微湿，轻舒猿臂，揽卡门入怀，一亲芳泽。</p>
+<p>作为夜总会大佬，阅女无数，是不是小姐，哪怕伪装得再好，三言两语也能分辨得出。他确信卡门不是做这一行的。进而通过眼线，证实卡门清清白白，知道她以占卜为业——星相算命与青帮洪门，同为闯荡江湖的儿女，惺惺相惜！</p>
+<p>七哥征服过无数人，不仅依靠权势与拳头，还有身上满满的荷尔蒙。青春少女与深闺少妇，都主动投怀送抱过。但他从未遇到过一个像卡门这样的女子，让人流连忘返，又如鲠在喉。</p>
+<p>卡门是这样的可远观而不可亵玩，即便占有了她的身体，到天亮又不见影踪，更难以掌控芳心。他提出过许多次，给她开个更大的算命馆，就叫塔罗牌占星皇冠俱乐部，也别开在亚新广场这种破地方，搬到高大上的久光百货去。对啊，就开在静安寺隔壁，烧完香的善男信女，出门就收到占星俱乐部的请柬，还有波多野结衣和泷泽萝拉献身代言，更有一大拨日本妹子客人来袭，那生意简直了！她也不用租在江宁路桥的世纪之门，七哥花了一千五百万在静安枫景买了套顶楼豪宅，恭请她移驾掖庭母仪天下。</p>
+<p>不过，卡门拒绝了他所有好意，依旧蜷缩在小算命馆，终日掐指给无知少女们指点迷津。她也给七哥算过命，最近一年之内，恐有牢狱之灾。但对这样的男人而言，算个屁。</p>
+<p>卡门说得很明白，“我喜欢七哥这样的汉子，你可以做我的男朋友，但绝对不是唯一。”</p>
+<p>开始的几个月，七哥派人跟踪暴打过与卡门有染的男子们，有的是夜店里的小开，有的是来算命的大叔，有的是附近高中的男老师，有的是隔壁医院里的年轻医生，还有青春年少的火学生。但这并不能改变卡门的习性，只是多了一圈无辜受伤的男人而已。</p>
+<p>后来，七哥也就默认了，他对卡门是如此迷恋，明知是一剂毒药般的诱惑，让他欲罢不能，但又不敢越雷池一一步。</p>
+<p>直到他发现有一个在长寿公园以给人画像为生的男人存在。</p>
+<p>卡门说：“我喜欢那个男人，如果你敢动他一下的话……”</p>
+<p>七哥没有再多问一句话。</p>
+<p>终于，有天卡门鼻青脸肿地出现在他面前，要是下手再狠一点就要破相了。她还不愿说是被谁打的，但七哥的眼线太多，很快就查出来是那个画画的福建小子。既然是他先动的手，那就不要怪七哥不客气了。</p>
+<p>于是，七哥率领大队人马，在长寿公园背后的小巷子里，围住那画画的小子拳打脚踢，要不是有人拨打了110，这家伙差点没命。</p>
+<p>七哥本以为他会就此消失，却万万没想到，没隔几天，就出大事了。</p>
+<p>长吁短叹完，看守所的灯光下，七哥看着我的眼睛，“兄弟，你也迷上卡门了吗？可惜了，不晓得停尸房里冷不冷？她烧了吗？那个火化炉啊，很烫的啦，我去给兄弟捡过骨头。我想卡门烧过的骨头啊，比男人的更硬更黑。”</p>
+<p>“你后悔吗?”</p>
+<p>“嗯，是挺后悔的，我从没剪过卡门的一束头发留个念想。”</p>
+<p>8</p>
+<p>惨案是在七夕那晚发生的。</p>
+<p>要知道长寿公园的地形，像一洼群山环绕的盆地。北倚“难于上青天”的秦岭巴山．南有烟云缭绕的云贵群峰。西邻“我住长江头，君住长江尾”的康藏高原；东边是“旦为朝云，暮为行雨”的巫山，底下被滚滚长江撕开一道三峡裂缝，而我就在神女峰的山巅。</p>
+<p>至于卡门被杀的地点，在长寿公园对面，相当于丽江古城之于玉龙雪山的方位。</p>
+<p>办案的警官是我表哥，就是你们都知道的叶萧，根据他的调查，案发当晚是这样的——</p>
+<p>长寿公园响彻凤凰传奇的歌声，旁边的中国移动旗舰店情人节大促。至于大自鸣钟夜总会，正在给七哥庆祝阴历生日。突然来了一大帮客人，个个都是屌丝样，高矮胖瘦老少不同。为首的就是高凡——以下简称嫌疑人。</p>
+<p>嫌疑人脸上好几道创可贴，带着在长寿公园卖体育彩票的、卖黄碟的、摊大饼的、烤肉串的、收破烂的，大队人马杀到夜总会唱歌，自然全部由嫌疑人买单。大伙儿叫了有偿陪侍的姑娘，扯开嗓子吼了陈奕迅的《十年》、周杰伦的《七里香》、黄龄的《High歌》、杨臣刚的《老鼠爱大米》、庞麦郎的《我的滑板鞋》，还有老革命的《十送红军》，以及京剧《智取威虎山》和沪剧《燕燕做媒》。嫌疑人出手甚足大方，点了十来瓶酒，灌得七荤八素，小费就发出去了两三万。</p>
+<p>深夜二十三点，嫌疑人突然提出要给七哥敬洒。夜总会妈咪也没防备，就请了七哥过来。嫌疑人抽出一把刀子，直往七哥身上砍去。幸好七哥认出了他，抢先闪躲逃窜，而小弟们都被这凶神恶煞的气势唬住了。嫌疑人一路追砍，冲到老板办公室，里头还有间密室，恰好撞见了卡门——以下简称被害人。</p>
+<p>女被害人刚洗完澡，穿着半透明的浴袍，躺在床上看《何以笙箫默》。桌子上有个生日蛋糕，点着蜡烛还没吹呢。嫌疑人原本要砍七哥，不知受到什么刺激，转而袭击女被害人，在她胸口连捅两刀。情急之下，七哥用泰式肘击制服了嫌疑人。鲜血淋漓的被害人，未曾叫唤过一声。七哥抱着她送往医院急救，没到零点就宣布死亡。</p>
+<p>9</p>
+<p>如果生活中不再有某种无限的、深刻的、真实的东西，我不再眷恋人间。</p>
+<p>文森特·凡·高给弟弟提奥的书信里是这样写的，而我相信生活中是一定存在这些东西的，否则苏州河和黄浦江里的淹死鬼早就漫出来了。</p>
+<p>大自鸣钟夜总会凶杀案即将宣判。我的表哥，叶萧警官告诉我，通过他的审讯和侦查，还发现了另外一桩杀人案。</p>
+<p>七年前，高考过后，卡门跟着美术老师私奔，谁都不知道他们去了哪里，除了一个人。</p>
+<p>对于高凡来说，这两个人都不能放过：一个是他最崇拜的男人，一个是他最迷恋的女人。</p>
+<p>那年火车票还没实名制，白老师带着卡门坐火车回了新疆老家。他们到了北疆准噶尔盆地，生产建设兵团的一个团场，那里生长着一望无际的向日葵。盛夏的月夜，卡门与老师野合，茂盛的向日葵茎秆和花叶，遮挡住两具白花花的身体，好像张艺谋最爱拍的男女主角。</p>
+<p>不曾想到，竟有一个人悄悄跟踪，从台湾海峡边上千里追寻到天山脚下。高凡带着一把尖刀，在黑夜的向日葵田野，从背后杀死了自己的男神。</p>
+<p>年轻老师旺盛的鲜血，溅满卡门的脸，整个人在她身上抽搐到断气。</p>
+<p>最初的慌张过后，她居然十分镇定，为了保住性命，将白老师的尸体推开，没有丝毫反抗，将自己完完整整送给了凶手。</p>
+<p>十八岁的卡门，从未直视过他的眼睛，而是望向清澈的新月。</p>
+<p>高凡的初夜就是在这片向日葵田野被夺去的。</p>
+<p>完事之后，卡门并没有多看白老师一眼，只幽怨地叹息一句，“我像小龙女遇到了尹志平……”</p>
+<p>纵然是七月，新疆的凌晨依然有些寒冷，高凡一言不发地抱紧卡门，就当作是最后一次。他也看着黑夜，整个宇宙布满熠熠的星光。</p>
+<p>天亮了，晨曦照亮田野，向日葵金黄金黄的，如同波浪起伏翻滚。</p>
+<p>空中盘旋着一只乌鸦，它正在召唤伙伴们，快来享用一具尚未腐烂的尸体。</p>
+<p>高凡在监狱等待宣判的时候，有人整理了他留下的所有的画。小部分画的是卡门，但更多的则是长寿公园。其中有一幅画，在公园的西南角落，长寿路与西康路口，竟然出现了一个巨大的钟楼。完全是想象中、中世纪哥特式的，如同大教堂高耸入云，超过周围所有的建筑。笼罩钟楼的光线都在旋转，最顶端的钟面也是扭曲的，产生时针正在</p>
+<p>转动的错觉。而在钟楼顶上的天空，星星与月亮同辉，绝对是另一个世界。</p>
+<p>听说这幅画后来被拍卖出了七百万的价格，被一位日本的神秘买家收购。</p>
+<p>除了这些东西，高凡还留下一个信封，警察打开发现，原来是一簇女人的头发——乌黑乌黑的，乌鸦羽毛似的，光可鉴人，仿佛还在卡门的头皮上生长，永生不死。</p>
+<p>一切结束之后，叶萧带我去过一次被查封的夜总会。在凶杀案的第一现场，卡门被杀的密室里，墙上挂着一幅画。</p>
+<p>画中的女子早已变作幽灵，恐怕怨不得别人，怪只怪她编了个谎话，说在画廊卖了七万元，真相是她强行卖给了这里的主人——这才是她送命的理由吧！虽然高凡直到宣判都没说出来。</p>
+<p>我看着墙上的画足足一刻钟。卡门躺在黑夜的向日葵丛中，眼眉低垂，不知是否在梦中。枝叶与花朵遮盖私处，坦荡的胴体撩人，长发如同乌鸦羽翅，扭曲着似要飞上苍穹。而在画面上方二分之一的空间，却是凡·高无尽旋转的星空。</p>
+<p>10</p>
+<p>我把电脑桌面改成了凡·高的《星空））。</p>
+<p>一个人在恋爱之前与恋爱之后的区别，正好像一盏还没有点着的灯与一盏点着的灯之间的区别一样。现在灯已经摆在那里，而且是一盏好灯，而且也发光了。</p>
+<p>依然摘自文森特·凡·高给弟弟提奥的书信。</p>
+<p>凡·高是在麦田里开枪自杀的，死前几天刚在同一片麦田里，完成了那幅《麦田群鸦》。凡·高是在提奥的怀里死去的，但提奥也只比凡·高多活了六个月。</p>
+<p>高凡十八岁那年，发生过三件大事，除了没考上美术学院，卡门跟着美术老师私奔，还有那桩震惊全城的火灾。</p>
+<p>大火从子夜烧起，烈焰滚滚了漫长的一夜。清早六点，天蒙蒙亮。人们在破砖烂瓦间寻觅幸存者，高凡呼喊着某个名字。废墟上的焦土瓦砾，只剩一点火星，就像一盏灯。</p>
+<p>他看到了她。</p>
+<p>荒地上的玫瑰，完好无损，睡裙只烧焦了蕾丝边，乌鸦般的黑发被潮湿的晨风吹起，带着烫头发的气味。她的嘴角挂着微笑，不可名状的目光，长满危险的花刺。</p>
+<p>男孩看见野玫瑰。</p>
+<p>（本文引用的凡·高的书信，均出自《亲爱的提奥》，南海出版公司，2010年版。）</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

@@ -1,0 +1,1097 @@
+<!DOCTYPE html><html><head><title>09</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="08.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="10.html">下一章</a></p><hr><h1><center>第9夜 香港一夜</center></h1>
+<p>“阿Sir，我没做大哥很久了！”</p>
+<p>——吴宇森《英雄本色》宋子豪（狄龙）</p>
+<p>2005年10月15日，我第一次到香港。</p>
+<p>早上，自深圳出发，我跟制片人Z先生同行，有辆轿车来接我们。经过文锦渡关口，守关的阿Sir面带微笑，看过通行证，示意入关。进入香港的道路改左驶，丘陵起伏，绿意盎然。车虽多，但井然有序，绝不见内地常见的抢道。潮湿浓雾间，群山外的海峡，忽隐忽现，硕大的青马大桥，蓬莱仙山般的摩天巨楼。进入九龙半岛的水泥森林，看不到周围高楼的顶，窄窄的马路两边，招牌已是横看成岭侧成峰。</p>
+<p>在尖沙咀的酒店住下，特意走到弥敦道南头重庆大厦，王家卫的《重庆森林》就是这处，却到处是黝黑的印度人或巴基斯坦人，底楼是个档次很低的卖场，据说晚上不安全。</p>
+<p>下午，我和Z先生见了香港的投资方及导演黎妙雪。那是我的小说第一次改电影——《地狱的第19层》。有位很资深的女电影人，谈到张国荣出事前跟她通过电话，某段诡异的故事，在此不表。</p>
+<p>谈完事，我和Z先生坐地铁去维港对面的香港岛。在金钟下车步行坐缆车，来到太平山顶赏夜景。观景平台狭小，大雾看不清，草草下来。转了很久，却撞到中环广场，在香港打工的菲佣，每逢周末放假聚集于此。又坐地铁去铜锣湾，车厢大半东南亚面孔，间或几个裹着美丽的丝绸头巾，那是穆斯林女孩标志，应是印尼或马来西亚人。</p>
+<p>回到酒店，我独自外出。</p>
+<p>深夜十点多，于香港人而言，夜生活才刚开始。兰桂坊这种地方，我素无兴趣，掏出手机里存的地址，步行前往附近一条小街。</p>
+<p>拥挤逼仄，密密麻麻的招牌底下，有间上海小馆。门面不大，只有七八张桌子，下夜班的工人在吃炒饭。有个年轻男人坐在角落，独自抽烟，看电视里的TVB剧。他的椅背上，挂着件灰色风衣。</p>
+<p>小马哥。</p>
+<p>我叫了他的名字。他猛然抬头，露出少年般的笑容，掐灭烟头，跟我拥抱。</p>
+<p>他用上海话招呼我，用粤语跟伙计们说话，给我点上几份小吃。他是这家店的老板。</p>
+<p>我问他别来无恙。</p>
+<p>阿Sir，我没做大哥很久了！</p>
+<p>他的这句话，令人会心一笑，自动脑补出中年狄龙的形象。</p>
+<p>小马哥，是我的初中同学。</p>
+<p>有句讲句，他越来越像周润发了，当他重新给自己点上一根香烟，嘴角还叼着牙签时。</p>
+<p>我和他第一次相遇，上个世纪九十年代初，刚进上海市五一中学预备班。小马哥，是我们班个子最高的。他的功课差，小学就留过两级，比我们大两岁，嘴角已有一圈小胡子，穿着港剧流行的太子裤，看起来像社会青年。</p>
+<p>听说，他的爸爸妈妈早已离婚，妈妈重新嫁人去了香港，而他跟爸爸留在上海。</p>
+<p>小马哥总是说，他就快去香港了。</p>
+<p>我有个小学同学，成绩很好，平时穿着体面，头发梳得一丝不苟。西康路上有幢大房子，以前是他们家的，原是新中国成立前的资本家。他爷爷逃难去了香港，留在上海的房子被充公，他爸是共产党员留了下来。我们只做了三年的同学，他就全家移民去了香港，投奔已是亿万富豪的爷爷了。</p>
+<p>那个年代，凡是跟香港有关的一切都令人艳羡。我听过的第一首粤语歌，是霍元甲的昏睡百年国人渐已醒。往后就太多了啊，还记得秦始皇的大地在我脚下吗？八三版射雕的铁血丹心，义不容情的陈百强的一生何求。看过上篇故事的朋友，都知道我会吹笛子，而我最拿手的，是浪奔浪流滔滔江水永不休的《上海滩》。那时无论粤语国语，我们同学都会唱，有一年最流行叶倩文的潇洒走一回——天地悠悠过客匆匆潮起又潮落恩恩怨怨生死白头几人能看透。</p>
+<p>我家有台录像机，常带同学们来看港片。来得最多的同学有三个：一个叫李毅大帝；还有个叫杀手李昂；最后，就是这一夜的主角——小马哥。</p>
+<p>除了《纵横四海》，我们最爱看《英雄本色》，导演吴宇森，监制徐克。</p>
+<p>英雄本色1，看了三遍。英雄本色2，却看了十遍。到英雄本色3，已跟前两部没关系了。虽然，公认1才是巅峰之作，但2更让男生们过瘾——那时尚无暴力美学的说法。</p>
+<p>最后有场戏，周润发穿着小马哥浑身是洞的风衣，挂满炸弹，跟阿豪与龙四一起去为张国荣的阿杰复仇。我们四个男生，用我家的录像机反复播放，数出总共被打死的人数——四百一十九个，册那，绝对是一场惨绝人寰的大屠杀。</p>
+<p>现在想想，我们可是够无聊的。</p>
+<p>终于，1993年，小马哥去了香港，与母团聚，持单程证。</p>
+<p>他走以后，不再联络，我挺想他。</p>
+<p>那一年，街头流行艾敬的一首歌。距香港回归还有几年，人人都很期待1997年，又仿佛很遥远，想象那是梦想与光荣的年代——</p>
+<p>“我留在广州的日子比较长/因为我的那个他在香港/他可以来沈阳 我不能去香港/让我去花花世界吧 给我盖上大红章/1997快些到吧八百伴究竟是什么样/1997快些到吧我就可以去Hong Kong/1997快些到吧让我站在红勘体育馆/1997快些到吧和他去看午夜场/1997快点儿到吧八百伴衣服究竟怎么样/1997快些到吧我就可以去香港……1997……1997……”</p>
+<p>2012年，我在《悬疑世界》杂志卷首语里，写过大致这样一段话——“而今，八百伴早开到了我们家门口，办张港澳通行证可随时飞到香港，淘宝上就能买到红勘的演唱会票，午夜场不早就有人组团去看过了吗？而那个让人憧憬过的年头，眨眼之间，竟已是十五年前的往事。”</p>
+<p>好吧，日本的八佰伴早就倒了。</p>
+<p>一九九七，香港回归，普天同庆。我呢，那一瞬间，也有种发自内心的自豪感。</p>
+<p>那年圣诞节，小马哥敲响了我家的门。</p>
+<p>哇，他又长高了，卖相好，一袭灰色风衣飘飘，胸口插着墨镜，那年流行的中分发形，很有周润发年轻时的派头。</p>
+<p>其实，他才二十岁呢。</p>
+<p>小马哥来上海是看老爸，过两天还要回香港。当晚，我们几个同学请他去吃夜排档，最后必然是他抢买单。</p>
+<p>他抽着外国烟，神情过分早熟，说起香港各种繁华，上海想要迎头赶上，起码还得五十年吧。</p>
+<p>有人问，香港有许多上海人吗？有啊，我们特首董建华、立法会主席范徐丽泰，还有倪匡、亦舒、王家卫、张曼玉、汪明荃、沈殿霞……</p>
+<p>为了满足我们猎奇的欲望，他又说起香港十大奇案。说到雨夜屠夫，大家瞪大了眼，似乎不敢相信。其实，那年头，上海也有了连环杀人狂，比如敲头案。</p>
+<p>有个同学傻傻地问，小马哥，你是不是做生意发大财了？还是炒股票？</p>
+<p>想起《大时代》的方展博，但我更爱《第三类法庭》的青蛙王子温兆伦。</p>
+<p>他吹了一口啤酒，淡然道，哪有啊，我是混社团的。</p>
+<p>众人沉默片刻，都看过古惑仔，混社团，不就是黑社会吗？</p>
+<p>终究有人忍不住问，开过枪吗？</p>
+<p>废话。</p>
+<p>玩过女人吗？</p>
+<p>对于我们这些屌丝处男来说，这可是个重大问题呢。</p>
+<p>香港妹，大陆妹，越南妹，泰国妹，混血妹，白鬼妹，黑鬼妹，全都玩遍了。</p>
+<p>我们嫉妒地看着他，彼此无语。</p>
+<p>最后，我问了他一个问题——你杀过人吗？</p>
+<p>他不响。</p>
+<p>面朝夜空吐出一圈烟雾，小马哥淡淡地说——</p>
+<p>“这里到底不是自己的地方。有人千方百计要离开自己的家，有的人想回去，有的人……连落脚的地方都没有。还是自己的地方好。”</p>
+<p>只有我明白这是《英雄本色》的台词。</p>
+<p>没过两天，小马哥回了香港。</p>
+<p>那一年，我领取了中华人民共和国居民身份证，可我依然不能去香港特别行政区，不能去找小马哥，不能去维多利亚港，不能去狮子山下……</p>
+<p>才发现，《我的1997》里的歌词，竟然全是骗人的！</p>
+<p>2000年，我开始在榕树下网站发小说。2001年，我写了第一个长篇小说，第二年出版。</p>
+<p>2003年，非典。四月一日，香港传来张国荣自杀的消息。</p>
+<p>彼时，我尚在上海邮政上班，办公在四川路桥的市局。那天傍晚，下班走出单位，眼前出现一个穿着风衣的男人。</p>
+<p>小马哥回来了。</p>
+<p>他戴着墨镜，风衣领子竖起，遮掩自己的脸，带我去乍浦路的小餐馆吃了顿饭。他特意选在饭店的死角，露出憔悴的双眼，做了个噤声手势，说，别跟任何人说见过我！</p>
+<p>你被黑社会追杀了？</p>
+<p>他说他刚从香港回来，虽然是当时的疫区，照道理是要隔离的，但我并不害怕。</p>
+<p>告诉你一个秘密，我是警察。</p>
+<p>啊？</p>
+<p>香港警察，在回归那年，我就考进了警队。</p>
+<p>上次见面，你干吗说是混社团的啊？</p>
+<p>因为，那次之后，我真的去了黑社会。</p>
+<p>卧底？</p>
+<p>嗯。</p>
+<p>不会吧。</p>
+<p>卧了将近五年的底。</p>
+<p>他敞开衣领，露出胸口乌黑的刺青。</p>
+<p>你真的杀过人？是吗？</p>
+<p>别问这个！一年前，我搞了社团老大的女儿，不小心动了真感情，暴露了身份。我回不去了，警队丢卒保车，把我除名了。现在，黑社会满世界追杀。借着非典的形势，我回来避避风头。阿骏，在这个世界上，你是我唯一可以信任的人了。</p>
+<p>就像阿豪信任小马哥那样？</p>
+<p>没错。</p>
+<p>说完，最让我担心的事发生了，他从桌子底下掏出一个旅行包，交到我的手里说——弟弟，请帮我好好保管，最多一个月后，我来取回。</p>
+<p>啊？</p>
+<p>那包里的分量并不重，但我不敢打开，生怕会滚出个把人头或手之类的。</p>
+<p>这个……这个……我不知道如何推脱。</p>
+<p>小马哥接着说，你看到今天的新闻了吗？</p>
+<p>张国荣自杀？</p>
+<p>你还记得《英雄本色2》，张国荣演的卧底警察阿杰，在跟阿建一起行动前，看到天上有流星飞过吗？</p>
+<p>“我听人说，看到流星，会有人早死。”</p>
+<p>当然记得，张国荣的这句台词，深深印在我脑中。以至于，有一年大家都去郊外看流星雨，唯独我不为所动。</p>
+<p>昨晚，我离开香港前，看到了天上的流星。</p>
+<p>小马哥如是说，他看着我的眼睛，而我不是害怕，是很害怕！</p>
+<p>看我沉默如许，他拍拍我的肩膀说——你相信有神吗？我相信，我就是神。</p>
+<p>这还是《英雄本色》里周润发说过的话，但符合小马哥的人物性格。</p>
+<p>他迅速结账离开，连个电话号码也没留下，这是作死的节奏吗？</p>
+<p>当晚，我独自拎着旅行包回家，依旧不敢打开。</p>
+<p>接下来一个月，我整天提心吊胆，晚上常被噩梦弄醒，早上担心门外脚步声，中午在单位食堂吃饭，总是怀疑陌生人的目光，是否会突然掏出两把枪来，血洗一番，留下几十具男男女女的尸体，还有被食堂大婶的鲜血染红的冬瓜汤。</p>
+<p>最终，整个非典最黑暗的时期度过，我的小马哥依然没回来。</p>
+<p>他死了吗？</p>
+<p>就像他在香港看到过的流星？像张国荣那样死于楼下？还是像宋子杰那样死于一枪？还是……</p>
+<p>等了足足三个月，旅行包一直藏在床底下，周围用几捆旧杂志掩饰。</p>
+<p>终于，我打开了那个旅行包。</p>
+<p>数月尚未有异味，应该不是不干净的东西。但我最怕的是，会不会有几万美金，还是一张国际银行卡并附有密码？抑或什么更重要的东西，比如以前港片里的磁盘之类罪证？</p>
+<p>结果，包里只有一本薄薄的书。</p>
+<p>外面包着挂历纸的封皮，看来保存得很小心，难不成是《小马哥回忆录》？《香港腥风血雨录》？《港九江湖怪谈》？《旺角杀手浮生记》？</p>
+<p>教我智商捉急的却是，打开一看，竟是本香港地图册。</p>
+<p>有冇搞错啊！彩色印刷得很精美，总共二十多页，依次是香港的行政区划、地形和地质、动物和植物、经济和交通，还有港岛、九龙、新界各区的详细地图，却是1993年出版的繁体版本，早已过时。</p>
+<p>再翻第二遍，生怕地图册里会夹什么东西，可把每一页都仔细翻过，仍旧一无所获，也没有被涂抹或手写的痕迹。</p>
+<p>仔细嗅了嗅书页，会不会用化学溶剂浸泡过后，纸上就会显出特殊文字或符号？我用了四种不同的液体，直到整本地图册快泡烂了，还是没发现任何异常。</p>
+<p>除非——这本地图编辑时就预留下密码，藏在某个角落？</p>
+<p>2003年，剩余的日子里，我把这本香港地图册反复看了一百遍。我的目光与手指，游走过铜锣湾，触摸过尖沙咀，飞越过天水围，夜渡过长洲岛，却不知小马哥在何方。</p>
+<p>此后两年，这本地图册藏在我的床底下，小马哥也从没来过。</p>
+<p>2005年，盛夏。</p>
+<p>小马哥在MSN突现，我看到他的头像，分不清是周润发还是他。我们在线上聊天，说香港，说上海，说全世界。他说，他已没事了，也不混黑道，洗白了身份，现在香港开了间小餐馆，要是我来香港的话，记得要来找他。</p>
+<p>两个月后，我到了香港。</p>
+<p>临行前，我在MSN上问他要了地址，约定今晚见面。</p>
+<p>2005年10月15日，深夜，十一点。</p>
+<p>我与小马哥重逢，在香港尖沙咀的夜。</p>
+<p>寒暄过后，我从包里掏出那本香港地图册——两年前他托我保管，而今原封不动奉还。</p>
+<p>我想知道，这本书里的秘密是什么。</p>
+<p>哦……</p>
+<p>他的神情颇为尴尬，再次掐灭半根烟头，这个，哎呀，说来不好意思，当初，我是想把黑社会的账本交你暂时保管，但我放包的时候搞错了，正好随身携带一本地图册，包着一模一样的封皮，这就……</p>
+<p>我几乎要喷血了！</p>
+<p>很想把他拖出去枪毙一百遍啊一百遍。</p>
+<p>然而，小马哥正襟危坐道，你信吗？</p>
+<p>我摇摇头。</p>
+<p>接下来，我要说的，才是真的。</p>
+<p>小马哥起身收工，关上店门，带我出去。</p>
+<p>我俩一路散步到维港边，海风吹乱他的风衣，看着对岸港岛的摩天大楼，彻夜不眠的香港灯火，星星般的太平山顶。</p>
+<p>阿骏，我们是最好的朋友吗？他问我。</p>
+<p>还用问吗？小时候，你是差生又留过两次级，老师和家长都不准我跟你做朋友，但我们不照样是兄弟？有一次，我们去西宫玩，路上碰到几个流氓敲诈勒索，你跟他们打了一架，搞得你头破血流，但你跟那些逼样子说——</p>
+<p>“你可以侮辱我，但不可以侮辱我的朋友！”</p>
+<p>哈哈，这可不是小马哥的台词，是豪哥对阿成说的！</p>
+<p>他点起一根烟，火星忽隐忽现，说，这个秘密，也是现在才能告诉你，但我从没后悔过。</p>
+<p>看不清他黑夜里的眼睛，我皱起眉头：你说什么？</p>
+<p>小马哥扬起风衣，将我整个包裹起来，低声耳语，其实，我是共产党，中华人民共和国国家安全部潜伏港澳的地下工作者，维护国家安全是我的职责。</p>
+<p>晕，你说什么啊？</p>
+<p>背井离乡十来年，吃那么多苦，受那么大委屈，鬼门关上走几回，还不是为了你我身后那片土地。</p>
+<p>我转回头，试图看到九龙的狮子山，当然这是徒劳，视野全被高楼阻挡。</p>
+<p>拜托啊，小马哥，你是认真的吗？</p>
+<p>你最好别信！呵呵！</p>
+<p>瞬间，脑中想起国产凌凌漆的最后，那把刀上刻的“民族英雄”四个字。</p>
+<p>那本香港地图册的秘密，你呢，就不要多想了。总之，现在这本地图，早就毫无用处了。而我，也已退役不干，国家安全部的档案，都不会再有我的名字了，别为我担心哦。就当是我送你的礼物，拿回去吧！</p>
+<p>他从风衣内袋掏出地图册，塞进我的包里。</p>
+<p>子夜，零点。</p>
+<p>再度拥抱，眼眶居然湿润，妈蛋！</p>
+<p>第二天，回深圳。从尖沙咀坐地铁，路经旺角，想起卡门。到罗湖口岸，顺利通关，当晚飞回上海。</p>
+<p>包里塞着小马哥送给我的1993版香港地图册，至于他说的秘密，我依然不太相信。</p>
+<p>我们没留电话号码，耳边响着他临别时的话：下次来香港找我玩哦！</p>
+<p>不知道还有没有下次？</p>
+<p>两年后，我的作品改编的第一部电影公映。小说发生在上海，电影却搬到回归前的香港，自然留有遗憾。唯一让我欣慰的是，电影里扮演叶萧警官的，是狄龙的儿子谭俊彦——《英雄本色》豪哥的儿子啊！</p>
+<p>我有个表妹，年年要去香港好几次，狂买各种奢侈品。2008年，十一长假期间，我托表妹去看望小马哥，给他带些礼物。</p>
+<p>表妹去了尖沙咀那家小店，别人告诉她，原来的老板死了——半年前，有仇家找上门来，一枪爆头。</p>
+<p>小马哥死了？</p>
+<p>是啊，小马哥终究是要死的，否则哪来满是洞眼的风衣？</p>
+<p>而这，才是余则成们的真实命运，不晓得烈士名单里有没有他？</p>
+<p>我怅然。</p>
+<p>而我，再没去过香港。</p>
+<p>是因为小马哥，还是别的什么原因？我不知道。我也素来对购物毫无兴趣，若要旅游的话，五洲四海，东洋西洋，自有更佳去处。</p>
+<p>同一年，我参加过一期电影节目，跟我对谈的嘉宾是徐克。当年的《英雄本色》他可是监制呢，英雄本色3更是他亲自执导。徐克还在电影里客串了一个音乐老师，而吴宇森演了个台湾警官。当我们小的时候，连做梦都不会相信，怎能与这些神一般的存在对话？</p>
+<p>光线传媒的演播大厅内，我坐在徐克对面，怔怔看着他的眼睛，很想问他一个问题：小马哥有没有真实的原型人物？然而，我憋了半天，始终不敢问出口，只看着徐老怪很有礼貌地侃侃而谈。</p>
+<p>是他老了？</p>
+<p>还是我长大了？</p>
+<p>但，我的小马哥，永不复还。</p>
+<p>2014年，距离我上次见到小马哥，转眼逝去整整九年。</p>
+<p>每年的国庆假期，我的表妹都会去香港购物，去逛迪斯尼乐园，这一回她却不去了，临时改机票飞去韩国，原因嘛众所周知。</p>
+<p>两天前，我接到个陌生的电话，带着浓浓香港味的普通话，让人听着略带费劲——</p>
+<p>请问是蔡骏先生吗？</p>
+<p>是。</p>
+<p>我是Mark的弟弟，我在上海，可以与你见面吗？</p>
+<p>Mark是谁？</p>
+<p>然后，电话那头报出小马哥的全名。</p>
+<p>一小时后，在我家楼下的港式茶餐厅，我和一个年轻的香港男子见面。</p>
+<p>他递给我名片，世界五百强在上海公司的部门经理，他说，就叫我Ken好了。</p>
+<p>而我有些恍惚，Mark的弟弟Ken？在《英雄本色2》的国语版，小马哥的双胞胎弟弟阿建？穿着小马哥浑身是洞的风衣的周润发？</p>
+<p>果然，他们兄弟很像，个子也差不多，看着阿Ken的脸，仿佛回到2005年秋天，子夜的香港。</p>
+<p>怎么从没听小马哥说起过你？我直截了当地问，虽然，我并不怀疑他。</p>
+<p>我们是同母异父的兄弟。</p>
+<p>三十年前，小马哥父母离异。所有人都以为，他妈妈改嫁去了香港。那不是真的。或者说，香港男人是真的，但他在香港有家室，自然，也无法带她去香港。</p>
+<p>他的妈妈去了深圳，每个周末，香港人过关来看她，就是包二奶。几年后，她为香港男人生了个儿子，取名建华，英文名Ken。</p>
+<p>1993年，小马哥的爸爸赌博坐牢，他在上海退学，独自买了张火车票来深圳。</p>
+<p>已跟妈妈分别十年，老妈根本不喜欢他，所有母爱都在Ken的身上，何况小儿子是香港种啊香港种。</p>
+<p>回归前一年，那个男人的原配死了，小马哥的妈妈与十岁的弟弟，苦熬到头，得偿所愿，去香港合家团聚了。</p>
+<p>唯独小马哥，一个人留在了深圳。</p>
+<p>香港男人嫌他讨厌，不准他申请来港探亲，怕他一来就变成黑户口不走了。</p>
+<p>Ken告诉我，在他跟妈妈搬去香港以后，再没见过哥哥。</p>
+<p>2003年，非典过后，开放港澳自由行，小马哥第一次进入香港。他来家里吃了顿饭，还是偷偷摸摸地，趁着Ken的爸爸不在。也只是吃了一顿饭而已，妈妈就把大儿子打发走了。</p>
+<p>弟弟还算热情，带哥哥在香港玩了三天。小马哥循规蹈矩，自觉排队，从不乱穿马路，打喷嚏不忘用手帕掩住，坐自动扶梯永远站右边，更别说什么随地大小便了。</p>
+<p>然后，他提早回了深圳。</p>
+<p>小马哥第二次来香港，已是两年后的2005年，十一长假之后。他让弟弟Ken帮忙，说要在尖沙咀找家小餐馆，花三千港币包一晚，给每个伙计发了条烟，让大家演戏叫他老板，说是要招待一个好朋友。</p>
+<p>第二天，小马哥又走了。</p>
+<p>这也是他最后一次到香港。</p>
+<p>小马哥一直住在深圳，从事各种生意与职业。发过财，破过产，也有过安逸的日子。他结过婚，离过婚，但没有过孩子。从他住的高楼顶上，可以清楚地遥望香港，那是新界连绵的山冈，有时能望见大帽山顶。</p>
+<p>当Ken说到这里，我算是大致明白了——</p>
+<p>这些年里，小马哥关于香港的一切，包括什么进入黑社会，又是警方的卧底，学什么使徒行者薛家强，结果爱上黑帮老大的女儿，最后又被追杀，再向我袒露心迹，原是我党派遣港澳的地下工作者……竟然！竟然！全是编造出来的！或者说，是他脑子里的妄想。</p>
+<p>魂淡啊！</p>
+<p>但，他演得真像啊，货真价实的影帝，比发哥厉害一百倍啊！</p>
+<p>我低头，看着杯影中的自己，默默数着那十年间，在自己身上发生过的一切。</p>
+<p>上个礼拜，我的哥哥死了。</p>
+<p>阿Ken告诉我，而我故作镇定地问道，怎么死的？</p>
+<p>9月28日，接近零点，他喝醉了。遇到抢劫，他反抗。对方拔刀，不巧刺中心脏。</p>
+<p>就这么简单？</p>
+<p>两天后，凶手在东莞被捕，内陆省份来的十八岁少年，看到他用iPhone6就想抢劫。</p>
+<p>我摇头，这不是小马哥的死法。</p>
+<p>阿Ken继续说，我也很多年没跟哥哥联系过了。我去美国读书了五年，回来后发现香港不景气，许多年轻人都北上了，我就直接来上海工作。妈妈说，哥哥从没给她打过电话，她也没关心过哥哥。我很难过。</p>
+<p>你为什么来找我？</p>
+<p>三天前，我飞去深圳，处理哥哥的后事。打开他的电脑，MSN自动登录，没想到他还用这个？好奇地看了聊天记录——我发现他的朋友好少啊，在联系人分类里，有个特别类别，就是你的名字。对不起，你没看到过他的留言吗？</p>
+<p>啊？</p>
+<p>差不多六七年前开始，我就再没登录过MSN。</p>
+<p>阿KEN提醒我，这个月底，MSN就要在全球范围内关闭了，建议你快去看看吧。</p>
+<p>与小马哥的弟弟阿建告别，我飞奔回家，趁着MSN死亡前的最后几天，再次登陆。</p>
+<p>深夜，我把登陆状态改为有空，响起无数滴滴声，都是前几年积累下来的。</p>
+<p>满屏最多的是小马哥。</p>
+<p>I am what I am</p>
+<p>我永远都爱这样的我</p>
+<p>快乐是快乐的方式</p>
+<p>不止一种</p>
+<p>最荣幸是谁都是</p>
+<p>造物者的光荣</p>
+<p>不用闪躲</p>
+<p>为我喜欢的生活而活</p>
+<p>不用粉墨</p>
+<p>就站在光明的角落</p>
+<p>我就是我</p>
+<p>是颜色不一样的烟火</p>
+<p>天空海阔</p>
+<p>要做最坚强的泡沫</p>
+<p>我喜欢我</p>
+<p>让蔷薇开出一种结果</p>
+<p>孤独的沙漠里</p>
+<p>一样盛放的赤裸裸</p>
+<p>多么高兴</p>
+<p>在琉璃屋中快乐生活</p>
+<p>对世界说</p>
+<p>什么是光明和磊落</p>
+<p>我就是我</p>
+<p>是颜色不一样的烟火</p>
+<p>天空海阔</p>
+<p>要做最坚强的泡沫</p>
+<p>我喜欢我</p>
+<p>让蔷薇开出一种结果</p>
+<p>孤独的沙漠里</p>
+<p>一样盛放的赤裸裸</p>
+<p>——《我》林夕/词；张国荣/曲；张国荣/原唱</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

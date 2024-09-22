@@ -1,0 +1,1032 @@
+<!DOCTYPE html><html><head><title>16</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="15.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="17.html">下一章</a></p><hr><h1><center>第16夜 万圣节的焰火葬礼</center></h1>
+<p>真美！原来白天放烟花也这么好看！惜朝，告诉你，这是我见过的最好看的烟花了！</p>
+<p>——《逆水寒》电视剧版（原著：温瑞安）</p>
+<p>现在，我最怕一句话：我是看着你的书长大的。</p>
+<p>以后，还会有一句话：我是看着你的书长大的一直看到我死了。</p>
+<p>比如，一只萌萌哒的鬼，比如胖子君，比如他，比如她，比如它。</p>
+<p>胖子君往生的那年，刚满二十九岁。</p>
+<p>当他被拉到殡仪馆的深夜，殡葬车终究没能扛住，石破天惊地爆掉一个轮胎，司机说这辈子没拉过这么沉的尸体。</p>
+<p>万圣节的前夜，三个男人推着小车，方才把胖子君抬下来，艰难地送入遗体化妆间。</p>
+<p>今晚值班的化妆师是小灵。闲了三天的她，正躺在殡仪馆的女生宿舍，看着刚从图书馆借来的悬疑小说。她扎上头绳，换好工作服出来，戴上手套和口罩，看到了胖子君。</p>
+<p>按照行话，不能管这个叫尸体，必须叫大体。她照例向大体鞠躬，说了一套祝福语，恭送死者往生。</p>
+<p>没家属吗？</p>
+<p>他还不到三十，家里父母早就哭得不省人事，其他亲戚没这胆量，更不敢担责任。</p>
+<p>胖子君挺着小山似的肚子，仿佛睡着了的北极熊，又像因公殉职的相扑运动员。化妆台像一张床，坚固的塑钢材料，四脚发出吱吱声响，让人担心随时会被压塌。死者的双眼睁着，厚重眼皮底下，瞳孔扩散，目光暗淡，角膜轻度混浊。</p>
+<p>虽然，小灵不是法医，但按照她的经验判断，死亡时间在二十四小时左右。</p>
+<p>怎么死的？她继续问同事，从前也碰上过遇害的大体——有胸口被丈夫捅了几十刀子的，有脑袋被老婆剁下来的，有火车站半夜里被劫匪勒死的。</p>
+<p>咳！饭局上喝醉了，从餐馆的窗户冲出去，摔到七层楼下，死了。</p>
+<p>辛苦您啦，把大体交给我吧。</p>
+<p>子夜，殡仪馆，遗体化妆间，只剩下两个人，活的和死的。</p>
+<p>Hello！晚上好！割奶！空棒挖！</p>
+<p>从胖子君被拉进来的那一瞬间，小灵就认出了他——全城已没有比他更胖的家伙了。</p>
+<p>照道理，该把遗体眼皮拉下来再开始工作，但她痴痴地看着胖子君，不晓得为啥死后二十四小时，眼睛还不闭上？难道是为了看到她？</p>
+<p>小灵是胖子君的职高同学，她比他小两届。</p>
+<p>她学的是化妆，当然是给活人服务。</p>
+<p>他学的是会计，自然不是给死人算账。</p>
+<p>那一年，胖子君十八岁，在职高篮球队打中锋，身高一米九，体重一百八十斤，属于非常标准的运动员体重。说实话穿着球衣站在篮筐底下，身边大堆长人，丝毫不显胖。</p>
+<p>小灵走到篮球场边，跟几十个女生共同花痴，大多数人挚爱流川枫，还有人迷恋三井寿，更有口味重的喜欢樱木花道，只有她远远地盯着胖子君。</p>
+<p>那场球打完，女生们给各自的男生送茶端水擦汗甚至奉上香吻，只有胖子君一个人落寞地走到跑道边，整理着充满汗臭与脚气味的运动包。</p>
+<p>小灵给他递了一块毛巾。</p>
+<p>后背心早就湿透，蒸笼头几乎喷出汗来，他拿过毛巾擦了个遍，连声谢谢都没说，闪身去水房冲冷水澡了。</p>
+<p>她拿回充满男生体味的毛巾，默默跑回宿舍洗干净，挂在床头绳子上，在日记本上写下“胖子君”三个字——不是他的姓名，其实也不是外号，更不是什么可爱的小名。因为，全世界只有她这么叫他。</p>
+<p>几天后，小灵又到篮球场边。他终于坐下，喝了一口她递来的水，问你叫什么。</p>
+<p>小灵，大小的小，灵魂的灵。</p>
+<p>我叫……</p>
+<p>胖子君！我能这么叫你吗？</p>
+<p>我胖吗？</p>
+<p>我喜欢胖子。</p>
+<p>好吧，他故意把肚子鼓出来，说我请你去吃饭吧。</p>
+<p>他俩的第一顿饭，是在KFC。那座小城市里，肯德基算是高大上的餐馆。许多穷学生要省下半个月的零花钱，才能吃上一餐全家桶。虽说是请女生吃饭，但小灵像猫似的吃了点薯条，而胖子君吃了两个巨无霸，三对新奥尔良烤翅，一根墨西哥鸡肉卷，还有两瓶饮料，那样阔绰大气的出手，让打工的收银员小妹对他投出送给富二代的媚眼。最后，小灵还是决定跟他AA制，因为胖子君裤兜里的钱，只够他下个礼拜去上收费厕所的了。</p>
+<p>第二个月，胖子君请小灵看了场电影，他才偷偷摸摸在黑暗中握紧她的手。</p>
+<p>他感觉小灵的手好小啊，手指却是纤长灵活，天生就是化妆师的料。</p>
+<p>十多年后，万圣节前夜，殡仪馆的遗体化妆间。小灵的十根手指，并没有太大变化，只是不再触摸活人的脸而已。她正抓着莲蓬头，在用清水冲洗胖子君的遗体——冰柜里冻了整个白天，皮肤上的白霜渐渐融化，底下是僵硬的肌肉和骨骼。</p>
+<p>科学家们常说，人死后会减少二十一克的体重，可能就是灵魂的重量。</p>
+<p>不过，小灵从来没信过。她所看到的死人，大多死沉死沉，要么冻得硬邦邦，要么掉了许多零件，哪来的二十一克啊？而躺在遗体清理床上的胖子君，体重早已爆表，只有那种量牲口的大台秤才管用。</p>
+<p>我也问过小灵，殡仪馆有没有真实的灵异事件？她回答，网上无数关于殡仪馆的鬼故事，全属鬼扯淡。没错，小灵是我的粉丝，在另一个城市。万圣节后，我找她吃了顿饭，向她了解殡仪馆与遗体化妆师的真实故事。</p>
+<p>这个故事，是她告诉我的。</p>
+<p>那么胖子君呢？</p>
+<p>十年前，他参加了三校生高考，考进一所大学的会计专科。校区在另一座城市，他俩告别的那天，正是个春风沉醉的傍晚。小灵送给胖子君一本书，那年校园流行的《荒村公寓》。胖子君则带着小灵，跑到城郊的游乐园，坐上最大的摩天轮。两个人转到最高的顶上，他掏出打火机对着天空，仿佛点着了夕阳和云彩。</p>
+<p>他说，小时候，城里发生过一场大火。从他家的楼顶上，可以看到火光熊熊，满脸都是热腾腾的空气，弥漫着焦煳味，不知死人还是橡胶的气味，闻起来很像过年时油炸的香味。</p>
+<p>那时起，胖子君就特别喜欢看火。</p>
+<p>北国天冷，十一月就冰天雪地，年底就到零下二十度了。但只要有火，就会暖和。以前家里用煤球烧炉子，能看到火苗子往外窜，后来通了暖气，反而没感觉了。后来，碰到中学的篝火晚会，什么地方的森林大火，哪怕是火车站流浪汉烧的汽油桶，都会让他特别兴奋。</p>
+<p>摩天轮上，胖子君问小灵，你看过白天放烟花吗？</p>
+<p>没有啊。</p>
+<p>将来一定有机会，我放给你看。</p>
+<p>胖子君双手揽小灵入怀，只感觉她轻得像一只小猫，而自己像只又肥又蠢的大狗。</p>
+<p>喵呜。</p>
+<p>汪汪。</p>
+<p>在两个人学猫叫与狗叫之间，摩天轮已下降到了地面。</p>
+<p>半年后，小灵去胖子君的大学找他。那时，她还在职高学化妆专业，明年就要找工作就业了。她买了一纸板箱的烟花，坐了三个钟头的长途车，找到胖子君的寝室楼下。他们爬上校园背后的山坡，刚给烟花点火发现全都哑了。拆开来一看，根本没有火药，而是沙子。小灵被骗了，买了假货。</p>
+<p>胖子君安慰她，小灵不哭，汪！</p>
+<p>又隔半年，春暖花开的小河边，小灵买了一大箱烟花。这回绝非山寨，花光了她一个月零用钱。胖子君用烟头点燃引线，就在烟花发射之前，一场倾盆大雨倒下。两个人变成落汤鸡的同时，小河里的水刷刷往上涨，还没来得及抢救，整箱烟花就被河水淹没了。</p>
+<p>胖子君又安慰她，小灵不哭，汪！汪！</p>
+<p>她擦干脸上的雨水，没有哭。</p>
+<p>两年后，胖子君大学毕业，但没找着会计的工作。他只考出了最低级的证书。任何一家单位，看到他这种五大三粗的体形，就会怀疑他的智商和情商，会不会在账本上少记或多记一两个零，或者干脆抢劫出纳携款潜逃。</p>
+<p>他在家里啃老了一年。天天混在网吧，打网游，neng了把大砍刀，没日没夜刀光剑影血雨腥风，游戏里被他砍死的人，每个礼拜能造出一座殡仪馆。</p>
+<p>小灵在给胖子君做全身SPA——是他的尸体。</p>
+<p>活着的时候，他喜欢趴在学校山坡的草地上，让小灵给他捏背。可他的体形实在太大，就算用四只手也难以尽兴。</p>
+<p>她问他，这要捏到什么时候呢？</p>
+<p>一直捏到我死了，胖子君说。</p>
+<p>他死了。</p>
+<p>这间殡仪馆的服务比较高端，收费也要高些。按照台湾殡葬业的标准，要给死者做沐浴，全身SPA，擦精油按摩，再细心地化妆，漂漂亮亮，往生西天。</p>
+<p>小灵做这行七年了。</p>
+<p>当她从职高毕业，本想成为一个优秀的化妆师，但找不到工作。打过几份零工，收入微薄，根本养不活自己。</p>
+<p>这时候，看到殡仪馆的招聘启事，遗体化妆师，跟她专业对口，基本工资三千多块，每次上岗都有奖金。</p>
+<p>小灵咬了咬牙，瞒着父母，就去应聘了。</p>
+<p>总共招七个人，只有四个报名，小灵是唯一学过化妆的，自然毫无争议地录取。</p>
+<p>培训三个月后，她开始为第一具大体化妆。原本以为是个病故的老年人，没想到却是个小伙子，大学还没毕业，暑期下河游泳，脚抽筋淹死了。从河里打捞上来，已有些腐烂，又在冰柜里冻了两天，才送到殡仪馆的化妆间，很像美剧《行尸走肉》里的人物。</p>
+<p>小灵当场呕吐出来，结果被扣了半个月工资。</p>
+<p>然后，她借了几百张恐怖片鬼片僵尸片血浆片的盗版碟，每天在殡仪馆宿舍里练胆。墙壁背面就是放尸体的冰柜，推开窗是火化炉，每天有几百具烧焦的骨骸被敲碎。每个星期天，她去叔叔工作的屠宰场，帮忙杀牛宰羊，哪怕溅一脸血都没关系，只要为了让自己胆子变大。</p>
+<p>终于，她完成了毕生第一次为遗体化妆。</p>
+<p>那是个老太太，八九十岁，面色铁青。家属们在旁边干嚎着。她小心地用棉球蘸着消毒水，进行大体的脸部清洁。她的工具有化妆笔、海绵、刷子，根据生前遗像，认真地画出脸庞线条，尽量符合原本肤色。</p>
+<p>没过两天，她碰上一个跳楼自杀的年轻人。从二十层楼掉下来，四分五裂的，连脑袋都断了——就需要缝补这门技术活了，在遗体化妆师的圈子里，这可是一门高难度的手艺。但要是能够掌握的话，一辈子吃喝就不愁了。师傅带着小灵一起缝补，先得提着死者的脑袋，研究缺口的角度，以及是否有缺少的骨头和皮肤。然后，两个人一针一线的，把人头与脖子重新缝合——古时候的犯人砍头，死后家属也是这么重新缝上再入葬的。</p>
+<p>等到这个活干完，死者父母抱着小灵说，谢谢你啊，姑娘，我儿子终于可以去投胎啦。</p>
+<p>这地方有种说法，残缺的尸体无法投胎，只能去做孤魂野鬼。</p>
+<p>小灵在殡仪馆工作满一年，化妆过一百多具大体，有男有女有老有少，有病故的有自杀的有车祸撞死的有被乱刀砍死的……但她从没跟胖子君提起过。</p>
+<p>有一天，胖子君家的亲戚死了，他被父母拖着去殡仪馆参加大殓。遗体送去火化后，他嫌殡仪馆晦气，一秒钟都不想多待，急着要离开，却正好撞见小灵。</p>
+<p>小灵走出化妆间换衣服，刚缝合完一具被变态杀人狂肢解的女尸，身上全是死人的鲜血与污垢。在她摘下口罩的瞬间，胖子君直勾勾地看着她。</p>
+<p>她不知道该怎么解释，胸口还挂着工作牌，有她的名字、照片还有岗位。</p>
+<p>胖子君第一次发现，女朋友确实是化妆师——但不是给活人化妆的。</p>
+<p>他俩大吵了一架，从遗体化妆间一直吵到停尸房再到火化炉最后到骨灰临时停放处。胖子君身体庞大，不慎撞到一排骨灰盒上，不知多少人的骨灰洒在他脸上——感觉自己这辈子都要被死鬼们诅咒了。</p>
+<p>总之，胖子君给她下了最后通牒——必须从殡仪馆辞职。</p>
+<p>她摇摇头，换好衣服，洗干净脸，向外走去。</p>
+<p>满脸骨灰的胖子君追在后面问，怎样？</p>
+<p>走啦？</p>
+<p>去哪里啊？</p>
+<p>回家。</p>
+<p>然后呢？</p>
+<p>上班。</p>
+<p>不上班行不行啊？</p>
+<p>不上班你养我呀？</p>
+<p>面对小灵的质问，胖子君低头不语。他还是个无业游民，每月仅有的收入，是在网吧里打网游装备赚来的。</p>
+<p>我！养！你！啊！</p>
+<p>殡仪馆门口，熙熙攘攘的大街，大堆的纸车纸马纸房纸美女旁边，胖子君大声喊，声嘶力竭。</p>
+<p>小灵痴痴地回过头来，才想起有部香港电影，他俩一块儿看过几百遍，《喜剧之王》里周星驰对张柏芝说的台词。</p>
+<p>她微笑着摇头，你先照顾好你自己吧。</p>
+<p>回家的夕阳下，她一路流着眼泪，再被西北风吹干，刀割似的疼。</p>
+<p>胖子君和小灵分手了。</p>
+<p>第二天，在殡仪馆的门口，她买了一大箱子烟花，想要放到天上去，希望胖子君可以远远地看到。当她要点火的时候，城管突击检查，把她的烟花全部没收了。</p>
+<p>这辈子都没机会和他一起放烟花了吧，她想。</p>
+<p>死人们的眼睛皮一眨，一辈子过去了。</p>
+<p>活人们的眼睛皮一眨，六年过去了。</p>
+<p>小灵没有见过胖子君。</p>
+<p>她也没再谈男朋友，父母知道她的职业后，也给闺女张罗相过几次亲，都关照她不要说自己在殡仪馆工作的。</p>
+<p>但是，每次她都开门见山地说，你好，我是化妆师，但不是给活人化妆，而是为往生者服务，把人干干净净地送走，我觉得这份工作挺体面的，挺那什么正能量的。只要你喜欢我的话，以后我也可以为你化妆，如果我活得比你久一些。</p>
+<p>你可以想象那些相亲对象们的目光和结局。</p>
+<p>也有单位同事给她介绍过，殡葬行业的婚恋多是内部消化，反正彼此都是为尸体服务的。也有位年长她几岁的师傅追求过她，却被小灵委婉地拒绝了。</p>
+<p>她说，要是你再胖一点，我就答应你。</p>
+<p>对方胡吃海喝了半年，体重涨到了一百八十斤，但离小灵的标准还差得远呢。</p>
+<p>忽然，小灵低下头来，看着死去的胖子君。</p>
+<p>这是她六年来第一次见到他。</p>
+<p>额头上有些伤痕，皮肤里残留碎玻璃，都被她小心地处理过了。也因为遗体过于庞大，她从子夜十二点，工作到凌晨三点。虽说，这是殡仪馆里最容易闹鬼的时刻，但她没有半点害怕。</p>
+<p>化妆进入尾声，胖子君终于像个人样了。以前跟他在一起时，看到他睡着的样子，小灵就忍不住要为他化妆——其实是拿他作为实验品，当做死人脸在练习。</p>
+<p>可惜，现在的他，是冷的。</p>
+<p>六年前，胖子君跟女朋友分手。他每天二十四小时混在网吧打网游，在道上混出了名儿，许多金链肉瘤大哥来找他买装备，几个月里净赚了十几万块。通过跟玩家们沟通互动，这些年学到了不少互联网知识。他决定创业，办一家SNS社区，名叫“万圣节”。就像现在网上许多同志社区，而胖子君的这个社区，是专门给恐怖鬼怪爱好者，以及万圣节cosplay办的。</p>
+<p>但是，胖子君家里没钱，拿不出第一笔启动资金。他住在三十年前爷爷的钢铁厂分配的老工房里——那一年他还没出生，要没有这套五十平米的房子，他妈至今都不会嫁给他爸呢。</p>
+<p>这时候，他遇到了天使，也是经常向他购买网游装备的富二代，更是德州电锯中国同人会的会长，网名“重口味天使”。每部德州电锯公映，这家伙都会去美国包场看。他给胖子君投了四十四万，说这数字最吉利了，虽说用来互联网创业诡异了点，但年轻人不就是得艰苦奋斗吗？</p>
+<p>果然，他开始了足够艰苦的奋斗。从半地下坟墓般的办公室开始，到雇佣第一个程序员开发APP。这中间他也被别人骗过几次，几乎搞到身无分文的境地。最惨的时刻，他一个人在桥洞下饿了三天，却没有人给过他一分钱——他那肥胖的体形实在是跟乞丐相差太大，最后他被几十个假装要饭的围殴，被赶到了火车站旁的铁轨上险些做了海子。</p>
+<p>两年前，终于迎来互联网经济的春天。胖子君赚到了第一桶金，虽然还不够发工资，却证明了万圣节商机无限。不用担心饿肚子了，至于为什么会越来越胖？因为太操心了，经常被迫跟渠道商喝酒，天天熬夜加班，每晚吃一大包酸菜方便面加香肠加鸡蛋加大瓶可乐，肚子就像实心铅球似的鼓起来。</p>
+<p>两个月前，马云和阿里巴巴在美国上市，更是让胖子君心潮澎湃，他给自己树立了一个目标——十年后，纳斯达克，敲钟见！</p>
+<p>为了拿下一单生意，连续三天没有睡觉的他，又去陪客户喝酒了。那群王八蛋最会灌人了。他一口菜都没吃，空着腹，先喝啤酒五杯，再饮红酒四杯，最后干了五十二度的白酒三斤。然后，大家看他有些不行了，便拼命地给他吃肉，又吞下了半斤牛腿肉，三根羊排，两只老母鸡。</p>
+<p>但，胖子君毕竟没有净坛使者的福气。</p>
+<p>那家餐馆有个露台，他本想冲过去呕吐，却彻底喝糊涂了，直接撞上玻璃幕墙，再硬的玻璃也承受不了他的重量，直接从七楼摔下来。</p>
+<p>他死了。</p>
+<p>经过法医的检验，胖子君的真实死因，不是摔死的，而是因为爆饮暴食，加上酒精中毒。</p>
+<p>终于，胖子君去另一个世界的纳斯达克敲钟了。</p>
+<p>回到殡仪馆的凌晨，阴阴的风在遗体清理化妆间回荡。小灵最后擦拭一遍化妆棉，无菌手套轻轻抹过，死者的嘴角微微一动。</p>
+<p>她知道，他还有话要说，对她。</p>
+<p>小灵把耳朵贴在胖子君嘴边，亲爱的，说吧。</p>
+<p>汪！</p>
+<p>从尸体的喉咙深处，传来一记狗叫声，那是胖子君最爱学的声音。</p>
+<p>他睁着眼睛说，小灵，其实，你不知道，我始终悄悄关注着你，看你的每条微博、微信、QQ空间和签名。我知道你没嫁人，男朋友都没再谈，每次相亲都失败了。我想，我还有机会，只要我能成功，就一定踩着五色云彩，开着宝马奔驰，像个盖世英雄，接你回家，娶你。</p>
+<p>我养你啊！</p>
+<p>嗨，还记得六年前，在殡仪馆的门口，我跟你说过的这句话吗？既然是男人，不就应该对女人这么说吗？</p>
+<p>小灵抬起头来，怔怔地看着胖子君，许久许久，第一滴眼泪，从她腮边滑落，坠入胖子君尚未瞑目的左眼。</p>
+<p>热热的。</p>
+<p>刹那间，小灵好想大声说——复活吧！亲爱的，我的胖子君！</p>
+<p>他闭上了眼睛。</p>
+<p>不知是她的还是他的泪水，从冰冷的眼角滑落到耳边，溶化死后浓浓的妆容。</p>
+<p>再不会醒来。</p>
+<p>小灵为胖子君补妆，低头亲吻他的嘴唇。</p>
+<p>天亮了，万圣节。</p>
+<p>下午四点，殡仪馆七宝山厅，胖子君遗体告别仪式。</p>
+<p>可惜，来人稀稀拉拉，除了父母与亲戚，没什么其他人。胖子君生前的互联网公司，总共三十多号员工，连一个都没来——都拥到劳动保障局讨薪水去了。只有投资他的那位德州电锯杀人狂天使，给他送了个黑玫瑰扎成的硕大花圈，看起来煞是拉风与扎台型——那一夜，天使本人正在北京地铁里扮演清宫太监而被警方拘捕。</p>
+<p>胖子君安静地躺在水晶棺材里，身着黑色西装，打着领带，面色白皙，头发锃亮，竟比他活着的时候，更帅一百倍。</p>
+<p>大概，只有在情人眼里，他才是这个样子吧。</p>
+<p>哀乐结束，遗体告别仪式完毕，胖子君被送到后面的火化炉。</p>
+<p>体形过于庞大沉重，只能送进一个单间。关上炉门，按下电钮，数千度高温烈火，往生极乐矣。</p>
+<p>小灵穿着一身正式的黑色衣裙，头发上别着白花，远远地看着火葬中的胖子君。</p>
+<p>火葬场的玫瑰。</p>
+<p>有人给她起过这样的绰号，都从未有人看她穿成这样，同事们好奇地围观，却都不敢上去问她为什么。</p>
+<p>火化一具遗体需要个把钟头，家属在外面嚎哭等候之时，火化炉的烟囱上面，喷出大团炽热的烈火。</p>
+<p>大家都看不懂怎么回事，只感觉四周温度剧增，地面上流溢着喷火的液体……有经验的火化工高喊：粗大事了！</p>
+<p>紧接着，整个火化炉被熊熊烈焰包围，大家慌乱地往殡仪馆门外逃去。</p>
+<p>小灵夹在人群中间，痴痴地看着烈火焚城与焚尸，脸被火光映得通红，就像在职业高中的篮球场边第一次看到胖子君——他的浑身上下装满了脂肪，因为烈火焚烧而从烟囱喷出。胖子君的尸体就像一团喷火巨龙，迅速点燃整个火葬场和殡仪馆。何况，他是喝酒醉死的，巨大的肠胃里，灌满了高纯度的酒精，更加助长了这场大火。</p>
+<p>终于，当整个殡仪馆都陷入火海，小灵才被两个奋不顾身的男同事救出来。</p>
+<p>好大一蓬火啊！</p>
+<p>画面太美，你不敢看。小灵站在马路对面，看着这场殡仪馆史上最壮观的灾难。火化炉的烟囱不断喷出烈焰，就像白日焰火，直冲云霄。巨大火舌，半空爆炸，火星四散，带着胖子君身上的油脂，如同最迷人的烟花，绽开五颜六色，绚烂夺目。所有目睹此景的人们，注定永生难忘！</p>
+<p>一群外国小孩依次敲门来讨糖吃，他们不晓得这是中国的殡仪馆，小孩的洋妈妈们以为是小菜场之类的。小洋鬼子们敲开了一家家寿衣店和花圈店的大门，店里当然没有糖果和巧克力，只能顺手抓给他们一把纸钱和冥钞，大方点的就送了几块报废的灵位牌和骨灰盒子的边角料。最后看到一蓬大火，小孩子们怀抱最新的礼物，欢快地完成了万圣节讨糖之旅。</p>
+<p>西北风吹过，烈火永不停歇地燃烧，从白天烧入傍晚，连着天边晚霞。全城的消防车都已出动，却难以控制猛烈的火势。每个消防员的身上，都沾满了胖子君体内的黄色油脂，而那充满焦煳香气的尸体味道，则弥漫在整个城市，乃至大半个中国上空……</p>
+<p>万圣节。</p>
+<p>这场“1031”特大火灾，足足烧了五个多钟头。谁都没有想到，子夜时分，突如其来下了一场大雪。黑夜里白茫茫一片，终于把火扑灭。整个殡仪馆与火葬场早被烧成白地。幸好，没有人（活）员伤亡，但几百具尸体直接成灰了。</p>
+<p>镜头回放——下午五点，大火最猛烈的瞬间。小灵想起胖子君生前爱看的一部港片，有段黑社会老大的台词：人生的最高境界，就是风风光光地活，红红火火地死。如果，不能风风光光地活，那就红红火火地死吧。</p>
+<p>忽然，她跳着双脚拍手欢呼起来！</p>
+<p>女孩笑得多么灿烂，像小时候骑在爸爸肩膀上，出门去看国庆节放烟花。</p>
+<p>摩天轮上，胖子君问小灵，你看过白天放烟花吗？</p>
+<p>没有啊。</p>
+<p>将来一定有机会，我放给你看。</p>
+<p>胖子君双手揽小灵入怀，只感觉她轻得像一只小猫，而自己像只又肥又蠢的大狗。</p>
+<p>喵呜。</p>
+<p>汪汪。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>

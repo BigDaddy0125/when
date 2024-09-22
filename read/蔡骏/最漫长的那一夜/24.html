@@ -1,0 +1,1142 @@
+<!DOCTYPE html><html><head><title>24</title><meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            ::selection {
+                  background-color: orange;
+                  color: white
+            }
+
+            code[class*=language-],
+            pre[class*=language-] {
+                  color: #333;
+                  background: 0 0;
+                  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+                  text-align: left;
+                  white-space: pre;
+                  word-spacing: normal;
+                  word-break: normal;
+                  word-wrap: normal;
+                  line-height: 1.4;
+                  -moz-tab-size: 8;
+                  -o-tab-size: 8;
+                  tab-size: 8;
+                  -webkit-hyphens: none;
+                  -moz-hyphens: none;
+                  -ms-hyphens: none;
+                  hyphens: none
+            }
+
+            pre[class*=language-] {
+                  padding: .8em;
+                  overflow: auto;
+                  border-radius: 3px;
+                  background: #f5f5f5
+            }
+
+            :not(pre)>code[class*=language-] {
+                  padding: .1em;
+                  border-radius: .3em;
+                  white-space: normal;
+                  background: #f5f5f5
+            }
+
+            .token.blockquote,
+            .token.comment {
+                  color: #969896
+            }
+
+            .token.cdata {
+                  color: #183691
+            }
+
+            .token.doctype,
+            .token.macro.property,
+            .token.punctuation,
+            .token.variable {
+                  color: #333
+            }
+
+            .token.builtin,
+            .token.important,
+            .token.keyword,
+            .token.operator,
+            .token.rule {
+                  color: #a71d5d
+            }
+
+            .token.attr-value,
+            .token.regex,
+            .token.string,
+            .token.url {
+                  color: #183691
+            }
+
+            .token.atrule,
+            .token.boolean,
+            .token.code,
+            .token.command,
+            .token.constant,
+            .token.entity,
+            .token.number,
+            .token.property,
+            .token.symbol {
+                  color: #0086b3
+            }
+
+            .token.prolog,
+            .token.selector,
+            .token.tag {
+                  color: #63a35c
+            }
+
+            .token.attr-name,
+            .token.class,
+            .token.class-name,
+            .token.function,
+            .token.id,
+            .token.namespace,
+            .token.pseudo-class,
+            .token.pseudo-element,
+            .token.url-reference .token.variable {
+                  color: #795da3
+            }
+
+            .token.entity {
+                  cursor: help
+            }
+
+            .token.title,
+            .token.title .token.punctuation {
+                  font-weight: 700;
+                  color: #1d3e81
+            }
+
+            .token.list {
+                  color: #ed6a43
+            }
+
+            .token.inserted {
+                  background-color: #eaffea;
+                  color: #55a532
+            }
+
+            .token.deleted {
+                  background-color: #ffecec;
+                  color: #bd2c00
+            }
+
+            .token.bold {
+                  font-weight: 700
+            }
+
+            .token.italic {
+                  font-style: italic
+            }
+
+            .language-json .token.property {
+                  color: #183691
+            }
+
+            .language-markup .token.tag .token.punctuation {
+                  color: #333
+            }
+
+            .language-css .token.function,
+            code.language-css {
+                  color: #0086b3
+            }
+
+            .language-yaml .token.atrule {
+                  color: #63a35c
+            }
+
+            code.language-yaml {
+                  color: #183691
+            }
+
+            .language-ruby .token.function {
+                  color: #333
+            }
+
+            .language-markdown .token.url {
+                  color: #795da3
+            }
+
+            .language-makefile .token.symbol {
+                  color: #795da3
+            }
+
+            .language-makefile .token.variable {
+                  color: #183691
+            }
+
+            .language-makefile .token.builtin {
+                  color: #0086b3
+            }
+
+            .language-bash .token.keyword {
+                  color: #0086b3
+            }
+
+            pre[data-line] {
+                  position: relative;
+                  padding: 1em 0 1em 3em
+            }
+
+            pre[data-line] .line-highlight-wrapper {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-color: transparent;
+                  display: block;
+                  width: 100%
+            }
+
+            pre[data-line] .line-highlight {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  padding: inherit 0;
+                  margin-top: 1em;
+                  background: hsla(24, 20%, 50%, .08);
+                  background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+                  pointer-events: none;
+                  line-height: inherit;
+                  white-space: pre
+            }
+
+            pre[data-line] .line-highlight:before,
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-start);
+                  position: absolute;
+                  top: .4em;
+                  left: .6em;
+                  min-width: 1em;
+                  padding: 0 .5em;
+                  background-color: hsla(24, 20%, 50%, .4);
+                  color: #f4f1ef;
+                  font: bold 65%/1.5 sans-serif;
+                  text-align: center;
+                  vertical-align: .3em;
+                  border-radius: 999px;
+                  text-shadow: none;
+                  box-shadow: 0 1px #fff
+            }
+
+            pre[data-line] .line-highlight[data-end]:after {
+                  content: attr(data-end);
+                  top: auto;
+                  bottom: .4em
+            }
+
+            html body {
+                  font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                  background-color: #fff;
+                  overflow: initial;
+                  box-sizing: border-box;
+                  word-wrap: break-word
+            }
+
+            html body>:first-child {
+                  margin-top: 0
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6 {
+                  line-height: 1.2;
+                  margin-top: 1em;
+                  margin-bottom: 16px;
+                  color: #000
+            }
+
+            html body h1 {
+                  font-size: 2.25em;
+                  font-weight: 300;
+                  padding-bottom: .3em
+            }
+
+            html body h2 {
+                  font-size: 1.75em;
+                  font-weight: 400;
+                  padding-bottom: .3em
+            }
+
+            html body h3 {
+                  font-size: 1.5em;
+                  font-weight: 500
+            }
+
+            html body h4 {
+                  font-size: 1.25em;
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1.1em;
+                  font-weight: 600
+            }
+
+            html body h6 {
+                  font-size: 1em;
+                  font-weight: 600
+            }
+
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5 {
+                  font-weight: 600
+            }
+
+            html body h5 {
+                  font-size: 1em
+            }
+
+            html body h6 {
+                  color: #5c5c5c
+            }
+
+            html body strong {
+                  color: #000
+            }
+
+            html body del {
+                  color: #5c5c5c
+            }
+
+            html body a:not([href]) {
+                  color: inherit;
+                  text-decoration: none
+            }
+
+            html body a {
+                  color: #08c;
+                  text-decoration: none
+            }
+
+            html body a:hover {
+                  color: #00a3f5;
+                  text-decoration: none
+            }
+
+            html body img {
+                  max-width: 100%
+            }
+
+            html body>p {
+                  margin-top: 0;
+                  margin-bottom: 16px;
+                  word-wrap: break-word
+            }
+
+            html body>ol,
+            html body>ul {
+                  margin-bottom: 16px
+            }
+
+            html body ol,
+            html body ul {
+                  padding-left: 2em
+            }
+
+            html body ol.no-list,
+            html body ul.no-list {
+                  padding: 0;
+                  list-style-type: none
+            }
+
+            html body ol ol,
+            html body ol ul,
+            html body ul ol,
+            html body ul ul {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body li {
+                  margin-bottom: 0
+            }
+
+            html body li.task-list-item {
+                  list-style: none
+            }
+
+            html body li>p {
+                  margin-top: 0;
+                  margin-bottom: 0
+            }
+
+            html body .task-list-item-checkbox {
+                  margin: 0 .2em .25em -1.8em;
+                  vertical-align: middle
+            }
+
+            html body .task-list-item-checkbox:hover {
+                  cursor: pointer
+            }
+
+            html body blockquote {
+                  margin: 16px 0;
+                  font-size: inherit;
+                  padding: 0 15px;
+                  color: #5c5c5c;
+                  background-color: #f0f0f0;
+                  border-left: 4px solid #d6d6d6
+            }
+
+            html body blockquote>:first-child {
+                  margin-top: 0
+            }
+
+            html body blockquote>:last-child {
+                  margin-bottom: 0
+            }
+
+            html body hr {
+                  height: 4px;
+                  margin: 32px 0;
+                  background-color: #d6d6d6;
+                  border: 0 none
+            }
+
+            html body table {
+                  margin: 10px 0 15px 0;
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                  display: block;
+                  width: 100%;
+                  overflow: auto;
+                  word-break: normal;
+                  word-break: keep-all
+            }
+
+            html body table th {
+                  font-weight: 700;
+                  color: #000
+            }
+
+            html body table td,
+            html body table th {
+                  border: 1px solid #d6d6d6;
+                  padding: 6px 13px
+            }
+
+            html body dl {
+                  padding: 0
+            }
+
+            html body dl dt {
+                  padding: 0;
+                  margin-top: 16px;
+                  font-size: 1em;
+                  font-style: italic;
+                  font-weight: 700
+            }
+
+            html body dl dd {
+                  padding: 0 16px;
+                  margin-bottom: 16px
+            }
+
+            html body code {
+                  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+                  font-size: .85em;
+                  color: #000;
+                  background-color: #f0f0f0;
+                  border-radius: 3px;
+                  padding: .2em 0
+            }
+
+            html body code::after,
+            html body code::before {
+                  letter-spacing: -.2em;
+                  content: ' a0'
+            }
+
+            html body pre>code {
+                  padding: 0;
+                  margin: 0;
+                  word-break: normal;
+                  white-space: pre;
+                  background: 0 0;
+                  border: 0
+            }
+
+            html body .highlight {
+                  margin-bottom: 16px
+            }
+
+            html body .highlight pre,
+            html body pre {
+                  padding: 1em;
+                  overflow: auto;
+                  line-height: 1.45;
+                  border: #d6d6d6;
+                  border-radius: 3px
+            }
+
+            html body .highlight pre {
+                  margin-bottom: 0;
+                  word-break: normal
+            }
+
+            html body pre code,
+            html body pre tt {
+                  display: inline;
+                  max-width: initial;
+                  padding: 0;
+                  margin: 0;
+                  overflow: initial;
+                  line-height: inherit;
+                  word-wrap: normal;
+                  background-color: transparent;
+                  border: 0
+            }
+
+            html body pre code:after,
+            html body pre code:before,
+            html body pre tt:after,
+            html body pre tt:before {
+                  content: normal
+            }
+
+            html body blockquote,
+            html body dl,
+            html body ol,
+            html body p,
+            html body pre,
+            html body ul {
+                  margin-top: 0;
+                  margin-bottom: 16px
+            }
+
+            html body kbd {
+                  color: #000;
+                  border: 1px solid #d6d6d6;
+                  border-bottom: 2px solid #c7c7c7;
+                  padding: 2px 4px;
+                  background-color: #f0f0f0;
+                  border-radius: 3px
+            }
+
+            @media print {
+                  html body {
+                        background-color: #fff
+                  }
+
+                  html body h1,
+                  html body h2,
+                  html body h3,
+                  html body h4,
+                  html body h5,
+                  html body h6 {
+                        color: #000;
+                        page-break-after: avoid
+                  }
+
+                  html body blockquote {
+                        color: #5c5c5c
+                  }
+
+                  html body pre {
+                        page-break-inside: avoid
+                  }
+
+                  html body table {
+                        display: table
+                  }
+
+                  html body img {
+                        display: block;
+                        max-width: 100%;
+                        max-height: 100%
+                  }
+
+                  html body code,
+                  html body pre {
+                        word-wrap: break-word;
+                        white-space: pre
+                  }
+            }
+
+            .markdown-preview {
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box
+            }
+
+            .markdown-preview ul {
+                  list-style: disc
+            }
+
+            .markdown-preview ul ul {
+                  list-style: circle
+            }
+
+            .markdown-preview ul ul ul {
+                  list-style: square
+            }
+
+            .markdown-preview ol {
+                  list-style: decimal
+            }
+
+            .markdown-preview ol ol,
+            .markdown-preview ul ol {
+                  list-style-type: lower-roman
+            }
+
+            .markdown-preview ol ol ol,
+            .markdown-preview ol ul ol,
+            .markdown-preview ul ol ol,
+            .markdown-preview ul ul ol {
+                  list-style-type: lower-alpha
+            }
+
+            .markdown-preview .newpage,
+            .markdown-preview .pagebreak {
+                  page-break-before: always
+            }
+
+            .markdown-preview pre.line-numbers {
+                  position: relative;
+                  padding-left: 3.8em;
+                  counter-reset: linenumber
+            }
+
+            .markdown-preview pre.line-numbers>code {
+                  position: relative
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows {
+                  position: absolute;
+                  pointer-events: none;
+                  top: 1em;
+                  font-size: 100%;
+                  left: 0;
+                  width: 3em;
+                  letter-spacing: -1px;
+                  border-right: 1px solid #999;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span {
+                  pointer-events: none;
+                  display: block;
+                  counter-increment: linenumber
+            }
+
+            .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+                  content: counter(linenumber);
+                  color: #999;
+                  display: block;
+                  padding-right: .8em;
+                  text-align: right
+            }
+
+            .markdown-preview .mathjax-exps .MathJax_Display {
+                  text-align: center !important
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .status {
+                  display: none
+            }
+
+            .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+                  margin-bottom: 16px
+            }
+
+            .markdown-preview .md-toc {
+                  padding: 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+            .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            .scrollbar-style::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            .scrollbar-style::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            .scrollbar-style::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  margin: 0;
+                  padding: 0;
+                  overflow: auto
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                  position: relative;
+                  top: 0;
+                  min-height: 100vh
+            }
+
+            @media screen and (min-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em calc(50% - 457px + 2em)
+                  }
+            }
+
+            @media screen and (max-width:914px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+                        font-size: 14px !important;
+                        padding: 1em
+                  }
+            }
+
+            @media print {
+                  html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                        display: none
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+                  position: fixed;
+                  bottom: 8px;
+                  left: 8px;
+                  font-size: 28px;
+                  cursor: pointer;
+                  color: inherit;
+                  z-index: 99;
+                  width: 32px;
+                  text-align: center;
+                  opacity: .4
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+                  opacity: 1
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 300px;
+                  height: 100%;
+                  padding: 32px 0 48px 0;
+                  font-size: 14px;
+                  box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+                  box-sizing: border-box;
+                  overflow: auto;
+                  background-color: inherit
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+                  width: 8px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+                  border-radius: 10px;
+                  background-color: transparent
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+                  border-radius: 5px;
+                  background-color: rgba(150, 150, 150, .66);
+                  border: 4px solid rgba(150, 150, 150, .66);
+                  background-clip: content-box
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+                  text-decoration: none
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+                  padding: 0 16px
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+                  display: inline;
+                  padding: .25rem 0
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+                  display: inline
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+                  font-weight: 800
+            }
+
+            html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                  left: 300px;
+                  width: calc(100% - 300px);
+                  padding: 2em calc(50% - 457px - 300px / 2);
+                  margin: 0;
+                  box-sizing: border-box
+            }
+
+            @media screen and (max-width:1274px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        padding: 2em
+                  }
+            }
+
+            @media screen and (max-width:450px) {
+                  html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+                        width: 100%
+                  }
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+                  left: 50%;
+                  transform: translateX(-50%)
+            }
+
+            html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+                  display: none
+            }
+
+            /* Please visit the URL below for more information: */
+            /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+      <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                  // your code here
+            });
+      </script>
+</head>
+
+<body for="html-export">
+
+
+      <div class="crossnote markdown-preview  "><div id="top"></div>
+            <p><a href="23.html">上一章</a>|<a href="contents.html">返回目录</a>|<a href="25.html">下一章</a></p><hr><h1><center>第24夜 珂赛特的眼泪石一夜</center></h1>
+<p>他睡在我身边一个夏天。他给我带来无穷惊喜。他随手摘去了我的童年，当秋天到来，他却消失不见。我仍然梦想他会回到我身边，我们还能相守一生。但总有些梦无法成真。总有些风暴会把人摧毁。</p>
+<p>——维克多·雨果《悲惨世界》</p>
+<p>爱情是融合男人和女人的卓越的熔炉，单一的人，三人一体，最后的人，凡人的三位一体由此产生。两个心灵和合的诞生，定会感动幽灵。情人是教士；被夺走的处女感到惊恐。这种欢乐多少会传送到上帝那里。真正的崇高的婚姻，即爱情的结合，就有着理想的境界。一张新婚的床在黑夜里是一角黎明，如果允许肉眼看见这些可畏而又迷人的上天的形象，我们可能见到夜里的那些形体，长着翅膀的陌生人，看不见的蓝色的旅客，弯着腰，一簇黑影似的人头，在发光的房屋的周围，他们感到满意，祝福新婚夫妇，互相指着处女新娘，他们也略感紧张，他们神圣的容貌上有着人间幸福的反照。新婚夫妇在至高无上的销魂极乐时刻，认为没有他人在旁，如果倾耳谛听，他们就可以听见簌簌的纷乱的翅膀声。完美的幸福引来了天使的共同的关怀。在这间黑暗的小寝室上面，有整个天空作为房顶。当两人的嘴唇，被爱情所纯化，为了创造而互相接近时，在这令无法形容的接吻上空，辽阔而神秘的繁星，不会没有一丝震颠。</p>
+<p>这幸福是真实不虚的，除了这一欢乐外没有其他的欢乐。</p>
+<p>唯独爱令人感到心醉神迷。此外一切都是可悲可泣的。</p>
+<p>爱和曾爱过，这就够了。不必再作其他希求。在生活的黑暗褶子里，是找不到其他的珍珠的。爱是完满的幸福。</p>
+<p>七年前，第二次读《悲惨世界》，读到第五部“冉阿让”第六卷。不眠之夜”第二章“冉阿让的手臂仍用绷带吊着”——亲爱的雨果老爹啊，您是心灵鸡汤段子手吗？幸好那年还没《非诚勿扰》，否则您老就是最好的特邀嘉宾，根本没孟非和乐嘉这俩光头啥事，还“处女新娘”呢，法国男人和法国女人，难道不是Baise-moi更真实吗？那年头，大师们就是逼格高，每写一万字故事，就来段五千字长篇大论，从如何解放失足妇女和被拐卖儿童到巴黎下水道的设计方案，不一而足。中国古典小说里的“有诗为证”真是小巫见大巫了。雨果、巴尔扎克、狄更斯们都既是小说家也是鸡汤大师兼历史学家兼新闻评论员兼眼含热泪的网络名嘴公知大V。</p>
+<p>所以嘛，中国的男女文青们都知道，第一次世界大战后，雨果老爹们就被卡夫卡、乔伊斯、海明威们革命了，第二次世界大战后，又被马尔克斯、格拉斯、昆德拉，乃至村上春树们革了第二次命。</p>
+<p>以上，除了最后两位，都在天堂里继续革命着。愿老天保佑他们的灵魂与坟墓，阿门。</p>
+<p>我为什么自己找虐重读《悲惨世界》？是要写推理小说《名侦探沙威警长》吗？盗墓小说《大盗冉阿让的一生&gt;？小白文《恋上霸道总裁的芳汀》？</p>
+<p>七年前的春夜，我认识了珂赛特。</p>
+<p>那一年，我刚写完《天机》，不知下本书该写什么。偶尔，夜深入静，饥肠辘辘，就去楼下的澳门路一间二十四小时营业的四川麻辣烫店。店里弥漫着刺鼻的辣油味，只够摆下六张方桌，墙面和餐具脏兮兮的。小姑娘挤在最里头的角落，眼圈红红的像被揍了一顿。她说是舅妈——也就是老板娘——舍不得开油烟机，油烟太大，但我知道，那是扯淡！我的泪腺比常人敏感，也会拿风沙太大作挡箭牌……</p>
+<p>我猜她最多十二岁，穿着小碎花的衬衫，蕾丝边的领头，脚上一双粉红色的小鞋子。她抬起头，看着我的眼睛，用那双大得有些吓人的眼睛。对不起，不是有些吓人，而是相当吓人，像恐怖片里的眼睛。</p>
+<p>她的眼泪，刚从眼睛分泌出来，黏糊糊的，介于液体与固体之间，像一小团胶原蛋白的糨糊。当这滴泪离开眼眶，在脸颊与鼻子间滑落，就彻底变成了一颗小石头，比米粒稍微大些，在昏暗的灯光下，散发着刺目的反光，宛如一颗水晶或高纯度的钻石。</p>
+<p>小女孩掉出了七颗眼泪，六颗坠落在油腻的地板上，仅剩最后一颗挂在她腮边。</p>
+<p>“可以吗？”我伸出手指尖，靠近她的下巴。她不反抗，翘翘的小鼻子在抽泣。脸很冰冷，摸着有些吓人，对于擅长联想的我来说。</p>
+<p>我从她的腮边取下那颗“眼泪”。</p>
+<p>固体眼泪，一粒小石子，在我的食指与拇指间摩擦滚动，比普通石头还坚硬。我把这颗“眼泪”放到灯光下，它出现奇异的反光，只可惜太小了，只有用放大镜，才能看清里头的颜色。</p>
+<p>隔壁桌吃麻辣烫的手机响了，震天动地的《该死的温柔》，我的两根手指头一滑，小女孩的“眼泪”坠落到黑暗的地板。</p>
+<p>再看她的脸，虽有泪痕，却没了泪水。眼眶还湿润着。</p>
+<p>“告诉我，你为什么哭？”</p>
+<p>小女孩双手别在背后，抓着一本书。</p>
+<p>“能给我看看吗？”</p>
+<p>“先生，您只是看看吗？”她眼泪汪汪地摊开双手。一本灰色的旧书，像从废品回收站里出来的，封面发黄霉烂，书角毛毛卷卷，随手翻开几页，布满破洞和污渍，不少字迹模糊不清。</p>
+<p>我认得这本书——《悲惨世界》。</p>
+<p>这本垃圾堆里的书啊，居然，就是我小时候看过的版本。封面上的几何花纹图案，像十九世纪的门窗。书名底下的“一”，代表第一部，然后是“雨果著”。扉页印着“李丹译，人民文学出版社，一九七八年，北京”。版权页上头是“Victor Hugo，LES MISERABLES”，另一面是雨果老爹的照片。出版说明的落款是一九七七年十月。接着是目录、作者序、第一部“芳汀”。一幅原版的版画后面，第一卷“一个正直的人”。</p>
+<p>“你在看‘米里哀先生’吗？”小女孩问我。</p>
+<p>没错，第一卷第一章，就是这个名字。我反问她，“你在看这本书？</p>
+<p>”她用皱巴巴的餐巾纸抹去眼泪和鼻涕，“是的，先生，这是我第四遍读这本书了。”</p>
+<p>小学四年级时，有次语文老师问有没有人看过《悲惨世界》，有的说看过电影，有的说看过日本动画片，但只有我站起来说，我看过小说……</p>
+<p>《悲惨世界》是我接触的第一本文学名著。那时我只看过一小部分，第二部“珂赛特”开头，雨果用数万字描写滑铁卢战役——与整个悲惨世界基本无关，除了最后偷盗死人财物的德纳第。大师发神经般写了一长串，所有细节栩栩如生。我仍然记得那个“A”字形，那道致命的壕沟，葬送了拿破仑的胸甲骑兵。雨果一边描述战役进程，一边夹</p>
+<p>带大段抒情和议论，让我一度以为所有牛逼的小说都该这么写……</p>
+<p>“对不起，先生，您能把这本书还给我吗？”她的普通话很不标准，带有川渝味道。</p>
+<p>“你叫什么名字？”</p>
+<p>“珂赛特。”</p>
+<p>“什么？”</p>
+<p>她又说了一遍。咳嗽般吐出一个“co”，舌尖舔过牙齿间缝隙爆发有力的“SE"，最后是个微不足道的清辅音“T”。</p>
+<p>“Cosette．”</p>
+<p>看着她的眼睛，猩红的眼眶，雪白的黏膜让人微微战栗，乌黑透亮的眼球里头，瞳仁宛如黑洞，像是能吸收所有男人的目光。</p>
+<p>她叫珂赛特。</p>
+<p>这个饥饿的春夜，我吃完了十二个牛肉丸子，告别了十二岁的珂赛特，我会再来的。</p>
+<p>春天，我重新读完了《悲惨世界》，那是一场异常艰难的行军跋涉，断断续续啃着嚼着敲骨吸髓般吮吸着每一个字。密密麻麻的叙述与抒情以及评论，宛如滑铁卢上英国方阵的矛尖。我几乎也深陷于拿破仑的困境，在威灵顿公爵的壕沟前尝尽了苦头。</p>
+<p>那个春天无比漫长，刚刚经历南方大雪灾，等待北京欢迎你，迎来的却是汶川大地震，陪伴我度过这段时光的，通常是麻辣烫店里的珂赛特。</p>
+<p>老板是个早衰的男人，操着浓浓的四川口音，地震那会儿总是盯着店里的小电视屏幕。老板娘是个肥胖的女人，挽着头发高声大气地说话，但能看出她年轻时有几分姿色，或许现在也没多大年纪。店里没有雇用伙计——珂赛特除外，我经常半夜看到这个十二岁的小姑娘，拿着块抹布拼命擦桌子，去超市里打酱油、买啤酒，顺便给客人递餐巾纸，当然老板是绝不会让她碰钱的。我还会看到两个小女孩，一个年纪跟珂赛特差不多，还有一个尚未读书——她们是老板和老板娘的女儿，从脸型和眼睛能看出是亲生的。</p>
+<p>看我经常光临小店，老板娘对我很热情。何况我跟杀马特风格的发廊小弟、对面夜总会下夜班的公主、附近群租房里的无业游民并不太相同。老板娘是珂赛特的舅妈，老板自然是她的舅舅，但我无法确认他们是否真有血缘关系。</p>
+<p>至于“珂赛特”——老板和老板娘也不知道这个名字是从哪里来的，他们显然没看过小女孩像宝贝似的藏在床底下的书。</p>
+<p>她到底叫什么？对于麻辣烫店里的人们来说，这并不重要。反正没人叫过她的名字，总是“哎”“那个谁”“小妹儿”…”</p>
+<p>那天夜里，麻辣烫店关着卷帘门，珂赛特独自坐在水泥台阶上，借着隔壁足浴店暖昧的灯光，低头读着《悲惨世界》第三部“马吕斯”第一章“从巴黎的原子看巴黎”。</p>
+<p>当我走到她面前，小女孩匆忙合上书本说：“先生，今天店里不开门，您不用等了。”</p>
+<p>我摇摇头，坐在珂赛特身旁，陪她看书。</p>
+<p>“先生，您为什么总是来看我？”</p>
+<p>“因为你叫珂赛特。”</p>
+<p>“珂赛特只是个普通的名字，先生。”</p>
+<p>“听我说，你喜欢这里吗？”</p>
+<p>”我不喜欢这里，但我出生在这里。”</p>
+<p>“你生在上海？”</p>
+<p>“嗯，但我还没断奶，就被送回了老家，外公外婆把我养大的。”</p>
+<p>“珂赛特，你的爸爸妈妈呢？”</p>
+<p>“我不知道爸爸是谁。那时候，妈妈在这边上班，就是这家店，他们都记得我妈。”小女孩指了指隔壁的足浴店，“后来啊，她去了一个叫东莞的地方，再也没回来看过我。”</p>
+<p>珂赛特有双特别的眼睛，与这年龄和小脸蛋极不相称的，像在墙壁上画出来的大大的眼睛，深夜里幽幽的乌黑目光，足以吓走所有孤魂野鬼。我懂了。</p>
+<p>小女孩的老家在深山里头。从县城坐中巴车上盘山公路要一个钟头，下车后再走二十里，之后爬过两道悬崖一座吊桥，直到白云缭绕的山巅，才到家。那里有座乡村小学，只有一个民办教师。她很喜欢读书，尤其喜欢语文课，二年级就可以给外公念《人民日报》了，虽说都是迟到一年的旧闻。三年级下学期，老师还没被抓起来，总喜欢摸她的小辫子。在破洞漏风的校舍里，教室最后一排，朽烂的木头课桌十多年没人坐过，断裂的桌脚下垫着几本破书。她好奇地把书搬出来，吹去封面上的木屑和尘土，露出灰色窗格般的封面——《悲惨世界》。这些书是很多年前，有人捐献给希望工程的。她偷偷把这五本书带回家，小心翼翼地打开，所有纸张都布满污渍，每个字里都挤进灰尘，一股牲口粪便与小孩尿裤子的气味扑面而来。</p>
+<p>在一八一五年，迪涅的主教是查理·弗朗索瓦·卞福汝·米里哀先生。他是个七十五岁左右的老人，从一八○六年起，他已就任迪涅区主教的职位……</p>
+<p>平生第一次读小说，教科书以外的第一本书。在炊烟与白云交织的山巅，苞谷堆积的瓦房屋檐下，她不知道世界上竟然还有这样的人和事、这样的芳汀、这样的珂赛特、这样的马吕斯、这样的冉阿让。</p>
+<p>虽然，她认得一两千个汉字，但不知道法国在什么地方，只晓得非常遥远，也不明白什么是天主教，只记得县城里有座高耸的教堂。除了在电视上，她从未见过外国人，更不懂拿破仑是谁，路易十八又是什么货色。整个暑期，她捧着五本书，大声朗读每一页，仔细揣摩其中意思——几乎每个字都能理解，但要是连成整页纸，真不知道在说些什么。</p>
+<p>冬天，大雪降落群山，第二遍读《悲惨世界》。独自坐在教室，窗外叽叽喳喳的鸟叫声，山雀啊山雀，你们干吗不做候鸟飞去南方？她一边看着珂赛特与芳汀，一边用弹弓打鸟，等到冉阿让寿终正寝的那天，雪地里堆满羽毛和腐烂的小鸟。她给自己取名为珂赛特。</p>
+<p>第三遍读《悲惨世界》，珂赛特四年级了，越长越像芳汀的女儿。她用春天读完第一部“芳汀”和第二部“珂赛特”，又用整个夏天花痴第三部“马吕斯”，直到山上枫叶红透，她才读完第四部“卜吕梅街的儿女情和圣丹尼街的英雄血”，到再度飘雪的冬夜，她点灯读完了第五部“冉阿让”。</p>
+<p>二○○八年的春节，妈妈没有回来看女儿，说是大雪封山，阻断了回家的铁路。珂赛特四五年没见过妈妈了，这场突如其来的大雪，恰逢其时地给了一个温暖的借口罢了。</p>
+<p>过完年，外公在去县城卖山货的路上被摩托车撞死，外婆中风在床上，珂赛特照顾了她一个月，可外婆还是没熬过清明就脚一蹬去了，再也没人能照顾他们的外孙女了。舅舅和舅妈从上海回来奔丧，在两位老人的葬礼上，请来女民间艺术家跳脱衣舞，总算收回了办丧事的白包。那时，舅舅给珂赛特在东莞的妈妈打了十几个电话都是关机。</p>
+<p>于是，珂赛特跟随着舅舅和舅妈，回到自己出生的城市，妈妈工作过的地方隔壁，弥漫着德纳第客栈气味的麻辣烫店。</p>
+<p>这年春天，在上海，普陀区，澳门路，麻辣烫店，她决定重读《悲惨世界》，第四遍。</p>
+<p>“先生，我争取这一遍能彻底读懂这本书。”</p>
+<p>珂赛特的目光在上海的子夜闪烁，就像在孟费郿的暗夜森林第一次与冉阿让相遇，只是双眼的巩膜白得有些吓人。</p>
+<p>“你的眼睛怎么了？”</p>
+<p>“不知道，先生，每次想要哭的时候，都有被辣椒呛到的感觉，眼泪就会变成小石头掉下来。”</p>
+<p>她说，以前乡邻说像她这种会流石头眼泪的女孩子，都是注定的天煞克星，不但会克死父母，还会连累全家人乃至整个村子。自从外公外婆死后，就再也没人喜欢她了。舅舅和舅妈，还有麻辣烫店里的两个表妹，吃饭啊睡觉啊都要离她远远的。</p>
+<p>“大概最近发生在老家的大地震，就是被我克的吧。”珂赛特弱弱地说。</p>
+<p>“说什么啊，珂赛特，那些话都是骗人的，别相信哦。”</p>
+<p>“不，先生，请您也别靠近我，会给您带来厄运的。”</p>
+<p>“如果，我是你的冉阿让昵？”</p>
+<p>“您才不是呢，冉阿让是个七尺大汉，满脸胡须，体壮如牛……还有啊，先生，您现在还太年轻了！”</p>
+<p>许多个深夜，我坐在麻辣烫店的角落里，邀请珂赛特坐下来一起吃。老板娘说小姑娘还要擦桌子，我又多点了不少菜，外加几瓶饮料，想着吃不完可以带回去。老板娘用异样的目光打量我，带着几分邪恶笑了笑，便让珂赛特好好陪我吃。</p>
+<p>“我能每天都来看你吗？”</p>
+<p>“是的，先生，如果您不怕倒霉的话，我很乐意。”</p>
+<p>在珂赛特遇到过的所有人里，我是唯一完整读过《悲惨世界》的。她对于这本书还有许多不明白的地方，便一一翻出来向我求助。我不敢说我读懂了雨果老爹，但至少我能看懂所有的注释，告诉她大致的历史和宗教背景，尤其是书中如繁星般不可计数的人名和典故。</p>
+<p>她正忙着吃串串，食量大得惊人，与小身板完全不相称，也许快要开始发育了。她穿着脏兮兮的旧衬衫，油腻腻的发丝垂落耳边，脑后用橡皮筋扎着马尾。</p>
+<p>老板娘的两个女儿正好出门，穿着新衣服，梳着整齐的辫子，贴着墙边侧目而过。对面有栋六层楼的老工房，他们全家四口租了顶楼一套房子。至于珂赛特嘛，就住在我的头顶——麻辣烫店里有个小阁楼，堆满杂物和食材。每晚她都在各种刺鼻的辣椒、香料、地沟油和食品添加剂的气味中入眠。</p>
+<p>“艾潘妮和阿兹玛，她们都很讨厌我。”珂赛特低声在我耳边说。</p>
+<p>“你说什么？”我没听懂那两个名字。小女孩又说了一遍，我才想起《悲惨世界》中德纳第夫妇的两个女儿。艾潘妮有个好听的名字，她还是暗恋马吕斯的痴情女，一辈子都是珂赛特的情敌。</p>
+<p>珂赛特说：“不过，我不恨艾潘妮，因为她的寿命不会很长，当她横死之前，祈求马吕斯吻她的额头。而马吕斯必然会答应她，我也不会责怪马吕斯，因为他必须向这个不幸的灵魂告别。”</p>
+<p>“你管她俩叫艾潘妮和阿兹玛？那么你的舅舅和舅妈呢？”我的目光盯着正在收钱的老板娘。</p>
+<p>“是的，先生，那一位是德纳第太太。她的力气真的很大，有一回把吃霸王餐的流氓揍得鼻青脸肿。不过，她特别爱看电视剧，空下来就霸占着小电视机看韩剧。你知道吗？德纳第太太的偶像是裴勇俊，我去过一次她和德纳第先生的卧室，贴满了那个男人的照片。”</p>
+<p>“那么德纳第先生呢？”我远远看着在店门口抽烟的老板，这样说起一个近在眼前的人，让我于心不安，但说实话，很有意思。</p>
+<p>“那只被逮住的老鼠是瘦的，但是猫儿，即使得了一只瘦老鼠，也要快乐一场。”她说，“德纳第先生年轻的时候当过兵，参加过九八年的抗洪救灾，他说自己还救过—个团长的命，但很可惜没有获得一等功。”</p>
+<p>在珂赛特的世界里，每个人都是十九世纪的法国人，都有个《悲惨世界》里的名字。上海就是肮脏的巴黎或外省小镇。我坐在这里品尝的并非麻辣烫，而是蘑菇汤与法棍面包，带着浓浓小客栈味道的家常法国菜。</p>
+<p>“那辆四轮马车不错！”</p>
+<p>珂赛特很专业地夸赞了一句，我才看到麻辣烫店外的澳门路上，停着一辆红色法拉利跑车。有人骑着助动车和自行车经过，她趴在桌子上懒洋洋地说：“这些马和驴子真难看啊，就像诺曼底乡下耕地的牲口。”</p>
+<p>这女孩又告诉我——每星期来吃一次麻辣烫的老头，穿得破破烂烂，头发乱得像鸟窝，其实是个捡垃圾的，但他过去是个主教，是个老好人，拯救过许多人，她管老头叫米里哀先生。</p>
+<p>“珂赛特，你怎么知道他是主教?”</p>
+<p>“先生，关于他过去的秘密，别指望从他的嘴里听到一句真话。不过，任何人都会撒谎，包括主教。”</p>
+<p>我想起《悲惨世界》开头，刚从监狱放出来的冉阿让，偷了主教家很值钱的银器，结果被警察抓回来。主教竟然对警察说谎，证明冉阿让没有偷窃，银器是主教自己送给他的。米里哀先生做了伪证。如果他不这么做，冉阿让将永远是个盗贼或将死在苦役营中，而珂赛特将在德纳第的小客栈里暗无天日地长大再无声无息地死去。</p>
+<p>珂赛特的世界里，还有个可怕的沙威警长，每天深夜出现在麻辣烫店，只点一碗酸辣粉加荷包蛋，配上一罐最便宜的啤酒。</p>
+<p>其实，那家伙是对面小区的保安，只是长得一脸凶相，平常绝不多说半句，总是面色阴沉，用各种怀疑的眼光打量别人，似乎这条街上每个人，不是偷自行车的就是半夜跟踪下班小姐的变态狂。有时候，我也在想这个人真是保安吗，不是某个深藏不露的名侦探？此人的举手投足，侧身走路的方式，鹰鹫似的眼神，对于细节的专注，都让人产生错觉——他在追捕一个逃犯，名字叫冉阿让。</p>
+<p>“但我不讨厌他，”珂赛特如此评价道，“沙威凶，但绝不下贱。”</p>
+<p>有一点确信无疑，除了《悲惨世界》，珂赛特长到这么大，从没读过第二本课外书。</p>
+<p>我本想送她几本书，比如我的悬疑小说，但想想又罢了，难道我能和雨果老爹比？即便只有一本《悲惨世界》，若能精读十遍的话，恐怕也是走运了。</p>
+<p>北京奥运会开幕式那一夜，我来到麻辣烫店里，看到珂赛特捧着她的《悲惨世界》，眼眶里不停掉落石头泪。几个客人吓得赶紧埋单走人。老板娘厌恶地说今晚的生意全被这晦气的孩子毁了。</p>
+<p>我半蹲在珂赛特面前，伸手接住几颗凝固的眼泪，放在手掌心轻轻揉搓。因为粗糙锋利的棱角，皮肤磨出了几道血丝。</p>
+<p>“你看，珂赛特，你的眼泪让我流血了，可以不哭了吗？”</p>
+<p>十二岁女孩的手很小，放在成年男人的手掌心里，像只小猫的爪子。但在她细细的手指头上，我能摸出冻疮的痕迹，还有一般城里女孩从不曾有过的老茧。她止住眼泪，我心疼地捏住她的手问：“为什么哭？”</p>
+<p>她说今天艾潘妮要上厕所没纸了，就从阁楼里抽出珂赛特的《悲惨世界》，随手撕了几页下来擦屁股了。</p>
+<p>珂赛特手里的《悲惨世界》是第四部“卜吕梅街的儿女情和圣丹尼街的英雄血”。被撕去的那几页，恰是第二卷“艾潘妮”的开头。</p>
+<p>为了安慰这姑娘，我又点了不少好吃的，让她尽管放开肚子——她已瘦得皮包骨头，不会有减肥的烦恼。老板娘蹙着眉头说：“小妹儿，算你有福气。”又客气地对我说，“你要常来啊，我们家小姑娘总是盼望着你呢。”我没理她，继续陪珂赛特。自觉无趣的老板娘，转头去看小电视机里的奥运会开幕式。</p>
+<p>漫长的暑期过去，珂赛特去了一所民工学校读初中预备班。艾潘妮读了附近的公办学校。外来务工人员随迁子女进公办学校读书，必须要爸爸或妈妈的居住证，而珂赛特没有爸爸，妈妈又在东莞，所以她只能上民工学校，坐公交车要一个钟头。</p>
+<p>麻辣烫店的老板娘愁眉苦脸，珂赛特白天不能在店里干活，晚上也不能守到凌晨；第二天早上还要读书。但老板娘并没有吃亏，因为每个月都会收到来自东莞的汇款。</p>
+<p>那些日子，网上流传开一段视频。手机拍摄的，镜头摇摇晃晃，在肮脏油腻的麻辣烫小店，有个小女孩捧着本破书掉眼泪。灯光打在她脸上，照出几颗小石头般的眼泪。有个男人蹲在她面前——就是我，伸手接住她的眼泪石。</p>
+<p>那天晚上，有人偷拍下了这段画面。</p>
+<p>视频在各大网站不胫而走．许多客户端弹窗出现“诡异视频网上疯传，小女孩流石头一样的眼泪”的新闻标题和图片。不久，有人扒出视频拍摄地点，找到了麻辣烫店里的珂赛特。那段视频原本有许多争议，网友们认为是假的，现已得到亲眼证实。有人收集了珂赛特的眼泪石，当然是要付出代价的，通常是给老板一条烟或是吃一顿麻辣烫。</p>
+<p>不断有人纷至沓来，麻辣烫店里生意火爆，整夜灯火通明，为一睹“眼泪石女孩”的芳容，或得到几粒珍珠般的眼泪——经过专业机构的鉴定，这是某种特殊的有机宝石，就像珍珠、珊瑚、琥珀、煤精，象牙……都是由生物体自然产生的。眼泪石非常稀有，古代有许多记载，最近一次发现还是民国初年。尚未初潮的处女眼泪石价值连城，慈禧太后最爱收藏了。至今台北故宫博物院就有，价值远远超过那一块肉和那一棵白菜。珠宝鉴定师分析珂赛特的眼泪，确认由碳酸盐、磷酸盐、少量硫酸盐等无机质，以及壳角蛋白、氨基酸、酯酸类、酯醇类等有机质共同构成，莫氏硬度为4,5，在有机宝石中最为坚硬。</p>
+<p>于是，珂赛特的眼泪石，被人挂上淘宝，一夜之间，哄抢而空。</p>
+<p>我仍然常去麻辣烫店，为她吃了快一年的地沟油，但见到她的机会却越来越少。珂赛特被老板娘藏了起来，毕竟是镇店之宝，岂能轻易示人？这姑娘要是被人拐了，损失可就大了。</p>
+<p>深秋子夜，我失望地走出小店，经过澳门路与陕西北路转角，有人轻轻叫了声：“维克多！”</p>
+<p>维克多是谁？我没有英文名字，从没人这么叫过我。</p>
+<p>黑暗中站着一个小女孩，幽暗闪烁的目光，不用看脸就知道是她。</p>
+<p>“珂赛特！”</p>
+<p>“维克多！”</p>
+<p>我想起来了，她为毛（为什么）要叫我这个名字，真让人承受不起。</p>
+<p>“能陪我去塞纳河边走走吗？”</p>
+<p>在她的世界里，上海的苏州河就是巴黎的塞纳河。我牵着小女孩冰冷的手，沿着陕西北路走去，直到秋风逼人的苏州河畔。</p>
+<p>“看，今晚新桥上的马车不多。”</p>
+<p>珂赛特是把江宁路桥看成巴黎新桥了吧。</p>
+<p>“你看过《新桥恋人》吗？”</p>
+<p>小女孩摇摇头，趴在苏州河的防汛墙上，低头看着黑夜里充满泥土味的河水，她说：“维克多，我是偷偷逃出来的。”</p>
+<p>“你舅妈——不，是德纳第太太，成天把你关在他们家里？你妈妈知道吗？”</p>
+<p>“维克多，你是说我妈妈芳汀？”珂赛特摇摇头，“你知道今年是哪一年？”</p>
+<p>“二○○八年。”</p>
+<p>“错了，一八二三年，这一年发生了很多事——芳汀死了，冉阿让收养了珂赛特。”</p>
+<p>“不会的，你妈妈没有消息吗？”</p>
+<p>“她的坟正像她的床一样！”</p>
+<p>我还记得《悲惨世界》里的这一句。</p>
+<p>“维克多，你不觉得我很丑吗？”</p>
+<p>“说什么呢？珂赛特！小女孩必须说自己漂亮。”</p>
+<p>黑暗中看不清她的脸。如果她心情愉悦一些，会显得好看些。可惜她总是愁眉苦脸，想是天天被逼掉眼泪的缘故。等到冬天，她的耳朵与手指，又会长起厚厚的冻疮。</p>
+<p>“没有人会喜欢我的，维克多。”</p>
+<p>“错了，我喜欢你啊。”</p>
+<p>珂赛特露出成年女人的笑容，“你说谎，维克多，我在等待一个人。”</p>
+<p>“冉阿让？”</p>
+<p>“是啊，他一定会出现的。你知道吗？珂赛特喜欢过的第一个男人是谁？”</p>
+<p>“马吕斯？”</p>
+<p>“当然不是，他是冉阿让。”</p>
+<p>看着苏州河对岸成群结队的高楼灯火，我沉默不语。眼皮底下，秋水深流。</p>
+<p>珂赛特说：“我希望跟着冉阿让亡命天涯，然后再跟马吕斯结婚。”</p>
+<p>“每个女孩都这么想吗？”</p>
+<p>“不知道，但我想，我只是寄居在这里的客人，不知何时就会离开，明天？明年？长成大姑娘的那天？直到死了？鬼才知道。维克多，你带着我走吧。”</p>
+<p>小女孩把头靠近我的肩膀，而我哆嗦了一下，后退两步。</p>
+<p>“逃跑啊，带着我私奔，我们一起去滨海蒙特勒伊！去找我妈妈芳汀！”</p>
+<p>滨海蒙特勒伊？那座十九世纪的法国工业革命重镇，便是而今的世界工厂与东莞式服务的城市吧。</p>
+<p>“珂赛特，你才十二岁啊，胆子好大呢！”</p>
+<p>“我不在乎，维克多，就算没有冉阿让，我也想离开这里。”</p>
+<p>“维克多不是冉阿让——你不明白，冉阿让本就一无所有，而维克多还有很多很多牵挂。”</p>
+<p>“对不起，我说了大实话，难道不是吗？乖，珂赛特，我送你回家，一切都会好起来的。”——魂淡（浑蛋）!当我说这句话的时候，连我自己都不相信。</p>
+<p>她哭了。</p>
+<p>黑夜里的眼泪石，挂在十二岁女孩的脸上，珍珠般熠熠生辉。</p>
+<p>我想擦擦她的眼睛，女孩却说哪里来的风沙这么大。</p>
+<p>好吧，这大晚上的，微风习习，空气清爽。珂赛特捧着两腮，接住几粒凝固的眼泪。她说这些小石头都很值钱，每向德纳第太太交出一粒，就会得到五十块钱奖励。所以，她还急着要把眼泪石收集好了带回去。但我明白，这些石头放到淘宝网上，每颗的价值至少要翻一百倍，颗粒大，成色好的，能卖到上万。</p>
+<p>她把一粒最小的送给了我。</p>
+<p>“维克多，给你留个纪念。以后看到这颗石头，你就会想起我的味道。”</p>
+<p>“你的味道？”我把这颗小石头放入嘴里，舌尖轻轻舔过，果然是眼泪的味道，又咸又涩，就像咖啡里放了盐。</p>
+<p>但我很快后悔了。</p>
+<p>几天后，麻辣烫店重新装修，老板把隔壁的足浴店也盘下来了，据说是要开一家五星级的麻辣烫旗舰店。</p>
+<p>我问珂赛特去哪里了，答案却是那姑娘已远走高飞。</p>
+<p>老板娘拎了个正版LV包包，她老公胸口挂了根金链子，似是发了笔横财。</p>
+<p>我四处寻找珂赛特，最终报警。到了公安局，老板娘才说出真话——他们把珂赛特卖给了一个男人，收了六十万现金。</p>
+<p>我问那个男人长什么样，老板娘说那家伙很神秘，身材高大魁梧，穿着件黑色大衣，还戴着帽子，口袋里装的全是钞票。珂赛特似乎很喜欢他，他也对珂赛特很热情，一把就能将小女孩抱起来，力大无穷的样子。</p>
+<p>世间真有冉阿让？</p>
+<p>二○○九年，元旦过后，警方找到了那个男人。</p>
+<p>他说自己是珂赛特的爸爸，亲爹，如假包换，可以验DNA。他说在十几年前，偶遇珂赛特的妈妈，那时他是个浮浪子，根本不懂什么叫责任。十九岁的乡村美少女大了肚子，却被他始乱终弃了。他去日本做生意赚了笔钱，回来后不断寻找她们母女，直到发现网络上疯传的石头眼泪的少女，才感觉有几分眼熟……</p>
+<p>此事已得到珂赛特妈妈证实，她同意女儿跟着亲生父亲，但她本人宁愿留在东莞。她知道那个男人也绝不会再要自己。他住在郊区的别墅里，开着一辆奔驰车。他发誓让珂赛特过上公主般的生活，开春就要把她送去昂贵的私立学校读书。</p>
+<p>整个春节，我都想忘记珂赛特。我把家里的《悲惨世界》从书架收入抽屉，不要再看到这本书，以为这样就不会再想起她。</p>
+<p>过完年，网上出现了许多“珂赛特眼泪石”。鉴定机构确认都是真品，这些石头的价格直线走高，明显幕后有炒家推动，最高的一颗在拍卖行开出了百万天价。多位女明星戴着“珂赛特眼泪石”项链出席顶级品牌的秀场，日本、美国、欧洲都有愿意为之一掷千金的买家。迪拜和多哈的王爷贝勒们，直接开玛莎拉蒂来换，每套四颗，为了平分给家里的四个福晋。</p>
+<p>我在淘宝上买了一颗，最便宜的八千八百八十八元，成色最差，分量最轻。拆开奢侈品盒子般的包装，只有颗米粒大小的石子，却有一张中国珠宝协会的鉴定证书。我把这颗石子放到嘴里，舌尖立即被刺破，混合着自己的血，尝出那股咸涩的加盐咖啡的味道。</p>
+<p>这是珂赛特的眼泪。</p>
+<p>我恨自己，不该把她放走。那个所谓的爸爸，收养她的真正目的，是获得更多的眼泪石。在许多人眼里，珂赛特不过是一只会下金蛋的母鸡而已。</p>
+<p>通过我的表哥叶萧警官，我得知那个家伙搬家了，不知去了哪里，至于什么私立贵族学校，全是骗人的鬼话，哪里都查不到珂赛特的踪迹。打电话给远在东莞的芳汀，她也对珂赛特的去向一无所知。我祈求公安局开出通缉令，但并无证据说明珂赛特遭到了虐待。而那个男人作为亲生父亲成为珂赛特的监护人，早已得到有关部门批准。</p>
+<p>我用了整个春天寻找我的珂赛特。</p>
+<p>偶尔，我还是会在午夜光临麻辣烫店。店面宽敞了两倍，装修得像五星级酒店的厕所，价格也提高了三分之一。只是没有了会流石头眼泪的珂赛特，生意反而不如以前。跟珂赛特相处久了，在我的眼里，老板和老板娘也成了德纳第先生和德纳第太太。他们的女儿艾潘妮，经常坐在店面角落做作业，用幽怨的目光看着我——总有一天她会为</p>
+<p>马吕斯而受伤的。捡垃圾的米里哀主教，再没来过新的麻辣烫店。我只能隔着玻璃门看马路对面，风烛残年的老主教，背着一麻袋塑料瓶子，白发覆盖额头，叼着一根香烟，俨然有遗世独立的风度。沙威警长还是保持老习惯，一言不发，打量在场的每一个人。我真想坐在他面前，跟他聊聊珂赛特的问题，有什么办法能救那姑娘出来？</p>
+<p>盛夏，新出来的“珂赛特眼泪石”迅速贬值了，从前的旧石头依然价格坚挺，但四月份以后的犹如跳水，最便宜的不足几百块。</p>
+<p>是珂赛特的眼泪太多导致供大于求了吗？不是，我看了许多买家评论，说是现在这批新的眼泪石，成色与质量都大为降低，鉴定证书也是假的。珠宝鉴定师认为，珂赛特眼泪石的生命源，可能已接近衰竭，甚至不在人间。</p>
+<p>最终，新的眼泪石变成了白菜价，老的眼泪石却被炒翻了几倍。</p>
+<p>珂赛特，你还活着吗？</p>
+<p>盛夏的一天，下着瓢泼大雨，我搬家了。我坐进车里，犹豫着是否要再去麻辣烫店看一眼，却远远看到有个姑娘走来。她撑着把花伞，穿着黑色短裙，露出半截大腿，像在电影院门口混的那些小女孩。</p>
+<p>真的是她吗？完全不是原来的样子，高了至少一个头，尤其那双细细长长的腿，我猜她蹿到一米六了，而且还在日夜长高的过程中。</p>
+<p>我摇下车窗喊了一声：“珂赛特！”</p>
+<p>女孩弯腰看了看车里的我。雨滴打到她脸上，泪水一样哗哗流淌。她先微微一笑，露出两颗虎牙，太阳雨般灿烂，然后呜咽着哭了。</p>
+<p>我让她坐到副驾驶座上，雨水打在车窗外，像一片瀑布笼罩着我俩。</p>
+<p>珂赛特接着哭，但从眼眶里流出来的，不再是珍珠般的眼泪石，而是黑色的小颗粒。</p>
+<p>黑色石子带着肮脏的污迹，像浓妆时流泪化开的眼影，看着让人有几分恶心。</p>
+<p>我已经八个月没见过她了。</p>
+<p>去年冬天，当那个男人来临，她真的以为那个人是冉阿让——坐着四轮马车，魁伟的身材，戴着高礼帽，留着络腮胡，鹰钩鼻子。</p>
+<p>冉阿让收养了女孩，把她带到郊外漂亮宽敞的别墅里。他让芳汀与珂赛特通电话，妈妈说冉阿让就是她的爸爸，让她务必要听话，并说过年就来看她。刚开始，她感觉很幸福。那个房子里应有尽有，每天能吃到面包、牛排、鹅肝还有蜗牛。不用干任何粗活累活，连个碗都不用洗，全部交给女佣就行了。</p>
+<p>头一个月，珂赛特没流过眼泪。</p>
+<p>冉阿让的态度渐渐变化，他焦虑地看着她，说自己出生于一七六九年，从小是个孤儿，只有个姐姐把他带大。姐姐是寡妇，带着七个孩子。大革命以后，整个法国都在挨饿，为了不让姐姐的孩子饿死，冉阿让偷了一条面包，被逮捕判刑五年。但他是个越狱高手，总共逃跑了四次，每次刑期增加三年。最终，他做了十九年苦役，回到这个憎恨他和他所憎恨的世界。</p>
+<p>珂赛特问他遇到了主教大人米里哀先生吗？</p>
+<p>我遇到了，并且偷了他的几件银器，后来警察抓住了我，问米里哀主教这是不是我偷的，老头子点了点头，冷酷无情地说，让这个卑劣的窃贼下地狱吧。冉阿让这样回答没错，他确实下了地狱。</p>
+<p>虽然，珂赛特为他而难过，但没有流泪。冉阿让很失望，便把她关在一个小黑屋里，只有台电视机和DVD做伴。</p>
+<p>某个深夜，电视机突然打开，播放电影《午夜凶铃》，第二天是《小岛惊魂》，第三天是《德州电锯杀人狂》，第四天是《鬼娃新娘》，第五天……</p>
+<p>七天之后，珂赛特尖叫得嗓子哑了，但没有流过一滴眼泪。</p>
+<p>冉阿让忍无可忍，疯狂地冲进小黑屋，剥掉了小女孩身上的衣服。</p>
+<p>终于，珂赛特哭了。</p>
+<p>她抱着赤身裸体的小小躯干，不想被冉阿让触摸……最漫长的那一夜，她始终在呼唤一个名字——维克多。</p>
+<p>幸好她哭了，眼泪石接连不断坠落，颗颗都是粒大饱满，色彩鲜艳，白的紫的还有红的。</p>
+<p>冉阿让小心地收集这些石头，冷冷地说了一句：“姑娘，你真丑。”</p>
+<p>春节，妈妈没有来看她。</p>
+<p>珂赛特每天要流一次眼泪，每次产生至少七八粒石头，她透过窗户看到庭院里，冉阿让又换了一辆崭新的四轮马车。</p>
+<p>有一天，冉阿让感觉到了危险，他连夜带着珂赛特搬家，去了另外的城市。他继续把女孩关在小黑屋，每天强迫她哭泣流泪，直到又一个春夜。</p>
+<p>她一边流着眼泪，一边感觉身体底下热流滚滚，接着整条裤子染满殷红的血。</p>
+<p>珂赛特不明白这叫初潮。但她清晰无误地感受到体内的各种变化，像被浸泡在巴黎的下水道里，也像第一次接触马吕斯的嘴唇。</p>
+<p>更大的变化是——她的眼泪石变难看了，从晶莹剔透的珍珠形状，变得乌黑而没有光泽，颗粒很小且易破碎，带着各种碎渣和瑕疵，轻轻一捏就成了粉末，更像老鼠屎。</p>
+<p>冉阿让心急如焚地查阅文献资料，古人说初潮前少女的眼泪石弥足珍贵，但等到月事降临慢慢长大，眼泪就成了肮脏的小颗粒，变得一文不值。</p>
+<p>他只能用各种手段来伪装，给成色低劣的眼泪石刷上各种化学药水，添加其他成分，配上假冒的鉴定证书，但这些都难以逃脱鉴定师的法眼。</p>
+<p>春天过去，珂赛特从小女孩变成了少女，胸口也微微隆起两座小丘，她的眼睛总是红通通的，分泌着乌黑肮脏的物质，再也流不出珍珠般的石头。</p>
+<p>一周前，她被冉阿让扫地出门，只给了她几百块钱路费，还有那五本《悲惨世界》。</p>
+<p>珂赛特说她是坐邮递马车回到巴黎的，但她没有回德纳第客栈。她的心里全是维克多，却再也找不到他了，在咐近游荡了几天。她给自己买了些衣服，问我：“看起来是不是很丑？”</p>
+<p>我摇摇头，擦去她的眼泪，不当心按碎了小石头，脸上出现几道乌黑印子。</p>
+<p>看着她红红的双眼，车窗顶上砸满了雨点声，我突然踩下油门。</p>
+<p>“你要带我去哪里？”</p>
+<p>我沉默着，面色阴沉，头顶响着闷雷，苏州河上有闪电路过，像一八三二年巴黎的天空。</p>
+<p>我直接把珂赛特送进医院，挂了眼科的专家门诊。她很恐惧，但我说不要害怕，一切都会过去的。医生对她的眼睛感到惊讶，说这是眼结石，虽是常见的毛病，但这姑娘可能有基因缺陷，所以才会流出石头般的眼泪，全球几亿人才能见到一个这样的病例。</p>
+<p>要解决这个问题，只能开刀。普通的眼结石手术非常简单，在门诊用针头就能挑出来。但珂赛特的病情复杂，手术非同寻常，稍有不慎就会有失明危险，需要全球最好的眼科与外科医生。</p>
+<p>我请了媒体朋友帮忙，在网上发起募捐，几位收藏家捐出了原本低价收购的眼泪石，筹措到上百万元的手术经费。</p>
+<p>秋天，珂赛特的手术相当顺利。两只眼睛的病变部位都被清理，挑出了上百枚肉眼难以分辨的小石子。为了彻底断绝后患，医生切除了她的一部分睑结膜。</p>
+<p>手术过后，珂赛特解开缠在眼睛上的绷带，第一个见到的人，是我。</p>
+<p>双眼仍然有些红肿，但看起来更正常了些，整个脸型也有轮廓了，眉目清秀，棱角分明。仿佛刚做完的不是眼科手术，而是微创整形。</p>
+<p>她看着我。</p>
+<p>泪水，如假包换的泪水——液体的，柔软的，透明的，滚动着的流质。</p>
+<p>我伸出手，就像第一次触摸她的眼泪，那一次是石头，这一回是水。</p>
+<p>“吃了它吧，维克多！”</p>
+<p>她让我吃掉她的泪珠，这样才能证明，她已不再是个只会流石头眼泪的小怪物了。</p>
+<p>指尖蘸着她的泪水，放入我的嘴里吮吸，还是跟石头一样的味道，像是加了盐的咖啡。</p>
+<p>“维克多，好吃吗？”</p>
+<p>“嗯，人间美味！”</p>
+<p>“能把我带走吗？我每天都可以让你吃我的眼泪。”</p>
+<p>这是她第二次祈求我带她私奔。</p>
+<p>上一次，她只是个小女孩，而这一回，她以为自己是个女人。</p>
+<p>“珂赛特，不要啊，我是维克多，不是冉阿让。”</p>
+<p>我第二次拒绝了她。</p>
+<p>她不再说话了，把头埋在膝盖里，继续哭泣……</p>
+<p>第二天，珂赛特从医院里失踪，顺便带走了网友们捐献的几万块现金。</p>
+<p>雨果老爹啊，我再也找不到这个十三岁的少女了。</p>
+<p>但我想起了麻辣烫店——不，是德纳第客栈。</p>
+<p>当我心急火燎地赶到店里头，却被德纳第太太劈头痛骂了一通，她说是我毁掉了那个姑娘——如果不把她送去开刀，如果现在还有眼泪石，珂赛特一定能过上更好的生活，他们做舅舅和舅妈的，想必还能跟着沾光。</p>
+<p>自然，她闭口不提把珂赛特卖给那个王八蛋的旧事，我也不想跟他们解释现在珂赛特的眼泪已经一文不值了。</p>
+<p>德纳第太太说，珂赛特昨晚回过一趟麻辣烫店，送给舅舅和舅妈一些礼物，包括艾潘妮姐妹也收到了芭比娃娃。</p>
+<p>“还有那五本破书，早就生蛆长虱子了，平常是那姑娘的宝贝，看得比自己性命还重要，居然也送给了我女儿。不过，我们可不要这晦气的东西，顺手送给了对面捡垃圾的老头，论斤卖去了废品回收站，也算是救助弱势群体，行善积德嘛……”德纳第太太说着说着，掉下几滴假惺惺的眼泪，她肯定在心里头抱怨，为啥哭出来的不是石头。</p>
+<p>而我转头看着马路对面，米里哀先生正蹲在废铜烂铁上，翻着几本《悲惨世界》。</p>
+<p>真是好归宿啊，这故事因他而生，也自然要到他而止。</p>
+<p>最后，我问了一句：“你外甥女有没有说去哪里？”</p>
+<p>“买了张火车票去找她妈妈了，现在应该已经到了吧。”我知道，那个地方叫东莞。再见，珂赛特。</p>
+<p>二○一○年，上海开了世博会，我忘了在法国馆里有没有《悲惨世界》和珂赛特。</p>
+<p>二○一一年，《谋杀似水年华》出版。麻辣烫店关门了，新开了一家全家便利店。德纳第夫妇打麻将输光了积蓄，逃到郊区躲债了。至于那个冉阿让，因为诈骗被关进了监狱。</p>
+<p>二○一二年，《地狱变》出版。我身上发生了许多事。我把微博头像换成了音乐剧《悲惨世界》中的珂赛特。有人在长寿公园发现了米里哀主教的尸体，人们猜测他是在寒流中被冻死的。冬至那天，地球并没有毁灭。</p>
+<p>二○一三年，《生死河》出版。我在人生的分水岭上。沙威警长终于逮住了澳门路上的盗窃团伙，但在搏斗过程中被人刺中了一刀，在医院抢救后活了回来。但他没得到任何补偿，物业公司把他解雇了。这年圣诞节的晚上，他从江宁路桥跳下苏州河淹死了。</p>
+<p>二○一四年，《《偷窥一百二十天》出版。托马云的福，越来越多人在淘宝上卖石头。德纳第家的艾潘妮考上了大学。我开始在微博上每周更新“最漫长的那一夜”系列故事。</p>
+<p>二○一五年，春天正在进行时，我有许多电影要开拍了。等到夏天，“最漫长的那一夜”就要结集出版第一本图书。</p>
+<p>偶尔，我还是会想起她——眼睛里会流出石头的小女孩。</p>
+<p>我知道她的真实姓名，但记不清了，我只记得她叫珂赛特。</p>
+<p>上个月，我路过长寿路武宁路口的“东方魅力”，是家招牌超级大的夜总会，远至一公里开外都能远远望见。这家店门口总是停满豪车，午夜时分，更有不少“有偿陪侍”下班出来。</p>
+<p>我遇见了她。</p>
+<p>是她先认出我的，在武宁路的横道线上。她没有叫我维克多，只是在背后轻拍了我一下。我转回头，完全没认出她来。</p>
+<p>她化着浓烈的妆容，穿着亮晶晶的裙子，露出胸口的深V，踩着高跟鞋几乎比我还高。</p>
+<p>夜总会闪烁的霓虹灯下，我和她前言不搭后语地对话，直到第七还是第八句，我才忽然想起她可能是珂赛特。</p>
+<p>哦，没错，她还记得苏州河边的那个夜晚，她祈求我带她远走高飞。</p>
+<p>珂赛特十九岁了，六年前她并不漂亮，眼睛开刀前甚至像丑小鸭，现在却让人眼前发亮。果然胸是胸，屁股是屁股，更别说脸蛋了。</p>
+<p>她没有牵我的手，我也与她保持距离，我们一起走过苏州河。武宁路桥经过改造后很像巴黎塞纳河上的亚历山大三世桥，四根桥柱顶上有金色的雕像。</p>
+<p>“哎呀，小时候我可真傻啊，一直以为这是塞纳河，还以为活在十九世纪的法国！”</p>
+<p>珂赛特笑着说，满嘴劣质的洋酒味。趴在黑夜的桥栏杆上，看着苏州河边的家乐福，画满巴黎街道与地中海的巨大墙面，她高声唱了首歌——</p>
+<p>结婚了吧!傻逼了吧！以后要赚钱就两个人花！离婚了吧傻逼了吧！以后打炮就埋单了吧!</p>
+<p>《结婚进行曲》的旋律，但我知道这不是她原创的，我敢打赌珂赛特并没有看过那部电影。</p>
+<p>走下武宁路桥，街边有家小麻辣烫店，珂赛特硬拉着我进去，请我吃了一顿丰盛的夜宵。她的钱包鼓鼓囊囊，塞着几千块小费。她抽出一支女士烟，往油腻的半空吐出蓝色烟雾。她还笑话我到现在依然不抽烟。</p>
+<p>珂赛特问：“我们多少年没见过了？”</p>
+<p>“六年。”我回答。</p>
+<p>事实上，每一年，我都记得清清楚楚。</p>
+<p>“啊，时间过得好快啊。”十九岁的女孩，继续吞云吐雾，而我也没问她这些年过得怎样。她接着说，“后来，我才明白，书里写的全是骗人的，冉阿让是坏人！马吕斯也是坏人！芳汀更是坏人！当然，珂赛特是比他们所有人更坏的坏人！”</p>
+<p>说完，她的眼角泪滴闪烁，湿湿的，百分之百液体。她擦去泪水，嘴里蹦出一句：“我操，为什么不是石头？！”</p>
+<p>再见，麻辣烫，再见，珂赛特。</p>
+<p>珂——赛——特——</p>
+<p>CO-SE-TTE-</p>
+<p>这三个发音，不是我的生命之光，不是我的欲念之火，也不是我的罪恶，更不是我的灵魂。</p>
+<p>世间再无冉阿让。</p><hr><p><a href="#top">返回顶部</a></p></div></body></html>
